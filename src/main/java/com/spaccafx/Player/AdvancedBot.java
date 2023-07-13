@@ -23,7 +23,8 @@ public class AdvancedBot extends Bot
     }
 
     @Override
-    public String generaNomeBot() { //generiamo nomi per i bot(es: user1234)
+    public String generaNomeBot() //generiamo nomi per i bot(es: user1234)
+    {
         int numeroBot=(int)(Math.random() * (9999 - 1 + 1) + 1);
         String nomeBot="user" + numeroBot;
         return nomeBot;
