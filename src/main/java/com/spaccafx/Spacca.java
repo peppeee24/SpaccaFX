@@ -34,14 +34,17 @@ public class Spacca extends Application {
 
         Giocatore p1 = new Giocatore("Magli");
         Giocatore p2 = new Giocatore("Giuseppe");
+        Giocatore p3 = new Giocatore("Alfredo");
+        Giocatore p4 = new Giocatore("Sofia");
 
-        GameManager game = new GameManager(2);
+        GameManager game = new GameManager(4);
 
         game.aggiungiGiocatore(p1);
         game.aggiungiGiocatore(p2);
+        game.aggiungiGiocatore(p3);
+        game.aggiungiGiocatore(p4);
 
         game.StartGame();
-        game.StampaInfoGiocatori();
 
         System.exit(0);
         //launch();
