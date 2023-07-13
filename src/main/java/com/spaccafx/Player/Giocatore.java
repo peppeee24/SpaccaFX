@@ -2,8 +2,9 @@ package com.spaccafx.Player;
 
 import com.spaccafx.Cards.*;
 import com.spaccafx.Enums.*;
+import com.spaccafx.Interface.IGiocatore;
 
-public class Giocatore
+public class Giocatore implements IGiocatore
 {
     private String nome;
     private int vita;
