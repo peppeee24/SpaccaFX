@@ -32,7 +32,7 @@ public class Spacca extends Application {
         //System.out.println("Inserisci quanti giocatori vuoi: ");
         //int nGiocatori = s.nextInt();
 
-        Giocatore p1 = new Giocatore("Armando");
+        Giocatore p1 = new Giocatore("Magli");
         Giocatore p2 = new Giocatore("Giuseppe");
 
         GameManager game = new GameManager(2);
