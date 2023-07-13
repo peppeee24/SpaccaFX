@@ -217,10 +217,16 @@ public class GameManager
 
             // ERRORE QUI DA QUALCHE PARTE
 
-            if(nextIndexPlayer > giocatori.size()) // se sono oltre il limite
+            if(nextIndexPlayer >= giocatori.size()) // se sono oltre il limite
+            {
                 nextPlayer = giocatori.get(0); // prendo il primo giocatore
+                nextIndexPlayer = 0;
+            }
+
             else // altrimenti
                 nextPlayer = giocatori.get(nextIndexPlayer); // prendo il prossimo giocatore
+
+            System.out.println("Indirizzo PLAYER successivo: " + nextIndexPlayer);
 
             Carta cartaNextPlayer = nextPlayer.getCarta();
             nextPlayer.setCarta(cartaPlayerAttuale);
@@ -285,10 +291,10 @@ public class GameManager
 
         while(flag)
         {
-            if(c+1 > giocatori.size())
+            if(c+1 > giocatori.size() - 1)
                 c = 0;
             else
-                c+=1;
+                c++;
 
             System.out.println("Posizione attuale: " + c);
             Giocatore currentGiocatore = giocatori.get(c); // ERRORE QUI DA QUALCHE PARTE
@@ -312,5 +318,22 @@ public class GameManager
         }
 
         System.out.println("Round finito.. CONTROLLO I RISULTATI...");
+        RuotaMazziere();
+    }
+
+    private void RuotaMazziere()
+    {
+        if(posMazziere+1 > giocatori.size() - 1)
+        {
+            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
+            posMazziere = 0;
+            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+        }
+        else
+        {
+            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
+            posMazziere++;
+            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+        }
     }
 }
