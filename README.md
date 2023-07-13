@@ -4,7 +4,7 @@
 ### COME SCARICARE IL PROGETTO
 _Segui i passaggi sottostanti per avere il progetto installato correttamente ._
 
-  1. Passo 1
+  1. Passo 1, scarica Intellij
   2. Passo 2
   3. Passo 3
 
