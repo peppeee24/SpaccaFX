@@ -10,29 +10,31 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.util.*;
 
-import java.io.IOException;
+import java.io.*;
 
-public class Spacca extends Application {
+public class Spacca extends Application
+{
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
-        primaryStage.setTitle("Prova controller!");
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
+    public void start(Stage stage) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita.fxml"));
 
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Prova controller!");
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args)
     {
-        Scanner s = new Scanner(System.in);
+        launch();
+        //Scanner s = new Scanner(System.in);
 
         //System.out.println("Inserisci quanti giocatori vuoi: ");
         //int nGiocatori = s.nextInt();
 
-        Giocatore p1 = new Giocatore("Magli");
+        /*Giocatore p1 = new Giocatore("Magli");
         Giocatore p2 = new Giocatore("Giuseppe");
         Giocatore p3 = new Giocatore("Alfredo");
         Giocatore p4 = new Giocatore("Sofia");
@@ -46,7 +48,7 @@ public class Spacca extends Application {
 
         game.StartGame();
 
-        System.exit(0);
-        //launch();
+        System.exit(0);*/
+
     }
 }
