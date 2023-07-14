@@ -1,12 +1,13 @@
 package com.spaccafx.Cards;
 
 import com.spaccafx.Enums.*;
+import javafx.scene.image.Image;
 
 public class Carta
 {
     private int valore;
     private SemeCarta seme;
-    //private sprite image;
+    private Image image;
 
     public Carta(int valore)
     {
@@ -26,6 +27,6 @@ public class Carta
     //public Sprite getSprite(){return this.image;}
     public SemeCarta getSeme(){return this.seme;}
     public String toString(){return " " + this.valore + " di " + this.seme;}
-
+    public void setImage(Image image){}
 
 }

@@ -20,11 +20,10 @@ public class Spacca extends Application
     @Override
     public void start(Stage stage) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("spaccafx/Partita.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Prova controller!");
+        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1600, 850);
+        stage.setTitle("Alpha Build SpaccaFX");
 
         stage.setScene(scene);
         stage.show();
@@ -32,7 +31,7 @@ public class Spacca extends Application
 
     public static void main(String[] args)
     {
-        //launch();
+        launch();
         //Scanner s = new Scanner(System.in);
 
         //System.out.println("Inserisci quanti giocatori vuoi: ");
