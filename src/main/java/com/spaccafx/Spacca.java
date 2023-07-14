@@ -21,10 +21,11 @@ public class Spacca extends Application
     public void start(Stage stage) throws IOException
     {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1600, 850);
+        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita2.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1197, 812);
         stage.setTitle("Alpha Build SpaccaFX");
 
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -37,11 +38,11 @@ public class Spacca extends Application
         //System.out.println("Inserisci quanti giocatori vuoi: ");
         //int nGiocatori = s.nextInt();
 
-        Giocatore p1 = new Giocatore("Magli");
+        //Giocatore p1 = new Giocatore("Magli");
         /*Giocatore p2 = new Giocatore("Giuseppe");
         Giocatore p3 = new Giocatore("Alfredo");
         Giocatore p4 = new Giocatore("Sofia");*/
-        Bot b1 = new AdvancedBot();
+        /*Bot b1 = new AdvancedBot();
         b1.setNome(b1.generaNomeBot());
         Bot b2 = new EasyBot();
         b2.setNome(b2.generaNomeBot());
@@ -49,16 +50,16 @@ public class Spacca extends Application
 
         GameManager game = new GameManager(3);
 
-        game.aggiungiGiocatore(p1);
+        game.aggiungiGiocatore(p1);*/
         /*game.aggiungiGiocatore(p2);
         game.aggiungiGiocatore(p3);
         game.aggiungiGiocatore(p4);*/
-        game.aggiungiGiocatore(b1);
-        game.aggiungiGiocatore(b2);
+        //game.aggiungiGiocatore(b1);
+        //game.aggiungiGiocatore(b2);
 
-        game.StartGame();
+        //game.StartGame();
 
-        System.exit(0);
+        //System.exit(0);
 
     }
 }

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="background" onMouseDragged="#RefreshScene" onMouseEntered="#RefreshScene" onMouseExited="#RefreshScene" onMouseMoved="#RefreshScene" onMousePressed="#RefreshScene" onMouseReleased="#RefreshScene" onScroll="#RefreshScene" onScrollFinished="#RefreshScene" onScrollStarted="#RefreshScene" prefHeight="560.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="termproject.HeartsMultiplayerController">
+    <children>
+        <ImageView fitHeight="101.0" fitWidth="101.0" layoutX="1142.0" layoutY="8.0">
+            <image>
+                <Image url="@../../heartslogo.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="single_player" layoutX="1172.0" layoutY="504.0" onAction="#handleButtonAction" text="Back" />
+        <ImageView fx:id="card" fitHeight="101.0" fitWidth="79.0" layoutX="50.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card1" fitHeight="101.0" fitWidth="79.0" layoutX="131.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card2" fitHeight="101.0" fitWidth="79.0" layoutX="212.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card3" fitHeight="101.0" fitWidth="79.0" layoutX="293.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card4" fitHeight="101.0" fitWidth="79.0" layoutX="374.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card5" fitHeight="101.0" fitWidth="79.0" layoutX="455.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card6" fitHeight="101.0" fitWidth="79.0" layoutX="536.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card7" fitHeight="101.0" fitWidth="79.0" layoutX="617.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card8" fitHeight="101.0" fitWidth="79.0" layoutX="698.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card9" fitHeight="101.0" fitWidth="79.0" layoutX="779.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card10" fitHeight="101.0" fitWidth="79.0" layoutX="860.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card11" fitHeight="101.0" fitWidth="79.0" layoutX="941.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card12" fitHeight="101.0" fitWidth="79.0" layoutX="1022.0" layoutY="442.0" onMouseClicked="#PlaytheCard" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card26" fitHeight="101.0" fitWidth="79.0" layoutX="1022.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card27" fitHeight="101.0" fitWidth="79.0" layoutX="941.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card28" fitHeight="101.0" fitWidth="79.0" layoutX="860.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card29" fitHeight="101.0" fitWidth="79.0" layoutX="779.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card30" fitHeight="101.0" fitWidth="79.0" layoutX="698.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card31" fitHeight="101.0" fitWidth="79.0" layoutX="617.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card32" fitHeight="101.0" fitWidth="79.0" layoutX="536.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card33" fitHeight="101.0" fitWidth="79.0" layoutX="455.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card34" fitHeight="101.0" fitWidth="79.0" layoutX="374.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card35" fitHeight="101.0" fitWidth="79.0" layoutX="293.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card36" fitHeight="101.0" fitWidth="79.0" layoutX="212.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card37" fitHeight="101.0" fitWidth="79.0" layoutX="131.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card38" fitHeight="101.0" fitWidth="79.0" layoutX="50.0" layoutY="94.0" pickOnBounds="true" translateY="-80.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card13" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="355.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card14" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="342.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card15" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="329.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card16" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="316.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card17" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="303.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card18" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="290.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card19" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="277.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card20" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="264.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card21" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="251.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card22" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="238.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card23" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="225.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card24" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="212.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card25" fitHeight="101.0" fitWidth="79.0" layoutX="1011.0" layoutY="199.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card39" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="208.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card40" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="221.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card41" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="234.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card42" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="247.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card43" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="260.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card44" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="273.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card45" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="286.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card46" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="299.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card47" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="312.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card48" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="325.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card49" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="338.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card50" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="351.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="card51" fitHeight="101.0" fitWidth="79.0" layoutX="61.0" layoutY="364.0" pickOnBounds="true" rotate="90.0" translateY="-50.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="player1" fitHeight="101.0" fitWidth="79.0" layoutX="536.0" layoutY="312.0" pickOnBounds="true">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="player3" fitHeight="101.0" fitWidth="79.0" layoutX="536.0" layoutY="146.0" pickOnBounds="true" rotate="180.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="player2" fitHeight="101.0" fitWidth="79.0" layoutX="769.0" layoutY="236.0" pickOnBounds="true" rotate="90.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="player4" fitHeight="101.0" fitWidth="79.0" layoutX="304.0" layoutY="236.0" pickOnBounds="true" rotate="-90.0">
+            <image>
+                <Image url="@Cards/back.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="multiplayer" layoutX="1120.0" layoutY="442.0" mnemonicParsing="false" onAction="#PressedOnMultiplayerButton" text="Start Game" />
+        <Label fx:id="ServerMessage" layoutX="506.0" layoutY="267.0" text="Make your move!" />
+        <VBox layoutX="171.0" layoutY="200.0" prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <Label fx:id="points4" prefHeight="27.0" prefWidth="69.0" text="Points: 0" />
+                <Label fx:id="hands4" prefHeight="29.0" prefWidth="66.0" text="Hands: 0" />
+            </children>
+        </VBox>
+        <VBox layoutX="881.0" layoutY="200.0" prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <Label fx:id="points2" prefHeight="27.0" prefWidth="69.0" text="Points: 0" />
+                <Label fx:id="hands2" prefHeight="30.0" prefWidth="67.0" text="Hands: 0" />
+            </children>
+        </VBox>
+        <HBox layoutX="220.0" layoutY="394.0" prefHeight="39.0" prefWidth="247.0" spacing="10.0">
+            <children>
+                <Label fx:id="points1" prefHeight="27.0" prefWidth="69.0" text="Points: 0" />
+                <Label fx:id="hands1" prefHeight="26.0" prefWidth="70.0" text="Hands: 0" />
+            </children>
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+        </HBox>
+        <HBox layoutX="719.0" layoutY="123.0" prefHeight="33.0" prefWidth="247.0" spacing="10.0">
+            <children>
+                <Label fx:id="points3" prefHeight="27.0" prefWidth="69.0" text="Points: 0" />
+                <Label fx:id="hands3" prefHeight="27.0" prefWidth="74.0" text="Hands: 0" />
+            </children>
+            <padding>
+                <Insets right="10.0" />
+            </padding>
+        </HBox>
+    </children>
+</AnchorPane>
