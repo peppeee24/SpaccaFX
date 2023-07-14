@@ -1,6 +1,8 @@
 package com.spaccafx.Manager;
 
 import com.spaccafx.Enums.RuoloGiocatore;
+import com.spaccafx.Interface.IGiocatore;
+import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Cards.*;
 
@@ -10,16 +12,16 @@ public class GameManager
 {
     Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
 
-    ArrayList<Giocatore> giocatori;
-    ArrayList<Giocatore> giocatoriMorti;
+    ArrayList<IGiocatore> giocatori;
+    ArrayList<IGiocatore> giocatoriMorti;
 
     private int currentRound = 1;
     private int posMazziere = 0;
 
     public GameManager(int size)
     {
-        giocatori = new  ArrayList<Giocatore>(size);
-        giocatoriMorti = new ArrayList<Giocatore>();
+        giocatori = new  ArrayList<IGiocatore>(size);
+        giocatoriMorti = new ArrayList<IGiocatore>();
     }
 
     //region # GAME
@@ -76,14 +78,19 @@ public class GameManager
                 c++;
 
             System.out.println("Posizione attuale: " + c);
-            Giocatore currentGiocatore = giocatori.get(c); // ERRORE QUI DA QUALCHE PARTE
+            IGiocatore currentGiocatore = giocatori.get(c); // ERRORE QUI DA QUALCHE PARTE
 
             if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
             {
                 System.out.println("Tocca a un MAZZIERE");
-                MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il MAZZIERE attualmente
-                mossa = s.nextInt();
-                Scelta(mossa, currentGiocatore);
+                MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
+                if(currentGiocatore instanceof Bot){
+                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                }
+                else{
+                    mossa = s.nextInt();
+                    Scelta(mossa, currentGiocatore);
+                }
 
                 flag = false; // abbiamo trovato il mazziere e quindi e apposto
             }
@@ -91,8 +98,14 @@ public class GameManager
             {
                 System.out.println("Tocca a un GIOCATORE");
                 MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
-                mossa = s.nextInt();
-                Scelta(mossa, currentGiocatore);
+                if(currentGiocatore instanceof Bot){
+                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                }
+                else{
+                    mossa = s.nextInt();
+                    Scelta(mossa, currentGiocatore);
+                }
+
             }
         }
 
@@ -106,11 +119,11 @@ public class GameManager
 
     //region #GAME SETUP
 
-    private void LancioDadiIniziale()
+    private void LancioDadiIniziale() //verigicare se avere il metodo setDado basta solo nella classe padre
     {
         for(int c=0; c<giocatori.size() ;c++)
         {
-            Giocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
+            IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
             int valoreDado = LancioDadoSingolo();
 
             System.out.println("\nIl giocatore " + editGiocatore.getNome() + " ha lanciato un dado ed e uscito: " + valoreDado);
@@ -122,7 +135,7 @@ public class GameManager
 
     private void StabilisciMazziere()
     {
-        ArrayList<Giocatore> perdenti = new ArrayList<Giocatore>();
+        ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>();
         int valorePiuAlto = TrovaValoreDadoAlto(giocatori);
 
         for(int c=0; c<giocatori.size() ;c++)
@@ -144,7 +157,7 @@ public class GameManager
         {
             System.out.println("\n** PIU PERSONE HANNO IL DADO CON LO STESSO VALORE ** \n");
 
-            for(Giocatore perdente : perdenti)
+            for(IGiocatore perdente : perdenti)
             {
                 perdente.setDado(LancioDadoSingolo()); // faccio ritirare i dadi ai giocatori perdenti
             }
@@ -189,9 +202,9 @@ public class GameManager
         return (int)(1 + Math.random() * (2)); // un valore a caso da 1 a 6
     }
 
-    public void aggiungiGiocatore(Giocatore giocatore){this.giocatori.add(giocatore);}
+    public void aggiungiGiocatore(IGiocatore giocatore){this.giocatori.add(giocatore);}
 
-    private int TrovaValoreDadoAlto(ArrayList<Giocatore> lista)
+    private int TrovaValoreDadoAlto(ArrayList<IGiocatore> lista)
     {
         int numeroPiuAlto = 1; // metto il valore piu piccolo del dado possibile (da noi il piu piccolo e' il piu alto)
 
@@ -206,7 +219,7 @@ public class GameManager
         return numeroPiuAlto;
     }
 
-    private int TrovaValoreCartaAlta(ArrayList<Giocatore> lista)
+    private int TrovaValoreCartaAlta(ArrayList<IGiocatore> lista)
     {
         int numeroPiuAlto = 1; // metto il valore piu piccolo della carta possibile (da noi il piu piccolo e' il piu alto)
 
@@ -225,7 +238,7 @@ public class GameManager
     {
         for(int c=0; c<giocatori.size() ;c++)
         {
-            Giocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
+            IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
             giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
 
             giocatori.set(c, giocatoreEdit); // reimposto la cella di quel giocatore con il valore della carta presa dal mazzo;
@@ -234,13 +247,22 @@ public class GameManager
 
     private boolean IsGameRunning() // # MODIFICARE!! Se muoiono tutti i playere e ne rimangono 0??
     {
-        if(giocatori.size() == 1) return false; // se ce solo un giocatore la partita finisce in automatico
-        else return true; // vuol dire che ci sono piu giocatori vivi
+        if(giocatori.size() == 1){
+            return false; // se ce solo un giocatore la partita finisce in automatico
+        }
+        else
+        {
+            if(giocatori.size()==0){
+                System.out.println("Dimensione uguale a 0");
+                return  false;
+            }
+            return true; // vuol dire che ci sono piu giocatori vivi
+        }
     }
 
     private int getCurrentRound(){return this.currentRound;}
 
-    private void MostraIstruzioni(Giocatore giocatore)
+    private void MostraIstruzioni(IGiocatore giocatore)
     {
         System.out.println("\nGiocatore: " + giocatore.getNome() + " tocca a te fare una mossa! ");
         System.out.println("Carta: " + giocatore.getCarta().toString() + ", Vite: " + giocatore.getVita() + ", Ruolo: " + giocatore.getRuolo());
@@ -249,7 +271,7 @@ public class GameManager
         System.out.println("2 - PASSA IL TURNO");
     }
 
-    private void Scelta(int scelta, Giocatore currentGiocatore)
+    private void Scelta(int scelta, IGiocatore currentGiocatore)
     {
         switch (scelta)
         {
@@ -259,7 +281,7 @@ public class GameManager
         }
     }
 
-    private void ScambiaCarta(Giocatore currentGiocatore)
+    private void ScambiaCarta(IGiocatore currentGiocatore)
     {
         int currentIndexPlayer = giocatori.indexOf(currentGiocatore); // prendo il giocatore attuale
         Carta cartaPlayerAttuale = currentGiocatore.getCarta(); // prendo la sua carta
@@ -271,7 +293,7 @@ public class GameManager
         }
         else // sono un giocatore normale
         {
-            Giocatore nextPlayer;
+            IGiocatore nextPlayer;
             int nextIndexPlayer = currentIndexPlayer + 1;
 
             // ERRORE QUI DA QUALCHE PARTE
@@ -304,9 +326,18 @@ public class GameManager
     {
         if(posMazziere+1 > giocatori.size() - 1)
         {
-            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
-            posMazziere = 0;
-            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+            if(posMazziere < giocatori.size()){ //POSSIBILE ERRORE in certi casi si cerca il mazziere ma non si trova la posizione, controllare questo if
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
+                posMazziere = 0;
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+            }
+            else{
+                posMazziere = posMazziere - 1;
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
+                posMazziere = 0;
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+            }
+
         }
         else
         {
@@ -318,25 +349,25 @@ public class GameManager
 
     private void ControllaRisultati() // con questo metodo capiamo a chi togliere la vita dei player
     {
-        Map<Integer, ArrayList<Giocatore>> mapSet = new HashMap<>();
+        Map<Integer, ArrayList<IGiocatore>> mapSet = new HashMap<>();
 
         int maxValue = TrovaValoreCartaAlta(giocatori);
         System.out.println("La carta con il valore piu alto e: " + maxValue);
 
 
-        for (Giocatore giocatore : giocatori)
+        for (IGiocatore giocatore : giocatori)
         {
             if (giocatore.getCarta().getValore() == maxValue)
             {
-                ArrayList<Giocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
+                ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
                 giocatoriConValoreMassimo.add(giocatore);
                 mapSet.put(maxValue, giocatoriConValoreMassimo);
                 System.out.println("(!) " + giocatore.getNome() + " HA PERSO 1 VITA!!");
             }
         }
 
-        ArrayList<Giocatore> giocatoriConValoreMassimo = mapSet.get(maxValue);
-        for (Giocatore giocatore : giocatoriConValoreMassimo)
+        ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.get(maxValue);
+        for (IGiocatore giocatore : giocatoriConValoreMassimo)
         {
             giocatore.setVita(giocatore.getVita() - 1); // Tolgo 1 vita al giocatore che ha perso dalle vite che aveva prima
 
@@ -355,7 +386,7 @@ public class GameManager
 
     //region #DEBUG
 
-    private void MostraDadiGicatoriAttuali(ArrayList<Giocatore> lista)
+    private void MostraDadiGicatoriAttuali(ArrayList<IGiocatore> lista)
     {
         for (int c=0; c<lista.size();c++)
         {
@@ -367,7 +398,7 @@ public class GameManager
     {
         for(int c=0; c<giocatori.size() ;c++)
         {
-            Giocatore currentGiocatore = giocatori.get(c);
+            IGiocatore currentGiocatore = giocatori.get(c);
 
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
                     ", Carta: " + currentGiocatore.getCarta().toString() +

@@ -1,6 +1,7 @@
 package com.spaccafx.Player;
 
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Interface.IGiocatore;
 
 public class EasyBot extends Bot
 {
@@ -18,18 +19,14 @@ public class EasyBot extends Bot
     }
 
     @Override
-    public boolean Scelta() { //ipotizziamo che l'easyBot scelga randomicamente se switchare o no la carta
-        int risultato = (int)((Math.random() * 1) + 1); //genero o 0 o 1
-        if(risultato==1)
-            return true; //scambio SI
-        else
-            return false; //scambio NO
+    public int Scelta() { //ipotizziamo che l'easyBot scelga randomicamente se switchare o no la carta
+        return (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
     }
 
     @Override
     public String generaNomeBot() { //generiamo nomi per i bot(es: user1234)
         int numeroBot=(int)(Math.random() * (9999 - 1 + 1) + 1);
-        String nomeBot="user" + numeroBot;
+        String nomeBot="EzBot_" + numeroBot;
         return nomeBot;
     }
 }

@@ -2,8 +2,9 @@ package com.spaccafx.Player;
 
 import com.spaccafx.Cards.*;
 import com.spaccafx.Enums.*;
+import com.spaccafx.Interface.IGiocatore;
 
-public abstract class Bot
+public abstract class Bot implements IGiocatore
 {
     private String nome;
     private int vita;
@@ -49,7 +50,7 @@ public abstract class Bot
     public Carta getCarta(){return this.carta;}
     public int getValoreDado(){return this.valoreDado;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
-    public abstract boolean Scelta();
+    public abstract int Scelta();
     public abstract String generaNomeBot();
 
 
