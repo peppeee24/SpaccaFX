@@ -18,6 +18,7 @@ public class Spacca extends Application
     public void start(Stage stage) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("spaccafx/Partita.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Prova controller!");
