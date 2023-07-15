@@ -1,6 +1,7 @@
 package com.spaccafx;
 
 import com.spaccafx.Manager.GameManager;
+import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
 import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.EasyBot;
@@ -32,34 +33,32 @@ public class Spacca extends Application
 
     public static void main(String[] args)
     {
-        launch();
-        //Scanner s = new Scanner(System.in);
+        //launch();
+        Scanner s = new Scanner(System.in);
 
         //System.out.println("Inserisci quanti giocatori vuoi: ");
         //int nGiocatori = s.nextInt();
 
-        //Giocatore p1 = new Giocatore("Magli");
-        /*Giocatore p2 = new Giocatore("Giuseppe");
-        Giocatore p3 = new Giocatore("Alfredo");
-        Giocatore p4 = new Giocatore("Sofia");*/
-        /*Bot b1 = new AdvancedBot();
-        b1.setNome(b1.generaNomeBot());
+        Giocatore p1 = new Giocatore("Magli");
+        Giocatore p2 = new Giocatore("Giuseppe");
+
+        Bot b1 = new AdvancedBot();
+        //b1.setNome(b1.generaNomeBot());
         Bot b2 = new EasyBot();
-        b2.setNome(b2.generaNomeBot());
+        //b2.setNome(b2.generaNomeBot());
 
 
-        GameManager game = new GameManager(3);
+        Partita game = new Partita(3);
 
-        game.aggiungiGiocatore(p1);*/
-        /*game.aggiungiGiocatore(p2);
-        game.aggiungiGiocatore(p3);
-        game.aggiungiGiocatore(p4);*/
-        //game.aggiungiGiocatore(b1);
-        //game.aggiungiGiocatore(b2);
+        game.aggiungiGiocatore(p1);
+        game.aggiungiGiocatore(p2);
+        //game.aggiungiGiocatore(p3);
+        //game.aggiungiGiocatore(p4);
+        game.aggiungiGiocatore(b1);
+        game.aggiungiGiocatore(b2);
 
-        //game.StartGame();
-
-        //System.exit(0);
+        game.StartGame();
+        System.exit(0);
 
     }
 }

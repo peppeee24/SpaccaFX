@@ -7,6 +7,7 @@ public class AdvancedBot extends Bot
 {
     public AdvancedBot(){
         super();
+        setNome(generaNomeBot());
     }
     public AdvancedBot(String nome){
         super(nome);

@@ -7,6 +7,7 @@ public class EasyBot extends Bot
 {
     public EasyBot(){
         super();
+        setNome(generaNomeBot());
     }
     public EasyBot(String nome){
         super(nome);
