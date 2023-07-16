@@ -2,6 +2,7 @@ package com.spaccafx;
 
 import com.spaccafx.Manager.GameManager;
 import com.spaccafx.Manager.Partita;
+import com.spaccafx.Manager.Torneo;
 import com.spaccafx.Player.AdvancedBot;
 import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.EasyBot;
@@ -11,6 +12,8 @@ import com.spaccafx.Player.Giocatore;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.util.*;
 
@@ -29,12 +32,17 @@ public class Spacca extends Application
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
+        //Alert alert = new Alert(Alert.AlertType.ERROR);
+        //alert.setTitle("Test alert");
+        //alert.setContentText("ERRORE DURANTE IL CARICAMENTO DEI FILE, ESEGUI NUOVAMENTE!");
+        //<ButtonType> result = alert.showAndWait();
     }
 
     public static void main(String[] args)
     {
         //launch();
-        Scanner s = new Scanner(System.in);
+        //Scanner s = new Scanner(System.in);
 
         //System.out.println("Inserisci quanti giocatori vuoi: ");
         //int nGiocatori = s.nextInt();
@@ -42,22 +50,29 @@ public class Spacca extends Application
         Giocatore p1 = new Giocatore("Magli");
         Giocatore p2 = new Giocatore("Giuseppe");
 
-        Bot b1 = new AdvancedBot();
+        //Bot b1 = new AdvancedBot();
         //b1.setNome(b1.generaNomeBot());
-        Bot b2 = new EasyBot();
+        //Bot b2 = new EasyBot();
         //b2.setNome(b2.generaNomeBot());
 
 
-        Partita game = new Partita(3);
+        //Partita game = new Partita(3);
 
-        game.aggiungiGiocatore(p1);
-        game.aggiungiGiocatore(p2);
+        //game.aggiungiGiocatore(p1);
+        //game.aggiungiGiocatore(p2);
         //game.aggiungiGiocatore(p3);
         //game.aggiungiGiocatore(p4);
-        game.aggiungiGiocatore(b1);
-        game.aggiungiGiocatore(b2);
+        //game.aggiungiGiocatore(b1);
+        //game.aggiungiGiocatore(b2);
 
-        game.StartGame();
+        //game.StartGame(); // #ERRORE - Quando ci sono tutti i giocatori che muoiono
+
+
+        Torneo torneo = new Torneo(2);
+        torneo.aggiungiGiocatoreTorneo(p1);
+        torneo.aggiungiGiocatoreTorneo(p2);
+        torneo.StartTorneo();
+
         System.exit(0);
 
     }

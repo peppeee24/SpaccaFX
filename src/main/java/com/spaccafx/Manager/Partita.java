@@ -15,14 +15,22 @@ public class Partita
     ArrayList<IGiocatore> giocatori;
     ArrayList<IGiocatore> giocatoriMorti;
 
-    private int currentRound = 1;
-    private int posMazziere = 0;
+    private int currentRound;
+    private int posMazziere;
     private String codicePartita;
+    private boolean isGameRunning;
 
     public Partita(int size)
     {
         giocatori = new  ArrayList<IGiocatore>(size);
         giocatoriMorti = new ArrayList<IGiocatore>();
+
+        this.codicePartita = generaCodicePartita();
+        this.posMazziere = 0;
+        this.currentRound = 1;
+        this.isGameRunning = true;
+
+        System.out.println("Generato codice partita: " + codicePartita);
     }
 
     //region # GAME
@@ -58,7 +66,9 @@ public class Partita
             currentRound++;
 
         }
+
         System.out.println("Il gioco e finito perche c'e solo 1 player rimasto vivo!");
+        this.isGameRunning = false; // gioco finito e metto dunque false
 
     }
 
@@ -383,6 +393,14 @@ public class Partita
 
     }
 
+    private String generaCodicePartita() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    {
+        return "PARTITA_" + (int)(1 + (Math.random() * 1000));
+    }
+
+    public boolean isGameRunning(){return this.isGameRunning;}
+
+    public void aggiungiListaGiocatori(ArrayList<IGiocatore> giocatori) {this.giocatori = giocatori;} // # MODIFICARE - Controllare che il num dei player sia inferiore al max
     //endregion
 
     //region #DEBUG

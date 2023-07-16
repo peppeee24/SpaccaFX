@@ -26,7 +26,7 @@ public class EasyBot extends Bot
 
     @Override
     public String generaNomeBot() { //generiamo nomi per i bot(es: user1234)
-        int numeroBot=(int)(Math.random() * (9999 - 1 + 1) + 1);
+        int numeroBot=(int)(1 + (Math.random() * 1000));
         String nomeBot="EzBot_" + numeroBot;
         return nomeBot;
     }
