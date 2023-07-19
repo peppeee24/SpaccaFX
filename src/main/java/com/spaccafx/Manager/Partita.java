@@ -124,6 +124,7 @@ public class Partita
 
         ControllaRisultati(); // prendo tutti i dati e li metto in un mapset
         RuotaMazziere();
+        mazzo.MescolaMazzo();
     }
 
     //endregion

@@ -50,28 +50,28 @@ public class Spacca extends Application
         Giocatore p1 = new Giocatore("Magli");
         Giocatore p2 = new Giocatore("Giuseppe");
 
-        //Bot b1 = new AdvancedBot();
+        Bot b1 = new AdvancedBot();
         //b1.setNome(b1.generaNomeBot());
-        //Bot b2 = new EasyBot();
+        Bot b2 = new EasyBot();
         //b2.setNome(b2.generaNomeBot());
 
 
-        //Partita game = new Partita(3);
+        Partita game = new Partita(4);
 
-        //game.aggiungiGiocatore(p1);
-        //game.aggiungiGiocatore(p2);
+        game.aggiungiGiocatore(p1);
+        game.aggiungiGiocatore(p2);
         //game.aggiungiGiocatore(p3);
         //game.aggiungiGiocatore(p4);
-        //game.aggiungiGiocatore(b1);
-        //game.aggiungiGiocatore(b2);
+        game.aggiungiGiocatore(b1);
+        game.aggiungiGiocatore(b2);
 
-        //game.StartGame(); // #ERRORE - Quando ci sono tutti i giocatori che muoiono
+        game.StartGame(); // #ERRORE - Quando ci sono tutti i giocatori che muoiono
 
 
-        Torneo torneo = new Torneo(2);
-        torneo.aggiungiGiocatoreTorneo(p1);
-        torneo.aggiungiGiocatoreTorneo(p2);
-        torneo.StartTorneo();
+        //Torneo torneo = new Torneo(2);
+        //torneo.aggiungiGiocatoreTorneo(p1);
+        //torneo.aggiungiGiocatoreTorneo(p2);
+        //torneo.StartTorneo();
 
         System.exit(0);
 
