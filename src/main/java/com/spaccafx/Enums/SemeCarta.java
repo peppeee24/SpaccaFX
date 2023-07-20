@@ -2,7 +2,7 @@ package com.spaccafx.Enums;
 
 public enum SemeCarta
 {
-    SASSO,
-    CARTA,
-    FORBICI,
+    CANE, // PIU FORTE
+    GATTO, // MEDIO
+    TOPO, // SCARSO
 }

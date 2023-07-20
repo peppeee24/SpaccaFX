@@ -19,13 +19,11 @@ public class CartaProbabilita extends Carta
     public void Effetto(Partita partita)
     {
         this.partitaAttuale = partita;
-
-        return; // non fa nulla
+        System.out.println("Ho in mano una carta effetto e non posso fare altre scelte!");
     }
 
     private void NoCartaScambiabile()
     {
         // ESEGUI IL METODO CHE FA LA SCELTA DI PASSARE IL TURNO
     }
-
 }

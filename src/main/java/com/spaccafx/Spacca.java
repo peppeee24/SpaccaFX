@@ -49,6 +49,7 @@ public class Spacca extends Application
 
         Giocatore p1 = new Giocatore("Magli");
         Giocatore p2 = new Giocatore("Giuseppe");
+        Giocatore p3 = new Giocatore("Tester");
 
         Bot b1 = new AdvancedBot();
         //b1.setNome(b1.generaNomeBot());
@@ -56,14 +57,14 @@ public class Spacca extends Application
         //b2.setNome(b2.generaNomeBot());
 
 
-        Partita game = new Partita(4);
+        Partita game = new Partita(3);
 
         game.aggiungiGiocatore(p1);
         game.aggiungiGiocatore(p2);
-        //game.aggiungiGiocatore(p3);
+        game.aggiungiGiocatore(p3);
         //game.aggiungiGiocatore(p4);
-        game.aggiungiGiocatore(b1);
-        game.aggiungiGiocatore(b2);
+        //game.aggiungiGiocatore(b1);
+        //game.aggiungiGiocatore(b2);
 
         game.StartGame(); // #ERRORE - Quando ci sono tutti i giocatori che muoiono
 

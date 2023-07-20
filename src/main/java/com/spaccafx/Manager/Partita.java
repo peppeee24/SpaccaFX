@@ -1,6 +1,7 @@
 package com.spaccafx.Manager;
 
 import com.spaccafx.Enums.RuoloGiocatore;
+import com.spaccafx.Enums.SemeCarta;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.Giocatore;
@@ -37,12 +38,12 @@ public class Partita
 
     private void PreStartGame()
     {
-        System.out.println("\tIL GIOCO SPACCAFX E INIZIATO!!!");
+        /*System.out.println("\tIL GIOCO SPACCAFX E INIZIATO!!!");
         System.out.println("\t **** FASE PREPARATIVA DI GIOCO ****");
         System.out.println("\n* REGOLE DEL DADO *");
         System.out.println("1) Il giocatore con il punteggio del dado piu ALTO perde. In caso di parita si continua fino a uno spareggio!");
         System.out.println("2) In caso di parita si continua fino a uno spareggio!");
-        System.out.println("3) Chi perde diventa un MAZZIERE, il restante sono GIOCATORI NORMALI!");
+        System.out.println("3) Chi perde diventa un MAZZIERE, il restante sono GIOCATORI NORMALI!");*/
 
         LancioDadiIniziale(); // i giocatori effettuano il lancio dei dadi
         StabilisciMazziere(); // viene decretato chi e il mazziere
@@ -60,6 +61,7 @@ public class Partita
             StampaInfoGiocatori(); // per debug iniziale
 
             RunRound();
+
             StampaInfoGiocatori(); // per debug finale!
 
             System.out.println("\n\n\t ****** IL ROUND E FINITO!! ******");
@@ -96,11 +98,11 @@ public class Partita
                 System.out.println("Tocca a un MAZZIERE");
                 MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
                 }
                 else{
                     mossa = s.nextInt();
-                    Scelta(mossa, currentGiocatore);
+                    SceltaNew(mossa, currentGiocatore);
                 }
 
                 flag = false; // abbiamo trovato il mazziere e quindi e apposto
@@ -110,11 +112,11 @@ public class Partita
                 System.out.println("Tocca a un GIOCATORE");
                 MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
                 }
                 else{
                     mossa = s.nextInt();
-                    Scelta(mossa, currentGiocatore);
+                    SceltaNew(mossa, currentGiocatore);
                 }
 
             }
@@ -293,6 +295,31 @@ public class Partita
         }
     }
 
+    private void SceltaNew(int scelta, IGiocatore currentGiocatore)
+    {
+        if(currentGiocatore.getCarta() instanceof CartaImprevisto)
+        {
+            ((CartaImprevisto)currentGiocatore.getCarta()).Effetto(this); // gli mando questa classe
+            PassaTurno(); // momentaneo
+        }
+        else if(currentGiocatore.getCarta() instanceof CartaProbabilita)
+        {
+            ((CartaProbabilita)currentGiocatore.getCarta()).Effetto(this); // gli mando questa classe
+            PassaTurno(); // momentaneo
+        }
+        else
+        {
+            switch (scelta)
+            {
+                case 1: ScambiaCarta(currentGiocatore); break;
+                case 2: PassaTurno(); break;
+                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
+            }
+        }
+    }
+
+
+
     private void ScambiaCarta(IGiocatore currentGiocatore)
     {
         int currentIndexPlayer = giocatori.indexOf(currentGiocatore); // prendo il giocatore attuale
@@ -374,24 +401,55 @@ public class Partita
                 ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
                 giocatoriConValoreMassimo.add(giocatore);
                 mapSet.put(maxValue, giocatoriConValoreMassimo);
-                System.out.println("(!) " + giocatore.getNome() + " HA PERSO 1 VITA!!");
+
             }
         }
 
         ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.get(maxValue);
-        for (IGiocatore giocatore : giocatoriConValoreMassimo)
-        {
-            giocatore.setVita(giocatore.getVita() - 1); // Tolgo 1 vita al giocatore che ha perso dalle vite che aveva prima
 
-            if(giocatore.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene eliminato dalla partita
+        if(giocatoriConValoreMassimo.size() <= 1) // se abbiamo solo un perdente, NO spareggio
+        {
+            System.out.println("* 1 SOLO Giocatore perdente!");
+            giocatoriConValoreMassimo.get(0).setVita(giocatoriConValoreMassimo.get(0).getVita() - 1); // tolgo 1 vita
+            System.out.println("(!) " + giocatoriConValoreMassimo.get(0).getNome() + " HA PERSO 1 VITA!!");
+
+            if(giocatoriConValoreMassimo.get(0).getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
             {
-                giocatoriMorti.add(giocatore); // viene messo nella lista degli eliminati
-                giocatori.remove(giocatore);
-                System.out.println("\n\t** (ELIMINATO) " + giocatore.getNome() + " **");
+                giocatoriMorti.add(giocatoriConValoreMassimo.get(0)); // viene messo nella lista degli eliminati
+                giocatori.remove(giocatoriConValoreMassimo.get(0));
+                System.out.println("\n\t** (ELIMINATO) " + giocatoriConValoreMassimo.get(0).getNome() + " **");
+            }
+        }
+        else // vuol dire che ci sono piu giocatori (spareggio)
+        {
+            System.out.println("* " +  giocatoriConValoreMassimo.size() + " MOLTEPLICI Giocatori perdenti!");
+
+            // Controllo Seme
+            IGiocatore giocatoreDebole = null;
+
+            for(IGiocatore giocatore : giocatoriConValoreMassimo)
+            {
+                if(giocatoreDebole == null || ((((CartaNormale)giocatore.getCarta()).getSeme().compareTo(((CartaNormale)giocatoreDebole.getCarta()).getSeme())) > 0)) // da cambiare!!
+                {
+                    giocatoreDebole = giocatore;
+                    System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
+                }
             }
 
-        }
+            if(giocatoreDebole != null)
+            {
+                giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+                System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
 
+                if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+                {
+                    giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                    giocatori.remove(giocatoreDebole);
+                    System.out.println("\n\t** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
+                }
+
+            }
+        }
     }
 
     private String generaCodicePartita() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
