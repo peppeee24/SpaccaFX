@@ -12,6 +12,8 @@ public class Torneo
     ArrayList<Partita> partite;
     ArrayList<IGiocatore> giocatori;
 
+    //ArrayList<IGiocatore> vincitori;
+
     IGiocatore winner; //finchè è null vuol dire che non c'è ancora un vincitore del torneo
 
     private int currentMatch;
@@ -20,12 +22,13 @@ public class Torneo
 
     private int nGiocatoriMatch;
 
+
     private int partenza;
 
     public Torneo(int nGiocatoriTot)
     {
-        partite = new ArrayList<Partita>();
-        giocatori = new ArrayList<IGiocatore>();
+        partite = new ArrayList<Partita>(nGiocatoriMatch);
+        giocatori = new ArrayList<IGiocatore>(nGiocatoriTot);
 
         this.nGiocatoriTot = nGiocatoriTot;
         this.currentMatch = 0;
@@ -38,6 +41,7 @@ public class Torneo
         System.out.println("Generato codice torneo: " + codiceTorneo);
         System.out.println("NGiocatori totali: " + nGiocatoriTot);
         System.out.println("NTavoli: " + nGiocatoriTot/4);
+        System.out.println("NGiocatori per tavolo "+ nGiocatoriMatch);
     }
 
     public void StartTorneo()
@@ -51,10 +55,10 @@ public class Torneo
 
             partite.get(currentMatch).aggiungiListaGiocatori(getMatchPlayersToArrayList(partenza)); // prendo i player e li metto nella partita attuale
             partite.get(currentMatch).StartGame();
-            //prevedere un modo per
-            System.out.println("\nPartita " + currentMatch + " finita! Andiamo alla prossima..");
-            aggiornaPartenza();
 
+            System.out.println("\nPartita " + currentMatch + " finita! Il vincitore è " + partite.get(currentMatch).getWinner() + " Andiamo alla prossima..");
+            aggiornaPartenza();
+            removeDeadPLayerFromArrayList();
             currentMatch++;
         }
     }
@@ -82,7 +86,7 @@ public class Torneo
 
     }
 
-    private void aggiungiGiocatoreTorneo(IGiocatore giocatore){this.giocatori.add(giocatore);}
+    public void aggiungiGiocatoreTorneo(IGiocatore giocatore){this.giocatori.add(giocatore);}
 
     public int trovaNGiocatori(){
         if(giocatori.size()==2){
@@ -97,15 +101,18 @@ public class Torneo
             if(i+partenza < giocatori.size()){
                 matchPlayers.add(giocatori.get(i+partenza));
             }
-            else{
-             // capire cosa metterci
-            }
         }
     return matchPlayers;
     }
 
     private int aggiornaPartenza(){
         return partenza++;
+    }
+
+    private void removeDeadPLayerFromArrayList(){
+        for(int i = 0; i < partite.get(currentMatch).giocatoriMorti.size(); i++){
+            giocatori.remove(partite.get(currentMatch).giocatoriMorti.get(i));
+        }
     }
 
 }

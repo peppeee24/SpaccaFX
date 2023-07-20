@@ -47,32 +47,42 @@ public class Spacca extends Application
         //System.out.println("Inserisci quanti giocatori vuoi: ");
         //int nGiocatori = s.nextInt();
 
-        Giocatore p1 = new Giocatore("Magli");
-        Giocatore p2 = new Giocatore("Giuseppe");
-        Giocatore p3 = new Giocatore("Tester");
-
+        /*Giocatore p1 = new Giocatore("Magli");
+        Giocatore p2 = new Giocatore("Giuseppe");*/
         Bot b1 = new AdvancedBot();
-        //b1.setNome(b1.generaNomeBot());
         Bot b2 = new EasyBot();
-        //b2.setNome(b2.generaNomeBot());
+        Bot b3 = new AdvancedBot();
+        Bot b4 = new EasyBot();
+        Bot b5 = new AdvancedBot();
+        Bot b6 = new EasyBot();
+        Bot b7 = new AdvancedBot();
+        Bot b8 = new EasyBot();
 
 
-        Partita game = new Partita(3);
+        /*Partita game = new Partita(4);
 
         game.aggiungiGiocatore(p1);
         game.aggiungiGiocatore(p2);
-        game.aggiungiGiocatore(p3);
+        //game.aggiungiGiocatore(p3);
         //game.aggiungiGiocatore(p4);
-        //game.aggiungiGiocatore(b1);
-        //game.aggiungiGiocatore(b2);
+        game.aggiungiGiocatore(b1);
+        game.aggiungiGiocatore(b2);
 
-        game.StartGame(); // #ERRORE - Quando ci sono tutti i giocatori che muoiono
+        game.StartGame();*/
 
-
-        //Torneo torneo = new Torneo(2);
-        //torneo.aggiungiGiocatoreTorneo(p1);
-        //torneo.aggiungiGiocatoreTorneo(p2);
-        //torneo.StartTorneo();
+        //TODO implementazione della scelta di fare un torneo a 8 o 16 persone
+        Torneo torneo = new Torneo(8);
+        /*torneo.aggiungiGiocatoreTorneo(p1);
+        torneo.aggiungiGiocatoreTorneo(p2);*/
+        torneo.aggiungiGiocatoreTorneo(b1);
+        torneo.aggiungiGiocatoreTorneo(b2);
+        torneo.aggiungiGiocatoreTorneo(b3);
+        torneo.aggiungiGiocatoreTorneo(b4);
+        torneo.aggiungiGiocatoreTorneo(b5);
+        torneo.aggiungiGiocatoreTorneo(b6);
+        torneo.aggiungiGiocatoreTorneo(b7);
+        torneo.aggiungiGiocatoreTorneo(b8);
+        torneo.StartTorneo();
 
         System.exit(0);
 

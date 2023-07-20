@@ -69,7 +69,7 @@ public class Partita
 
         }
 
-        System.out.println("Il gioco e finito perche c'e solo 1 player rimasto vivo!");
+        System.out.println("Il gioco e finito perche c'e solo 1 player rimasto vivo! Il vincitore è " + getWinner());
         this.isGameRunning = false; // gioco finito e metto dunque false
 
     }
@@ -483,6 +483,14 @@ public class Partita
                     ", Vite: " + currentGiocatore.getVita() +
                     ", Ruolo: " + currentGiocatore.getRuolo());
         }
+    }
+
+    public IGiocatore getWinner(){
+        IGiocatore winner = null;
+        if(!IsGameRunning()){ //se è rimasto solo un giocatore
+            winner = giocatori.get(0);
+        }
+    return winner;
     }
 
 
