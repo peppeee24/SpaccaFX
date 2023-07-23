@@ -69,7 +69,7 @@ public class Partita
 
         }
 
-        System.out.println("Il gioco e finito perche c'e solo 1 player rimasto vivo! Il vincitore è " + getWinner());
+        System.out.println("Il gioco e finito perche c'e solo 1 player rimasto vivo!");
         this.isGameRunning = false; // gioco finito e metto dunque false
 
     }
@@ -98,11 +98,11 @@ public class Partita
                 System.out.println("Tocca a un MAZZIERE");
                 MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
                 }
                 else{
                     mossa = s.nextInt();
-                    SceltaNew(mossa, currentGiocatore);
+                    Scelta(mossa, currentGiocatore);
                 }
 
                 flag = false; // abbiamo trovato il mazziere e quindi e apposto
@@ -112,11 +112,11 @@ public class Partita
                 System.out.println("Tocca a un GIOCATORE");
                 MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
                 }
                 else{
                     mossa = s.nextInt();
-                    SceltaNew(mossa, currentGiocatore);
+                    Scelta(mossa, currentGiocatore);
                 }
 
             }
@@ -147,7 +147,7 @@ public class Partita
         }
     }
 
-    private void StabilisciMazziere()
+    private void StabilisciMazziere() //riguardare per correggere errore nel metodo torneo
     {
         ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>();
         int valorePiuAlto = TrovaValoreDadoAlto(giocatori);
@@ -155,8 +155,10 @@ public class Partita
         for(int c=0; c<giocatori.size() ;c++)
         {
             if(giocatori.get(c).getValoreDado() >= valorePiuAlto) // per sicurezza metto maggiore uguale
-            {
+            { //ERRORE QUA, NON ENTRA E QUINDI LA DIMENSIONE DEI PERDENTI RIMANE A 0 E NON SI PUO' STABILIRE UN MAZZIERE (solo nel torneo)
+                System.out.println("Dimensione perdenti prima " + perdenti.size());
                 perdenti.add(giocatori.get(c)); // metto il perdente dentro la lista e non gli assegno ancora il ruolo
+                System.out.println("Dimensione perdenti dopo " + perdenti.size());
             }
             else
             {
@@ -191,7 +193,7 @@ public class Partita
                 }
             }
         }
-
+        System.out.println("Dimensione perdenti prima dell'errore " + perdenti.size());
         if(giocatori.contains(perdenti.get(0)))
         {
             posMazziere = giocatori.indexOf(perdenti.get(0));

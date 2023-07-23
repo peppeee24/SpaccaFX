@@ -59,12 +59,12 @@ public class Spacca extends Application
         Bot b8 = new EasyBot();
 
 
-        /*Partita game = new Partita(4);
+        /*Partita game = new Partita(2);
 
         game.aggiungiGiocatore(p1);
         game.aggiungiGiocatore(p2);
-        //game.aggiungiGiocatore(p3);
-        //game.aggiungiGiocatore(p4);
+        game.aggiungiGiocatore(p3);
+        game.aggiungiGiocatore(p4);
         game.aggiungiGiocatore(b1);
         game.aggiungiGiocatore(b2);
 
@@ -72,8 +72,8 @@ public class Spacca extends Application
 
         //TODO implementazione della scelta di fare un torneo a 8 o 16 persone
         Torneo torneo = new Torneo(8);
-        /*torneo.aggiungiGiocatoreTorneo(p1);
-        torneo.aggiungiGiocatoreTorneo(p2);*/
+        //torneo.aggiungiGiocatoreTorneo(p1);
+        //torneo.aggiungiGiocatoreTorneo(p2);
         torneo.aggiungiGiocatoreTorneo(b1);
         torneo.aggiungiGiocatoreTorneo(b2);
         torneo.aggiungiGiocatoreTorneo(b3);

@@ -36,7 +36,7 @@ public class Mazzo
         }
     }
 
-    private void CreoCarteImprevisto()
+    /*private void CreoCarteImprevisto()
     {
         // RIEMPO CON LE CARTE IMPREVISTO
         for (int c = 7; c < 10; c++)  // 3 CARTE IMPREVISTO (valori da 7 a 9)
@@ -52,13 +52,13 @@ public class Mazzo
         {
             mazzoCarte.add(new CartaProbabilita(c));
         }
-    }
+    }*/
 
     private void CreoCarte()
     {
         CreoCarteNormali();
-        CreoCarteImprevisto();
-        CreoCarteProbabilita();
+        /*CreoCarteImprevisto();
+        CreoCarteProbabilita();*/
     }
 
     public Carta PescaCarta() // carta randomica
