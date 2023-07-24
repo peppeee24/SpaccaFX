@@ -28,5 +28,6 @@ public abstract class Carta
     public abstract String toString();
 
     public abstract void Effetto(Partita partita);
+    // Effetto per le carte imprevisto e probabilità
 
 }

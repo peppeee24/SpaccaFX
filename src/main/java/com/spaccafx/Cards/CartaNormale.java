@@ -12,6 +12,7 @@ public class CartaNormale extends Carta
     {
         super(valore);
         this.seme = seme;
+        // Topo, gatto , cane
     }
 
     public void setSeme(SemeCarta seme){this.seme = seme;}

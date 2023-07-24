@@ -21,7 +21,7 @@ public class Partita
     private String codicePartita;
     private boolean isGameRunning;
 
-    public Partita(int size)
+    public Partita(int size) // size è il numero di giocatori a partita
     {
         giocatori = new  ArrayList<IGiocatore>(size);
         giocatoriMorti = new ArrayList<IGiocatore>();
@@ -91,6 +91,13 @@ public class Partita
                 c++;
 
             System.out.println("Posizione attuale: " + c);
+            // TODO modificare l'output in modo tale che anzichè restituire un intero, dica il nome del mazziere
+/*
+Esempio:
+AdvBot_932 sei tu il mazziere
+EzBot_50 comincia il turno
+
+ */
             IGiocatore currentGiocatore = giocatori.get(c); // ERRORE QUI DA QUALCHE PARTE
 
             if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
@@ -139,6 +146,7 @@ public class Partita
         {
             IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
             int valoreDado = LancioDadoSingolo();
+            // TODO Reimpostare il dado a 6 facce, attualmente ne ha solo 2
 
             System.out.println("\nIl giocatore " + editGiocatore.getNome() + " ha lanciato un dado ed e uscito: " + valoreDado);
             editGiocatore.setDado(valoreDado);
@@ -283,8 +291,8 @@ public class Partita
     {
         System.out.println("\nGiocatore: " + giocatore.getNome() + " tocca a te fare una mossa! ");
         System.out.println("Carta: " + giocatore.getCarta().toString() + ", Vite: " + giocatore.getVita() + ", Ruolo: " + giocatore.getRuolo());
-
-        System.out.println("1 - SCAMBIA LA CARTA CON QUELLO SUCCESSIVO/ CON IL MAZZO");
+// TODO Per stamare le due righe di codice successive, implementare un modo per verificare che la carta sia diverse da imprevisto e probabilità, altrimenti gestire.
+        System.out.println("1 - SCAMBIA LA CARTA CON QUELLO SUCCESSIVO / CON IL MAZZO (Se sei il mazziere)");
         System.out.println("2 - PASSA IL TURNO");
     }
 
