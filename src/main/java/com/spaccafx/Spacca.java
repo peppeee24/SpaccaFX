@@ -57,6 +57,14 @@ public class Spacca extends Application
         Bot b6 = new EasyBot();
         Bot b7 = new AdvancedBot();
         Bot b8 = new EasyBot();
+        Bot b9 = new AdvancedBot();
+        Bot b10 = new EasyBot();
+        Bot b11 = new AdvancedBot();
+        Bot b12 = new EasyBot();
+        Bot b13 = new AdvancedBot();
+        Bot b14 = new EasyBot();
+        Bot b15 = new AdvancedBot();
+        Bot b16 = new EasyBot();
 
 
         /*Partita game = new Partita(2);
@@ -71,7 +79,7 @@ public class Spacca extends Application
         game.StartGame();*/
 
         //TODO implementazione della scelta di fare un torneo a 8 o 16 persone
-        Torneo torneo = new Torneo(8);
+        Torneo torneo = new Torneo(16);
         //torneo.aggiungiGiocatoreTorneo(p1);
         //torneo.aggiungiGiocatoreTorneo(p2);
         torneo.aggiungiGiocatoreTorneo(b1);
@@ -82,6 +90,14 @@ public class Spacca extends Application
         torneo.aggiungiGiocatoreTorneo(b6);
         torneo.aggiungiGiocatoreTorneo(b7);
         torneo.aggiungiGiocatoreTorneo(b8);
+        torneo.aggiungiGiocatoreTorneo(b9);
+        torneo.aggiungiGiocatoreTorneo(b10);
+        torneo.aggiungiGiocatoreTorneo(b11);
+        torneo.aggiungiGiocatoreTorneo(b12);
+        torneo.aggiungiGiocatoreTorneo(b13);
+        torneo.aggiungiGiocatoreTorneo(b14);
+        torneo.aggiungiGiocatoreTorneo(b15);
+        torneo.aggiungiGiocatoreTorneo(b16);
         torneo.StartTorneo();
 
         System.exit(0);

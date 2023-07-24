@@ -151,19 +151,22 @@ public class Partita
     {
         ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>();
         int valorePiuAlto = TrovaValoreDadoAlto(giocatori);
-
+        System.out.println("Il valore piu alto : " + valorePiuAlto);
         for(int c=0; c<giocatori.size() ;c++)
         {
+
+
             if(giocatori.get(c).getValoreDado() >= valorePiuAlto) // per sicurezza metto maggiore uguale
             { //ERRORE QUA, NON ENTRA E QUINDI LA DIMENSIONE DEI PERDENTI RIMANE A 0 E NON SI PUO' STABILIRE UN MAZZIERE (solo nel torneo)
-                System.out.println("Dimensione perdenti prima " + perdenti.size());
+
                 perdenti.add(giocatori.get(c)); // metto il perdente dentro la lista e non gli assegno ancora il ruolo
-                System.out.println("Dimensione perdenti dopo " + perdenti.size());
+
             }
             else
             {
                 giocatori.get(c).setRuolo(RuoloGiocatore.GIOCATORE); // se ha un valore piu basso, allora e per forza di cose un player
             }
+
         }
 
         // VERIFICO SE CE LA PRESENZA DI SPAREGGIO DA EFFETTUARE
@@ -193,7 +196,6 @@ public class Partita
                 }
             }
         }
-        System.out.println("Dimensione perdenti prima dell'errore " + perdenti.size());
         if(giocatori.contains(perdenti.get(0)))
         {
             posMazziere = giocatori.indexOf(perdenti.get(0));
@@ -223,8 +225,7 @@ public class Partita
     private int TrovaValoreDadoAlto(ArrayList<IGiocatore> lista)
     {
         int numeroPiuAlto = 1; // metto il valore piu piccolo del dado possibile (da noi il piu piccolo e' il piu alto)
-
-        for(int c=0; c<lista.size() ;c++)
+        for(int c=0; c < lista.size() ;c++) //DA LA DIMENSIONE DELLA LISTA A 0
         {
             if (lista.get(c).getValoreDado() >= numeroPiuAlto)
             {
@@ -494,6 +495,8 @@ public class Partita
         }
     return winner;
     }
+
+
 
 
     //endregion

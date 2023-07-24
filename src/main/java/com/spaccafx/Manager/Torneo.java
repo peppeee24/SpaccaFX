@@ -41,7 +41,6 @@ public class Torneo
         System.out.println("Generato codice torneo: " + codiceTorneo);
         System.out.println("NGiocatori totali: " + nGiocatoriTot);
         System.out.println("NTavoli: " + nGiocatoriTot/4);
-        System.out.println("NGiocatori per tavolo "+ nGiocatoriMatch);
     }
 
     public void StartTorneo()
@@ -51,18 +50,19 @@ public class Torneo
         while(ControllaFineTorneo())
         {
             System.out.println("Partita attuale: " + currentMatch);
-            System.out.println("Creo partita con " + nGiocatoriMatch + " giocatori");
-            System.out.println("Dimensione attuale arrayList player " + giocatori.size());
             nGiocatoriMatch = trovaNGiocatori(); //aggiorno prima di creare la partita i giocatori che ci sono nela partita
+            System.out.println("Creo partita con " + nGiocatoriMatch + " giocatori");
+            /*/System.out.println("Dimensione attuale arrayList player " + giocatori.size());
+            showGiocatori();*/
             partite.add(new Partita(nGiocatoriMatch)); // inizializziamo una classe partita con n giocatori, perchè potrebbe essere da 2 o 4 giocatori
-
             partite.get(currentMatch).aggiungiListaGiocatori(getMatchPlayersToArrayList(partenza)); // prendo i player e li metto nella partita attuale
             partite.get(currentMatch).StartGame();
 
             System.out.println("\nPartita " + currentMatch + " finita! Il vincitore è " + partite.get(currentMatch).getWinner().getNome() + " Andiamo alla prossima.."); //TODO metodo per ritornare il nome del vincitore e non il suo indirizzo
-            aggiornaPartenza();
             removeDeadPLayerFromArrayList();
+            aggiornaPartenza();
             currentMatch++;
+            setWinner();
         }
     }
 
@@ -92,9 +92,7 @@ public class Torneo
     public void aggiungiGiocatoreTorneo(IGiocatore giocatore){this.giocatori.add(giocatore);}
 
     public int trovaNGiocatori(){
-        System.out.println("SONO NEL METODO E DIMENSIONE = " + giocatori.size());
         if(giocatori.size()<4 && giocatori.size()>0){
-            System.out.println("RETURN 2");
             return 2;
         }
         else return 4;
@@ -111,7 +109,16 @@ public class Torneo
     }
 
     private int aggiornaPartenza(){
-        return partenza++;
+        if(giocatori.size() <= 4){ //la partenza viene azzerata se i giocatori sono 4 oppure sono due
+            partenza = 0;
+        }
+        /*else if(giocatori.size()==4){
+            partenza = 0 ;
+        }*/
+        else{
+            partenza++;
+        }
+            return partenza;
     }
 
     private void removeDeadPLayerFromArrayList(){
@@ -120,12 +127,23 @@ public class Torneo
             System.out.println("Hai rimosso " + partite.get(currentMatch).giocatoriMorti.get(i).getNome());
         }
     }
+
+    public void showGiocatori(){
+        for(int i = 0; i < giocatori.size(); i++){
+            System.out.println("Show arraylist giocatori " + giocatori.get(i).getNome());
+        }
+    }
+
+    public void setWinner(){
+        if(giocatori.size() < 2){
+            winner = giocatori.get(0);
+        }
+    }
     /*
     TODO NOTES:
-    1) metodo per restituire il nome del vincitore e non il suo indirizzo(vedi riga 59) DONE
-    2) sistemare un errore di exit da un'arrayList, errore in stabilisciMazziere nell'AL perdenti, da errore quando in finale si deve stabilire il mazziere, solo nel torneo (probabile errore di indici o di dimensione array)
-    3) implementare una visualizzazione del metodo removeDeadPLayerFromArrayList così riusciamo a capire sempre quali player vengono tolti DONE
-    4) ...
+    1) metodo di visualizzazione per la fine del torneo
+    2) test con solo player
+    3) test con bot e player
     */
 
 }
