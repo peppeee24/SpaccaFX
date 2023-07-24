@@ -11,6 +11,7 @@ import com.spaccafx.Player.Giocatore;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -25,8 +26,10 @@ public class Spacca extends Application
     public void start(Stage stage) throws IOException
     {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita2.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1197, 812);
+    //    FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("loadscreen.fxml"));
+       // Scene scene = new Scene(fxmlLoader.load(), 1197, 812);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Alpha Build SpaccaFX");
 
         stage.setResizable(false);
@@ -37,11 +40,26 @@ public class Spacca extends Application
         //alert.setTitle("Test alert");
         //alert.setContentText("ERRORE DURANTE IL CARICAMENTO DEI FILE, ESEGUI NUOVAMENTE!");
         //<ButtonType> result = alert.showAndWait();
+
+
+/*
+        Parent root = new FXMLLoader.load(getClass().getResource("loadscreen.fxml"));
+      //  Scene scene = new Scene(fxmlLoader.load(), 1197, 812);
+
+        stage.setTitle("Alpha Build SpaccaFX");
+
+        stage.setResizable(false);
+        stage.setScene(new Scene (root));
+        stage.show();
+        */
+
+
+
     }
 
     public static void main(String[] args)
     {
-        //launch();
+        launch();
         //Scanner s = new Scanner(System.in);
 
         //System.out.println("Inserisci quanti giocatori vuoi: ");
