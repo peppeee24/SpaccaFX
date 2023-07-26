@@ -35,11 +35,15 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -91,11 +95,91 @@
     </MenuBar>
     <AnchorPane prefHeight="380.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
+            <Pane fx:id="secondScreen" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #31653c;">
+               <children>
+                  <Button fx:id="partitaClassica" layoutX="72.0" layoutY="200.0" mnemonicParsing="false" onAction="#iniziaPartita" prefHeight="72.0" prefWidth="378.0" style="-fx-background-color: A82929;" textFill="#a82929">
+                     <graphic>
+                        <ImageView fitHeight="79.0" fitWidth="295.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/partitaClassica.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="torneo" layoutX="541.0" layoutY="200.0" mnemonicParsing="false" onAction="#iniziaTorneo" prefHeight="72.0" prefWidth="378.0" style="-fx-background-color: A82929;">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="286.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/torneo.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fx:id="titleLabel1" fitHeight="102.0" fitWidth="439.0" layoutX="268.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/titleLabel.PNG" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="impostazioniAmministratore" layoutX="541.0" layoutY="379.0" mnemonicParsing="false" onAction="#impostazioni" prefHeight="72.0" prefWidth="378.0" style="-fx-background-color: #346BA8;">
+                     <graphic>
+                        <ImageView fitHeight="81.0" fitWidth="364.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/impostazioniAmministratore.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="informazioni" layoutX="72.0" layoutY="379.0" mnemonicParsing="false" onAction="#informazioniGioco" prefHeight="72.0" prefWidth="378.0" style="-fx-background-color: #346BA8;">
+                     <graphic>
+                        <ImageView fitHeight="144.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/informazioni.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="classicGame" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #31653c;">
+               <children>
+                  <ImageView fx:id="partitaClassicaLabel" fitHeight="92.0" fitWidth="727.0" layoutX="207.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/partitaClassicaLabel.PNG" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="numeroGiocatoriLabel" layoutX="90.0" layoutY="140.0" text="Numero Giocatori" />
+                  <ChoiceBox fx:id="numeroGiocatoriMenu" layoutX="90.0" layoutY="170.0" prefWidth="150.0" />
+                  <Label fx:id="difficoltaBortLabel" layoutX="89.0" layoutY="248.0" text="Difficoltà Bot" />
+                  <Label layoutX="89.0" layoutY="353.0" text="Parametro" />
+                  <ChoiceBox fx:id="difficoltaBotMenu" layoutX="90.0" layoutY="281.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="parametroMenu" layoutX="90.0" layoutY="392.0" prefWidth="150.0" />
+                  <Button fx:id="sendGameSetting" layoutX="482.0" layoutY="517.0" mnemonicParsing="false" onAction="#impostaGioco" text="Invia" />
+               </children>
+            </Pane>
+            <Pane fx:id="loginScreen" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #31653c;">
+               <children>
+                  <ImageView fx:id="partitaClassicaLabel1" fitHeight="146.0" fitWidth="732.0" layoutX="126.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/loginLabel.PNG" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="userIcons" fitHeight="149.0" fitWidth="116.0" layoutX="157.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="passwordField" layoutX="174.0" layoutY="476.0" />
+                  <TextField fx:id="userField" layoutX="173.0" layoutY="403.0" />
+                  <Label fx:id="userLabel" layoutX="89.0" layoutY="420.0" text="Username" />
+                  <Label fx:id="passwordLabel" layoutX="90.0" layoutY="478.0" text="Password" />
+                  <Button fx:id="loginButton" layoutX="434.0" layoutY="461.0" mnemonicParsing="false" onAction="#loginAction" text="Login" />
+                  <Label fx:id="statusLabel" layoutX="90.0" layoutY="359.0" textFill="#c94c4c">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="startScreen" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #31653c;">
                <children>
                   <ImageView fx:id="titleLabel" fitHeight="116.0" fitWidth="660.0" focusTraversable="true" layoutX="241.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
@@ -112,17 +196,21 @@
                         <Bloom />
                      </effect>
                   </ImageView>
-                  <Button fx:id="playButton" layoutX="213.0" layoutY="153.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="149.0" style="-fx-background-color: #31653c;" />
+                  <Button fx:id="playButton" layoutX="330.0" layoutY="232.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="149.0" style="-fx-background-color: #31653c;">
+                     <graphic>
+                        <ImageView fx:id="imagePlayButton" fitHeight="87.0" fitWidth="469.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/playButton.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <ImageView fx:id="trio" fitHeight="323.0" fitWidth="316.0" layoutX="9.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Assets/Game/Environment/trio.PNG" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="imagePlayButton" fitHeight="87.0" fitWidth="469.0" layoutX="336.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Assets/Game/Environment/playButton.PNG" />
-                     </image>
-                  </ImageView>
+                  <ToggleButton fx:id="lenguageOption" layoutX="878.0" layoutY="533.0" mnemonicParsing="false" text="Lingua" underline="true" />
                </children>
             </Pane>
       </children>

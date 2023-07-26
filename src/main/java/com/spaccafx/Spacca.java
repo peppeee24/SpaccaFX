@@ -27,7 +27,7 @@ public class Spacca extends Application
     {
 
     //    FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita2.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("loadscreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("loadScreen.fxml"));
        // Scene scene = new Scene(fxmlLoader.load(), 1197, 812);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Alpha Build SpaccaFX");
