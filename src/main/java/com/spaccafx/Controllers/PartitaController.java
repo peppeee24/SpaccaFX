@@ -41,7 +41,11 @@ public class PartitaController
 
 
     }
-// TODO aggiungere cambio lingua
+@FXML
+Toggle italian;
+
+    @FXML
+    Toggle english;
 
 
 // Seconda schermata, scelta opzione Partita Classica
