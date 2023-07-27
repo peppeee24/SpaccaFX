@@ -42,35 +42,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.LoginController">
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.LoginController">
    <children>
-      <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Pane fx:id="loginScreen" layoutX="-6.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #31653c;">
+      <Pane fx:id="loginScreen" layoutX="-6.0" prefHeight="630.0" prefWidth="1024.0" styleClass="bodybg" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="partitaClassicaLabel" fitHeight="146.0" fitWidth="732.0" layoutX="126.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/loginLabel.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="userIcons" fitHeight="149.0" fitWidth="116.0" layoutX="157.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userIcons" fitHeight="149.0" fitWidth="116.0" layoutX="224.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Assets/Game/Environment/userIcons.png" />
                </image>
             </ImageView>
-            <PasswordField fx:id="passwordField" layoutX="174.0" layoutY="476.0" />
-            <TextField fx:id="userField" layoutX="173.0" layoutY="403.0" />
-            <Label fx:id="userLabel" layoutX="89.0" layoutY="420.0" text="Username" />
-            <Label fx:id="passwordLabel" layoutX="90.0" layoutY="478.0" text="Password" />
-            <Button fx:id="loginButton" layoutX="434.0" layoutY="461.0" mnemonicParsing="false" onAction="#loginAction" text="Login" />
-            <Label fx:id="statusLabel" layoutX="90.0" layoutY="359.0" textFill="#c94c4c">
+            <PasswordField fx:id="passwordField" layoutX="217.0" layoutY="439.0" />
+            <TextField fx:id="userField" layoutX="217.0" layoutY="365.0" />
+            <Label fx:id="userLabel" layoutX="76.0" layoutY="363.0" prefHeight="31.0" prefWidth="137.0" styleClass="Label" text="Username:">
                <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
+                  <Font size="9.0" />
+               </font></Label>
+            <Label fx:id="passwordLabel" layoutX="75.0" layoutY="440.0" styleClass="Label" text="Password:" />
+            <Button fx:id="loginButton" layoutX="429.0" layoutY="398.0" mnemonicParsing="false" onAction="#loginAction" styleClass="Button" text="Login" />
+            <Label layoutX="204.0" layoutY="43.0" styleClass="Spacca" text="Login Panel" />
+            <ImageView fx:id="indietro" fitHeight="81.0" fitWidth="80.0" layoutX="24.0" layoutY="516.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

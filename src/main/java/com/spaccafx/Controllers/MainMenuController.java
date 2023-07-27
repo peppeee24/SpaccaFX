@@ -12,6 +12,7 @@ import javafx.scene.control.Toggle;
 
 import javafx.stage.Stage;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class MainMenuController {
@@ -26,6 +27,9 @@ public class MainMenuController {
 
     }
 
+
+
+
     @FXML
     Toggle italian;
 
@@ -33,6 +37,15 @@ public class MainMenuController {
     Toggle english;
 
     // TODO da impostare
+
+    public void indietro(MouseEvent click) throws IOException {
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenuController.fxml"));
+        Stage stage = (Stage) ((Node) click.getSource()).getScene().getWindow();
+        Scene scene = new Scene(Indietro.load());
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 
