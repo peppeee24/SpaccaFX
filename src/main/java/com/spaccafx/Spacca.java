@@ -16,49 +16,44 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+
 import java.util.*;
 
 import java.io.*;
 
-public class Spacca extends Application
-{
+public class Spacca extends Application {
     @Override
-    public void start(Stage stage) throws IOException
-    {
+    public void start(Stage stage) throws IOException {
 
-    //    FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("Partita2.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("loadScreen.fxml"));
-       // Scene scene = new Scene(fxmlLoader.load(), 1197, 812);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Alpha Build SpaccaFX");
+        try {
 
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+            FXMLLoader MainMenu = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+            Scene scene = new Scene(MainMenu.load());
+            stage.setTitle("Alpha Build SpaccaFX");
 
-        //Alert alert = new Alert(Alert.AlertType.ERROR);
-        //alert.setTitle("Test alert");
-        //alert.setContentText("ERRORE DURANTE IL CARICAMENTO DEI FILE, ESEGUI NUOVAMENTE!");
-        //<ButtonType> result = alert.showAndWait();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-/*
-        Parent root = new FXMLLoader.load(getClass().getResource("loadscreen.fxml"));
-      //  Scene scene = new Scene(fxmlLoader.load(), 1197, 812);
 
-        stage.setTitle("Alpha Build SpaccaFX");
 
-        stage.setResizable(false);
-        stage.setScene(new Scene (root));
-        stage.show();
-        */
 
+
+        /*
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Test alert");
+        alert.setContentText("ERRORE DURANTE IL CARICAMENTO DEI FILE, ESEGUI NUOVAMENTE!");
+       Optional <ButtonType> result = alert.showAndWait();
+*/
 
 
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         launch();
         //Scanner s = new Scanner(System.in);
 
