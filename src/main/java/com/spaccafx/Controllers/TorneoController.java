@@ -1,5 +1,4 @@
 package com.spaccafx.Controllers;
-import com.spaccafx.Controllers.PartitaClassicaController;
 
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
@@ -12,16 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 
-public class PartitaClassicaController {
+public class TorneoController {
 
     //private   int numeroGiocatori;
    // private  String difficolta;
    // private String nomeGiocatore;
-
-
 
 
 

@@ -37,8 +37,12 @@ public class SelectionMenuController
 
 
     // Seconda schheramta
-    public void iniziaTorneo(ActionEvent actionEvent) {
-
+    public void iniziaTorneo(ActionEvent actionEvent) throws IOException {
+        FXMLLoader Torneo = new FXMLLoader(Spacca.class.getResource("Torneo.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(Torneo.load());
+        stage.setScene(scene);
+        stage.show();
 
     }
 
