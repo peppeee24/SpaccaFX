@@ -20,6 +20,8 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 public class TavoloController {
+
+    /*
     //PartitaClassicaController PC = new PartitaClassicaController();
     PartitaModel partitaModel =new PartitaModel();
 
@@ -47,7 +49,7 @@ public class TavoloController {
         setTable();
     }
     public void setTable() {
-        nomeGiocatoreLabel.setText(partitaModel.getNomeGiocatore());
+        nomeGiocatoreLabel.setText(partitaModel.getNomeGiocatore1());
 
         if (partitaModel.getDifficolta() == "Facile") {
             Bot b0 = new EasyBot();
@@ -119,7 +121,7 @@ public class TavoloController {
 
     }
 
-
+*/
 }
 
 

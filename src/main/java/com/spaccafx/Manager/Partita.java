@@ -463,7 +463,7 @@ EzBot_50 comincia il turno
         }
     }
 
-    private String generaCodicePartita() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    public String generaCodicePartita() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
         return "PARTITA_" + (int)(1 + (Math.random() * 1000));
     }

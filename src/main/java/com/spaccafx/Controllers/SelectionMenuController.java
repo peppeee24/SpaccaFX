@@ -46,21 +46,6 @@ public class SelectionMenuController
 
     }
 
-    public void informazioni(ActionEvent actionEvent) {
-
-
-    }
-
-
-    public void impostazioni(ActionEvent actionEvent) throws IOException {
-        FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("Login.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(Login.load());
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {

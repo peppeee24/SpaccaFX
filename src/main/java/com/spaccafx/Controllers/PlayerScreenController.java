@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,34 +14,31 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class LoginController {
+public class PlayerScreenController {
 
 
-    @FXML
-    TextField userField;
     @FXML
     PasswordField passwordField;
-
-
-    private String user = "root";
-    private String pwd = "root";
+PartitaClassicaController PC =new PartitaClassicaController();
+    Partita P =new Partita(PC.getNumeroGiocatori());
+    private String pwd = P.generaCodicePartita();
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
-        String UserField = userField.getText();
+
         String PasswordField = passwordField.getText();
 
-        if (user.compareTo(UserField) == 0 && pwd.compareTo(PasswordField) == 0) {
+        if ( pwd.compareTo(PasswordField) == 0) {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Accesso Eseguito");
-            alert.setContentText("Stai per essere reindirizzato");
+            alert.setContentText("Stai per entrare nel gioco");
             Optional<ButtonType> result = alert.showAndWait();
 
+// TODO Sistemare pasaggio codice partita, in quanto lo da sempre errato perchè ne viene genrato uno diverso rispetto a quello delal classe PartitaClassicaController
 
-
-            FXMLLoader SelectionMenu = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
+            FXMLLoader tavolo = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(SelectionMenu.load());
+            Scene scene = new Scene(tavolo.load());
             stage.setScene(scene);
             stage.show();
 
@@ -49,20 +47,19 @@ public class LoginController {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore");
-            alert.setContentText("Username o Password non corretti");
+            alert.setContentText("Codice partita Errato");
             Optional<ButtonType> result = alert.showAndWait();
         }
     }
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("LoginController.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);
         stage.show();
     }
-
 
 
 }

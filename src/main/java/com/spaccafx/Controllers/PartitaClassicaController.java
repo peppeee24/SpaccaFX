@@ -1,79 +1,233 @@
 package com.spaccafx.Controllers;
+
 import com.spaccafx.Controllers.PartitaClassicaController;
 
+import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class PartitaClassicaController {
 
-    //private   int numeroGiocatori;
-   // private  String difficolta;
-   // private String nomeGiocatore;
+    private int numeroGiocatori;
 
+    private int numeroBot;
+    private String difficolta;
+    private String nomeGiocatore1;
 
-
+    private String nomeGiocatore2;
+    private String nomeGiocatore3;
+    private String nomeGiocatore4;
 
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu;
 
     @FXML
+    ChoiceBox<Integer> numeroBotMenu;
+
+    @FXML
     ChoiceBox<String> difficoltaBotMenu;
 
     @FXML
-    TextField playerName;
+    TextField playerName1;
+
+    @FXML
+    TextField playerName2;
+
+    @FXML
+    TextField playerName3;
+
+    @FXML
+    TextField playerName4;
+
+    @FXML
+    Label codicePartita;
+
+    @FXML
+    Label numeroBotLabel;
+
+    @FXML
+    Label difficoltaBotLabel;
+
+    @FXML
+    Label twoLabel;
+    @FXML
+    Label treeLabel;
+    @FXML
+    Label fourLabel;
+
+
     @FXML
     public void initialize() {
 
-       // setNumeroGiocatoriMenu();
-     //   setDifficoltaBotMenu();
-        setDifficolta();
-        setNomeGiocatore();
+        // setNumeroGiocatoriMenu();
+        //   setDifficoltaBotMenu();
         setNumeroGiocatori();
+        controlloGiocatori();
+        setDifficolta();
+        setNomeGiocatore1();
+        setNomeGiocatore2();
+        setNomeGiocatore3();
+        setNomeGiocatore4();
+
+        setNumeroBot();
 
     }
 
-
-   private PartitaModel partitaModel =new PartitaModel();
 
     public void setDifficolta() {
-        String difficoltaSelezionata = difficoltaBotMenu.getSelectionModel().getSelectedItem();
-        if (difficoltaSelezionata != null) {
-            partitaModel.setDifficolta(difficoltaSelezionata);
-        } else {
-            // Gestisci il caso in cui non è stata selezionata alcuna opzione
-            // Puoi stampare un messaggio di errore o fornire un valore predefinito, ad esempio:
-            partitaModel.setDifficolta("Nessuna selezione");
-        }
+        difficolta = difficoltaBotMenu.getSelectionModel().getSelectedItem();
     }
-
+/*
 
     public void setNumeroGiocatori() {
-        Integer numeroGiocatoriSelezionato = numeroGiocatoriMenu.getSelectionModel().getSelectedItem();
-        if (numeroGiocatoriSelezionato != null) {
-            partitaModel.setNumeroGiocatori(numeroGiocatoriSelezionato.intValue());
+        //    numeroGiocatori = numeroGiocatoriMenu.getSelectionModel().getSelectedItem();
+
+        SingleSelectionModel<Integer> selectionModel = numeroGiocatoriMenu.getSelectionModel();
+        if (selectionModel.getSelectedItem() != null) {
+            int numeroGiocatori = selectionModel.getSelectedItem().intValue();
+            // Continua con la logica del tuo codice utilizzando numeroGiocatori
         } else {
-            // Gestisci il caso in cui non è stata selezionata alcuna opzione
-            // Puoi stampare un messaggio di errore o fornire un valore predefinito, ad esempio:
-            partitaModel.setNumeroGiocatori(0);
+            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
+        }
+
+    }
+*/
+
+    public void setNumeroGiocatori() {
+        SingleSelectionModel<Integer> selectionModel = numeroGiocatoriMenu.getSelectionModel();
+        if (selectionModel.getSelectedItem() != null) {
+            numeroGiocatori = selectionModel.getSelectedItem().intValue();
+            controlloGiocatori(); // Chiamare il metodo per impostare le opzioni del numero di bot in base al numero di giocatori selezionato
+        } else {
+            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
         }
     }
 
 
-            public void setNomeGiocatore() {
-        partitaModel.setNomeGiocatore(playerName.getText());
+    public void controlloGiocatori() {
+        // TODO sembra non legga le informazioni dal checkbox
+        if (getNumeroGiocatori() == 4) {
+
+            numeroBotMenu.getItems().addAll(0);
+            difficoltaBotMenu.setVisible(false);
+            difficoltaBotLabel.setText("Non puoi impostare la difficoltà dei bot perchè non ci sono");
+            /*numeroBotMenu.setVisible(false);
+            numeroBotLabel.setText("Hai impostato il numero massimo di giocaotri, quindi la partita non avrà bot");
+            difficoltaBotMenu.setVisible(false);
+            difficoltaBotLabel.setVisible(false);
+
+             */
+        } else if (getNumeroGiocatori() == 3) {
+            numeroBotMenu.getItems().addAll(1);
+            fourLabel.setVisible(false);
+            playerName4.setVisible(false);
+
+        } else if (getNumeroGiocatori() == 2) {
+            numeroBotMenu.getItems().addAll(1, 2);
+            treeLabel.setVisible(false);
+            playerName3.setVisible(false);
+            fourLabel.setVisible(false);
+            playerName4.setVisible(false);
+
+        } else if (getNumeroGiocatori() == 1) {
+            numeroBotMenu.getItems().addAll(1, 2, 3);
+            twoLabel.setVisible(false);
+            playerName2.setVisible(false);
+            treeLabel.setVisible(false);
+            playerName3.setVisible(false);
+            fourLabel.setVisible(false);
+            playerName4.setVisible(false);
+
+        }
     }
+
+    /*
+    public void setNumeroBot() {
+        //  numeroBot = numeroBotMenu.getSelectionModel().getSelectedItem();
+
+        SingleSelectionModel<Integer> selectionModel = numeroBotMenu.getSelectionModel();
+        if (selectionModel.getSelectedItem() != null) {
+            int numeroBot = selectionModel.getSelectedItem().intValue();
+            // Continua con la logica del tuo codice utilizzando numeroBot
+        } else {
+            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
+        }
+    }
+
+*/
+    public void setNumeroBot() {
+        SingleSelectionModel<Integer> selectionModel = numeroBotMenu.getSelectionModel();
+        if (selectionModel.getSelectedItem() != null) {
+            numeroBot = selectionModel.getSelectedItem().intValue();
+        } else {
+            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
+        }
+    }
+
+
+
+    public void setNomeGiocatore1() {
+        nomeGiocatore1 = playerName1.getText();
+
+    }
+
+    public void setNomeGiocatore2() {
+        nomeGiocatore2 = playerName2.getText();
+
+    }
+
+    public void setNomeGiocatore3() {
+        nomeGiocatore3 = playerName3.getText();
+
+    }
+
+    public void setNomeGiocatore4() {
+        nomeGiocatore4 = playerName4.getText();
+
+    }
+
+
+    public String getNomeGiocatore1() {
+        return nomeGiocatore1;
+    }
+
+    public String getNomeGiocatore2() {
+        return nomeGiocatore2;
+    }
+
+    public String getNomeGiocatore3() {
+        return nomeGiocatore3;
+    }
+
+    public String getNomeGiocatore4() {
+        return nomeGiocatore4;
+    }
+
+    public int getNumeroGiocatori() {
+        return numeroGiocatori;
+    }
+
+    public int getNumeroBot() {
+        return numeroBot;
+    }
+
+    public String getDifficolta() {
+        return difficolta;
+    }
+
+
 
     /*
 
@@ -93,16 +247,15 @@ public class PartitaClassicaController {
  */
 
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
-        FXMLLoader nextPage = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
+
+//TODO aggiunge contrlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
+
+
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(nextPage.load());
+        Scene scene = new Scene(playerScreen.load());
         stage.setScene(scene);
-
-        TavoloController tavoloController = nextPage.getController();
-        tavoloController.setPartitaModel(partitaModel); // Passa il modello condiviso
-
         stage.show();
-
 
 
     }
@@ -115,16 +268,34 @@ public class PartitaClassicaController {
         stage.show();
     }
 
-    public void caricaPartita(ActionEvent actionEvent) throws IOException {
-// TODO impostare metodo che legge da file o da Database
+
+    public String generaCodice(ActionEvent actionEvent) throws IOException {
+      String c;
+        int somma= getNumeroGiocatori()+getNumeroBot();
+        System.out.println("Non riesco a leggere le informazioni del checkbox");
+// TODO non funziona perchè somma =0, sembra non legga le informazioni dal checkbox
+        if(somma==0) {
+            Partita P = new Partita(getNumeroGiocatori());
+             c = P.generaCodicePartita();
+            codicePartita.setText(c);
+            codicePartita.wrapTextProperty().set(true);
+           // codicePartita.getStyleClass().add("copiable-label");
+            // TODO non riesco a rendere selezionabile la label
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Codice partita generato");
+            alert.setContentText("Comunica il codice ai giocatori che dovranno inserirlo successivamente");
+            Optional<ButtonType> result = alert.showAndWait();
 
 
-        FXMLLoader nextPage = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(nextPage.load());
-        stage.setScene(scene);
-        stage.show();
-
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Parametri errati");
+            alert.setContentText("Il gioco consente massimo 4 utenti tra giocatori e bot, rivedi le impostazioni");
+            Optional<ButtonType> result = alert.showAndWait();
+            c=null;
+        }
+        return c;
     }
 
 
