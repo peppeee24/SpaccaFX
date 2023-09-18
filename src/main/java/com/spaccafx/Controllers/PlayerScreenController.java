@@ -20,12 +20,17 @@ public class PlayerScreenController {
     @FXML
     PasswordField passwordField;
 PartitaClassicaController PC =new PartitaClassicaController();
+
     Partita P =new Partita(PC.getNumeroGiocatori());
-    private String pwd = P.generaCodicePartita();
+    //Partita P =new Partita(4);
+    private String pwd = PC.getCodicePartita();
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
         String PasswordField = passwordField.getText();
+
+        System.out.println("PWD:" + pwd);
+        System.out.println("PAASVEFDNV:" + PasswordField);
 
         if ( pwd.compareTo(PasswordField) == 0) {
 

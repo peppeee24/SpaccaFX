@@ -29,6 +29,8 @@ public class PartitaClassicaController {
     private String nomeGiocatore3;
     private String nomeGiocatore4;
 
+    private String codice;
+
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu;
@@ -119,20 +121,23 @@ public class PartitaClassicaController {
 
       //  numeroGiocatoriMenu.getItems().addAll(1,2,3,4);
         numeroGiocatoriMenu.setOnAction(this::nG);
+        this.controlloGiocatori();
     }
 
     public void nG(ActionEvent event){
         numeroGiocatori=numeroGiocatoriMenu.getValue();
+        this.controlloGiocatori();
     }
 
 
     public void controlloGiocatori() {
         // TODO sembra non legga le informazioni dal checkbox
         if (getNumeroGiocatori() == 4) {
-
+            System.out.println("numero gio" + numeroGiocatori);
+            System.out.println("numero bot" + numeroBot);
             numeroBotMenu.getItems().addAll(0);
             difficoltaBotMenu.setVisible(false);
-            difficoltaBotLabel.setText("Non puoi impostare la difficoltà dei bot perchè non ci sono");
+            difficoltaBotLabel.setText("Non ci sono bot");
             /*numeroBotMenu.setVisible(false);
             numeroBotLabel.setText("Hai impostato il numero massimo di giocaotri, quindi la partita non avrà bot");
             difficoltaBotMenu.setVisible(false);
@@ -178,12 +183,17 @@ public class PartitaClassicaController {
 
 */
     public void setNumeroBot() {
-        SingleSelectionModel<Integer> selectionModel = numeroBotMenu.getSelectionModel();
+        numeroBotMenu.setOnAction(this::nB);
+        /*SingleSelectionModel<Integer> selectionModel = numeroBotMenu.getSelectionModel();
         if (selectionModel.getSelectedItem() != null) {
             numeroBot = selectionModel.getSelectedItem().intValue();
         } else {
             // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
-        }
+        }*/
+    }
+
+    public void nB(ActionEvent event){
+        numeroBot=numeroBotMenu.getValue();
     }
 
 
@@ -279,17 +289,17 @@ public class PartitaClassicaController {
     }
 
 
-    public String generaCodice(ActionEvent actionEvent) throws IOException {
+    public void generaCodice(ActionEvent actionEvent) throws IOException {
 
    //     System.out.println("NNNNNNNNN"+numeroGiocatori);
-      String c;
+
         int somma= getNumeroGiocatori()+getNumeroBot();
       //  System.out.println("Non riesco a leggere le informazioni del checkbox");
 // TODO non funziona perchè somma =0, sembra non legga le informazioni dal checkbox
-        if(somma==0) {
+        if(somma==4) {
             Partita P = new Partita(getNumeroGiocatori());
-             c = P.generaCodicePartita();
-            codicePartita.setText(c);
+             codice = P.generaCodicePartita();
+            codicePartita.setText(codice);
             codicePartita.wrapTextProperty().set(true);
            // codicePartita.getStyleClass().add("copiable-label");
             // TODO non riesco a rendere selezionabile la label
@@ -300,14 +310,17 @@ public class PartitaClassicaController {
             Optional<ButtonType> result = alert.showAndWait();
 
 
-        } else {
+        } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Parametri errati");
             alert.setContentText("Il gioco consente massimo 4 utenti tra giocatori e bot, rivedi le impostazioni");
             Optional<ButtonType> result = alert.showAndWait();
-            c=null;
+            codice=null;
         }
-        return c;
+    }
+
+    public String getCodicePartita(){
+        return codice;
     }
 
 

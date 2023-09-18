@@ -53,9 +53,9 @@
             <ChoiceBox fx:id="numeroBotMenu" layoutX="403.0" layoutY="216.0" prefWidth="150.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
-                     <Integer fx:value="1" />
+                    <!-- <Integer fx:value="1" />
                      <Integer fx:value="2" />
-                     <Integer fx:value="3" />
+                     <Integer fx:value="3" /> -->
                   </FXCollections>
                </items>
             </ChoiceBox>

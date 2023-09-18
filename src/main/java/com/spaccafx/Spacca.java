@@ -55,13 +55,9 @@ public class Spacca extends Application {
 
     public static void main(String[] args) {
         launch();
-        //Scanner s = new Scanner(System.in);
 
-        //System.out.println("Inserisci quanti giocatori vuoi: ");
-        //int nGiocatori = s.nextInt();
 
-        /*Giocatore p1 = new Giocatore("Magli");
-        Giocatore p2 = new Giocatore("Giuseppe");*/
+        /*
         Bot b1 = new AdvancedBot();
         Bot b2 = new EasyBot();
         Bot b3 = new AdvancedBot();
@@ -79,17 +75,6 @@ public class Spacca extends Application {
         Bot b15 = new AdvancedBot();
         Bot b16 = new EasyBot();
 
-
-        /*Partita game = new Partita(2);
-
-        game.aggiungiGiocatore(p1);
-        game.aggiungiGiocatore(p2);
-        game.aggiungiGiocatore(p3);
-        game.aggiungiGiocatore(p4);
-        game.aggiungiGiocatore(b1);
-        game.aggiungiGiocatore(b2);
-
-        game.StartGame();*/
 
         //TODO implementazione della scelta di fare un torneo a 8 o 16 persone
         Torneo torneo = new Torneo(16);
@@ -113,7 +98,7 @@ public class Spacca extends Application {
         torneo.aggiungiGiocatoreTorneo(b16);
         torneo.StartTorneo();
 
-        System.exit(0);
+        System.exit(0); */
 
     }
 }
