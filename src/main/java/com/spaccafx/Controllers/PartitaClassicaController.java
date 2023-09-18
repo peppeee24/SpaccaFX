@@ -106,6 +106,8 @@ public class PartitaClassicaController {
 */
 
     public void setNumeroGiocatori() {
+
+        /*
         SingleSelectionModel<Integer> selectionModel = numeroGiocatoriMenu.getSelectionModel();
         if (selectionModel.getSelectedItem() != null) {
             numeroGiocatori = selectionModel.getSelectedItem().intValue();
@@ -113,6 +115,14 @@ public class PartitaClassicaController {
         } else {
             // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
         }
+               */
+
+      //  numeroGiocatoriMenu.getItems().addAll(1,2,3,4);
+        numeroGiocatoriMenu.setOnAction(this::nG);
+    }
+
+    public void nG(ActionEvent event){
+        numeroGiocatori=numeroGiocatoriMenu.getValue();
     }
 
 
@@ -270,9 +280,11 @@ public class PartitaClassicaController {
 
 
     public String generaCodice(ActionEvent actionEvent) throws IOException {
+
+   //     System.out.println("NNNNNNNNN"+numeroGiocatori);
       String c;
         int somma= getNumeroGiocatori()+getNumeroBot();
-        System.out.println("Non riesco a leggere le informazioni del checkbox");
+      //  System.out.println("Non riesco a leggere le informazioni del checkbox");
 // TODO non funziona perchè somma =0, sembra non legga le informazioni dal checkbox
         if(somma==0) {
             Partita P = new Partita(getNumeroGiocatori());
