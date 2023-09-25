@@ -105,11 +105,11 @@ EzBot_50 comincia il turno
                 System.out.println("Tocca a un MAZZIERE");
                 MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
                 }
                 else{
                     mossa = s.nextInt();
-                    Scelta(mossa, currentGiocatore);
+                    SceltaNew(mossa, currentGiocatore);
                 }
 
                 flag = false; // abbiamo trovato il mazziere e quindi e apposto
@@ -119,11 +119,11 @@ EzBot_50 comincia il turno
                 System.out.println("Tocca a un GIOCATORE");
                 MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    Scelta(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
                 }
                 else{
                     mossa = s.nextInt();
-                    Scelta(mossa, currentGiocatore);
+                    SceltaNew(mossa, currentGiocatore);
                 }
 
             }
@@ -463,7 +463,7 @@ EzBot_50 comincia il turno
         }
     }
 
-    public int generaCodicePartita() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    public int generaCodicePartita() // TODO Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
         this.codicePartita =  (int)(1 + (Math.random() * 1000));;
         return codicePartita;

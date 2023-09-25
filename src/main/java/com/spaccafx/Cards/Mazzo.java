@@ -44,6 +44,7 @@ public class Mazzo
             mazzoCarte.add(new CartaImprevisto(c));
         }
     }
+    */
 
     private void CreoCarteProbabilita()
     {
@@ -52,13 +53,13 @@ public class Mazzo
         {
             mazzoCarte.add(new CartaProbabilita(c));
         }
-    }*/
+    }
 
     private void CreoCarte()
     {
         CreoCarteNormali();
-        /*CreoCarteImprevisto();
-        CreoCarteProbabilita();*/
+        //CreoCarteImprevisto();
+        CreoCarteProbabilita();
     }
 
     public Carta PescaCarta() // carta randomica
@@ -86,6 +87,8 @@ public class Mazzo
         // faccio lo shuffle del mazzo
         Collections.shuffle(mazzoCarte);
         StampaMazzo();
+        // TODO Quando attivo un effetto di una carta che ne cambia il suo valore
+        //      bisogna evitare che quello venga salvato altrimenti finisce nel mazzo con un valore sballato
 
         System.out.println("Ho mescolato il mazzo (" + mazzoCarte.size() + " carte)");
     }

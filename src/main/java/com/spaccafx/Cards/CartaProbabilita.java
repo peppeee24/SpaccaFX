@@ -20,10 +20,33 @@ public class CartaProbabilita extends Carta
     {
         this.partitaAttuale = partita;
         System.out.println("Ho in mano una carta effetto e non posso fare altre scelte!");
+
+        int scelta = (int)((1 + Math.random() * 3)); //genero o 1 o 2 che sono i "codici" delle scelte;
+
+        switch(scelta)
+        {
+            case 1: DiminuisciValoreCarta(); break;
+            case 2: DiminuisciValoreCarta(); break;
+            case 3: DiminuisciValoreCarta(); break;    // per ora tutti uguali come test!!
+            default: break;
+        }
     }
 
-    private void NoCartaScambiabile()
+    private void DiminuisciValoreCarta()
     {
-        // ESEGUI IL METODO CHE FA LA SCELTA DI PASSARE IL TURNO
+        System.out.println("PROBABILITA - Diminuisco il valore della tua carta!");
+        System.out.println("Valore prima: " + getValore());
+        this.setValore(this.getValore() - 1);
+        System.out.println("Valore dopo: " + getValore());
+    }
+
+    private void ScambiaCartaConMazzo()
+    {
+        System.out.println("Posso scambiare la carta con il giocatore successivo!");
+    }
+
+    private void ScopriCartaGiocatoreSuccessivo()
+    {
+        System.out.println("Mostro carta giocatore successivo!");
     }
 }
