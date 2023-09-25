@@ -44,6 +44,7 @@ public class Mazzo
             mazzoCarte.add(new CartaImprevisto(c));
         }
     }
+    */
 
     private void CreoCarteProbabilita()
     {
@@ -52,13 +53,13 @@ public class Mazzo
         {
             mazzoCarte.add(new CartaProbabilita(c));
         }
-    }*/
+    }
 
     private void CreoCarte()
     {
         CreoCarteNormali();
-        /*CreoCarteImprevisto();
-        CreoCarteProbabilita();*/
+        //CreoCarteImprevisto();
+        CreoCarteProbabilita();
     }
 
     public Carta PescaCarta() // carta randomica

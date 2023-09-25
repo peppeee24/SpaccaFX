@@ -21,7 +21,7 @@ public class PlayerScreenController {
     PasswordField passwordField;
 PartitaClassicaController PC =new PartitaClassicaController();
 
-    Partita P =new Partita(PC.getNumeroGiocatori());
+    //Partita P =new Partita(PC.getNumeroGiocatori());
     //Partita P =new Partita(4);
     //private int pwd = PC.getCodicePartita();
 

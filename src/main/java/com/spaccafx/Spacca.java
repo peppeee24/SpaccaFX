@@ -54,7 +54,19 @@ public class Spacca extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
+
+        Giocatore p1 = new Giocatore("Nigga");
+        Giocatore p2 = new Giocatore("White");
+        Giocatore p3 = new Giocatore("Stronzo");
+
+        Partita p = new Partita(3);
+        p.aggiungiGiocatore(p1);
+        p.aggiungiGiocatore(p2);
+        p.aggiungiGiocatore(p3);
+
+        p.StartGame();
+        System.exit(0);
 
 
         /*
@@ -96,9 +108,9 @@ public class Spacca extends Application {
         torneo.aggiungiGiocatoreTorneo(b14);
         torneo.aggiungiGiocatoreTorneo(b15);
         torneo.aggiungiGiocatoreTorneo(b16);
-        torneo.StartTorneo();
+        torneo.StartTorneo();*/
 
-        System.exit(0); */
+
 
     }
 }

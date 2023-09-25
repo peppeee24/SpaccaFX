@@ -1,7 +1,5 @@
 package com.spaccafx.Controllers;
 
-import com.spaccafx.Controllers.PartitaClassicaController;
-
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
@@ -17,21 +15,25 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class PartitaClassicaController {
+public class PartitaClassicaController
+{
 
+    //region #VARIABILI
     private int numeroGiocatori;
-
     private int numeroBot;
     private String difficolta;
-    private String nomeGiocatore1;
 
+
+    private String nomeGiocatore1;
     private String nomeGiocatore2;
     private String nomeGiocatore3;
     private String nomeGiocatore4;
 
     private int codice;
 
+    //endregion
 
+    //region #FXML VARIABLES
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu;
 
@@ -63,18 +65,21 @@ public class PartitaClassicaController {
     Label difficoltaBotLabel;
 
     @FXML
-    Label twoLabel;
+    Label twoLabel; // ???
     @FXML
-    Label treeLabel;
+    Label treeLabel; // ???
     @FXML
-    Label fourLabel;
+    Label fourLabel; // ???
+
+    //endregion
 
 
     @FXML
-    public void initialize() {
+    public void initialize()
+    {
 
         // setNumeroGiocatoriMenu();
-        //   setDifficoltaBotMenu();
+        // setDifficoltaBotMenu();
         setNumeroGiocatori();
         controlloGiocatori();
         setDifficolta();
@@ -88,7 +93,8 @@ public class PartitaClassicaController {
     }
 
 
-    public void setDifficolta() {
+    public void setDifficolta()
+    {
         difficolta = difficoltaBotMenu.getSelectionModel().getSelectedItem();
     }
 /*
@@ -269,9 +275,10 @@ public class PartitaClassicaController {
 
  */
 
-    public void impostaGioco(ActionEvent actionEvent) throws IOException {
+    public void impostaGioco(ActionEvent actionEvent) throws IOException
+    {
 
-//TODO aggiunge contrlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
+        //TODO aggiunge controlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
 
 
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
