@@ -54,7 +54,7 @@ public class Spacca extends Application {
     }
 
     public static void main(String[] args) {
-        //launch();
+        launch();
 
         Giocatore p1 = new Giocatore("Nigga");
         Giocatore p2 = new Giocatore("White");

@@ -16,19 +16,10 @@ import java.util.Optional;
 
 public class PlayerScreenController {
     private int pwd;
-   // private PartitaClassicaController PC;
-
-    // Costruttore che accetta un'istanza di PartitaClassicaController
-
-
 
     @FXML
     PasswordField passwordField;
 
-    //Partita P = new Partita(PC.getNumeroGiocatori());
-
-    //Partita P =new Partita(4);
-    //private int pwd = PC.getCodicePartita();
     public void login(int n) {
         pwd=n;
     }

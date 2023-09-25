@@ -1,6 +1,5 @@
 package com.spaccafx.Controllers;
 
-import com.spaccafx.Controllers.PartitaClassicaController;
 
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
@@ -13,9 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
 
 
 
@@ -83,8 +82,6 @@ public class PartitaClassicaController {
     @FXML
     public void initialize() {
 
-        // setNumeroGiocatoriMenu();
-        //   setDifficoltaBotMenu();
         setNumeroGiocatori();
         controlloGiocatori();
         setDifficolta();
@@ -101,35 +98,11 @@ public class PartitaClassicaController {
     public void setDifficolta() {
         difficolta = difficoltaBotMenu.getSelectionModel().getSelectedItem();
     }
-/*
 
-    public void setNumeroGiocatori() {
-        //    numeroGiocatori = numeroGiocatoriMenu.getSelectionModel().getSelectedItem();
-
-        SingleSelectionModel<Integer> selectionModel = numeroGiocatoriMenu.getSelectionModel();
-        if (selectionModel.getSelectedItem() != null) {
-            int numeroGiocatori = selectionModel.getSelectedItem().intValue();
-            // Continua con la logica del tuo codice utilizzando numeroGiocatori
-        } else {
-            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
-        }
-
-    }
-*/
 
     public void setNumeroGiocatori() {
 
-        /*
-        SingleSelectionModel<Integer> selectionModel = numeroGiocatoriMenu.getSelectionModel();
-        if (selectionModel.getSelectedItem() != null) {
-            numeroGiocatori = selectionModel.getSelectedItem().intValue();
-            controlloGiocatori(); // Chiamare il metodo per impostare le opzioni del numero di bot in base al numero di giocatori selezionato
-        } else {
-            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
-        }
-               */
 
-      //  numeroGiocatoriMenu.getItems().addAll(1,2,3,4);
         numeroGiocatoriMenu.setOnAction(this::nG);
         this.controlloGiocatori();
     }
@@ -143,19 +116,14 @@ public class PartitaClassicaController {
     public void controlloGiocatori() {
         // TODO sembra non legga le informazioni dal checkbox
         if (getNumeroGiocatori() == 4) {
-          //  System.out.println("numero gio" + numeroGiocatori);
-           // System.out.println("numero bot" + numeroBot);
+
             numeroBotMenu.getItems().addAll(0);
             difficoltaBotMenu.setVisible(false);
             numeroBotMenu.setVisible(false);
             difficoltaBotLabel.setVisible(false);
             numeroBotLabel.setText("Non ci sono bot");
-            /*numeroBotMenu.setVisible(false);
-            numeroBotLabel.setText("Hai impostato il numero massimo di giocaotri, quindi la partita non avrà bot");
-            difficoltaBotMenu.setVisible(false);
-            difficoltaBotLabel.setVisible(false);
 
-             */
+
         } else if (getNumeroGiocatori() == 3) {
             numeroBotMenu.getItems().addAll(1);
             fourLabel.setVisible(false);
@@ -180,29 +148,10 @@ public class PartitaClassicaController {
         }
     }
 
-    /*
-    public void setNumeroBot() {
-        //  numeroBot = numeroBotMenu.getSelectionModel().getSelectedItem();
 
-        SingleSelectionModel<Integer> selectionModel = numeroBotMenu.getSelectionModel();
-        if (selectionModel.getSelectedItem() != null) {
-            int numeroBot = selectionModel.getSelectedItem().intValue();
-            // Continua con la logica del tuo codice utilizzando numeroBot
-        } else {
-            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
-        }
-
-    }
-
-*/
     public void setNumeroBot() {
         numeroBotMenu.setOnAction(this::nB);
-        /*SingleSelectionModel<Integer> selectionModel = numeroBotMenu.getSelectionModel();
-        if (selectionModel.getSelectedItem() != null) {
-            numeroBot = selectionModel.getSelectedItem().intValue();
-        } else {
-            // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
-        }*/
+
     }
 
     public void nB(ActionEvent event){
@@ -312,20 +261,6 @@ public class PartitaClassicaController {
 
 
 
-
-
-            //root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
-       /*
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-*/
-
-
-
-
-
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Parametri errati");
@@ -352,12 +287,6 @@ public class PartitaClassicaController {
 
     }
 
-    /*
-    public int getCodicePartita(){
-
-        return codice;
-    }
-*/
 
 
 
