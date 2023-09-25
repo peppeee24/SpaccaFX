@@ -324,6 +324,7 @@ public class PartitaClassicaController {
     }
 
     public int getCodicePartita(){
+
         return codice;
     }
 
