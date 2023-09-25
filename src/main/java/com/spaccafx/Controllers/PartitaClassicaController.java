@@ -29,7 +29,7 @@ public class PartitaClassicaController {
     private String nomeGiocatore3;
     private String nomeGiocatore4;
 
-    private String codice;
+    private int codice;
 
 
     @FXML
@@ -133,11 +133,13 @@ public class PartitaClassicaController {
     public void controlloGiocatori() {
         // TODO sembra non legga le informazioni dal checkbox
         if (getNumeroGiocatori() == 4) {
-            System.out.println("numero gio" + numeroGiocatori);
-            System.out.println("numero bot" + numeroBot);
+          //  System.out.println("numero gio" + numeroGiocatori);
+           // System.out.println("numero bot" + numeroBot);
             numeroBotMenu.getItems().addAll(0);
             difficoltaBotMenu.setVisible(false);
-            difficoltaBotLabel.setText("Non ci sono bot");
+            numeroBotMenu.setVisible(false);
+            difficoltaBotLabel.setVisible(false);
+            numeroBotLabel.setText("Non ci sono bot");
             /*numeroBotMenu.setVisible(false);
             numeroBotLabel.setText("Hai impostato il numero massimo di giocaotri, quindi la partita non avrà bot");
             difficoltaBotMenu.setVisible(false);
@@ -179,6 +181,7 @@ public class PartitaClassicaController {
         } else {
             // Tratta il caso in cui nessuna opzione è stata selezionata nel ChoiceBox
         }
+
     }
 
 */
@@ -296,10 +299,11 @@ public class PartitaClassicaController {
         int somma= getNumeroGiocatori()+getNumeroBot();
       //  System.out.println("Non riesco a leggere le informazioni del checkbox");
 // TODO non funziona perchè somma =0, sembra non legga le informazioni dal checkbox
-        if(somma==4) {
-            Partita P = new Partita(getNumeroGiocatori());
+        if(somma>1 && somma<5) {
+            Partita P = new Partita(somma);
              codice = P.generaCodicePartita();
-            codicePartita.setText(codice);
+             System.out.println("Codice"+codice);
+            codicePartita.setText("Codice: "+String.valueOf(codice));
             codicePartita.wrapTextProperty().set(true);
            // codicePartita.getStyleClass().add("copiable-label");
             // TODO non riesco a rendere selezionabile la label
@@ -313,13 +317,13 @@ public class PartitaClassicaController {
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Parametri errati");
-            alert.setContentText("Il gioco consente massimo 4 utenti tra giocatori e bot, rivedi le impostazioni");
+            alert.setContentText("Si puà giocare tra 2 e 4 giocatori, compresi bot, rivedi le impostazioni");
             Optional<ButtonType> result = alert.showAndWait();
-            codice=null;
+            codice=-1;
         }
     }
 
-    public String getCodicePartita(){
+    public int getCodicePartita(){
         return codice;
     }
 

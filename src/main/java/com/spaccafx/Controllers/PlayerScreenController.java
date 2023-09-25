@@ -23,16 +23,16 @@ PartitaClassicaController PC =new PartitaClassicaController();
 
     Partita P =new Partita(PC.getNumeroGiocatori());
     //Partita P =new Partita(4);
-    private String pwd = PC.getCodicePartita();
+    //private int pwd = PC.getCodicePartita();
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
-        String PasswordField = passwordField.getText();
+        int PasswordField = Integer.parseInt(passwordField.getText());
 
-        System.out.println("PWD:" + pwd);
+        System.out.println("PWD:" + PC.getCodicePartita());
         System.out.println("PAASVEFDNV:" + PasswordField);
 
-        if ( pwd.compareTo(PasswordField) == 0) {
+        if ( PC.getCodicePartita()==PasswordField) {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Accesso Eseguito");

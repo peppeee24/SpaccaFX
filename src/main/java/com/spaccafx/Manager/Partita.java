@@ -18,7 +18,7 @@ public class Partita
 
     private int currentRound;
     private int posMazziere;
-    private String codicePartita;
+    private int codicePartita;
     private boolean isGameRunning;
 
     public Partita(int size) // size è il numero di giocatori a partita
@@ -26,12 +26,12 @@ public class Partita
         giocatori = new  ArrayList<IGiocatore>(size);
         giocatoriMorti = new ArrayList<IGiocatore>();
 
-        this.codicePartita = generaCodicePartita();
+
         this.posMazziere = 0;
         this.currentRound = 1;
         this.isGameRunning = true;
 
-        System.out.println("Generato codice partita: " + codicePartita);
+        //System.out.println("Generato codice partita: " + codicePartita);
     }
 
     //region # GAME
@@ -463,9 +463,10 @@ EzBot_50 comincia il turno
         }
     }
 
-    public String generaCodicePartita() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    public int generaCodicePartita() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
-        return "PARTITA_" + (int)(1 + (Math.random() * 1000));
+        this.codicePartita =  (int)(1 + (Math.random() * 1000));;
+        return codicePartita;
     }
 
     public boolean isGameRunning(){return this.isGameRunning;}
