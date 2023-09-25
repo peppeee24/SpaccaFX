@@ -15,24 +15,32 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class PlayerScreenController {
+    private int pwd;
+   // private PartitaClassicaController PC;
+
+    // Costruttore che accetta un'istanza di PartitaClassicaController
+
 
 
     @FXML
     PasswordField passwordField;
-PartitaClassicaController PC =new PartitaClassicaController();
 
-    Partita P =new Partita(PC.getNumeroGiocatori());
+    //Partita P = new Partita(PC.getNumeroGiocatori());
+
     //Partita P =new Partita(4);
     //private int pwd = PC.getCodicePartita();
+    public void login(int n) {
+        pwd=n;
+    }
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
         int PasswordField = Integer.parseInt(passwordField.getText());
 
-        System.out.println("PWD:" + PC.getCodicePartita());
+        System.out.println("PWD:" + pwd);
         System.out.println("PAASVEFDNV:" + PasswordField);
 
-        if ( PC.getCodicePartita()==PasswordField) {
+        if (pwd == PasswordField) {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Accesso Eseguito");
@@ -65,8 +73,12 @@ PartitaClassicaController PC =new PartitaClassicaController();
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
+
+
+
+
+
+
 
 

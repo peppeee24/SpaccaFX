@@ -12,12 +12,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class PartitaClassicaController {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
 
     private int numeroGiocatori;
 
@@ -29,7 +39,7 @@ public class PartitaClassicaController {
     private String nomeGiocatore3;
     private String nomeGiocatore4;
 
-    private int codice;
+    private int codice=-1;
 
 
     @FXML
@@ -269,19 +279,9 @@ public class PartitaClassicaController {
 
  */
 
-    public void impostaGioco(ActionEvent actionEvent) throws IOException {
-
-//TODO aggiunge contrlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
 
 
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(playerScreen.load());
-        stage.setScene(scene);
-        stage.show();
 
-
-    }
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
@@ -294,11 +294,8 @@ public class PartitaClassicaController {
 
     public void generaCodice(ActionEvent actionEvent) throws IOException {
 
-   //     System.out.println("NNNNNNNNN"+numeroGiocatori);
-
         int somma= getNumeroGiocatori()+getNumeroBot();
-      //  System.out.println("Non riesco a leggere le informazioni del checkbox");
-// TODO non funziona perchè somma =0, sembra non legga le informazioni dal checkbox
+
         if(somma>1 && somma<5) {
             Partita P = new Partita(somma);
              codice = P.generaCodicePartita();
@@ -314,19 +311,56 @@ public class PartitaClassicaController {
             Optional<ButtonType> result = alert.showAndWait();
 
 
+
+
+
+            //root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+       /*
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+*/
+
+
+
+
+
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Parametri errati");
             alert.setContentText("Si puà giocare tra 2 e 4 giocatori, compresi bot, rivedi le impostazioni");
             Optional<ButtonType> result = alert.showAndWait();
-            codice=-1;
+
         }
     }
 
+    public void impostaGioco(ActionEvent actionEvent) throws IOException {
+
+//TODO aggiunge contrlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
+
+
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(playerScreen.load());
+        stage.setScene(scene);
+        stage.show();
+
+        PlayerScreenController PSC = playerScreen.getController();
+        PSC.login(codice);
+
+
+    }
+
+    /*
     public int getCodicePartita(){
 
         return codice;
     }
+*/
+
+
+
 
 
 }
