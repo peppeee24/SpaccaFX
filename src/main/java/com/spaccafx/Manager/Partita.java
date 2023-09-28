@@ -1,10 +1,9 @@
 package com.spaccafx.Manager;
 
-import com.spaccafx.Enums.RuoloGiocatore;
-import com.spaccafx.Enums.SemeCarta;
+import com.spaccafx.Enums.*;
+import com.spaccafx.ExternalApps.*;
 import com.spaccafx.Interface.IGiocatore;
-import com.spaccafx.Player.Bot;
-import com.spaccafx.Player.Giocatore;
+import com.spaccafx.Player.*;
 import com.spaccafx.Cards.*;
 
 import java.util.*;
@@ -20,6 +19,7 @@ public class Partita
     private int posMazziere;
     private int codicePartita;
     private boolean isGameRunning;
+    SpaccaTGBot telegramBot;
 
     public Partita(int size) // size è il numero di giocatori a partita
     {
@@ -30,6 +30,8 @@ public class Partita
         this.posMazziere = 0;
         this.currentRound = 1;
         this.isGameRunning = true;
+
+        this.telegramBot = new SpaccaTGBot();
 
         //System.out.println("Generato codice partita: " + codicePartita);
     }
@@ -70,6 +72,7 @@ public class Partita
         }
 
         System.out.println("Il gioco e finito perche c'e solo 1 player rimasto vivo!");
+        telegramBot.messaggioVincitorePartita(codicePartita, giocatori.get(0).getNome());
         this.isGameRunning = false; // gioco finito e metto dunque false
 
     }

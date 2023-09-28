@@ -1,5 +1,6 @@
 package com.spaccafx;
 
+import com.spaccafx.ExternalApps.SpaccaTGBot;
 import com.spaccafx.Manager.GameManager;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Manager.Torneo;
@@ -16,6 +17,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.util.*;
 
@@ -54,20 +58,23 @@ public class Spacca extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
+        InitializeTelegramBot();
 
-        Giocatore p1 = new Giocatore("Nigga");
-        Giocatore p2 = new Giocatore("White");
-        Giocatore p3 = new Giocatore("Stronzo");
 
-        Partita p = new Partita(3);
+
+        Giocatore p1 = new Giocatore("tester22");
+        Giocatore p2 = new Giocatore("peppeee24");
+        //Giocatore p3 = new Giocatore("Stronzo");
+
+        Partita p = new Partita(2);
         p.aggiungiGiocatore(p1);
         p.aggiungiGiocatore(p2);
-        p.aggiungiGiocatore(p3);
+        p.generaCodicePartita();
+        //p.aggiungiGiocatore(p3);
 
         p.StartGame();
-        System.exit(0);
-
+        //System.exit(0);
 
         /*
         Bot b1 = new AdvancedBot();
@@ -111,6 +118,21 @@ public class Spacca extends Application {
         torneo.StartTorneo();*/
 
 
+
+    }
+
+
+    public static void InitializeTelegramBot()
+    {
+        try
+        {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            botsApi.registerBot(new SpaccaTGBot());
+        }
+        catch (TelegramApiException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 }
