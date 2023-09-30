@@ -313,12 +313,12 @@ EzBot_50 comincia il turno
     {
         if(currentGiocatore.getCarta() instanceof CartaImprevisto)
         {
-            ((CartaImprevisto)currentGiocatore.getCarta()).Effetto(this); // gli mando questa classe
+            ((CartaImprevisto)currentGiocatore.getCarta()).Effetto(this,currentGiocatore); // gli mando questa classe
             PassaTurno(); // momentaneo
         }
         else if(currentGiocatore.getCarta() instanceof CartaProbabilita)
         {
-            ((CartaProbabilita)currentGiocatore.getCarta()).Effetto(this); // gli mando questa classe
+            ((CartaProbabilita)currentGiocatore.getCarta()).Effetto(this,currentGiocatore); // gli mando questa classe
             PassaTurno(); // momentaneo
         }
         else
@@ -506,6 +506,16 @@ EzBot_50 comincia il turno
             winner = giocatori.get(0);
         }
     return winner;
+    }
+
+    public void ScambioCartaMazzoWithProb(IGiocatore currentGiocatore){
+        if(currentGiocatore.getCarta() instanceof CartaProbabilita){
+            currentGiocatore.setCarta(mazzo.PescaCarta());
+            System.out.println("Hai pescato la carta: " + currentGiocatore.getCarta().getValore());
+        }
+        else{
+            System.out.println("ERRORE GRAVISSIMO, ENTRA NEL METODO ANCHE SE NON HO UNA CARTA PROBABILITA");
+        }
     }
 
 

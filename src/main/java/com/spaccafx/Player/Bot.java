@@ -12,6 +12,9 @@ public abstract class Bot implements IGiocatore
     private RuoloGiocatore ruolo;
     private int valoreDado;
 
+    private int pos;
+    //TODO controlla costruttore come cambia con pos
+
     public Bot()
     {
         this.nome = "Bot";
@@ -44,6 +47,7 @@ public abstract class Bot implements IGiocatore
     public void setRuolo(RuoloGiocatore ruolo){this.ruolo = ruolo;}
     public void setDado(int valoreDado){this.valoreDado = valoreDado;}
     public void setCarta(Carta carta){this.carta = carta;}
+    public void setPos(int pos){this.pos = pos;}
 
     public String getNome(){return this.nome;}
     public int getVita(){return  this.vita;}
@@ -52,7 +56,7 @@ public abstract class Bot implements IGiocatore
     public RuoloGiocatore getRuolo(){return this.ruolo;}
     public abstract int Scelta();
     public abstract String generaNomeBot();
-
+    public int getPos(){return this.pos;};
 
 
 
