@@ -11,12 +11,14 @@ import com.spaccafx.Player.Giocatore;
 
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
@@ -58,7 +60,7 @@ public class Spacca extends Application {
     }
 
     public static void main(String[] args) {
-        //launch();
+        launch();
         InitializeTelegramBot();
 
 
@@ -134,5 +136,24 @@ public class Spacca extends Application {
             e.printStackTrace();
         }
 
+    }
+
+
+
+
+
+    // TODO: Metodo per far terminare il programma quando si clicca x NON FUNZIONA
+
+    private Stage stage;
+    public void setStage(Stage stage) {
+        this.stage = stage;
+        // Aggiungi l'handler per l'evento di chiusura qui
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                // Chiudi il programma quando la finestra viene chiusa
+                System.exit(0);
+            }
+        });
     }
 }

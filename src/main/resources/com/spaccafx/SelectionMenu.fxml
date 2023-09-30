@@ -44,12 +44,12 @@
    <children>
       <Pane fx:id="secondScreen" layoutX="-6.0" prefHeight="630.0" prefWidth="1024.0" styleClass="bodybg" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="partitaClassica" layoutX="69.0" layoutY="300.0" mnemonicParsing="false" onAction="#iniziaPartita" prefHeight="72.0" prefWidth="378.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" text="Partita Classica">
+            <Button fx:id="partitaClassica" layoutX="75.0" layoutY="372.0" mnemonicParsing="false" onAction="#iniziaPartita" prefHeight="72.0" prefWidth="378.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" text="Partita Classica">
                <font>
                   <Font size="33.0" />
                </font>
             </Button>
-            <Button fx:id="torneo" layoutX="538.0" layoutY="300.0" mnemonicParsing="false" onAction="#iniziaTorneo" prefHeight="72.0" prefWidth="378.0" text="Torneo" />
+            <Button fx:id="torneo" layoutX="534.0" layoutY="372.0" mnemonicParsing="false" onAction="#iniziaTorneo" prefHeight="72.0" prefWidth="378.0" text="Torneo" />
             <Label fx:id="SpaccaLabel" layoutX="285.0" layoutY="44.0" styleClass="Spacca" text="SPACCA" />
             <Label fx:id="FXLabel" layoutX="661.0" layoutY="44.0" styleClass="Fx" text="FX" />
             <ImageView fx:id="indietro" fitHeight="81.0" fitWidth="80.0" layoutX="18.0" layoutY="521.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
@@ -57,7 +57,16 @@
                   <Image url="@../../Assets/Game/Environment/indietro.PNG" />
                </image>
             </ImageView>
-            <Label fx:id="controlPanelLabel" layoutX="74.0" layoutY="232.0" styleClass="Label" text="Pannello di controllo amministratore:" />
+            <ImageView fitHeight="216.0" fitWidth="337.0" layoutX="177.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/trio.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="216.0" fitWidth="337.0" layoutX="615.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/trio.PNG" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

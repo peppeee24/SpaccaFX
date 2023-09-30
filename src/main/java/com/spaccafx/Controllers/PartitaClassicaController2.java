@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -16,12 +18,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 
 
-
-
+import java.awt.*;
 import java.io.IOException;
 import java.util.Optional;
 
-public class PartitaClassicaController {
+public class PartitaClassicaController2 {
 
     private Stage stage;
     private Scene scene;
@@ -33,6 +34,8 @@ public class PartitaClassicaController {
 
     private int codice=-1;
 
+@FXML
+ Tab playerTab, botTbb, creaTab;
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu, numeroBotMenu;
@@ -44,7 +47,10 @@ public class PartitaClassicaController {
     TextField playerName1, playerName2, playerName3, playerName4;
 
     @FXML
-    Label codicePartita, numeroBotLabel, difficoltaBotLabel, twoLabel, treeLabel, fourLabel;
+    Label codicePartita, numeroBotLabel, difficoltaBotLabel;
+
+    @FXML
+    ImageView twoLabel, treeLabel, fourLabel;
 
 
     @FXML

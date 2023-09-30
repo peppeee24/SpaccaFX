@@ -38,7 +38,6 @@ public class PlayerScreenController {
             alert.setContentText("Stai per entrare nel gioco");
             Optional<ButtonType> result = alert.showAndWait();
 
-// TODO Sistemare pasaggio codice partita, in quanto lo da sempre errato perchè ne viene genrato uno diverso rispetto a quello delal classe PartitaClassicaController
 
             FXMLLoader tavolo = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

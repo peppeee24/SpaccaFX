@@ -24,7 +24,10 @@ public class LoginController {
 
     private String user = "root";
     private String pwd = "root";
-
+    public void initialize() {
+        // Imposta il focus sul campo userField quando la schermata viene inizializzata
+        userField.requestFocus();
+    }
     public void loginAction(ActionEvent actionEvent) throws IOException {
         String UserField = userField.getText();
         String PasswordField = passwordField.getText();
@@ -62,6 +65,12 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void change(MouseEvent mouseEvent) throws IOException {
+     // TODO impostare avatar
+    }
+
+
 
 
 
