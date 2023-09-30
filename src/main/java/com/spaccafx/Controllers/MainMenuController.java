@@ -21,7 +21,7 @@ public class MainMenuController {
 
 
     public void startGame(ActionEvent actionEvent) throws IOException {
-
+// TODO ci pensiamo quando avremo fatto i file, altrimenti è complicato leggere
 
 
     }
