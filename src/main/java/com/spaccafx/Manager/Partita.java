@@ -12,7 +12,7 @@ public class Partita
 {
     Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
 
-    ArrayList<IGiocatore> giocatori;
+    public ArrayList<IGiocatore> giocatori;
     ArrayList<IGiocatore> giocatoriMorti;
 
     private int currentRound;
@@ -106,13 +106,14 @@ EzBot_50 comincia il turno
             if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
             {
                 System.out.println("Tocca a un MAZZIERE");
-                MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
+                //MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    //SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    //TODO RISOLVERE SCELTA BOT1
                 }
                 else{
-                    mossa = s.nextInt();
-                    SceltaNew(mossa, currentGiocatore);
+                    //mossa = s.nextInt();
+                    SceltaNew(s, currentGiocatore);
                 }
 
                 flag = false; // abbiamo trovato il mazziere e quindi e apposto
@@ -120,13 +121,14 @@ EzBot_50 comincia il turno
             else
             {
                 System.out.println("Tocca a un GIOCATORE");
-                MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
+                //MostraIstruzioni(currentGiocatore); // mostra le istruzioni che puo fare il GIOCATORE attualmente
                 if(currentGiocatore instanceof Bot){
-                    SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    //SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
+                    //TODO RISOLVERE SCELTA BOT2
                 }
                 else{
-                    mossa = s.nextInt();
-                    SceltaNew(mossa, currentGiocatore);
+                    //mossa = s.nextInt();
+                    SceltaNew(s, currentGiocatore);
                 }
 
             }
@@ -309,26 +311,28 @@ EzBot_50 comincia il turno
         }
     }
 
-    private void SceltaNew(int scelta, IGiocatore currentGiocatore)
+    private void SceltaNew(Scanner s, IGiocatore currentGiocatore)
     {
+
+        //System.out.println("current giocatore " + currentGiocatore.getNome());
+       // System.out.println("scelta " + scelta);
         if(currentGiocatore.getCarta() instanceof CartaImprevisto)
         {
             ((CartaImprevisto)currentGiocatore.getCarta()).Effetto(this,currentGiocatore); // gli mando questa classe
-            PassaTurno(); // momentaneo
+            //PassaTurno(); // momentaneo
         }
         else if(currentGiocatore.getCarta() instanceof CartaProbabilita)
         {
             ((CartaProbabilita)currentGiocatore.getCarta()).Effetto(this,currentGiocatore); // gli mando questa classe
-            PassaTurno(); // momentaneo
+
+            //PassaTurno(); // momentaneo
         }
-        else
+        MostraIstruzioni(currentGiocatore);
+        switch (s.nextInt())
         {
-            switch (scelta)
-            {
-                case 1: ScambiaCarta(currentGiocatore); break;
-                case 2: PassaTurno(); break;
-                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
-            }
+            case 1: ScambiaCarta(currentGiocatore); break;
+            case 2: PassaTurno(); break;
+            default: System.out.println("Scelta NON ACCETTABILE!!"); break;
         }
     }
 

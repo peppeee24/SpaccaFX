@@ -29,7 +29,7 @@ public class Mazzo
         // RIEMPO CON LE CARTE NORMALI
         for (SemeCarta seme : SemeCarta.values())
         {
-            for (int c = 1; c < 6; c++) // da 1 a 10 (1 - 11)
+            for (int c = 1; c < 2; c++) // da 1 a 10 (1 - 11)
             {
                 mazzoCarte.add(new CartaNormale(c, seme));
             }
@@ -49,7 +49,7 @@ public class Mazzo
     private void CreoCarteProbabilita()
     {
         // RIEMPO CON LE CARTE PROBABILITA
-        for (int c = 2; c < 5; c++) // 3 CARTE PROBABILITA (valori da 2 a 4)
+        for (int c = 2; c < 4; c++) // 3 CARTE PROBABILITA (valori da 2 a 4)
         {
             mazzoCarte.add(new CartaProbabilita(c));
         }
@@ -57,6 +57,7 @@ public class Mazzo
 
     private void CreoCarte()
     {
+        mazzoCarte.clear();
         CreoCarteNormali();
         //CreoCarteImprevisto();
         CreoCarteProbabilita();
@@ -80,8 +81,10 @@ public class Mazzo
         // rimetto tutte le carte pescate
         if(!cartePescate.isEmpty()) // Se pieno
         {
-            mazzoCarte.addAll(cartePescate);
+            //mazzoCarte.addAll(cartePescate);
             cartePescate.clear(); // cancello le carte che ho pescato
+            CreoCarte();
+
         }
 
         // faccio lo shuffle del mazzo
