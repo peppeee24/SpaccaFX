@@ -10,10 +10,12 @@ public interface IGiocatore
     public void setRuolo(RuoloGiocatore ruolo);
     public void setDado(int valoreDado);
     public void setCarta(Carta carta);
+    public void setPos(int pos);
 
     public String getNome();
     public int getVita();
     public Carta getCarta();
     public int getValoreDado();
     public RuoloGiocatore getRuolo();
+    public int getPos();
 }

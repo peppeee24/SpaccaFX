@@ -161,4 +161,6 @@ public class SpaccaTGBot extends TelegramLongPollingBot
     {
         return "6497003349:AAFdBTRDVSi8WP_JR9XpUtYqwuVGhJZLRkQ";
     }
+
+    //TODO fare lo /all per vedere tutte le partite
 }
