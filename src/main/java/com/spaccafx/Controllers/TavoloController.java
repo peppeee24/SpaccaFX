@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
 import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.EasyBot;
@@ -14,37 +15,28 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-//import javax.swing.text.html.ImageView;
+
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
 public class TavoloController {
-
     /*
+
     //PartitaClassicaController PC = new PartitaClassicaController();
-    PartitaModel partitaModel =new PartitaModel();
+    Partita partitaModel =new Partita();
 
     @FXML
-    Label nomeGiocatoreLabel;
+    Label nomeGiocatoreLabel,nomeBot1Label, nomeBot2Label, nomeBot3Label;
+
     @FXML
-    Label nomeBot1Label;
-    @FXML
-    Label nomeBot2Label;
-    @FXML
-    Label nomeBot3Label;
-    @FXML
-    ImageView bot1Space;
-    @FXML
-    ImageView bot2Space;
-    @FXML
-    ImageView bot3Space;
+    ImageView bot1Space,bot2Space,bot3Space;
 
     public void initialize(){
         setTable();
     }
 
-    public void setPartitaModel(PartitaModel partitaModel) {
+    public void setPartitaModel(Partita partitaModel) {
         this.partitaModel = partitaModel;
         setTable();
     }
@@ -121,7 +113,9 @@ public class TavoloController {
 
     }
 
-*/
+
+
+     */
 }
 
 

@@ -110,14 +110,14 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css">
                      <children>
-                        <Label fx:id="numeroBotLabel" layoutX="237.0" layoutY="140.0" styleClass="Label" text="Numero Bot" />
-                        <ChoiceBox fx:id="numeroBotMenu" layoutX="237.0" layoutY="201.0" prefWidth="150.0">
+                        <Label fx:id="numeroBotLabel" layoutX="274.0" layoutY="154.0" styleClass="Label" text="Numero Bot" />
+                        <ChoiceBox fx:id="numeroBotMenu" layoutX="283.0" layoutY="205.0" prefWidth="150.0">
                            <items>
                               <FXCollections fx:factory="observableArrayList" />
                            </items>
                         </ChoiceBox>
-                        <Label fx:id="difficoltaBotLabel" layoutX="228.0" layoutY="332.0" styleClass="Label" text="Difficoltà Bot" />
-                        <ChoiceBox fx:id="difficoltaBotMenu" layoutX="225.0" layoutY="381.0" prefWidth="150.0">
+                        <Label fx:id="difficoltaBotLabel" layoutX="525.0" layoutY="154.0" styleClass="Label" text="Difficoltà Bot" />
+                        <ChoiceBox fx:id="difficoltaBotMenu" layoutX="525.0" layoutY="205.0" prefWidth="150.0">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Facile" />
@@ -127,9 +127,48 @@
                         </ChoiceBox>
                         <Label layoutX="120.0" styleClass="Spacca" text="Partita" />
                         <Label layoutX="490.0" styleClass="Fx" text="Classica" />
-                        <ImageView fitHeight="685.0" fitWidth="300.0" layoutX="705.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="hardBot1" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Assets/Game/Environment/botIcons.png" />
+                              <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="hardBot2" fitHeight="150.0" fitWidth="200.0" layoutX="345.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="hardBot3" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="hardBot4" fitHeight="150.0" fitWidth="200.0" layoutX="726.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelBot1" layoutX="144.0" layoutY="510.0" styleClass="Label" text="Nome bot" />
+                        <Label fx:id="labelBot2" layoutX="358.0" layoutY="510.0" styleClass="Label" text="Nome bot" />
+                        <Label fx:id="labelBot3" layoutX="564.0" layoutY="510.0" styleClass="Label" text="Nome bot" />
+                        <Label fx:id="labelBot4" layoutX="764.0" layoutY="510.0" styleClass="Label" text="Nome bot" />
+                        <ImageView fx:id="easyBot1" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="easyBot2" fitHeight="150.0" fitWidth="200.0" layoutX="342.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="easyBot3" fitHeight="150.0" fitWidth="200.0" layoutX="546.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="easyBot4" fitHeight="150.0" fitWidth="200.0" layoutX="726.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
                            </image>
                         </ImageView>
                      </children></AnchorPane>

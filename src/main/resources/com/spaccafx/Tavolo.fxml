@@ -37,7 +37,7 @@
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="bot1Space" fitHeight="213.0" fitWidth="248.0" layoutX="28.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="bot1Space" fitHeight="213.0" fitWidth="248.0" layoutX="48.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
             <image>
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
@@ -47,14 +47,14 @@
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="bot3Space" fitHeight="213.0" fitWidth="191.0" layoutX="916.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="bot3Space" fitHeight="213.0" fitWidth="191.0" layoutX="974.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
             <image>
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-      <Label fx:id="nomeBot3Label" layoutX="967.0" layoutY="263.0" styleClass="Label" text="Bot 3" />
+      <Label fx:id="nomeBot3Label" layoutX="1099.0" layoutY="239.0" rotate="-90.0" styleClass="Label" text="Bot 3" />
       <Label fx:id="nomeBot2Label" layoutX="682.0" layoutY="45.0" styleClass="Label" text="Bot 2" />
-      <Label fx:id="nomeBot1Label" layoutX="54.0" layoutY="251.0" styleClass="Label" text="Bot 1" />
+      <Label fx:id="nomeBot1Label" layoutX="34.0" layoutY="232.0" rotate="90.0" styleClass="Label" text="Bot 1" />
       <Label fx:id="nomeGiocatoreLabel" layoutX="701.0" layoutY="746.0" styleClass="Label" text="Your Name" />
     </children>
 </AnchorPane>

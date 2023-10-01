@@ -2,6 +2,8 @@ package com.spaccafx.Controllers;
 
 
 import com.spaccafx.Manager.Partita;
+import com.spaccafx.Player.AdvancedBot;
+import com.spaccafx.Player.EasyBot;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,8 +36,11 @@ public class PartitaClassicaController2 {
 
     private int codice=-1;
 
-@FXML
- Tab playerTab, botTbb, creaTab;
+    EasyBot E=new EasyBot();
+    AdvancedBot A=new AdvancedBot();
+
+    @FXML
+    Tab playerTab, botTbb, creaTab;
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu, numeroBotMenu;
@@ -47,10 +52,10 @@ public class PartitaClassicaController2 {
     TextField playerName1, playerName2, playerName3, playerName4;
 
     @FXML
-    Label codicePartita, numeroBotLabel, difficoltaBotLabel;
+    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, labelBot4;
 
     @FXML
-    ImageView twoLabel, treeLabel, fourLabel;
+    ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
 
     @FXML
@@ -68,14 +73,28 @@ public class PartitaClassicaController2 {
 
     }
 
+/*
+    public void setDifficolta() {
+
+        difficolta = difficoltaBotMenu.getSelectionModel().getSelectedItem();
+    }
+
+ */
 
     public void setDifficolta() {
-        difficolta = difficoltaBotMenu.getSelectionModel().getSelectedItem();
+
+
+        difficoltaBotMenu.setOnAction(this::dB);
+        this.controlloGiocatori();
+    }
+
+    public void dB(ActionEvent event){
+        difficolta=difficoltaBotMenu.getValue();
+        this.controlloGiocatori();
     }
 
 
     public void setNumeroGiocatori() {
-
 
         numeroGiocatoriMenu.setOnAction(this::nG);
         this.controlloGiocatori();
@@ -88,6 +107,19 @@ public class PartitaClassicaController2 {
 
 
     public void controlloGiocatori() {
+        labelBot1.setVisible(false);
+        labelBot2.setVisible(false);
+        labelBot3.setVisible(false);
+        labelBot4.setVisible(false);
+        hardBot1.setVisible(false);
+        hardBot2.setVisible(false);
+        hardBot3.setVisible(false);
+        hardBot4.setVisible(false);
+        easyBot1.setVisible(false);
+        easyBot2.setVisible(false);
+        easyBot3.setVisible(false);
+        easyBot4.setVisible(false);
+
         // TODO sembra non legga le informazioni dal checkbox
         if (getNumeroGiocatori() == 4) {
 
@@ -102,6 +134,15 @@ public class PartitaClassicaController2 {
             numeroBotMenu.getItems().addAll(1);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
+            if(getDifficolta().equals("Difficile")) {
+                labelBot1.setText(A.generaNomeBot());
+                labelBot1.setVisible(true);
+                hardBot1.setVisible(true);
+            } else{
+                labelBot1.setText(E.generaNomeBot());
+                labelBot1.setVisible(true);
+                easyBot1.setVisible(true);
+            }
 
         } else if (getNumeroGiocatori() == 2) {
             numeroBotMenu.getItems().addAll(1, 2);
@@ -109,6 +150,23 @@ public class PartitaClassicaController2 {
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
+            if(getDifficolta().equals("Difficile")) {
+                labelBot1.setText(A.generaNomeBot());
+                labelBot1.setVisible(true);
+                hardBot1.setVisible(true);
+                labelBot2.setText(A.generaNomeBot());
+                labelBot2.setVisible(true);
+                hardBot2.setVisible(true);
+            } else{
+                labelBot1.setText(E.generaNomeBot());
+                labelBot1.setVisible(true);
+                easyBot1.setVisible(true);
+                labelBot2.setText(E.generaNomeBot());
+                labelBot2.setVisible(true);
+                easyBot2.setVisible(true);
+            }
+
+
 
         } else if (getNumeroGiocatori() == 1) {
             numeroBotMenu.getItems().addAll(1, 2, 3);
@@ -118,6 +176,29 @@ public class PartitaClassicaController2 {
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
+            if(getDifficolta().equals("Difficile")) {
+                labelBot1.setText(A.generaNomeBot());
+                labelBot1.setVisible(true);
+                hardBot1.setVisible(true);
+                labelBot2.setText(A.generaNomeBot());
+                labelBot2.setVisible(true);
+                hardBot2.setVisible(true);
+                labelBot3.setText(A.generaNomeBot());
+                labelBot3.setVisible(true);
+                hardBot3.setVisible(true);
+            } else{
+                labelBot1.setText(E.generaNomeBot());
+                labelBot1.setVisible(true);
+                easyBot1.setVisible(true);
+                labelBot2.setText(E.generaNomeBot());
+                labelBot2.setVisible(true);
+                easyBot2.setVisible(true);
+                labelBot3.setText(E.generaNomeBot());
+                labelBot3.setVisible(true);
+                easyBot3.setVisible(true);
+            }
+
+
 
         }
     }
@@ -180,6 +261,7 @@ public class PartitaClassicaController2 {
     }
 
     public String getDifficolta() {
+
         return difficolta;
     }
 
