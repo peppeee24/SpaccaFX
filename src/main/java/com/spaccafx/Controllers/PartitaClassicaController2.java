@@ -52,10 +52,10 @@ public class PartitaClassicaController2 {
     TextField playerName1, playerName2, playerName3, playerName4;
 
     @FXML
-    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, labelBot4;
+    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3;
 
     @FXML
-    ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
+    ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3;
 
 
     @FXML
@@ -73,13 +73,7 @@ public class PartitaClassicaController2 {
 
     }
 
-/*
-    public void setDifficolta() {
 
-        difficolta = difficoltaBotMenu.getSelectionModel().getSelectedItem();
-    }
-
- */
 
     public void setDifficolta() {
 
@@ -105,20 +99,72 @@ public class PartitaClassicaController2 {
         this.controlloGiocatori();
     }
 
+    String E1,E2,E3,A1,A2,A3;
+
+
+    public void getEasyBot1(){
+        E1= E.generaNomeBot();
+    }
+
+    public String getE1(){
+        return E1;
+    }
+
+    public void getEasyBot2(){
+        E2= E.generaNomeBot();
+    }
+    public String getE2(){
+        return E2;
+    }
+
+    public void getEasyBot3(){
+        E3=E.generaNomeBot();
+
+    }
+
+    public String getE3(){
+        return E3;
+    }
+
+
+    public void getAdvBot1(){
+        A1= A.generaNomeBot();
+    }
+
+    public String getA1(){
+        return A1;
+    }
+
+    public void getAdvBot2(){
+        A2= A.generaNomeBot();
+    }
+    public String getA2(){
+        return A2;
+    }
+
+    public void getAdvBot3(){
+        A3=A.generaNomeBot();
+
+    }
+
+    public String getA3(){
+        return A3;
+    }
+
+
+
 
     public void controlloGiocatori() {
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
         labelBot3.setVisible(false);
-        labelBot4.setVisible(false);
         hardBot1.setVisible(false);
         hardBot2.setVisible(false);
         hardBot3.setVisible(false);
-        hardBot4.setVisible(false);
         easyBot1.setVisible(false);
         easyBot2.setVisible(false);
         easyBot3.setVisible(false);
-        easyBot4.setVisible(false);
+
 
         // TODO sembra non legga le informazioni dal checkbox
         if (getNumeroGiocatori() == 4) {
@@ -135,11 +181,11 @@ public class PartitaClassicaController2 {
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
             if(getDifficolta().equals("Difficile")) {
-                labelBot1.setText(A.generaNomeBot());
+                labelBot1.setText(getA1());
                 labelBot1.setVisible(true);
                 hardBot1.setVisible(true);
             } else{
-                labelBot1.setText(E.generaNomeBot());
+                labelBot1.setText(getE1());
                 labelBot1.setVisible(true);
                 easyBot1.setVisible(true);
             }
@@ -151,17 +197,17 @@ public class PartitaClassicaController2 {
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
             if(getDifficolta().equals("Difficile")) {
-                labelBot1.setText(A.generaNomeBot());
+                labelBot1.setText(getA1());
                 labelBot1.setVisible(true);
                 hardBot1.setVisible(true);
-                labelBot2.setText(A.generaNomeBot());
+                labelBot2.setText(getA2());
                 labelBot2.setVisible(true);
                 hardBot2.setVisible(true);
             } else{
-                labelBot1.setText(E.generaNomeBot());
+                labelBot1.setText(getE1());
                 labelBot1.setVisible(true);
                 easyBot1.setVisible(true);
-                labelBot2.setText(E.generaNomeBot());
+                labelBot2.setText(getE2());
                 labelBot2.setVisible(true);
                 easyBot2.setVisible(true);
             }
@@ -177,23 +223,23 @@ public class PartitaClassicaController2 {
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
             if(getDifficolta().equals("Difficile")) {
-                labelBot1.setText(A.generaNomeBot());
+                labelBot1.setText(getA1());
                 labelBot1.setVisible(true);
                 hardBot1.setVisible(true);
-                labelBot2.setText(A.generaNomeBot());
+                labelBot2.setText(getA2());
                 labelBot2.setVisible(true);
                 hardBot2.setVisible(true);
-                labelBot3.setText(A.generaNomeBot());
+                labelBot3.setText(getA3());
                 labelBot3.setVisible(true);
                 hardBot3.setVisible(true);
             } else{
-                labelBot1.setText(E.generaNomeBot());
+                labelBot1.setText(getE1());
                 labelBot1.setVisible(true);
                 easyBot1.setVisible(true);
-                labelBot2.setText(E.generaNomeBot());
+                labelBot2.setText(getE2());
                 labelBot2.setVisible(true);
                 easyBot2.setVisible(true);
-                labelBot3.setText(E.generaNomeBot());
+                labelBot3.setText(getE3());
                 labelBot3.setVisible(true);
                 easyBot3.setVisible(true);
             }
@@ -267,24 +313,6 @@ public class PartitaClassicaController2 {
 
 
 
-    /*
-
-    public void setNumeroGiocatoriMenu() {
-
-        numeroGiocatoriMenu.getItems().addAll(1, 2, 3);
-    }
-
-
-
-
-    public void setDifficoltaBotMenu(){
-        difficoltaBotMenu.getItems().addAll("Facile","Avanzato");
-    }
-
-
- */
-
-
 
 
 
@@ -296,7 +324,7 @@ public class PartitaClassicaController2 {
         stage.show();
     }
 
-
+int mucca;
     public void generaCodice(ActionEvent actionEvent) throws IOException {
 
         int somma= getNumeroGiocatori()+getNumeroBot();
@@ -304,6 +332,7 @@ public class PartitaClassicaController2 {
         if(somma>1 && somma<5) {
             Partita P = new Partita(somma);
              codice = P.generaCodicePartita();
+             mucca= codice;
              System.out.println("Codice"+codice);
             codicePartita.setText("Codice: "+String.valueOf(codice));
             codicePartita.wrapTextProperty().set(true);
