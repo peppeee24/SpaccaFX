@@ -21,20 +21,19 @@ public class PlayerScreenController {
 
     @FXML
     PasswordField passwordField;
-    Partita P;
+    public PartitaClassicaController2 partitaController;
 
-
-    PartitaClassicaController2 PC;
-
-    public void inizializza(PartitaClassicaController2 pc) {
-       this.PC=pc;
-       this.P=PC.P;
+    public PlayerScreenController(PartitaClassicaController2 partita)
+    {
+        this.partitaController = partita;
+        System.out.println("CLASSE PARTITACONTROLLER2: " + partita);
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
         int PasswordField = Integer.parseInt(passwordField.getText());
-        this.pwd=P.getCodicePartita();
+        this.pwd=partitaController.P.getCodicePartita();
+
         System.out.println("PWD:" + pwd);
         System.out.println("PAASVEFDNV:" + PasswordField);
 
@@ -55,14 +54,15 @@ public class PlayerScreenController {
 
  */
 
+
+            TavoloController TC = new TavoloController(this);
+
+
             FXMLLoader tavoloLoader = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(tavoloLoader.load());
             stage.setScene(scene);
             stage.show();
-
-            TavoloController TC = new TavoloController();
-            TC.inizializza(this);
 
 
         } else {

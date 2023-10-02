@@ -28,18 +28,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class PartitaClassicaController2 {
-
-    /*
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-*/
+public class PartitaClassicaController2
+{
 
     private int numeroGiocatori, numeroBot;
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4;
-
-    private int codice=-1;
 
 
 
@@ -65,7 +58,10 @@ public class PartitaClassicaController2 {
 
 EasyBot E=new EasyBot();
 AdvancedBot A=new AdvancedBot();
+
 // TODO rifare la logica
+
+    String E1,E2,E3,A1,A2,A3;
 
     @FXML
     public void initialize() {
@@ -109,7 +105,7 @@ AdvancedBot A=new AdvancedBot();
 
 
 
-    String E1,E2,E3,A1,A2,A3;
+
 
 
     public void getEasyBot1(){
@@ -337,7 +333,8 @@ AdvancedBot A=new AdvancedBot();
 
 
 
-    public void indietro(MouseEvent mouseEvent) throws IOException {
+    public void indietro(MouseEvent mouseEvent) throws IOException
+    {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
@@ -345,20 +342,18 @@ AdvancedBot A=new AdvancedBot();
         stage.show();
     }
 
-int mucca;
 
-    public void generaCodice(ActionEvent actionEvent) throws IOException {
+    public void generaCodice(ActionEvent actionEvent) throws IOException
+    {
 
         int somma= getNumeroGiocatori()+getNumeroBot();
 
         if(somma>1 && somma<5) {
              this.P = new Partita(somma);
+             P.generaCodicePartita();
 
-
-             codice = P.generaCodicePartita();
-             mucca= codice;
-             System.out.println("Codice"+codice);
-            codicePartita.setText("Codice: "+String.valueOf(codice));
+             System.out.println("Codice"+P.getCodicePartita());
+            codicePartita.setText("Codice: "+ P.getCodicePartita());
             codicePartita.wrapTextProperty().set(true);
            // codicePartita.getStyleClass().add("copiable-label");
             // TODO non riesco a rendere selezionabile la label
@@ -384,16 +379,6 @@ int mucca;
 //TODO aggiunge contrlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
 
 
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(playerScreen.load());
-        stage.setScene(scene);
-        stage.show();
-
-        //PlayerScreenController PSC = playerScreen.getController();
-        PlayerScreenController PSC = new PlayerScreenController();
-
-
 
         ArrayList<IGiocatore> GiocatoriPartita =new ArrayList<>();
         for (int i=0;i<getNumeroGiocatori();i++){
@@ -404,11 +389,15 @@ int mucca;
             GiocatoriPartita.add(new EasyBot(getE1()) );
         }
         P.aggiungiListaGiocatori(GiocatoriPartita);
+        System.out.println("CLASSE PARTITACONTROLLER1: " + this);
 
-        PSC.inizializza(this);
+        PlayerScreenController PSC = new PlayerScreenController(this);
 
-
-
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(playerScreen.load());
+        stage.setScene(scene);
+        stage.show();
 
 
     }

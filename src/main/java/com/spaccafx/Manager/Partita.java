@@ -478,7 +478,8 @@ EzBot_50 comincia il turno
         return codicePartita;
     }
 
-    public int getCodicePartita(){
+    public int getCodicePartita()
+    {
         return this.codicePartita;
     }
 
