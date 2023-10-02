@@ -65,8 +65,7 @@ public class Mazzo
 
     public Carta PescaCarta() // carta randomica
     {
-        int cartaRandomInt = (int)(0 + Math.random() * (mazzoCarte.size() - 1)); // 0 a 29 - CARTE  NORMALI <<  ---  >> 0 - 35 CARTE NORMALI + IMPREVISTI E PROBABILITA
-        Carta carta = mazzoCarte.get(cartaRandomInt); // do una carta a caso
+        Carta carta = mazzoCarte.get(mazzoCarte.size() - 1); // prendo l ultima carta dal mazzo
 
         // una volta che viene pescata una carta, la devo eliminare dal mazzo e poi alla fine del turno gliela devo rimettere!
         cartePescate.add(carta);
@@ -96,7 +95,7 @@ public class Mazzo
         System.out.println("Ho mescolato il mazzo (" + mazzoCarte.size() + " carte)");
     }
 
-    private void StampaMazzo()
+    public void StampaMazzo()
     {
         for(Carta cartaMazzo: mazzoCarte)
         {

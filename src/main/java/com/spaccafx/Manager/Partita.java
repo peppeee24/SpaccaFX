@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Partita
 {
-    Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
+    public Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
 
     public ArrayList<IGiocatore> giocatori;
     ArrayList<IGiocatore> giocatoriMorti;

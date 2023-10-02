@@ -28,6 +28,9 @@ public class CartaProbabilita extends Carta
     {
         if(attivato==true)
             return;
+
+        partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
+
         /*this.partitaAttuale = partita;
         this.giocatoreAttuale=currentGiocatore;*/
         //System.out.println("Ho in mano una carta effetto e non posso fare altre scelte!");
@@ -36,7 +39,7 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1: DiminuisciValoreCarta(); break;
+            case 1: //DiminuisciValoreCarta(); break;
             case 2: ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
             //case 3: DiminuisciValoreCarta(); break;
             default: break;
@@ -57,21 +60,25 @@ public class CartaProbabilita extends Carta
         System.out.println("\nEFFETTO ATTIVATO: SCOPRO CARTA GIOCATORE SUCCESSIVO\n");
         int indexCG = partita.giocatori.indexOf(currentGiocatore);
         int indexNG=0;
-        if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE){//se il giocaotre che pesca la carta è mazziere deve vedere la prima carta del mazzo
-            System.out.println("RIESEGUIRE");
+        if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
+        {//se il giocaotre che pesca la carta è mazziere deve vedere la prima carta del mazzo
+
+            System.out.println("SEI MAZZIERE E GUARDI CARTA DAL MAZZO CON VALORE: " + partita.mazzo.mazzoCarte.get(partita.mazzo.mazzoCarte.size()-1).toString());
             //TODO caso mazziere
         }
-        else{
-
-            if(indexCG >= partita.giocatori.size()-1){ //se è l'ultimo giocatore del tavolo MA non è il mazziere allora vede la carta del primo giocatore
-                indexNG=0;
-            }
-            else { //altrimenti prendo il giocatore successivo nell'arrayList dei giocatroie
+        else
+        {
+            if(!(indexCG >= partita.giocatori.size()-1))//se è l'ultimo giocatore del tavolo MA non è il mazziere allora vede la carta del primo giocatore
                 indexNG = indexCG+1;
-            }
 
+
+            /*if(indexCG >= partita.giocatori.size()-1)//se è l'ultimo giocatore del tavolo MA non è il mazziere allora vede la carta del primo giocatore
+                indexNG=0;
+            else //altrimenti prendo il giocatore successivo nell'arrayList dei giocatroie
+                indexNG = indexCG+1; */
+
+            System.out.println("SEI GIOCATORE E GUARDI CARTA DAL GIOCATORE NEXT CON VAL: " + partita.giocatori.get(indexNG).getCarta().toString());
         }
-        System.out.println("carta player next " + partita.giocatori.get(indexNG).getCarta().getValore());
     }
 }
 //TODO GENERALE errore quando il mazziere ha una carta probabilità e viene cambiato con l'altro giocatore e credo quando dal mazzo come ultima carta viene pescata una probabilità

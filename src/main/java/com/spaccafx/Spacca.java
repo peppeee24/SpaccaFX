@@ -60,21 +60,21 @@ public class Spacca extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
         InitializeTelegramBot();
 
 
 
         Giocatore p1 = new Giocatore("tester22");
         Giocatore p2 = new Giocatore("peppeee24");
-        Giocatore p3 = new Giocatore("sgambeFrocio");
+        //Giocatore p3 = new Giocatore("sgambeFrocio");
         //Giocatore p3 = new Giocatore("Stronzo");
 
-        Partita p = new Partita(3);
+        Partita p = new Partita(2);
         p.aggiungiGiocatore(p1);
         p.aggiungiGiocatore(p2);
 
-        p.aggiungiGiocatore(p3);
+        //p.aggiungiGiocatore(p3);
         p.generaCodicePartita();
 
         p.StartGame();
