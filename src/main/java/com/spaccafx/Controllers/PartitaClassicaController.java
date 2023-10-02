@@ -250,7 +250,7 @@ public class PartitaClassicaController {
         stage.show();
 
         PlayerScreenController PSC = playerScreen.getController();
-        PSC.login(codice);
+        //PSC.login(codice);
 
 
     }

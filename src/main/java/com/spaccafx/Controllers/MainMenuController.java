@@ -23,6 +23,12 @@ public class MainMenuController {
     public void startGame(ActionEvent actionEvent) throws IOException {
 // TODO ci pensiamo quando avremo fatto i file, altrimenti è complicato leggere
 
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(playerScreen.load());
+        stage.setScene(scene);
+        stage.show();
+
 
     }
 

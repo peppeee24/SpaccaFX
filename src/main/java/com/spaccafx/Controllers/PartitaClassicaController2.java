@@ -1,9 +1,12 @@
 package com.spaccafx.Controllers;
 
 
+import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
+import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.EasyBot;
+import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,22 +25,25 @@ import javafx.scene.control.TextField;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class PartitaClassicaController2 {
 
+    /*
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+*/
 
     private int numeroGiocatori, numeroBot;
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4;
 
     private int codice=-1;
 
-    EasyBot E=new EasyBot();
-    AdvancedBot A=new AdvancedBot();
+
+
+    Partita P;
 
     @FXML
     Tab playerTab, botTbb, creaTab;
@@ -57,6 +63,9 @@ public class PartitaClassicaController2 {
     @FXML
     ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3;
 
+EasyBot E=new EasyBot();
+AdvancedBot A=new AdvancedBot();
+// TODO rifare la logica
 
     @FXML
     public void initialize() {
@@ -68,11 +77,21 @@ public class PartitaClassicaController2 {
         setNomeGiocatore2();
         setNomeGiocatore3();
         setNomeGiocatore4();
-
         setNumeroBot();
 
     }
 
+
+    public void setNumeroGiocatori() {
+
+        numeroGiocatoriMenu.setOnAction(this::nG);
+        this.controlloGiocatori();
+    }
+
+    public void nG(ActionEvent event){
+        numeroGiocatori=numeroGiocatoriMenu.getValue();
+        this.controlloGiocatori();
+    }
 
 
     public void setDifficolta() {
@@ -88,29 +107,23 @@ public class PartitaClassicaController2 {
     }
 
 
-    public void setNumeroGiocatori() {
 
-        numeroGiocatoriMenu.setOnAction(this::nG);
-        this.controlloGiocatori();
-    }
-
-    public void nG(ActionEvent event){
-        numeroGiocatori=numeroGiocatoriMenu.getValue();
-        this.controlloGiocatori();
-    }
 
     String E1,E2,E3,A1,A2,A3;
 
 
     public void getEasyBot1(){
+
         E1= E.generaNomeBot();
     }
 
     public String getE1(){
+
         return E1;
     }
 
     public void getEasyBot2(){
+
         E2= E.generaNomeBot();
     }
     public String getE2(){
@@ -123,6 +136,7 @@ public class PartitaClassicaController2 {
     }
 
     public String getE3(){
+
         return E3;
     }
 
@@ -164,9 +178,15 @@ public class PartitaClassicaController2 {
         easyBot1.setVisible(false);
         easyBot2.setVisible(false);
         easyBot3.setVisible(false);
+        getAdvBot1();
+        getAdvBot2();
+        getAdvBot3();
+        getEasyBot1();
+        getEasyBot2();
+        getEasyBot3();
 
 
-        // TODO sembra non legga le informazioni dal checkbox
+        // TODO rifare la logica
         if (getNumeroGiocatori() == 4) {
 
             numeroBotMenu.getItems().addAll(0);
@@ -180,7 +200,8 @@ public class PartitaClassicaController2 {
             numeroBotMenu.getItems().addAll(1);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
-            if(getDifficolta().equals("Difficile")) {
+
+            if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
                 labelBot1.setText(getA1());
                 labelBot1.setVisible(true);
                 hardBot1.setVisible(true);
@@ -196,7 +217,7 @@ public class PartitaClassicaController2 {
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
-            if(getDifficolta().equals("Difficile")) {
+            if(getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
                 labelBot1.setText(getA1());
                 labelBot1.setVisible(true);
                 hardBot1.setVisible(true);
@@ -222,7 +243,7 @@ public class PartitaClassicaController2 {
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
-            if(getDifficolta().equals("Difficile")) {
+            if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
                 labelBot1.setText(getA1());
                 labelBot1.setVisible(true);
                 hardBot1.setVisible(true);
@@ -325,12 +346,15 @@ public class PartitaClassicaController2 {
     }
 
 int mucca;
+
     public void generaCodice(ActionEvent actionEvent) throws IOException {
 
         int somma= getNumeroGiocatori()+getNumeroBot();
 
         if(somma>1 && somma<5) {
-            Partita P = new Partita(somma);
+             this.P = new Partita(somma);
+
+
              codice = P.generaCodicePartita();
              mucca= codice;
              System.out.println("Codice"+codice);
@@ -360,17 +384,38 @@ int mucca;
 //TODO aggiunge contrlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
 
 
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(playerScreen.load());
         stage.setScene(scene);
         stage.show();
 
-        PlayerScreenController PSC = playerScreen.getController();
-        PSC.login(codice);
+        //PlayerScreenController PSC = playerScreen.getController();
+        PlayerScreenController PSC = new PlayerScreenController();
+
+
+
+        ArrayList<IGiocatore> GiocatoriPartita =new ArrayList<>();
+        for (int i=0;i<getNumeroGiocatori();i++){
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+        }
+
+        for (int i=0;i<getNumeroBot();i++){
+            GiocatoriPartita.add(new EasyBot(getE1()) );
+        }
+        P.aggiungiListaGiocatori(GiocatoriPartita);
+
+        PSC.inizializza(this);
+
+
+
 
 
     }
+
+
+
+
 
 
 

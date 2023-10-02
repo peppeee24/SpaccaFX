@@ -61,6 +61,7 @@ public class Spacca extends Application {
 
     public static void main(String[] args) {
         launch();
+        /*
         InitializeTelegramBot();
 
 
@@ -123,6 +124,7 @@ public class Spacca extends Application {
 
 
 
+
     }
 
 
@@ -144,18 +146,4 @@ public class Spacca extends Application {
 
 
 
-    // TODO: Metodo per far terminare il programma quando si clicca x NON FUNZIONA
-
-    private Stage stage;
-    public void setStage(Stage stage) {
-        this.stage = stage;
-        // Aggiungi l'handler per l'evento di chiusura qui
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                // Chiudi il programma quando la finestra viene chiusa
-                System.exit(0);
-            }
-        });
-    }
 }

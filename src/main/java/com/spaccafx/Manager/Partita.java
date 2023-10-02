@@ -476,6 +476,10 @@ EzBot_50 comincia il turno
         return codicePartita;
     }
 
+    public int getCodicePartita(){
+        return this.codicePartita;
+    }
+
     public boolean isGameRunning(){return this.isGameRunning;}
 
     public void aggiungiListaGiocatori(ArrayList<IGiocatore> giocatori) {this.giocatori = giocatori;} // # MODIFICARE - Controllare che il num dei player sia inferiore al max

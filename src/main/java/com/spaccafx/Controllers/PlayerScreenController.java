@@ -15,21 +15,29 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class PlayerScreenController {
+
+
     private int pwd;
 
     @FXML
     PasswordField passwordField;
+    Partita P;
 
-    public void login(int n) {
-        pwd=n;
+
+    PartitaClassicaController2 PC;
+
+    public void inizializza(PartitaClassicaController2 pc) {
+       this.PC=pc;
+       this.P=PC.P;
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
         int PasswordField = Integer.parseInt(passwordField.getText());
-
+        this.pwd=P.getCodicePartita();
         System.out.println("PWD:" + pwd);
         System.out.println("PAASVEFDNV:" + PasswordField);
+
 
         if (pwd == PasswordField) {
 
@@ -38,12 +46,24 @@ public class PlayerScreenController {
             alert.setContentText("Stai per entrare nel gioco");
             Optional<ButtonType> result = alert.showAndWait();
 
-
+/*
             FXMLLoader tavolo = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(tavolo.load());
             stage.setScene(scene);
             stage.show();
+
+ */
+
+            FXMLLoader tavoloLoader = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(tavoloLoader.load());
+            stage.setScene(scene);
+            stage.show();
+
+            TavoloController TC = new TavoloController();
+            TC.inizializza(this);
+
 
         } else {
 
@@ -63,6 +83,9 @@ public class PlayerScreenController {
         stage.setScene(scene);
         stage.show();
     }
+
+
+
 }
 
 
