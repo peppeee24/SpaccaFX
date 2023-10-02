@@ -29,14 +29,14 @@ public class Mazzo
         // RIEMPO CON LE CARTE NORMALI
         for (SemeCarta seme : SemeCarta.values())
         {
-            for (int c = 1; c < 2; c++) // da 1 a 10 (1 - 11)
+            for (int c = 1; c < 5; c++) // da 1 a 10 (1 - 11)
             {
                 mazzoCarte.add(new CartaNormale(c, seme));
             }
         }
     }
 
-    /*private void CreoCarteImprevisto()
+    private void CreoCarteImprevisto()
     {
         // RIEMPO CON LE CARTE IMPREVISTO
         for (int c = 7; c < 10; c++)  // 3 CARTE IMPREVISTO (valori da 7 a 9)
@@ -44,7 +44,7 @@ public class Mazzo
             mazzoCarte.add(new CartaImprevisto(c));
         }
     }
-    */
+
 
     private void CreoCarteProbabilita()
     {
@@ -59,14 +59,14 @@ public class Mazzo
     {
         mazzoCarte.clear();
         CreoCarteNormali();
+        // TODO FARE CARTE IMPREVISTO E PROB DA 2 A 9
         //CreoCarteImprevisto();
         CreoCarteProbabilita();
     }
 
     public Carta PescaCarta() // carta randomica
     {
-        int cartaRandomInt = (int)(0 + Math.random() * (mazzoCarte.size() - 1)); // 0 a 29 - CARTE  NORMALI <<  ---  >> 0 - 35 CARTE NORMALI + IMPREVISTI E PROBABILITA
-        Carta carta = mazzoCarte.get(cartaRandomInt); // do una carta a caso
+        Carta carta = mazzoCarte.get(mazzoCarte.size() - 1); // prendo l ultima carta dal mazzo
 
         // una volta che viene pescata una carta, la devo eliminare dal mazzo e poi alla fine del turno gliela devo rimettere!
         cartePescate.add(carta);
@@ -96,7 +96,7 @@ public class Mazzo
         System.out.println("Ho mescolato il mazzo (" + mazzoCarte.size() + " carte)");
     }
 
-    private void StampaMazzo()
+    public void StampaMazzo()
     {
         for(Carta cartaMazzo: mazzoCarte)
         {

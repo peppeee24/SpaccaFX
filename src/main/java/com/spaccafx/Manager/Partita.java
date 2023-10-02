@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Partita
 {
-    Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
+    public Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
 
     public ArrayList<IGiocatore> giocatori;
     ArrayList<IGiocatore> giocatoriMorti;
@@ -452,6 +452,8 @@ EzBot_50 comincia il turno
                     giocatoreDebole = giocatore;
                     System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
                 }
+
+                // TODO FARE CONTROLLO / CONFRONTO ANCHE CON CARTE SPECIALI
             }
 
             if(giocatoreDebole != null)
