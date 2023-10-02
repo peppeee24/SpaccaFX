@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +20,9 @@ import java.net.URISyntaxException;
 
 public class MainMenuController {
 
+    public PartitaClassicaController2 pcc;
+
+    public void setPartitaClassicaController(PartitaClassicaController2 pcc){this.pcc = pcc;}
 
     public void startGame(ActionEvent actionEvent) throws IOException {
 // TODO ci pensiamo quando avremo fatto i file, altrimenti è complicato leggere
@@ -28,8 +32,6 @@ public class MainMenuController {
         Scene scene = new Scene(playerScreen.load());
         stage.setScene(scene);
         stage.show();
-
-
     }
 
 

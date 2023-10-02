@@ -77,7 +77,6 @@ AdvancedBot A=new AdvancedBot();
 
     }
 
-
     public void setNumeroGiocatori() {
 
         numeroGiocatoriMenu.setOnAction(this::nG);
@@ -391,14 +390,16 @@ AdvancedBot A=new AdvancedBot();
         P.aggiungiListaGiocatori(GiocatoriPartita);
         System.out.println("CLASSE PARTITACONTROLLER1: " + this);
 
-        PlayerScreenController PSC = new PlayerScreenController(this);
+        FXMLLoader loader = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+        Parent root = loader.load();
 
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(playerScreen.load());
+        MainMenuController mmc = loader.getController();
+        mmc.setPartitaClassicaController(this);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-
 
     }
 

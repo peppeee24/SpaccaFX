@@ -37,16 +37,15 @@ public class TavoloController {
     @FXML
     Pane cartaSpecialePanel;
 
-    PlayerScreenController playerScreenController;
+    PartitaClassicaController2 PC;
 
 
+    public void setPartitaClassicaController(PartitaClassicaController2 pcc){this.PC=pcc;}
 
-    public TavoloController(PlayerScreenController psc)
+    public TavoloController()
     {
-        this.playerScreenController=psc;
-        System.out.println("CLASSE PARTITACONTROLLER3: " + psc);
-    }
 
+    }
 
 
     public void getCartaSpeciale() {
@@ -63,7 +62,6 @@ public class TavoloController {
 
     public void setLableTable() {
         getCartaSpeciale();
-        PartitaClassicaController2 PC = playerScreenController.partitaController;
 
         if(PC.getNumeroGiocatori()==4){
 

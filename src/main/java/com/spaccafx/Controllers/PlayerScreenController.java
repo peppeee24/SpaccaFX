@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -27,12 +28,18 @@ public class PlayerScreenController {
     {
         this.partitaController = partita;
         System.out.println("CLASSE PARTITACONTROLLER2: " + partita);
+        this.pwd=partitaController.P.getCodicePartita();
+    }
+
+    public PlayerScreenController()
+    {
+
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
         int PasswordField = Integer.parseInt(passwordField.getText());
-        this.pwd=partitaController.P.getCodicePartita();
+        System.out.println("CODICE: " + this.pwd);
 
         System.out.println("PWD:" + pwd);
         System.out.println("PAASVEFDNV:" + PasswordField);
@@ -53,16 +60,20 @@ public class PlayerScreenController {
             stage.show();
 
  */
+            FXMLLoader loader = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+            Parent rootMainM = loader.load();
+            MainMenuController mmc = loader.getController();
 
+            FXMLLoader loaderTav = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
+            Parent rootTavolo = loader.load();
+            TavoloController tc = loader.getController();
+            tc.setPartitaClassicaController(mmc.pcc);
 
-            TavoloController TC = new TavoloController(this);
-
-
-            FXMLLoader tavoloLoader = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(tavoloLoader.load());
+            Scene scene = new Scene(rootTavolo);
+            Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
+
 
 
         } else {
