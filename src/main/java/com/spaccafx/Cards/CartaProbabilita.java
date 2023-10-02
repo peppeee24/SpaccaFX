@@ -4,6 +4,9 @@ import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Enums.*;
+import org.glassfish.grizzly.nio.transport.DefaultStreamReader;
+
+import java.util.Scanner;
 
 public class CartaProbabilita extends Carta
 {
@@ -35,13 +38,15 @@ public class CartaProbabilita extends Carta
         this.giocatoreAttuale=currentGiocatore;*/
         //System.out.println("Ho in mano una carta effetto e non posso fare altre scelte!");
 
-        int scelta = (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
+        int scelta = (int)((1 + Math.random() * 3)); //genero o 1 o 2 che sono i "codici" delle scelte;
+
+        // TODO MOSTRARE SEMPRE IL PANNELLO CHE SPIEGA IL RELATIVO EFFETTO DELLA CARTA SENZA FAR VEDERE IL BOTTONE EFFETTO, TRANNE NEL CASO L'EFFETTO SIA DI POTER SCAMBIARE LA CARTA CON IL MAZZO
 
         switch(scelta)
         {
-            case 1: //DiminuisciValoreCarta(); break;
+            case 1: DiminuisciValoreCarta(); break;
             case 2: ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
-            //case 3: DiminuisciValoreCarta(); break;
+            case 3: ScambiaCartaConMazzo(partita, currentGiocatore); break;
             default: break;
         }
         attivato=true;
@@ -64,7 +69,7 @@ public class CartaProbabilita extends Carta
         {//se il giocaotre che pesca la carta è mazziere deve vedere la prima carta del mazzo
 
             System.out.println("SEI MAZZIERE E GUARDI CARTA DAL MAZZO CON VALORE: " + partita.mazzo.mazzoCarte.get(partita.mazzo.mazzoCarte.size()-1).toString());
-            //TODO caso mazziere
+            //TODO caso mazziere GRAFICAMENTE
         }
         else
         {
@@ -80,5 +85,20 @@ public class CartaProbabilita extends Carta
             System.out.println("SEI GIOCATORE E GUARDI CARTA DAL GIOCATORE NEXT CON VAL: " + partita.giocatori.get(indexNG).getCarta().toString());
         }
     }
+
+    private void ScambiaCartaConMazzo(Partita partita, IGiocatore currentGiocatore)
+    {
+        System.out.println("PROBABILITA - Posso scambiare carta con il mazzo");
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Digita 3 se vuoi scambiare con il mazzo, un altro numero se vuoi rifiutare!");
+        if(s.nextInt() == 3)
+        {
+            System.out.println("Hai scambiato la carta con il mazzo");
+            currentGiocatore.setCarta(partita.mazzo.PescaCarta());
+        }
+        else
+            System.out.println("Hai rifiutato lo scambiato con il mazzo");
+
+    }
 }
-//TODO GENERALE errore quando il mazziere ha una carta probabilità e viene cambiato con l'altro giocatore e credo quando dal mazzo come ultima carta viene pescata una probabilità

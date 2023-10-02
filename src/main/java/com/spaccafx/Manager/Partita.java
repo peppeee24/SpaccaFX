@@ -452,6 +452,8 @@ EzBot_50 comincia il turno
                     giocatoreDebole = giocatore;
                     System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
                 }
+
+                // TODO FARE CONTROLLO / CONFRONTO ANCHE CON CARTE SPECIALI
             }
 
             if(giocatoreDebole != null)
