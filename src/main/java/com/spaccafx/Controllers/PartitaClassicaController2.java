@@ -31,7 +31,7 @@ import java.util.Optional;
 public class PartitaClassicaController2
 {
 
-    private int numeroGiocatori, numeroBot;
+    private int numeroGiocatori, numeroBotMenu;
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4;
 
 
@@ -42,7 +42,7 @@ public class PartitaClassicaController2
     Tab playerTab, botTbb, creaTab;
 
     @FXML
-    ChoiceBox<Integer> numeroGiocatoriMenu, numeroBotMenu;
+    ChoiceBox<Integer> numeroGiocatoriMenu;
 
     @FXML
     ChoiceBox<String> difficoltaBotMenu;
@@ -51,7 +51,7 @@ public class PartitaClassicaController2
     TextField playerName1, playerName2, playerName3, playerName4;
 
     @FXML
-    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3;
+    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, botCounter;
 
     @FXML
     ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3;
@@ -73,19 +73,19 @@ AdvancedBot A=new AdvancedBot();
         setNomeGiocatore2();
         setNomeGiocatore3();
         setNomeGiocatore4();
-        setNumeroBot();
+     //   setNumeroBot();
 
     }
 
     public void setNumeroGiocatori() {
 
         numeroGiocatoriMenu.setOnAction(this::nG);
-        this.controlloGiocatori();
+        //this.controlloGiocatori();
     }
 
     public void nG(ActionEvent event){
         numeroGiocatori=numeroGiocatoriMenu.getValue();
-        this.controlloGiocatori();
+       // this.controlloGiocatori();
     }
 
 
@@ -93,32 +93,35 @@ AdvancedBot A=new AdvancedBot();
 
 
         difficoltaBotMenu.setOnAction(this::dB);
-        this.controlloGiocatori();
+     //   this.controlloGiocatori();
     }
 
     public void dB(ActionEvent event){
         difficolta=difficoltaBotMenu.getValue();
-        this.controlloGiocatori();
+        //this.controlloGiocatori();
     }
 
 
+    public void setNumeroBot() {
 
+        numeroBotMenu=4-getNumeroGiocatori();
+        botCounter.setText(Integer.toString(numeroBotMenu));
+
+
+    }
 
 
 
 
     public void getEasyBot1(){
-
         E1= E.generaNomeBot();
     }
 
     public String getE1(){
-
         return E1;
     }
 
     public void getEasyBot2(){
-
         E2= E.generaNomeBot();
     }
     public String getE2(){
@@ -164,6 +167,7 @@ AdvancedBot A=new AdvancedBot();
 
 
     public void controlloGiocatori() {
+        // TODO separare controloGiocari che riguarda solo i campi di inserimento nome da controllo bot
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
         labelBot3.setVisible(false);
@@ -184,15 +188,12 @@ AdvancedBot A=new AdvancedBot();
         // TODO rifare la logica
         if (getNumeroGiocatori() == 4) {
 
-            numeroBotMenu.getItems().addAll(0);
             difficoltaBotMenu.setVisible(false);
-            numeroBotMenu.setVisible(false);
             difficoltaBotLabel.setVisible(false);
             numeroBotLabel.setText("Non ci sono bot");
 
 
         } else if (getNumeroGiocatori() == 3) {
-            numeroBotMenu.getItems().addAll(1);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
 
@@ -207,7 +208,6 @@ AdvancedBot A=new AdvancedBot();
             }
 
         } else if (getNumeroGiocatori() == 2) {
-            numeroBotMenu.getItems().addAll(1, 2);
             treeLabel.setVisible(false);
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
@@ -231,7 +231,6 @@ AdvancedBot A=new AdvancedBot();
 
 
         } else if (getNumeroGiocatori() == 1) {
-            numeroBotMenu.getItems().addAll(1, 2, 3);
             twoLabel.setVisible(false);
             playerName2.setVisible(false);
             treeLabel.setVisible(false);
@@ -263,22 +262,31 @@ AdvancedBot A=new AdvancedBot();
 
 
         }
+
+
+
+
     }
 
 
-    public void setNumeroBot() {
-        numeroBotMenu.setOnAction(this::nB);
 
-    }
 
-    public void nB(ActionEvent event){
-        numeroBot=numeroBotMenu.getValue();
-    }
+
 
 
 
     public void setNomeGiocatore1() {
         nomeGiocatore1 = playerName1.getText();
+
+        /*
+        if(nomeGiocatore1.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Campo vuoto");
+            alert.setContentText("Inserisci un nome per continuare a giocare");
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+
+         */
 
     }
 
@@ -319,7 +327,7 @@ AdvancedBot A=new AdvancedBot();
     }
 
     public int getNumeroBot() {
-        return numeroBot;
+        return numeroBotMenu;
     }
 
     public String getDifficolta() {
@@ -342,6 +350,14 @@ AdvancedBot A=new AdvancedBot();
     }
 
 
+    public void avanti(MouseEvent mouseEvent) throws IOException
+    {
+        setNumeroGiocatori();
+        setNumeroBot();
+        System.out.println("Hai cliccato per salvare");
+    }
+
+
     public void generaCodice(ActionEvent actionEvent) throws IOException
     {
 
@@ -351,9 +367,9 @@ AdvancedBot A=new AdvancedBot();
              this.P = new Partita(somma);
              P.generaCodicePartita();
 
-             System.out.println("Codice"+P.getCodicePartita());
+             System.out.println("Codice Generato: "+P.getCodicePartita());
             codicePartita.setText("Codice: "+ P.getCodicePartita());
-            codicePartita.wrapTextProperty().set(true);
+         //   codicePartita.wrapTextProperty().set(true);
            // codicePartita.getStyleClass().add("copiable-label");
             // TODO non riesco a rendere selezionabile la label
 
@@ -380,26 +396,85 @@ AdvancedBot A=new AdvancedBot();
 
 
         ArrayList<IGiocatore> GiocatoriPartita =new ArrayList<>();
-        for (int i=0;i<getNumeroGiocatori();i++){
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+
+       if (getNumeroGiocatori()==1) {
+           System.out.println("Nome giocatore 1: "+getNomeGiocatore1());
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+       }  else if(getNumeroGiocatori()==2){
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
+        } else if(getNumeroGiocatori()==3){
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
+       } else {
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
+           GiocatoriPartita.add(new Giocatore(getNomeGiocatore4()));
+       }
+
+
+        switch (getNumeroBot()) {
+
+            case 3:
+
+                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                    GiocatoriPartita.add(new EasyBot(getA1()));
+                    GiocatoriPartita.add(new EasyBot(getA2()));
+                    GiocatoriPartita.add(new EasyBot(getA3()));
+                } else {
+                    GiocatoriPartita.add(new EasyBot(getE1()));
+                    GiocatoriPartita.add(new EasyBot(getE2()));
+                    GiocatoriPartita.add(new EasyBot(getE3()));
+
+                }
+                break;
+            case 2:
+
+                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                    GiocatoriPartita.add(new EasyBot(getA1()));
+                    GiocatoriPartita.add(new EasyBot(getA2()));
+                } else {
+                    GiocatoriPartita.add(new EasyBot(getE1()));
+                    GiocatoriPartita.add(new EasyBot(getE2()));
+                }
+                break;
+            case 1:
+                if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
+                    GiocatoriPartita.add(new EasyBot(getA1()));
+                } else {
+                    GiocatoriPartita.add(new EasyBot(getE1()));
+                }
+                break;
+            default:
+                break;
         }
 
-        for (int i=0;i<getNumeroBot();i++){
-            GiocatoriPartita.add(new EasyBot(getE1()) );
-        }
+
         P.aggiungiListaGiocatori(GiocatoriPartita);
-        System.out.println("CLASSE PARTITACONTROLLER1: " + this);
 
-        FXMLLoader loader = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
-        Parent root = loader.load();
 
-        MainMenuController mmc = loader.getController();
-        mmc.setPartitaClassicaController(this);
 
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
+
+
+        FXMLLoader impostaGioco = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(impostaGioco.load());
         stage.setScene(scene);
+
+        // Mi permette di creare un "oggetto del controller", in questo modo riesco a passare tutto al controller senza creare un nuovo oggetto della classe che provocherebbe due istanze aperte
+     //   MainMenuController mmc = impostaGioco.getController();
+      //  mmc.setPartitaClassicaController(this);
+        ShareData.getInstance().setPartitaClassicaController(this);
+        ShareData.getInstance().setPartita(this.P);
+        ShareData.getInstance().setCodice(this.P);
+
         stage.show();
+
+
+
+
 
     }
 

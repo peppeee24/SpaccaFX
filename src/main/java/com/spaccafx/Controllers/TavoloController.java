@@ -43,13 +43,27 @@ public class TavoloController {
     @FXML
     Pane cartaSpecialePanel;
 
-    PartitaClassicaController2 PC;
+   private  PartitaClassicaController2 PC;
 
 
-    public void setPartitaClassicaController(PartitaClassicaController2 pcc){this.PC=pcc;}
+    private Partita partita;
 
     public TavoloController()
     {
+        ShareData sharedData = ShareData.getInstance();
+        this.PC = sharedData.getPartitaClassicaController();
+        this.partita = sharedData.getPartita();
+    }
+
+
+    public void passaggioController(PlayerScreenController PSC){
+
+
+
+      //  this.PC=PSC.partitaClassicaController;
+      //  System.out.println("TC"+PC);
+      //  this.partita=PSC.partitaClassicaController.P;
+      //  System.out.println(partita);
 
     }
 
@@ -69,6 +83,10 @@ public class TavoloController {
     public void setLableTable() {
         getCartaSpeciale();
 
+       partita.StampaInfoGiocatori();
+
+
+        /*
         if(PC.getNumeroGiocatori()==4){
 
             nomeGiocatoreLabel.setText(PC.getNomeGiocatore1());
@@ -105,6 +123,10 @@ public class TavoloController {
                 nomeBot3Label.setText(PC.getA3());
             }
         }
+
+         */
+
+
 
 
 

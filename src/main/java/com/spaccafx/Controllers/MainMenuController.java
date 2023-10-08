@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Toggle;
 import javafx.scene.input.MouseEvent;
@@ -22,16 +23,26 @@ public class MainMenuController {
 
     public PartitaClassicaController2 pcc;
 
-    public void setPartitaClassicaController(PartitaClassicaController2 pcc){this.pcc = pcc;}
+    public void setPartitaClassicaController(PartitaClassicaController2 pcc){
+        this.pcc = pcc;
+        System.out.println("MMC"+pcc);
+    }
 
     public void startGame(ActionEvent actionEvent) throws IOException {
-// TODO ci pensiamo quando avremo fatto i file, altrimenti è complicato leggere
 
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(playerScreen.load());
-        stage.setScene(scene);
-        stage.show();
+            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent root = playerScreen.load();
+// In questo caso, a differenza di come abbiamo visto nella classe PartitaCalssicaController2, necessitiamo playerScreen.load(); perchè se prima non carichiamo con load la classe,
+        // playerScreenController, il suo oggetto ci risulterà null, generando errori
+          //  PlayerScreenController psc = playerScreen.getController();
+        //    psc.passaggioController(this);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+
     }
 
 

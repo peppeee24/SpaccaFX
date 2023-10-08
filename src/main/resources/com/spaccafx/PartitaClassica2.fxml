@@ -50,7 +50,7 @@
 
 <StackPane stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PartitaClassicaController2">
    <children>
-      <TabPane tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="totalTab" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="playerTab" styleClass="bodybg" text="Player">
             <content>
@@ -101,6 +101,11 @@
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
+                              <ImageView fx:id="avanti" fitHeight="81.0" fitWidth="80.0" layoutX="532.0" layoutY="147.0" onMouseClicked="#avanti" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/avanti.PNG" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Pane>
                      </children></AnchorPane>
@@ -110,12 +115,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css">
                      <children>
-                        <Label fx:id="numeroBotLabel" layoutX="274.0" layoutY="154.0" styleClass="Label" text="Numero Bot" />
-                        <ChoiceBox fx:id="numeroBotMenu" layoutX="283.0" layoutY="205.0" prefWidth="150.0">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList" />
-                           </items>
-                        </ChoiceBox>
+                        <Label fx:id="numeroBotLabel" layoutX="63.0" layoutY="302.0" styleClass="Label" text="Numero Bot:" />
                         <Label fx:id="difficoltaBotLabel" layoutX="525.0" layoutY="154.0" styleClass="Label" text="Difficoltà Bot" />
                         <ChoiceBox fx:id="difficoltaBotMenu" layoutX="525.0" layoutY="205.0" prefWidth="150.0">
                            <items>
@@ -160,6 +160,7 @@
                               <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
                            </image>
                         </ImageView>
+                        <Label fx:id="botCounter" layoutX="227.0" layoutY="302.0" styleClass="Label" text="0" />
                      </children></AnchorPane>
             </content>
           </Tab>
