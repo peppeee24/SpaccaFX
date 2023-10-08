@@ -70,82 +70,82 @@
       <Label fx:id="nomeBot2Label" layoutX="682.0" layoutY="45.0" rotate="180.0" styleClass="Label" text="Bot 2" />
       <Label fx:id="nomeBot1Label" layoutX="34.0" layoutY="232.0" rotate="90.0" styleClass="Label" text="Bot 1" />
       <Label fx:id="nomeGiocatoreLabel" layoutX="701.0" layoutY="746.0" styleClass="Label" text="Your Name" />
-      <ImageView fx:id="life1" fitHeight="49.0" fitWidth="33.0" layoutX="85.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="life1BT1" fitHeight="49.0" fitWidth="33.0" layoutX="85.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life2" fitHeight="49.0" fitWidth="33.0" layoutX="85.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="life2BT1" fitHeight="49.0" fitWidth="33.0" layoutX="85.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life3" fitHeight="49.0" fitWidth="33.0" layoutX="85.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="life3BT1" fitHeight="49.0" fitWidth="33.0" layoutX="85.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life11" fitHeight="49.0" fitWidth="33.0" layoutX="774.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="life3PL" fitHeight="49.0" fitWidth="33.0" layoutX="774.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life21" fitHeight="49.0" fitWidth="33.0" layoutX="741.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="life2PL" fitHeight="49.0" fitWidth="33.0" layoutX="741.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life31" fitHeight="49.0" fitWidth="33.0" layoutX="701.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="life1PL" fitHeight="49.0" fitWidth="33.0" layoutX="701.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life111" fitHeight="49.0" fitWidth="33.0" layoutX="754.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+      <ImageView fx:id="life1BT2" fitHeight="49.0" fitWidth="33.0" layoutX="754.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life211" fitHeight="49.0" fitWidth="33.0" layoutX="721.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+      <ImageView fx:id="life2BT2" fitHeight="49.0" fitWidth="33.0" layoutX="721.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life311" fitHeight="49.0" fitWidth="33.0" layoutX="681.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+      <ImageView fx:id="life3BT2" fitHeight="49.0" fitWidth="33.0" layoutX="681.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life12" fitHeight="49.0" fitWidth="33.0" layoutX="1079.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="life3BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1079.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life22" fitHeight="49.0" fitWidth="33.0" layoutX="1079.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="life2BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1079.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life32" fitHeight="49.0" fitWidth="33.0" layoutX="1079.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="life1BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1079.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="mazziere" fitHeight="43.0" fitWidth="145.0" layoutX="108.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="mazziereBT1" fitHeight="43.0" fitWidth="145.0" layoutX="108.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="mazziere1" fitHeight="43.0" fitWidth="145.0" layoutX="705.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mazzierePL" fitHeight="43.0" fitWidth="145.0" layoutX="705.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="mazziere11" fitHeight="43.0" fitWidth="145.0" layoutX="993.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="mazziereBT3" fitHeight="43.0" fitWidth="145.0" layoutX="993.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="mazziere111" fitHeight="43.0" fitWidth="145.0" layoutX="678.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+      <ImageView fx:id="mazziereBT2" fitHeight="43.0" fitWidth="145.0" layoutX="678.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>

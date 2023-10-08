@@ -32,7 +32,13 @@ public class TavoloController {
     Label nomeGiocatoreLabel,nomeBot1Label, nomeBot2Label, nomeBot3Label, cartaSpecialeLabel;
 
     @FXML
-    ImageView bot1Space,bot2Space,bot3Space;
+    ImageView bot1Space,bot2Space,bot3Space, humanPlayerSpace;
+
+    @FXML
+    ImageView life1BT1, life2BT1, life3BT1, life1BT2, life2BT2, life3BT2, life1BT3, life2BT3,  life3BT3, life1PL, life2PL, life3PL;
+
+    @FXML
+    ImageView mazziereBT1, mazziereBT2, mazziereBT3, mazzierePL;
 
     @FXML
     Pane cartaSpecialePanel;
@@ -111,6 +117,14 @@ public class TavoloController {
     }
 
     public void passaTurno(ActionEvent actionEvent) {
+
+    }
+
+    public void gestisciVite(){
+       // life1BT1.setVisible(true);
+    }
+
+    public void gestisciMazziere(){
 
     }
 
