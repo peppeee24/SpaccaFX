@@ -29,7 +29,7 @@ public class Mazzo
         // RIEMPO CON LE CARTE NORMALI
         for (SemeCarta seme : SemeCarta.values())
         {
-            for (int c = 1; c < 5; c++) // da 1 a 10 (1 - 11)
+            for (int c = 1; c < 3; c++) // da 1 a 10 (1 - 11)
             {
                 mazzoCarte.add(new CartaNormale(c, seme));
             }
@@ -60,8 +60,8 @@ public class Mazzo
         mazzoCarte.clear();
         CreoCarteNormali();
         // TODO FARE CARTE IMPREVISTO E PROB DA 2 A 9
-        //CreoCarteImprevisto();
-        CreoCarteProbabilita();
+        CreoCarteImprevisto();
+        //CreoCarteProbabilita();
     }
 
     public Carta PescaCarta() // carta randomica

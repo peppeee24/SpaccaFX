@@ -3,6 +3,8 @@ package com.spaccafx.Cards;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 
+import java.util.Scanner;
+
 public class CartaImprevisto extends Carta
 {
     boolean attivato = false;
@@ -21,7 +23,7 @@ public class CartaImprevisto extends Carta
         if(attivato==true)
             return;
 
-        partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
+        //partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!, se commentato non da più il problema del cambio di effetto
 
         /*this.partitaAttuale = partita;
         this.giocatoreAttuale=currentGiocatore;*/
@@ -31,11 +33,31 @@ public class CartaImprevisto extends Carta
 
         switch(scelta)
         {
-            case 1: //DiminuisciValoreCarta(); break;
-            case 2:  break;
-            //case 3: DiminuisciValoreCarta(); break;
+            case 1:  NonPuoiScambiareCarta(partita, currentGiocatore); break;
+            case 2:  AumentaValoreCarta(); break;
+            //case 3: ScopriTuaCarta(); break;
             default: break;
         }
         attivato=true;
     }
+
+    public void NonPuoiScambiareCarta(Partita partita, IGiocatore giocatore){
+        System.out.println("IMPREVISTO - Non puoi scambiare la tua carta");
+        Scanner s = new Scanner(System.in);
+        boolean flg = false;
+        partita.SceltaNew(s,5,giocatore, flg);
+    }
+
+    public void AumentaValoreCarta(){
+        System.out.println("IMPREVISTO - Aumento il valore della tua carta!");
+        System.out.println("Valore prima: " + getValore());
+        this.setValore(this.getValore() + 1);
+        System.out.println("Valore dopo: " + getValore());
+    }
+
+    public void ScopriTuaCarta(Partita partita, IGiocatore giocatore){
+        //TODO in codice non è utile, va codificato poi con la parte graFICA
+    }
+
+
 }
