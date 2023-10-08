@@ -58,7 +58,7 @@ public class Torneo
             partite.get(currentMatch).aggiungiListaGiocatori(getMatchPlayersToArrayList(partenza)); // prendo i player e li metto nella partita attuale
             partite.get(currentMatch).StartGame();
 
-            System.out.println("\nPartita " + currentMatch + " finita! Il vincitore è " + partite.get(currentMatch).getWinner().getNome() + " Andiamo alla prossima..");
+            System.out.println("\nPartita " + currentMatch + " finita! Il vincitore è " + partite.get(currentMatch).getVincitore().getNome() + " Andiamo alla prossima..");
             removeDeadPLayerFromArrayList();
             aggiornaPartenza();
             currentMatch++;

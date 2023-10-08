@@ -36,55 +36,10 @@ public class SpaccaTGBot extends TelegramLongPollingBot
         System.out.println(update.getMessage().getText());
         String command = update.getMessage().getText();
 
-        if(command.equalsIgnoreCase("/last"))
+        if(command.equalsIgnoreCase("/last")) // TODO MODIFICARE IL COMANDO
         {
             SendMessage message = new SendMessage();
             message.setText(grafico_emoji + "[SOON] - Attualmente questo comando non e accessibile!");
-            message.setChatId(update.getMessage().getChatId().toString());
-
-            try
-            {
-                execute(message);
-            }
-            catch (TelegramApiException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else if(command.equalsIgnoreCase("/help"))
-        {
-            SendMessage message = new SendMessage();
-            message.setText(paper_emoji + " Ecco a te una lista di comandi: ");
-            message.setChatId(update.getMessage().getChatId().toString());
-
-            try
-            {
-                execute(message);
-            }
-            catch (TelegramApiException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else if(command.equalsIgnoreCase("/lang"))
-        {
-            SendMessage message = new SendMessage();
-            message.setText(italia_emoji + " Attualmente il gioco e soltanto in italiano!");
-            message.setChatId(update.getMessage().getChatId().toString());
-
-            try
-            {
-                execute(message);
-            }
-            catch (TelegramApiException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else if(command.equalsIgnoreCase("/tutorial"))
-        {
-            SendMessage message = new SendMessage();
-            message.setText(libro_emoji + " Il gioco consiste nel......");
             message.setChatId(update.getMessage().getChatId().toString());
 
             try
