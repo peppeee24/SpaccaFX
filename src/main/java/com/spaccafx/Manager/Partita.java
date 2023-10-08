@@ -498,7 +498,7 @@ EzBot_50 comincia il turno
         }
     }
 
-    private void StampaInfoGiocatori()
+    public void StampaInfoGiocatori()
     {
         for(int c=0; c<giocatori.size() ;c++)
         {
