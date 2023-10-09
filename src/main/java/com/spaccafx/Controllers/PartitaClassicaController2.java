@@ -111,8 +111,6 @@ AdvancedBot A=new AdvancedBot();
     }
 
 
-
-
     public void getEasyBot1(){
         E1= E.generaNomeBot();
     }
@@ -162,8 +160,6 @@ AdvancedBot A=new AdvancedBot();
     public String getA3(){
         return A3;
     }
-
-
 
 
     public void controlloGiocatori() {
