@@ -77,7 +77,7 @@ public class Spacca extends Application {
 
         p.generaCodicePartita();
 
-        p.StartGame();
+        p.startGame();
         //System.exit(0);
 
         /*

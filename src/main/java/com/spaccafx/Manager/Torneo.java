@@ -56,7 +56,7 @@ public class Torneo
             showGiocatori();*/
             partite.add(new Partita(nGiocatoriMatch)); // inizializziamo una classe partita con n giocatori, perchè potrebbe essere da 2 o 4 giocatori
             partite.get(currentMatch).aggiungiListaGiocatori(getMatchPlayersToArrayList(partenza)); // prendo i player e li metto nella partita attuale
-            partite.get(currentMatch).StartGame();
+            partite.get(currentMatch).startGame();
 
             System.out.println("\nPartita " + currentMatch + " finita! Il vincitore è " + partite.get(currentMatch).getVincitore().getNome() + " Andiamo alla prossima..");
             removeDeadPLayerFromArrayList();
