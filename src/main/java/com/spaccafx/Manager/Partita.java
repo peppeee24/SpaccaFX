@@ -454,7 +454,7 @@ public class Partita
         for (IGiocatore currentGiocatore : giocatori)
         {
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
-                    ", Carta: " + currentGiocatore.getCarta().toString() +
+                //    ", Carta: " + currentGiocatore.getCarta().toString() +
                     ", Vite: " + currentGiocatore.getVita() +
                     ", Ruolo: " + currentGiocatore.getRuolo());
         }

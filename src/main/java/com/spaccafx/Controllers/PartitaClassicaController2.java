@@ -32,8 +32,7 @@ public class PartitaClassicaController2
 {
 
     private int numeroGiocatori, numeroBotMenu;
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4;
-
+    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1,E2,E3,A1,A2,A3;
 
 
     Partita P;
@@ -54,51 +53,50 @@ public class PartitaClassicaController2
     Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, botCounter;
 
     @FXML
-    ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3;
+    ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, easyBot1, easyBot2, easyBot3;
 
 EasyBot E=new EasyBot();
 AdvancedBot A=new AdvancedBot();
 
-// TODO rifare la logica
-
-    String E1,E2,E3,A1,A2,A3;
 
     @FXML
     public void initialize() {
 
         setNumeroGiocatori();
-        controlloGiocatori();
-        setDifficolta();
-        setNomeGiocatore1();
-        setNomeGiocatore2();
-        setNomeGiocatore3();
-        setNomeGiocatore4();
-     //   setNumeroBot();
+      //  setNumeroBot();
 
     }
 
     public void setNumeroGiocatori() {
-
         numeroGiocatoriMenu.setOnAction(this::nG);
-        //this.controlloGiocatori();
     }
 
     public void nG(ActionEvent event){
         numeroGiocatori=numeroGiocatoriMenu.getValue();
-       // this.controlloGiocatori();
+        setNumeroGiocatori();
+        this.controlloGiocatori();
+        setNumeroBot();
+
+    }
+
+    public int getNumeroGiocatori() {
+        return numeroGiocatori;
     }
 
 
     public void setDifficolta() {
-
-
         difficoltaBotMenu.setOnAction(this::dB);
-     //   this.controlloGiocatori();
+
     }
 
     public void dB(ActionEvent event){
         difficolta=difficoltaBotMenu.getValue();
-        //this.controlloGiocatori();
+
+    }
+
+
+    public String getDifficolta() {
+        return difficolta;
     }
 
 
@@ -109,6 +107,11 @@ AdvancedBot A=new AdvancedBot();
 
 
     }
+
+    public int getNumeroBot() {
+        return numeroBotMenu;
+    }
+
 
 
     public void getEasyBot1(){
@@ -161,9 +164,7 @@ AdvancedBot A=new AdvancedBot();
         return A3;
     }
 
-
-    public void controlloGiocatori() {
-        // TODO separare controloGiocari che riguarda solo i campi di inserimento nome da controllo bot
+    public void nascondiBot(){
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
         labelBot3.setVisible(false);
@@ -179,50 +180,187 @@ AdvancedBot A=new AdvancedBot();
         getEasyBot1();
         getEasyBot2();
         getEasyBot3();
+    }
 
 
-        // TODO rifare la logica
-        if (getNumeroGiocatori() == 4) {
+    public void salvaDifficolta(ActionEvent actionEvent) throws IOException
+    {
+        this.setDifficolta();
+        System.out.println(difficolta);
+        System.out.println("Imposto difficolta"+getDifficolta());
+        this.impostaDifficolta();
+    }
 
-            difficoltaBotMenu.setVisible(false);
-            difficoltaBotLabel.setVisible(false);
-            numeroBotLabel.setText("Non ci sono bot");
+
+    public void impostaDifficolta()  {
+
+        if (difficolta != null) {
+            switch (getNumeroBot()) {
+                case 0:
+                    difficoltaBotMenu.setVisible(false);
+                    difficoltaBotLabel.setVisible(false);
+                    numeroBotLabel.setText("Non ci sono bot");
+                    break;
+                case 1:
+                    if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
+                        labelBot1.setText(getA1());
+                        labelBot1.setVisible(true);
+                        hardBot1.setVisible(true);
+                    } else {
+                        labelBot1.setText(getE1());
+                        labelBot1.setVisible(true);
+                        easyBot1.setVisible(true);
+                    }
+                    break;
+                case 2:
+                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                        labelBot1.setText(getA1());
+                        labelBot1.setVisible(true);
+                        hardBot1.setVisible(true);
+                        labelBot2.setText(getA2());
+                        labelBot2.setVisible(true);
+                        hardBot2.setVisible(true);
+                    } else {
+                        labelBot1.setText(getE1());
+                        labelBot1.setVisible(true);
+                        easyBot1.setVisible(true);
+                        labelBot2.setText(getE2());
+                        labelBot2.setVisible(true);
+                        easyBot2.setVisible(true);
+                    }
+                    break;
+                case 3:
+                    if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
+                        labelBot1.setText(getA1());
+                        labelBot1.setVisible(true);
+                        hardBot1.setVisible(true);
+                        labelBot2.setText(getA2());
+                        labelBot2.setVisible(true);
+                        hardBot2.setVisible(true);
+                        labelBot3.setText(getA3());
+                        labelBot3.setVisible(true);
+                        hardBot3.setVisible(true);
+                    } else {
+                        labelBot1.setText(getE1());
+                        labelBot1.setVisible(true);
+                        easyBot1.setVisible(true);
+                        labelBot2.setText(getE2());
+                        labelBot2.setVisible(true);
+                        easyBot2.setVisible(true);
+                        labelBot3.setText(getE3());
+                        labelBot3.setVisible(true);
+                        easyBot3.setVisible(true);
+                    }
+                    break;
+                default:
+
+            }
+        } else {
+            System.out.println("Difficoltà è null");
+        }
+    }
+
+    /*
 
 
-        } else if (getNumeroGiocatori() == 3) {
+
+    if (getNumeroGiocatori() == 4) {
+
+        difficoltaBotMenu.setVisible(false);
+        difficoltaBotLabel.setVisible(false);
+        numeroBotLabel.setText("Non ci sono bot");
+
+
+    } else if (getNumeroGiocatori() == 3) {
+        fourLabel.setVisible(false);
+        playerName4.setVisible(false);
+
+        if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
+            labelBot1.setText(getA1());
+            labelBot1.setVisible(true);
+            hardBot1.setVisible(true);
+        } else{
+            labelBot1.setText(getE1());
+            labelBot1.setVisible(true);
+            easyBot1.setVisible(true);
+        }
+
+    } else if (getNumeroGiocatori() == 2) {
+        treeLabel.setVisible(false);
+        playerName3.setVisible(false);
+        fourLabel.setVisible(false);
+        playerName4.setVisible(false);
+        if(getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+            labelBot1.setText(getA1());
+            labelBot1.setVisible(true);
+            hardBot1.setVisible(true);
+            labelBot2.setText(getA2());
+            labelBot2.setVisible(true);
+            hardBot2.setVisible(true);
+        } else{
+            labelBot1.setText(getE1());
+            labelBot1.setVisible(true);
+            easyBot1.setVisible(true);
+            labelBot2.setText(getE2());
+            labelBot2.setVisible(true);
+            easyBot2.setVisible(true);
+        }
+
+
+
+    } else if (getNumeroGiocatori() == 1) {
+        twoLabel.setVisible(false);
+        playerName2.setVisible(false);
+        treeLabel.setVisible(false);
+        playerName3.setVisible(false);
+        fourLabel.setVisible(false);
+        playerName4.setVisible(false);
+        if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
+            labelBot1.setText(getA1());
+            labelBot1.setVisible(true);
+            hardBot1.setVisible(true);
+            labelBot2.setText(getA2());
+            labelBot2.setVisible(true);
+            hardBot2.setVisible(true);
+            labelBot3.setText(getA3());
+            labelBot3.setVisible(true);
+            hardBot3.setVisible(true);
+        } else{
+            labelBot1.setText(getE1());
+            labelBot1.setVisible(true);
+            easyBot1.setVisible(true);
+            labelBot2.setText(getE2());
+            labelBot2.setVisible(true);
+            easyBot2.setVisible(true);
+            labelBot3.setText(getE3());
+            labelBot3.setVisible(true);
+            easyBot3.setVisible(true);
+        }
+
+
+
+    }
+
+     */
+
+
+
+    public void controlloGiocatori() {
+
+
+    if (getNumeroGiocatori() == 3) {
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
 
-            if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-                labelBot1.setText(getA1());
-                labelBot1.setVisible(true);
-                hardBot1.setVisible(true);
-            } else{
-                labelBot1.setText(getE1());
-                labelBot1.setVisible(true);
-                easyBot1.setVisible(true);
-            }
+
 
         } else if (getNumeroGiocatori() == 2) {
             treeLabel.setVisible(false);
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
-            if(getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                labelBot1.setText(getA1());
-                labelBot1.setVisible(true);
-                hardBot1.setVisible(true);
-                labelBot2.setText(getA2());
-                labelBot2.setVisible(true);
-                hardBot2.setVisible(true);
-            } else{
-                labelBot1.setText(getE1());
-                labelBot1.setVisible(true);
-                easyBot1.setVisible(true);
-                labelBot2.setText(getE2());
-                labelBot2.setVisible(true);
-                easyBot2.setVisible(true);
-            }
+
+
 
 
 
@@ -233,36 +371,44 @@ AdvancedBot A=new AdvancedBot();
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
-            if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-                labelBot1.setText(getA1());
-                labelBot1.setVisible(true);
-                hardBot1.setVisible(true);
-                labelBot2.setText(getA2());
-                labelBot2.setVisible(true);
-                hardBot2.setVisible(true);
-                labelBot3.setText(getA3());
-                labelBot3.setVisible(true);
-                hardBot3.setVisible(true);
-            } else{
-                labelBot1.setText(getE1());
-                labelBot1.setVisible(true);
-                easyBot1.setVisible(true);
-                labelBot2.setText(getE2());
-                labelBot2.setVisible(true);
-                easyBot2.setVisible(true);
-                labelBot3.setText(getE3());
-                labelBot3.setVisible(true);
-                easyBot3.setVisible(true);
+
             }
 
+
+        }
+
+
+        public void salvaNomi(ActionEvent actionEvent) throws IOException{
+        switch (getNumeroGiocatori()) {
+            case 1:
+                setNomeGiocatore1();
+                break;
+            case 2:
+                setNomeGiocatore1();
+                setNomeGiocatore2();
+                break;
+            case 3:
+                setNomeGiocatore1();
+                setNomeGiocatore2();
+                setNomeGiocatore3();
+                break;
+            case 4:
+                setNomeGiocatore1();
+                setNomeGiocatore2();
+                setNomeGiocatore3();
+                setNomeGiocatore4();
+                break;
+            default:
+
+
+        }
+        this.nascondiBot();
 
 
         }
 
 
 
-
-    }
 
 
 
@@ -318,18 +464,11 @@ AdvancedBot A=new AdvancedBot();
         return nomeGiocatore4;
     }
 
-    public int getNumeroGiocatori() {
-        return numeroGiocatori;
-    }
 
-    public int getNumeroBot() {
-        return numeroBotMenu;
-    }
 
-    public String getDifficolta() {
 
-        return difficolta;
-    }
+
+
 
 
 
@@ -346,12 +485,7 @@ AdvancedBot A=new AdvancedBot();
     }
 
 
-    public void avanti(MouseEvent mouseEvent) throws IOException
-    {
-        setNumeroGiocatori();
-        setNumeroBot();
-        System.out.println("Hai cliccato per salvare");
-    }
+
 
 
     public void generaCodice(ActionEvent actionEvent) throws IOException
@@ -386,9 +520,6 @@ AdvancedBot A=new AdvancedBot();
     }
 
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
-
-//TODO aggiunge contrlli, il tavolo gestisce max 4 giocatori, quindi se imposto 4 giocatori, posso impostare 0 bot,
-
 
 
         ArrayList<IGiocatore> GiocatoriPartita =new ArrayList<>();
@@ -452,8 +583,6 @@ AdvancedBot A=new AdvancedBot();
 
 
 
-
-
         FXMLLoader impostaGioco = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(impostaGioco.load());
@@ -467,9 +596,6 @@ AdvancedBot A=new AdvancedBot();
         ShareData.getInstance().setCodice(this.P);
 
         stage.show();
-
-
-
 
 
     }

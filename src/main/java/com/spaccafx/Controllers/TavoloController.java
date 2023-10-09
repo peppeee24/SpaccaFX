@@ -85,50 +85,10 @@ public class TavoloController {
 
        partita.StampaInfoGiocatori();
 
-
-        /*
-        if(PC.getNumeroGiocatori()==4){
-
-            nomeGiocatoreLabel.setText(PC.getNomeGiocatore1());
-            nomeBot1Label.setText(PC.getNomeGiocatore2());
-            nomeBot2Label.setText(PC.getNomeGiocatore3());
-            nomeBot3Label.setText(PC.getNomeGiocatore4());
-        } else if(PC.getNumeroGiocatori()==3){
-            nomeGiocatoreLabel.setText(PC.getNomeGiocatore1());
-            nomeBot1Label.setText(PC.getNomeGiocatore2());
-            nomeBot2Label.setText(PC.getNomeGiocatore3());
-            if(PC.getDifficolta().equals("Facile"))
-            nomeBot3Label.setText(PC.getE1());
-            else
-                nomeBot3Label.setText(PC.getA1());
-        } else if(PC.getNumeroGiocatori()==2){
-            nomeGiocatoreLabel.setText(PC.getNomeGiocatore1());
-            nomeBot1Label.setText(PC.getNomeGiocatore2());
-            if(PC.getDifficolta().equals("Facile")){
-                nomeBot2Label.setText(PC.getE1());
-                nomeBot3Label.setText(PC.getE2());
-            }else {
-                nomeBot2Label.setText(PC.getA1());
-                nomeBot3Label.setText(PC.getA2());
-            }
-        } else if (PC.getNumeroGiocatori()==1) {
-            nomeGiocatoreLabel.setText(PC.getNomeGiocatore1());
-            if (PC.getDifficolta().equals("Facile")) {
-                nomeBot1Label.setText(PC.getE1());
-                nomeBot2Label.setText(PC.getE2());
-                nomeBot3Label.setText(PC.getE3());
-            } else {
-                nomeBot1Label.setText(PC.getA1());
-                nomeBot2Label.setText(PC.getA2());
-                nomeBot3Label.setText(PC.getA3());
-            }
-        }
-
-         */
-
-
-
-
+           nomeGiocatoreLabel.setText(PC.P.giocatori.get(0).getNome());
+           nomeBot1Label.setText(PC.P.giocatori.get(1).getNome());
+           nomeBot2Label.setText(PC.P.giocatori.get(2).getNome());
+           nomeBot3Label.setText(PC.P.giocatori.get(3).getNome());
 
 
     }

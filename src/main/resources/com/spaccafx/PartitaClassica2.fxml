@@ -101,11 +101,7 @@
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="avanti" fitHeight="81.0" fitWidth="80.0" layoutX="532.0" layoutY="147.0" onMouseClicked="#avanti" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/avanti.PNG" />
-                                 </image>
-                              </ImageView>
+                              <Button layoutX="725.0" layoutY="565.0" mnemonicParsing="false" onAction="#salvaNomi" text="Salva Nomi Giocatori" />
                            </children>
                         </Pane>
                      </children></AnchorPane>
@@ -116,8 +112,8 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css">
                      <children>
                         <Label fx:id="numeroBotLabel" layoutX="63.0" layoutY="302.0" styleClass="Label" text="Numero Bot:" />
-                        <Label fx:id="difficoltaBotLabel" layoutX="525.0" layoutY="154.0" styleClass="Label" text="Difficoltà Bot" />
-                        <ChoiceBox fx:id="difficoltaBotMenu" layoutX="525.0" layoutY="205.0" prefWidth="150.0">
+                        <Label fx:id="difficoltaBotLabel" layoutX="189.0" layoutY="154.0" styleClass="Label" text="Difficoltà Bot" />
+                        <ChoiceBox fx:id="difficoltaBotMenu" layoutX="198.0" layoutY="194.0" prefWidth="150.0">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Facile" />
@@ -161,6 +157,7 @@
                            </image>
                         </ImageView>
                         <Label fx:id="botCounter" layoutX="227.0" layoutY="302.0" styleClass="Label" text="0" />
+                        <Button layoutX="387.0" layoutY="188.0" mnemonicParsing="false" onAction="#salvaDifficolta" text="Imposta Difficolta" />
                      </children></AnchorPane>
             </content>
           </Tab>
