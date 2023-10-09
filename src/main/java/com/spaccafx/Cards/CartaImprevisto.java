@@ -45,7 +45,7 @@ public class CartaImprevisto extends Carta
         System.out.println("IMPREVISTO - Non puoi scambiare la tua carta");
         Scanner s = new Scanner(System.in);
         boolean flg = false;
-        partita.SceltaNew(s,5,giocatore, flg);
+        partita.sceltaNew(s,giocatore);
     }
 
     public void AumentaValoreCarta(){
