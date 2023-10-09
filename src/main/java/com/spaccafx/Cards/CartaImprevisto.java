@@ -1,5 +1,6 @@
 package com.spaccafx.Cards;
 
+import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 
@@ -33,19 +34,58 @@ public class CartaImprevisto extends Carta
 
         switch(scelta)
         {
-            case 1:  NonPuoiScambiareCarta(partita, currentGiocatore); break;
+            case 1:  DiminuisciEScambia( partita, currentGiocatore); break;
             case 2:  AumentaValoreCarta(); break;
             //case 3: ScopriTuaCarta(); break;
             default: break;
         }
         attivato=true;
     }
+//TODO FONDAMENTALE RISOLVERE IL PROBLEMA DI PIÙ CARTE UGUALI DENTRO AL MAZZO
+    public void DiminuisciEScambia(Partita partita, IGiocatore giocatore){
+        System.out.println("IMPREVISTO pt1 - Scambia la tua carta con una del mazzo");
+        Carta newCarta = partita.mazzo.PescaCarta();
+        System.out.println("IMPREVISTO pt2 - Vieni obbligato a scambiare la carta con il giocatore successiivo");
 
-    public void NonPuoiScambiareCarta(Partita partita, IGiocatore giocatore){
-        System.out.println("IMPREVISTO - Non puoi scambiare la tua carta");
-        Scanner s = new Scanner(System.in);
-        boolean flg = false;
-        partita.sceltaNew(s,giocatore);
+
+        int indexCG = partita.giocatori.indexOf(giocatore); // salvo induice del giocaotore attuale
+
+        if(giocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
+        //TODO da rivedere
+        {//se il giocaotre che pesca la carta è mazziere deve scambiare con la prima carta del mazzo
+            System.out.println("Hai ricevuto " + newCarta.toString());
+            if(!(newCarta.getValore()>9)){
+                newCarta.setValore(newCarta.getValore()+1);
+            }
+            System.out.println("Aumento di uno il suo valore: " + newCarta.toString());
+            giocatore.setCarta(newCarta);
+        }
+        else //se sono un giocatore normale
+        {
+            if(indexCG>=partita.giocatori.size()-1){ //caso in cui l'ultimo giocvatore non è mazziere e deve scambiare cojn il primo giocatore
+                Carta nextPlayerCarta = partita.giocatori.get(0).getCarta();
+                partita.giocatori.get(0).setCarta(newCarta);
+                System.out.println("Hai ricevuto " + nextPlayerCarta.toString());
+                if(!(nextPlayerCarta.getValore()>9)){
+                    nextPlayerCarta.setValore(nextPlayerCarta.getValore()+1);
+                }
+                System.out.println("Aumento di uno il suo valore: " + nextPlayerCarta.toString());
+                giocatore.setCarta(nextPlayerCarta);
+            }
+            else{ //caso player centrali
+                Carta nextPlayerCarta = partita.giocatori.get(indexCG+1).getCarta();
+                partita.giocatori.get(indexCG+1).setCarta(newCarta);
+                System.out.println("Hai ricevuto " + nextPlayerCarta.toString());
+                if(!(nextPlayerCarta.getValore()>9)){
+                    nextPlayerCarta.setValore(nextPlayerCarta.getValore()+1);
+                }
+                System.out.println("Aumento di uno il suo valore: " + nextPlayerCarta.toString());
+                giocatore.setCarta(nextPlayerCarta);
+            }
+
+        }
+
+
     }
 
     public void AumentaValoreCarta(){

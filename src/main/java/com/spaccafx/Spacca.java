@@ -68,12 +68,12 @@ public class Spacca extends Application {
         Giocatore p1 = new Giocatore("tester22");
         Giocatore p2 = new Giocatore("peppeee24");
         //Giocatore p3 = new Giocatore("sgambeFrocio");
-        //Giocatore p3 = new Giocatore("Stronzo");
+        Giocatore p3 = new Giocatore("Stronzo");
 
-        Partita p = new Partita(2);
+        Partita p = new Partita(3);
         p.aggiungiGiocatore(p1);
         p.aggiungiGiocatore(p2);
-        //p.aggiungiGiocatore(p3);
+        p.aggiungiGiocatore(p3);
 
         p.generaCodicePartita();
 
