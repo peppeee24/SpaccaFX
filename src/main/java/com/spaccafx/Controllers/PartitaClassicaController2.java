@@ -63,7 +63,6 @@ AdvancedBot A=new AdvancedBot();
     public void initialize() {
 
         setNumeroGiocatori();
-      //  setNumeroBot();
 
     }
 
