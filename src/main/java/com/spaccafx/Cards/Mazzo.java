@@ -64,7 +64,7 @@ public class Mazzo
         //CreoCarteProbabilita();
     }
 
-    public Carta PescaCarta() // carta randomica
+    public Carta PescaCarta() //prende la prima carta dal mazzo
     {
         Carta carta = mazzoCarte.get(mazzoCarte.size() - 1); // prendo l ultima carta dal mazzo
 

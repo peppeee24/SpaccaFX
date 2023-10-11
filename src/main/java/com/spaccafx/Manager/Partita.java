@@ -266,7 +266,7 @@ public class Partita
     }
 
 
-    public void sceltaNew(Scanner s, IGiocatore currentGiocatore)
+    private void sceltaNew(Scanner s, IGiocatore currentGiocatore)
     {
 
         if(currentGiocatore.getCarta() instanceof CartaImprevisto)
