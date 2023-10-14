@@ -154,7 +154,7 @@ partita.passaTurno();
     }
 
     public void gestisciVite(){
-       // life1BT1.setVisible(true);
+
     }
 
     public void gestisciMazziere(){
