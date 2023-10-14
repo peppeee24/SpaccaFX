@@ -7,6 +7,8 @@ public class ShareData {
 
     private PartitaClassicaController2 partitaClassicaController;
     private Partita partita;
+
+    private TavoloController tavoloController;
     private int codice;
 
     private ShareData() {
@@ -25,6 +27,14 @@ public class ShareData {
 
     public void setPartitaClassicaController(PartitaClassicaController2 partitaClassicaController) {
         this.partitaClassicaController = partitaClassicaController;
+    }
+
+    public TavoloController getTavoloController() {
+        return tavoloController;
+    }
+
+    public void setTavoloController(TavoloController tavoloController) {
+        this.tavoloController = tavoloController;
     }
 
     public Partita getPartita() {

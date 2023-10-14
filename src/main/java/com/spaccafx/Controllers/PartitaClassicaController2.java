@@ -378,6 +378,7 @@ AdvancedBot A=new AdvancedBot();
 
 
         public void salvaNomi(ActionEvent actionEvent) throws IOException{
+        System.out.println("Salvo i nomi");
         switch (getNumeroGiocatori()) {
             case 1:
                 setNomeGiocatore1();

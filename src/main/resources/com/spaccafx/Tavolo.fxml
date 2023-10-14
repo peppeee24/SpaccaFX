@@ -150,5 +150,13 @@
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
       </ImageView>
+        <ImageView fx:id="diceImage" fitHeight="200.0" fitWidth="200.0" layoutX="85.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
+            </image></ImageView>
     </children>
+
+
+
+
 </AnchorPane>

@@ -1,5 +1,7 @@
 package com.spaccafx.Manager;
 
+import com.spaccafx.Controllers.ShareData;
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.*;
 import com.spaccafx.ExternalApps.*;
 import com.spaccafx.Interface.IGiocatore;
@@ -18,6 +20,8 @@ public class Partita
     int codicePartita;
     boolean isGameRunning;
     SpaccaTGBot telegramBot;
+
+    TavoloController TC;
 
     //endregion
 
@@ -46,6 +50,10 @@ public class Partita
 
     public void startGame()
     {
+        ShareData sharedData = ShareData.getInstance();
+
+        this.TC = sharedData.getTavoloController();
+
         preStartGame(); // Fase iniziale del gioco
 
         while(isGameRunning()) // fino a quando ci sono giocatori (piu di 1, altrimenti termina in automatico!!)
@@ -138,6 +146,8 @@ public class Partita
         {
             IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
             int valoreDado = lancioDadoSingolo(); // prendo valore a caso del dado
+TC.roll(valoreDado);
+System.out.println(valoreDado);
 
             System.out.println("\nIl giocatore " + editGiocatore.getNome() + " ha lanciato un dado ed e uscito: " + valoreDado);
             editGiocatore.setDado(valoreDado);
@@ -228,6 +238,7 @@ public class Partita
 
     private void distrubuisciCarte() // TODO LA DISTRIBUZIONE DELLE CARTE PARTE SEMPRE DALLO 0 E NON DALLA POSIZIONE DEL MAZZIERE IN POI
     {
+      //  TC.impostazioneInizialeCarte();
         for(int c=0; c<giocatori.size() ;c++) // cambiare il ciclo for in un enhanced for
         {
             // NON SERVE CREARE ALTRI OGGETTI, BASTA CAMBIARE I DATI DI QUELL OGGETTO CON I SET
@@ -292,7 +303,7 @@ public class Partita
     }
 
 
-    private void scambiaCarta(IGiocatore currentGiocatore)
+    public void scambiaCarta(IGiocatore currentGiocatore)
     {
         int currentIndexPlayer = giocatori.indexOf(currentGiocatore); // prendo il giocatore attuale
         Carta cartaPlayerAttuale = currentGiocatore.getCarta(); // prendo la sua carta
@@ -324,7 +335,7 @@ public class Partita
         }
     }
 
-    private void passaTurno()
+    public void passaTurno()
     {
         System.out.println("Ho passato il turno");
     }

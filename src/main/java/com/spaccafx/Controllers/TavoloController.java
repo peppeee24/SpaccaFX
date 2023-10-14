@@ -6,6 +6,8 @@ import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.EasyBot;
 import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Spacca;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,8 +24,10 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TavoloController {
 
@@ -43,6 +48,14 @@ public class TavoloController {
     @FXML
     Pane cartaSpecialePanel;
 
+    Random random = new Random();
+
+    @FXML
+    private ImageView diceImage;
+
+
+
+
    private  PartitaClassicaController2 PC;
 
 
@@ -51,21 +64,13 @@ public class TavoloController {
     public TavoloController()
     {
         ShareData sharedData = ShareData.getInstance();
+        ShareData.getInstance().setTavoloController(this);
         this.PC = sharedData.getPartitaClassicaController();
         this.partita = sharedData.getPartita();
     }
 
 
-    public void passaggioController(PlayerScreenController PSC){
 
-
-
-      //  this.PC=PSC.partitaClassicaController;
-      //  System.out.println("TC"+PC);
-      //  this.partita=PSC.partitaClassicaController.P;
-      //  System.out.println(partita);
-
-    }
 
 
     public void getCartaSpeciale() {
@@ -77,8 +82,41 @@ public class TavoloController {
 
     public void initialize(){
         setLableTable();
+       partita.startGame();
+
 
     }
+
+
+
+
+
+
+
+      public  void roll(int valoreDado) {
+
+            Thread thread = new Thread(){
+                public void run(){
+                    System.out.println("Thread Running");
+                    try {
+                        for (int i = 0; i < 15; i++) {
+                            // numeroDado=valoreDado;
+                            File file = new File("../../Assets/Game/Environment/dice/dice" + valoreDado+".png");
+                            diceImage.setImage(new Image(file.toURI().toString()));
+                            Thread.sleep(50);
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            thread.start();
+
+
+        }
+
+
 
     public void setLableTable() {
         getCartaSpeciale();
@@ -95,10 +133,23 @@ public class TavoloController {
 
 
     public void scambiaCarta(ActionEvent actionEvent) {
-
+//partita.scambiaCarta();
     }
 
     public void passaTurno(ActionEvent actionEvent) {
+partita.passaTurno();
+    }
+
+    public void impostazioneInizialeCarte() {
+      //  Image back = new Image("../../Assets/Cards/back.PNG");
+     //   Image back = new Image(getClass().getResource("../../Assets/Cards/back.PNG").toString());
+
+
+        // Crea un oggetto ImageView e assegna l'immagine ad esso
+       //ImageView bot1Space = new ImageView(image);
+       // bot1Space.setImage(back); // Cambia il percorso all'immagine desiderata
+       // bot2Space.setImage(back); // Cambia il percorso all'immagine desiderata
+        //bot3Space.setImage(back); // Cambia il percorso all'immagine desiderata
 
     }
 
