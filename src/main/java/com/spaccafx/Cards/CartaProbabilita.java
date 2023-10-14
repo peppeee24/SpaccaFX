@@ -44,20 +44,36 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1: DiminuisciValoreCarta(); break;
+            case 1: AumentaVitaConDado(partita, currentGiocatore); break;
             case 2: ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
             case 3: ScambiaCartaConMazzo(partita, currentGiocatore); break;
             default: break;
         }
         attivato=true;
     }
-
-    private void DiminuisciValoreCarta()
+    //commento nel caso volessimo tornare indietro oppure usare pezzi di codice, TOGLIERE quando facciamo la pulizia prima delle gui
+    /*private void DiminuisciValoreCarta()
     {
         System.out.println("PROBABILITA - Diminuisco il valore della tua carta!");
         System.out.println("Valore prima: " + getValore());
         this.setValore(this.getValore() - 1);
         System.out.println("Valore dopo: " + getValore());
+    }*/
+
+    private void AumentaVitaConDado(Partita partita, IGiocatore currentGiocatore){
+        System.out.println("PROBABILITA - Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
+        System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
+        int valoreDadoNew = partita.lancioDadoSingolo();
+        System.out.println("Valore dado: " + valoreDadoNew);
+        //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
+        if(valoreDadoNew==currentGiocatore.getCarta().getValore()){
+            System.out.println("Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
+            currentGiocatore.setVita(currentGiocatore.getVita() + 1);
+            System.out.println("Ora possiedi " + currentGiocatore.getVita() + " vite");
+        }
+        else{
+            System.out.println("Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
+        }
     }
 
     private void ScopriCartaGiocatoreSuccessivo(Partita partita, IGiocatore currentGiocatore)
