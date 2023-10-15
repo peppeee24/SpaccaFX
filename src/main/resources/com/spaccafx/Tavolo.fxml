@@ -66,9 +66,9 @@
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-      <Label fx:id="nomeBot3Label" layoutX="1099.0" layoutY="224.0" rotate="-90.0" styleClass="Label" text="Bot 3" />
+      <Label fx:id="nomeBot3Label" layoutX="1097.0" layoutY="224.0" rotate="-90.0" styleClass="Label" text="Bot 3" />
       <Label fx:id="nomeBot2Label" layoutX="703.0" layoutY="45.0" rotate="180.0" styleClass="Label" text="Bot 2" />
-      <Label fx:id="nomeBot1Label" layoutX="34.0" layoutY="232.0" rotate="90.0" styleClass="Label" text="Bot 1" />
+      <Label fx:id="nomeBot1Label" layoutX="26.0" layoutY="232.0" rotate="90.0" styleClass="Label" text="Bot 1" />
       <Label fx:id="nomeGiocatoreLabel" layoutX="701.0" layoutY="746.0" styleClass="Label" text="Your Name" />
       <ImageView fx:id="life1BT1" fitHeight="49.0" fitWidth="33.0" layoutX="85.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
@@ -150,10 +150,11 @@
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
       </ImageView>
-        <ImageView fx:id="diceImage" fitHeight="200.0" fitWidth="200.0" layoutX="85.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="diceImage" fitHeight="200.0" fitWidth="200.0" layoutX="30.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
             </image></ImageView>
+      <Button fx:id="bottoneLancio" layoutX="244.0" layoutY="726.0" mnemonicParsing="false" onAction="#lancia" style="-fx-background-color: blue;" text="Lancia Dado" />
     </children>
 
 

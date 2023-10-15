@@ -39,7 +39,7 @@ public class Giocatore implements IGiocatore
     public Giocatore(String nome, Carta  carta)
     {
         this.nome = nome;
-        this.vita = 2;
+        this.vita = 3;
         this.carta = carta;
     }
 

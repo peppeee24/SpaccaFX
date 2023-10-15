@@ -90,7 +90,7 @@ public class PlayerScreenController {
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("LoginController.fxml"));
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);

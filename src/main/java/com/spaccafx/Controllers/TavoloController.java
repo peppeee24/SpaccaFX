@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -48,6 +49,9 @@ public class TavoloController {
     @FXML
     Pane cartaSpecialePanel;
 
+    @FXML
+    Button bottoneLacio;
+
     Random random = new Random();
 
     @FXML
@@ -82,29 +86,66 @@ public class TavoloController {
 
     public void initialize(){
         setLableTable();
-       partita.startGame();
+    //   partita.startGame();
+
 
 
     }
 
 
+public void disableDice(){
+        diceImage.setVisible(false);
+}
 
+    public void showDice(){
+        diceImage.setVisible(true);
+    }
 
+    public void lancia(ActionEvent actionEvent) {
+        partita.lancioDadiIniziale();
 
+    }
 
+/*
 
+    @FXML
+    void roll(ActionEvent event) {
+
+     //   bottoneLacio.setDisable(true);
+
+        Thread thread = new Thread(){
+            public void run(){
+                System.out.println("Thread Running");
+                try {
+                    for (int i = 0; i < 15; i++) {
+                        File file = new File("src/sample/dice/dice" + (random.nextInt(6)+1)+".png");
+                        diceImage.setImage(new Image(file.toURI().toString()));
+                        Thread.sleep(50);
+                    }
+                    // bottoneLacio.setDisable(false);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+    }
+
+ */
       public  void roll(int valoreDado) {
-
+//showDice();
             Thread thread = new Thread(){
                 public void run(){
                     System.out.println("Thread Running");
                     try {
-                        for (int i = 0; i < 15; i++) {
+                   //     for (int i = 0; i < 15; i++) {
                             // numeroDado=valoreDado;
-                            File file = new File("../../Assets/Game/Environment/dice/dice" + valoreDado+".png");
+                            System.out.println("Valore dato in roll:"+valoreDado);
+                            File file = new File("../../Assets/Game/Environment/dice/dice" + valoreDado+".PNG");
                             diceImage.setImage(new Image(file.toURI().toString()));
                             Thread.sleep(50);
-                        }
+                       // }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -118,6 +159,8 @@ public class TavoloController {
 
 
 
+
+
     public void setLableTable() {
         getCartaSpeciale();
 
@@ -128,7 +171,7 @@ public class TavoloController {
            nomeBot2Label.setText(PC.P.giocatori.get(2).getNome());
            nomeBot3Label.setText(PC.P.giocatori.get(3).getNome());
 
-
+      //  disableDice();
     }
 
 
@@ -155,15 +198,38 @@ partita.passaTurno();
 
     public void gestisciVite(){
 
+
+
+
     }
 
-    public void gestisciMazziere(){
+    public void gestisciMazziere() {
+        // partita.giocatori.get(posMazziere).getNome();
+disableDice();
+            String mazziere =  partita.getMazziereNome();
+            if (nomeGiocatoreLabel.getText().equalsIgnoreCase(mazziere)) {
+                mazziereBT1.setVisible(false);
+                mazziereBT2.setVisible(false);
+                mazziereBT3.setVisible(false);
+            } else if (nomeBot1Label.getText().equalsIgnoreCase(mazziere)) {
+                mazzierePL.setVisible(false);
+                mazziereBT2.setVisible(false);
+                mazziereBT3.setVisible(false);
+            } else if (nomeBot2Label.getText().equalsIgnoreCase(mazziere)) {
+                mazzierePL.setVisible(false);
+                mazziereBT1.setVisible(false);
+                mazziereBT3.setVisible(false);
+            } else {
+                mazzierePL.setVisible(false);
+                mazziereBT1.setVisible(false);
+                mazziereBT2.setVisible(false);
+            }
+        }
 
     }
 
 
 
 
-}
 
 

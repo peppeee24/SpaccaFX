@@ -34,6 +34,7 @@ public class ShareData {
     }
 
     public void setTavoloController(TavoloController tavoloController) {
+
         this.tavoloController = tavoloController;
     }
 

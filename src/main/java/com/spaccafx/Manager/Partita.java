@@ -44,15 +44,14 @@ public class Partita
         this.isGameRunning = true;
 
         this.telegramBot = new SpaccaTGBot(); // TODO CAMBIARE INIZILIAZZAZIONE BOT, DA METTERE SOLO QUANDO SI AVVIA IL PROGRAMMA E NON OGNI VOLTA CHE SI CREA UNA PARTITA
+
+
     }
 
     //region # GAME
 
     public void startGame()
     {
-        ShareData sharedData = ShareData.getInstance();
-
-        this.TC = sharedData.getTavoloController();
 
         preStartGame(); // Fase iniziale del gioco
 
@@ -140,23 +139,30 @@ public class Partita
 
     //region #GAME SETUP
 
-    private void lancioDadiIniziale()
+    public void lancioDadiIniziale()
     {
+        ShareData sharedData = ShareData.getInstance();
+
+        this.TC = sharedData.getTavoloController();
+
         for(int c=0; c<giocatori.size() ;c++)
         {
             IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
             int valoreDado = lancioDadoSingolo(); // prendo valore a caso del dado
-TC.roll(valoreDado);
+
+           TC.roll(valoreDado);
 System.out.println(valoreDado);
+//TC.disableDice();
 
             System.out.println("\nIl giocatore " + editGiocatore.getNome() + " ha lanciato un dado ed e uscito: " + valoreDado);
             editGiocatore.setDado(valoreDado);
 
             giocatori.set(c, editGiocatore);
         }
+        this.stabilisciMazziere();
     }
 
-    private void stabilisciMazziere()
+    public void stabilisciMazziere()
     {
         ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>(); // lista giocatori che hanno lo stesso valore
         int valorePiuAlto = trovaValoreDadoAlto(giocatori); // valore dei dadi piu alto tra tutti i player
@@ -212,7 +218,10 @@ System.out.println(valoreDado);
         }
 
         System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE ("+ giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
+TC.gestisciMazziere();
     }
+
+
 
     //endregion
 
@@ -472,5 +481,20 @@ System.out.println(valoreDado);
     }
 
     //endregion
+
+
+    public String getMazziereNome(){
+        String nomeMazziere="";
+
+        for(int i=0;i<giocatori.size();i++){
+
+            if(giocatori.get(i).getRuolo()==RuoloGiocatore.MAZZIERE)
+                nomeMazziere=giocatori.get(i).getNome();
+        }
+        return nomeMazziere;
+    }
+
+
+
 
 }
