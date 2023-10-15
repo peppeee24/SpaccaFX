@@ -227,7 +227,7 @@ TC.gestisciMazziere();
 
     //region #METHODS
 
-    private int lancioDadoSingolo() { return (int)(1 + Math.random() * (2));} // TODO CAMBIARE NUMERO FACCE DADO DA 1 A 6 NEL GIOCO FINALE
+    public int lancioDadoSingolo() { return (int)(1 + Math.random() * (2));} // TODO CAMBIARE NUMERO FACCE DADO DA 1 A 6 NEL GIOCO FINALE
 
     public void aggiungiGiocatore(IGiocatore giocatore){this.giocatori.add(giocatore);}
 
