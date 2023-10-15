@@ -60,7 +60,7 @@ public class Spacca extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
         //InitializeTelegramBot(); // TODO IL BOT DEVE INIZIALIZZARSI SOLO UNA VOLTA, QUINDI DEVE MANDARE IL MESSAGGIO DI AVVIO UNA SOLA VOLTA NEL CANALE TG QUANDO SI ESEGUE IL PROGRAMMA
 
 
@@ -77,8 +77,8 @@ public class Spacca extends Application {
 
         p.generaCodicePartita();
 
-      //  p.startGame();
-        //System.exit(0);
+        p.startGame();
+        System.exit(0);
 
         /*
         Bot b1 = new AdvancedBot();

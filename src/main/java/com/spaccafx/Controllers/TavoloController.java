@@ -134,18 +134,18 @@ public void disableDice(){
 
  */
       public  void roll(int valoreDado) {
-//showDice();
+showDice();
             Thread thread = new Thread(){
                 public void run(){
                     System.out.println("Thread Running");
                     try {
-                   //     for (int i = 0; i < 15; i++) {
+                        for (int i = 0; i < 15; i++) {
                             // numeroDado=valoreDado;
                             System.out.println("Valore dato in roll:"+valoreDado);
-                            File file = new File("../../Assets/Game/Environment/dice/dice" + valoreDado+".PNG");
+                            File file = new File("src/Assets/Game/Environment/dice/dice" + valoreDado+".PNG");
                             diceImage.setImage(new Image(file.toURI().toString()));
                             Thread.sleep(50);
-                       // }
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -205,7 +205,7 @@ partita.passaTurno();
 
     public void gestisciMazziere() {
         // partita.giocatori.get(posMazziere).getNome();
-disableDice();
+//disableDice();
             String mazziere =  partita.getMazziereNome();
             if (nomeGiocatoreLabel.getText().equalsIgnoreCase(mazziere)) {
                 mazziereBT1.setVisible(false);

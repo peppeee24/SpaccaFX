@@ -141,24 +141,26 @@ public class Partita
 
     public void lancioDadiIniziale()
     {
-        ShareData sharedData = ShareData.getInstance();
+        //ShareData sharedData = ShareData.getInstance();
 
-        this.TC = sharedData.getTavoloController();
+        //this.TC = sharedData.getTavoloController();
 
         for(int c=0; c<giocatori.size() ;c++)
         {
             IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
             int valoreDado = lancioDadoSingolo(); // prendo valore a caso del dado
 
-           TC.roll(valoreDado);
-System.out.println(valoreDado);
-//TC.disableDice();
+
+            //System.out.println(valoreDado);
+            //TC.disableDice();
 
             System.out.println("\nIl giocatore " + editGiocatore.getNome() + " ha lanciato un dado ed e uscito: " + valoreDado);
             editGiocatore.setDado(valoreDado);
 
             giocatori.set(c, editGiocatore);
         }
+
+        //TC.roll(4);
         this.stabilisciMazziere();
     }
 
@@ -218,7 +220,7 @@ System.out.println(valoreDado);
         }
 
         System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE ("+ giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
-TC.gestisciMazziere();
+//TC.gestisciMazziere();
     }
 
 
@@ -288,17 +290,13 @@ TC.gestisciMazziere();
 
     private void sceltaNew(Scanner s, IGiocatore currentGiocatore)
     {
-
         if(currentGiocatore.getCarta() instanceof CartaImprevisto)
         {
             ((CartaImprevisto)(currentGiocatore.getCarta())).Effetto(this,currentGiocatore); // gli mando questa classe
-            //PassaTurno(); // momentaneo
         }
         else if(currentGiocatore.getCarta() instanceof CartaProbabilita)
         {
             ((CartaProbabilita)(currentGiocatore.getCarta())).Effetto(this,currentGiocatore); // gli mando questa classe
-
-            //PassaTurno(); // momentaneo
         }
 
         mostraIstruzioni(currentGiocatore);
