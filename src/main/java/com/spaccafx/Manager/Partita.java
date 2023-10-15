@@ -416,7 +416,7 @@ public class Partita
 
             for(IGiocatore giocatore : giocatoriConValoreMassimo)
             {
-                if(giocatoreDebole == null || ((((CartaNormale)giocatore.getCarta()).getSeme().compareTo(((CartaNormale)giocatoreDebole.getCarta()).getSeme())) > 0)) // TODO IMPORTANTE!! - FARE CONTROLLO / CONFRONTO ANCHE CON CARTE SPECIALI
+                if(giocatoreDebole == null || ((((Carta)giocatore.getCarta()).getSeme().compareTo(((Carta)giocatoreDebole.getCarta()).getSeme())) > 0))
                 {
                     giocatoreDebole = giocatore;
                     System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
@@ -472,7 +472,7 @@ public class Partita
         for (IGiocatore currentGiocatore : giocatori)
         {
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
-                //    ", Carta: " + currentGiocatore.getCarta().toString() +
+                    ", Carta: " + currentGiocatore.getCarta().toString() +
                     ", Vite: " + currentGiocatore.getVita() +
                     ", Ruolo: " + currentGiocatore.getRuolo());
         }

@@ -7,23 +7,25 @@ import javafx.scene.image.Image;
 
 public abstract class Carta
 {
-    private int valore;
-    private Image image;
+    protected int valore;
+
+    protected Image image;
+    protected SemeCarta seme;
 
 
-    public Carta(int valore)
-    {
-        this.valore = valore;
-    }
-
+    public Carta(int valore) {this.valore = valore;}
+    public Carta(int valore, SemeCarta seme) {this.valore = valore; this.seme = seme;}
 
     public void setValore(int valore){this.valore = valore;}
 
     public void setImage(Image image){this.image = image;}
+    public void setSeme(SemeCarta seme){this.seme = seme;}
 
 
     public int getValore(){return this.valore;}
     public Image getImmagineCarta(){return this.image;}
+
+    public SemeCarta getSeme(){return this.seme;}
 
 
     public abstract String toString();

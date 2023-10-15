@@ -4,23 +4,16 @@ import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Enums.*;
-import org.glassfish.grizzly.nio.transport.DefaultStreamReader;
 
 import java.util.Scanner;
 
 public class CartaProbabilita extends Carta
 {
-    /*Partita partitaAttuale;
-    IGiocatore giocatoreAttuale;
-    IGiocatore nextGiocatore;*/
-
     boolean attivato = false;
 
-    public CartaProbabilita(int valore)
+    public CartaProbabilita(int valore, SemeCarta seme)
     {
-        super(valore);
-        /*this.partitaAttuale = null;
-        this.giocatoreAttuale=null;*/
+        super(valore, seme);
     }
 
     @Override
@@ -29,14 +22,10 @@ public class CartaProbabilita extends Carta
     @Override
     public void Effetto(Partita partita, IGiocatore currentGiocatore)
     {
-        if(attivato==true)
+        if(attivato)
             return;
 
         partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
-
-        /*this.partitaAttuale = partita;
-        this.giocatoreAttuale=currentGiocatore;*/
-        //System.out.println("Ho in mano una carta effetto e non posso fare altre scelte!");
 
         int scelta = (int)((1 + Math.random() * 3)); //genero o 1 o 2 che sono i "codici" delle scelte;
 
@@ -49,7 +38,8 @@ public class CartaProbabilita extends Carta
             case 3: ScambiaCartaConMazzo(partita, currentGiocatore); break;
             default: break;
         }
-        attivato=true;
+
+        this.attivato=true;
     }
     //commento nel caso volessimo tornare indietro oppure usare pezzi di codice, TOGLIERE quando facciamo la pulizia prima delle gui
     /*private void DiminuisciValoreCarta()

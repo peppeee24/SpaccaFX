@@ -1,18 +1,17 @@
 package com.spaccafx.Cards;
 
 import com.spaccafx.Enums.RuoloGiocatore;
+import com.spaccafx.Enums.SemeCarta;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 
-import java.util.Scanner;
-
 public class CartaImprevisto extends Carta
 {
-    boolean attivato = false;
+    private boolean attivato = false;
 
-    public CartaImprevisto(int valore)
+    public CartaImprevisto(int valore, SemeCarta seme)
     {
-        super(valore);
+        super(valore, seme);
     }
 
     @Override
@@ -21,14 +20,9 @@ public class CartaImprevisto extends Carta
     @Override
     public void Effetto(Partita partita, IGiocatore currentGiocatore)
     {
-        if(attivato==true)
+        if(attivato)
             return;
 
-        //partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!, se commentato non da più il problema del cambio di effetto
-
-        /*this.partitaAttuale = partita;
-        this.giocatoreAttuale=currentGiocatore;*/
-        //System.out.println("Ho in mano una carta effetto e non posso fare altre scelte!");
 
         int scelta = (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
 
@@ -39,7 +33,7 @@ public class CartaImprevisto extends Carta
             //case 3: ScopriTuaCarta(); break;
             default: break;
         }
-        attivato=true;
+        this.attivato=true;
     }
 
 

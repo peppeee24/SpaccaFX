@@ -10,10 +10,18 @@ public class Mazzo
     ArrayList<Carta> mazzoCarte;
     ArrayList<Carta> cartePescate;
 
+    // ArrayList<Integer> valoriMax = {1,2,3,4,5,6,7,8,9,10}; // TODO PER MIGLORARE EFFICIENZA SCELTA VALORI CARTE PROB E IMPREVISTO (da rivedere non sicuro sia meglio)
+    private int carteNormali;
+    private int carteSpeciali;
+
     public Mazzo()
     {
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
+
+        carteNormali = 3; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
+        carteSpeciali = 3; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
+
 
         RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
     }
@@ -26,42 +34,79 @@ public class Mazzo
 
     private void CreoCarteNormali()
     {
+
         // RIEMPO CON LE CARTE NORMALI
-        for (SemeCarta seme : SemeCarta.values())
+        for (int c=1; c<=carteNormali; c++) // CANE
         {
-            for (int c = 1; c < 3; c++) // da 1 a 10 (1 - 11)
-            {
-                mazzoCarte.add(new CartaNormale(c, seme));
-            }
+            mazzoCarte.add(new CartaNormale(c, SemeCarta.CANE));
+        }
+
+        for (int c=1; c<=carteNormali; c++) // GATTO
+        {
+            mazzoCarte.add(new CartaNormale(c, SemeCarta.GATTO));
+        }
+
+        for (int c=1; c<=carteNormali; c++) // TOPO
+        {
+            mazzoCarte.add(new CartaNormale(c, SemeCarta.TOPO));
         }
     }
 
     private void CreoCarteImprevisto()
     {
-        // RIEMPO CON LE CARTE IMPREVISTO
-        for (int c = 7; c < 10; c++)  // 3 CARTE IMPREVISTO (valori da 7 a 9)
+        for(int c=1; c<=carteSpeciali; c++)
         {
-            mazzoCarte.add(new CartaImprevisto(c));
+            // RIEMPO CON LE CARTE PROBABILITA
+            int newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+            System.out.println("Valore nuova carta Imprevisto: " + newVal);
+
+            while(!(isCartaUnica(newVal, SemeCarta.IMPREVISTO))) // fino a quando non esiste cambio valore
+                newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+
+            System.out.println("Imposto valore: " + newVal);
+            mazzoCarte.add(new CartaImprevisto(newVal, SemeCarta.IMPREVISTO)); // vuol dire che e unica e la creo
         }
     }
 
 
     private void CreoCarteProbabilita()
     {
-        // RIEMPO CON LE CARTE PROBABILITA
-        for (int c = 2; c < 4; c++) // 3 CARTE PROBABILITA (valori da 2 a 4)
+        for(int c=1; c<=carteSpeciali; c++)
         {
-            mazzoCarte.add(new CartaProbabilita(c));
+            // RIEMPO CON LE CARTE PROBABILITA
+            int newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+            System.out.println("Valore nuova carta Probabilita: " + newVal);
+
+            while(!(isCartaUnica(newVal, SemeCarta.PROBABILITA))) // fino a quando non esiste cambio valore
+                newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+
+            System.out.println("Imposto valore: " + newVal);
+            mazzoCarte.add(new CartaProbabilita(newVal, SemeCarta.PROBABILITA)); // vuol dire che e unica e la creo
         }
+    }
+
+    private boolean isCartaUnica(int valore, SemeCarta seme)
+    {
+        for(Carta carta : mazzoCarte)
+        {
+            if(carta.seme == seme && carta.getValore() == valore)
+            {
+                System.out.println("(!) Esiste gia una carta con valore: " + valore);
+                return false; // esiste gia una carta uguale
+            }
+
+        }
+
+        return true; // non esiste
     }
 
     private void CreoCarte()
     {
         mazzoCarte.clear();
+
         CreoCarteNormali();
-        // TODO FARE CARTE IMPREVISTO E PROB DA 2 A 9
         CreoCarteImprevisto();
-        //CreoCarteProbabilita();
+        CreoCarteProbabilita();
     }
 
     public Carta PescaCarta() //prende la prima carta dal mazzo
