@@ -50,7 +50,7 @@ public class CartaImprevisto extends Carta
     }
 
     private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore){
-        System.out.println("PROBABILITA - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
+        System.out.println("IMPREVISTO - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
         int valoreDadoNew = partita.lancioDadoSingolo();
         System.out.println("Valore dado: " + valoreDadoNew);

@@ -249,7 +249,33 @@ public class Partita
 
     private void distrubuisciCarte() // TODO LA DISTRIBUZIONE DELLE CARTE PARTE SEMPRE DALLO 0 E NON DALLA POSIZIONE DEL MAZZIERE IN POI
     {
-      //  TC.impostazioneInizialeCarte();
+        int c = posMazziere+1;
+        if(c>=giocatori.size()){//caso in cui il mazziere sia l'ultimo giocatore dell'array e deve dare le carte dal primo in poi
+            c=0;
+            while(c<giocatori.size()){
+                IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
+                giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
+                giocatori.set(c, giocatoreEdit);
+                c++;
+            }
+        }
+        else{ //tutte le altre casisitiche
+            int newPuntatore=giocatori.size()-c;
+            while(c<giocatori.size()){
+                IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
+                giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
+                giocatori.set(c, giocatoreEdit);
+                c++;
+            }
+            c=0;
+            while(c<newPuntatore){
+                IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
+                giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
+                giocatori.set(c, giocatoreEdit);
+                c++;
+            }
+        }
+        /*
         for(int c=0; c<giocatori.size() ;c++) // cambiare il ciclo for in un enhanced for
         {
             // NON SERVE CREARE ALTRI OGGETTI, BASTA CAMBIARE I DATI DI QUELL OGGETTO CON I SET
@@ -258,7 +284,7 @@ public class Partita
             giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
 
             giocatori.set(c, giocatoreEdit); // reimposto la cella di quel giocatore con il valore della carta presa dal mazzo;
-        }
+        }*/
     }
 
     private int trovaValoreCartaAlta(ArrayList<IGiocatore> lista)
