@@ -2,6 +2,7 @@ package com.spaccafx.Cards;
 
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
+import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Enums.*;
 
@@ -33,8 +34,8 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1: AumentaVitaConDado(partita, currentGiocatore); break;
-            case 2: ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
+            case 1: ;//AumentaVitaConDado(partita, currentGiocatore); break;
+            case 2: ;//ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
             case 3: ScambiaCartaConMazzo(partita, currentGiocatore); break;
             default: break;
         }
@@ -95,16 +96,32 @@ public class CartaProbabilita extends Carta
     private void ScambiaCartaConMazzo(Partita partita, IGiocatore currentGiocatore)
     {
         System.out.println("PROBABILITA - Posso scambiare carta con il mazzo");
-        Scanner s = new Scanner(System.in);
 
-        System.out.println("Digita 3 se vuoi scambiare con il mazzo, un altro numero se vuoi rifiutare!");
-        if(s.nextInt() == 3)
+        if(currentGiocatore instanceof Giocatore) // se sono un giocatore normale
         {
-            System.out.println("Hai scambiato la carta con il mazzo");
-            currentGiocatore.setCarta(partita.mazzo.PescaCarta());
-        }
-        else
-            System.out.println("Hai rifiutato lo scambiato con il mazzo");
+            System.out.println("Sono un PLAYER");
+            Scanner s = new Scanner(System.in);
 
+            System.out.println("Digita 1 se vuoi scambiare con il mazzo, un altro numero se vuoi rifiutare!");
+            if(s.nextInt() == 1)
+            {
+                System.out.println("Hai scambiato la carta con il mazzo");
+                currentGiocatore.setCarta(partita.mazzo.PescaCarta());
+            }
+            else
+                System.out.println("Hai rifiutato lo scambiato con il mazzo");
+
+        }
+        else // se sono un bot
+        {
+            System.out.println("Sono un BOT");
+            if(((Bot)currentGiocatore).Scelta(partita) == 1) // scambio la carta
+            {
+                System.out.println("Il bot ha deciso di scambiare la carta con il mazzo");
+                currentGiocatore.setCarta(partita.mazzo.PescaCarta());
+            }
+            else
+                System.out.println("Il bot ha rifiutato lo scambiato con il mazzo");
+        }
     }
 }
