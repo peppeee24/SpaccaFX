@@ -19,9 +19,9 @@ public class Mazzo
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
 
-        carteNormali = 3; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
-        carteSpeciali = 3; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
-
+        carteNormali = 4; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
+        carteSpeciali = 2; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
+        // TODO FARE UNA VERIFICA PER VEDERE SE IL N. CARTE SPECIALI < CARTE NORMALI
 
         RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
     }
@@ -57,11 +57,11 @@ public class Mazzo
         for(int c=1; c<=carteSpeciali; c++)
         {
             // RIEMPO CON LE CARTE PROBABILITA
-            int newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+            int newVal = (int)(1 + Math.random() * (carteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
             System.out.println("Valore nuova carta Imprevisto: " + newVal);
 
             while(!(isCartaUnica(newVal, SemeCarta.IMPREVISTO))) // fino a quando non esiste cambio valore
-                newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+                newVal = (int)(1 + Math.random() * (carteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
             System.out.println("Imposto valore: " + newVal);
             mazzoCarte.add(new CartaImprevisto(newVal, SemeCarta.IMPREVISTO)); // vuol dire che e unica e la creo
@@ -74,11 +74,11 @@ public class Mazzo
         for(int c=1; c<=carteSpeciali; c++)
         {
             // RIEMPO CON LE CARTE PROBABILITA
-            int newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+            int newVal = (int)(1 + Math.random() * (carteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
             System.out.println("Valore nuova carta Probabilita: " + newVal);
 
             while(!(isCartaUnica(newVal, SemeCarta.PROBABILITA))) // fino a quando non esiste cambio valore
-                newVal = (int)(1 + Math.random() * (10)); // valore carta da 1 a 10
+                newVal = (int)(1 + Math.random() * (carteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
             System.out.println("Imposto valore: " + newVal);
             mazzoCarte.add(new CartaProbabilita(newVal, SemeCarta.PROBABILITA)); // vuol dire che e unica e la creo
@@ -105,7 +105,7 @@ public class Mazzo
         mazzoCarte.clear();
 
         CreoCarteNormali();
-        CreoCarteImprevisto();
+        //CreoCarteImprevisto();
         CreoCarteProbabilita();
     }
 
@@ -148,4 +148,7 @@ public class Mazzo
             System.out.println(cartaMazzo.toString());
         }
     }
+
+    public int getMaxCarteNormali(){return this.carteNormali;}
+    public int getMaxCarteSpeciali(){return this.carteSpeciali;}
 }

@@ -103,28 +103,14 @@ public class Partita
             if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
             {
                 System.out.println("[MOSSA] Tocca a un (MAZZIERE)");
-
-                if(currentGiocatore instanceof Bot) // se e un bot
-                {
-                    //SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
-                    //TODO RISOLVERE SCELTA BOT1
-                }
-                else // se e un player normale
-                    sceltaNew(s, currentGiocatore);
+                sceltaNew(s, currentGiocatore);
 
                 flag = false; // MAZZIERE TROVATO! Dopo questa mossa finisce il ciclo
             }
             else // se il giocatore ha il ruolo GIOCATORE
             {
                 System.out.println("[MOSSA] Tocca a un (GIOCATORE)");
-
-                if(currentGiocatore instanceof Bot) // se e un bot
-                {
-                    //SceltaNew(((Bot) currentGiocatore).Scelta(), currentGiocatore);
-                    //TODO RISOLVERE SCELTA BOT2
-                }
-                else // se e un player normale
-                    sceltaNew(s, currentGiocatore);
+                sceltaNew(s, currentGiocatore);
             }
         }
 
@@ -327,12 +313,30 @@ public class Partita
 
         mostraIstruzioni(currentGiocatore);
 
-        switch (s.nextInt())
+
+        // TODO MODIFICA DELLE SCELTE DEI BOT / PLAYER
+        // se sono un player normale posso fare queste scelte
+        if(currentGiocatore instanceof Giocatore)
         {
-            case 1: scambiaCarta(currentGiocatore); break;
-            case 2: passaTurno(); break;
-            default: System.out.println("Scelta NON ACCETTABILE!!"); break;
+            System.out.println("Tocca fare la mossa a un GIOCATORE");
+            switch (s.nextInt())
+            {
+                case 1: scambiaCarta(currentGiocatore); break;
+                case 2: passaTurno(); break;
+                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
+            }
         }
+        else // vuol dire che sono un Bot
+        {
+            System.out.println("Tocca fare la mossa a un BOT");
+            switch (((Bot)currentGiocatore).Scelta(this)) // Il bot fa una scelta basandosi sulla dfficolta e sui dati della partita
+            {
+                case 1: scambiaCarta(currentGiocatore); break;
+                case 2: passaTurno(); break;
+                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
+            }
+        }
+
     }
 
 
@@ -498,7 +502,7 @@ public class Partita
         for (IGiocatore currentGiocatore : giocatori)
         {
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
-                    //", Carta: " + currentGiocatore.getCarta().toString() +
+                    ", Carta: " + currentGiocatore.getCarta().toString() +
                     ", Vite: " + currentGiocatore.getVita() +
                     ", Ruolo: " + currentGiocatore.getRuolo());
         }
