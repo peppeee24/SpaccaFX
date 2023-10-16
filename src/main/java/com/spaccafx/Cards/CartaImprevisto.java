@@ -50,7 +50,7 @@ public class CartaImprevisto extends Carta
     }
 
     private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore){
-        System.out.println("PROBABILITA - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
+        System.out.println("IMPREVISTO - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
         int valoreDadoNew = partita.lancioDadoSingolo();
         System.out.println("Valore dado: " + valoreDadoNew);
@@ -73,75 +73,5 @@ public class CartaImprevisto extends Carta
             System.out.println("Sei stato fortunato, niente vita persa per te. Gioca il tuo turno");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-    //commento nel caso volessimo tornare indietro oppure usare pezzi di codice, TOGLIERE quando facciamo la pulizia prima delle gui
-    /*private void DiminuisciEScambia(Partita partita, IGiocatore giocatore){
-        System.out.println("IMPREVISTO pt1 - Scambia la tua carta con una del mazzo");
-        Carta newCarta = partita.mazzo.PescaCarta();
-        System.out.println("IMPREVISTO pt2 - Vieni obbligato a scambiare la carta con il giocatore successiivo");
-
-
-        int indexCG = partita.giocatori.indexOf(giocatore); // salvo induice del giocaotore attuale
-
-        if(giocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
-        //TODO da rivedere
-        {//se il giocaotre che pesca la carta è mazziere deve scambiare con la prima carta del mazzo
-            System.out.println("Hai ricevuto " + newCarta.toString());
-            if(!(newCarta.getValore()>9)){
-                newCarta.setValore(newCarta.getValore()+1);
-            }
-            System.out.println("Aumento di uno il suo valore: " + newCarta.toString());
-            giocatore.setCarta(newCarta);
-        }
-        else //se sono un giocatore normale
-        {
-            if(indexCG>=partita.giocatori.size()-1){ //caso in cui l'ultimo giocvatore non è mazziere e deve scambiare cojn il primo giocatore
-                Carta nextPlayerCarta = partita.giocatori.get(0).getCarta();
-                partita.giocatori.get(0).setCarta(newCarta);
-                System.out.println("Hai ricevuto " + nextPlayerCarta.toString());
-                if(!(nextPlayerCarta.getValore()>9)){
-                    nextPlayerCarta.setValore(nextPlayerCarta.getValore()+1);
-                }
-                System.out.println("Aumento di uno il suo valore: " + nextPlayerCarta.toString());
-                giocatore.setCarta(nextPlayerCarta);
-            }
-            else{ //caso player centrali
-                Carta nextPlayerCarta = partita.giocatori.get(indexCG+1).getCarta();
-                partita.giocatori.get(indexCG+1).setCarta(newCarta);
-                System.out.println("Hai ricevuto " + nextPlayerCarta.toString());
-                if(!(nextPlayerCarta.getValore()>9)){
-                    nextPlayerCarta.setValore(nextPlayerCarta.getValore()+1);
-                }
-                System.out.println("Aumento di uno il suo valore: " + nextPlayerCarta.toString());
-                giocatore.setCarta(nextPlayerCarta);
-            }
-
-        }
-
-
-    }
-
-
-    //commento nel caso volessimo tornare indietro oppure usare pezzi di codice, TOGLIERE quando facciamo la pulizia prima delle gui
-    public void AumentaValoreCarta(){
-        System.out.println("IMPREVISTO - Aumento il valore della tua carta!");
-        System.out.println("Valore prima: " + getValore());
-        this.setValore(this.getValore() + 1);
-        System.out.println("Valore dopo: " + getValore());
-    }*/
-
-
-
-
 
 }
