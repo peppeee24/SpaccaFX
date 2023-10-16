@@ -58,9 +58,7 @@ public class Partita
         while(isGameRunning()) // fino a quando ci sono giocatori (piu di 1, altrimenti termina in automatico!!)
         {
             System.out.println("\n\tNUOVO ROUND: " + getCurrentRound());
-            distrubuisciCarte(); // Distribuzione delle carte
-
-            StampaInfoGiocatori(); // per debug iniziale
+            distribuisciCarte(); // Distribuzione delle carte
 
             runRound();
 
@@ -215,7 +213,7 @@ public class Partita
 
     //region #METHODS
 
-    public int lancioDadoSingolo() { return (int)(1 + Math.random() * (2));} // TODO CAMBIARE NUMERO FACCE DADO DA 1 A 6 NEL GIOCO FINALE
+    public int lancioDadoSingolo() { return (int)(1 + Math.random() * (6));} // TODO CAMBIARE NUMERO FACCE DADO DA 1 A 6 NEL GIOCO FINALE
 
     public void aggiungiGiocatore(IGiocatore giocatore){this.giocatori.add(giocatore);}
 
@@ -233,44 +231,43 @@ public class Partita
         return numeroPiuAlto;
     }
 
-    private void distrubuisciCarte() // TODO LA DISTRIBUZIONE DELLE CARTE PARTE SEMPRE DALLO 0 E NON DALLA POSIZIONE DEL MAZZIERE IN POI
+    private void distribuisciCarte()
     {
-        int c = posMazziere+1;
-        if(c>=giocatori.size()){//caso in cui il mazziere sia l'ultimo giocatore dell'array e deve dare le carte dal primo in poi
-            c=0;
-            while(c<giocatori.size()){
-                IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
-                giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
-                giocatori.set(c, giocatoreEdit);
-                c++;
-            }
-        }
-        else{ //tutte le altre casisitiche
-            int newPuntatore=giocatori.size()-c;
-            while(c<giocatori.size()){
-                IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
-                giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
-                giocatori.set(c, giocatoreEdit);
-                c++;
-            }
-            c=0;
-            while(c<newPuntatore){
-                IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
-                giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
-                giocatori.set(c, giocatoreEdit);
-                c++;
-            }
-        }
-        /*
-        for(int c=0; c<giocatori.size() ;c++) // cambiare il ciclo for in un enhanced for
+        int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
+
+        if(primoGiocatore >= giocatori.size()) // se il mazziere e alla fine e devo partire dal primo giocatore
         {
-            // NON SERVE CREARE ALTRI OGGETTI, BASTA CAMBIARE I DATI DI QUELL OGGETTO CON I SET
+            System.out.println("Distribuisco le carte partendo dal PRIMO giocatore");
+            for(IGiocatore giocatore : giocatori)
+            {
+                giocatore.setCarta(mazzo.PescaCarta());
+            }
+        }
+        else // altrimenti devo vedere fino a quando non arriva all ultimo giocatore presente nell array
+        {
+            int carteDistribuite = 0;
+            int currentIndex = primoGiocatore;
+            System.out.println("Distribuisco dal giocatore n.: " + currentIndex);
 
-            IGiocatore giocatoreEdit = giocatori.get(c); // prendo il player attuale con tutte le sue informazioni e lo metto in un oggetto di tipo giocatore
-            giocatoreEdit.setCarta(mazzo.PescaCarta()); // gli assegno una carta randomica dal mazzo
+            System.out.println("Distribuisco le carte partendo nel MEZZO tra un giocatore");
+            do
+            {
+                if(currentIndex >= giocatori.size()) // se sono l ultimo giocatore
+                {
+                    System.out.println("Riparto dall'array dei giocatori");
+                    currentIndex = 0;
+                }
 
-            giocatori.set(c, giocatoreEdit); // reimposto la cella di quel giocatore con il valore della carta presa dal mazzo;
-        }*/
+                giocatori.get(currentIndex).setCarta(mazzo.PescaCarta());
+
+                currentIndex++;
+                carteDistribuite++;
+                System.out.println("Carte distribuite: " + carteDistribuite);
+            }while(carteDistribuite < giocatori.size()); // fino a quando non do tot carte tanti quanti sono i player continuo a darle
+        }
+
+        System.out.println("Esco dalla distribuzione e do le info...");
+        StampaInfoGiocatori();
     }
 
     private int trovaValoreCartaAlta(ArrayList<IGiocatore> lista)
@@ -314,7 +311,6 @@ public class Partita
         mostraIstruzioni(currentGiocatore);
 
 
-        // TODO MODIFICA DELLE SCELTE DEI BOT / PLAYER
         // se sono un player normale posso fare queste scelte
         if(currentGiocatore instanceof Giocatore)
         {
