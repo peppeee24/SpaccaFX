@@ -18,25 +18,25 @@ public abstract class Bot implements IGiocatore
     public Bot()
     {
         this.nome = "Bot";
-        this.vita = 2;
+        this.vita = 3;
         this.carta = null;
     }
     public Bot(String nome)
     {
         this.nome = nome;
-        this.vita = 2;
+        this.vita = 3;
         this.carta = null;
     }
     public Bot(Carta carta)
     {
         this.nome = "Bot";
-        this.vita = 2;
+        this.vita = 3;
         this.carta = carta;
     }
     public Bot(String nome, Carta carta)
     {
         this.nome=nome;
-        this.vita=2;
+        this.vita=3;
         this.carta=carta;
     }
 
