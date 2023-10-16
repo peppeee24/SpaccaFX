@@ -24,10 +24,12 @@ public class LoginController {
 
     private String user = "root";
     private String pwd = "root";
+
     public void initialize() {
         // Imposta il focus sul campo userField quando la schermata viene inizializzata
         userField.requestFocus();
     }
+
     public void loginAction(ActionEvent actionEvent) throws IOException {
         String UserField = userField.getText();
         String PasswordField = passwordField.getText();
@@ -38,7 +40,6 @@ public class LoginController {
             alert.setTitle("Accesso Eseguito");
             alert.setContentText("Stai per essere reindirizzato");
             Optional<ButtonType> result = alert.showAndWait();
-
 
 
             FXMLLoader SelectionMenu = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
@@ -67,11 +68,8 @@ public class LoginController {
     }
 
     public void change(MouseEvent mouseEvent) throws IOException {
-     // TODO impostare avatar
+        // TODO impostare avatar
     }
-
-
-
 
 
 }

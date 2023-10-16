@@ -23,9 +23,9 @@ public class MainMenuController {
 
     public PartitaClassicaController2 pcc;
 
-    public void setPartitaClassicaController(PartitaClassicaController2 pcc){
+    public void setPartitaClassicaController(PartitaClassicaController2 pcc) {
         this.pcc = pcc;
-        System.out.println("MMC"+pcc);
+        System.out.println("MMC" + pcc);
     }
 
     public void startGame(ActionEvent actionEvent) throws IOException {
@@ -38,18 +38,14 @@ public class MainMenuController {
         stage.show();
 
 
-
-
     }
 
 
-
-
-    public void startTutorial(ActionEvent actionEvent) throws IOException{
+    public void startTutorial(ActionEvent actionEvent) throws IOException {
 
     }
 
-    public void startSetting(ActionEvent actionEvent) throws IOException{
+    public void startSetting(ActionEvent actionEvent) throws IOException {
         FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("Login.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Login.load());
@@ -64,7 +60,6 @@ public class MainMenuController {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
     public void telegram(MouseEvent mouseEvent) {
@@ -88,9 +83,6 @@ public class MainMenuController {
     }
 
 
-
-
-
     @FXML
     Toggle italian;
 
@@ -98,7 +90,6 @@ public class MainMenuController {
     Toggle english;
 
     // TODO da impostare cambio lingua
-
 
 
 }

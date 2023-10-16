@@ -28,11 +28,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class PartitaClassicaController2
-{
+public class PartitaClassicaController2 {
 
     private int numeroGiocatori, numeroBotMenu;
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1,E2,E3,A1,A2,A3;
+    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, A1, A2, A3;
 
 
     Partita P;
@@ -55,8 +54,8 @@ public class PartitaClassicaController2
     @FXML
     ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, easyBot1, easyBot2, easyBot3;
 
-EasyBot E=new EasyBot();
-AdvancedBot A=new AdvancedBot();
+    EasyBot E = new EasyBot();
+    AdvancedBot A = new AdvancedBot();
 
 
     @FXML
@@ -70,8 +69,8 @@ AdvancedBot A=new AdvancedBot();
         numeroGiocatoriMenu.setOnAction(this::nG);
     }
 
-    public void nG(ActionEvent event){
-        numeroGiocatori=numeroGiocatoriMenu.getValue();
+    public void nG(ActionEvent event) {
+        numeroGiocatori = numeroGiocatoriMenu.getValue();
         setNumeroGiocatori();
         this.controlloGiocatori();
         setNumeroBot();
@@ -88,8 +87,8 @@ AdvancedBot A=new AdvancedBot();
 
     }
 
-    public void dB(ActionEvent event){
-        difficolta=difficoltaBotMenu.getValue();
+    public void dB(ActionEvent event) {
+        difficolta = difficoltaBotMenu.getValue();
 
     }
 
@@ -101,7 +100,7 @@ AdvancedBot A=new AdvancedBot();
 
     public void setNumeroBot() {
 
-        numeroBotMenu=4-getNumeroGiocatori();
+        numeroBotMenu = 4 - getNumeroGiocatori();
         botCounter.setText(Integer.toString(numeroBotMenu));
 
 
@@ -112,58 +111,59 @@ AdvancedBot A=new AdvancedBot();
     }
 
 
-
-    public void getEasyBot1(){
-        E1= E.generaNomeBot();
+    public void getEasyBot1() {
+        E1 = E.generaNomeBot();
     }
 
-    public String getE1(){
+    public String getE1() {
         return E1;
     }
 
-    public void getEasyBot2(){
-        E2= E.generaNomeBot();
+    public void getEasyBot2() {
+        E2 = E.generaNomeBot();
     }
-    public String getE2(){
+
+    public String getE2() {
         return E2;
     }
 
-    public void getEasyBot3(){
-        E3=E.generaNomeBot();
+    public void getEasyBot3() {
+        E3 = E.generaNomeBot();
 
     }
 
-    public String getE3(){
+    public String getE3() {
 
         return E3;
     }
 
 
-    public void getAdvBot1(){
-        A1= A.generaNomeBot();
+    public void getAdvBot1() {
+        A1 = A.generaNomeBot();
     }
 
-    public String getA1(){
+    public String getA1() {
         return A1;
     }
 
-    public void getAdvBot2(){
-        A2= A.generaNomeBot();
+    public void getAdvBot2() {
+        A2 = A.generaNomeBot();
     }
-    public String getA2(){
+
+    public String getA2() {
         return A2;
     }
 
-    public void getAdvBot3(){
-        A3=A.generaNomeBot();
+    public void getAdvBot3() {
+        A3 = A.generaNomeBot();
 
     }
 
-    public String getA3(){
+    public String getA3() {
         return A3;
     }
 
-    public void nascondiBot(){
+    public void nascondiBot() {
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
         labelBot3.setVisible(false);
@@ -182,16 +182,15 @@ AdvancedBot A=new AdvancedBot();
     }
 
 
-    public void salvaDifficolta(ActionEvent actionEvent) throws IOException
-    {
+    public void salvaDifficolta(ActionEvent actionEvent) throws IOException {
         this.setDifficolta();
         System.out.println(difficolta);
-        System.out.println("Imposto difficolta"+getDifficolta());
+        System.out.println("Imposto difficolta" + getDifficolta());
         this.impostaDifficolta();
     }
 
 
-    public void impostaDifficolta()  {
+    public void impostaDifficolta() {
 
         if (difficolta != null) {
             switch (getNumeroBot()) {
@@ -343,14 +342,12 @@ AdvancedBot A=new AdvancedBot();
      */
 
 
-
     public void controlloGiocatori() {
 
 
-    if (getNumeroGiocatori() == 3) {
+        if (getNumeroGiocatori() == 3) {
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
-
 
 
         } else if (getNumeroGiocatori() == 2) {
@@ -358,9 +355,6 @@ AdvancedBot A=new AdvancedBot();
             playerName3.setVisible(false);
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
-
-
-
 
 
         } else if (getNumeroGiocatori() == 1) {
@@ -371,13 +365,13 @@ AdvancedBot A=new AdvancedBot();
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
 
-            }
-
-
         }
 
 
-        public void salvaNomi(ActionEvent actionEvent) throws IOException{
+    }
+
+
+    public void salvaNomi(ActionEvent actionEvent) throws IOException {
         System.out.println("Salvo i nomi");
         switch (getNumeroGiocatori()) {
             case 1:
@@ -405,16 +399,7 @@ AdvancedBot A=new AdvancedBot();
         this.nascondiBot();
 
 
-        }
-
-
-
-
-
-
-
-
-
+    }
 
 
     public void setNomeGiocatore1() {
@@ -465,18 +450,7 @@ AdvancedBot A=new AdvancedBot();
     }
 
 
-
-
-
-
-
-
-
-
-
-
-    public void indietro(MouseEvent mouseEvent) throws IOException
-    {
+    public void indietro(MouseEvent mouseEvent) throws IOException {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
@@ -485,29 +459,24 @@ AdvancedBot A=new AdvancedBot();
     }
 
 
+    public void generaCodice(ActionEvent actionEvent) throws IOException {
 
+        int somma = getNumeroGiocatori() + getNumeroBot();
 
+        if (somma > 1 && somma < 5) {
+            this.P = new Partita(somma);
+            P.generaCodicePartita();
 
-    public void generaCodice(ActionEvent actionEvent) throws IOException
-    {
-
-        int somma= getNumeroGiocatori()+getNumeroBot();
-
-        if(somma>1 && somma<5) {
-             this.P = new Partita(somma);
-             P.generaCodicePartita();
-
-             System.out.println("Codice Generato: "+P.getCodicePartita());
-            codicePartita.setText("Codice: "+ P.getCodicePartita());
-         //   codicePartita.wrapTextProperty().set(true);
-           // codicePartita.getStyleClass().add("copiable-label");
+            System.out.println("Codice Generato: " + P.getCodicePartita());
+            codicePartita.setText("Codice: " + P.getCodicePartita());
+            //   codicePartita.wrapTextProperty().set(true);
+            // codicePartita.getStyleClass().add("copiable-label");
             // TODO non riesco a rendere selezionabile la label
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Codice partita generato");
             alert.setContentText("Comunica il codice ai giocatori che dovranno inserirlo successivamente");
             Optional<ButtonType> result = alert.showAndWait();
-
 
 
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
@@ -522,24 +491,24 @@ AdvancedBot A=new AdvancedBot();
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
 
 
-        ArrayList<IGiocatore> GiocatoriPartita =new ArrayList<>();
+        ArrayList<IGiocatore> GiocatoriPartita = new ArrayList<>();
 
-       if (getNumeroGiocatori()==1) {
-           System.out.println("Nome giocatore 1: "+getNomeGiocatore1());
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-       }  else if(getNumeroGiocatori()==2){
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-        } else if(getNumeroGiocatori()==3){
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
-       } else {
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
-           GiocatoriPartita.add(new Giocatore(getNomeGiocatore4()));
-       }
+        if (getNumeroGiocatori() == 1) {
+            System.out.println("Nome giocatore 1: " + getNomeGiocatore1());
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+        } else if (getNumeroGiocatori() == 2) {
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
+        } else if (getNumeroGiocatori() == 3) {
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
+        } else {
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
+            GiocatoriPartita.add(new Giocatore(getNomeGiocatore4()));
+        }
 
 
         switch (getNumeroBot()) {
@@ -582,15 +551,14 @@ AdvancedBot A=new AdvancedBot();
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
 
-
         FXMLLoader impostaGioco = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(impostaGioco.load());
         stage.setScene(scene);
 
         // Mi permette di creare un "oggetto del controller", in questo modo riesco a passare tutto al controller senza creare un nuovo oggetto della classe che provocherebbe due istanze aperte
-     //   MainMenuController mmc = impostaGioco.getController();
-      //  mmc.setPartitaClassicaController(this);
+        //   MainMenuController mmc = impostaGioco.getController();
+        //  mmc.setPartitaClassicaController(this);
         ShareData.getInstance().setPartitaClassicaController(this);
         ShareData.getInstance().setPartita(this.P);
         ShareData.getInstance().setCodice(this.P);
@@ -599,14 +567,6 @@ AdvancedBot A=new AdvancedBot();
 
 
     }
-
-
-
-
-
-
-
-
 
 
 }

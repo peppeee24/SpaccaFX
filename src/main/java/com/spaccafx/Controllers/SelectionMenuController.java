@@ -10,10 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SelectionMenuController
-{
-
-
+public class SelectionMenuController {
 
 
     public void iniziaPartita(ActionEvent actionEvent) throws IOException {
@@ -27,8 +24,6 @@ public class SelectionMenuController
     }
 
 
-
-
     // Seconda schheramta
     public void iniziaTorneo(ActionEvent actionEvent) throws IOException {
         FXMLLoader Torneo = new FXMLLoader(Spacca.class.getResource("Torneo.fxml"));
@@ -38,7 +33,6 @@ public class SelectionMenuController
         stage.show();
 
     }
-
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {

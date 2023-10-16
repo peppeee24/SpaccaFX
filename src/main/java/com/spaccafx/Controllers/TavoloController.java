@@ -35,15 +35,14 @@ import java.util.Random;
 public class TavoloController {
 
 
+    @FXML
+    Label nomeGiocatoreLabel, nomeBot1Label, nomeBot2Label, nomeBot3Label, cartaSpecialeLabel;
 
     @FXML
-    Label nomeGiocatoreLabel,nomeBot1Label, nomeBot2Label, nomeBot3Label, cartaSpecialeLabel;
+    ImageView bot1Space, bot2Space, bot3Space, humanPlayerSpace, centerSpace;
 
     @FXML
-    ImageView bot1Space,bot2Space,bot3Space, humanPlayerSpace, centerSpace;
-
-    @FXML
-    ImageView life1BT1, life2BT1, life3BT1, life1BT2, life2BT2, life3BT2, life1BT3, life2BT3,  life3BT3, life1PL, life2PL, life3PL;
+    ImageView life1BT1, life2BT1, life3BT1, life1BT2, life2BT2, life3BT2, life1BT3, life2BT3, life3BT3, life1PL, life2PL, life3PL;
 
     @FXML
     ImageView mazziereBT1, mazziereBT2, mazziereBT3, mazzierePL;
@@ -55,12 +54,11 @@ public class TavoloController {
     Button bottoneLancio;
 
 
-    private  PartitaClassicaController2 PC;
+    private PartitaClassicaController2 PC;
 
     private Partita partita;
 
-    public TavoloController()
-    {
+    public TavoloController() {
         ShareData sharedData = ShareData.getInstance();
         ShareData.getInstance().setTavoloController(this);
         this.PC = sharedData.getPartitaClassicaController();
@@ -68,8 +66,7 @@ public class TavoloController {
     }
 
 
-
-    public void initialize(){
+    public void initialize() {
         setLableTable();
 
 
@@ -96,15 +93,15 @@ public class TavoloController {
 
     }
 
-    public void impostaDadi(){
+    public void impostaDadi() {
         int valoreDado = 0;
         showDice();
 
         //ImageView ninni = new ImageView("../../Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
         // dicePL.setImage(ninni.getImage());
-        for(int i=0;i<partita.giocatori.size();i++){
+        for (int i = 0; i < partita.giocatori.size(); i++) {
 
-            if(partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeGiocatoreLabel.getText())){
+            if (partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeGiocatoreLabel.getText())) {
                 valoreDado = partita.giocatori.get(i).getValoreDado();
                 //  System.out.println("Valore del dado"+valoreDado);
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
@@ -113,17 +110,17 @@ public class TavoloController {
                 //   roll1(valoreDado);
 
 
-            } else if(partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeBot1Label.getText())){
+            } else if (partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeBot1Label.getText())) {
                 valoreDado = partita.giocatori.get(i).getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
                 diceBot1.setImage(myImage);
                 // roll2(valoreDado);
-            } else if(partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeBot2Label.getText())){
+            } else if (partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeBot2Label.getText())) {
                 valoreDado = partita.giocatori.get(i).getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
                 diceBot2.setImage(myImage);
                 //  roll3(valoreDado);
-            }else if(partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeBot3Label.getText())){
+            } else if (partita.giocatori.get(i).getNome().equalsIgnoreCase(nomeBot3Label.getText())) {
                 valoreDado = partita.giocatori.get(i).getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
                 diceBot3.setImage(myImage);
@@ -142,15 +139,14 @@ public class TavoloController {
     }
 
 
-
-    public void disableDice(){
+    public void disableDice() {
         dicePL.setVisible(false);
         diceBot1.setVisible(false);
         diceBot2.setVisible(false);
         diceBot3.setVisible(false);
     }
 
-    public void showDice(){
+    public void showDice() {
         dicePL.setVisible(true);
         diceBot1.setVisible(true);
         diceBot2.setVisible(true);
@@ -158,144 +154,7 @@ public class TavoloController {
     }
 
 
-
-
-    public  void roll1(int valoreDado) {
-//showDice();
-        Thread thread = new Thread(){
-            public void run(){
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        // numeroDado=valoreDado;
-                        System.out.println("Valore dato in roll:"+valoreDado);
-                        Image uno = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        dicePL.setImage(uno);
-
-                        Thread.sleep(50);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
-
-
-    }
-
-    public  void roll2(int valoreDado) {
-//showDice();
-        Thread thread = new Thread(){
-            public void run(){
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        // numeroDado=valoreDado;
-                        System.out.println("Valore dato in roll:"+valoreDado);
-
-                        Image due = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        diceBot1.setImage(due);
-
-                        Thread.sleep(50);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
-
-
-    }
-
-    public  void roll3(int valoreDado) {
-//showDice();
-        Thread thread = new Thread(){
-            public void run(){
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        // numeroDado=valoreDado;
-                        System.out.println("Valore dato in roll:"+valoreDado);
-
-                        Image tre = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        diceBot2.setImage(tre);
-
-                        Thread.sleep(50);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
-
-
-    }
-
-    public  void roll4(int valoreDado) {
-//showDice();
-        Thread thread = new Thread(){
-            public void run(){
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        // numeroDado=valoreDado;
-                        System.out.println("Valore dato in roll:"+valoreDado);
-
-                        Image quattro = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        diceBot3.setImage(quattro);
-                        Thread.sleep(50);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
-
-
-    }
-
-    public  void roll(int valoreDado) {
-//showDice();
-        Thread thread = new Thread(){
-            public void run(){
-                System.out.println("Thread Running");
-                try {
-                    for (int i = 0; i < 15; i++) {
-                        // numeroDado=valoreDado;
-                        System.out.println("Valore dato in roll:"+valoreDado);
-
-                        Image quattro = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        diceBot3.setImage(quattro);
-                        Image tre = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        diceBot2.setImage(tre);
-                        Image due = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        diceBot1.setImage(due);
-                        Image uno = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        dicePL.setImage(uno);
-                        Thread.sleep(50);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
-
-
-    }
-
-
-
-    public void disableCrown(){
+    public void disableCrown() {
         mazzierePL.setVisible(false);
         mazziereBT1.setVisible(false);
         mazziereBT2.setVisible(false);
@@ -303,10 +162,9 @@ public class TavoloController {
     }
 
 
-
-
     public void scambiaCarta(ActionEvent actionEvent) {
-//partita.scambiaCarta();
+// TODO gestire come parametro il giocatore corrente
+       // partita.scambiaCarta();
     }
 
     public void passaTurno(ActionEvent actionEvent) {
@@ -329,22 +187,22 @@ public class TavoloController {
  */
     }
 
-    public void gestisciVite(){
+    public void gestisciVite() {
 
-        for (int i=0;i<partita.giocatori.size();i++){
-            String nome=  partita.giocatori.get(i).getNome();
-            int vita= partita.giocatori.get(i).getVita();
+        for (int i = 0; i < partita.giocatori.size(); i++) {
+            String nome = partita.giocatori.get(i).getNome();
+            int vita = partita.giocatori.get(i).getVita();
             System.out.println(vita);
-            if(nome.equalsIgnoreCase(nomeGiocatoreLabel.getText())){
-                if(vita==3){
+            if (nome.equalsIgnoreCase(nomeGiocatoreLabel.getText())) {
+                if (vita == 3) {
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(true);
-                } else if(vita==2){
+                } else if (vita == 2) {
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(false);
-                } else if(vita==1) {
+                } else if (vita == 1) {
                     life1PL.setVisible(true);
                     life2PL.setVisible(false);
                     life3PL.setVisible(false);
@@ -352,22 +210,22 @@ public class TavoloController {
                     life1PL.setVisible(false);
                     life2PL.setVisible(false);
                     life3PL.setVisible(false);
-                    String nomeMorto=nomeGiocatoreLabel.getText();
-                    nomeGiocatoreLabel.setText(nomeMorto+ " è morto");
+                    String nomeMorto = nomeGiocatoreLabel.getText();
+                    nomeGiocatoreLabel.setText(nomeMorto + " è morto");
                 }
             }
 
 
-            if(nome.equalsIgnoreCase(nomeBot1Label.getText())){
-                if(vita==3){
+            if (nome.equalsIgnoreCase(nomeBot1Label.getText())) {
+                if (vita == 3) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(true);
                     life3BT1.setVisible(true);
-                } else if(vita==2){
+                } else if (vita == 2) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(true);
                     life3BT1.setVisible(false);
-                } else if(vita==1) {
+                } else if (vita == 1) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(false);
                     life3BT1.setVisible(false);
@@ -375,21 +233,21 @@ public class TavoloController {
                     life1BT1.setVisible(false);
                     life2BT1.setVisible(false);
                     life3BT1.setVisible(false);
-                    String nomeMorto=nomeBot1Label.getText();
-                    nomeBot1Label.setText(nomeMorto+ " è morto");
+                    String nomeMorto = nomeBot1Label.getText();
+                    nomeBot1Label.setText(nomeMorto + " è morto");
                 }
             }
 
-            if(nome.equalsIgnoreCase(nomeBot2Label.getText())){
-                if(vita==3){
+            if (nome.equalsIgnoreCase(nomeBot2Label.getText())) {
+                if (vita == 3) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(true);
                     life3BT2.setVisible(true);
-                } else if(vita==2){
+                } else if (vita == 2) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(true);
                     life3BT2.setVisible(false);
-                } else if(vita==1) {
+                } else if (vita == 1) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(false);
                     life3BT2.setVisible(false);
@@ -397,21 +255,21 @@ public class TavoloController {
                     life1BT2.setVisible(false);
                     life2BT2.setVisible(false);
                     life3BT2.setVisible(false);
-                    String nomeMorto=nomeBot2Label.getText();
-                    nomeBot2Label.setText(nomeMorto+ " è morto");
+                    String nomeMorto = nomeBot2Label.getText();
+                    nomeBot2Label.setText(nomeMorto + " è morto");
                 }
             }
 
-            if(nome.equalsIgnoreCase(nomeBot3Label.getText())){
-                if(vita==3){
+            if (nome.equalsIgnoreCase(nomeBot3Label.getText())) {
+                if (vita == 3) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(true);
                     life3BT3.setVisible(true);
-                } else if(vita==2){
+                } else if (vita == 2) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(true);
                     life3BT3.setVisible(false);
-                } else if(vita==1) {
+                } else if (vita == 1) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(false);
                     life3BT3.setVisible(false);
@@ -419,18 +277,16 @@ public class TavoloController {
                     life1BT3.setVisible(false);
                     life2BT3.setVisible(false);
                     life3BT3.setVisible(false);
-                    String nomeMorto=nomeBot3Label.getText();
-                    nomeBot3Label.setText(nomeMorto+ " è morto");
+                    String nomeMorto = nomeBot3Label.getText();
+                    nomeBot3Label.setText(nomeMorto + " è morto");
                 }
             }
-
-
 
 
         }
     }
 
-    public void getCrown(){
+    public void getCrown() {
         mazzierePL.setVisible(true);
         mazziereBT1.setVisible(true);
         mazziereBT2.setVisible(true);
@@ -438,10 +294,9 @@ public class TavoloController {
     }
 
 
-
     public void gestisciMazziere() {
         getCrown();
-        String mazziere =  partita.getMazziereNome();
+        String mazziere = partita.getMazziereNome();
         if (nomeGiocatoreLabel.getText().equalsIgnoreCase(mazziere)) {
             mazziereBT1.setVisible(false);
             mazziereBT2.setVisible(false);
@@ -464,21 +319,19 @@ public class TavoloController {
     }
 
 
-
-
-
     public void setCartaTavolo() {
+        // Image back = new Image(getClass().getResource("/Assets/Cards/back.PNG").toString());
+        //   centerSpace.setImage(back);
         Carta c;
         for (int i = 0; i < partita.giocatori.size(); i++) {
             if (nomeGiocatoreLabel.getText().equalsIgnoreCase(partita.giocatori.get(i).getNome())) {
                 partita.giocatori.get(i).getCarta().getImmagineCarta();
-                //  Image cc = new Image(partita.giocatori.get(i).getCarta().getImmagineCarta()).toString());
-                //    Image cc = new Image(getClass().getResource("/Assets/Cards/back.PNG").toString());
-
                 humanPlayerSpace.setImage(partita.giocatori.get(i).getCarta().getImmagineCarta());
+
             } else if (nomeBot1Label.getText().equalsIgnoreCase(partita.giocatori.get(i).getNome())) {
 
                 bot1Space.setImage(partita.giocatori.get(i).getCarta().getImmagineCarta());
+
             } else if (nomeBot2Label.getText().equalsIgnoreCase(partita.giocatori.get(i).getNome())) {
                 bot2Space.setImage(partita.giocatori.get(i).getCarta().getImmagineCarta());
 
@@ -497,6 +350,140 @@ public class TavoloController {
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    public void roll1(int valoreDado) {
+//showDice();
+        Thread thread = new Thread() {
+            public void run() {
+                System.out.println("Thread Running");
+                try {
+                    for (int i = 0; i < 15; i++) {
+                        // numeroDado=valoreDado;
+                        System.out.println("Valore dato in roll:" + valoreDado);
+                        Image uno = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        dicePL.setImage(uno);
+
+                        Thread.sleep(50);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
+
+    }
+
+    public void roll2(int valoreDado) {
+//showDice();
+        Thread thread = new Thread() {
+            public void run() {
+                System.out.println("Thread Running");
+                try {
+                    for (int i = 0; i < 15; i++) {
+                        // numeroDado=valoreDado;
+                        System.out.println("Valore dato in roll:" + valoreDado);
+
+                        Image due = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        diceBot1.setImage(due);
+
+                        Thread.sleep(50);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
+
+    }
+
+    public void roll3(int valoreDado) {
+//showDice();
+        Thread thread = new Thread() {
+            public void run() {
+                System.out.println("Thread Running");
+                try {
+                    for (int i = 0; i < 15; i++) {
+                        // numeroDado=valoreDado;
+                        System.out.println("Valore dato in roll:" + valoreDado);
+
+                        Image tre = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        diceBot2.setImage(tre);
+
+                        Thread.sleep(50);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
+
+    }
+
+    public void roll4(int valoreDado) {
+//showDice();
+        Thread thread = new Thread() {
+            public void run() {
+                System.out.println("Thread Running");
+                try {
+                    for (int i = 0; i < 15; i++) {
+                        // numeroDado=valoreDado;
+                        System.out.println("Valore dato in roll:" + valoreDado);
+
+                        Image quattro = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        diceBot3.setImage(quattro);
+                        Thread.sleep(50);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
+
+    }
+
+    public void roll(int valoreDado) {
+//showDice();
+        Thread thread = new Thread() {
+            public void run() {
+                System.out.println("Thread Running");
+                try {
+                    for (int i = 0; i < 15; i++) {
+                        // numeroDado=valoreDado;
+                        System.out.println("Valore dato in roll:" + valoreDado);
+
+                        Image quattro = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        diceBot3.setImage(quattro);
+                        Image tre = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        diceBot2.setImage(tre);
+                        Image due = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        diceBot1.setImage(due);
+                        Image uno = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                        dicePL.setImage(uno);
+                        Thread.sleep(50);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
+
     }
 }
 

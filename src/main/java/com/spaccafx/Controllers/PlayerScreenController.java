@@ -22,25 +22,22 @@ public class PlayerScreenController {
 
     @FXML
     PasswordField passwordField;
-     PartitaClassicaController2 partitaClassicaController;
+    PartitaClassicaController2 partitaClassicaController;
 
 
-
-    public void passaggioController(MainMenuController partita)
-    {
+    public void passaggioController(MainMenuController partita) {
 
 
-        this.partitaClassicaController= partita.pcc;
-        System.out.println("PSC"+partitaClassicaController);
-        this.pwd=partita.pcc.P.getCodicePartita();
+        this.partitaClassicaController = partita.pcc;
+        System.out.println("PSC" + partitaClassicaController);
+        this.pwd = partita.pcc.P.getCodicePartita();
 
     }
 
-    public PlayerScreenController(){
-        this.pwd=ShareData.getInstance().getCodice();
-        this.partitaClassicaController=ShareData.getInstance().getPartitaClassicaController();
+    public PlayerScreenController() {
+        this.pwd = ShareData.getInstance().getCodice();
+        this.partitaClassicaController = ShareData.getInstance().getPartitaClassicaController();
     }
-
 
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
@@ -68,14 +65,12 @@ public class PlayerScreenController {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = loaderTavolo.load();
 
-           // TavoloController tc = loaderTavolo.getController();
-          //  tc.passaggioController(this);
+            // TavoloController tc = loaderTavolo.getController();
+            //  tc.passaggioController(this);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
-
 
 
         } else {
@@ -96,7 +91,6 @@ public class PlayerScreenController {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
 }

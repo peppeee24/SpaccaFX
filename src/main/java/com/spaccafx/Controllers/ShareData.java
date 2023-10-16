@@ -40,12 +40,12 @@ public class ShareData {
         this.tavoloController = tavoloController;
     }
 
-    public PartitaSelectorController getPartitaSelectorController(){
+    public PartitaSelectorController getPartitaSelectorController() {
         return partitaSelectorController;
     }
 
-    public void setPartitaSelectorController(PartitaSelectorController partitaSelectorController){
-        this.partitaSelectorController=partitaSelectorController;
+    public void setPartitaSelectorController(PartitaSelectorController partitaSelectorController) {
+        this.partitaSelectorController = partitaSelectorController;
     }
 
     public Partita getPartita() {
@@ -56,11 +56,11 @@ public class ShareData {
         this.partita = partita;
     }
 
-    public void setCodice(Partita partita){
-        this.codice=partita.getCodicePartita();
+    public void setCodice(Partita partita) {
+        this.codice = partita.getCodicePartita();
     }
 
-    public int getCodice(){
+    public int getCodice() {
         return codice;
     }
 }
