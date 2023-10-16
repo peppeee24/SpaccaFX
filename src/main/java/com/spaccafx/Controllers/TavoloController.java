@@ -88,10 +88,14 @@ public class TavoloController {
 
     }
 
-    public void lancia(ActionEvent actionEvent) {
-        partita.lancioDadiIniziale();
+    public void lancia(ActionEvent actionEvent)
+    {
+        partita.preStartGame();
+        //partita.startGame();
+        //partita.lancioDadiIniziale();
+        System.out.println("Faccio metodi sgambe");
         bottoneLancio.setVisible(false);
-        impostaDadi();
+        //impostaDadi();
 
     }
 
@@ -129,7 +133,7 @@ public class TavoloController {
                 //  roll4(valoreDado);
             }
         }
-        gestisciMazziere();
+        //gestisciMazziere();
 
     }
 
@@ -194,7 +198,7 @@ public class TavoloController {
         for (int i = 0; i < partita.giocatori.size(); i++) {
             String nome = partita.giocatori.get(i).getNome();
             int vita = partita.giocatori.get(i).getVita();
-            System.out.println(vita);
+            //System.out.println(vita);
             if (nome.equalsIgnoreCase(nomeGiocatoreLabel.getText())) {
                 if (vita == 3) {
                     life1PL.setVisible(true);
@@ -317,7 +321,9 @@ public class TavoloController {
             mazziereBT2.setVisible(false);
         }
         this.gestisciVite();
+        this.partita.distribuisciCarte(); // PROVA
         impostazioneInizialeCarte();
+        setCartaTavolo();
     }
 
 
@@ -327,7 +333,7 @@ public class TavoloController {
         Carta c;
         for (int i = 0; i < partita.giocatori.size(); i++) {
             if (nomeGiocatoreLabel.getText().equalsIgnoreCase(partita.giocatori.get(i).getNome())) {
-                partita.giocatori.get(i).getCarta().getImmagineCarta();
+                //partita.giocatori.get(i).getCarta().getImmagineCarta();
                 humanPlayerSpace.setImage(partita.giocatori.get(i).getCarta().getImmagineCarta());
 
             } else if (nomeBot1Label.getText().equalsIgnoreCase(partita.giocatori.get(i).getNome())) {

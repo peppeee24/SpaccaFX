@@ -45,7 +45,6 @@ public class Partita
 
         this.telegramBot = new SpaccaTGBot(); // TODO CAMBIARE INIZILIAZZAZIONE BOT, DA METTERE SOLO QUANDO SI AVVIA IL PROGRAMMA E NON OGNI VOLTA CHE SI CREA UNA PARTITA
 
-
     }
 
     //region # GAME
@@ -53,7 +52,7 @@ public class Partita
     public void startGame()
     {
 
-        preStartGame(); // Fase iniziale del gioco
+        //preStartGame(); // Fase iniziale del gioco
 
         while(isGameRunning()) // fino a quando ci sono giocatori (piu di 1, altrimenti termina in automatico!!)
         {
@@ -73,10 +72,16 @@ public class Partita
         this.isGameRunning = false; // gioco finito e metto dunque false
     }
 
-    private void preStartGame()
+    public void preStartGame()
     {
+        ShareData sharedData = ShareData.getInstance();
+        this.TC = sharedData.getTavoloController();
+
         lancioDadiIniziale(); // I giocatori effettuano il lancio dei dadi
+        TC.impostaDadi();
+
         stabilisciMazziere(); // Viene decretato chi e il mazziere
+        TC.gestisciMazziere();
     }
 
     private void runRound()
@@ -118,6 +123,45 @@ public class Partita
         ruotaMazziere();
         mazzo.MescolaMazzo();
     }
+
+    /*private void runRoundUI()
+    {
+
+        // devo partire dalla posizione del mazziere in poi
+        boolean flag = true; // fino a quando non incontriamo il mazziere
+        int c = posMazziere; // deve partire dal mazziere
+
+        while(flag)
+        {
+            if(c+1 > giocatori.size() - 1)
+                c = 0;
+            else
+                c++;
+
+            System.out.println("Posizione attuale: " + c);
+
+            IGiocatore currentGiocatore = giocatori.get(c);
+
+            if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
+            {
+                System.out.println("[MOSSA] Tocca a un (MAZZIERE)");
+                sceltaNewUI(s, currentGiocatore);
+
+                flag = false; // MAZZIERE TROVATO! Dopo questa mossa finisce il ciclo
+            }
+            else // se il giocatore ha il ruolo GIOCATORE
+            {
+                System.out.println("[MOSSA] Tocca a un (GIOCATORE)");
+                sceltaNewUI(s, currentGiocatore);
+            }
+        }
+
+        System.out.println("[GAME] Round FINITO!! CONTROLLO I RISULTATI...");
+
+        controllaRisultati(); // prendo tutti i dati e li metto in un mapset
+        ruotaMazziere();
+        mazzo.MescolaMazzo();
+    }*/
 
     //endregion
 
@@ -231,7 +275,7 @@ public class Partita
         return numeroPiuAlto;
     }
 
-    private void distribuisciCarte()
+    public void distribuisciCarte()
     {
         int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
 
@@ -335,6 +379,45 @@ public class Partita
 
     }
 
+    /*private void sceltaNewUI(IGiocatore currentGiocatore)
+    {
+        if(currentGiocatore.getCarta() instanceof CartaImprevisto)
+        {
+            ((CartaImprevisto)(currentGiocatore.getCarta())).Effetto(this,currentGiocatore); // gli mando questa classe
+        }
+        else if(currentGiocatore.getCarta() instanceof CartaProbabilita)
+        {
+            ((CartaProbabilita)(currentGiocatore.getCarta())).Effetto(this,currentGiocatore); // gli mando questa classe
+        }
+
+        mostraIstruzioni(currentGiocatore);
+
+
+        // se sono un player normale posso fare queste scelte
+        if(currentGiocatore instanceof Giocatore)
+        {
+            System.out.println("Tocca fare la mossa a un GIOCATORE");
+
+
+            switch (TC.)
+            {
+                case "Scambia": scambiaCarta(currentGiocatore); break;
+                case "Passa": passaTurno(); break;
+                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
+            }
+        }
+        else // vuol dire che sono un Bot
+        {
+            System.out.println("Tocca fare la mossa a un BOT");
+            switch (((Bot)currentGiocatore).Scelta(this)) // Il bot fa una scelta basandosi sulla dfficolta e sui dati della partita
+            {
+                case 1: scambiaCarta(currentGiocatore); break;
+                case 2: passaTurno(); break;
+                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
+            }
+        }
+
+    }*/
 
     public void scambiaCarta(IGiocatore currentGiocatore)
     {

@@ -1,6 +1,7 @@
 package com.spaccafx.Cards;
 
 import com.spaccafx.Enums.SemeCarta;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,8 +20,8 @@ public class Mazzo
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
 
-        carteNormali = 4; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
-        carteSpeciali = 2; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
+        carteNormali = 5; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
+        carteSpeciali = 5; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
         // TODO FARE UNA VERIFICA PER VEDERE SE IL N. CARTE SPECIALI < CARTE NORMALI
 
         RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
@@ -38,17 +39,29 @@ public class Mazzo
         // RIEMPO CON LE CARTE NORMALI
         for (int c=1; c<=carteNormali; c++) // CANE
         {
-            mazzoCarte.add(new CartaNormale(c, SemeCarta.CANE));
+            CartaNormale carta = new CartaNormale(c, SemeCarta.CANE);
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Cane/c" + c + ".PNG").toString());
+
+            carta.setImage(cartaImage);
+            mazzoCarte.add(carta);
         }
 
         for (int c=1; c<=carteNormali; c++) // GATTO
         {
-            mazzoCarte.add(new CartaNormale(c, SemeCarta.GATTO));
+            CartaNormale carta = new CartaNormale(c, SemeCarta.GATTO);
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Gatto/g" + c + ".PNG").toString());
+
+            carta.setImage(cartaImage);
+            mazzoCarte.add(carta);
         }
 
         for (int c=1; c<=carteNormali; c++) // TOPO
         {
-            mazzoCarte.add(new CartaNormale(c, SemeCarta.TOPO));
+            CartaNormale carta = new CartaNormale(c, SemeCarta.TOPO);
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Topo/t" + c + ".PNG").toString());
+
+            carta.setImage(cartaImage);
+            mazzoCarte.add(carta);
         }
     }
 
@@ -64,7 +77,13 @@ public class Mazzo
                 newVal = (int)(1 + Math.random() * (carteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
             System.out.println("Imposto valore: " + newVal);
-            mazzoCarte.add(new CartaImprevisto(newVal, SemeCarta.IMPREVISTO)); // vuol dire che e unica e la creo
+
+            CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO);
+
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Imprevisto/i" + c + ".PNG").toString());
+            cartaImprevisto.setImage(cartaImage);
+
+            mazzoCarte.add(cartaImprevisto); // vuol dire che e unica e la creo
         }
     }
 
@@ -81,7 +100,14 @@ public class Mazzo
                 newVal = (int)(1 + Math.random() * (carteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
             System.out.println("Imposto valore: " + newVal);
-            mazzoCarte.add(new CartaProbabilita(newVal, SemeCarta.PROBABILITA)); // vuol dire che e unica e la creo
+
+            CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA);
+
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Probabilita/p" + c + ".PNG").toString());
+            cartaProbabilita.setImage(cartaImage);
+
+            mazzoCarte.add(cartaProbabilita); // vuol dire che e unica e la creo
+
         }
     }
 

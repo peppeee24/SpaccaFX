@@ -65,7 +65,7 @@ public class Spacca extends Application {
 
 
 
-        Giocatore p1 = new Giocatore("tester22");
+        /*Giocatore p1 = new Giocatore("tester22");
         Giocatore p2 = new Giocatore("peppeee24");
         //Giocatore p3 = new Giocatore("sgambeFrocio");
         Bot b1 = new AdvancedBot("HardBot");
@@ -81,7 +81,7 @@ public class Spacca extends Application {
 
         p.startGame();
         System.exit(0);
-
+        */
         /*
         Bot b1 = new AdvancedBot();
         Bot b2 = new EasyBot();
