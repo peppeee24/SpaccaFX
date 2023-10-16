@@ -6,11 +6,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
     <children>
-      <ImageView fx:id="centerSpace" fitHeight="213.0" fitWidth="186.0" layoutX="918.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="centerSpace" fitHeight="213.0" fitWidth="186.0" layoutX="915.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
          </image>
@@ -20,8 +21,8 @@
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-          <Button fx:id="scambiaButton" layoutX="696.0" layoutY="483.0" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="49.0" prefWidth="145.0" text="Scambia" />
-          <Button layoutX="1161.0" layoutY="483.0" mnemonicParsing="false" onAction="#passaTurno" prefHeight="49.0" prefWidth="145.0" text="Passa" />
+          <Button fx:id="scambiaButton" layoutX="693.0" layoutY="481.0" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="49.0" prefWidth="145.0" text="Scambia" />
+          <Button layoutX="1158.0" layoutY="481.0" mnemonicParsing="false" onAction="#passaTurno" prefHeight="49.0" prefWidth="145.0" text="Passa" />
       <Label fx:id="cartaSpecialeLabel" layoutX="31.0" layoutY="867.0" prefHeight="114.0" prefWidth="1117.0" styleClass="Spacca" text="CARTA SPECIALE">
          <font>
             <Font size="42.0" />
@@ -30,36 +31,36 @@
             <Bloom />
          </effect>
       </Label>
-        <ImageView fx:id="bot1Space" fitHeight="213.0" fitWidth="248.0" layoutX="48.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+        <ImageView fx:id="bot1Space" fitHeight="213.0" fitWidth="248.0" layoutX="45.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
             <image>
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="bot2Space" fitHeight="213.0" fitWidth="236.0" layoutX="863.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="bot2Space" fitHeight="213.0" fitWidth="236.0" layoutX="860.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="bot3Space" fitHeight="213.0" fitWidth="191.0" layoutX="1679.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+        <ImageView fx:id="bot3Space" fitHeight="213.0" fitWidth="191.0" layoutX="1676.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
             <image>
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-      <Label fx:id="nomeBot3Label" layoutX="1825.0" layoutY="354.0" rotate="-90.0" styleClass="Label" text="Bot 3" />
+      <Label fx:id="nomeBot3Label" layoutX="1822.0" layoutY="352.0" rotate="-90.0" styleClass="Label" text="Bot 3" />
       <Label fx:id="nomeBot2Label" layoutX="1078.0" layoutY="39.0" rotate="180.0" styleClass="Label" text="Bot 2" />
-      <Label fx:id="nomeBot1Label" layoutX="16.0" layoutY="339.0" rotate="90.0" styleClass="Label" text="Bot 1" />
+      <Label fx:id="nomeBot1Label" layoutX="13.0" layoutY="337.0" rotate="90.0" styleClass="Label" text="Bot 1" />
       <Label fx:id="nomeGiocatoreLabel" layoutX="1113.0" layoutY="1011.0" styleClass="Label" text="Your Name" />
-      <ImageView fx:id="life1BT1" fitHeight="49.0" fitWidth="33.0" layoutX="89.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="life1BT1" fitHeight="49.0" fitWidth="33.0" layoutX="86.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life2BT1" fitHeight="49.0" fitWidth="33.0" layoutX="89.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="life2BT1" fitHeight="49.0" fitWidth="33.0" layoutX="86.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life3BT1" fitHeight="49.0" fitWidth="33.0" layoutX="89.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="life3BT1" fitHeight="49.0" fitWidth="33.0" layoutX="86.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
@@ -94,22 +95,22 @@
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life3BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1811.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="life3BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1808.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life2BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1811.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="life2BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1808.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="life1BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1811.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="life1BT3" fitHeight="49.0" fitWidth="33.0" layoutX="1808.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/cuore.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="mazziereBT1" fitHeight="43.0" fitWidth="145.0" layoutX="112.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fx:id="mazziereBT1" fitHeight="43.0" fitWidth="145.0" layoutX="109.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
@@ -119,7 +120,7 @@
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="mazziereBT3" fitHeight="43.0" fitWidth="145.0" layoutX="1725.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="mazziereBT3" fitHeight="43.0" fitWidth="145.0" layoutX="1722.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/corona.PNG" />
          </image>
@@ -138,22 +139,28 @@
             <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="diceBot3" fitHeight="86.0" fitWidth="94.0" layoutX="1801.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+      <ImageView fx:id="diceBot3" fitHeight="86.0" fitWidth="94.0" layoutX="1798.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
             <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="diceBot1" fitHeight="86.0" fitWidth="94.0" layoutX="31.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="diceBot1" fitHeight="86.0" fitWidth="94.0" layoutX="28.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
          </image>
       </ImageView>
-      <Button fx:id="bottoneLancio" layoutX="918.0" layoutY="496.0" mnemonicParsing="false" onAction="#lancia" style="-fx-background-color: blue;" text="Lancia Dado" />
-      <ImageView fx:id="settingGame" fitHeight="65.0" fitWidth="86.0" layoutX="28.0" layoutY="34.0" onMouseClicked="#settingGame" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Assets/Game/Environment/setting.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="bottoneLancio" layoutX="915.0" layoutY="494.0" mnemonicParsing="false" onAction="#lancia" style="-fx-background-color: blue;" text="Lancia Dado" />
+      <Pane layoutX="3.0" layoutY="7.0" prefHeight="156.0" prefWidth="318.0">
+         <children>
+            <ImageView fx:id="settingGame" fitHeight="65.0" fitWidth="86.0" layoutX="14.0" onMouseClicked="#settingGame" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/setting.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="partitaNLabel" layoutX="96.0" layoutY="19.0" styleClass="Label" text="Partita n: " />
+            <Label fx:id="roundNLabel" layoutX="96.0" layoutY="52.0" styleClass="Label" text="Round n: " />
+         </children>
+      </Pane>
     </children>
 
 

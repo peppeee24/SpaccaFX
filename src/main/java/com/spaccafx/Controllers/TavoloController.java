@@ -36,7 +36,7 @@ public class TavoloController {
 
 
     @FXML
-    Label nomeGiocatoreLabel, nomeBot1Label, nomeBot2Label, nomeBot3Label, cartaSpecialeLabel;
+    Label nomeGiocatoreLabel, nomeBot1Label, nomeBot2Label, nomeBot3Label, cartaSpecialeLabel, partitaNLabel, roundNLabel;
 
     @FXML
     ImageView bot1Space, bot2Space, bot3Space, humanPlayerSpace, centerSpace;
@@ -68,6 +68,8 @@ public class TavoloController {
 
     public void initialize() {
         setLableTable();
+        partitaNLabel.setText("Partita n: "+partita.getCodicePartita());
+        roundNLabel.setText("Round n: "+ partita.getCurrentRound());
 
 
     }

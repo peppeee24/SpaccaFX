@@ -286,7 +286,7 @@ public class Partita
 
     private boolean isGameRunning() { return giocatori.size() > 1; } // Restituisce true se ci sono piu di 1 giocatore vivi
 
-    private int getCurrentRound(){return this.currentRound;}
+    public int getCurrentRound(){return this.currentRound;}
 
     private void mostraIstruzioni(IGiocatore giocatore)
     {
