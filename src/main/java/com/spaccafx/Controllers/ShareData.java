@@ -9,6 +9,8 @@ public class ShareData {
     private Partita partita;
 
     private TavoloController tavoloController;
+
+    private PartitaSelectorController partitaSelectorController;
     private int codice;
 
     private ShareData() {
@@ -36,6 +38,14 @@ public class ShareData {
     public void setTavoloController(TavoloController tavoloController) {
 
         this.tavoloController = tavoloController;
+    }
+
+    public PartitaSelectorController getPartitaSelectorController(){
+        return partitaSelectorController;
+    }
+
+    public void setPartitaSelectorController(PartitaSelectorController partitaSelectorController){
+        this.partitaSelectorController=partitaSelectorController;
     }
 
     public Partita getPartita() {

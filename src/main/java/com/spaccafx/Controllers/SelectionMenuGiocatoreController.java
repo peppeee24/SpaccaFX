@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SelectionMenuController
+public class SelectionMenuGiocatoreController
 {
 
 
@@ -18,7 +18,7 @@ public class SelectionMenuController
 
     public void iniziaPartita(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader PartitaClassica = new FXMLLoader(Spacca.class.getResource("PartitaClassica2.fxml"));
+        FXMLLoader PartitaClassica = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(PartitaClassica.load());
         stage.setScene(scene);

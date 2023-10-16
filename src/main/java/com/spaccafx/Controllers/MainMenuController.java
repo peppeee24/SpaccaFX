@@ -30,17 +30,14 @@ public class MainMenuController {
 
     public void startGame(ActionEvent actionEvent) throws IOException {
 
-            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Parent root = playerScreen.load();
-// In questo caso, a differenza di come abbiamo visto nella classe PartitaCalssicaController2, necessitiamo playerScreen.load(); perchè se prima non carichiamo con load la classe,
-        // playerScreenController, il suo oggetto ci risulterà null, generando errori
-          //  PlayerScreenController psc = playerScreen.getController();
-        //    psc.passaggioController(this);
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Parent root = playerScreen.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+
 
 
     }
