@@ -472,7 +472,7 @@ public class Partita
         for (IGiocatore currentGiocatore : giocatori)
         {
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
-                    ", Carta: " + currentGiocatore.getCarta().toString() +
+                    //", Carta: " + currentGiocatore.getCarta().toString() +
                     ", Vite: " + currentGiocatore.getVita() +
                     ", Ruolo: " + currentGiocatore.getRuolo());
         }
@@ -481,18 +481,16 @@ public class Partita
     //endregion
 
 
-    public String getMazziereNome(){
+    public String getMazziereNome()
+    {
         String nomeMazziere="";
 
-        for(int i=0;i<giocatori.size();i++){
+        for (IGiocatore iGiocatore : giocatori)
+        {
 
-            if(giocatori.get(i).getRuolo()==RuoloGiocatore.MAZZIERE)
-                nomeMazziere=giocatori.get(i).getNome();
+            if (iGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
+                nomeMazziere = iGiocatore.getNome();
         }
         return nomeMazziere;
     }
-
-
-
-
 }

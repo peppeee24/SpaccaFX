@@ -12,11 +12,6 @@ public class CartaNormale extends Carta
         super(valore, seme);
     }
 
-    public void setSeme(SemeCarta seme){this.seme = seme;}
-
-
-    public SemeCarta getSeme(){return this.seme;}
-
     @Override
     public String toString(){return this.getValore() + " di " + this.seme;}
 
