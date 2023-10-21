@@ -36,7 +36,7 @@ public class TavoloController {
 
 
     @FXML
-    Label nomeGiocatoreLabel, nomeBot1Label, nomeBot2Label, nomeBot3Label, cartaSpecialeLabel, partitaNLabel, roundNLabel;
+    Label nomeGiocatoreLabel, nomeBot1Label, nomeBot2Label, nomeBot3Label, cartaSpecialeLabel, effettoLabel, partitaNLabel, roundNLabel;
 
     @FXML
     ImageView bot1Space, bot2Space, bot3Space, humanPlayerSpace, centerSpace;
@@ -51,7 +51,7 @@ public class TavoloController {
     ImageView diceBot1, diceBot2, diceBot3, dicePL, settingGame;
 
     @FXML
-    Button bottoneLancio;
+    Button bottoneLancio, bottoneMazzo;
 
 
     private PartitaClassicaController2 PC;
@@ -80,7 +80,7 @@ public class TavoloController {
 
 
     public void setLableTable() {
-        getCartaSpeciale();
+        nascondiCartaSpeciale();
         disableCrown();
         disableDice();
         //partita.StampaInfoGiocatori();
@@ -143,9 +143,18 @@ public class TavoloController {
 
     // ../../Assets/Game/Environment/dice/dice1.png
     public void getCartaSpeciale() {
-        cartaSpecialeLabel.setVisible(false);
+        cartaSpecialeLabel.setVisible(true);
+        effettoLabel.setVisible(true);
+
 
     }
+
+    public void nascondiCartaSpeciale() {
+        cartaSpecialeLabel.setVisible(false);
+        effettoLabel.setVisible(false);
+
+    }
+
 
 
     public void disableDice() {
