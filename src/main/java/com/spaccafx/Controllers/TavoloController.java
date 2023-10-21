@@ -51,7 +51,7 @@ public class TavoloController {
     ImageView diceBot1, diceBot2, diceBot3, dicePL, settingGame;
 
     @FXML
-    Button bottoneLancio, bottoneMazzo;
+    Button bottoneLancio, bottoneBlue, bottoneRosso;
 
 
     private PartitaClassicaController2 PC;
@@ -60,9 +60,9 @@ public class TavoloController {
 
     // inizializzo
     public void initialize() {
-        setLableTable(); // nomi bot e nomi giocatori
-        partitaNLabel.setText("Partita n: "+partita.getCodicePartita());
-        roundNLabel.setText("Round n: "+ partita.getCurrentRound());
+        setLableTable();
+        partitaNLabel.setText("Partita n: " + partita.getCodicePartita());
+        roundNLabel.setText("Round n: " + partita.getCurrentRound());
 
 
     }
@@ -77,10 +77,9 @@ public class TavoloController {
     }
 
 
-
-
     public void setLableTable() {
         nascondiCartaSpeciale();
+        hideScambiaBlu();
         disableCrown();
         disableDice();
         //partita.StampaInfoGiocatori();
@@ -93,14 +92,36 @@ public class TavoloController {
 
     }
 
-    public void lancia(ActionEvent actionEvent)
-    {
+    public void lancia(ActionEvent actionEvent) {
         partita.preStartGame();
 
         bottoneLancio.setVisible(false);
         //impostaDadi();
 
     }
+
+    public void showScambiaRosso() {
+        bottoneRosso.setVisible(true);
+    }
+
+    public void showScambiaBlu() {
+        bottoneBlue.setVisible(true);
+    }
+
+    public void hideScambiaRosso() {
+        bottoneRosso.setVisible(false);
+    }
+
+    public void hideScambiaBlu() {
+        bottoneBlue.setVisible(false);
+    }
+
+    public void scambiaConMazzo(ActionEvent actionEvent) {
+       // partita.passaTurnoUI();
+    } // passo nella partita il turno del player
+
+
+
 
     public void impostaDadi() {
         int valoreDado = 0;
@@ -156,7 +177,6 @@ public class TavoloController {
     }
 
 
-
     public void disableDice() {
         dicePL.setVisible(false);
         diceBot1.setVisible(false);
@@ -180,8 +200,13 @@ public class TavoloController {
     }
 
 
-    public void scambiaCarta(ActionEvent actionEvent) {partita.ScambiaCartaUI(partita.getCurrentGiocatorePos());} // all interno della partita faccio la mossa del giocatore attuale
-    public void passaTurno(ActionEvent actionEvent) {partita.passaTurnoUI();} // passo nella partita il turno del player
+    public void scambiaCarta(ActionEvent actionEvent) {
+        partita.ScambiaCartaUI(partita.getCurrentGiocatorePos());
+    } // all interno della partita faccio la mossa del giocatore attuale
+
+    public void passaTurno(ActionEvent actionEvent) {
+        partita.passaTurnoUI();
+    } // passo nella partita il turno del player
 
     public void impostazioneInizialeCarte() {
         Image back = new Image(getClass().getResource("/Assets/Cards/back.PNG").toString());
@@ -207,18 +232,22 @@ public class TavoloController {
             //System.out.println(vita);
             if (nome.equalsIgnoreCase(nomeGiocatoreLabel.getText())) {
                 if (vita == 3) {
+
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(true);
                 } else if (vita == 2) {
+
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(false);
                 } else if (vita == 1) {
+
                     life1PL.setVisible(true);
                     life2PL.setVisible(false);
                     life3PL.setVisible(false);
-                } else {
+                } else  {
+                 // TODO leggere l'array dei morti
                     life1PL.setVisible(false);
                     life2PL.setVisible(false);
                     life3PL.setVisible(false);
@@ -242,6 +271,8 @@ public class TavoloController {
                     life2BT1.setVisible(false);
                     life3BT1.setVisible(false);
                 } else {
+                    // TODO leggere l'array dei morti
+
                     life1BT1.setVisible(false);
                     life2BT1.setVisible(false);
                     life3BT1.setVisible(false);
@@ -264,6 +295,7 @@ public class TavoloController {
                     life2BT2.setVisible(false);
                     life3BT2.setVisible(false);
                 } else {
+                    // TODO leggere l'array dei morti
                     life1BT2.setVisible(false);
                     life2BT2.setVisible(false);
                     life3BT2.setVisible(false);
@@ -286,6 +318,7 @@ public class TavoloController {
                     life2BT3.setVisible(false);
                     life3BT3.setVisible(false);
                 } else {
+                    // TODO leggere l'array dei morti
                     life1BT3.setVisible(false);
                     life2BT3.setVisible(false);
                     life3BT3.setVisible(false);

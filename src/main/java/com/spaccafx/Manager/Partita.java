@@ -156,6 +156,8 @@ private void AvanzaRoundUI()
         currentGiocatorePos = cDistaccoMazziere;
         System.out.println("[GAME] Tocca al giocatore: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
         System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+
+
         this.currentGiocatorePos = cDistaccoMazziere;
     }
 
@@ -205,7 +207,7 @@ private void AvanzaRoundUI()
     {
         System.out.println("[SCELTA] Ho deciso di passare il turno");
 
-        if(giocatori.get(currentGiocatorePos).getRuolo() == RuoloGiocatore.MAZZIERE)
+        if(giocatori.get(currentGiocatorePos).getRuolo() == RuoloGiocatore.MAZZIERE) // todo da errore qui quandi muoiono tutti
             controllaRisultatiUI(); // da modificare
         else
             AvanzaRoundUI();
@@ -240,6 +242,7 @@ private void AvanzaRoundUI()
 
             if(giocatoriConValoreMassimo.get(0).getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
             {
+                giocatoriConValoreMassimo.get(0).setVita(0);
                 giocatoriMorti.add(giocatoriConValoreMassimo.get(0)); // viene messo nella lista degli eliminati
                 giocatori.remove(giocatoriConValoreMassimo.get(0));
                 System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoriConValoreMassimo.get(0).getNome() + " **");
@@ -268,6 +271,7 @@ private void AvanzaRoundUI()
 
                 if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                 {
+                    giocatoreDebole.setVita(0);
                     giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
                     giocatori.remove(giocatoreDebole);
                     System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
@@ -617,6 +621,7 @@ private void AvanzaRoundUI()
 
             if(giocatoriConValoreMassimo.get(0).getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
             {
+                giocatoriConValoreMassimo.get(0).setVita(0);
                 giocatoriMorti.add(giocatoriConValoreMassimo.get(0)); // viene messo nella lista degli eliminati
                 giocatori.remove(giocatoriConValoreMassimo.get(0));
                 System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoriConValoreMassimo.get(0).getNome() + " **");
@@ -645,6 +650,7 @@ private void AvanzaRoundUI()
 
                 if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                 {
+                    giocatoreDebole.setVita(0);
                     giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
                     giocatori.remove(giocatoreDebole);
                     System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");

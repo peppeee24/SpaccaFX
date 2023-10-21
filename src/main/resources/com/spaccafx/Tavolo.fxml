@@ -21,7 +21,7 @@
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>
         </ImageView>
-          <Button fx:id="scambiaButton" layoutX="410.0" layoutY="426.0" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="49.0" prefWidth="145.0" text="Scambia" />
+          <Button fx:id="bottoneRosso" layoutX="410.0" layoutY="426.0" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="49.0" prefWidth="145.0" text="Scambia" />
           <Button layoutX="811.0" layoutY="431.0" mnemonicParsing="false" onAction="#passaTurno" prefHeight="49.0" prefWidth="145.0" text="Passa" />
         <ImageView fx:id="bot1Space" fitHeight="213.0" fitWidth="162.0" layoutX="70.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
             <image>
@@ -141,8 +141,8 @@
             <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
          </image>
       </ImageView>
-      <Button fx:id="bottoneLancio1" layoutX="627.0" layoutY="441.0" mnemonicParsing="false" onAction="#lancia" style="-fx-background-color: blue;" text="Lancia Dado" />
-      <Button fx:id="bottoneMazzo" layoutX="417.0" layoutY="499.0" mnemonicParsing="false" onAction="#scambiaMazzo" style="-fx-background-color: blue;" text="S Mazzo" />
+      <Button fx:id="bottoneLancio" layoutX="627.0" layoutY="441.0" mnemonicParsing="false" onAction="#lancia" style="-fx-background-color: blue;" text="Lancia Dado" />
+      <Button fx:id="bottoneBlue" layoutX="417.0" layoutY="499.0" mnemonicParsing="false" onAction="#scambiaConMazzo" style="-fx-background-color: blue;" text="Scambia con Mazzo" />
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="156.0" prefWidth="318.0">
          <children>
             <ImageView fx:id="settingGame" fitHeight="65.0" fitWidth="86.0" layoutX="14.0" onMouseClicked="#settingGame" pickOnBounds="true" preserveRatio="true">
