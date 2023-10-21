@@ -17,7 +17,7 @@ public abstract class Carta
     public Carta(int valore, SemeCarta seme) {this.valore = valore; this.seme = seme;}
 
     public void setValore(int valore){this.valore = valore;}
-
+    // TODO INSERIRE IL SETBACK
     public void setImage(Image image){this.image = image;}
     public void setSeme(SemeCarta seme){this.seme = seme;}
 

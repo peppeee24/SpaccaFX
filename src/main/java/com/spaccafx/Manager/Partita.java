@@ -8,6 +8,7 @@ import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Player.*;
 import com.spaccafx.Cards.*;
 
+import java.awt.*;
 import java.util.*;
 
 public class Partita
@@ -16,7 +17,8 @@ public class Partita
 
     //region #PRIVATE VARIABLES
     int currentRound;
-    int posMazziere;
+    int posMazziere; // mazziere
+    int currentGiocatorePos; // viene dopo il mazziere
     int codicePartita;
     boolean isGameRunning;
     SpaccaTGBot telegramBot;
@@ -29,6 +31,8 @@ public class Partita
     public Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
     public ArrayList<IGiocatore> giocatori;
     public ArrayList<IGiocatore> giocatoriMorti;
+
+    int cDistaccoMazziere;
     //endregion
 
     //endregion
@@ -40,11 +44,19 @@ public class Partita
 
 
         this.posMazziere = 0;
+        this.currentGiocatorePos = 0;
         this.currentRound = 1; // quando si crea la partita parte gia dal round 1
         this.isGameRunning = true;
+        cDistaccoMazziere = 0;
 
         this.telegramBot = new SpaccaTGBot(); // TODO CAMBIARE INIZILIAZZAZIONE BOT, DA METTERE SOLO QUANDO SI AVVIA IL PROGRAMMA E NON OGNI VOLTA CHE SI CREA UNA PARTITA
 
+    }
+
+    public void impostaTavoloController()
+    {
+        ShareData sharedData = ShareData.getInstance();
+        this.TC = sharedData.getTavoloController();
     }
 
     //region # GAME
@@ -59,7 +71,7 @@ public class Partita
             System.out.println("\n\tNUOVO ROUND: " + getCurrentRound());
             distribuisciCarte(); // Distribuzione delle carte
 
-            runRound();
+            //runRound();
 
             StampaInfoGiocatori(); // per debug finale!
 
@@ -74,17 +86,15 @@ public class Partita
 
     public void preStartGame()
     {
-        ShareData sharedData = ShareData.getInstance();
-        this.TC = sharedData.getTavoloController();
-
         lancioDadiIniziale(); // I giocatori effettuano il lancio dei dadi
         TC.impostaDadi();
 
         stabilisciMazziere(); // Viene decretato chi e il mazziere
         TC.gestisciMazziere();
+
     }
 
-    private void runRound()
+    /*private void runRound()
     {
         Scanner s = new Scanner(System.in);
 
@@ -122,46 +132,182 @@ public class Partita
         controllaRisultati(); // prendo tutti i dati e li metto in un mapset
         ruotaMazziere();
         mazzo.MescolaMazzo();
-    }
+    }*/
 
-    /*private void runRoundUI()
+    public void runRoundUI()
     {
 
         // devo partire dalla posizione del mazziere in poi
-        boolean flag = true; // fino a quando non incontriamo il mazziere
-        int c = posMazziere; // deve partire dal mazziere
+        cDistaccoMazziere = posMazziere; // deve partire dal mazziere
+        AvanzaRoundUI(); // ci avanza di giocatore
 
-        while(flag)
+
+        //System.out.println("[GAME] Round FINITO!! CONTROLLO I RISULTATI...");
+        //controllaRisultati(); // prendo tutti i dati e li metto in un mapset
+    }
+
+private void AvanzaRoundUI()
+    {
+        if(cDistaccoMazziere+1 > giocatori.size() - 1)
+            cDistaccoMazziere = 0;
+        else
+            cDistaccoMazziere++;
+
+        currentGiocatorePos = cDistaccoMazziere;
+        System.out.println("[GAME] Tocca al giocatore: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
+        System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+        this.currentGiocatorePos = cDistaccoMazziere;
+    }
+
+
+    public void ScambiaCartaUI(int currentPlayerPos)
+    {
+        IGiocatore currentGiocatoreUI = giocatori.get(currentPlayerPos);
+        Carta cartaPlayerAttuale = currentGiocatoreUI.getCarta(); // prendo la sua carta
+
+        if(currentGiocatoreUI.getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
         {
-            if(c+1 > giocatori.size() - 1)
-                c = 0;
-            else
-                c++;
+            giocatori.get(currentPlayerPos).setCarta(mazzo.PescaCarta());
+            System.out.println("[GAME] Pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + giocatori.get(currentPlayerPos).getCarta());
+            System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
 
-            System.out.println("Posizione attuale: " + c);
+            TC.setCartaTavolo(); // TODO DA CAMBIARE IN UPDATECARDUI
+            controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
+        }
+        else // sono un giocatore normale
+        {
+            IGiocatore nextPlayer;
+            int nextIndexPlayer = currentPlayerPos + 1;
 
-            IGiocatore currentGiocatore = giocatori.get(c);
-
-            if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
+            if(nextIndexPlayer >= giocatori.size()) // se sono oltre il limite
             {
-                System.out.println("[MOSSA] Tocca a un (MAZZIERE)");
-                sceltaNewUI(s, currentGiocatore);
-
-                flag = false; // MAZZIERE TROVATO! Dopo questa mossa finisce il ciclo
+                nextPlayer = giocatori.get(0); // prendo il primo giocatore
+                nextIndexPlayer = 0;
             }
-            else // se il giocatore ha il ruolo GIOCATORE
+            else // altrimenti
+                nextPlayer = giocatori.get(nextIndexPlayer); // prendo il prossimo giocatore
+
+            System.out.println("[DEBUG] Indirizzo PLAYER successivo: " + nextIndexPlayer);
+
+            Carta cartaNextPlayer = nextPlayer.getCarta();
+            nextPlayer.setCarta(cartaPlayerAttuale);
+            giocatori.get(currentPlayerPos).setCarta(cartaNextPlayer);
+
+            System.out.println("[GAME] Ho scambiato la carta con il player successivo, adesso "
+                    + giocatori.get(currentPlayerPos).getNome() +  " ha la carta: " + giocatori.get(currentPlayerPos).getCarta());
+
+            TC.setCartaTavolo(); // TODO DA CAMBIARE IN UPDATECARDUI
+            AvanzaRoundUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
+        }
+    }
+
+    public void passaTurnoUI()
+    {
+        System.out.println("[SCELTA] Ho deciso di passare il turno");
+
+        if(giocatori.get(currentGiocatorePos).getRuolo() == RuoloGiocatore.MAZZIERE)
+            controllaRisultatiUI(); // da modificare
+        else
+            AvanzaRoundUI();
+    }
+
+
+    private void controllaRisultatiUI() // con questo metodo capiamo a chi togliere la vita dei player
+    {
+        Map<Integer, ArrayList<IGiocatore>> mapSet = new HashMap<>();
+
+        int maxValue = trovaValoreCartaAlta(giocatori);
+        System.out.println("[GAME] La carta con il valore piu alto e: " + maxValue);
+
+
+        for (IGiocatore giocatore : giocatori)
+        {
+            if (giocatore.getCarta().getValore() == maxValue)
             {
-                System.out.println("[MOSSA] Tocca a un (GIOCATORE)");
-                sceltaNewUI(s, currentGiocatore);
+                ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
+                giocatoriConValoreMassimo.add(giocatore);
+                mapSet.put(maxValue, giocatoriConValoreMassimo);
             }
         }
 
-        System.out.println("[GAME] Round FINITO!! CONTROLLO I RISULTATI...");
+        ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.get(maxValue);
 
-        controllaRisultati(); // prendo tutti i dati e li metto in un mapset
-        ruotaMazziere();
+        if(giocatoriConValoreMassimo.size() <= 1) // se abbiamo solo un perdente, NO spareggio
+        {
+            System.out.println("[CHECK-GAME] * 1 SOLO Giocatore perdente!");
+            giocatoriConValoreMassimo.get(0).setVita(giocatoriConValoreMassimo.get(0).getVita() - 1); // tolgo 1 vita
+            System.out.println("(!) " + giocatoriConValoreMassimo.get(0).getNome() + " HA PERSO 1 VITA!!");
+
+            if(giocatoriConValoreMassimo.get(0).getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+            {
+                giocatoriMorti.add(giocatoriConValoreMassimo.get(0)); // viene messo nella lista degli eliminati
+                giocatori.remove(giocatoriConValoreMassimo.get(0));
+                System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoriConValoreMassimo.get(0).getNome() + " **");
+            }
+        }
+        else // vuol dire che ci sono piu giocatori (spareggio)
+        {
+            System.out.println("[CHECK-GAME] * " +  giocatoriConValoreMassimo.size() + " MOLTEPLICI Giocatori perdenti!");
+
+            // Controllo Seme
+            IGiocatore giocatoreDebole = null;
+
+            for(IGiocatore giocatore : giocatoriConValoreMassimo)
+            {
+                if(giocatoreDebole == null || ((((Carta)giocatore.getCarta()).getSeme().compareTo(((Carta)giocatoreDebole.getCarta()).getSeme())) > 0))
+                {
+                    giocatoreDebole = giocatore;
+                    System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
+                }
+            }
+
+            if(giocatoreDebole != null)
+            {
+                giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+                System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
+
+                if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+                {
+                    giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                    giocatori.remove(giocatoreDebole);
+                    System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
+                }
+            }
+        }
+
+        ruotaMazziereUI(); // TODO SISTEMARE QUANDO IL MAZZIERE MUORE PERCHE DEVE CAMBIARE AL GIOCATORE DOPO
+        TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
         mazzo.MescolaMazzo();
-    }*/
+    }
+
+
+    private void ruotaMazziereUI()
+    {
+        if(posMazziere+1 > giocatori.size() - 1)
+        {
+            if(posMazziere < giocatori.size())
+            {
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
+                posMazziere = 0;
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+            }
+            else
+            {
+                posMazziere = posMazziere - 1;
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
+                posMazziere = 0;
+                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+            }
+
+        }
+        else
+        {
+            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
+            posMazziere++;
+            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+        }
+    }
+
 
     //endregion
 
@@ -248,7 +394,7 @@ public class Partita
         }
 
         System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE ("+ giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
-//TC.gestisciMazziere();
+
     }
 
 
@@ -379,46 +525,6 @@ public class Partita
 
     }
 
-    /*private void sceltaNewUI(IGiocatore currentGiocatore)
-    {
-        if(currentGiocatore.getCarta() instanceof CartaImprevisto)
-        {
-            ((CartaImprevisto)(currentGiocatore.getCarta())).Effetto(this,currentGiocatore); // gli mando questa classe
-        }
-        else if(currentGiocatore.getCarta() instanceof CartaProbabilita)
-        {
-            ((CartaProbabilita)(currentGiocatore.getCarta())).Effetto(this,currentGiocatore); // gli mando questa classe
-        }
-
-        mostraIstruzioni(currentGiocatore);
-
-
-        // se sono un player normale posso fare queste scelte
-        if(currentGiocatore instanceof Giocatore)
-        {
-            System.out.println("Tocca fare la mossa a un GIOCATORE");
-
-
-            switch (TC.)
-            {
-                case "Scambia": scambiaCarta(currentGiocatore); break;
-                case "Passa": passaTurno(); break;
-                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
-            }
-        }
-        else // vuol dire che sono un Bot
-        {
-            System.out.println("Tocca fare la mossa a un BOT");
-            switch (((Bot)currentGiocatore).Scelta(this)) // Il bot fa una scelta basandosi sulla dfficolta e sui dati della partita
-            {
-                case 1: scambiaCarta(currentGiocatore); break;
-                case 2: passaTurno(); break;
-                default: System.out.println("Scelta NON ACCETTABILE!!"); break;
-            }
-        }
-
-    }*/
-
     public void scambiaCarta(IGiocatore currentGiocatore)
     {
         int currentIndexPlayer = giocatori.indexOf(currentGiocatore); // prendo il giocatore attuale
@@ -546,6 +652,9 @@ public class Partita
 
             }
         }
+
+        ruotaMazziere();
+        mazzo.MescolaMazzo();
     }
 
     public void generaCodicePartita()  { this.codicePartita =  (int)(1 + (Math.random() * 1000)); } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
@@ -564,6 +673,8 @@ public class Partita
 
         return vincitore;
     }
+
+    public int getCurrentGiocatorePos(){return this.currentGiocatorePos;}
 
     //endregion
 
@@ -590,16 +701,5 @@ public class Partita
     //endregion
 
 
-    public String getMazziereNome()
-    {
-        String nomeMazziere="";
-
-        for (IGiocatore iGiocatore : giocatori)
-        {
-
-            if (iGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
-                nomeMazziere = iGiocatore.getNome();
-        }
-        return nomeMazziere;
-    }
+    public String getMazziereNome() {return giocatori.get(posMazziere).getNome();}
 }

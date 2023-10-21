@@ -80,7 +80,7 @@ public class Mazzo
 
             CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Imprevisto/i" + c + ".PNG").toString());
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Imprevisto/i" + newVal + ".PNG").toString());
             cartaImprevisto.setImage(cartaImage);
 
             mazzoCarte.add(cartaImprevisto); // vuol dire che e unica e la creo
@@ -103,7 +103,7 @@ public class Mazzo
 
             CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Probabilita/p" + c + ".PNG").toString());
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Probabilita/p" + newVal + ".PNG").toString());
             cartaProbabilita.setImage(cartaImage);
 
             mazzoCarte.add(cartaProbabilita); // vuol dire che e unica e la creo
@@ -131,7 +131,7 @@ public class Mazzo
         mazzoCarte.clear();
 
         CreoCarteNormali();
-        //CreoCarteImprevisto();
+        CreoCarteImprevisto();
         CreoCarteProbabilita();
     }
 
@@ -164,7 +164,7 @@ public class Mazzo
         // TODO Quando attivo un effetto di una carta che ne cambia il suo valore
         //      bisogna evitare che quello venga salvato altrimenti finisce nel mazzo con un valore sballato
 
-        System.out.println("Ho mescolato il mazzo (" + mazzoCarte.size() + " carte)");
+        System.out.println("[MAZZIERE] Ho mescolato il mazzo (" + mazzoCarte.size() + " carte)");
     }
 
     public void StampaMazzo()

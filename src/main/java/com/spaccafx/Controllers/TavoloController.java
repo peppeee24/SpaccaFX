@@ -58,21 +58,26 @@ public class TavoloController {
 
     private Partita partita;
 
-    public TavoloController() {
-        ShareData sharedData = ShareData.getInstance();
-        ShareData.getInstance().setTavoloController(this);
-        this.PC = sharedData.getPartitaClassicaController();
-        this.partita = sharedData.getPartita();
-    }
-
-
+    // inizializzo
     public void initialize() {
-        setLableTable();
+        setLableTable(); // nomi bot e nomi giocatori
         partitaNLabel.setText("Partita n: "+partita.getCodicePartita());
         roundNLabel.setText("Round n: "+ partita.getCurrentRound());
 
 
     }
+
+    // costruttore
+    public TavoloController() { // todo da rivedere
+        ShareData sharedData = ShareData.getInstance();
+        ShareData.getInstance().setTavoloController(this);
+        this.PC = sharedData.getPartitaClassicaController();
+        this.partita = sharedData.getPartita();
+        this.partita.impostaTavoloController();
+    }
+
+
+
 
     public void setLableTable() {
         getCartaSpeciale();
@@ -91,9 +96,7 @@ public class TavoloController {
     public void lancia(ActionEvent actionEvent)
     {
         partita.preStartGame();
-        //partita.startGame();
-        //partita.lancioDadiIniziale();
-        System.out.println("Faccio metodi sgambe");
+
         bottoneLancio.setVisible(false);
         //impostaDadi();
 
@@ -168,14 +171,8 @@ public class TavoloController {
     }
 
 
-    public void scambiaCarta(ActionEvent actionEvent) {
-// TODO gestire come parametro il giocatore corrente
-       // partita.scambiaCarta();
-    }
-
-    public void passaTurno(ActionEvent actionEvent) {
-        partita.passaTurno();
-    }
+    public void scambiaCarta(ActionEvent actionEvent) {partita.ScambiaCartaUI(partita.getCurrentGiocatorePos());} // all interno della partita faccio la mossa del giocatore attuale
+    public void passaTurno(ActionEvent actionEvent) {partita.passaTurnoUI();} // passo nella partita il turno del player
 
     public void impostazioneInizialeCarte() {
         Image back = new Image(getClass().getResource("/Assets/Cards/back.PNG").toString());
@@ -321,7 +318,11 @@ public class TavoloController {
             mazziereBT2.setVisible(false);
         }
         this.gestisciVite();
-        this.partita.distribuisciCarte(); // PROVA
+
+        partita.distribuisciCarte();
+        partita.runRoundUI();
+
+
         impostazioneInizialeCarte();
         setCartaTavolo();
     }

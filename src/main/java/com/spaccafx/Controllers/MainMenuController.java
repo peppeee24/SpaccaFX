@@ -28,7 +28,16 @@ public class MainMenuController {
         System.out.println("MMC" + pcc);
     }
 
-    public void startGame(ActionEvent actionEvent) throws IOException {
+    public void startSetting(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
+    {
+        FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("Login.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(Login.load());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void startGame(ActionEvent actionEvent) throws IOException { // PLAY
 
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -45,13 +54,7 @@ public class MainMenuController {
 
     }
 
-    public void startSetting(ActionEvent actionEvent) throws IOException {
-        FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("Login.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(Login.load());
-        stage.setScene(scene);
-        stage.show();
-    }
+
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));

@@ -24,23 +24,14 @@ public class PlayerScreenController {
     PasswordField passwordField;
     PartitaClassicaController2 partitaClassicaController;
 
-
-    public void passaggioController(MainMenuController partita) {
-
-
-        this.partitaClassicaController = partita.pcc;
-        System.out.println("PSC" + partitaClassicaController);
-        this.pwd = partita.pcc.P.getCodicePartita();
-
-    }
-
-    public PlayerScreenController() {
+    public PlayerScreenController() { // costruttore
         this.pwd = ShareData.getInstance().getCodice();
         this.partitaClassicaController = ShareData.getInstance().getPartitaClassicaController();
     }
 
+    public void loginAction(ActionEvent actionEvent) throws IOException { // bottone inizia
 
-    public void loginAction(ActionEvent actionEvent) throws IOException {
+        // TODO CREARE UNA PASSWORD PER OGNI PARTITA != DAL ID PARTITA
 
         int PasswordField = Integer.parseInt(passwordField.getText());
         System.out.println("Codice Ricevuto: " + this.pwd);

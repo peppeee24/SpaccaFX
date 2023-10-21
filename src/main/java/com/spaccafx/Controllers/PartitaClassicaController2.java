@@ -30,11 +30,11 @@ import java.util.Optional;
 
 public class PartitaClassicaController2 {
 
-    private int numeroGiocatori, numeroBotMenu;
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, A1, A2, A3;
+    private int numeroGiocatori, numeroBotMenu; // sono i dati della partita
+    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, A1, A2, A3; // sono i dati della partita
 
 
-    Partita P;
+    Partita P; // // TODO guardare dichiaro classe partita
 
     @FXML
     Tab playerTab, botTbb, creaTab;
@@ -54,27 +54,30 @@ public class PartitaClassicaController2 {
     @FXML
     ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, easyBot1, easyBot2, easyBot3;
 
+    // creo bot per settare nomi/ difficolta
     EasyBot E = new EasyBot();
     AdvancedBot A = new AdvancedBot();
 
 
     @FXML
-    public void initialize() {
+    public void initialize() { // si attiva da SelectionMenuController
 
         setNumeroGiocatori();
 
     }
 
+    // legge i dati dal menu tendina dei giocatori
     public void setNumeroGiocatori() {
         numeroGiocatoriMenu.setOnAction(this::nG);
     }
 
+    // legge i dati dal menu tendina dei giocatori
     public void nG(ActionEvent event) {
         numeroGiocatori = numeroGiocatoriMenu.getValue();
         setNumeroGiocatori();
         this.controlloGiocatori();
         setNumeroBot();
-
+        System.out.println("Numero giocatori : " + numeroGiocatori);
     }
 
     public int getNumeroGiocatori() {
@@ -89,7 +92,6 @@ public class PartitaClassicaController2 {
 
     public void dB(ActionEvent event) {
         difficolta = difficoltaBotMenu.getValue();
-
     }
 
 
@@ -163,7 +165,7 @@ public class PartitaClassicaController2 {
         return A3;
     }
 
-    public void nascondiBot() {
+    public void nascondiBot() { // viene attivato quando clicchi sul bottone salva
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
         labelBot3.setVisible(false);
@@ -190,12 +192,14 @@ public class PartitaClassicaController2 {
     }
 
 
+    // per i bot
     public void impostaDifficolta() {
 
-        if (difficolta != null) {
-            switch (getNumeroBot()) {
+        if (difficolta != null) { // TODO Impostare default choicebox
+            switch (getNumeroBot())  // getnumero() bot viene generato quando salvo i dati dei player
+            {
                 case 0:
-                    difficoltaBotMenu.setVisible(false);
+                    difficoltaBotMenu.setVisible(false); // guardare sta merda (demolire tutto)
                     difficoltaBotLabel.setVisible(false);
                     numeroBotLabel.setText("Non ci sono bot");
                     break;
@@ -258,94 +262,11 @@ public class PartitaClassicaController2 {
         }
     }
 
-    /*
-
-
-
-    if (getNumeroGiocatori() == 4) {
-
-        difficoltaBotMenu.setVisible(false);
-        difficoltaBotLabel.setVisible(false);
-        numeroBotLabel.setText("Non ci sono bot");
-
-
-    } else if (getNumeroGiocatori() == 3) {
-        fourLabel.setVisible(false);
-        playerName4.setVisible(false);
-
-        if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-            labelBot1.setText(getA1());
-            labelBot1.setVisible(true);
-            hardBot1.setVisible(true);
-        } else{
-            labelBot1.setText(getE1());
-            labelBot1.setVisible(true);
-            easyBot1.setVisible(true);
-        }
-
-    } else if (getNumeroGiocatori() == 2) {
-        treeLabel.setVisible(false);
-        playerName3.setVisible(false);
-        fourLabel.setVisible(false);
-        playerName4.setVisible(false);
-        if(getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-            labelBot1.setText(getA1());
-            labelBot1.setVisible(true);
-            hardBot1.setVisible(true);
-            labelBot2.setText(getA2());
-            labelBot2.setVisible(true);
-            hardBot2.setVisible(true);
-        } else{
-            labelBot1.setText(getE1());
-            labelBot1.setVisible(true);
-            easyBot1.setVisible(true);
-            labelBot2.setText(getE2());
-            labelBot2.setVisible(true);
-            easyBot2.setVisible(true);
-        }
-
-
-
-    } else if (getNumeroGiocatori() == 1) {
-        twoLabel.setVisible(false);
-        playerName2.setVisible(false);
-        treeLabel.setVisible(false);
-        playerName3.setVisible(false);
-        fourLabel.setVisible(false);
-        playerName4.setVisible(false);
-        if(getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-            labelBot1.setText(getA1());
-            labelBot1.setVisible(true);
-            hardBot1.setVisible(true);
-            labelBot2.setText(getA2());
-            labelBot2.setVisible(true);
-            hardBot2.setVisible(true);
-            labelBot3.setText(getA3());
-            labelBot3.setVisible(true);
-            hardBot3.setVisible(true);
-        } else{
-            labelBot1.setText(getE1());
-            labelBot1.setVisible(true);
-            easyBot1.setVisible(true);
-            labelBot2.setText(getE2());
-            labelBot2.setVisible(true);
-            easyBot2.setVisible(true);
-            labelBot3.setText(getE3());
-            labelBot3.setVisible(true);
-            easyBot3.setVisible(true);
-        }
-
-
-
-    }
-
-     */
-
 
     public void controlloGiocatori() {
 
-
-        if (getNumeroGiocatori() == 3) {
+        // vedere come si fa con un for
+        if (getNumeroGiocatori() == 3)  {
             fourLabel.setVisible(false);
             playerName4.setVisible(false);
 
@@ -371,7 +292,8 @@ public class PartitaClassicaController2 {
     }
 
 
-    public void salvaNomi(ActionEvent actionEvent) throws IOException {
+    public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
+    {
         System.out.println("Salvo i nomi");
         switch (getNumeroGiocatori()) {
             case 1:
@@ -392,7 +314,7 @@ public class PartitaClassicaController2 {
                 setNomeGiocatore3();
                 setNomeGiocatore4();
                 break;
-            default:
+            default: break;
 
 
         }
@@ -459,13 +381,15 @@ public class PartitaClassicaController2 {
     }
 
 
-    public void generaCodice(ActionEvent actionEvent) throws IOException {
+    // Utilizziamo classe partita
+    public void generaCodice(ActionEvent actionEvent) throws IOException
+    {
 
         int somma = getNumeroGiocatori() + getNumeroBot();
 
         if (somma > 1 && somma < 5) {
             this.P = new Partita(somma);
-            P.generaCodicePartita();
+            P.generaCodicePartita(); // TODO CAPIRE LAG
 
             System.out.println("Codice Generato: " + P.getCodicePartita());
             codicePartita.setText("Codice: " + P.getCodicePartita());
@@ -488,8 +412,11 @@ public class PartitaClassicaController2 {
         }
     }
 
+    // METODO IMPORTANTE CLASSE PARTITA
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
 
+
+        // TODO CONTROLLARE STO CODICE
 
         ArrayList<IGiocatore> GiocatoriPartita = new ArrayList<>();
 
@@ -551,19 +478,21 @@ public class PartitaClassicaController2 {
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
 
+        // ti riporta al menu principale
         FXMLLoader impostaGioco = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(impostaGioco.load());
         stage.setScene(scene);
+        stage.show();
 
         // Mi permette di creare un "oggetto del controller", in questo modo riesco a passare tutto al controller senza creare un nuovo oggetto della classe che provocherebbe due istanze aperte
         //   MainMenuController mmc = impostaGioco.getController();
         //  mmc.setPartitaClassicaController(this);
-        ShareData.getInstance().setPartitaClassicaController(this);
+        ShareData.getInstance().setPartitaClassicaController(this); // gli passo classe partitacontroller
         ShareData.getInstance().setPartita(this.P);
-        ShareData.getInstance().setCodice(this.P);
+        ShareData.getInstance().setCodice(this.P); // non serve
 
-        stage.show();
+
 
 
     }

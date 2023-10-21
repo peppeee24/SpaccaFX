@@ -31,9 +31,9 @@ public class PartitaSelectorController {
 
     // TODO impostare caricamento partite da file
 
-    private PartitaClassicaController2 PC;
+    PartitaClassicaController2 PC;
 
-    private Partita partita;
+    Partita partita;
 
     public void initialize() {
         //  betaDisable();
@@ -45,6 +45,8 @@ public class PartitaSelectorController {
 
 
     }
+
+    // fare for e cambiare id per ogni bottone     --- Play_IDPartita
 
     public void play1(ActionEvent actionEvent) throws IOException {
 
