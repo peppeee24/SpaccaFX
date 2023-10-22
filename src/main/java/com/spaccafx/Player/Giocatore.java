@@ -18,28 +18,28 @@ public class Giocatore implements IGiocatore
     public Giocatore()
     {
         this.nome = "Giocatore";
-        this.vita = 3;
+        this.vita = 4;
         this.carta = null;
     }
 
     public Giocatore(Carta carta)
     {
         this.nome = "Giocatore";
-        this.vita = 3;
+        this.vita = 4;
         this.carta = carta;
     }
 
     public Giocatore(String nome)
     {
         this.nome = nome;
-        this.vita = 3;
+        this.vita = 4;
         this.carta = null;
     }
 
     public Giocatore(String nome, Carta  carta)
     {
         this.nome = nome;
-        this.vita = 3;
+        this.vita = 4;
         this.carta = carta;
     }
 
