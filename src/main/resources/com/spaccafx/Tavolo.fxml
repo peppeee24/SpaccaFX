@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: #165A4C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: #165A4C;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
     <children>
       <ImageView fx:id="centerSpace" fitHeight="213.0" fitWidth="186.0" layoutX="609.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,7 +25,7 @@
          <font>
             <Font name="System Bold" size="22.0" />
          </font></Button>
-          <Button layoutX="811.0" layoutY="426.0" mnemonicParsing="false" onAction="#passaTurno" prefHeight="49.0" prefWidth="145.0" style="-fx-background-color: #0e3c32; -fx-background-radius: 20;" text="Passa" textFill="WHITE">
+          <Button fx:id="bottonePassa" layoutX="811.0" layoutY="426.0" mnemonicParsing="false" onAction="#passaTurno" prefHeight="49.0" prefWidth="145.0" style="-fx-background-color: #0e3c32; -fx-background-radius: 20;" text="Passa" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font></Button>

@@ -61,7 +61,7 @@ public class Partita
 
     //region # GAME
 
-    public void startGame()
+    /*public void startGame()
     {
 
         //preStartGame(); // Fase iniziale del gioco
@@ -82,7 +82,7 @@ public class Partita
         System.out.println("[END GAME] GIOCO FINITO, 1 PLAYER RIMASTO VIVO. INVIO DATI SU TELEGRAM...");
         telegramBot.messaggioVincitorePartita(codicePartita, giocatori.get(0).getNome());
         this.isGameRunning = false; // gioco finito e metto dunque false
-    }
+    }*/
 
     public void preStartGame()
     {
@@ -266,21 +266,38 @@ private void AvanzaRoundUI()
                 giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
                 System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
 
+
                 if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                 {
-                    giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
-                    giocatori.remove(giocatoreDebole);
-                    System.out.println("WEEEEEEEEEEEEEEEEEEEEEEEE");
-                    System.out.println("vite perdente: " + giocatoreDebole.getVita() + " nome perdente: "+ giocatoreDebole.getNome());
+                    System.out.println("PROVA DI NASCONDERE I PLAYER 1");
+                    System.out.flush();
+                    System.out.println("giocatore debole: " + giocatoreDebole.getNome());
+                    System.out.flush();
+                    impostaTavoloController();
                     TC.HidePlayerUI(giocatoreDebole.getNome());
+                    System.out.flush();
+
+                    System.out.println("PROVA DI NASCONDERE I PLAYER2");
+                    giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                    System.out.println("PROVA DI NASCONDERE I PLAYER3");
+                    giocatori.remove(giocatoreDebole);
+                    System.out.println("PROVA DI NASCONDERE I PLAYER4");
                     System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
                 }
             }
         }
 
-        ruotaMazziereUI(); // TODO SISTEMARE QUANDO IL MAZZIERE MUORE PERCHE DEVE CAMBIARE AL GIOCATORE DOPO
-        TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
-        mazzo.MescolaMazzo();
+        if(!isGameRunning()) // se true allora non abbiamo un vincitore perche il gioco sta andando
+        {
+            System.out.println("Il gioco e finito, andate in pace");
+            TC.EndGameUI();
+        }
+        else
+        {
+            ruotaMazziereUI(); // TODO SISTEMARE QUANDO IL MAZZIERE MUORE PERCHE DEVE CAMBIARE AL GIOCATORE DOPO
+            TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
+            mazzo.MescolaMazzo(); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
+        }
     }
 
 

@@ -51,7 +51,7 @@ public class TavoloController {
     ImageView diceBot1, diceBot2, diceBot3, dicePL, settingGame;
 
     @FXML
-    Button bottoneLancio, bottoneBlue, bottoneRosso;
+    Button bottoneLancio, bottoneBlue, bottoneRosso, bottonePassa;
 
 
     private PartitaClassicaController2 PC;
@@ -306,6 +306,7 @@ public class TavoloController {
     public void HidePlayerUI(String player)
     {
         System.out.println("[UI] elimino: " + player);
+        System.out.flush();
         if (nomeGiocatoreLabel.getText().equalsIgnoreCase(player))
         {
             System.out.println("Giocatore 0 morto!");
@@ -366,6 +367,20 @@ public class TavoloController {
             nomeBot3Label.setText(nomeMorto + " è morto");
         }
     }
+
+    public void EndGameUI()
+    {
+        bottonePassa.setVisible(false);
+        bottoneRosso.setVisible(false);
+
+
+        cartaSpecialeLabel.setVisible(true);
+        cartaSpecialeLabel.setText("Partita finita");
+        effettoLabel.setVisible(true);
+        effettoLabel.setText("Vincitore: " + partita.getVincitore().getNome());
+
+    }
+
 
     public void getCrown() {
         mazzierePL.setVisible(true);
