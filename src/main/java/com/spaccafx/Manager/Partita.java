@@ -80,6 +80,7 @@ public class Partita
         }
 
         System.out.println("[END GAME] GIOCO FINITO, 1 PLAYER RIMASTO VIVO. INVIO DATI SU TELEGRAM...");
+
         telegramBot.messaggioVincitorePartita(codicePartita, giocatori.get(0).getNome());
         this.isGameRunning = false; // gioco finito e metto dunque false
     }*/
@@ -89,7 +90,7 @@ public class Partita
         lancioDadiIniziale(); // I giocatori effettuano il lancio dei dadi
         TC.impostaDadi();
 
-        stabilisciMazziere(); // Viene decretato chi e il mazziere
+       // stabilisciMazziere(); // Viene decretato chi e il mazziere
         TC.gestisciMazziere();
 
     }
@@ -214,6 +215,7 @@ private void AvanzaRoundUI()
 
     private void controllaRisultatiUI() // con questo metodo capiamo a chi togliere la vita dei player
     {
+
         Map<Integer, ArrayList<IGiocatore>> mapSet = new HashMap<>();
 
         int maxValue = trovaValoreCartaAlta(giocatori);
@@ -263,12 +265,15 @@ private void AvanzaRoundUI()
 
             if(giocatoreDebole != null)
             {
+
                 giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
                 System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
 
 
                 if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                 {
+                    // TODO caso in cui viene eliminato un mazziere
+
                     System.out.println("PROVA DI NASCONDERE I PLAYER 1");
                     System.out.flush();
                     System.out.println("giocatore debole: " + giocatoreDebole.getNome());
@@ -294,15 +299,17 @@ private void AvanzaRoundUI()
         }
         else
         {
+            mazzo.MescolaMazzo(); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
             ruotaMazziereUI(); // TODO SISTEMARE QUANDO IL MAZZIERE MUORE PERCHE DEVE CAMBIARE AL GIOCATORE DOPO
             TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
-            mazzo.MescolaMazzo(); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
+
         }
     }
 
 
     private void ruotaMazziereUI()
     {
+        // TODO sistemare rotazione mazziere
         if(posMazziere+1 > giocatori.size() - 1)
         {
             if(posMazziere < giocatori.size())
