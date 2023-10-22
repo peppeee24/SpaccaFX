@@ -385,6 +385,12 @@ public class PartitaClassicaController2 {
     public void generaCodice(ActionEvent actionEvent) throws IOException
     {
 
+        Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert3.setTitle("Piccolo LAG!");
+        alert3.setContentText("Sto caricando il codice, attendi....");
+        Optional<ButtonType> result3 = alert3.showAndWait();
+
+
         int somma = getNumeroGiocatori() + getNumeroBot();
 
         if (somma > 1 && somma < 5) {

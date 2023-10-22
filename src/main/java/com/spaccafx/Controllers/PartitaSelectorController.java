@@ -24,10 +24,9 @@ import java.io.IOException;
 public class PartitaSelectorController {
 
     @FXML
-    Button playButton1, playButton2, playButton3, playButton4, playButton5, playButton6, playButton7;
-    Label partita1Label, partita2Label, partita3Label, partita4Label, partita5Label, partita6Label, partita7Label;
+    Button playButton1;
 
-    Pane pane1, pane2, pane3, pane4, pane5, pane6, pane7;
+    Pane pane2, pane3, pane4, pane5, pane6, pane7;
 
     // TODO impostare caricamento partite da file
 

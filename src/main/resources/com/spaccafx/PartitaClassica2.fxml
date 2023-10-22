@@ -45,29 +45,43 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PartitaClassicaController2">
+<StackPane prefHeight="630.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PartitaClassicaController2">
    <children>
       <TabPane fx:id="totalTab" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="playerTab" styleClass="bodybg" text="Player">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0">
-                     <children>
-                        <Pane fx:id="partitaClassica" prefHeight="630.0" prefWidth="1024.0" styleClass="bodybg" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <Tab fx:id="playerTab" text="Player">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #0E3C32;" BorderPane.alignment="CENTER">
                            <children>
-                              <Label layoutX="94.0" layoutY="23.0" styleClass="Spacca" text="Partita" />
-                              <Label layoutX="485.0" layoutY="23.0" styleClass="Fx" text="Classica" />
-                              <ImageView fx:id="indietro" fitHeight="81.0" fitWidth="80.0" layoutX="12.0" layoutY="538.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                              <Label layoutX="76.0" layoutY="281.0" text="PLAYER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                     </left>
+                     <right>
+                        <AnchorPane prefHeight="601.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Assets/Game/Environment/indietro.PNG" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
-                              <Label fx:id="numeroGiocatoriLabel" layoutX="120.0" layoutY="173.0" styleClass="Label" text="Numero Giocatori" />
-                              <TextField fx:id="playerName2" layoutX="351.0" layoutY="493.0" promptText="Giocatore 2" />
-                              <ChoiceBox fx:id="numeroGiocatoriMenu" layoutX="351.0" layoutY="173.0" prefWidth="150.0">
+                              <Label fx:id="numeroGiocatoriLabel" layoutX="236.0" layoutY="32.0" styleClass="Label" text="PLAYERS" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold Italic" size="27.0" />
+                                 </font></Label>
+                              <ChoiceBox fx:id="numeroGiocatoriMenu" layoutX="383.0" layoutY="39.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
                                        <Integer fx:value="1" />
@@ -77,106 +91,216 @@
                                     </FXCollections>
                                  </items>
                               </ChoiceBox>
-                              <TextField fx:id="playerName1" layoutX="137.0" layoutY="490.0" promptText="Giocatore 1" />
-                              <TextField fx:id="playerName4" layoutX="790.0" layoutY="490.0" promptText="Giocatore 4" />
-                              <TextField fx:id="playerName3" layoutX="563.0" layoutY="493.0" promptText="Giocatore 3" />
-                              <Label fx:id="nomeGiocatoriLabel" layoutX="131.0" layoutY="289.0" styleClass="Label" text="Nome giocatori" />
-                              <ImageView fx:id="oneLabel" fitHeight="103.0" fitWidth="115.0" layoutX="154.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                              <TextField fx:id="playerName2" layoutX="442.0" layoutY="257.0" promptText="Giocatore 2" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></TextField>
+                              <TextField fx:id="playerName1" layoutX="110.0" layoutY="257.0" promptText="Giocatore 1" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></TextField>
+                              <TextField fx:id="playerName4" layoutX="442.0" layoutY="465.0" promptText="Giocatore 4" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0pc;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></TextField>
+                              <TextField fx:id="playerName3" layoutX="110.0" layoutY="465.0" promptText="Giocatore 3" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></TextField>
+                              <ImageView fx:id="oneLabel" fitHeight="103.0" fitWidth="115.0" layoutX="145.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="twoLabel" fitHeight="103.0" fitWidth="115.0" layoutX="367.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="twoLabel" fitHeight="103.0" fitWidth="115.0" layoutX="477.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="treeLabel" fitHeight="103.0" fitWidth="115.0" layoutX="583.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="treeLabel" fitHeight="103.0" fitWidth="115.0" layoutX="145.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="fourLabel" fitHeight="103.0" fitWidth="115.0" layoutX="811.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="fourLabel" fitHeight="103.0" fitWidth="115.0" layoutX="477.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
-                              <Button layoutX="725.0" layoutY="565.0" mnemonicParsing="false" onAction="#salvaNomi" text="Salva Nomi Giocatori" />
+                              <Button layoutX="634.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaNomi" prefHeight="54.0" prefWidth="128.0" style="-fx-background-color: #0E3C32;" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
                            </children>
-                        </Pane>
-                     </children></AnchorPane>
-            </content>
+                        </AnchorPane>
+                     </right>
+                  </BorderPane>
+               </content>
           </Tab>
-          <Tab fx:id="botTab" styleClass="bodybg" text="Bot">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css">
-                     <children>
-                        <Label fx:id="numeroBotLabel" layoutX="63.0" layoutY="302.0" styleClass="Label" text="Numero Bot:" />
-                        <Label fx:id="difficoltaBotLabel" layoutX="189.0" layoutY="154.0" styleClass="Label" text="Difficoltà Bot" />
-                        <ChoiceBox fx:id="difficoltaBotMenu" layoutX="198.0" layoutY="194.0" prefWidth="150.0">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList">
-                                 <String fx:value="Facile" />
-                                 <String fx:value="Difficile" />
-                              </FXCollections>
-                           </items>
-                        </ChoiceBox>
-                        <Label layoutX="120.0" styleClass="Spacca" text="Partita" />
-                        <Label layoutX="490.0" styleClass="Fx" text="Classica" />
-                        <ImageView fx:id="hardBot1" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="hardBot2" fitHeight="150.0" fitWidth="200.0" layoutX="345.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="hardBot3" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="labelBot1" layoutX="144.0" layoutY="510.0" styleClass="Label" text="Nome bot" />
-                        <Label fx:id="labelBot2" layoutX="358.0" layoutY="510.0" styleClass="Label" text="Nome bot" />
-                        <Label fx:id="labelBot3" layoutX="564.0" layoutY="510.0" styleClass="Label" text="Nome bot" />
-                        <ImageView fx:id="easyBot1" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="easyBot2" fitHeight="150.0" fitWidth="200.0" layoutX="342.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="easyBot3" fitHeight="150.0" fitWidth="200.0" layoutX="546.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="botCounter" layoutX="227.0" layoutY="302.0" styleClass="Label" text="0" />
-                        <Button layoutX="387.0" layoutY="188.0" mnemonicParsing="false" onAction="#salvaDifficolta" text="Imposta Difficolta" />
-                     </children></AnchorPane>
-            </content>
+          <Tab fx:id="botTab" text="Bot">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #0E3C32;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="98.0" layoutY="281.0" text="BOT" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                     </left>
+                     <right>
+                        <AnchorPane prefHeight="601.0" prefWidth="778.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="numeroBotLabel" layoutX="240.0" layoutY="55.0" styleClass="Label" text="Numero Bot:">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font></Label>
+                              <Label fx:id="difficoltaBotLabel" layoutX="116.0" layoutY="121.0" styleClass="Label" text="Difficoltà Bot">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font></Label>
+                              <ChoiceBox fx:id="difficoltaBotMenu" layoutX="284.0" layoutY="123.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Facile" />
+                                       <String fx:value="Difficile" />
+                                    </FXCollections>
+                                 </items>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <ImageView fx:id="hardBot3" fitHeight="150.0" fitWidth="200.0" layoutX="527.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="hardBot2" fitHeight="150.0" fitWidth="200.0" layoutX="324.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="hardBot1" fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="labelBot1" layoutX="140.0" layoutY="394.0" styleClass="Label" text="Nome bot" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font></Label>
+                              <Label fx:id="labelBot2" layoutX="352.0" layoutY="395.0" styleClass="Label" text="Nome bot">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font></Label>
+                              <Label fx:id="labelBot3" layoutX="557.0" layoutY="395.0" styleClass="Label" text="Nome bot">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font></Label>
+                              <Label fx:id="botCounter" layoutX="397.0" layoutY="54.0" styleClass="Label" text="0">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font></Label>
+                              <Button layoutX="474.0" layoutY="112.0" mnemonicParsing="false" onAction="#salvaDifficolta" prefHeight="30.0" prefWidth="128.0" style="-fx-background-color: #0E3C32; -fx-background-radius: 10;" text="SET" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
+                              <ImageView fx:id="easyBot3" fitHeight="150.0" fitWidth="200.0" layoutX="527.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="easyBot2" fitHeight="150.0" fitWidth="200.0" layoutX="324.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="easyBot1" fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="indietro2" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </right>
+                  </BorderPane>
+               </content>
           </Tab>
             <Tab fx:id="CreaTab" styleClass="bodybg" text="Crea">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="bodybg">
-                     <children>
-                        <Button fx:id="inviaButton" layoutX="653.0" layoutY="530.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="40.0" prefWidth="332.0" style="-fx-background-color: #346BA8;" text="Salva impostazioni" />
-                        <Label fx:id="codicePartita" layoutX="188.0" layoutY="269.0" styleClass="Label" text="Codice: ">
-                           <cursor>
-                              <Cursor fx:constant="TEXT" />
-                           </cursor>
-                        </Label>
-                        <Button fx:id="generaCodiceButton" layoutX="132.0" layoutY="325.0" mnemonicParsing="false" onAction="#generaCodice" text="Genera Codice" />
-                        <Label layoutX="91.0" layoutY="14.0" styleClass="Spacca" text="Partita" />
-                        <Label layoutX="471.0" layoutY="14.0" styleClass="Fx" text="Classica" />
-                     </children>
-                  </AnchorPane>
-              </content>
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #0E3C32;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="91.0" layoutY="281.0" text="CREA" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                     <right>
+                        <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="inviaButton" layoutX="633.0" layoutY="533.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="54.0" prefWidth="128.0" style="-fx-background-color: #0E3C32; -fx-background-radius: 10;" text="CREATE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label fx:id="codicePartita" layoutX="307.0" layoutY="263.0" styleClass="Label" text="Codice: ">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="generaCodiceButton" layoutX="307.0" layoutY="335.0" mnemonicParsing="false" onAction="#generaCodice" style="-fx-background-color: #0E323C; -fx-background-radius: 20;" text="Genera Codice" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label fx:id="numeroGiocatoriLabel1" layoutX="307.0" layoutY="66.0" styleClass="Label" text="STEP FINALE" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold Italic" size="27.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="indietro1" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </right>
+                  </BorderPane>
+               </content>
             </Tab>
         </tabs>
       </TabPane>

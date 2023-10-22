@@ -226,7 +226,8 @@ public class TavoloController {
 
     public void gestisciVite() {
 
-        for (int i = 0; i < partita.giocatori.size(); i++) {
+        for (int i = 0; i < partita.giocatori.size(); i++)
+        {
             String nome = partita.giocatori.get(i).getNome();
             int vita = partita.giocatori.get(i).getVita();
             //System.out.println(vita);
@@ -251,6 +252,7 @@ public class TavoloController {
                     life1PL.setVisible(false);
                     life2PL.setVisible(false);
                     life3PL.setVisible(false);
+                    humanPlayerSpace.setVisible(false);
                     String nomeMorto = nomeGiocatoreLabel.getText();
                     nomeGiocatoreLabel.setText(nomeMorto + " è morto");
                 }
@@ -276,6 +278,7 @@ public class TavoloController {
                     life1BT1.setVisible(false);
                     life2BT1.setVisible(false);
                     life3BT1.setVisible(false);
+                    bot1Space.setVisible(false);
                     String nomeMorto = nomeBot1Label.getText();
                     nomeBot1Label.setText(nomeMorto + " è morto");
                 }
@@ -299,6 +302,7 @@ public class TavoloController {
                     life1BT2.setVisible(false);
                     life2BT2.setVisible(false);
                     life3BT2.setVisible(false);
+                    bot2Space.setVisible(false);
                     String nomeMorto = nomeBot2Label.getText();
                     nomeBot2Label.setText(nomeMorto + " è morto");
                 }
@@ -322,6 +326,7 @@ public class TavoloController {
                     life1BT3.setVisible(false);
                     life2BT3.setVisible(false);
                     life3BT3.setVisible(false);
+                    bot3Space.setVisible(false);
                     String nomeMorto = nomeBot3Label.getText();
                     nomeBot3Label.setText(nomeMorto + " è morto");
                 }

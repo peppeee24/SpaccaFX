@@ -1,70 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1030.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PartitaSelectorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PartitaSelectorController">
    <children>
-      <ScrollPane layoutX="17.0" layoutY="61.0" prefHeight="522.0" prefWidth="964.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="629.0" prefWidth="946.0" styleClass="bodybg">
+      <BorderPane prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #0E3C32;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="pane1" layoutX="12.0" layoutY="7.0" prefHeight="71.0" prefWidth="538.0">
+                  <Label layoutX="61.0" layoutY="296.0" text="SELECTOR" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="630.0" prefWidth="776.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="253.0" layoutY="34.0" text="SELECT YOUR LOBBY">
+                     <font>
+                        <Font name="System Bold Italic" size="27.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="pane1" layoutX="10.0" layoutY="94.0" prefHeight="77.0" prefWidth="750.0">
                      <children>
-                        <Label fx:id="partita1Label" layoutX="22.0" layoutY="22.0" styleClass="Label" text="Parita: " />
-                        <Button fx:id="playButton1" layoutX="411.0" layoutY="16.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" text="Play" />
+                        <Label fx:id="partita1Label" layoutX="14.0" layoutY="15.0" prefHeight="48.0" prefWidth="97.0" styleClass="Label" text="Partita: ">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="playButton1" layoutX="630.0" layoutY="16.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: #0E3C32;" text="PLAY" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </Pane>
-                  <Pane fx:id="pane2" layoutX="12.0" layoutY="78.0" prefHeight="71.0" prefWidth="538.0">
-                     <children>
-                        <Label fx:id="partita2Label" layoutX="22.0" layoutY="22.0" styleClass="Label" text="Parita: " />
-                        <Button fx:id="playButton2" layoutX="411.0" layoutY="16.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" text="Play" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="pane3" layoutX="12.0" layoutY="149.0" prefHeight="71.0" prefWidth="538.0">
-                     <children>
-                        <Label fx:id="partita3Label" layoutX="22.0" layoutY="22.0" styleClass="Label" text="Parita: " />
-                        <Button fx:id="playButton3" layoutX="411.0" layoutY="16.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" text="Play" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="pane4" layoutX="12.0" layoutY="220.0" prefHeight="71.0" prefWidth="538.0">
-                     <children>
-                        <Label fx:id="partita4Label" layoutX="22.0" layoutY="22.0" styleClass="Label" text="Parita: " />
-                        <Button fx:id="playButton4" layoutX="411.0" layoutY="16.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" text="Play" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="pane5" layoutX="12.0" layoutY="291.0" prefHeight="71.0" prefWidth="538.0">
-                     <children>
-                        <Label fx:id="partita5Label" layoutX="22.0" layoutY="22.0" styleClass="Label" text="Parita: " />
-                        <Button fx:id="playButton5" layoutX="411.0" layoutY="16.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" text="Play" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="pane6" layoutX="12.0" layoutY="348.0" prefHeight="71.0" prefWidth="538.0">
-                     <children>
-                        <Label fx:id="partita6Label" layoutX="22.0" layoutY="22.0" styleClass="Label" text="Parita: " />
-                        <Button fx:id="playButton6" layoutX="411.0" layoutY="16.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" text="Play" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="im" layoutX="5.0" layoutY="406.0" prefHeight="71.0" prefWidth="538.0">
-                     <children>
-                        <Label fx:id="partita7Label" layoutX="28.0" layoutY="22.0" styleClass="Label" text="Parita: " />
-                        <Button fx:id="playButton7" layoutX="419.0" layoutY="22.0" mnemonicParsing="false" onAction="#play1" prefHeight="27.0" prefWidth="106.0" text="Play" />
-                     </children>
-                  </Pane>
-                  <ImageView fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="536.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="549.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Assets/Game/Environment/indietro.PNG" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-        </content>
-      </ScrollPane>
-      <Label fx:id="scegliPartitaLabel" layoutX="401.0" layoutY="27.0" styleClass="Label" text="Scegli una partita" />
+         </right>
+      </BorderPane>
    </children>
 </AnchorPane>
