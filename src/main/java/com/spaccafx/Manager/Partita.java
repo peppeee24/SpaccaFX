@@ -270,6 +270,9 @@ private void AvanzaRoundUI()
                 {
                     giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
                     giocatori.remove(giocatoreDebole);
+                    System.out.println("WEEEEEEEEEEEEEEEEEEEEEEEE");
+                    System.out.println("vite perdente: " + giocatoreDebole.getVita() + " nome perdente: "+ giocatoreDebole.getNome());
+                    TC.HidePlayerUI(giocatoreDebole.getNome());
                     System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
                 }
             }

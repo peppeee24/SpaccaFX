@@ -232,122 +232,138 @@ public class TavoloController {
             int vita = partita.giocatori.get(i).getVita();
             //System.out.println(vita);
             if (nome.equalsIgnoreCase(nomeGiocatoreLabel.getText())) {
-                if (vita == 4) {
+                if (vita == 3) {
 
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(true);
-                } else if (vita == 3) {
+                } else if (vita == 2) {
 
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(false);
-                } else if (vita == 2) {
+                } else if (vita == 1) {
 
                     life1PL.setVisible(true);
                     life2PL.setVisible(false);
                     life3PL.setVisible(false);
-                } else if (vita == 1) {
-                    System.out.println("Qualcuno è morto" + partita.giocatori.get(i).getNome());
-                 // TODO mettere carta gameover
-                    life1PL.setVisible(false);
-                    life2PL.setVisible(false);
-                    life3PL.setVisible(false);
-                    dicePL.setVisible(false);
-                   // humanPlayerSpace.setVisible(false);
-                    String nomeMorto = nomeGiocatoreLabel.getText();
-                    nomeGiocatoreLabel.setText(nomeMorto + " è morto");
-                    Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
-                    humanPlayerSpace.setImage(back);
                 }
             }
 
 
             if (nome.equalsIgnoreCase(nomeBot1Label.getText())) {
-                if (vita == 4) {
+                if (vita == 3) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(true);
                     life3BT1.setVisible(true);
-                } else if (vita == 3) {
+                } else if (vita == 2) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(true);
                     life3BT1.setVisible(false);
-                } else if (vita == 2) {
+                } else if (vita == 1) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(false);
                     life3BT1.setVisible(false);
-                } else if (vita == 1) {
-                    // TODO mettere carta gameover
-                    System.out.println("Qualcuno è morto" + partita.giocatori.get(i).getNome());
-                    life1BT1.setVisible(false);
-                    life2BT1.setVisible(false);
-                    life3BT1.setVisible(false);
-                   // bot1Space.setVisible(false);
-                    diceBot1.setVisible(false);
-                    Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
-                    bot1Space.setImage(back);
-                    String nomeMorto = nomeBot1Label.getText();
-                    nomeBot1Label.setText(nomeMorto + " è morto");
                 }
             }
 
             if (nome.equalsIgnoreCase(nomeBot2Label.getText())) {
-                if (vita == 4) {
+                if (vita == 3) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(true);
                     life3BT2.setVisible(true);
-                } else if (vita == 3) {
+                } else if (vita == 2) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(true);
                     life3BT2.setVisible(false);
-                } else if (vita == 2) {
+                } else if (vita == 1) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(false);
                     life3BT2.setVisible(false);
-                } else if(vita == 1) {
-                    // TODO leggere l'array dei morti
-                    System.out.println("Qualcuno è morto" + partita.giocatori.get(i).getNome());
-                    life1BT2.setVisible(false);
-                    life2BT2.setVisible(false);
-                    life3BT2.setVisible(false);
-                   // bot2Space.setVisible(false);
-                    diceBot2.setVisible(false);
-                    Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
-                    bot2Space.setImage(back);
-                    String nomeMorto = nomeBot2Label.getText();
-                    nomeBot2Label.setText(nomeMorto + " è morto");
                 }
             }
 
             if (nome.equalsIgnoreCase(nomeBot3Label.getText())) {
-                if (vita == 4) {
+                if (vita == 3) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(true);
                     life3BT3.setVisible(true);
-                } else if (vita == 3) {
+                } else if (vita == 2) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(true);
                     life3BT3.setVisible(false);
-                } else if (vita == 2) {
+                } else if (vita == 1) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(false);
                     life3BT3.setVisible(false);
-                } else if(vita == 1){
-                    // TODO leggere l'array dei morti
-                    System.out.println("Qualcuno è morto" + partita.giocatori.get(i).getNome());
-                    life1BT3.setVisible(false);
-                    life2BT3.setVisible(false);
-                    life3BT3.setVisible(false);
-                  //  bot3Space.setVisible(false);
-                    diceBot3.setVisible(false);
-                    Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
-                    bot3Space.setImage(back);
-                    String nomeMorto = nomeBot3Label.getText();
-                    nomeBot3Label.setText(nomeMorto + " è morto");
                 }
             }
 
 
+        }
+    }
+
+    public void HidePlayerUI(String player)
+    {
+        System.out.println("[UI] elimino: " + player);
+        if (nomeGiocatoreLabel.getText().equalsIgnoreCase(player))
+        {
+            System.out.println("Giocatore 0 morto!");
+            // TODO mettere carta gameover
+            life1PL.setVisible(false);
+            life2PL.setVisible(false);
+            life3PL.setVisible(false);
+            dicePL.setVisible(false);
+            // humanPlayerSpace.setVisible(false);
+            String nomeMorto = nomeGiocatoreLabel.getText();
+            nomeGiocatoreLabel.setText(nomeMorto + " è morto");
+            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            humanPlayerSpace.setImage(back);
+        }
+
+        if(nomeBot1Label.getText().equalsIgnoreCase(player))
+        {
+            // TODO mettere carta gameover
+            System.out.println("Giocatore 1 morto!");
+            life1BT1.setVisible(false);
+            life2BT1.setVisible(false);
+            life3BT1.setVisible(false);
+            // bot1Space.setVisible(false);
+            diceBot1.setVisible(false);
+            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            bot1Space.setImage(back);
+            String nomeMorto = nomeBot1Label.getText();
+            nomeBot1Label.setText(nomeMorto + " è morto");
+        }
+
+        if(nomeBot2Label.getText().equalsIgnoreCase(player))
+        {
+            // TODO leggere l'array dei morti
+            System.out.println("Giocatore 2 morto!");
+            life1BT2.setVisible(false);
+            life2BT2.setVisible(false);
+            life3BT2.setVisible(false);
+            // bot2Space.setVisible(false);
+            diceBot2.setVisible(false);
+            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            bot2Space.setImage(back);
+            String nomeMorto = nomeBot2Label.getText();
+            nomeBot2Label.setText(nomeMorto + " è morto");
+        }
+
+        if(nomeBot3Label.getText().equalsIgnoreCase(player))
+        {
+            // TODO leggere l'array dei morti
+            System.out.println("Giocatore 3 morto!");
+            life1BT3.setVisible(false);
+            life2BT3.setVisible(false);
+            life3BT3.setVisible(false);
+            //  bot3Space.setVisible(false);
+            diceBot3.setVisible(false);
+            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            bot3Space.setImage(back);
+            String nomeMorto = nomeBot3Label.getText();
+            nomeBot3Label.setText(nomeMorto + " è morto");
         }
     }
 
