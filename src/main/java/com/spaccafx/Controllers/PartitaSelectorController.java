@@ -61,6 +61,8 @@ public class PartitaSelectorController {
 
     }
 
+
+
     public void betaDisable() {
         pane2.setVisible(false);
         pane3.setVisible(false);

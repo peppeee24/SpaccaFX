@@ -21,7 +21,7 @@ public class Mazzo
         cartePescate = new ArrayList<Carta>();
 
         carteNormali = 5; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
-        carteSpeciali = 3; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
+        carteSpeciali = 5; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
         // TODO FARE UNA VERIFICA PER VEDERE SE IL N. CARTE SPECIALI < CARTE NORMALI
 
         RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte

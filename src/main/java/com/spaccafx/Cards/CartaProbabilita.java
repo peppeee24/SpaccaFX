@@ -34,7 +34,7 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1: ;//AumentaVitaConDado(partita, currentGiocatore); break;
+            case 1: AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
             case 2: ;//ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
             case 3: ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
             default: break;
@@ -66,21 +66,29 @@ public class CartaProbabilita extends Carta
      */
 
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC){
-// TODO terminare
+// TODO non funziona il primo banner
         TC.mostraCartaSpeciale("Probabilita", "Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
-
-
+        TC.disableDice();
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
         int valoreDadoNew = partita.lancioDadoSingolo();
+        // TODO spesso assegna il dado alla persona sbaglaita
+        TC.rollLite(valoreDadoNew,currentGiocatore.getPos());
         System.out.println("Valore dado: " + valoreDadoNew);
+
         //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
-        if(valoreDadoNew==currentGiocatore.getCarta().getValore()){
+        if(valoreDadoNew==currentGiocatore.getCarta().getValore() ){
+           // TC.setLifeGold(currentGiocatore.getNome());
             System.out.println("Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
             currentGiocatore.setVita(currentGiocatore.getVita() + 1);
+            TC.gestisciVite();
             System.out.println("Ora possiedi " + currentGiocatore.getVita() + " vite");
+            TC.mostraCartaSpeciale("Complimenti " + currentGiocatore.getNome() + " hai vinto una vita","Ora possiedi " + currentGiocatore.getVita() + " vite");
         }
         else{
             System.out.println("Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
+            TC.mostraCartaSpeciale("Sei stato sfortunato, niente vita per te.","Gioca il tuo turno");
+
+
         }
     }
 

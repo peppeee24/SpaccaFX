@@ -237,6 +237,7 @@ private void AvanzaRoundUI()
         else
         {
             Carta currentGiocatoreCarta = giocatori.get(currentGiocatorePos).getCarta();
+            // TODO non funziona semore con le carte probabilita
             if(currentGiocatoreCarta instanceof  CartaProbabilita || currentGiocatoreCarta instanceof  CartaImprevisto)
                 TC.showScambiaBlu(false, true, true);
 
@@ -345,6 +346,7 @@ private void AvanzaRoundUI()
                     System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
                 }
             }
+
         }
 
 

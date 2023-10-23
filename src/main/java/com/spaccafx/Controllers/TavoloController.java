@@ -81,7 +81,7 @@ public class TavoloController {
     {
         nascondiCartaSpeciale();
         hideScambiaBlu();
-        hideLifeGold();
+       // hideLifeGold();
         disableCrown();
         disableDice();
         //partita.StampaInfoGiocatori();
@@ -119,6 +119,27 @@ public class TavoloController {
         lifeGoldBT1.setVisible(false);
         lifeGoldBT2.setVisible(false);
         lifeGoldBT3.setVisible(false);
+    }
+
+
+    public void setLifeGold(String nome) {
+
+            if (nomeGiocatoreLabel.getText().equalsIgnoreCase(nome) ){
+                //partita.giocatori.get(i).getCarta().getImmagineCarta();
+                lifeGoldPL.setVisible(true);
+
+            } else if (nomeBot1Label.getText().equalsIgnoreCase(nome)) {
+
+                lifeGoldBT1.setVisible(true);
+
+            } else if (nomeBot2Label.getText().equalsIgnoreCase(nome)) {
+                lifeGoldBT2.setVisible(true);
+
+            } else {
+                lifeGoldBT3.setVisible(true);
+
+            }
+
     }
 
     public void hideScambiaRosso() {
@@ -189,6 +210,8 @@ public class TavoloController {
         effettoLabel.setVisible(false);
 
     }
+
+
 
     public void mostraCartaSpeciale(String titolo, String effetto)
     {
@@ -278,16 +301,24 @@ public class TavoloController {
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(true);
+                    lifeGoldPL.setVisible(false);
                 } else if (vita == 2) {
 
                     life1PL.setVisible(true);
                     life2PL.setVisible(true);
                     life3PL.setVisible(false);
+                    lifeGoldPL.setVisible(false);
                 } else if (vita == 1) {
 
                     life1PL.setVisible(true);
                     life2PL.setVisible(false);
                     life3PL.setVisible(false);
+                    lifeGoldPL.setVisible(false);
+                } else if(vita==4){
+                    life1PL.setVisible(true);
+                    life2PL.setVisible(true);
+                    life3PL.setVisible(true);
+                    lifeGoldPL.setVisible(true);
                 }
             }
 
@@ -297,14 +328,22 @@ public class TavoloController {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(true);
                     life3BT1.setVisible(true);
+                    lifeGoldBT1.setVisible(false);
                 } else if (vita == 2) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(true);
                     life3BT1.setVisible(false);
+                    lifeGoldBT1.setVisible(false);
                 } else if (vita == 1) {
                     life1BT1.setVisible(true);
                     life2BT1.setVisible(false);
                     life3BT1.setVisible(false);
+                    lifeGoldBT1.setVisible(false);
+                } else if(vita==4){
+                    life1BT1.setVisible(true);
+                    life2BT1.setVisible(true);
+                    life3BT1.setVisible(true);
+                    lifeGoldBT1.setVisible(true);
                 }
             }
 
@@ -313,14 +352,22 @@ public class TavoloController {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(true);
                     life3BT2.setVisible(true);
+                    lifeGoldBT2.setVisible(false);
                 } else if (vita == 2) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(true);
                     life3BT2.setVisible(false);
+                    lifeGoldBT2.setVisible(false);
                 } else if (vita == 1) {
                     life1BT2.setVisible(true);
                     life2BT2.setVisible(false);
                     life3BT2.setVisible(false);
+                    lifeGoldBT2.setVisible(false);
+                }else if(vita==4){
+                    life1BT2.setVisible(true);
+                    life2BT2.setVisible(true);
+                    life3BT2.setVisible(true);
+                    lifeGoldBT2.setVisible(true);
                 }
             }
 
@@ -329,14 +376,22 @@ public class TavoloController {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(true);
                     life3BT3.setVisible(true);
+                    lifeGoldBT3.setVisible(false);
                 } else if (vita == 2) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(true);
                     life3BT3.setVisible(false);
+                    lifeGoldBT3.setVisible(false);
                 } else if (vita == 1) {
                     life1BT3.setVisible(true);
                     life2BT3.setVisible(false);
                     life3BT3.setVisible(false);
+                    lifeGoldBT3.setVisible(false);
+                }else if(vita==4){
+                    life1BT3.setVisible(true);
+                    life2BT3.setVisible(true);
+                    life3BT3.setVisible(true);
+                    lifeGoldBT3.setVisible(true);
                 }
             }
 
@@ -573,7 +628,7 @@ public class TavoloController {
 
     }
 
-    public void roll4(int valoreDado) {
+    public void roll(int valoreDado, int pos) {
 //showDice();
         Thread thread = new Thread() {
             public void run() {
@@ -583,8 +638,26 @@ public class TavoloController {
                         // numeroDado=valoreDado;
                         System.out.println("Valore dato in roll:" + valoreDado);
 
-                        Image quattro = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
-                        diceBot3.setImage(quattro);
+                        Image nuovoLancio = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+
+                            if (nomeGiocatoreLabel.getText().equalsIgnoreCase(partita.giocatori.get(pos).getNome())) {
+                                //partita.giocatori.get(i).getCarta().getImmagineCarta();
+                                dicePL.setImage(nuovoLancio);
+
+                            } else if (nomeBot1Label.getText().equalsIgnoreCase(partita.giocatori.get(pos).getNome())) {
+
+                                diceBot1.setImage(nuovoLancio);
+
+                            } else if (nomeBot2Label.getText().equalsIgnoreCase(partita.giocatori.get(pos).getNome())) {
+                                diceBot2.setImage(nuovoLancio);
+
+                            } else {
+                                diceBot3.setImage(nuovoLancio);
+
+                            }
+
+
+
                         Thread.sleep(50);
                     }
                 } catch (InterruptedException e) {
@@ -598,7 +671,37 @@ public class TavoloController {
 
     }
 
-    public void roll(int valoreDado) {
+    public void rollLite(int valoreDado, int pos) {
+//showDice();
+      if(nomeGiocatoreLabel.getText().equalsIgnoreCase(partita.giocatori.get(pos).getNome())){
+        //  System.out.println("Valore del dado"+valoreDado);
+        Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+        dicePL.setImage(myImage);
+        dicePL.setVisible(true);
+
+    } else if (nomeBot1Label.getText().equalsIgnoreCase(partita.giocatori.get(pos).getNome())) {
+
+        Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+        diceBot1.setImage(myImage);
+          diceBot1.setVisible(true);
+
+    } else if (nomeBot2Label.getText().equalsIgnoreCase(partita.giocatori.get(pos).getNome())) {
+
+        Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+        diceBot2.setImage(myImage);
+          diceBot2.setVisible(true);
+
+    } else if (nomeBot3Label.getText().equalsIgnoreCase(partita.giocatori.get(pos).getNome())) {
+
+        Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+        diceBot3.setImage(myImage);
+          diceBot3.setVisible(true);
+
+    }
+
+    }
+
+    public void rollTotal(int valoreDado) {
 //showDice();
         Thread thread = new Thread() {
             public void run() {
