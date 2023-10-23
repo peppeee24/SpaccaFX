@@ -628,5 +628,7 @@ public class TavoloController {
 
 
     }
+
+    // TODO aggiungere piccolo terminale il basso per alcune informazioni
 }
 

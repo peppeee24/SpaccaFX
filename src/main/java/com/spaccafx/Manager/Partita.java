@@ -278,6 +278,7 @@ private void AvanzaRoundUI()
 
             giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
             System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
+            // TODO fare pannello che appare e avvisa allafine del turno chi perde la vita
 
             if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
             {
