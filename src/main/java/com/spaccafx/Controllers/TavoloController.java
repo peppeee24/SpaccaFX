@@ -42,7 +42,7 @@ public class TavoloController {
     ImageView bot1Space, bot2Space, bot3Space, humanPlayerSpace, centerSpace;
 
     @FXML
-    ImageView life1BT1, life2BT1, life3BT1, life1BT2, life2BT2, life3BT2, life1BT3, life2BT3, life3BT3, life1PL, life2PL, life3PL;
+    ImageView life1BT1, life2BT1, life3BT1, life1BT2, life2BT2, life3BT2, life1BT3, life2BT3, life3BT3, life1PL, life2PL, life3PL, lifeGoldBT1, lifeGoldBT2, lifeGoldBT3, lifeGoldPL;
 
     @FXML
     ImageView mazziereBT1, mazziereBT2, mazziereBT3, mazzierePL;
@@ -81,6 +81,7 @@ public class TavoloController {
     {
         nascondiCartaSpeciale();
         hideScambiaBlu();
+        hideLifeGold();
         disableCrown();
         disableDice();
         //partita.StampaInfoGiocatori();
@@ -111,6 +112,13 @@ public class TavoloController {
         bottoneRosso.setVisible(sNormale);
         bottonePassa.setVisible(passa);
 
+    }
+
+    public void hideLifeGold(){
+        lifeGoldPL.setVisible(false);
+        lifeGoldBT1.setVisible(false);
+        lifeGoldBT2.setVisible(false);
+        lifeGoldBT3.setVisible(false);
     }
 
     public void hideScambiaRosso() {

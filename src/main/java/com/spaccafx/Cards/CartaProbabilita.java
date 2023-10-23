@@ -44,11 +44,32 @@ public class CartaProbabilita extends Carta
     }
 
     // TODO SGAMBE FAI LA GRAFICA PER ATTIVARE IL METODO
-    private void AumentaVitaConDado(Partita partita, IGiocatore currentGiocatore){
+    /*private void AumentaVitaConDado(Partita partita, IGiocatore currentGiocatore){
 
 
 
         System.out.println("PROBABILITA - Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
+        System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
+        int valoreDadoNew = partita.lancioDadoSingolo();
+        System.out.println("Valore dado: " + valoreDadoNew);
+        //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
+        if(valoreDadoNew==currentGiocatore.getCarta().getValore()){
+            System.out.println("Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
+            currentGiocatore.setVita(currentGiocatore.getVita() + 1);
+            System.out.println("Ora possiedi " + currentGiocatore.getVita() + " vite");
+        }
+        else{
+            System.out.println("Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
+        }
+    }
+
+     */
+
+    private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC){
+// TODO terminare
+        TC.mostraCartaSpeciale("Probabilita", "Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
+
+
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
         int valoreDadoNew = partita.lancioDadoSingolo();
         System.out.println("Valore dado: " + valoreDadoNew);
