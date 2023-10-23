@@ -36,13 +36,14 @@ public class CartaProbabilita extends Carta
         {
             case 1: ;//AumentaVitaConDado(partita, currentGiocatore); break;
             case 2: ;//ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
-            case 3: effettoTest(partita, currentGiocatore, TC); break;
+            case 3: ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
             default: break;
         }
 
         this.attivato=true;
     }
 
+    // TODO SGAMBE FAI LA GRAFICA PER ATTIVARE IL METODO
     private void AumentaVitaConDado(Partita partita, IGiocatore currentGiocatore){
 
 
@@ -88,7 +89,7 @@ public class CartaProbabilita extends Carta
         }
     }
 
-    private void ScambiaCartaConMazzo(Partita partita, IGiocatore currentGiocatore)
+    /*private void ScambiaCartaConMazzo(Partita partita, IGiocatore currentGiocatore)
     {
         System.out.println("PROBABILITA - Posso scambiare carta con il mazzo");
 
@@ -120,27 +121,34 @@ public class CartaProbabilita extends Carta
         }
     }
 
-    private void effettoTest(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+     */
+
+
+    private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
+        TC.mostraCartaSpeciale("Probabilita", "Puoi scambiare una carta con il mazzo. Se sei mazziere puoi farlo 2 volte");
 
-        TC.mostraCartaSpeciale("Prob", "Scopri carta giocatore successivo");
+        if(currentGiocatore instanceof Giocatore) // se sono un giocatore normale
+        {
+            TC.showScambiaBlu(true, true, true);
+        }
+        else // se sono un bot
+        {
+            // TODO FARE CASO DEI BOT
 
-        // Creare un thread che eseguirà i metodi dopo un ritardo
-        Thread thread = new Thread(() -> {
-            try {
-                // Dormire per un certo numero di millisecondi (ad esempio, 2000 millisecondi o 2 secondi)
-                Thread.sleep(2000);
-
-                // Eseguire i metodi successivi all'interno di Platform.runLater
-                // Altri metodi da eseguire dopo il ritardo
-                Platform.runLater(TC::nascondiCartaSpeciale);
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            System.out.println("Sono un BOT");
+            if(((Bot)currentGiocatore).Scelta(partita) == 1) // scambio la carta
+            {
+                System.out.println("Il bot ha deciso di scambiare la carta con il mazzo");
+                currentGiocatore.setCarta(partita.mazzo.PescaCarta());
             }
-        });
-
-        // Avviare il thread
-        thread.start();
+            else
+                System.out.println("Il bot ha rifiutato lo scambiato con il mazzo");
+        }
+        // updateCarteUI(); // carte grafiche player
+        // updateGameUI(); // mazziere/vite
+        // UpdateUI(); round
     }
+
+    public boolean isAttivato(){return this.attivato;}
 }

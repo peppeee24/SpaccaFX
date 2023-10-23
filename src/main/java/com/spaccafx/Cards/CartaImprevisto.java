@@ -29,10 +29,9 @@ public class CartaImprevisto extends Carta
 
         switch(scelta)
         {
-            case 1:  //PerdiVitaConDado(partita, currentGiocatore);
-                        break;
+            case 1:  //PerdiVitaConDado(partita, currentGiocatore); break;
             case 2:  //ObbligoScambioConMazzo(partita, currentGiocatore);
-                    effettoTest(partita, currentGiocatore, TC); break;
+                ObbligoScambioConMazzo(partita, currentGiocatore, TC); break;
             //case 3: ScopriTuaCarta(); break;
             default: break;
         }
@@ -44,14 +43,24 @@ public class CartaImprevisto extends Carta
         //TODO in codice non è utile, va codificato poi con la parte graFICA
     }
 
-    private void ObbligoScambioConMazzo(Partita partita, IGiocatore currentGiocatore){
+    private void ObbligoScambioConMazzo(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    {
+        TC.mostraCartaSpeciale("Imprevisto", "Sei obbligato a scambiare la tua carta con una dal mazzo");
+
+        //TC.showScambiaBlu(true, false, false);
+
         System.out.println("IMPREVISTO! - Sei obbligato a scambiare la tua carta con una dal mazzo");
         Carta newCarta = partita.mazzo.PescaCarta();
         partita.giocatori.get(partita.giocatori.indexOf(currentGiocatore)).setCarta(newCarta);
         System.out.println("La carta che hai pescato è: " + currentGiocatore.getCarta().getValore()); //TODO nuovo metodo per fare in modo che ti dica il valore e di che tipo è la carta ad esempio: 2 di cane
         System.out.println("Ora fai la tua mossa");
+
+        TC.setCartaTavolo();
+        partita.passaTurnoUI();
     }
 
+
+    // TODO SGAMBE FAI LA GRAFICA PER ATTIVARE IL METODO
     private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore){
         System.out.println("IMPREVISTO - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
@@ -77,28 +86,5 @@ public class CartaImprevisto extends Carta
         }
     }
 
-    private void effettoTest(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
-    {
-
-        TC.mostraCartaSpeciale("Imprevisto", "Scopri carta giocatore successivo");
-
-        // Creare un thread che eseguirà i metodi dopo un ritardo
-        Thread thread = new Thread(() -> {
-            try {
-                // Dormire per un certo numero di millisecondi (ad esempio, 2000 millisecondi o 2 secondi)
-                Thread.sleep(2000);
-
-                // Eseguire i metodi successivi all'interno di Platform.runLater
-                // Altri metodi da eseguire dopo il ritardo
-                Platform.runLater(TC::nascondiCartaSpeciale);
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        // Avviare il thread
-        thread.start();
-    }
-
+    public boolean isAttivato(){return this.attivato;}
 }

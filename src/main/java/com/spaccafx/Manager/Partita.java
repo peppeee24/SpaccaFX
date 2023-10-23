@@ -159,7 +159,6 @@ private void AvanzaRoundUI()
         controlloMano(currentGiocatorePos);
         System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
 
-
         this.currentGiocatorePos = cDistaccoMazziere;
     }
 
@@ -232,10 +231,18 @@ private void AvanzaRoundUI()
     {
         System.out.println("[SCELTA] Ho deciso di passare il turno");
 
+        // TODO FIXXARE PULSANTI CHE NON SCOMPAIONO
         if(giocatori.get(currentGiocatorePos).getRuolo() == RuoloGiocatore.MAZZIERE)
             controllaRisultatiUI(); // da modificare
         else
+        {
+            Carta currentGiocatoreCarta = giocatori.get(currentGiocatorePos).getCarta();
+            if(currentGiocatoreCarta instanceof  CartaProbabilita || currentGiocatoreCarta instanceof  CartaImprevisto)
+                TC.showScambiaBlu(false, true, true);
+
             AvanzaRoundUI();
+        }
+
     }
 
 
@@ -275,8 +282,11 @@ private void AvanzaRoundUI()
             if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
             {
 
+                TC.HidePlayerUI(giocatoreDebole.getNome());
+
                 giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
                 giocatori.remove(giocatoreDebole);
+
 
                 //TODO CONTROLLARE DECREMENTO MAZZIERE
                 if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE)
@@ -318,6 +328,7 @@ private void AvanzaRoundUI()
                 {
                     giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
                     giocatori.remove(giocatoreDebole);
+                    TC.HidePlayerUI(giocatoreDebole.getNome());
 
                     //TODO CONTROLLARE DECREMENTO MAZZIERE
                     if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE)
@@ -335,7 +346,7 @@ private void AvanzaRoundUI()
             }
         }
 
-        TC.HidePlayerUI(giocatoreDebole.getNome());
+
 
         if(!isGameRunning()) // se true allora non abbiamo un vincitore perche il gioco sta andando
         {

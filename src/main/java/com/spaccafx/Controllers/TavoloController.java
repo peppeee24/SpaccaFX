@@ -77,7 +77,8 @@ public class TavoloController {
     }
 
 
-    public void setLableTable() {
+    public void setLableTable()
+    {
         nascondiCartaSpeciale();
         hideScambiaBlu();
         disableCrown();
@@ -104,21 +105,26 @@ public class TavoloController {
         bottoneRosso.setVisible(true);
     }
 
-    public void showScambiaBlu() {
-        bottoneBlue.setVisible(true);
+    public void showScambiaBlu(boolean sMazzo, boolean sNormale, boolean passa)
+    {
+        bottoneBlue.setVisible(sMazzo);
+        bottoneRosso.setVisible(sNormale);
+        bottonePassa.setVisible(passa);
+
     }
 
     public void hideScambiaRosso() {
         bottoneRosso.setVisible(false);
     }
 
-    public void hideScambiaBlu() {
-        bottoneBlue.setVisible(false);
-    }
+    public void hideScambiaBlu() {bottoneBlue.setVisible(false);}
 
-    public void scambiaConMazzo(ActionEvent actionEvent) {
-       // partita.passaTurnoUI();
-    } // passo nella partita il turno del player
+    public void scambiaConMazzo(ActionEvent actionEvent)
+    {
+       partita.giocatori.get(partita.getCurrentGiocatorePos()).setCarta(partita.mazzo.PescaCarta());
+       setCartaTavolo();
+       showScambiaBlu(false, true, true);
+    }
 
 
 
@@ -182,6 +188,25 @@ public class TavoloController {
         cartaSpecialeLabel.setText(titolo);
         effettoLabel.setVisible(true);
         effettoLabel.setText(effetto);
+
+        // Creare un thread che eseguirà i metodi dopo un ritardo
+        Thread thread = new Thread(() -> {
+            try {
+                // Dormire per un certo numero di millisecondi (ad esempio, 2000 millisecondi o 2 secondi)
+                Thread.sleep(4000);
+
+                // Eseguire i metodi successivi all'interno di Platform.runLater
+                // Altri metodi da eseguire dopo il ritardo
+                Platform.runLater(this::nascondiCartaSpeciale);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Avviare il thread
+        thread.start(); // TODO SISTEMARE QUESTO CHE DUPLICA MESSAGGI
+
     }
 
 
@@ -432,7 +457,7 @@ public class TavoloController {
     public void setCartaTavolo() {
         // Image back = new Image(getClass().getResource("/Assets/Cards/back.PNG").toString());
         //   centerSpace.setImage(back);
-        Carta c;
+        //Carta c;
         for (int i = 0; i < partita.giocatori.size(); i++) {
             if (nomeGiocatoreLabel.getText().equalsIgnoreCase(partita.giocatori.get(i).getNome())) {
                 //partita.giocatori.get(i).getCarta().getImmagineCarta();
@@ -449,7 +474,7 @@ public class TavoloController {
                 bot3Space.setImage(partita.giocatori.get(i).getCarta().getImmagineCarta());
 
             }
-            this.gestisciVite();
+            //this.gestisciVite();
             impostazioneInizialeCarte();
         }
     }
