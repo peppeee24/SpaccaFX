@@ -156,11 +156,37 @@ private void AvanzaRoundUI()
 
         currentGiocatorePos = cDistaccoMazziere;
         System.out.println("[GAME] Tocca al giocatore: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
+        controlloMano(currentGiocatorePos);
         System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+
+
         this.currentGiocatorePos = cDistaccoMazziere;
     }
 
+    private void controlloMano(int currentGiocatore)
+    {
+        // controlliamo che carta ha e cosa attivare o meno graficamente
+        Carta currentMano = giocatori.get(currentGiocatore).getCarta();
 
+        if(currentMano instanceof  CartaProbabilita)
+        {
+            System.out.println("Ho una carta speciale");
+            ((CartaProbabilita)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+        }
+        else if(currentMano instanceof  CartaImprevisto)
+        {
+            System.out.println("Ho una carta speciale");
+            ((CartaImprevisto)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+        }
+        else // debug
+        {
+            System.out.println("Ho una carta normale");
+        }
+
+    }
+
+
+    // TODO FARE IL CASO IN CUI SCAMBIO UNA CARTA CON IL GIOC DOPO/ CON IL MAZZO E PRENDO UN CARTA SPECIALE (IMPR, PROB)
     public void ScambiaCartaUI(int currentPlayerPos)
     {
         IGiocatore currentGiocatoreUI = giocatori.get(currentPlayerPos);
@@ -213,6 +239,7 @@ private void AvanzaRoundUI()
     }
 
 
+    // TODO RICONTROLLARE TUTTO IL FLUSSO DI QUESTO METODO
     private void controllaRisultatiUI() // con questo metodo capiamo a chi togliere la vita dei player
     {
 
@@ -220,6 +247,8 @@ private void AvanzaRoundUI()
 
         int maxValue = trovaValoreCartaAlta(giocatori);
         System.out.println("[GAME] La carta con il valore piu alto e: " + maxValue);
+
+        IGiocatore giocatoreDebole = null;
 
 
         for (IGiocatore giocatore : giocatori)
@@ -237,14 +266,30 @@ private void AvanzaRoundUI()
         if(giocatoriConValoreMassimo.size() <= 1) // se abbiamo solo un perdente, NO spareggio
         {
             System.out.println("[CHECK-GAME] * 1 SOLO Giocatore perdente!");
-            giocatoriConValoreMassimo.get(0).setVita(giocatoriConValoreMassimo.get(0).getVita() - 1); // tolgo 1 vita
-            System.out.println("(!) " + giocatoriConValoreMassimo.get(0).getNome() + " HA PERSO 1 VITA!!");
+            giocatoreDebole = giocatoriConValoreMassimo.get(0);
 
-            if(giocatoriConValoreMassimo.get(0).getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+
+            giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+            System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
+
+            if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
             {
-                giocatoriMorti.add(giocatoriConValoreMassimo.get(0)); // viene messo nella lista degli eliminati
-                giocatori.remove(giocatoriConValoreMassimo.get(0));
-                System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoriConValoreMassimo.get(0).getNome() + " **");
+
+                giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                giocatori.remove(giocatoreDebole);
+
+                //TODO CONTROLLARE DECREMENTO MAZZIERE
+                if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE)
+                {
+                    posMazziere--;
+
+                    if(posMazziere <=0)
+                        posMazziere = 0;
+
+                    giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+                }
+
+                System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
             }
         }
         else // vuol dire che ci sono piu giocatori (spareggio)
@@ -252,7 +297,6 @@ private void AvanzaRoundUI()
             System.out.println("[CHECK-GAME] * " +  giocatoriConValoreMassimo.size() + " MOLTEPLICI Giocatori perdenti!");
 
             // Controllo Seme
-            IGiocatore giocatoreDebole = null;
 
             for(IGiocatore giocatore : giocatoriConValoreMassimo)
             {
@@ -272,25 +316,26 @@ private void AvanzaRoundUI()
 
                 if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                 {
-                    // TODO caso in cui viene eliminato un mazziere
-
-                    System.out.println("PROVA DI NASCONDERE I PLAYER 1");
-                    System.out.flush();
-                    System.out.println("giocatore debole: " + giocatoreDebole.getNome());
-                    System.out.flush();
-                    impostaTavoloController();
-                    TC.HidePlayerUI(giocatoreDebole.getNome());
-                    System.out.flush();
-
-                    System.out.println("PROVA DI NASCONDERE I PLAYER2");
                     giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
-                    System.out.println("PROVA DI NASCONDERE I PLAYER3");
                     giocatori.remove(giocatoreDebole);
-                    System.out.println("PROVA DI NASCONDERE I PLAYER4");
+
+                    //TODO CONTROLLARE DECREMENTO MAZZIERE
+                    if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE)
+                    {
+                        posMazziere--;
+
+                        if(posMazziere <=0)
+                            posMazziere = 0;
+
+                        giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+                    }
+
                     System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
                 }
             }
         }
+
+        TC.HidePlayerUI(giocatoreDebole.getNome());
 
         if(!isGameRunning()) // se true allora non abbiamo un vincitore perche il gioco sta andando
         {
@@ -299,8 +344,10 @@ private void AvanzaRoundUI()
         }
         else
         {
+            if(giocatoreDebole.getRuolo() == RuoloGiocatore.GIOCATORE)
+                ruotaMazziereUI(); // posso ruotare //TODO CONTROLLARE DECREMENTO / ROTAZIONE MAZZIERE
+
             mazzo.MescolaMazzo(); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
-            ruotaMazziereUI(); // TODO SISTEMARE QUANDO IL MAZZIERE MUORE PERCHE DEVE CAMBIARE AL GIOCATORE DOPO
             TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
 
         }
@@ -309,13 +356,13 @@ private void AvanzaRoundUI()
 
     private void ruotaMazziereUI()
     {
-        // TODO sistemare rotazione mazziere
         if(posMazziere+1 > giocatori.size() - 1)
         {
             if(posMazziere < giocatori.size())
             {
                 giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
                 posMazziere = 0;
+                System.out.println("Metto il mazziere alla posizione: " + posMazziere);
                 giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
             }
             else
@@ -323,6 +370,7 @@ private void AvanzaRoundUI()
                 posMazziere = posMazziere - 1;
                 giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
                 posMazziere = 0;
+                System.out.println("Metto il mazziere alla posizione: " + posMazziere);
                 giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
             }
 
@@ -331,10 +379,10 @@ private void AvanzaRoundUI()
         {
             giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
             posMazziere++;
+            System.out.println("Metto il mazziere alla posizione: " + posMazziere);
             giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
         }
     }
-
 
     //endregion
 
@@ -365,7 +413,7 @@ private void AvanzaRoundUI()
         this.stabilisciMazziere();
     }
 
-    public void stabilisciMazziere()
+    public void stabilisciMazziere() // todo controlla
     {
         ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>(); // lista giocatori che hanno lo stesso valore
         int valorePiuAlto = trovaValoreDadoAlto(giocatori); // valore dei dadi piu alto tra tutti i player
@@ -423,7 +471,6 @@ private void AvanzaRoundUI()
         System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE ("+ giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
 
     }
-
 
 
     //endregion
@@ -514,7 +561,7 @@ private void AvanzaRoundUI()
     }
 
 
-    private void sceltaNew(Scanner s, IGiocatore currentGiocatore)
+    /*private void sceltaNew(Scanner s, IGiocatore currentGiocatore)
     {
         if(currentGiocatore.getCarta() instanceof CartaImprevisto)
         {
@@ -551,8 +598,9 @@ private void AvanzaRoundUI()
         }
 
     }
+     */
 
-    public void scambiaCarta(IGiocatore currentGiocatore)
+    /*public void scambiaCarta(IGiocatore currentGiocatore)
     {
         int currentIndexPlayer = giocatori.indexOf(currentGiocatore); // prendo il giocatore attuale
         Carta cartaPlayerAttuale = currentGiocatore.getCarta(); // prendo la sua carta
@@ -584,12 +632,16 @@ private void AvanzaRoundUI()
         }
     }
 
-    public void passaTurno()
+     */
+
+    /*public void passaTurno()
     {
         System.out.println("Ho passato il turno");
     }
 
-    private void ruotaMazziere()
+     */
+
+    /*private void ruotaMazziere()
     {
         if(posMazziere+1 > giocatori.size() - 1)
         {
@@ -616,7 +668,9 @@ private void AvanzaRoundUI()
         }
     }
 
-    private void controllaRisultati() // con questo metodo capiamo a chi togliere la vita dei player
+     */
+
+    /*private void controllaRisultati() // con questo metodo capiamo a chi togliere la vita dei player
     {
         Map<Integer, ArrayList<IGiocatore>> mapSet = new HashMap<>();
 
@@ -682,7 +736,7 @@ private void AvanzaRoundUI()
 
         ruotaMazziere();
         mazzo.MescolaMazzo();
-    }
+    }*/
 
     public void generaCodicePartita()  { this.codicePartita =  (int)(1 + (Math.random() * 1000)); } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
 
@@ -725,8 +779,10 @@ private void AvanzaRoundUI()
         }
     }
 
+    public String getMazziereNome() {return giocatori.get(posMazziere).getNome();}
+
     //endregion
 
 
-    public String getMazziereNome() {return giocatori.get(posMazziere).getNome();}
+
 }

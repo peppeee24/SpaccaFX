@@ -1,9 +1,11 @@
 package com.spaccafx.Cards;
 
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Enums.SemeCarta;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
+import javafx.application.Platform;
 
 public class CartaImprevisto extends Carta
 {
@@ -18,18 +20,19 @@ public class CartaImprevisto extends Carta
     public String toString(){return this.getValore() + " di IMPREVISTO";}
 
     @Override
-    public void Effetto(Partita partita, IGiocatore currentGiocatore)
+    public void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
         if(attivato)
             return;
-
 
         int scelta = (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
 
         switch(scelta)
         {
-            case 1:  PerdiVitaConDado(partita, currentGiocatore);break;
-            case 2:  ObbligoScambioConMazzo(partita, currentGiocatore); break;
+            case 1:  //PerdiVitaConDado(partita, currentGiocatore);
+                        break;
+            case 2:  //ObbligoScambioConMazzo(partita, currentGiocatore);
+                    effettoTest(partita, currentGiocatore, TC); break;
             //case 3: ScopriTuaCarta(); break;
             default: break;
         }
@@ -72,6 +75,30 @@ public class CartaImprevisto extends Carta
         else{
             System.out.println("Sei stato fortunato, niente vita persa per te. Gioca il tuo turno");
         }
+    }
+
+    private void effettoTest(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    {
+
+        TC.mostraCartaSpeciale("Imprevisto", "Scopri carta giocatore successivo");
+
+        // Creare un thread che eseguirà i metodi dopo un ritardo
+        Thread thread = new Thread(() -> {
+            try {
+                // Dormire per un certo numero di millisecondi (ad esempio, 2000 millisecondi o 2 secondi)
+                Thread.sleep(2000);
+
+                // Eseguire i metodi successivi all'interno di Platform.runLater
+                // Altri metodi da eseguire dopo il ritardo
+                Platform.runLater(TC::nascondiCartaSpeciale);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Avviare il thread
+        thread.start();
     }
 
 }

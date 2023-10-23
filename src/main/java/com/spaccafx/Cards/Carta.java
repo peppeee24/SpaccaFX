@@ -1,5 +1,6 @@
 package com.spaccafx.Cards;
 
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.*;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
@@ -32,7 +33,7 @@ public abstract class Carta
 
     //public abstract void Effetto(Partita partita);
 
-    public abstract void Effetto(Partita partita, IGiocatore currentGiocatore);
+    public abstract void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC);
     // Effetto per le carte imprevisto e probabilità
 
 }

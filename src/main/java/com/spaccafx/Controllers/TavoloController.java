@@ -176,6 +176,14 @@ public class TavoloController {
 
     }
 
+    public void mostraCartaSpeciale(String titolo, String effetto)
+    {
+        cartaSpecialeLabel.setVisible(true);
+        cartaSpecialeLabel.setText(titolo);
+        effettoLabel.setVisible(true);
+        effettoLabel.setText(effetto);
+    }
+
 
     public void disableDice() {
         dicePL.setVisible(false);

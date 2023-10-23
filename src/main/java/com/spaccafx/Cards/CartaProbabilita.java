@@ -1,10 +1,12 @@
 package com.spaccafx.Cards;
 
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Enums.*;
+import javafx.application.Platform;
 
 import java.util.Scanner;
 
@@ -21,37 +23,30 @@ public class CartaProbabilita extends Carta
     public String toString(){return this.getValore() + " di PROBABILITA";}
 
     @Override
-    public void Effetto(Partita partita, IGiocatore currentGiocatore)
+    public void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
         if(attivato)
             return;
 
-        partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
+        //partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
 
         int scelta = (int)((1 + Math.random() * 3)); //genero o 1 o 2 che sono i "codici" delle scelte;
-
-        // TODO MOSTRARE SEMPRE IL PANNELLO CHE SPIEGA IL RELATIVO EFFETTO DELLA CARTA SENZA FAR VEDERE IL BOTTONE EFFETTO, TRANNE NEL CASO L'EFFETTO SIA DI POTER SCAMBIARE LA CARTA CON IL MAZZO
 
         switch(scelta)
         {
             case 1: ;//AumentaVitaConDado(partita, currentGiocatore); break;
             case 2: ;//ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
-            case 3: ScambiaCartaConMazzo(partita, currentGiocatore); break;
+            case 3: effettoTest(partita, currentGiocatore, TC); break;
             default: break;
         }
 
         this.attivato=true;
     }
-    //commento nel caso volessimo tornare indietro oppure usare pezzi di codice, TOGLIERE quando facciamo la pulizia prima delle gui
-    /*private void DiminuisciValoreCarta()
-    {
-        System.out.println("PROBABILITA - Diminuisco il valore della tua carta!");
-        System.out.println("Valore prima: " + getValore());
-        this.setValore(this.getValore() - 1);
-        System.out.println("Valore dopo: " + getValore());
-    }*/
 
     private void AumentaVitaConDado(Partita partita, IGiocatore currentGiocatore){
+
+
+
         System.out.println("PROBABILITA - Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
         int valoreDadoNew = partita.lancioDadoSingolo();
@@ -123,5 +118,29 @@ public class CartaProbabilita extends Carta
             else
                 System.out.println("Il bot ha rifiutato lo scambiato con il mazzo");
         }
+    }
+
+    private void effettoTest(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    {
+
+        TC.mostraCartaSpeciale("Prob", "Scopri carta giocatore successivo");
+
+        // Creare un thread che eseguirà i metodi dopo un ritardo
+        Thread thread = new Thread(() -> {
+            try {
+                // Dormire per un certo numero di millisecondi (ad esempio, 2000 millisecondi o 2 secondi)
+                Thread.sleep(2000);
+
+                // Eseguire i metodi successivi all'interno di Platform.runLater
+                // Altri metodi da eseguire dopo il ritardo
+                Platform.runLater(TC::nascondiCartaSpeciale);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Avviare il thread
+        thread.start();
     }
 }
