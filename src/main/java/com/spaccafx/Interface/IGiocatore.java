@@ -17,5 +17,4 @@ public interface IGiocatore
     public Carta getCarta();
     public int getValoreDado();
     public RuoloGiocatore getRuolo();
-    public int getPos();
 }

@@ -34,7 +34,7 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1: // ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
+            case 1:  ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
             case 2: ;//ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
             case 3: AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
             default: break;

@@ -57,7 +57,7 @@ public abstract class Bot implements IGiocatore
     public RuoloGiocatore getRuolo(){return this.ruolo;}
     public abstract int Scelta(Partita p);
     public abstract String generaNomeBot();
-    public int getPos(){return this.pos;};
+
 
 
 

@@ -25,8 +25,9 @@ public class PlayerScreenController {
     PartitaClassicaController2 partitaClassicaController;
 
     public PlayerScreenController() { // costruttore
-        this.pwd = ShareData.getInstance().getCodice();
+       // this.pwd = ShareData.getInstance().getPassword();
         this.partitaClassicaController = ShareData.getInstance().getPartitaClassicaController();
+        this.pwd=partitaClassicaController.P.getPasswordPartita();
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException { // bottone inizia

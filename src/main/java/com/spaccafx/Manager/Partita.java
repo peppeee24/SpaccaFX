@@ -20,6 +20,7 @@ public class Partita
     int posMazziere; // mazziere
     int currentGiocatorePos; // viene dopo il mazziere
     int codicePartita;
+    int passwordPartita;
     boolean isGameRunning;
     SpaccaTGBot telegramBot;
 
@@ -197,7 +198,7 @@ private void AvanzaRoundUI()
             System.out.println("[GAME] Pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + giocatori.get(currentPlayerPos).getCarta());
             System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
 
-
+// TODO gestire imprevisi e probabilità, per ora lo facciamo solo con passa
             controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
             TC.setCartaTavoloUI(); // TODO DA CAMBIARE IN UPDATECARDUI
         }
@@ -757,7 +758,12 @@ private void AvanzaRoundUI()
 
     public void generaCodicePartita()  { this.codicePartita =  (int)(1 + (Math.random() * 1000)); } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
 
+    public void generaPasswordPartita()  { this.passwordPartita =  (int)(1 + (Math.random() * 1000)); }
+
+
     public int getCodicePartita() { return this.codicePartita; }
+
+    public int getPasswordPartita() { return this.passwordPartita; }
 
     // public boolean isGameRunning(){return this.isGameRunning;}
 

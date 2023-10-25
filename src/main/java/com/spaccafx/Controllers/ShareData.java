@@ -56,11 +56,13 @@ public class ShareData {
         this.partita = partita;
     }
 
-    public void setCodice(Partita partita) {
+    /*public void setPassword(Partita partita) {
         this.codice = partita.getCodicePartita();
     }
 
-    public int getCodice() {
+    public int getPassword() {
         return codice;
     }
+
+     */
 }

@@ -55,6 +55,5 @@ public class Giocatore implements IGiocatore
     public Carta getCarta(){return this.carta;}
     public int getValoreDado(){return this.valoreDado;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
-    public int getPos(){return this.pos;}
 
 }

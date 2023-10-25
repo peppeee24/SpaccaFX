@@ -25,7 +25,7 @@ public class PartitaSelectorController {
 
     @FXML
     Button playButton1;
-
+    Label partita1Label;
     Pane pane2, pane3, pane4, pane5, pane6, pane7;
 
     // TODO impostare caricamento partite da file
@@ -49,8 +49,8 @@ public class PartitaSelectorController {
 
     public void play1(ActionEvent actionEvent) throws IOException {
 
-        //  partita1Label.setText("Partita: "+partita.getCodicePartita());
 
+        //partita1Label.setText("Partita: "+partita.getCodicePartita());
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();

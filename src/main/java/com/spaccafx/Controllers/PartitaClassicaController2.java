@@ -49,7 +49,7 @@ public class PartitaClassicaController2 {
     TextField playerName1, playerName2, playerName3, playerName4;
 
     @FXML
-    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, botCounter;
+    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, botCounter, passwordPartita;
 
     @FXML
     ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, easyBot1, easyBot2, easyBot3;
@@ -396,8 +396,10 @@ public class PartitaClassicaController2 {
         if (somma > 1 && somma < 5) {
             this.P = new Partita(somma);
             P.generaCodicePartita(); // TODO CAPIRE LAG
-
+            P.generaPasswordPartita();
             System.out.println("Codice Generato: " + P.getCodicePartita());
+            System.out.println("Password Generata: " + P.getPasswordPartita());
+            passwordPartita.setText("Password: " + P.getPasswordPartita());
             codicePartita.setText("Codice: " + P.getCodicePartita());
             //   codicePartita.wrapTextProperty().set(true);
             // codicePartita.getStyleClass().add("copiable-label");
@@ -496,7 +498,7 @@ public class PartitaClassicaController2 {
         //  mmc.setPartitaClassicaController(this);
         ShareData.getInstance().setPartitaClassicaController(this); // gli passo classe partitacontroller
         ShareData.getInstance().setPartita(this.P);
-        ShareData.getInstance().setCodice(this.P); // non serve
+      //  ShareData.getInstance().setPassword(this.P); // non serve
 
 
 
