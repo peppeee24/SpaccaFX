@@ -270,6 +270,7 @@ public class TavoloController {
 
     public void passaTurno(ActionEvent actionEvent) {
         partita.passaTurnoUI();
+        disableDice();
     } // passo nella partita il turno del player
 
     public void impostazioneInizialeCarte() {

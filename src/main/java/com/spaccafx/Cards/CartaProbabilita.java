@@ -34,9 +34,9 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1: AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
+            case 1: // ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
             case 2: ;//ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
-            case 3: ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
+            case 3: AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
             default: break;
         }
 
@@ -72,7 +72,7 @@ public class CartaProbabilita extends Carta
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
         int valoreDadoNew = partita.lancioDadoSingolo();
         // TODO spesso assegna il dado alla persona sbaglaita
-        TC.rollLite(valoreDadoNew,currentGiocatore.getPos());
+        TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos());
         System.out.println("Valore dado: " + valoreDadoNew);
 
         //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
