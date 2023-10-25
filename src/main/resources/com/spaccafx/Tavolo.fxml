@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: #165A4C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" style="-fx-background-color: #165A4C;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
     <children>
       <ImageView fx:id="centerSpace" fitHeight="213.0" fitWidth="186.0" layoutX="609.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -207,22 +207,22 @@
          </font></Label>
       <ImageView fx:id="lifeGoldBT1" fitHeight="49.0" fitWidth="33.0" layoutX="111.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
-            <Image url="@../../Assets/Game/Environment/goldLife.png" />
+            <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
          </image>
       </ImageView>
       <ImageView fx:id="lifeGoldBT2" fitHeight="49.0" fitWidth="33.0" layoutX="792.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
-            <Image url="@../../Assets/Game/Environment/goldLife.png" />
+            <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
          </image>
       </ImageView>
       <ImageView fx:id="lifeGoldBT3" fitHeight="49.0" fitWidth="33.0" layoutX="1327.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
-            <Image url="@../../Assets/Game/Environment/goldLife.png" />
+            <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
          </image>
       </ImageView>
       <ImageView fx:id="lifeGoldPL" fitHeight="49.0" fitWidth="33.0" layoutX="925.0" layoutY="773.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Assets/Game/Environment/goldLife.png" />
+            <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
          </image>
       </ImageView>
     </children>
