@@ -31,7 +31,7 @@
          <font>
             <Font name="System Bold" size="22.0" />
          </font></Button>
-        <ImageView fx:id="bot1Space" fitHeight="213.0" fitWidth="162.0" layoutX="70.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+        <ImageView fx:id="bot1Space" fitHeight="184.0" fitWidth="133.0" layoutX="64.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
             <image>
                 <Image url="@../../Assets/Game/Environment/Mazzobg.png" />
             </image>

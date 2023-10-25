@@ -55,7 +55,7 @@ public class CartaImprevisto extends Carta
         System.out.println("La carta che hai pescato è: " + currentGiocatore.getCarta().getValore()); //TODO nuovo metodo per fare in modo che ti dica il valore e di che tipo è la carta ad esempio: 2 di cane
         System.out.println("Ora fai la tua mossa");
 
-        TC.setCartaTavolo();
+        TC.setCartaTavoloUI();
         partita.passaTurnoUI();
     }
 

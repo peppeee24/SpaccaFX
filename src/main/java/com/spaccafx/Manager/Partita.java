@@ -197,7 +197,7 @@ private void AvanzaRoundUI()
             System.out.println("[GAME] Pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + giocatori.get(currentPlayerPos).getCarta());
             System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
 
-            TC.setCartaTavolo(); // TODO DA CAMBIARE IN UPDATECARDUI
+            TC.setCartaTavoloUI(); // TODO DA CAMBIARE IN UPDATECARDUI
             controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
         }
         else // sono un giocatore normale
@@ -222,7 +222,7 @@ private void AvanzaRoundUI()
             System.out.println("[GAME] Ho scambiato la carta con il player successivo, adesso "
                     + giocatori.get(currentPlayerPos).getNome() +  " ha la carta: " + giocatori.get(currentPlayerPos).getCarta());
 
-            TC.setCartaTavolo(); // TODO DA CAMBIARE IN UPDATECARDUI
+            TC.setCartaTavoloUI(); // TODO DA CAMBIARE IN UPDATECARDUI
             AvanzaRoundUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
         }
     }
