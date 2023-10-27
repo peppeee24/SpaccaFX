@@ -1,6 +1,7 @@
 package com.spaccafx.Player;
 
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 
@@ -23,6 +24,16 @@ public class EasyBot extends Bot
     @Override
     public int Scelta(Partita p) { //ipotizziamo che l'easyBot scelga randomicamente se switchare o no la carta
         return (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
+    }
+
+    @Override
+    public void SceltaBotUI(Partita p){
+        int scelta = (int)((1 + Math.random() * 2));
+        if(scelta==1){
+            p.passaTurnoUI();
+        }
+        else
+            p.ScambiaCartaUI(p.getCurrentGiocatorePos());
     }
 
     @Override

@@ -157,14 +157,27 @@ private void AvanzaRoundUI()
             cDistaccoMazziere++;
 
         currentGiocatorePos = cDistaccoMazziere;
-        System.out.println("[GAME] Tocca al giocatore: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
-        controlloMano(currentGiocatorePos);
-        System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+
+        if(giocatori.get(currentGiocatorePos) instanceof Bot)
+        {
+            System.out.println("[GAME] Tocca al BOT: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
+            controlloMano(currentGiocatorePos);
+            System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+
+            ((Bot) giocatori.get(currentGiocatorePos)).SceltaBotUI(this);
+        }
+        else
+        {
+
+            System.out.println("[GAME] Tocca al giocatore: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
+            controlloMano(currentGiocatorePos);
+            System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+        }
 
         this.currentGiocatorePos = cDistaccoMazziere;
     }
 
-    private void controlloMano(int currentGiocatore)
+    private void controlloMano(int currentGiocatore) // todo METTERE ANCHE I VARI CONTROLLI NEL CASO TU SIA UN BOT
     {
         // controlliamo che carta ha e cosa attivare o meno graficamente
         Carta currentMano = giocatori.get(currentGiocatore).getCarta();

@@ -605,6 +605,43 @@ public class TavoloController {
     }
 
 
+    /* METODO setCartaTavoloUI() ottimizzato
+    public void setCartaTavoloUI() {
+    Image back = new Image(getClass().getResource("/Assets/Cards/back.png").toString());
+    String currentPlayerName = partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome();
+
+    for (int i = 0; i < partita.giocatori.size(); i++) {
+        String playerName = partita.giocatori.get(i).getNome();
+        boolean isCurrentPlayer = playerName.equalsIgnoreCase(currentPlayerName);
+        ImageView playerSpace = getPlayerSpace(playerName);
+
+        if (isCurrentPlayer) {
+            playerSpace.setImage(partita.giocatori.get(i).getCarta().getImmagineCarta());
+        } else {
+            playerSpace.setImage(back);
+        }
+    }
+
+    //this.gestisciVite();
+    impostaMazzoCentrale();
+}
+
+private ImageView getPlayerSpace(String playerName) {
+    if (playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText())) {
+        return humanPlayerSpace;
+    } else if (playerName.equalsIgnoreCase(nomeBot1Label.getText())) {
+        return bot1Space;
+    } else if (playerName.equalsIgnoreCase(nomeBot2Label.getText())) {
+        return bot2Space;
+    } else if (playerName.equalsIgnoreCase(nomeBot3Label.getText())) {
+        return bot3Space;
+    }
+    // Restituisci uno spazio vuoto se non corrisponde a nessun giocatore
+    return new ImageView();
+}
+*/
+
+
     public void settingGame(MouseEvent mouseEvent) throws IOException {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();

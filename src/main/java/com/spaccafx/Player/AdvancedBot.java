@@ -29,6 +29,14 @@ public class AdvancedBot extends Bot
     }
 
     @Override
+    public void SceltaBotUI(Partita p){
+        if(carta.getValore()<= (int)(p.mazzo.getMaxCarteNormali() / 2)) // TODO CAMBIARE LA SCELTA SE IL VALORE DELLA CARTA E <= MAZZO.MAXCARTENORMALI/2
+            p.passaTurnoUI(); //non cambia la carta
+        else
+           p.ScambiaCartaUI(p.getCurrentGiocatorePos()); // cambia la carta
+    }
+
+    @Override
     public String generaNomeBot() //generiamo nomi per i bot(es: user1234)
     {
         int numeroBot=(int)(1 + (Math.random() * 1000));
