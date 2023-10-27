@@ -11,9 +11,9 @@ public class CartaImprevisto extends Carta
 {
     private boolean attivato = false;
 
-    public CartaImprevisto(int valore, SemeCarta seme)
+    public CartaImprevisto(int valore, SemeCarta seme, TavoloController TC)
     {
-        super(valore, seme);
+        super(valore, seme, TC);
     }
 
     @Override
@@ -29,17 +29,18 @@ public class CartaImprevisto extends Carta
 
         switch(scelta)
         {
-            case 1:  //PerdiVitaConDado(partita, currentGiocatore); break;
-            case 2:  //ObbligoScambioConMazzo(partita, currentGiocatore);
-                ObbligoScambioConMazzo(partita, currentGiocatore, TC); break;
-            //case 3: ScopriTuaCarta(); break;
+            case 1:  PerdiVitaConDado(partita, currentGiocatore, TC); break;
+            case 2:  ObbligoScambioConMazzo(partita, currentGiocatore, TC); break;
+            case 3:  ScopriTuaCarta(partita, TC); break;
             default: break;
         }
         this.attivato=true;
     }
 
 
-    private void ScopriTuaCarta(Partita partita, IGiocatore giocatore){
+    private void ScopriTuaCarta(Partita partita, TavoloController TC){
+        TC.mostraCartaSpeciale("Imprevisto", "Mostra la tua carta a tutti i giocatori");
+        TC.mostraCarta(partita.getCurrentGiocatorePos());
         //TODO in codice non è utile, va codificato poi con la parte graFICA
     }
 
@@ -61,28 +62,36 @@ public class CartaImprevisto extends Carta
 
 
     // TODO SGAMBE FAI LA GRAFICA PER ATTIVARE IL METODO
-    private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore){
+    private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore, TavoloController TC){
         System.out.println("IMPREVISTO - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
+        TC.mostraCartaSpeciale("IMPREVISTO","Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
+
         int valoreDadoNew = partita.lancioDadoSingolo();
+        TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos());
+        // todo non mostra il dado
         System.out.println("Valore dado: " + valoreDadoNew);
         //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
         if(valoreDadoNew==currentGiocatore.getCarta().getValore()){
             System.out.println("Che sfortuna " + currentGiocatore.getNome() + " hai perso una vita");
+            TC.mostraCartaSpeciale("Che sfortuna","Hai perso una vita");
             if(currentGiocatore.getVita()==1){ //TODO decidere se eliminare o no. Al momento implementata l'opzione della NON eliminazione
                 //caso eliminazione, gestire eliminazione
                 /*System.out.println("Avevi solo una vita rimasta " + currentGiocatore.getNome() + " sei stato ELIMINATO!");
                 currentGiocatore.setVita(currentGiocatore.getVita() - 1);*/
                 //caso NON eliminazione
+                TC.mostraCartaSpeciale("Che fortuan","Siccome hai solo una vita rimanente non vieni eliminato");
                 System.out.println("Siccome hai solo una vita rimanente non vieni eliminato");
                 System.out.println("Il gioco prosegue");
             }
 
             currentGiocatore.setVita(currentGiocatore.getVita() - 1);
+            TC.gestisciVite();
             System.out.println("Ora possiedi " + currentGiocatore.getVita() + " vite");
         }
         else{
             System.out.println("Sei stato fortunato, niente vita persa per te. Gioca il tuo turno");
+            TC.mostraCartaSpeciale("Sei stato fortunato","Non hai perso nessuna vita");
         }
     }
 

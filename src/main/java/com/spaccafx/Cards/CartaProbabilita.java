@@ -14,9 +14,9 @@ public class CartaProbabilita extends Carta
 {
     boolean attivato = false;
 
-    public CartaProbabilita(int valore, SemeCarta seme)
+    public CartaProbabilita(int valore, SemeCarta seme, TavoloController TC)
     {
-        super(valore, seme);
+        super(valore, seme, TC);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class CartaProbabilita extends Carta
         switch(scelta)
         {
             case 1:  ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
-            case 2: ;//ScopriCartaGiocatoreSuccessivo(partita, currentGiocatore); break;
-            case 3: AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
+            case 2:  ScopriCartaGiocatoreSuccessivoUI(partita, currentGiocatore, TC, partita.mazzo); break;
+            case 3:  AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
             default: break;
         }
 
@@ -66,12 +66,12 @@ public class CartaProbabilita extends Carta
      */
 
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC){
+        // TODO gestire caso in cui si vinca due volte la vita
 // TODO non funziona il primo banner
         TC.mostraCartaSpeciale("Probabilita", "Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
         TC.disableDice();
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
         int valoreDadoNew = partita.lancioDadoSingolo();
-        // TODO spesso assegna il dado alla persona sbaglaita
         TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos());
         System.out.println("Valore dado: " + valoreDadoNew);
 
@@ -92,7 +92,7 @@ public class CartaProbabilita extends Carta
         }
     }
 
-    private void ScopriCartaGiocatoreSuccessivo(Partita partita, IGiocatore currentGiocatore)
+   /* private void ScopriCartaGiocatoreSuccessivo(Partita partita, IGiocatore currentGiocatore)
     {
         System.out.println("\nEFFETTO ATTIVATO: SCOPRO CARTA GIOCATORE SUCCESSIVO\n");
         int indexCG = partita.giocatori.indexOf(currentGiocatore);
@@ -109,10 +109,48 @@ public class CartaProbabilita extends Carta
                 indexNG = indexCG+1;
 
 
+    */
+
             /*if(indexCG >= partita.giocatori.size()-1)//se è l'ultimo giocatore del tavolo MA non è il mazziere allora vede la carta del primo giocatore
                 indexNG=0;
             else //altrimenti prendo il giocatore successivo nell'arrayList dei giocatroie
                 indexNG = indexCG+1; */
+
+            /*System.out.println("SEI GIOCATORE E GUARDI CARTA DAL GIOCATORE NEXT CON VAL: " + partita.giocatori.get(indexNG).getCarta().toString());
+        }
+    }
+
+             */
+
+
+    private void ScopriCartaGiocatoreSuccessivoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC, Mazzo m)
+    {
+        System.out.println("\nEFFETTO ATTIVATO: SCOPRO CARTA GIOCATORE SUCCESSIVO\n");
+        TC.mostraCartaSpeciale("Probabilita", "Mostra la carta del tuo giocatore successivo");
+
+        int indexCG = partita.giocatori.indexOf(currentGiocatore);
+        int indexNG=0;
+        if(currentGiocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
+        {//se il giocaotre che pesca la carta è mazziere deve vedere la prima carta del mazzo
+
+            System.out.println("SEI MAZZIERE E GUARDI CARTA DAL MAZZO CON VALORE: " + partita.mazzo.mazzoCarte.get(partita.mazzo.mazzoCarte.size()-1).toString());
+            //TODO caso mazziere GRAFICAMENTE
+
+            TC.mostraMazzoCentrale(m.mostraUltimaCartaMazzo());
+
+        }
+        else
+        {
+            if(!(indexCG >= partita.giocatori.size()-1))//se è l'ultimo giocatore del tavolo MA non è il mazziere allora vede la carta del primo giocatore
+                indexNG = indexCG+1;
+            TC.mostraCarta(indexNG); // TODO va in conflitto con il metodo set carta tavolo
+
+
+            /*if(indexCG >= partita.giocatori.size()-1)//se è l'ultimo giocatore del tavolo MA non è il mazziere allora vede la carta del primo giocatore
+                indexNG=0;
+            else //altrimenti prendo il giocatore successivo nell'arrayList dei giocatroie
+                indexNG = indexCG+1; */
+
 
             System.out.println("SEI GIOCATORE E GUARDI CARTA DAL GIOCATORE NEXT CON VAL: " + partita.giocatori.get(indexNG).getCarta().toString());
         }

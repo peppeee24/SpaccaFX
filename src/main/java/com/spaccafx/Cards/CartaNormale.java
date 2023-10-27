@@ -8,9 +8,9 @@ import com.spaccafx.Manager.Partita;
 public class CartaNormale extends Carta
 {
 
-    public CartaNormale(int valore, SemeCarta seme)
+    public CartaNormale(int valore, SemeCarta seme, TavoloController TC)
     {
-        super(valore, seme);
+        super(valore, seme, TC);
     }
 
     @Override

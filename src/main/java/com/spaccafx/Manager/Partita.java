@@ -29,7 +29,7 @@ public class Partita
     //endregion
 
     //region #PUBLIC VARIABLES
-    public Mazzo mazzo = new Mazzo(); // creo il mazzo con tutte le carte
+    public Mazzo mazzo; // creo il mazzo con tutte le carte
     public ArrayList<IGiocatore> giocatori;
     public ArrayList<IGiocatore> giocatoriMorti;
 
@@ -88,6 +88,7 @@ public class Partita
 
     public void preStartGame()
     {
+        mazzo = new Mazzo(TC);
         lancioDadiIniziale(); // I giocatori effettuano il lancio dei dadi
         TC.impostaDadi();
 
@@ -365,7 +366,7 @@ private void AvanzaRoundUI()
             if(giocatoreDebole.getRuolo() == RuoloGiocatore.GIOCATORE)
                 ruotaMazziereUI(); // posso ruotare //TODO CONTROLLARE DECREMENTO / ROTAZIONE MAZZIERE
 
-            mazzo.MescolaMazzo(); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
+            mazzo.MescolaMazzo(TC); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
             TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
 
         }

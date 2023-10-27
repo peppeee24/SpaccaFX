@@ -1,6 +1,7 @@
 package com.spaccafx.Controllers;
 
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Cards.Mazzo;
 import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
@@ -272,16 +273,14 @@ public class TavoloController {
         Image back = new Image(getClass().getResource("/Assets/Cards/back.PNG").toString());
         centerSpace.setImage(back);
 
-        // TODO continuare implemntazione
-        //    setCartaTavolo();
-/*
 
-       bot1Space.setImage(back); // Cambia il percorso all'immagine desiderata
-        bot2Space.setImage(back); // Cambia il percorso all'immagine desiderata
-        bot3Space.setImage(back); // Cambia il percorso all'immagine desiderata
+    }
+
+    public void mostraMazzoCentrale(Carta c) {
+
+        centerSpace.setImage(c.getImmagineCarta());
 
 
- */
     }
 
     public void gestisciVite() {
@@ -531,9 +530,34 @@ public class TavoloController {
         }
     }
 
+    public void mostraCarta(int pos){
+        String playerName = partita.giocatori.get(pos).getNome();
+        boolean isCurrentPlayer = playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
+        boolean isCurrentBot1 = playerName.equalsIgnoreCase(nomeBot1Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
+        boolean isCurrentBot2 = playerName.equalsIgnoreCase(nomeBot2Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
+        boolean isCurrentBot3 = playerName.equalsIgnoreCase(nomeBot3Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
 
-    public void setCartaTavoloUI() {
+        Image back = new Image(getClass().getResource("/Assets/Cards/back.png").toString());
 
+        if (playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()) && isCurrentPlayer) {
+            humanPlayerSpace.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
+            ;
+        } else if (playerName.equalsIgnoreCase(nomeBot1Label.getText()) && isCurrentBot1) {
+            bot1Space.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
+            ;
+        } else if (playerName.equalsIgnoreCase(nomeBot2Label.getText()) && isCurrentBot2) {
+            bot2Space.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
+            ;
+        } else if (playerName.equalsIgnoreCase(nomeBot3Label.getText()) && isCurrentBot3) {
+            bot3Space.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
+            ;
+        }
+    }
+
+
+
+
+    public void setCartaTavoloUI() { // todo fare tutto senza i for
 
         for (int i = 0; i < partita.giocatori.size(); i++) {
             String playerName = partita.giocatori.get(i).getNome();

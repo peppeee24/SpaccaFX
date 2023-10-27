@@ -1,5 +1,6 @@
 package com.spaccafx.Cards;
 
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.SemeCarta;
 import javafx.scene.image.Image;
 
@@ -15,7 +16,7 @@ public class Mazzo
     private int carteNormali;
     private int carteSpeciali;
 
-    public Mazzo()
+    public Mazzo(TavoloController TC)
     {
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
@@ -24,22 +25,23 @@ public class Mazzo
         carteSpeciali = 5; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
         // TODO FARE UNA VERIFICA PER VEDERE SE IL N. CARTE SPECIALI < CARTE NORMALI
 
-        RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
+        RiempiMazzo(TC); // per ora facciamo che riempiamo il mazzo da 30 carte
     }
 
-    public void RiempiMazzo() // riempo il mazzo di 20 carte (per ora)
+    // todo controllare quante volte viene attivato il metodo
+    public void RiempiMazzo(TavoloController TC) // riempo il mazzo di 20 carte (per ora)
     {
-        CreoCarte();
-        MescolaMazzo();
+        CreoCarte(TC);
+        MescolaMazzo(TC);
     }
 
-    private void CreoCarteNormali()
+    private void CreoCarteNormali(TavoloController TC)
     {
 
         // RIEMPO CON LE CARTE NORMALI
         for (int c=1; c<=carteNormali; c++) // CANE
         {
-            CartaNormale carta = new CartaNormale(c, SemeCarta.CANE);
+            CartaNormale carta = new CartaNormale(c, SemeCarta.CANE, TC);
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Cane/c" + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
@@ -48,7 +50,7 @@ public class Mazzo
 
         for (int c=1; c<=carteNormali; c++) // GATTO
         {
-            CartaNormale carta = new CartaNormale(c, SemeCarta.GATTO);
+            CartaNormale carta = new CartaNormale(c, SemeCarta.GATTO, TC);
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Gatto/g" + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
@@ -57,7 +59,7 @@ public class Mazzo
 
         for (int c=1; c<=carteNormali; c++) // TOPO
         {
-            CartaNormale carta = new CartaNormale(c, SemeCarta.TOPO);
+            CartaNormale carta = new CartaNormale(c, SemeCarta.TOPO, TC);
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Topo/t" + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
@@ -65,7 +67,7 @@ public class Mazzo
         }
     }
 
-    private void CreoCarteImprevisto()
+    private void CreoCarteImprevisto(TavoloController TC)
     {
         for(int c=1; c<=carteSpeciali; c++)
         {
@@ -78,7 +80,7 @@ public class Mazzo
 
             System.out.println("Imposto valore: " + newVal);
 
-            CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO);
+            CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO, TC);
 
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Imprevisto/i" + newVal + ".PNG").toString());
             cartaImprevisto.setImage(cartaImage);
@@ -88,7 +90,7 @@ public class Mazzo
     }
 
 
-    private void CreoCarteProbabilita()
+    private void CreoCarteProbabilita(TavoloController TC)
     {
         for(int c=1; c<=carteSpeciali; c++)
         {
@@ -101,7 +103,7 @@ public class Mazzo
 
             System.out.println("Imposto valore: " + newVal);
 
-            CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA);
+            CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA, TC);
 
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Probabilita/p" + newVal + ".PNG").toString());
             cartaProbabilita.setImage(cartaImage);
@@ -126,13 +128,13 @@ public class Mazzo
         return true; // non esiste
     }
 
-    private void CreoCarte()
+    private void CreoCarte(TavoloController TC)
     {
         mazzoCarte.clear();
 
-        CreoCarteNormali();
-        CreoCarteImprevisto();
-        CreoCarteProbabilita();
+        CreoCarteNormali(TC);
+        CreoCarteImprevisto(TC);
+        CreoCarteProbabilita(TC);
     }
 
     public Carta PescaCarta() //prende la prima carta dal mazzo
@@ -147,14 +149,22 @@ public class Mazzo
         return carta;
     }
 
-    public void MescolaMazzo()
+    public Carta mostraUltimaCartaMazzo(){
+         Carta carta = mazzoCarte.get(mazzoCarte.size() - 1);
+         return  carta;// prendo l ultima carta dal mazzo
+
+        // una volta che viene pescata una carta, la devo eliminare dal mazzo e poi alla fine del turno gliela devo rimettere!
+
+    }
+
+    public void MescolaMazzo(TavoloController TC)
     {
         // rimetto tutte le carte pescate
         if(!cartePescate.isEmpty()) // Se pieno
         {
             //mazzoCarte.addAll(cartePescate);
             cartePescate.clear(); // cancello le carte che ho pescato
-            CreoCarte(); // TODO DA RIVEDERE
+            CreoCarte(TC); // TODO DA RIVEDERE
 
         }
 
