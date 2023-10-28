@@ -25,7 +25,7 @@ public class CartaProbabilita extends Carta
     @Override
     public void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
-        if(attivato)
+        if(this.attivato)
             return;
 
         //partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
@@ -34,9 +34,12 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1:  ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
-            case 2:  ScopriCartaGiocatoreSuccessivoUI(partita, currentGiocatore, TC, partita.mazzo); break;
+            case 1:  //ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
+
+            case 2:  //AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
+
             case 3:  AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
+
             default: break;
         }
 
@@ -45,31 +48,46 @@ public class CartaProbabilita extends Carta
         this.attivato=true;
     }
 
-    private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC){
+    private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    {
         // TODO gestire caso in cui si vinca due volte la vita
-// TODO non funziona il primo banner
-        TC.mostraCartaSpeciale("Probabilita", "Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
-        TC.disableDice();
-        System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
-        int valoreDadoNew = partita.lancioDadoSingolo();
-        TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos());
-        System.out.println("Valore dado: " + valoreDadoNew);
 
-        //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
-        if(valoreDadoNew==currentGiocatore.getCarta().getValore() ){
-           // TC.setLifeGold(currentGiocatore.getNome());
-            System.out.println("Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
-            currentGiocatore.setVita(currentGiocatore.getVita() + 1);
-            TC.gestisciVite();
-            System.out.println("Ora possiedi " + currentGiocatore.getVita() + " vite");
-            TC.mostraCartaSpeciale("Complimenti " + currentGiocatore.getNome() + " hai vinto una vita","Ora possiedi " + currentGiocatore.getVita() + " vite");
+        if(currentGiocatore.hasVitaExtra()) // ha gia una vita extra
+        {
+            System.out.println("[PROBABILITA] Hai gia ottenuto una vita extra");
         }
-        else{
-            System.out.println("Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
-            TC.mostraCartaSpeciale("Sei stato sfortunato, niente vita per te.","Gioca il tuo turno");
+        else
+        {
+            System.out.println("[PROBABILITA] Se ti esce il valore del dado uguale a quello della carta prendi una vita");
+            System.out.println("[PROBABILITA] " + currentGiocatore.getNome() + " TIRA IL DADO!");
+
+            int valoreDadoNew = partita.lancioDadoSingolo();
+            TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos());
+            System.out.println("[PROBABILITA] Valore dado: " + valoreDadoNew);
 
 
+            // da rimettere nell if
+            System.out.println("[PROBABILITA] Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
+            currentGiocatore.addVitaExtra();
+            TC.updateVitaUI();
+            System.out.println("[PROBABILITA] Ora possiedi " + currentGiocatore.getVita() + " vite");
+
+            /*
+            if(valoreDadoNew == currentGiocatore.getCarta().getValore())
+            {
+                System.out.println("[PROBABILITA] Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
+                currentGiocatore.addVitaExtra();
+                TC.updateVitaUI();
+                System.out.println("[PROBABILITA] Ora possiedi " + currentGiocatore.getVita() + " vite");
+            }
+            else
+            {
+                System.out.println("[PROBABILITA] Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
+            }
+
+             */
         }
+
     }
 
    /* private void ScopriCartaGiocatoreSuccessivo(Partita partita, IGiocatore currentGiocatore)
@@ -106,7 +124,7 @@ public class CartaProbabilita extends Carta
     private void ScopriCartaGiocatoreSuccessivoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC, Mazzo m)
     {
         System.out.println("\nEFFETTO ATTIVATO: SCOPRO CARTA GIOCATORE SUCCESSIVO\n");
-        TC.mostraCartaSpeciale("Probabilita", "Mostra la carta del tuo giocatore successivo");
+        //TC.mostraCartaSpeciale("Probabilita", "Mostra la carta del tuo giocatore successivo");
 
         int indexCG = partita.giocatori.indexOf(currentGiocatore);
         int indexNG=0;
@@ -171,28 +189,29 @@ public class CartaProbabilita extends Carta
      */
 
 
-    private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // ok pensiamo
     {
-        TC.mostraCartaSpeciale("Probabilita", "Puoi scambiare una carta con il mazzo. Se sei mazziere puoi farlo 2 volte");
+        //TC.mostraCartaSpeciale("Probabilita", "Puoi scambiare una carta con il mazzo. Se sei mazziere puoi farlo 2 volte");
+        System.out.println("[PROBABILITA] Posso scambiare la carta con il mazzo");
 
         if(currentGiocatore instanceof Giocatore) // se sono un giocatore normale
         {
-            TC.showScambiaBlu(true, true, true);
+            TC.gestisciPulsanti(true, true, true);
         }
         else // se sono un bot
         {
-            // TODO FARE CASO DEI BOT
-            /*
-            System.out.println("Sono un BOT");
-            if(((Bot)currentGiocatore).Scelta(partita) == 1) // scambio la carta
+            System.out.println("[GAME] Sono un BOT");
+
+            if(((Bot)currentGiocatore).attivoEffetto(partita)) // scambio la carta
             {
-                System.out.println("Il bot ha deciso di scambiare la carta con il mazzo");
+                System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
                 currentGiocatore.setCarta(partita.mazzo.PescaCarta());
             }
             else
-                System.out.println("Il bot ha rifiutato lo scambiato con il mazzo");
+            {
+                System.out.println("[PROBABILITA] Il bot ha rifiutato lo scambiato con il mazzo");
+            }
 
-             */
         }
         // updateCarteUI(); // carte grafiche player
         // updateGameUI(); // mazziere/vite

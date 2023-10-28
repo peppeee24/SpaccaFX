@@ -62,38 +62,12 @@ public class Partita
 
     //region # GAME
 
-    /*public void startGame()
-    {
-
-        //preStartGame(); // Fase iniziale del gioco
-
-        while(isGameRunning()) // fino a quando ci sono giocatori (piu di 1, altrimenti termina in automatico!!)
-        {
-            System.out.println("\n\tNUOVO ROUND: " + getCurrentRound());
-            distribuisciCarte(); // Distribuzione delle carte
-
-            //runRound();
-
-            StampaInfoGiocatori(); // per debug finale!
-
-            System.out.println("\n\n\t ****** IL ROUND E FINITO!! ******");
-            this.currentRound++;
-        }
-
-        System.out.println("[END GAME] GIOCO FINITO, 1 PLAYER RIMASTO VIVO. INVIO DATI SU TELEGRAM...");
-
-        telegramBot.messaggioVincitorePartita(codicePartita, giocatori.get(0).getNome());
-        this.isGameRunning = false; // gioco finito e metto dunque false
-    }*/
-
     public void preStartGame()
     {
         mazzo = new Mazzo(TC);
-        lancioDadiIniziale(); // I giocatori effettuano il lancio dei dadi
-        TC.impostaDadi();
-
-       // stabilisciMazziere(); // Viene decretato chi e il mazziere
-        TC.gestisciMazziere();
+        lancioDadiIniziale(); // Lancio dadi iniziale + stabilimento INIZIALE mazziere
+        TC.impostaDadiUI();
+        TC.updateTurnoUI();
 
     }
 
@@ -156,27 +130,25 @@ public class Partita
         else
             cDistaccoMazziere++;
 
-        currentGiocatorePos = cDistaccoMazziere;
+
+        this.currentGiocatorePos = cDistaccoMazziere;
         IGiocatore currentGiocatore = giocatori.get(currentGiocatorePos);
 
         if(currentGiocatore instanceof Bot)
         {
-            System.out.println("[GAME] Tocca al BOT: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
+            System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
             controlloMano(currentGiocatorePos);
-            System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+            System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
 
-            ((Bot) giocatori.get(currentGiocatorePos)).SceltaBotUI(this);
-
+            ((Bot) currentGiocatore).SceltaBotUI(this);
         }
         else // e un player
         {
-
-            System.out.println("[GAME] Tocca al giocatore: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
+            System.out.println("[GAME] Tocca al giocatore: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
             controlloMano(currentGiocatorePos);
-            System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
+            System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
         }
 
-        this.currentGiocatorePos = cDistaccoMazziere;
     }
 
     private void controlloMano(int currentGiocatore)
@@ -228,15 +200,15 @@ public class Partita
             giocatori.get(currentPlayerPos).setCarta(mazzo.PescaCarta());
 
             System.out.println("[GAME] Pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + giocatori.get(currentPlayerPos).getCarta());
-            System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
 
-            controlloMano(currentGiocatorePos); // TODO FARE METODO UNICO CHE CONTROLLA CHE COSA HA IL GIOCATORE ATTUALE IN MANO ED ESEGUE LE COSE, GESTIRE IMPR E PROB
+            controlloMano(currentPlayerPos); // TODO FARE METODO UNICO CHE CONTROLLA CHE COSA HA IL GIOCATORE ATTUALE IN MANO ED ESEGUE LE COSE, GESTIRE IMPR E PROB
 
             // attesa....
+            System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
             controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
-            TC.setCartaTavoloUI(); // TODO DA CAMBIARE IN UPDATECARDUI
+            TC.updateCarteUI(); // TODO DA CAMBIARE IN UPDATECARDUI
         }
-        else // sono un giocatore normale
+        else // sono un giocatore normale NON MAZZIERE
         {
             IGiocatore nextPlayer;
             int nextIndexPlayer = currentPlayerPos + 1;
@@ -258,11 +230,11 @@ public class Partita
             System.out.println("[GAME] Ho scambiato la carta con il player successivo, adesso "
                     + giocatori.get(currentPlayerPos).getNome() +  " ha la carta: " + giocatori.get(currentPlayerPos).getCarta());
 
-            controlloMano(currentGiocatorePos); // TODO FARE METODO UNICO CHE CONTROLLA CHE COSA HA IL GIOCATORE ATTUALE IN MANO ED ESEGUE LE COSE, GESTIRE IMPR E PROB
+            controlloMano(currentPlayerPos); // TODO FARE METODO UNICO CHE CONTROLLA CHE COSA HA IL GIOCATORE ATTUALE IN MANO ED ESEGUE LE COSE, GESTIRE IMPR E PROB
 
             // attesa...
             AvanzaRoundUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
-            TC.setCartaTavoloUI(); // TODO DA CAMBIARE IN UPDATECARDUI
+            TC.updateCarteUI(); // TODO DA CAMBIARE IN UPDATECARDUI
         }
     }
 
@@ -274,16 +246,16 @@ public class Partita
         if (giocatori.get(currentGiocatorePos).getRuolo() == RuoloGiocatore.MAZZIERE){
 
         controllaRisultatiUI(); // da modificare
-            TC.setCartaTavoloUI();
+            TC.updateCarteUI();
     }else
         {
             Carta currentGiocatoreCarta = giocatori.get(currentGiocatorePos).getCarta();
             // TODO non funziona semore con le carte probabilita
             if(currentGiocatoreCarta instanceof  CartaProbabilita || currentGiocatoreCarta instanceof  CartaImprevisto)
-                TC.showScambiaBlu(false, true, true);
+                TC.gestisciPulsanti(false, true, true);
 
             AvanzaRoundUI();
-            TC.setCartaTavoloUI();
+            TC.updateCarteUI();
         }
 
     }
@@ -318,14 +290,21 @@ public class Partita
             System.out.println("[CHECK-GAME] * 1 SOLO Giocatore perdente!");
             giocatoreDebole = giocatoriConValoreMassimo.get(0);
 
+            if(giocatoreDebole.hasVitaExtra())
+            {
+                System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
+                giocatoreDebole.removeVitaExtra();
+            }
+            else
+            {
+                System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
+                giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+            }
 
-            giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
-            System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
             // TODO fare pannello che appare e avvisa allafine del turno chi perde la vita
 
-            if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+            if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
             {
-
                 TC.HidePlayerUI(giocatoreDebole.getNome());
 
                 giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
@@ -363,12 +342,19 @@ public class Partita
 
             if(giocatoreDebole != null)
             {
+                if(giocatoreDebole.hasVitaExtra())
+                {
+                    System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
+                    giocatoreDebole.removeVitaExtra();
+                }
+                else
+                {
+                    System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
+                    giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+                }
 
-                giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
-                System.out.println("(!) " + giocatoreDebole.getNome() + " HA PERSO 1 VITA!!");
 
-
-                if(giocatoreDebole.getVita() <= 0) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+                if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                 {
                     giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
                     giocatori.remove(giocatoreDebole);
@@ -402,13 +388,13 @@ public class Partita
         {
             if(giocatoreDebole.getRuolo() == RuoloGiocatore.GIOCATORE)
                 ruotaMazziereUI(); // posso ruotare //TODO CONTROLLARE DECREMENTO / ROTAZIONE MAZZIERE
-            else if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE && giocatoreDebole.getVita() >= 1) // se il mazziere e vivo
+            else if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE && (giocatoreDebole.getVita() >= 1 || giocatoreDebole.hasVitaExtra())) // se il mazziere e vivo
             {
                 ruotaMazziereUI();
             }
 
             mazzo.MescolaMazzo(TC); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
-            TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
+            TC.updateTurnoUI(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
 
         }
 
@@ -452,18 +438,11 @@ public class Partita
 
     public void lancioDadiIniziale()
     {
-        //ShareData sharedData = ShareData.getInstance();
-
-        //this.TC = sharedData.getTavoloController();
 
         for(int c=0; c<giocatori.size() ;c++)
         {
             IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
             int valoreDado = lancioDadoSingolo(); // prendo valore a caso del dado
-
-
-            //System.out.println(valoreDado);
-            //TC.disableDice();
 
             System.out.println("\nIl giocatore " + editGiocatore.getNome() + " ha lanciato un dado ed e uscito: " + valoreDado);
             editGiocatore.setDado(valoreDado);
@@ -471,7 +450,6 @@ public class Partita
             giocatori.set(c, editGiocatore);
         }
 
-        //TC.roll(4);
         this.stabilisciMazziere();
     }
 
@@ -834,6 +812,7 @@ public class Partita
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
                     ", Carta: " + currentGiocatore.getCarta().toString() +
                     ", Vite: " + currentGiocatore.getVita() +
+                    ", Vita Extra: " + currentGiocatore.hasVitaExtra() +
                     ", Ruolo: " + currentGiocatore.getRuolo());
         }
     }

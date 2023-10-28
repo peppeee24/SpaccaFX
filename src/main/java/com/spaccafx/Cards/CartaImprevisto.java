@@ -22,7 +22,7 @@ public class CartaImprevisto extends Carta
     @Override
     public void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
-        if(attivato)
+        if(this.attivato)
             return;
 
         int scelta = (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
@@ -60,7 +60,7 @@ public class CartaImprevisto extends Carta
         System.out.println("La carta che hai pescato è: " + currentGiocatore.getCarta().getValore()); //TODO nuovo metodo per fare in modo che ti dica il valore e di che tipo è la carta ad esempio: 2 di cane
         System.out.println("Ora fai la tua mossa");
 
-        TC.setCartaTavoloUI();
+        TC.updateCarteUI();
         partita.passaTurnoUI();
     }
 
@@ -92,7 +92,7 @@ public class CartaImprevisto extends Carta
             }
 
             currentGiocatore.setVita(currentGiocatore.getVita() - 1);
-            TC.gestisciVite();
+            TC.updateVitaUI();
             System.out.println("Ora possiedi " + currentGiocatore.getVita() + " vite");
         }
         else{

@@ -133,7 +133,7 @@ public class Mazzo
         mazzoCarte.clear();
 
         CreoCarteNormali(TC);
-        CreoCarteImprevisto(TC);
+        //CreoCarteImprevisto(TC);
         CreoCarteProbabilita(TC);
     }
 

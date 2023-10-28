@@ -44,6 +44,17 @@ public class AdvancedBot extends Bot
     }
 
     @Override
+    public boolean attivoEffetto(Partita p)
+    {
+        System.out.println("[HARD-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
+        int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
+        System.out.println("[HARD-BOT] Il valore minimo per NON passare e: " + min);
+
+        return carta.getValore() > min;
+    }
+
+
+    @Override
     public String generaNomeBot() //generiamo nomi per i bot(es: user1234)
     {
         int numeroBot=(int)(1 + (Math.random() * 1000));

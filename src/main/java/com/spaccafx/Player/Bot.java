@@ -8,7 +8,7 @@ import com.spaccafx.Manager.Partita;
 public abstract class Bot implements IGiocatore
 {
     private String nome;
-    private int vita;
+    private int vita, vitaExtra;
     protected Carta carta;
     private RuoloGiocatore ruolo;
     private int valoreDado;
@@ -19,25 +19,29 @@ public abstract class Bot implements IGiocatore
     public Bot()
     {
         this.nome = "Bot";
-        this.vita = 3;
+        this.vita = 2;
+        vitaExtra = 0;
         this.carta = null;
     }
     public Bot(String nome)
     {
         this.nome = nome;
-        this.vita = 3;
+        this.vita = 2;
+        vitaExtra = 0;
         this.carta = null;
     }
     public Bot(Carta carta)
     {
         this.nome = "Bot";
-        this.vita = 3;
+        this.vita = 2;
+        vitaExtra = 0;
         this.carta = carta;
     }
     public Bot(String nome, Carta carta)
     {
         this.nome=nome;
-        this.vita=3;
+        this.vita= 2;
+        vitaExtra = 0;
         this.carta=carta;
     }
 
@@ -57,8 +61,13 @@ public abstract class Bot implements IGiocatore
     public RuoloGiocatore getRuolo(){return this.ruolo;}
     //public abstract int Scelta(Partita p);
     public abstract void SceltaBotUI(Partita p);
+    public abstract boolean attivoEffetto(Partita p);
     public abstract String generaNomeBot();
 
+
+    public void addVitaExtra() {vitaExtra = 1;}
+    public void removeVitaExtra(){vitaExtra = 0;}
+    public boolean hasVitaExtra(){return vitaExtra == 1;} // restituisce true se ha 1 come vita extra
 
 
 

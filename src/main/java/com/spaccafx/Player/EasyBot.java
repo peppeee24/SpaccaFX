@@ -41,6 +41,16 @@ public class EasyBot extends Bot
     }
 
     @Override
+    public boolean attivoEffetto(Partita p)
+    {
+        System.out.println("[EZ-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
+        int scelta = (int)((1 + Math.random() * 2));
+
+        return scelta != 1; // se la scelta e diverso da 1 allora ritorna true e attiva effetto bot
+    }
+
+
+    @Override
     public String generaNomeBot() { //generiamo nomi per i bot(es: user1234)
         int numeroBot=(int)(1 + (Math.random() * 1000));
         String nomeBot="EzBot_" + numeroBot;
