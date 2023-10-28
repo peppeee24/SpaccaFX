@@ -204,7 +204,7 @@ public class PartitaClassicaController2 {
                     numeroBotLabel.setText("Non ci sono bot");
                     break;
                 case 1:
-                    if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
+                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
                         labelBot1.setText(getA1());
                         labelBot1.setVisible(true);
                         hardBot1.setVisible(true);
@@ -232,7 +232,7 @@ public class PartitaClassicaController2 {
                     }
                     break;
                 case 3:
-                    if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
+                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
                         labelBot1.setText(getA1());
                         labelBot1.setVisible(true);
                         hardBot1.setVisible(true);
@@ -451,9 +451,9 @@ public class PartitaClassicaController2 {
             case 3:
 
                 if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    GiocatoriPartita.add(new EasyBot(getA1()));
-                    GiocatoriPartita.add(new EasyBot(getA2()));
-                    GiocatoriPartita.add(new EasyBot(getA3()));
+                    GiocatoriPartita.add(new AdvancedBot(getA1()));
+                    GiocatoriPartita.add(new AdvancedBot(getA2()));
+                    GiocatoriPartita.add(new AdvancedBot(getA3()));
                 } else {
                     GiocatoriPartita.add(new EasyBot(getE1()));
                     GiocatoriPartita.add(new EasyBot(getE2()));
@@ -464,8 +464,8 @@ public class PartitaClassicaController2 {
             case 2:
 
                 if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    GiocatoriPartita.add(new EasyBot(getA1()));
-                    GiocatoriPartita.add(new EasyBot(getA2()));
+                    GiocatoriPartita.add(new AdvancedBot(getA1()));
+                    GiocatoriPartita.add(new AdvancedBot(getA2()));
                 } else {
                     GiocatoriPartita.add(new EasyBot(getE1()));
                     GiocatoriPartita.add(new EasyBot(getE2()));
@@ -473,7 +473,7 @@ public class PartitaClassicaController2 {
                 break;
             case 1:
                 if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-                    GiocatoriPartita.add(new EasyBot(getA1()));
+                    GiocatoriPartita.add(new AdvancedBot(getA1()));
                 } else {
                     GiocatoriPartita.add(new EasyBot(getE1()));
                 }

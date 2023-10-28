@@ -149,7 +149,7 @@ public class Partita
         //controllaRisultati(); // prendo tutti i dati e li metto in un mapset
     }
 
-private void AvanzaRoundUI()
+    private void AvanzaRoundUI()
     {
         if(cDistaccoMazziere+1 > giocatori.size() - 1)
             cDistaccoMazziere = 0;
@@ -157,16 +157,18 @@ private void AvanzaRoundUI()
             cDistaccoMazziere++;
 
         currentGiocatorePos = cDistaccoMazziere;
+        IGiocatore currentGiocatore = giocatori.get(currentGiocatorePos);
 
-        if(giocatori.get(currentGiocatorePos) instanceof Bot)
+        if(currentGiocatore instanceof Bot)
         {
             System.out.println("[GAME] Tocca al BOT: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
             controlloMano(currentGiocatorePos);
             System.out.println("[GAME] Info: " + giocatori.get(currentGiocatorePos).getCarta().toString());
 
             ((Bot) giocatori.get(currentGiocatorePos)).SceltaBotUI(this);
+
         }
-        else
+        else // e un player
         {
 
             System.out.println("[GAME] Tocca al giocatore: " + giocatori.get(currentGiocatorePos).getNome() + " in posizione: " + currentGiocatorePos);
@@ -177,30 +179,45 @@ private void AvanzaRoundUI()
         this.currentGiocatorePos = cDistaccoMazziere;
     }
 
-    private void controlloMano(int currentGiocatore) // todo METTERE ANCHE I VARI CONTROLLI NEL CASO TU SIA UN BOT
+    private void controlloMano(int currentGiocatore)
     {
         // controlliamo che carta ha e cosa attivare o meno graficamente
         Carta currentMano = giocatori.get(currentGiocatore).getCarta();
 
         if(currentMano instanceof  CartaProbabilita)
         {
-            System.out.println("Ho una carta speciale");
-            ((CartaProbabilita)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+            System.out.println("[MANO] Ho una carta speciale PROBABILITA");
+
+            if(!((CartaProbabilita) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+            {
+                ((CartaProbabilita)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+                System.out.println("[MANO] Effetto NON attivo, lo attivo..");
+            }
+            else
+                System.out.println("[MANO] Effetto GIA ATTIAVATO!!");
+
         }
         else if(currentMano instanceof  CartaImprevisto)
         {
-            System.out.println("Ho una carta speciale");
-            ((CartaImprevisto)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+            System.out.println("[MANO] Ho una carta speciale IMPREVISTO");
+
+            if(!((CartaImprevisto) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+            {
+                ((CartaImprevisto)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+                System.out.println("[MANO] Effetto NON attivo, lo attivo..");
+            }
+            else
+                System.out.println("[MANO] Effetto GIA ATTIAVATO!!");
         }
         else // debug
         {
-            System.out.println("Ho una carta normale");
+            System.out.println("[MANO] Ho una carta NORMALE");
         }
 
     }
 
 
-    // TODO FARE IL CASO IN CUI SCAMBIO UNA CARTA CON IL GIOC DOPO/ CON IL MAZZO E PRENDO UN CARTA SPECIALE (IMPR, PROB)
+    // TODO FARE IL CASO IN CUI SCAMBIO UNA CARTA CON IL GIOCO DOPO/ CON IL MAZZO E PRENDO UN CARTA SPECIALE (IMPR, PROB)
     public void ScambiaCartaUI(int currentPlayerPos)
     {
         IGiocatore currentGiocatoreUI = giocatori.get(currentPlayerPos);
@@ -209,10 +226,13 @@ private void AvanzaRoundUI()
         if(currentGiocatoreUI.getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
         {
             giocatori.get(currentPlayerPos).setCarta(mazzo.PescaCarta());
+
             System.out.println("[GAME] Pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + giocatori.get(currentPlayerPos).getCarta());
             System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
 
-// TODO gestire imprevisi e probabilità, per ora lo facciamo solo con passa
+            controlloMano(currentGiocatorePos); // TODO FARE METODO UNICO CHE CONTROLLA CHE COSA HA IL GIOCATORE ATTUALE IN MANO ED ESEGUE LE COSE, GESTIRE IMPR E PROB
+
+            // attesa....
             controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
             TC.setCartaTavoloUI(); // TODO DA CAMBIARE IN UPDATECARDUI
         }
@@ -238,12 +258,16 @@ private void AvanzaRoundUI()
             System.out.println("[GAME] Ho scambiato la carta con il player successivo, adesso "
                     + giocatori.get(currentPlayerPos).getNome() +  " ha la carta: " + giocatori.get(currentPlayerPos).getCarta());
 
+            controlloMano(currentGiocatorePos); // TODO FARE METODO UNICO CHE CONTROLLA CHE COSA HA IL GIOCATORE ATTUALE IN MANO ED ESEGUE LE COSE, GESTIRE IMPR E PROB
+
+            // attesa...
             AvanzaRoundUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
             TC.setCartaTavoloUI(); // TODO DA CAMBIARE IN UPDATECARDUI
         }
     }
 
-    public void passaTurnoUI() {
+    public void passaTurnoUI() // todo ricontrollare metodo
+    {
         System.out.println("[SCELTA] Ho deciso di passare il turno");
 
         // TODO FIXXARE PULSANTI CHE NON SCOMPAIONO
@@ -378,15 +402,21 @@ private void AvanzaRoundUI()
         {
             if(giocatoreDebole.getRuolo() == RuoloGiocatore.GIOCATORE)
                 ruotaMazziereUI(); // posso ruotare //TODO CONTROLLARE DECREMENTO / ROTAZIONE MAZZIERE
+            else if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE && giocatoreDebole.getVita() >= 1) // se il mazziere e vivo
+            {
+                ruotaMazziereUI();
+            }
 
             mazzo.MescolaMazzo(TC); // TODO LO DEVE FARE SOLO SE CI SONO DEI GIOCATORI ALTRIMENTI SPRECO DI RISORSE
             TC.gestisciMazziere(); // TODO CAMBIARE IN UPDATEUI (aggiorna round, vite e icone mazziere o altro)
 
         }
+
+        // todo BISOGNA AVANZARE DI ROUND
     }
 
 
-    private void ruotaMazziereUI()
+    private void ruotaMazziereUI() // TODO RICONTROLLARE CODICE
     {
         if(posMazziere+1 > giocatori.size() - 1)
         {
@@ -509,7 +539,7 @@ private void AvanzaRoundUI()
 
     //region #METHODS
 
-    public int lancioDadoSingolo() { return (int)(1 + Math.random() * (6));} // TODO CAMBIARE NUMERO FACCE DADO DA 1 A 6 NEL GIOCO FINALE
+    public int lancioDadoSingolo() { return (int)(1 + Math.random() * (6));}
 
     public void aggiungiGiocatore(IGiocatore giocatore){this.giocatori.add(giocatore);}
 
@@ -583,14 +613,6 @@ private void AvanzaRoundUI()
     private boolean isGameRunning() { return giocatori.size() > 1; } // Restituisce true se ci sono piu di 1 giocatore vivi
 
     public int getCurrentRound(){return this.currentRound;}
-
-    private void mostraIstruzioni(IGiocatore giocatore)
-    {
-        System.out.println("\nGiocatore: " + giocatore.getNome() + " tocca a te fare una mossa! ");
-        System.out.println("Carta: " + giocatore.getCarta().toString() + ", Vite: " + giocatore.getVita() + ", Ruolo: " + giocatore.getRuolo());
-        System.out.println("1 - SCAMBIA LA CARTA CON QUELLO SUCCESSIVO / CON IL MAZZO (Se sei il mazziere)");
-        System.out.println("2 - PASSA IL TURNO");
-    }
 
 
     /*private void sceltaNew(Scanner s, IGiocatore currentGiocatore)

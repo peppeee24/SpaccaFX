@@ -40,30 +40,10 @@ public class CartaProbabilita extends Carta
             default: break;
         }
 
+        // TODO OGNI VOLTA CHE SI ESEGUE L'EFFETTO BISOGNA FAR RIPOSARE IL THREAD PER FAR FERMARE IL GIOCO UN PICCOLO LASSO DI TEMPO
+
         this.attivato=true;
     }
-
-    // TODO SGAMBE FAI LA GRAFICA PER ATTIVARE IL METODO
-    /*private void AumentaVitaConDado(Partita partita, IGiocatore currentGiocatore){
-
-
-
-        System.out.println("PROBABILITA - Tira il dado, se il numero che ti esce è uguale al valore della tua carta vinci una vita!");
-        System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
-        int valoreDadoNew = partita.lancioDadoSingolo();
-        System.out.println("Valore dado: " + valoreDadoNew);
-        //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
-        if(valoreDadoNew==currentGiocatore.getCarta().getValore()){
-            System.out.println("Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
-            currentGiocatore.setVita(currentGiocatore.getVita() + 1);
-            System.out.println("Ora possiedi " + currentGiocatore.getVita() + " vite");
-        }
-        else{
-            System.out.println("Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
-        }
-    }
-
-     */
 
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC){
         // TODO gestire caso in cui si vinca due volte la vita
@@ -202,7 +182,7 @@ public class CartaProbabilita extends Carta
         else // se sono un bot
         {
             // TODO FARE CASO DEI BOT
-
+            /*
             System.out.println("Sono un BOT");
             if(((Bot)currentGiocatore).Scelta(partita) == 1) // scambio la carta
             {
@@ -211,6 +191,8 @@ public class CartaProbabilita extends Carta
             }
             else
                 System.out.println("Il bot ha rifiutato lo scambiato con il mazzo");
+
+             */
         }
         // updateCarteUI(); // carte grafiche player
         // updateGameUI(); // mazziere/vite

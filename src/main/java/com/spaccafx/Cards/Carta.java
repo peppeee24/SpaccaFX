@@ -36,6 +36,11 @@ public abstract class Carta
     public abstract String toString();
 
     //public abstract void Effetto(Partita partita);
+    public void mostraCarta() // TODO DA FARE SEPARATO DA TC
+    {
+
+    }
+
 
     public abstract void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC);
     // Effetto per le carte imprevisto e probabilità

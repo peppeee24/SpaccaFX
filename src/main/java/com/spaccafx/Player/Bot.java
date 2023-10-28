@@ -19,25 +19,25 @@ public abstract class Bot implements IGiocatore
     public Bot()
     {
         this.nome = "Bot";
-        this.vita = 4;
+        this.vita = 3;
         this.carta = null;
     }
     public Bot(String nome)
     {
         this.nome = nome;
-        this.vita = 4;
+        this.vita = 3;
         this.carta = null;
     }
     public Bot(Carta carta)
     {
         this.nome = "Bot";
-        this.vita = 4;
+        this.vita = 3;
         this.carta = carta;
     }
     public Bot(String nome, Carta carta)
     {
         this.nome=nome;
-        this.vita=4;
+        this.vita=3;
         this.carta=carta;
     }
 
@@ -55,7 +55,7 @@ public abstract class Bot implements IGiocatore
     public Carta getCarta(){return this.carta;}
     public int getValoreDado(){return this.valoreDado;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
-    public abstract int Scelta(Partita p);
+    //public abstract int Scelta(Partita p);
     public abstract void SceltaBotUI(Partita p);
     public abstract String generaNomeBot();
 

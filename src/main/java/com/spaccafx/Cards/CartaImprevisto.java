@@ -34,13 +34,17 @@ public class CartaImprevisto extends Carta
             case 3:  ScopriTuaCarta(partita, TC); break;
             default: break;
         }
+
+        // TODO OGNI VOLTA CHE SI ESEGUE L'EFFETTO BISOGNA FAR RIPOSARE IL THREAD PER FAR FERMARE IL GIOCO UN PICCOLO LASSO DI TEMPO
+
         this.attivato=true;
     }
 
 
     private void ScopriTuaCarta(Partita partita, TavoloController TC){
         TC.mostraCartaSpeciale("Imprevisto", "Mostra la tua carta a tutti i giocatori");
-        TC.mostraCarta(partita.getCurrentGiocatorePos());
+        TC.mostraCarta(partita.getCurrentGiocatorePos()); // todo LA CARTA DEVE RIMANERE VISIBILE PER TUTTO IL ROUND
+
         //TODO in codice non è utile, va codificato poi con la parte graFICA
     }
 
@@ -62,9 +66,11 @@ public class CartaImprevisto extends Carta
 
 
     // TODO SGAMBE FAI LA GRAFICA PER ATTIVARE IL METODO
-    private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore, TavoloController TC){
+    private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    {
         System.out.println("IMPREVISTO - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
-        TC.mostraCartaSpeciale("IMPREVISTO","Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
+        TC.mostraCartaSpeciale("IMPREVISTO","Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!"); // controlla
+
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
 
         int valoreDadoNew = partita.lancioDadoSingolo();

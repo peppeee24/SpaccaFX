@@ -21,13 +21,17 @@ public class EasyBot extends Bot
         super(nome,carta);
     }
 
-    @Override
+    /*@Override
     public int Scelta(Partita p) { //ipotizziamo che l'easyBot scelga randomicamente se switchare o no la carta
         return (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
     }
 
+     */
+
     @Override
     public void SceltaBotUI(Partita p){
+        System.out.println("[EZ-BOT] ho la carta con valore: " + carta.getValore());
+
         int scelta = (int)((1 + Math.random() * 2));
         if(scelta==1){
             p.passaTurnoUI();

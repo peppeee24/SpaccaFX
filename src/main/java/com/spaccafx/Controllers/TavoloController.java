@@ -3,6 +3,7 @@ package com.spaccafx.Controllers;
 import com.spaccafx.Cards.Carta;
 import com.spaccafx.Cards.Mazzo;
 import com.spaccafx.Enums.RuoloGiocatore;
+import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
 import com.spaccafx.Player.Bot;
@@ -149,7 +150,8 @@ public class TavoloController {
         bottoneBlue.setVisible(false);
     }
 
-    public void scambiaConMazzo(ActionEvent actionEvent) {
+    public void scambiaConMazzo(ActionEvent actionEvent)
+    {
         partita.giocatori.get(partita.getCurrentGiocatorePos()).setCarta(partita.mazzo.PescaCarta());
         setCartaTavoloUI();
         showScambiaBlu(false, true, true);
@@ -211,6 +213,7 @@ public class TavoloController {
 
 
     public void mostraCartaSpeciale(String titolo, String effetto) {
+
         cartaSpecialeLabel.setVisible(true);
         cartaSpecialeLabel.setText(titolo);
         effettoLabel.setVisible(true);
@@ -219,8 +222,10 @@ public class TavoloController {
         // Creare un thread che eseguirà i metodi dopo un ritardo
         Thread thread = new Thread(() -> {
             try {
+                Thread.sleep(4000); // TODO CAPIRE COME FUNZIONANO I THREAD
+
                 // Dormire per un certo numero di millisecondi (ad esempio, 2000 millisecondi o 2 secondi)
-                Thread.sleep(4000);
+
 
                 // Eseguire i metodi successivi all'interno di Platform.runLater
                 // Altri metodi da eseguire dopo il ritardo
@@ -530,27 +535,28 @@ public class TavoloController {
         }
     }
 
-    public void mostraCarta(int pos){
-        String playerName = partita.giocatori.get(pos).getNome();
-        boolean isCurrentPlayer = playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
+    public void mostraCarta(int pos)
+    {
+        IGiocatore currentGiocatore = partita.giocatori.get(pos);
+        String playerName = currentGiocatore.getNome();
+
+        /*boolean isCurrentPlayer = playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
         boolean isCurrentBot1 = playerName.equalsIgnoreCase(nomeBot1Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
         boolean isCurrentBot2 = playerName.equalsIgnoreCase(nomeBot2Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
         boolean isCurrentBot3 = playerName.equalsIgnoreCase(nomeBot3Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
+         */
 
-        Image back = new Image(getClass().getResource("/Assets/Cards/back.png").toString());
+        if (playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()))
+        {
+            humanPlayerSpace.setImage(currentGiocatore.getCarta().getImmagineCarta()); // player1
 
-        if (playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()) && isCurrentPlayer) {
-            humanPlayerSpace.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
-            ;
-        } else if (playerName.equalsIgnoreCase(nomeBot1Label.getText()) && isCurrentBot1) {
-            bot1Space.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
-            ;
-        } else if (playerName.equalsIgnoreCase(nomeBot2Label.getText()) && isCurrentBot2) {
-            bot2Space.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
-            ;
-        } else if (playerName.equalsIgnoreCase(nomeBot3Label.getText()) && isCurrentBot3) {
-            bot3Space.setImage(partita.giocatori.get(pos).getCarta().getImmagineCarta());
-            ;
+        } else if (playerName.equalsIgnoreCase(nomeBot1Label.getText())) {
+            bot1Space.setImage(currentGiocatore.getCarta().getImmagineCarta());
+
+        } else if (playerName.equalsIgnoreCase(nomeBot2Label.getText())) {
+            bot2Space.setImage(currentGiocatore.getCarta().getImmagineCarta());
+        } else if (playerName.equalsIgnoreCase(nomeBot3Label.getText())) {
+            bot3Space.setImage(currentGiocatore.getCarta().getImmagineCarta());
         }
     }
 
