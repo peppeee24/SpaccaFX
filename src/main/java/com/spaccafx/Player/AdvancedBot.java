@@ -37,10 +37,10 @@ public class AdvancedBot extends Bot
         int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
         System.out.println("[HARD-BOT] Il valore minimo per NON passare e: " + min);
 
-        if(carta.getValore() <= min) // TODO CAMBIARE LA SCELTA SE IL VALORE DELLA CARTA E <= MAZZO.MAXCARTENORMALI/2
+        if(carta.getValore() <= min)
             p.passaTurnoUI(); //non cambia la carta
         else
-           p.ScambiaCartaUI(p.getCurrentGiocatorePos()); // cambia la carta
+           p.ScambiaCartaUI(); // cambia la carta
     }
 
     @Override

@@ -37,7 +37,7 @@ public class EasyBot extends Bot
             p.passaTurnoUI();
         }
         else
-            p.ScambiaCartaUI(p.getCurrentGiocatorePos());
+            p.ScambiaCartaUI();
     }
 
     @Override

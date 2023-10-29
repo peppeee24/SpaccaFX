@@ -102,4 +102,5 @@ public class CartaImprevisto extends Carta
     }
 
     public boolean isAttivato(){return this.attivato;}
+    public void setAttivato(boolean attivato){this.attivato=attivato;}
 }

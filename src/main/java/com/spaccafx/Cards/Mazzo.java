@@ -149,6 +149,23 @@ public class Mazzo
         return carta;
     }
 
+    public Carta PescaCartaSenzaEffetto() //prende la prima carta dal mazzo
+    {
+        Carta carta = mazzoCarte.get(mazzoCarte.size() - 1); // prendo l ultima carta dal mazzo
+
+        // una volta che viene pescata una carta, la devo eliminare dal mazzo e poi alla fine del turno gliela devo rimettere!
+        cartePescate.add(carta);
+        mazzoCarte.remove(carta);
+        System.out.println("Ho rimosso la carta pescata dal mazzo delle carte! (" + mazzoCarte.size() + " rimanenti)");
+
+        if(carta instanceof  CartaProbabilita)
+            ((CartaProbabilita) carta).setAttivato(true);
+        if(carta instanceof  CartaImprevisto)
+            ((CartaImprevisto) carta).setAttivato(true);
+
+        return carta;
+    }
+
     public Carta mostraUltimaCartaMazzo(){
          Carta carta = mazzoCarte.get(mazzoCarte.size() - 1);
          return  carta;// prendo l ultima carta dal mazzo
