@@ -65,7 +65,6 @@ public class Partita
     {
         mazzo = new Mazzo(TC);
         lancioDadiIniziale(); // Lancio dadi iniziale + stabilimento INIZIALE mazziere
-        TC.impostaDadiUI();
         TC.startGameUI();
     }
 
@@ -361,68 +360,19 @@ public class Partita
         }
         else // se sta andando il gioco, giocatori vivi
         {
-            if(giocatori.contains(giocatoreDebole))
-                ruotaMazziereUI(false, giocatoreDebole); // ruoto il mazzo normalmente
-            else // se e morto qualcuno
-            {
-                if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE) // se e mazziere controllo dove e morto in che pos (3 casi: fine, centro, inizio)
-                {
-                    ruotaMazziereUI(true, giocatoreDebole); // ruoto facendo attenzione al mazziere eliminato in che posizione si trova
-                }
-                else // se non e mazziere ruoto
-                    ruotaMazziereUI(false, giocatoreDebole); // ruoto il mazzo normalmente
-            }
-
             avanzaRoundUI();
         }
     }
 
     private void avanzaRoundUI()
     {
+        lancioDadiIniziale();
         mazzo.MescolaMazzo(TC);
 
         this.currentRound ++;
         TC.aggiornaInfoUI();
 
         iniziaNuovoRoundUI();
-    }
-
-
-    private void ruotaMazziereUI(boolean isMazziereEliminato, IGiocatore giocatoreDebole)
-    {
-        if(isMazziereEliminato)
-        {
-            System.out.println("[ROT-MAZZIERE] Eliminato mazziere in posizione: " + posMazziere);
-            if(posMazziere > giocatori.size()-1 || posMazziere == 0) // viene eliminato alla fine
-                posMazziere = 0; // metto il mazziere come primo
-
-            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
-            System.out.println("[ROT-MAZZIERE] Il mazziere diventa in posizione successiva: " + posMazziere);
-
-        }
-        else
-        {
-            if(giocatori.contains(giocatoreDebole)) // vuol dire che il player normale non e morto
-            {
-                // avanzo il mazziere normalmente
-                posMazziere = (posMazziere + 1) % giocatori.size();
-                System.out.println("[ROT-MAZZIERE-PLAYER] Metto il mazzire in posizione: " + posMazziere);
-                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
-            }
-            else // il player normale e morto
-            {
-
-            }
-
-
-            // metto il giocatore prima come giocatore a ruolo GIOCATORE
-            int posGiocatorePrecedente = (posMazziere - 1 + giocatori.size()) % giocatori.size();
-            giocatori.get(posGiocatorePrecedente).setRuolo(RuoloGiocatore.GIOCATORE);
-
-            System.out.println("[ROT-MAZZIERE-PLAYER] Giocatore precedente: " + posGiocatorePrecedente);
-        }
-
-        TC.impostaCoroneMazziereUI();
     }
 
     //endregion
@@ -442,6 +392,9 @@ public class Partita
 
             giocatori.set(c, editGiocatore);
         }
+
+        TC.impostaDadiUI();
+        // dimostro i dadi lanciati e faccio attesa.......
 
         this.stabilisciMazziere();
     }
@@ -464,6 +417,8 @@ public class Partita
 
         // VERIFICO SE CE LA PRESENZA DI SPAREGGIO DA EFFETTUARE
 
+
+        // dimostro i dadi lanciati e faccio attesa.......
         while (perdenti.size() > 1) // Fino a quando ci sono piu perdenti
         {
             System.out.println("\n** PIU PERSONE HANNO IL DADO CON LO STESSO VALORE ** \n");
@@ -502,7 +457,7 @@ public class Partita
         }
 
         System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE ("+ giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
-
+        TC.impostaCoroneMazziereUI();
     }
 
 

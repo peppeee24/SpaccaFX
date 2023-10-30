@@ -177,7 +177,6 @@ public class TavoloController {
     public void impostaDadiUI()
     {
         int valoreDado = 0;
-        mostraDadi();
 
         for(IGiocatore giocatore : partita.giocatori)
         {
@@ -185,24 +184,28 @@ public class TavoloController {
             {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                dicePL.setVisible(true);
                 dicePL.setImage(myImage);
             }
             else if (giocatore.getNome().equalsIgnoreCase(nomeBot1Label.getText()))
             {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                diceBot1.setVisible(true);
                 diceBot1.setImage(myImage);
             }
             else if (giocatore.getNome().equalsIgnoreCase(nomeBot2Label.getText()))
             {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                diceBot2.setVisible(true);
                 diceBot2.setImage(myImage);
             }
             else if (giocatore.getNome().equalsIgnoreCase(nomeBot3Label.getText()))
             {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                diceBot3.setVisible(true);
                 diceBot3.setImage(myImage);
             }
         }
