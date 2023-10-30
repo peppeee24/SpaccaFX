@@ -131,7 +131,7 @@ public class CartaProbabilita extends Carta
 
         if(currentGiocatore instanceof Giocatore) // se sono un giocatore normale
         {
-            TC.mostraScambiaMazzo();
+            TC.pulsanteScambiaMazzo(true);
         }
         else // se sono un bot
         {

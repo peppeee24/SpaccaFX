@@ -102,7 +102,8 @@ public class TavoloController {
     {
         partita.getCurrentGiocatore().setCarta(partita.mazzo.PescaCartaSenzaEffetto());
         updateCarteUI();
-        gestisciPulsanti(false, false, true);
+        pulsanteScambiaMazzo(false);
+
     }
     //endregion
 
@@ -519,7 +520,7 @@ public class TavoloController {
         diceBot3.setVisible(true);
     }
 
-    public void mostraScambiaMazzo(){this.bottoneBlue.setVisible(true);}
+    public void pulsanteScambiaMazzo(boolean isVisibile){this.bottoneBlue.setVisible(isVisibile);}
     //endregion
 
 

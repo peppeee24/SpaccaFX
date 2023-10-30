@@ -153,13 +153,17 @@ public class Partita
 
     }
 
+    boolean cartaGiaScambiata = false;
     public void ScambiaCartaUI()
     {
+        System.out.println("[GAME] Ho deiciso di effettuare uno scambio");
         Carta cartaPlayerAttuale = getCurrentGiocatore().getCarta(); // prendo la sua carta
 
         if(getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
         {
             getCurrentGiocatore().setCarta(mazzo.PescaCartaSenzaEffetto());
+            TC.updateCarteUI();
+
             System.out.println("[GAME] Sono MAZZIERE e pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + getCurrentGiocatore().getCarta().toString());
             // se pesco una carta speciale, l effetto non viene attivato e vale come carta normale, quindi non ce bisogno del controlloMano() per verificare se attivare o meno
             // l'effetto.
@@ -168,63 +172,81 @@ public class Partita
             // attesa....
             System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
             controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
-            TC.updateCarteUI();
+
         }
         else // sono un giocatore normale NON MAZZIERE
         {
-            IGiocatore nextPlayer;
-            int nextIndexPlayer = currentGiocatorePos + 1;
-
-            if(nextIndexPlayer >= giocatori.size()) // se sono oltre il limite
-                nextIndexPlayer = 0; // prendo il primo giocatore
-
-            System.out.println("[DEBUG] Indirizzo PLAYER successivo: " + nextIndexPlayer);
-
-            nextPlayer = giocatori.get(nextIndexPlayer); // prendo il prossimo giocatore
-            Carta cartaNextPlayer = nextPlayer.getCarta();
-            nextPlayer.setCarta(cartaPlayerAttuale);
-            getCurrentGiocatore().setCarta(cartaNextPlayer);
-
-            System.out.println("[GAME] Ho scambiato la carta con il player successivo, adesso "
-                    + getCurrentGiocatore().getNome() +  " ha la carta: " + getCurrentGiocatore().getCarta());
-
-            TC.updateCarteUI(); // riaggiorno la grafica
+            if(!cartaGiaScambiata) // la carta non e stata ancora scambiata
+            {
+                System.out.println("[GAME] Non ho ancora scambiato, posso prendere la carta del player dopo");
+                eseguiScambioPlayerSuccessivo(cartaPlayerAttuale);
+            }
 
             // la carta, non puo attivare l'effetto perche il metodo prosegue avanti e richiama avanzaManoUI;
 
-            if(controlloMano(currentGiocatorePos)) // se dopo lo scambio ha una carta speciale, attesa della risposta
+            if(controlloMano(currentGiocatorePos) && !cartaGiaScambiata) // se dopo lo scambio ha una carta speciale e ho scambiato gia la carta, attesa della risposta
             {
                 System.out.println("[GAME] Scambiando ho preso una carta effetto!");
                 // TODO PROBLEMA DELLA MADONNA DA SISTEMARE CASO DEI BOT CHE RICHIAMANO NUOVAMENTE IL METODO
                 if(getCurrentGiocatore() instanceof  Bot) // deve riscegliere la mossa
                 {
+                    cartaGiaScambiata = true; // dico che e stata gia scambiata la carta
+                    System.out.println("[BOT] Carta gia scambiata: " + cartaGiaScambiata);
                     ((Bot) getCurrentGiocatore()).SceltaBotUI(this);
                 }
                 else // sceglie il player
                 {
+                    cartaGiaScambiata = true;
+                    System.out.println("[PLAYER] Carta gia scambiata: " + cartaGiaScambiata);
                     TC.gestisciPulsanti(true, false, true);
                 }
             }
             else
             {
-                System.out.println("[GAME] Non ho preso nessuna carta effetto scambiando!");
+                System.out.println("[GAME] Non ho preso nessuna carta effetto scambiando oppure  ho una carta effetto gia attiva!");
+                System.out.println("[GAME] Passo al prossimo giocatore!");
                 reimpostaGrafica(); // reimposta la grafica di default
+                cartaGiaScambiata = false;
 
                 avanzaManoUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
             }
         }
     }
 
+    private void eseguiScambioPlayerSuccessivo(Carta currentCarta)
+    {
+        IGiocatore nextPlayer;
+        int nextIndexPlayer = currentGiocatorePos + 1;
+
+        if(nextIndexPlayer >= giocatori.size()) // se sono oltre il limite
+            nextIndexPlayer = 0; // prendo il primo giocatore
+
+        System.out.println("[DEBUG] Indirizzo PLAYER successivo: " + nextIndexPlayer);
+
+        nextPlayer = giocatori.get(nextIndexPlayer); // prendo il prossimo giocatore
+        Carta cartaNextPlayer = nextPlayer.getCarta();
+        nextPlayer.setCarta(currentCarta);
+        getCurrentGiocatore().setCarta(cartaNextPlayer);
+
+        System.out.println("[GAME] Ho scambiato la carta con il player successivo, adesso "
+                + getCurrentGiocatore().getNome() +  " ha la carta: " + getCurrentGiocatore().getCarta());
+
+        TC.updateCarteUI(); // riaggiorno la grafica
+    }
+
     public void passaTurnoUI()
     {
         System.out.println("[SCELTA] Ho deciso di passare il turno");
         reimpostaGrafica();
+        cartaGiaScambiata = false;
 
         if (getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE)
         {
             // finisce il round e controlla i risultati
             System.out.println("[GAME] Round finito, controllo i risultati..");
-            controllaRisultatiUI(); // TODO CONTROLLARE
+
+            // attesa..
+            controllaRisultatiUI();
         }
         else
             avanzaManoUI(); // vado avanti
@@ -340,15 +362,15 @@ public class Partita
         else // se sta andando il gioco, giocatori vivi
         {
             if(giocatori.contains(giocatoreDebole))
-                ruotaMazziereUI(false); // ruoto il mazzo normalmente
+                ruotaMazziereUI(false, giocatoreDebole); // ruoto il mazzo normalmente
             else // se e morto qualcuno
             {
                 if(giocatoreDebole.getRuolo() == RuoloGiocatore.MAZZIERE) // se e mazziere controllo dove e morto in che pos (3 casi: fine, centro, inizio)
                 {
-                    ruotaMazziereUI(true); // ruoto facendo attenzione al mazziere eliminato in che posizione si trova
+                    ruotaMazziereUI(true, giocatoreDebole); // ruoto facendo attenzione al mazziere eliminato in che posizione si trova
                 }
                 else // se non e mazziere ruoto
-                    ruotaMazziereUI(false); // ruoto il mazzo normalmente
+                    ruotaMazziereUI(false, giocatoreDebole); // ruoto il mazzo normalmente
             }
 
             avanzaRoundUI();
@@ -366,49 +388,38 @@ public class Partita
     }
 
 
-    private void ruotaMazziereUI(boolean isMazziereEliminato)
+    private void ruotaMazziereUI(boolean isMazziereEliminato, IGiocatore giocatoreDebole)
     {
         if(isMazziereEliminato)
         {
-            System.out.println("[CHECK] Eliminato mazziere in posizione: " + posMazziere);
+            System.out.println("[ROT-MAZZIERE] Eliminato mazziere in posizione: " + posMazziere);
             if(posMazziere > giocatori.size()-1 || posMazziere == 0) // viene eliminato alla fine
-            {
                 posMazziere = 0; // metto il mazziere come primo
-                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
-            }
-            else // se sta nel mezzo
-                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
 
-            System.out.println("[CHECK] Il mazziere diventa in posizione: " + posMazziere);
+            giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
+            System.out.println("[ROT-MAZZIERE] Il mazziere diventa in posizione successiva: " + posMazziere);
+
         }
         else
         {
-            if(posMazziere+1 > giocatori.size() - 1)
+            if(giocatori.contains(giocatoreDebole)) // vuol dire che il player normale non e morto
             {
-                if(posMazziere < giocatori.size())
-                {
-                    giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
-                    posMazziere = 0;
-                    System.out.println("Metto il mazziere alla posizione: " + posMazziere);
-                    giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
-                }
-                else
-                {
-                    posMazziere = posMazziere - 1;
-                    giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
-                    posMazziere = 0;
-                    System.out.println("Metto il mazziere alla posizione: " + posMazziere);
-                    giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
-                }
-
-            }
-            else // se la pos del maz e 0
-            {
-                giocatori.get(posMazziere).setRuolo(RuoloGiocatore.GIOCATORE);
-                posMazziere++;
-                System.out.println("Metto il mazziere alla posizione: " + posMazziere);
+                // avanzo il mazziere normalmente
+                posMazziere = (posMazziere + 1) % giocatori.size();
+                System.out.println("[ROT-MAZZIERE-PLAYER] Metto il mazzire in posizione: " + posMazziere);
                 giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE);
             }
+            else // il player normale e morto
+            {
+
+            }
+
+
+            // metto il giocatore prima come giocatore a ruolo GIOCATORE
+            int posGiocatorePrecedente = (posMazziere - 1 + giocatori.size()) % giocatori.size();
+            giocatori.get(posGiocatorePrecedente).setRuolo(RuoloGiocatore.GIOCATORE);
+
+            System.out.println("[ROT-MAZZIERE-PLAYER] Giocatore precedente: " + posGiocatorePrecedente);
         }
 
         TC.impostaCoroneMazziereUI();
