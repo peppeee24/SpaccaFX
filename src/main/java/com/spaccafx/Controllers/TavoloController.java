@@ -486,12 +486,16 @@ public class TavoloController {
         bottonePassa.setVisible(passa);
     }
 
+   public void gestisciPulsanteScambio(boolean sNormale){
+        bottoneRosso.setVisible(sNormale);
+   }
     public void mostraCorone()
     {
         mazzierePL.setVisible(true);
         mazziereBT1.setVisible(true);
         mazziereBT2.setVisible(true);
         mazziereBT3.setVisible(true);
+
     }
 
     public void nascondiCorone()

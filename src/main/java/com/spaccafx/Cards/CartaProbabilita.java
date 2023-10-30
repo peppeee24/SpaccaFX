@@ -34,9 +34,9 @@ public class CartaProbabilita extends Carta
 
         switch(scelta)
         {
-            case 1:  //ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
+            case 1:  //ScopriCartaGiocatoreSuccessivoUI(partita, currentGiocatore, TC); break;
 
-            case 2:  //AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
+            case 2:  AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
 
             case 3:  ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
 
@@ -66,13 +66,6 @@ public class CartaProbabilita extends Carta
             System.out.println("[PROBABILITA] Valore dado: " + valoreDadoNew);
 
 
-            // da rimettere nell if
-            System.out.println("[PROBABILITA] Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
-            currentGiocatore.addVitaExtra();
-            TC.updateVitaUI();
-            System.out.println("[PROBABILITA] Ora possiedi " + currentGiocatore.getVita() + " vite");
-
-            /*
             if(valoreDadoNew == currentGiocatore.getCarta().getValore())
             {
                 System.out.println("[PROBABILITA] Complimenti " + currentGiocatore.getNome() + " hai vinto una vita");
@@ -85,7 +78,7 @@ public class CartaProbabilita extends Carta
                 System.out.println("[PROBABILITA] Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
             }
 
-             */
+
         }
 
     }

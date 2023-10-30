@@ -123,7 +123,7 @@ public class Partita
             if(!((CartaProbabilita) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 ((CartaProbabilita)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
-                System.out.println("[MANO] Attivato effetto carta!");
+                System.out.println("[MANO] Attivato effetto carta: "+currentMano.toString() );
                 return true;
             }
             else
@@ -137,7 +137,7 @@ public class Partita
             if(!((CartaImprevisto) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 ((CartaImprevisto)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
-                System.out.println("[MANO] Attivato effetto carta!");
+                System.out.println("[MANO] Attivato effetto carta: "+currentMano.toString() );
                 return true;
             }
             else
@@ -197,7 +197,8 @@ public class Partita
                 {
                     cartaGiaScambiata = true;
                     System.out.println("[PLAYER] Carta gia scambiata: " + cartaGiaScambiata);
-                    TC.gestisciPulsanti(true, false, true);
+                    TC.gestisciPulsanteScambio(false);
+
                 }
             }
             else

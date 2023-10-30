@@ -29,7 +29,7 @@ public class CartaImprevisto extends Carta
 
         switch(scelta)
         {
-            case 1:  PerdiVitaConDado(partita, currentGiocatore, TC); break;
+            case 1:  //PerdiVitaConDado(partita, currentGiocatore, TC); break;
             case 2:  ObbligoScambioConMazzo(partita, currentGiocatore, TC); break;
             case 3:  ScopriTuaCarta(partita, TC); break;
             default: break;
@@ -48,19 +48,22 @@ public class CartaImprevisto extends Carta
         //TODO in codice non è utile, va codificato poi con la parte graFICA
     }
 
-    private void ObbligoScambioConMazzo(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    private void ObbligoScambioConMazzo(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // TODO rivedere controllaMano con questo metodo, problema setcartagiocatore
     {
-        TC.mostraCartaSpeciale("Imprevisto", "Sei obbligato a scambiare la tua carta con una dal mazzo");
+        //attesa...
+     //   TC.mostraCartaSpeciale("Imprevisto", "Sei obbligato a scambiare la tua carta con una dal mazzo");
 
         //TC.showScambiaBlu(true, false, false);
 
         System.out.println("IMPREVISTO! - Sei obbligato a scambiare la tua carta con una dal mazzo");
-        Carta newCarta = partita.mazzo.PescaCarta();
-        partita.giocatori.get(partita.giocatori.indexOf(currentGiocatore)).setCarta(newCarta);
-        System.out.println("La carta che hai pescato è: " + currentGiocatore.getCarta().getValore()); //TODO nuovo metodo per fare in modo che ti dica il valore e di che tipo è la carta ad esempio: 2 di cane
+        Carta newCarta = partita.mazzo.PescaCartaSenzaEffetto();
+       // partita.giocatori.get(partita.giocatori.indexOf(currentGiocatore)).setCarta(newCarta);
+        currentGiocatore.setCarta(newCarta);
+        System.out.println("La carta che hai pescato è: " + currentGiocatore.getCarta().toString()); //TODO nuovo metodo per fare in modo che ti dica il valore e di che tipo è la carta ad esempio: 2 di cane
         System.out.println("Ora fai la tua mossa");
 
         TC.updateCarteUI();
+        // attesa ...
         partita.passaTurnoUI();
     }
 
