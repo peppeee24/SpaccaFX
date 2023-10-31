@@ -1,6 +1,7 @@
 package com.spaccafx.Player;
 
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
@@ -29,7 +30,7 @@ public class EasyBot extends Bot
      */
 
     @Override
-    public void SceltaBotUI(Partita p){
+    public void SceltaBotUI(Partita p, TavoloController TC){
         System.out.println("[EZ-BOT] ho la carta con valore: " + carta.getValore());
 
         int scelta = (int)((1 + Math.random() * 2));

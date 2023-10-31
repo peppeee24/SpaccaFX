@@ -7,6 +7,7 @@ import com.spaccafx.ExternalApps.*;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Player.*;
 import com.spaccafx.Cards.*;
+import javafx.application.Platform;
 
 import java.util.*;
 
@@ -92,22 +93,40 @@ public class Partita
         this.currentGiocatorePos = cDistaccoMazziere;
         TC.updateCarteUI(); // aggiorna le carte dei player graficamente
 
-        IGiocatore currentGiocatore = giocatori.get(currentGiocatorePos);
+        String mossa = "Tocca al giocatore " + getCurrentGiocatore().getNome() + " ruolo " + getCurrentGiocatore().getRuolo();
+        TC.mostraBannerAttesa("MOSSA", mossa);
 
-        if(currentGiocatore instanceof Bot)
-        {
-            System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
-            controlloMano(currentGiocatorePos);
-            System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(3000);
 
-            ((Bot) currentGiocatore).SceltaBotUI(this); // metodo bot
-        }
-        else // e un player
-        {
-            System.out.println("[GAME] Tocca al giocatore: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
-            controlloMano(currentGiocatorePos);
-            System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
-        }
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+
+                    IGiocatore currentGiocatore = getCurrentGiocatore();
+
+                    if(currentGiocatore instanceof Bot)
+                    {
+                        System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
+                        controlloMano(currentGiocatorePos);
+                        System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
+
+                        ((Bot) currentGiocatore).SceltaBotUI(this, TC); // metodo bot
+                    }
+                    else // e un player
+                    {
+                        System.out.println("[GAME] Tocca al giocatore: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
+                        controlloMano(currentGiocatorePos);
+                        System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
+                    }
+
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
 
     }
 
@@ -155,62 +174,23 @@ public class Partita
     boolean cartaGiaScambiata = false;
     public void ScambiaCartaUI()
     {
-        System.out.println("[GAME] Ho deiciso di effettuare uno scambio");
-        Carta cartaPlayerAttuale = getCurrentGiocatore().getCarta(); // prendo la sua carta
+        System.out.println("[SCELTA] Ho deciso di scambiare la carta");
+        TC.mostraBannerAttesa("SCAMBIO", "Ho deciso di scambiare la carta");
 
-        if(getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
-        {
-            getCurrentGiocatore().setCarta(mazzo.PescaCartaSenzaEffetto());
-            TC.updateCarteUI();
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(3000);
 
-            System.out.println("[GAME] Sono MAZZIERE e pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + getCurrentGiocatore().getCarta().toString());
-            // se pesco una carta speciale, l effetto non viene attivato e vale come carta normale, quindi non ce bisogno del controlloMano() per verificare se attivare o meno
-            // l'effetto.
-
-            // TODO CONTROLLARE
-            // attesa....
-            System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
-            controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
-
-        }
-        else // sono un giocatore normale NON MAZZIERE
-        {
-            if(!cartaGiaScambiata) // la carta non e stata ancora scambiata
-            {
-                System.out.println("[GAME] Non ho ancora scambiato, posso prendere la carta del player dopo");
-                eseguiScambioPlayerSuccessivo(cartaPlayerAttuale);
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+                    gestisciScambioCarta();
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
+        });
 
-            // la carta, non puo attivare l'effetto perche il metodo prosegue avanti e richiama avanzaManoUI;
-
-            if(controlloMano(currentGiocatorePos) && !cartaGiaScambiata) // se dopo lo scambio ha una carta speciale e ho scambiato gia la carta, attesa della risposta
-            {
-                System.out.println("[GAME] Scambiando ho preso una carta effetto!");
-                // TODO PROBLEMA DELLA MADONNA DA SISTEMARE CASO DEI BOT CHE RICHIAMANO NUOVAMENTE IL METODO
-                if(getCurrentGiocatore() instanceof  Bot) // deve riscegliere la mossa
-                {
-                    cartaGiaScambiata = true; // dico che e stata gia scambiata la carta
-                    System.out.println("[BOT] Carta gia scambiata: " + cartaGiaScambiata);
-                    ((Bot) getCurrentGiocatore()).SceltaBotUI(this);
-                }
-                else // sceglie il player
-                {
-                    cartaGiaScambiata = true;
-                    System.out.println("[PLAYER] Carta gia scambiata: " + cartaGiaScambiata);
-                    TC.gestisciPulsanteScambio(false);
-
-                }
-            }
-            else
-            {
-                System.out.println("[GAME] Non ho preso nessuna carta effetto scambiando oppure  ho una carta effetto gia attiva!");
-                System.out.println("[GAME] Passo al prossimo giocatore!");
-                reimpostaGrafica(); // reimposta la grafica di default
-                cartaGiaScambiata = false;
-
-                avanzaManoUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
-            }
-        }
+        thread.start();
     }
 
     private void eseguiScambioPlayerSuccessivo(Carta currentCarta)
@@ -234,22 +214,104 @@ public class Partita
         TC.updateCarteUI(); // riaggiorno la grafica
     }
 
+    private void gestisciScambioCarta()
+    {
+        Carta cartaPlayerAttuale = getCurrentGiocatore().getCarta(); // prendo la sua carta
+
+        if(getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
+        {
+            getCurrentGiocatore().setCarta(mazzo.PescaCartaSenzaEffetto());
+            TC.updateCarteUI();
+
+            System.out.println("[GAME] Sono MAZZIERE e pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + getCurrentGiocatore().getCarta().toString());
+            // se pesco una carta speciale, l effetto non viene attivato e vale come carta normale, quindi non ce bisogno del controlloMano() per verificare se attivare o meno
+            // l'effetto.
+
+
+            // TODO CONTROLLARE
+            // ATTESA....
+            System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
+            controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
+
+        }
+        else // sono un giocatore normale NON MAZZIERE
+        {
+            if(!cartaGiaScambiata) // la carta non e stata ancora scambiata
+            {
+                System.out.println("[GAME] Non ho ancora scambiato, posso prendere la carta del player dopo");
+                //TC.mostraBannerAttesa("SCAMBIO", "Carta scambiata con il giocatore successivo!");
+                eseguiScambioPlayerSuccessivo(cartaPlayerAttuale);
+            }
+
+            // la carta, non puo attivare l'effetto perche il metodo prosegue avanti e richiama avanzaManoUI;
+
+            if(controlloMano(currentGiocatorePos) && !cartaGiaScambiata) // se dopo lo scambio ha una carta speciale e ho scambiato gia la carta, attesa della risposta
+            {
+                System.out.println("[GAME] Scambiando ho preso una carta effetto!");
+                // TODO PROBLEMA DELLA MADONNA DA SISTEMARE CASO DEI BOT CHE RICHIAMANO NUOVAMENTE IL METODO
+                if(getCurrentGiocatore() instanceof  Bot) // deve riscegliere la mossa
+                {
+                    cartaGiaScambiata = true; // dico che e stata gia scambiata la carta
+                    System.out.println("[BOT] Carta gia scambiata: " + cartaGiaScambiata);
+                    ((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC);
+                }
+                else // sceglie il player
+                {
+                    cartaGiaScambiata = true;
+                    System.out.println("[PLAYER] Carta gia scambiata: " + cartaGiaScambiata);
+                    TC.gestisciPulsanteScambio(false);
+
+                }
+            }
+            else
+            {
+                System.out.println("[GAME] Non ho preso nessuna carta effetto scambiando oppure  ho una carta effetto gia attiva!");
+                System.out.println("[GAME] Passo al prossimo giocatore!");
+                reimpostaGrafica(); // reimposta la grafica di default
+                cartaGiaScambiata = false;
+
+                avanzaManoUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
+            }
+        }
+    }
+
+
     public void passaTurnoUI()
     {
         System.out.println("[SCELTA] Ho deciso di passare il turno");
-        reimpostaGrafica();
-        cartaGiaScambiata = false;
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() -> {
 
-        if (getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE)
-        {
-            // finisce il round e controlla i risultati
-            System.out.println("[GAME] Round finito, controllo i risultati..");
+                    TC.mostraBannerAttesa("PASSO", "Il giocatore ha deciso di passare il turno");
+                });
 
-            // attesa..
-            controllaRisultatiUI();
-        }
-        else
-            avanzaManoUI(); // vado avanti
+                Thread.sleep(4000);
+
+                Platform.runLater(() ->
+                {
+                    TC.nascondiBannerAttesa();
+
+                    reimpostaGrafica();
+                    cartaGiaScambiata = false;
+
+                    if (getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE)
+                    {
+                        // finisce il round e controlla i risultati
+                        System.out.println("[GAME] Round finito, controllo i risultati..");
+
+                        // attesa..
+                        controllaRisultatiUI();
+                    }
+                    else
+                        avanzaManoUI(); // vado avanti
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread.start();
 
     }
 

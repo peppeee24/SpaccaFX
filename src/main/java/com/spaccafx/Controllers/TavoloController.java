@@ -5,6 +5,8 @@ import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +68,7 @@ public class TavoloController {
     public void inizializzaTavolo()
     {
         nascondiCorone();
-        nascondiBannerSpeciale();
+        nascondiBannerAttesa();
         gestisciPulsanti(false, true ,true);
         nascondiDadi();
 
@@ -84,6 +86,7 @@ public class TavoloController {
     // region #ACTION EVENT METHODS
     public void lancia(ActionEvent actionEvent)
     {
+        // attendi lancio i dadi..
         partita.preStartGame();
         bottoneLancio.setVisible(false);
     }
@@ -167,8 +170,8 @@ public class TavoloController {
 
     public void aggiornaInfoUI()
     {
-        partitaNLabel.setText("ID_Partita: " + partita.getCodicePartita());
-        roundNLabel.setText("Round: " + partita.getCurrentRound());
+        partitaNLabel.setText("ID_PARTITA: " + partita.getCodicePartita());
+        roundNLabel.setText("ROUND " + partita.getCurrentRound());
     }
 
     //endregion
@@ -223,40 +226,14 @@ public class TavoloController {
 
 
 
-    public void mostraCartaSpeciale(String titolo, String effetto) {
+    public void mostraBannerAttesa(String titolo, String effetto)
+    {
 
         cartaSpecialeLabel.setVisible(true);
         cartaSpecialeLabel.setText(titolo);
         effettoLabel.setVisible(true);
         effettoLabel.setText(effetto);
-
-        // Creare un thread che eseguirà i metodi dopo un ritardo
-        Thread thread = new Thread(() -> {
-            try {
-                Thread.sleep(4000); // TODO CAPIRE COME FUNZIONANO I THREAD
-
-                // Dormire per un certo numero di millisecondi (ad esempio, 2000 millisecondi o 2 secondi)
-
-
-                // Eseguire i metodi successivi all'interno di Platform.runLater
-                // Altri metodi da eseguire dopo il ritardo
-                Platform.runLater(this::nascondiBannerSpeciale);
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        // Avviare il thread
-        thread.start(); // TODO SISTEMARE QUESTO CHE DUPLICA MESSAGGI
-
     }
-
-
-
-
-
-
 
 
 
@@ -506,7 +483,7 @@ public class TavoloController {
         mazziereBT3.setVisible(false);
     }
 
-    public void nascondiBannerSpeciale()
+    public void nascondiBannerAttesa()
     {
         cartaSpecialeLabel.setVisible(false);
         effettoLabel.setVisible(false);
@@ -541,22 +518,10 @@ public class TavoloController {
         partita.iniziaNuovoRoundUI();
     }
 
-    // TODO RIVEDERE DI BRUTTO ASSOLUTAMENTE E QUALUNQUEMENTE CHIU PILU P'TUTT
-    public void updateTurnoUI()
-    {
-
-    }
-
     public void mostraCarta(int pos)
     {
         IGiocatore currentGiocatore = partita.giocatori.get(pos);
         String playerName = currentGiocatore.getNome();
-
-        /*boolean isCurrentPlayer = playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
-        boolean isCurrentBot1 = playerName.equalsIgnoreCase(nomeBot1Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
-        boolean isCurrentBot2 = playerName.equalsIgnoreCase(nomeBot2Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
-        boolean isCurrentBot3 = playerName.equalsIgnoreCase(nomeBot3Label.getText()) && playerName.equalsIgnoreCase(partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome());
-         */
 
         if (playerName.equalsIgnoreCase(nomeGiocatoreLabel.getText()))
         {
@@ -780,7 +745,5 @@ public class TavoloController {
 
 
     }
-
-    // TODO aggiungere piccolo terminale il basso per alcune informazioni
 }
 

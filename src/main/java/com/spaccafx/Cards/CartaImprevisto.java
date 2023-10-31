@@ -42,7 +42,7 @@ public class CartaImprevisto extends Carta
 
 
     private void ScopriTuaCarta(Partita partita, TavoloController TC){
-        TC.mostraCartaSpeciale("Imprevisto", "Mostra la tua carta a tutti i giocatori");
+        //TC.mostraCartaSpeciale("Imprevisto", "Mostra la tua carta a tutti i giocatori");
         TC.mostraCarta(partita.getCurrentGiocatorePos()); // todo LA CARTA DEVE RIMANERE VISIBILE PER TUTTO IL ROUND
 
         //TODO in codice non è utile, va codificato poi con la parte graFICA
@@ -72,7 +72,7 @@ public class CartaImprevisto extends Carta
     private void PerdiVitaConDado(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
         System.out.println("IMPREVISTO - Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!");
-        TC.mostraCartaSpeciale("IMPREVISTO","Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!"); // controlla
+        //TC.mostraCartaSpeciale("IMPREVISTO","Tira il dado, se il numero che ti esce è uguale al valore della tua carta perdi una vita!"); // controlla
 
         System.out.println(currentGiocatore.getNome() + " TIRA IL DADO!");
 
@@ -83,13 +83,13 @@ public class CartaImprevisto extends Carta
         //capire se settare o no il nuovo valore del dado con setDado(). Non dovrebbe servire
         if(valoreDadoNew==currentGiocatore.getCarta().getValore()){
             System.out.println("Che sfortuna " + currentGiocatore.getNome() + " hai perso una vita");
-            TC.mostraCartaSpeciale("Che sfortuna","Hai perso una vita");
+            //TC.mostraCartaSpeciale("Che sfortuna","Hai perso una vita");
             if(currentGiocatore.getVita()==1){ //TODO decidere se eliminare o no. Al momento implementata l'opzione della NON eliminazione
                 //caso eliminazione, gestire eliminazione
                 /*System.out.println("Avevi solo una vita rimasta " + currentGiocatore.getNome() + " sei stato ELIMINATO!");
                 currentGiocatore.setVita(currentGiocatore.getVita() - 1);*/
                 //caso NON eliminazione
-                TC.mostraCartaSpeciale("Che fortuan","Siccome hai solo una vita rimanente non vieni eliminato");
+                //TC.mostraCartaSpeciale("Che fortuan","Siccome hai solo una vita rimanente non vieni eliminato");
                 System.out.println("Siccome hai solo una vita rimanente non vieni eliminato");
                 System.out.println("Il gioco prosegue");
             }
@@ -100,7 +100,7 @@ public class CartaImprevisto extends Carta
         }
         else{
             System.out.println("Sei stato fortunato, niente vita persa per te. Gioca il tuo turno");
-            TC.mostraCartaSpeciale("Sei stato fortunato","Non hai perso nessuna vita");
+            //TC.mostraCartaSpeciale("Sei stato fortunato","Non hai perso nessuna vita");
         }
     }
 

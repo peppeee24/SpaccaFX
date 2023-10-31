@@ -1,8 +1,9 @@
 package com.spaccafx.Player;
 
 import com.spaccafx.Cards.Carta;
-import com.spaccafx.Interface.IGiocatore;
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Manager.Partita;
+import javafx.application.Platform;
 
 public class AdvancedBot extends Bot
 {
@@ -20,18 +21,9 @@ public class AdvancedBot extends Bot
         super(nome,carta);
     }
 
-    /*@Override
-    public int Scelta(Partita p) { //ipotizziamo che l'advancedBot scelga in modo intelligente se switchare o no la carta
-        if(carta.getValore()<= (int)(p.mazzo.getMaxCarteNormali() / 2)) // TODO CAMBIARE LA SCELTA SE IL VALORE DELLA CARTA E <= MAZZO.MAXCARTENORMALI/2
-            return 2; //non cambia la carta
-        else
-            return 1; // cambia la carta
-    }
-
-     */
 
     @Override
-    public void SceltaBotUI(Partita p)
+    public void SceltaBotUI(Partita p, TavoloController TC)
     {
         System.out.println("[HARD-BOT] ho la carta con valore: " + carta.getValore());
         int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
@@ -40,7 +32,7 @@ public class AdvancedBot extends Bot
         if(carta.getValore() <= min)
             p.passaTurnoUI(); //non cambia la carta
         else
-           p.ScambiaCartaUI(); // cambia la carta
+            p.ScambiaCartaUI(); // cambia la carta
     }
 
     @Override

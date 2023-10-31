@@ -1,6 +1,7 @@
 package com.spaccafx.Player;
 
 import com.spaccafx.Cards.*;
+import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.*;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
@@ -60,7 +61,7 @@ public abstract class Bot implements IGiocatore
     public int getValoreDado(){return this.valoreDado;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
     //public abstract int Scelta(Partita p);
-    public abstract void SceltaBotUI(Partita p);
+    public abstract void SceltaBotUI(Partita p, TavoloController TC);
     public abstract boolean attivoEffetto(Partita p);
     public abstract String generaNomeBot();
 
