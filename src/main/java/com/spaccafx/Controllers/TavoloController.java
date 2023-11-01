@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView;
@@ -451,15 +452,20 @@ public class TavoloController
         }
     }
 
-    public void EndGameUI() {
-        bottonePassa.setVisible(false);
-        bottoneScambia.setVisible(false);
+    public void EndGameUI()
+    {
 
+        gestisciPulsanti(false, false, false);
+
+        popUpPane.setVisible(true);
+        popUpPane.setDisable(false);
 
         popUpTitleLabel.setVisible(true);
-        popUpTitleLabel.setText("Partita finita");
+        popUpTitleLabel.setText("VITTORIA");
+        popUpTitleLabel.setTextFill(Color.YELLOW);
+
         popUpTextLabel.setVisible(true);
-        popUpTextLabel.setText("Vincitore: " + partita.getVincitore().getNome());
+        popUpTextLabel.setText("Congratulazioni al vincitore: " + partita.getVincitore().getNome().toUpperCase());
         nascondiCorone();
     }
 
