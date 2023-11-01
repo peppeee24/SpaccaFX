@@ -66,7 +66,7 @@ public class TavoloController
     }
 
     // costruttore
-    public TavoloController() { // todo da rivedere
+    public TavoloController() {
         ShareData sharedData = ShareData.getInstance();
         ShareData.getInstance().setTavoloController(this);
         this.PC = sharedData.getPartitaClassicaController(); // dipende quale carichiamo con i file
@@ -184,6 +184,25 @@ public class TavoloController
         partitaIdLabel.setText("ID_PARTITA: " + partita.getCodicePartita());
         roundIdLabel.setText("ROUND " + partita.getCurrentRound());
     }
+
+    public void mostraTutteCarteUI()
+    {
+        String playerName;
+        for(IGiocatore giocatore : partita.giocatori)
+        {
+            playerName = giocatore.getNome();
+
+            if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
+                cartaPlayer1.setImage(giocatore.getCarta().getImmagineCarta());
+            else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
+                cartaPlayer2.setImage(giocatore.getCarta().getImmagineCarta());
+            else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
+                cartaPlayer3.setImage(giocatore.getCarta().getImmagineCarta());
+            else // se il nome equivale al quarto
+                cartaPlayer4.setImage(giocatore.getCarta().getImmagineCarta());
+        }
+    }
+
 
     //endregion
 
@@ -390,13 +409,11 @@ public class TavoloController
         }
     }
 
-    // TODO RIVEDERE
     public void HidePlayerUI(String player) {
         System.out.println("[UI] elimino: " + player);
         System.out.flush();
         if (nomePlayer1.getText().equalsIgnoreCase(player)) {
             System.out.println("Giocatore 0 morto!");
-            // TODO mettere carta gameover
             life1Pl1.setVisible(false);
             life2Pl1.setVisible(false);
             life3Pl1.setVisible(false);
@@ -410,7 +427,6 @@ public class TavoloController
         }
 
         if (nomePlayer2.getText().equalsIgnoreCase(player)) {
-            // TODO mettere carta gameover
             System.out.println("Giocatore 1 morto!");
             life1Pl2.setVisible(false);
             life2Pl2.setVisible(false);
@@ -424,7 +440,6 @@ public class TavoloController
         }
 
         if (nomePlayer3.getText().equalsIgnoreCase(player)) {
-            // TODO leggere l'array dei morti
             System.out.println("Giocatore 2 morto!");
             life1Pl3.setVisible(false);
             life2Pl3.setVisible(false);
@@ -438,7 +453,6 @@ public class TavoloController
         }
 
         if (nomePlayer4.getText().equalsIgnoreCase(player)) {
-            // TODO leggere l'array dei morti
             System.out.println("Giocatore 3 morto!");
             life1Pl4.setVisible(false);
             life2Pl4.setVisible(false);

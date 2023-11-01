@@ -68,7 +68,7 @@ public class LoginController {
     }
 
     public void change(MouseEvent mouseEvent) throws IOException {
-        // TODO impostare avatar
+        
     }
 
 

@@ -41,6 +41,7 @@ public class PartitaSelectorController {
         ShareData.getInstance().setPartitaSelectorController(this);
         this.PC = sharedData.getPartitaClassicaController();
         this.partita = sharedData.getPartita();
+        //partita1Label.setText("Partita: " + partita.getCodicePartita());
 
 
     }
@@ -48,9 +49,6 @@ public class PartitaSelectorController {
     // fare for e cambiare id per ogni bottone     --- Play_IDPartita
 
     public void play1(ActionEvent actionEvent) throws IOException {
-
-
-        //partita1Label.setText("Partita: "+partita.getCodicePartita());
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();

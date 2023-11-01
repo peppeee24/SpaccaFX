@@ -54,6 +54,8 @@ public class Partita
 
     }
 
+
+
     public void impostaTavoloController()
     {
         ShareData sharedData = ShareData.getInstance();
@@ -64,7 +66,7 @@ public class Partita
 
     public void preStartGame()
     {
-        mazzo = new Mazzo(TC);
+        mazzo = new Mazzo();
         lancioDadiIniziale(); // Lancio dadi iniziale + stabilimento INIZIALE mazziere
         TC.startGameUI();
     }
@@ -84,20 +86,24 @@ public class Partita
 
     private void avanzaManoUI()
     {
-        if(cDistaccoMazziere+1 > giocatori.size() - 1)
-            cDistaccoMazziere = 0;
-        else
-            cDistaccoMazziere++;
-
-
-        this.currentGiocatorePos = cDistaccoMazziere;
-        TC.updateCarteUI(); // aggiorna le carte dei player graficamente
-
-        String mossa = "Tocca al giocatore " + getCurrentGiocatore().getNome().toUpperCase() + " ruolo " + getCurrentGiocatore().getRuolo();
-        TC.mostraBannerAttesa("MOSSA", mossa);
-
         Thread thread = new Thread(() -> {
             try {
+
+                Platform.runLater(() ->
+                {
+                    if(cDistaccoMazziere+1 > giocatori.size() - 1)
+                        cDistaccoMazziere = 0;
+                    else
+                        cDistaccoMazziere++;
+
+
+                    this.currentGiocatorePos = cDistaccoMazziere;
+                    TC.updateCarteUI(); // aggiorna le carte dei player graficamente
+
+                    String mossa = "Tocca al giocatore " + getCurrentGiocatore().getNome().toUpperCase() + " ruolo " + getCurrentGiocatore().getRuolo();
+                    TC.mostraBannerAttesa("MOSSA", mossa);
+                });
+
                 Thread.sleep(3000);
 
                 Platform.runLater(() -> {
@@ -107,14 +113,25 @@ public class Partita
 
                     if(currentGiocatore instanceof Bot)
                     {
+                        TC.gestisciPulsanti(false, false, false);
                         System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
                         controlloMano(currentGiocatorePos);
                         System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
 
-                        ((Bot) currentGiocatore).SceltaBotUI(this, TC); // metodo bot
+
+                        Carta cartaBot = ((Bot) currentGiocatore).getCarta();
+
+                        if(cartaBot instanceof  CartaImprevisto)
+                        {
+                            if(((CartaImprevisto) cartaBot).isAttivato())
+                                ((Bot) currentGiocatore).SceltaBotUI(this, TC); // metodo bot
+                        }
+                        else
+                            ((Bot) currentGiocatore).SceltaBotUI(this, TC); // metodo bot
                     }
                     else // e un player
                     {
+                        TC.gestisciPulsanti(false, true, true);
                         System.out.println("[GAME] Tocca al giocatore: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
                         controlloMano(currentGiocatorePos);
                         System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
@@ -129,6 +146,8 @@ public class Partita
         thread.start();
 
     }
+
+    //TODO CONTROLLARE LE MOSSE DEI BOT CON PROBABILITA
 
     private boolean controlloMano(int currentGiocatore) // restituisce TRUE se ha carta probabilita/Imprevisto con effetto NON attivo, e FALSE con le carte NORMALI e carte speciali con effetti GIA ATTIVATI
     {
@@ -174,11 +193,15 @@ public class Partita
     boolean cartaGiaScambiata = false;
     public void ScambiaCartaUI()
     {
-        System.out.println("[SCELTA] Ho deciso di scambiare la carta");
-        TC.mostraBannerAttesa("SCAMBIO", "Ho deciso di scambiare la carta");
-
         Thread thread = new Thread(() -> {
             try {
+                Platform.runLater(() ->
+                {
+                    System.out.println("[SCELTA] Ho deciso di scambiare la carta");
+                    TC.mostraBannerAttesa("SCAMBIO", "Ho deciso di scambiare la carta");
+                });
+
+
                 Thread.sleep(3000);
 
                 Platform.runLater(() -> {
@@ -228,7 +251,6 @@ public class Partita
             // l'effetto.
 
 
-            // TODO CONTROLLARE
             // ATTESA....
             System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
             controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
@@ -248,12 +270,25 @@ public class Partita
             if(controlloMano(currentGiocatorePos) && !cartaGiaScambiata) // se dopo lo scambio ha una carta speciale e ho scambiato gia la carta, attesa della risposta
             {
                 System.out.println("[GAME] Scambiando ho preso una carta effetto!");
-                // TODO PROBLEMA DELLA MADONNA DA SISTEMARE CASO DEI BOT CHE RICHIAMANO NUOVAMENTE IL METODO
+
                 if(getCurrentGiocatore() instanceof  Bot) // deve riscegliere la mossa
                 {
                     cartaGiaScambiata = true; // dico che e stata gia scambiata la carta
                     System.out.println("[BOT] Carta gia scambiata: " + cartaGiaScambiata);
-                    ((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC);
+
+                    // TODO VERIFICARE ASSOLUTAMENTE
+                    Carta cartaBot = ((Bot) getCurrentGiocatore()).getCarta();
+
+                    if(cartaBot instanceof  CartaImprevisto)
+                    {
+                        if(((CartaImprevisto) cartaBot).isAttivato())
+                            ((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC); // metodo bot
+                    }
+                    else // altri di carte
+                        ((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC); // metodo bot
+
+                    // TODO bisogna controllare che carta ha se imprevisto o probabilita, perche se ha imprevisto ti puo richiamare metodo scambia che non va bene.
+
                 }
                 else // sceglie il player
                 {
@@ -278,11 +313,10 @@ public class Partita
 
     public void passaTurnoUI()
     {
-        System.out.println("[SCELTA] Ho deciso di passare il turno");
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() -> {
-
+                    System.out.println("[SCELTA] Ho deciso di passare il turno");
                     TC.mostraBannerAttesa("PASSO", "Il giocatore ha deciso di passare il turno");
                 });
 
@@ -324,113 +358,150 @@ public class Partita
     // TODO RICONTROLLARE TUTTO IL FLUSSO DI QUESTO METODO
     private void controllaRisultatiUI() // con questo metodo capiamo a chi togliere la vita dei player
     {
-        Map<Integer, ArrayList<IGiocatore>> mapSet = new HashMap<>();
 
-        int maxValue = trovaValoreCartaAlta(giocatori);
-        System.out.println("[GAME] La carta con il valore piu alto e: " + maxValue);
-
-        IGiocatore giocatoreDebole = null;
-
-        for (IGiocatore giocatore : giocatori)
-        {
-            if (giocatore.getCarta().getValore() == maxValue)
-            {
-                ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
-                giocatoriConValoreMassimo.add(giocatore);
-                mapSet.put(maxValue, giocatoriConValoreMassimo);
-            }
-        }
-
-        ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.get(maxValue);
-
-        if(giocatoriConValoreMassimo.size() <= 1) // se abbiamo solo un perdente
-        {
-            System.out.println("[CHECK-GAME] * 1 SOLO Giocatore perdente!");
-            giocatoreDebole = giocatoriConValoreMassimo.get(0);
-
-            if(giocatoreDebole.hasVitaExtra())
-            {
-                System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
-                giocatoreDebole.removeVitaExtra();
-            }
-            else
-            {
-                System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
-                giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
-            }
-
-            // TODO fare pannello che appare e avvisa allafine del turno chi perde la vita
-
-            if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
-            {
-                TC.HidePlayerUI(giocatoreDebole.getNome()); // rivedere
-
-                // todo vedere se togliere per i file
-                giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
-                giocatori.remove(giocatoreDebole);
-
-                System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
-            }
-        }
-        else // vuol dire che ci sono piu giocatori (spareggio)
-        {
-            System.out.println("[CHECK-GAME] * " +  giocatoriConValoreMassimo.size() + " MOLTEPLICI Giocatori perdenti!");
-
-            // Controllo Seme
-
-            for(IGiocatore giocatore : giocatoriConValoreMassimo)
-            {
-                if(giocatoreDebole == null || ((((Carta)giocatore.getCarta()).getSeme().compareTo(((Carta)giocatoreDebole.getCarta()).getSeme())) > 0))
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() ->
                 {
-                    giocatoreDebole = giocatore;
-                    System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
-                }
+                    TC.mostraBannerAttesa("CONTROLLO", "Scopriamo le carte per controllare i risultati");
+                    TC.mostraTutteCarteUI();
+                });
+
+                Thread.sleep(4000);
+
+                Platform.runLater(() ->
+                {
+                    TC.nascondiBannerAttesa();
+
+                    Map<Integer, ArrayList<IGiocatore>> mapSet = new HashMap<>();
+
+                    int maxValue = trovaValoreCartaAlta(giocatori);
+                    System.out.println("[GAME] La carta con il valore piu alto e: " + maxValue);
+
+                    IGiocatore giocatoreDebole = null;
+
+                    for (IGiocatore giocatore : giocatori)
+                    {
+                        if (giocatore.getCarta().getValore() == maxValue)
+                        {
+                            ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
+                            giocatoriConValoreMassimo.add(giocatore);
+                            mapSet.put(maxValue, giocatoriConValoreMassimo);
+                        }
+                    }
+
+                    ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.get(maxValue);
+
+                    if(giocatoriConValoreMassimo.size() <= 1) // se abbiamo solo un perdente
+                    {
+                        System.out.println("[CHECK-GAME] * 1 SOLO Giocatore perdente!");
+                        giocatoreDebole = giocatoriConValoreMassimo.get(0);
+
+                        if(giocatoreDebole.hasVitaExtra())
+                        {
+                            System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
+                            giocatoreDebole.removeVitaExtra();
+                        }
+                        else
+                        {
+                            System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
+                            giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+                        }
+
+                        if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+                        {
+                            TC.HidePlayerUI(giocatoreDebole.getNome()); // rivedere
+
+                            // todo vedere se togliere per i file
+                            giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                            giocatori.remove(giocatoreDebole);
+
+                            System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
+                        }
+                    }
+                    else // vuol dire che ci sono piu giocatori (spareggio)
+                    {
+                        System.out.println("[CHECK-GAME] * " +  giocatoriConValoreMassimo.size() + " MOLTEPLICI Giocatori perdenti!");
+
+                        // Controllo Seme
+
+                        for(IGiocatore giocatore : giocatoriConValoreMassimo)
+                        {
+                            if(giocatoreDebole == null || ((((Carta)giocatore.getCarta()).getSeme().compareTo(((Carta)giocatoreDebole.getCarta()).getSeme())) > 0))
+                            {
+                                giocatoreDebole = giocatore;
+                                System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
+                            }
+                        }
+
+                        if(giocatoreDebole != null)
+                        {
+                            if(giocatoreDebole.hasVitaExtra())
+                            {
+                                System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
+                                giocatoreDebole.removeVitaExtra();
+                            }
+                            else
+                            {
+                                System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
+                                giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+                            }
+
+
+                            if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+                            {
+                                TC.HidePlayerUI(giocatoreDebole.getNome());
+
+                                giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                                giocatori.remove(giocatoreDebole);
+
+                                System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
+                            }
+                        }
+
+                    }
+
+                    String risultato;
+
+                    if(!giocatori.contains(giocatoreDebole))
+                        risultato = "Il giocatore " + giocatoreDebole.getNome().toUpperCase() + " MORTO!";
+                    else
+                        risultato = "Il giocatore " + giocatoreDebole.getNome().toUpperCase() + " ha perso una vita!";
+
+
+                    TC.mostraBannerAttesa("RISULTATI", risultato);
+                });
+
+                Thread.sleep(4000);
+
+                Platform.runLater(() ->
+                {
+                    TC.nascondiBannerAttesa();
+                    TC.updateVitaUI();
+
+                    if(!isGameRunning()) // se NON sta ancora andando
+                    {
+                        System.out.println("[END] Gioco concluso con un vincitore!");
+                        TC.EndGameUI(); // da rivedere
+                    }
+                    else // se sta andando il gioco, giocatori vivi
+                    {
+                        avanzaRoundUI();
+                    }
+                });
+
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-
-            if(giocatoreDebole != null)
-            {
-                if(giocatoreDebole.hasVitaExtra())
-                {
-                    System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
-                    giocatoreDebole.removeVitaExtra();
-                }
-                else
-                {
-                    System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
-                    giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
-                }
-
-
-                if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
-                {
-                    TC.HidePlayerUI(giocatoreDebole.getNome());
-
-                    giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
-                    giocatori.remove(giocatoreDebole);
-
-                    System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
-                }
-            }
-
-        }
-
-        TC.updateVitaUI();
-
-        if(!isGameRunning()) // se NON sta ancora andando
-        {
-            System.out.println("Il gioco e finito, andate in pace");
-            TC.EndGameUI(); // da rivedere
-        }
-        else // se sta andando il gioco, giocatori vivi
-        {
-            avanzaRoundUI();
-        }
+        });
+        thread.start();
     }
 
     private void avanzaRoundUI()
     {
         lancioDadiIniziale();
-        mazzo.MescolaMazzo(TC);
+        mazzo.MescolaMazzo();
 
         this.currentRound ++;
         TC.aggiornaInfoUI();
