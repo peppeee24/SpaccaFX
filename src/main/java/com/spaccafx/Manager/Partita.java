@@ -93,7 +93,7 @@ public class Partita
         this.currentGiocatorePos = cDistaccoMazziere;
         TC.updateCarteUI(); // aggiorna le carte dei player graficamente
 
-        String mossa = "Tocca al giocatore " + getCurrentGiocatore().getNome() + " ruolo " + getCurrentGiocatore().getRuolo();
+        String mossa = "Tocca al giocatore " + getCurrentGiocatore().getNome().toUpperCase() + " ruolo " + getCurrentGiocatore().getRuolo();
         TC.mostraBannerAttesa("MOSSA", mossa);
 
         Thread thread = new Thread(() -> {

@@ -53,7 +53,7 @@ public class PlayerScreenController {
             Optional<ButtonType> result = alert.showAndWait();
 
 
-            FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo.fxml"));
+            FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo2.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = loaderTavolo.load();
 
