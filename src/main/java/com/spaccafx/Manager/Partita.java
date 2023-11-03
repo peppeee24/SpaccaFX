@@ -47,8 +47,8 @@ public class Partita
         this.posMazziere = 0;
         this.currentGiocatorePos = 0;
         this.currentRound = 1; // quando si crea la partita parte gia dal round 1
-        this.isGameRunning = true;
-        cDistaccoMazziere = 0;
+        this.isGameRunning = false;
+        this.cDistaccoMazziere = 0;
 
         this.telegramBot = new SpaccaTGBot(); // TODO CAMBIARE INIZILIAZZAZIONE BOT, DA METTERE SOLO QUANDO SI AVVIA IL PROGRAMMA E NON OGNI VOLTA CHE SI CREA UNA PARTITA
 
@@ -66,6 +66,7 @@ public class Partita
 
     public void preStartGame()
     {
+        this.isGameRunning = true;
         mazzo = new Mazzo();
         lancioDadiIniziale(); // Lancio dadi iniziale + stabilimento INIZIALE mazziere
         TC.startGameUI();
@@ -113,21 +114,15 @@ public class Partita
 
                     if(currentGiocatore instanceof Bot)
                     {
-                        TC.gestisciPulsanti(false, false, false);
+                        TC.gestisciPulsanti(false, false, false); // facciamo scomparire i bottoni ai bot
                         System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
                         controlloMano(currentGiocatorePos);
+
                         System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
 
 
-                        Carta cartaBot = ((Bot) currentGiocatore).getCarta();
-
-                        if(cartaBot instanceof  CartaImprevisto)
-                        {
-                            if(((CartaImprevisto) cartaBot).isAttivato())
-                                ((Bot) currentGiocatore).SceltaBotUI(this, TC); // metodo bot
-                        }
-                        else
-                            ((Bot) currentGiocatore).SceltaBotUI(this, TC); // metodo bot
+                        if(!(currentGiocatore.getCarta() instanceof CartaImprevisto))
+                            ((Bot) currentGiocatore).SceltaBotUI(this, TC);
                     }
                     else // e un player
                     {
@@ -149,8 +144,10 @@ public class Partita
 
     //TODO CONTROLLARE LE MOSSE DEI BOT CON PROBABILITA
 
-    private boolean controlloMano(int currentGiocatore) // restituisce TRUE se ha carta probabilita/Imprevisto con effetto NON attivo, e FALSE con le carte NORMALI e carte speciali con effetti GIA ATTIVATI
+    private boolean controlloMano(int currentGiocatore) // restituisce TRUE se ha carta probabilita con effetto NON attivo, e FALSE con le carte NORMALI, Imprevisto e carte speciali con effetti GIA ATTIVATI
     {
+        System.out.println("[DEBUG] SONO IN CONTROLLA MANO");
+
         // controlliamo che carta ha e cosa attivare o meno graficamente
         Carta currentMano = giocatori.get(currentGiocatore).getCarta();
 
@@ -160,9 +157,12 @@ public class Partita
 
             if(!((CartaProbabilita) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
+                // lancio dadi aumento vita
+                // scambio con mazzo
+
                 ((CartaProbabilita)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
                 System.out.println("[MANO] Attivato effetto carta: "+currentMano.toString() );
-                return true;
+                return true; // da true perche posso fare eventualmente altre mosse
             }
             else
                 System.out.println("[MANO] Impossibile attivare effetto! GIA ATTIVATO!");
@@ -171,12 +171,14 @@ public class Partita
         else if(currentMano instanceof  CartaImprevisto)
         {
             System.out.println("[MANO] Ho una carta speciale IMPREVISTO");
+            // passa Obbligatorio
+            // Scambio obbligatorio
 
             if(!((CartaImprevisto) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 ((CartaImprevisto)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
                 System.out.println("[MANO] Attivato effetto carta: "+currentMano.toString() );
-                return true;
+                return false; // non posso fare altre mosse anche se attivo l effetto
             }
             else
                 System.out.println("[MANO] Impossibile attivare effetto! GIA ATTIVATO!");
@@ -251,7 +253,6 @@ public class Partita
             // l'effetto.
 
 
-            // ATTESA....
             System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
             controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
 
@@ -275,19 +276,9 @@ public class Partita
                 {
                     cartaGiaScambiata = true; // dico che e stata gia scambiata la carta
                     System.out.println("[BOT] Carta gia scambiata: " + cartaGiaScambiata);
-
-                    // TODO VERIFICARE ASSOLUTAMENTE
-                    Carta cartaBot = ((Bot) getCurrentGiocatore()).getCarta();
-
-                    if(cartaBot instanceof  CartaImprevisto)
-                    {
-                        if(((CartaImprevisto) cartaBot).isAttivato())
-                            ((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC); // metodo bot
-                    }
-                    else // altri di carte
-                        ((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC); // metodo bot
-
-                    // TODO bisogna controllare che carta ha se imprevisto o probabilita, perche se ha imprevisto ti puo richiamare metodo scambia che non va bene.
+                    // todo controllare
+                    passaTurnoUI();
+                    //((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC); // metodo bot
 
                 }
                 else // sceglie il player
@@ -295,17 +286,29 @@ public class Partita
                     cartaGiaScambiata = true;
                     System.out.println("[PLAYER] Carta gia scambiata: " + cartaGiaScambiata);
                     TC.gestisciPulsanteScambio(false);
-
                 }
             }
             else
             {
-                System.out.println("[GAME] Non ho preso nessuna carta effetto scambiando oppure  ho una carta effetto gia attiva!");
+                // TODO QUANDO SI ATTIVA EFFETTO IMPREVISTO E PASSA IL TURNO, ESSENDO CHE DEVE FINIRE QUESTO METODO RIPASSA
+                System.out.println("[DEBUG-SCAMBIO] Non ho preso nessuna carta effetto scambiando oppure  ho una carta effetto gia attivata!");
                 System.out.println("[GAME] Passo al prossimo giocatore!");
                 reimpostaGrafica(); // reimposta la grafica di default
                 cartaGiaScambiata = false;
 
-                avanzaManoUI(); // Dopo aver scambiato le carte cambiamo il player perche siamo un giocatore normale
+
+                avanzaManoUI();
+
+                /*if(!(cartaPlayerAttuale instanceof CartaImprevisto))
+                    avanzaManoUI();
+                else
+                {
+                    if(!((CartaImprevisto) cartaPlayerAttuale).isAttivatoSpecial())
+                        avanzaManoUI();
+                }
+
+                 */
+
             }
         }
     }
@@ -699,7 +702,7 @@ public class Partita
     public int getCurrentGiocatorePos(){return this.currentGiocatorePos;}
     public IGiocatore getCurrentGiocatore(){return giocatori.get(currentGiocatorePos);}
 
-    //endregion
+    // endregion
 
     //region #DEBUG
 

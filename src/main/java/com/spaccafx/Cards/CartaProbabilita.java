@@ -63,6 +63,12 @@ public class CartaProbabilita extends Carta
                 Platform.runLater(() ->
                 {
 
+                    if(currentGiocatore instanceof  Bot) // caso bot
+                    {
+                        TC.gestisciPulsanti(false, false, false); // togliamo i pulsanti
+                    }
+
+
                     if(currentGiocatore.hasVitaExtra()) // ha gia una vita extra
                     {
                         System.out.println("[PROBABILITA] Hai gia ottenuto una vita extra");
@@ -94,7 +100,7 @@ public class CartaProbabilita extends Carta
                     }
                 });
 
-                Thread.sleep(3000);
+                Thread.sleep(4000);
 
                 Platform.runLater(TC::nascondiBannerAttesa);
 
@@ -126,7 +132,7 @@ public class CartaProbabilita extends Carta
 
                     if(currentGiocatore instanceof Giocatore) // se sono un giocatore normale
                     {
-                        TC.pulsanteScambiaMazzo(true);
+                        TC.pulsanteScambiaMazzo(true); // metto il bottone scambio extra
                     }
                     else // se sono un bot
                     {
@@ -136,6 +142,7 @@ public class CartaProbabilita extends Carta
                         if(((Bot)currentGiocatore).attivoEffetto(partita)) // scambio la carta
                         {
                             System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
+                            // TODO capire come fare attesa per far capire se il bot ha deciso di usare la prob o no!
                             currentGiocatore.setCarta(partita.mazzo.PescaCartaSenzaEffetto());
                         }
                         else

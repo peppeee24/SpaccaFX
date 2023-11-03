@@ -11,7 +11,8 @@ import javafx.application.Platform;
 
 public class CartaImprevisto extends Carta
 {
-    private boolean attivato = false;
+    private boolean attivato = false, attivatoSpecial=false;
+
 
     public CartaImprevisto(int valore, SemeCarta seme)
     {
@@ -53,6 +54,7 @@ public class CartaImprevisto extends Carta
                 Platform.runLater(() ->
                 {
                     TC.nascondiBannerAttesa();
+                    //this.attivatoSpecial = true;
                     partita.passaTurnoUI();
                 });
 
@@ -87,12 +89,13 @@ public class CartaImprevisto extends Carta
                     Carta newCarta = partita.mazzo.PescaCartaSenzaEffetto(); // restituisce la prima carta senza effetto
                     currentGiocatore.setCarta(newCarta);
                     System.out.println("[IMPREVISTO] La carta che hai pescato è: " + currentGiocatore.getCarta().toString());
+                    //this.attivatoSpecial = true;
 
                     TC.updateCarteUI();
 
                 });
 
-                Thread.sleep(2000); // attesa per lasciar vedere le carte che prende
+                Thread.sleep(3000); // attesa per lasciar vedere le carte che prende
 
                 Platform.runLater(partita::passaTurnoUI);
 
@@ -106,5 +109,10 @@ public class CartaImprevisto extends Carta
     }
 
     public boolean isAttivato(){return this.attivato;}
+
+    public boolean isAttivatoSpecial(){return this.attivatoSpecial;}
+
     public void setAttivato(boolean attivato){this.attivato=attivato;}
+
+    public void setAttivatoSpecial(boolean attivatoSpecial){this.attivatoSpecial=attivatoSpecial;}
 }
