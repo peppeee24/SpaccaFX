@@ -25,24 +25,74 @@ public class AdvancedBot extends Bot
     @Override
     public void SceltaBotUI(Partita p, TavoloController TC)
     {
-        System.out.println("[HARD-BOT] ho la carta con valore: " + carta.getValore());
-        int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
-        System.out.println("[HARD-BOT] Il valore minimo per NON passare e: " + min);
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() ->
+                {
+                    System.out.println("[ADV-BOT] Sto facendo la scelta...");
+                    TC.mostraBannerAttesa("[ADV-BOT]", "Sto decidendo la scelta...");
+                });
 
-        if(carta.getValore() <= min)
-            p.passaTurnoUI(); //non cambia la carta
-        else
-            p.ScambiaCartaUI(); // cambia la carta
+
+                Thread.sleep(3000);
+
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+
+                    System.out.println("[HARD-BOT] ho la carta con valore: " + carta.getValore());
+                    int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
+                    System.out.println("[HARD-BOT] Il valore minimo per NON passare e: " + min);
+
+                    if(carta.getValore() <= min)
+                        p.passaTurnoUI(); //non cambia la carta
+                    else
+                        p.ScambiaCartaUI(); // cambia la carta
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
     }
 
     @Override
-    public boolean attivoEffetto(Partita p)
+    public boolean attivoEffetto(Partita p, TavoloController TC)
     {
-        System.out.println("[HARD-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
-        int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
-        System.out.println("[HARD-BOT] Il valore minimo per NON passare e: " + min);
+        final int[] min = { 0 }; // Dichiarare min al di fuori del thread
 
-        return carta.getValore() > min;
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() ->
+                {
+                    System.out.println("[ADV-BOT] Sto facendo la scelta...");
+                    TC.mostraBannerAttesa("[ADV-BOT]", "Sto decidendo la scelta...");
+                });
+
+
+                Thread.sleep(3000);
+
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+
+                    System.out.println("[HARD-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
+                    min[0] = (int)(p.mazzo.getMaxCarteNormali() / 2);
+                    System.out.println("[HARD-BOT] Il valore minimo per NON passare e: " +  min[0]);
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
+
+        try {
+            thread.join(); // Attendi che il thread termini
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return carta.getValore() >  min[0];
     }
 
 

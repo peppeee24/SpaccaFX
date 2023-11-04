@@ -242,6 +242,98 @@
                   </BorderPane>
                </content>
           </Tab>
+            <Tab fx:id="CreaTab1" styleClass="bodybg" text="Impostazioni">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #0E3C32;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="27.0" layoutY="281.0" text="IMPOSTAZIONI" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                     <right>
+                        <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button layoutX="633.0" layoutY="533.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="128.0" style="-fx-background-color: #0E3C32; -fx-background-radius: 10;" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label layoutX="154.0" layoutY="66.0" styleClass="Label" text="MODIFICA LE IMPOSTAZIONI MATCH" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold Italic" size="27.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="indietro11" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <Label layoutX="138.0" layoutY="168.0" styleClass="Label" text="Carte Normali">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox layoutX="316.0" layoutY="169.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Facile" />
+                                       <String fx:value="Difficile" />
+                                    </FXCollections>
+                                 </items>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <Button layoutX="500.0" layoutY="166.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" style="-fx-background-color: #0E3C32; -fx-background-radius: 10;" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label layoutX="138.0" layoutY="231.0" styleClass="Label" text="Carte Speciali">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox layoutX="316.0" layoutY="232.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Facile" />
+                                       <String fx:value="Difficile" />
+                                    </FXCollections>
+                                 </items>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <Button layoutX="500.0" layoutY="229.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" style="-fx-background-color: #0E3C32; -fx-background-radius: 10;" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </right>
+                  </BorderPane>
+               </content>
+            </Tab>
             <Tab fx:id="CreaTab" styleClass="bodybg" text="Crea">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -283,7 +375,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Label fx:id="numeroGiocatoriLabel1" layoutX="307.0" layoutY="66.0" styleClass="Label" text="STEP FINALE" textAlignment="CENTER">
+                              <Label layoutX="307.0" layoutY="66.0" styleClass="Label" text="STEP FINALE" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font>

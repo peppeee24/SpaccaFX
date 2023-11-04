@@ -64,7 +64,7 @@ public class Partita
 
     //region # GAME
 
-    public void preStartGame()
+    public void preStartGame() // quando si clicca sul bottone start all'inizio
     {
         this.isGameRunning = true;
         mazzo = new Mazzo();
@@ -85,13 +85,15 @@ public class Partita
         avanzaManoUI(); // ci avanza di giocatore in giocatore
     }
 
-    private void avanzaManoUI()
+    private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
     {
         Thread thread = new Thread(() -> {
             try {
 
                 Platform.runLater(() ->
                 {
+                    this.cartaGiaScambiata = false;
+
                     if(cDistaccoMazziere+1 > giocatori.size() - 1)
                         cDistaccoMazziere = 0;
                     else
@@ -105,7 +107,7 @@ public class Partita
                     TC.mostraBannerAttesa("MOSSA", mossa);
                 });
 
-                Thread.sleep(3000);
+                Thread.sleep(4000);
 
                 Platform.runLater(() -> {
                     TC.nascondiBannerAttesa();
@@ -114,24 +116,178 @@ public class Partita
 
                     if(currentGiocatore instanceof Bot)
                     {
-                        TC.gestisciPulsanti(false, false, false); // facciamo scomparire i bottoni ai bot
+                        TC.gestisciPulsanti(false, false, false); // facciamo scomparire i bottoni ai bot inizialmente
                         System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
-                        controlloMano(currentGiocatorePos);
-
-                        System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
+                        controllaManoIniziale(currentGiocatorePos);
 
 
+                        // all'inizio del suo turno se NON ha una carta imprevisto in mano,
+                        // fa una mossa, altrimenti passera obbligatoriamente!
                         if(!(currentGiocatore.getCarta() instanceof CartaImprevisto))
                             ((Bot) currentGiocatore).SceltaBotUI(this, TC);
                     }
                     else // e un player
                     {
-                        TC.gestisciPulsanti(false, true, true);
+                        TC.gestisciPulsanti(false, true, true); // fa la mossa con i pulsanti
                         System.out.println("[GAME] Tocca al giocatore: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
-                        controlloMano(currentGiocatorePos);
-                        System.out.println("[GAME] Info: " + currentGiocatore.getCarta().toString());
+                        controllaManoIniziale(currentGiocatorePos);
                     }
 
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
+    }
+
+
+    private void controlloManoScambio(int currentGiocatorePos) {
+        IGiocatore currentGiocatoreScambio = giocatori.get(currentGiocatorePos);
+        Carta currentMano = currentGiocatoreScambio.getCarta();
+        System.out.println("[CONTROLLA-MANO-SCAMBIO] Il giocatore possiede: " + currentMano.toString());
+
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() -> {
+                    TC.mostraBannerAttesa("CONTROLLO-SCAMBIO", "Controlliamo la carta che hai ricevuto");
+                });
+
+                Thread.sleep(4000);
+
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+
+                    if (currentMano instanceof CartaProbabilita) {
+                        gestisciCartaProbabilita(currentMano, currentGiocatoreScambio);
+                    } else if (currentMano instanceof CartaImprevisto) {
+                        gestisciCartaImprevisto(currentMano, currentGiocatoreScambio);
+                    } else {
+                        gestisciCartaNormale(currentGiocatoreScambio);
+                    }
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
+    }
+
+    private void gestisciCartaProbabilita(Carta currentMano, IGiocatore currentGiocatoreScambio) {
+        System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale PROBABILITA");
+
+        if (!((CartaProbabilita) currentMano).isAttivato()) {
+            ((CartaProbabilita) currentMano).Effetto(this, currentGiocatoreScambio, TC);
+        }
+
+        gestisciTurno(currentGiocatoreScambio);
+    }
+
+    private void gestisciCartaImprevisto(Carta currentMano, IGiocatore currentGiocatoreScambio) {
+        System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
+
+        if (!((CartaImprevisto) currentMano).isAttivato()) {
+            ((CartaImprevisto) currentMano).Effetto(this, currentGiocatoreScambio, TC);
+        } else {
+            System.out.println("ERRORE MAI DEVE USCIRE QUI");
+            gestisciTurno(currentGiocatoreScambio);
+        }
+    }
+
+    private void gestisciCartaNormale(IGiocatore currentGiocatoreScambio) {
+        System.out.println("[MANO] Ho una carta NORMALE");
+        gestisciTurno(currentGiocatoreScambio);
+    }
+
+    private void gestisciTurno(IGiocatore giocatore) {
+        if (giocatore instanceof Bot) {
+            passaTurnoUI();
+        } else {
+            TC.gestisciPulsanti(false, false, true);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /*private void controlloManoScambio(int currentGiocatorePos)
+    {
+        // controlliamo che carta ha e cosa attivare o meno graficamente
+        IGiocatore currentGiocatoreScambio = giocatori.get(currentGiocatorePos);
+        Carta currentMano = currentGiocatoreScambio.getCarta();
+        System.out.println("[CONTROLLA-MANO-SCAMBIO] Il giocatore possiede: " + currentMano.toString());
+
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() ->
+                {
+                    TC.mostraBannerAttesa("CONTROLLO-SCAMBIO", "Controlliamo la carta che hai ricevuto");
+                });
+
+                Thread.sleep(4000);
+
+                Platform.runLater(() ->
+                {
+                    TC.nascondiBannerAttesa();
+
+                    if(currentMano instanceof  CartaProbabilita)
+                    {
+                        System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale PROBABILITA");
+
+                        if(!((CartaProbabilita) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+                        {
+                            // lancio dadi aumento vita
+                            // scambio con mazzo
+
+                            ((CartaProbabilita)currentMano).Effetto(this, currentGiocatoreScambio, TC); // attivo effetto su quel giocatore
+                        }
+
+                        if(currentGiocatoreScambio instanceof  Bot) // il bot passa il turno
+                            passaTurnoUI(); // passa il turno se prende o meno una carta prob attiva o da attivare
+                        else
+                            TC.gestisciPulsanti(false, false, true);
+
+                    }
+                    else if(currentMano instanceof  CartaImprevisto)
+                    {
+                        System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
+
+                        if(!((CartaImprevisto) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+                        {
+                            // passa Obbligatorio
+                            // Scambio obbligatorio
+
+                            ((CartaImprevisto)currentMano).Effetto(this, currentGiocatoreScambio, TC); // passa sempre
+                        }
+                        else // se e stato gia attivato
+                        {
+                            System.out.println("ERRORE MAI DEVE USCIRE QUI");
+                            if(currentGiocatoreScambio instanceof  Bot) // il bot passa il turno
+                                passaTurnoUI(); // passa il turno se prende o meno una carta prob attiva o da attivare
+                            else
+                                TC.gestisciPulsanti(false, false, true);
+                        }
+
+                    }
+                    else // debug
+                    {
+                        System.out.println("[MANO] Ho una carta NORMALE");
+
+                        if(currentGiocatoreScambio instanceof  Bot) // il bot passa il turno
+                            passaTurnoUI(); // passa il turno se prende o meno una carta prob attiva o da attivare
+                        else
+                            TC.gestisciPulsanti(false, false, true);
+
+                    }
                 });
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -142,55 +298,49 @@ public class Partita
 
     }
 
-    //TODO CONTROLLARE LE MOSSE DEI BOT CON PROBABILITA
+     */
 
-    private boolean controlloMano(int currentGiocatore) // restituisce TRUE se ha carta probabilita con effetto NON attivo, e FALSE con le carte NORMALI, Imprevisto e carte speciali con effetti GIA ATTIVATI
+    private void controllaManoIniziale(int currentGiocatore) // metodo che viene richiamato appena si avanza di mano
     {
-        System.out.println("[DEBUG] SONO IN CONTROLLA MANO");
-
         // controlliamo che carta ha e cosa attivare o meno graficamente
         Carta currentMano = giocatori.get(currentGiocatore).getCarta();
+        System.out.println("[CONTROLLA-MANO-INIZIALE] Il giocatore possiede: " + currentMano.toString());
 
         if(currentMano instanceof  CartaProbabilita)
         {
-            System.out.println("[MANO] Ho una carta speciale PROBABILITA");
-
+            System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta PROBABILITA!");
             if(!((CartaProbabilita) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 // lancio dadi aumento vita
                 // scambio con mazzo
-
                 ((CartaProbabilita)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
-                System.out.println("[MANO] Attivato effetto carta: "+currentMano.toString() );
-                return true; // da true perche posso fare eventualmente altre mosse
             }
             else
-                System.out.println("[MANO] Impossibile attivare effetto! GIA ATTIVATO!");
-
+            {
+                System.out.println("[CONTROLLA-MANO-INIZIALE] Effetto gia attivato!");
+            }
         }
         else if(currentMano instanceof  CartaImprevisto)
         {
-            System.out.println("[MANO] Ho una carta speciale IMPREVISTO");
-            // passa Obbligatorio
-            // Scambio obbligatorio
+            System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta IMPREVISTO!");
 
             if(!((CartaImprevisto) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
+                // passa Obbligatorio
+                // Scambio obbligatorio
                 ((CartaImprevisto)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
-                System.out.println("[MANO] Attivato effetto carta: "+currentMano.toString() );
-                return false; // non posso fare altre mosse anche se attivo l effetto
             }
             else
-                System.out.println("[MANO] Impossibile attivare effetto! GIA ATTIVATO!");
+            {
+                System.out.println("[CONTROLLA-MANO-INIZIALE] Effetto gia attivato!");
+            }
         }
         else // debug
         {
-            System.out.println("[MANO] Ho una carta NORMALE");
+            System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta NORMALE!");
         }
-
-        return false;
-
     }
+
 
     boolean cartaGiaScambiata = false;
     public void ScambiaCartaUI()
@@ -204,7 +354,7 @@ public class Partita
                 });
 
 
-                Thread.sleep(3000);
+                Thread.sleep(4000);
 
                 Platform.runLater(() -> {
                     TC.nascondiBannerAttesa();
@@ -237,78 +387,67 @@ public class Partita
                 + getCurrentGiocatore().getNome() +  " ha la carta: " + getCurrentGiocatore().getCarta());
 
         TC.updateCarteUI(); // riaggiorno la grafica
+
     }
 
-    private void gestisciScambioCarta()
+    private void gestisciScambioCarta() // TODO PROBLEMA NELLO SCAMBIO CON LE CARTE IMPREVISTO, CASO IN CUI IL GIOCATORE DOPO HA IMPREVISTO E LO PASSA A QUELLO PRIMA. FA UNA DESIONE CHE NON DEVE, SIA BOT CHE PLAYER
     {
         Carta cartaPlayerAttuale = getCurrentGiocatore().getCarta(); // prendo la sua carta
 
         if(getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
         {
-            getCurrentGiocatore().setCarta(mazzo.PescaCartaSenzaEffetto());
-            TC.updateCarteUI();
-
-            System.out.println("[GAME] Sono MAZZIERE e pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + getCurrentGiocatore().getCarta().toString());
+            this.cartaGiaScambiata = false;
             // se pesco una carta speciale, l effetto non viene attivato e vale come carta normale, quindi non ce bisogno del controlloMano() per verificare se attivare o meno
             // l'effetto.
 
+            Thread thread = new Thread(() -> {
+                try {
+                    Platform.runLater(() ->
+                    {
+                        getCurrentGiocatore().setCarta(mazzo.PescaCartaSenzaEffetto());
+                        TC.updateCarteUI();
 
-            System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
-            controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
+                        System.out.println("[GAME] Sono MAZZIERE e pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + getCurrentGiocatore().getCarta().toString());
+                        TC.mostraBannerAttesa("SCAMBIO", "Sono mazziere e ho pescato dal mazzo!");
+                    });
+
+                    Thread.sleep(4000);
+
+
+                    Platform.runLater(() -> {
+                        TC.nascondiBannerAttesa();
+
+
+                        System.out.println("[GAME] Round finito!! Passo al controllo dei risultati");
+                        controllaRisultatiUI(); // alla fine della mossa del mazziere, controllo i risultati
+                    });
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            thread.start();
 
         }
         else // sono un giocatore normale NON MAZZIERE
         {
-            if(!cartaGiaScambiata) // la carta non e stata ancora scambiata
+            if(!cartaGiaScambiata) // la carta non e stata ancora scambiata, faccio lo scambio!
             {
-                System.out.println("[GAME] Non ho ancora scambiato, posso prendere la carta del player dopo");
-                //TC.mostraBannerAttesa("SCAMBIO", "Carta scambiata con il giocatore successivo!");
-                eseguiScambioPlayerSuccessivo(cartaPlayerAttuale);
+                System.out.println("[GAME] Non ho mai scambiato, posso scambiare!");
+                eseguiScambioPlayerSuccessivo(cartaPlayerAttuale); // scambio con il player dopo
+                this.cartaGiaScambiata = true; // metto a true lo scambio
+                TC.gestisciPulsanteScambio(false); // nascondo il pulsante per poter ricambiare
+
+                // se sono un bot posso rifare una scelta solo se ho una carta normale/ probabilita
+                controlloManoScambio(currentGiocatorePos); // gli controllo la mano dopo lo scambio
             }
-
-            // la carta, non puo attivare l'effetto perche il metodo prosegue avanti e richiama avanzaManoUI;
-
-            if(controlloMano(currentGiocatorePos) && !cartaGiaScambiata) // se dopo lo scambio ha una carta speciale e ho scambiato gia la carta, attesa della risposta
+            else // se HA GIA scambiato la carta
             {
-                System.out.println("[GAME] Scambiando ho preso una carta effetto!");
-
-                if(getCurrentGiocatore() instanceof  Bot) // deve riscegliere la mossa
-                {
-                    cartaGiaScambiata = true; // dico che e stata gia scambiata la carta
-                    System.out.println("[BOT] Carta gia scambiata: " + cartaGiaScambiata);
-                    // todo controllare
-                    passaTurnoUI();
-                    //((Bot) getCurrentGiocatore()).SceltaBotUI(this, TC); // metodo bot
-
-                }
-                else // sceglie il player
-                {
-                    cartaGiaScambiata = true;
-                    System.out.println("[PLAYER] Carta gia scambiata: " + cartaGiaScambiata);
-                    TC.gestisciPulsanteScambio(false);
-                }
-            }
-            else
-            {
-                // TODO QUANDO SI ATTIVA EFFETTO IMPREVISTO E PASSA IL TURNO, ESSENDO CHE DEVE FINIRE QUESTO METODO RIPASSA
-                System.out.println("[DEBUG-SCAMBIO] Non ho preso nessuna carta effetto scambiando oppure  ho una carta effetto gia attivata!");
+                System.out.println("[GAME] Ho gia scambiato, NON posso rifarlo!");
                 System.out.println("[GAME] Passo al prossimo giocatore!");
                 reimpostaGrafica(); // reimposta la grafica di default
-                cartaGiaScambiata = false;
-
 
                 avanzaManoUI();
-
-                /*if(!(cartaPlayerAttuale instanceof CartaImprevisto))
-                    avanzaManoUI();
-                else
-                {
-                    if(!((CartaImprevisto) cartaPlayerAttuale).isAttivatoSpecial())
-                        avanzaManoUI();
-                }
-
-                 */
-
             }
         }
     }
@@ -330,14 +469,13 @@ public class Partita
                     TC.nascondiBannerAttesa();
 
                     reimpostaGrafica();
-                    cartaGiaScambiata = false;
+                    this.cartaGiaScambiata = false;
 
                     if (getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE)
                     {
                         // finisce il round e controlla i risultati
                         System.out.println("[GAME] Round finito, controllo i risultati..");
 
-                        // attesa..
                         controllaRisultatiUI();
                     }
                     else
@@ -349,7 +487,6 @@ public class Partita
         });
 
         thread.start();
-
     }
 
     private void reimpostaGrafica()
@@ -489,6 +626,7 @@ public class Partita
                     }
                     else // se sta andando il gioco, giocatori vivi
                     {
+                        System.out.println("[GAME] Passo al prossimo round!");
                         avanzaRoundUI();
                     }
                 });
@@ -503,13 +641,13 @@ public class Partita
 
     private void avanzaRoundUI()
     {
-        lancioDadiIniziale();
-        mazzo.MescolaMazzo();
+        lancioDadiIniziale(); // vengono rilanciati i dadi
+        mazzo.MescolaMazzo(); // messe le carte, tolti gli effetti e rimescolato
 
-        this.currentRound ++;
-        TC.aggiornaInfoUI();
+        this.currentRound ++; // aumenta il round
+        TC.aggiornaInfoUI(); // aggiorna la grafica
 
-        iniziaNuovoRoundUI();
+        iniziaNuovoRoundUI(); // si reinizia la mano
     }
 
     //endregion

@@ -28,6 +28,10 @@ public class CartaImprevisto extends Carta
         if(this.attivato)
             return;
 
+        TC.gestisciPulsanti(false,false,false);
+
+        System.out.println("[IMPREVISTO] Attivato effetto carta: "+ toString() );
+
         int scelta = (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
 
         switch(scelta)
@@ -42,12 +46,14 @@ public class CartaImprevisto extends Carta
 
     private void ObbligoPasso(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
-        TC.gestisciPulsanti(false,false,false);
-        System.out.println("[IMPREVISTO] Sei obbligato a passare il turno!");
-        TC.mostraBannerAttesa("IMPREVISTO [PASSO-FORZATO]", "Sei obbligato a passare il turno!");
-
         Thread thread = new Thread(() -> {
             try {
+
+                Platform.runLater(() ->
+                {
+                    System.out.println("[IMPREVISTO] Sei obbligato a passare il turno!");
+                    TC.mostraBannerAttesa("IMPREVISTO [PASSO-FORZATO]", "Sei obbligato a passare il turno!");
+                });
 
                 Thread.sleep(4000);
 
@@ -73,9 +79,8 @@ public class CartaImprevisto extends Carta
             try {
                 Platform.runLater(() ->
                 {
-                    TC.gestisciPulsanti(false,false,false);
                     System.out.println("[IMPREVISTO] Sei obbligato a scambiare la carta con il mazzo");
-                    TC.mostraBannerAttesa("IMPREVISTO [SCAMBIO-FORZATO]", "Sei obbligato a scambiare la carta con il mazzo");
+                    TC.mostraBannerAttesa("IMPREVISTO [SCAMBIO-FORZATO]", "Sei obbligato a scambiare la carta con il mazzo e a passare!");
                 });
 
 
@@ -91,8 +96,8 @@ public class CartaImprevisto extends Carta
                     System.out.println("[IMPREVISTO] La carta che hai pescato è: " + currentGiocatore.getCarta().toString());
                     //this.attivatoSpecial = true;
 
+                    TC.mostraBannerAttesa("IMPREVISTO [SCAMBIO-FORZATO]", "Hai pescato " + newCarta.toString());
                     TC.updateCarteUI();
-
                 });
 
                 Thread.sleep(3000); // attesa per lasciar vedere le carte che prende

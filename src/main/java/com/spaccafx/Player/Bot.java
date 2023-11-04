@@ -58,7 +58,7 @@ public abstract class Bot implements IGiocatore
     public RuoloGiocatore getRuolo(){return this.ruolo;}
     //public abstract int Scelta(Partita p);
     public abstract void SceltaBotUI(Partita p, TavoloController TC);
-    public abstract boolean attivoEffetto(Partita p);
+    public abstract boolean attivoEffetto(Partita p, TavoloController TC);
     public abstract String generaNomeBot();
 
 

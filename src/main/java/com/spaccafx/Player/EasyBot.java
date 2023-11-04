@@ -5,6 +5,7 @@ import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
+import javafx.application.Platform;
 
 public class EasyBot extends Bot
 {
@@ -30,24 +31,73 @@ public class EasyBot extends Bot
      */
 
     @Override
-    public void SceltaBotUI(Partita p, TavoloController TC){
-        System.out.println("[EZ-BOT] ho la carta con valore: " + carta.getValore());
+    public void SceltaBotUI(Partita p, TavoloController TC)
+    {
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() ->
+                {
+                    System.out.println("[EZ-BOT] Sto facendo la scelta...");
+                    TC.mostraBannerAttesa("[EZ-BOT]", "Sto decidendo la scelta...");
+                });
 
-        int scelta = (int)((1 + Math.random() * 2));
-        if(scelta==1){
-            p.passaTurnoUI();
-        }
-        else
-            p.ScambiaCartaUI();
+
+                Thread.sleep(3000);
+
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+
+                    System.out.println("[EZ-BOT] ho la carta con valore: " + carta.getValore());
+
+                    int scelta = (int)((1 + Math.random() * 2));
+                    if(scelta==1){
+                        p.passaTurnoUI();
+                    }
+                    else
+                        p.ScambiaCartaUI();
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
     }
 
     @Override
-    public boolean attivoEffetto(Partita p)
-    {
-        System.out.println("[EZ-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
-        int scelta = (int)((1 + Math.random() * 2));
+    public boolean attivoEffetto(Partita p, TavoloController TC) {
+        final boolean[] attivaEffetto = { false };
 
-        return scelta != 1; // se la scelta e diverso da 1 allora ritorna true e attiva effetto bot
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() -> {
+                    System.out.println("[EZ-BOT] Sto facendo la scelta...");
+                    TC.mostraBannerAttesa("[EZ-BOT]", "Sto decidendo la scelta...");
+                });
+
+                Thread.sleep(3000);
+
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+
+                    System.out.println("[EZ-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
+                    int scelta = (int)(1 + Math.random() * 2);
+                    attivaEffetto[0] = scelta != 1;
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
+
+        try {
+            thread.join(); // Attendi che il thread termini
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return attivaEffetto[0];
     }
 
 

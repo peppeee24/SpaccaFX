@@ -55,7 +55,7 @@ public class PartitaClassicaController2 {
     ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, easyBot1, easyBot2, easyBot3;
 
     // creo bot per settare nomi/ difficolta
-    EasyBot E = new EasyBot();
+    EasyBot E = new EasyBot(); // TODO NON VA BENE
     AdvancedBot A = new AdvancedBot();
 
 

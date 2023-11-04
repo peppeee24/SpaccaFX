@@ -28,6 +28,8 @@ public class CartaProbabilita extends Carta
         if(this.attivato)
             return;
 
+        System.out.println("[PROBABILITA] Attivato effetto carta: "+ toString() );
+
         //partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
 
         int scelta = (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
@@ -47,7 +49,6 @@ public class CartaProbabilita extends Carta
         Thread thread = new Thread(() -> {
             try {
 
-                Thread.sleep(10);
                 Platform.runLater(() ->
                 {
                     System.out.println("[PROBABILITA] Aumenta vita con dado");
@@ -56,12 +57,9 @@ public class CartaProbabilita extends Carta
 
                 Thread.sleep(4000);
 
-                Platform.runLater(TC::nascondiBannerAttesa);
-
-                Thread.sleep(10);
-
                 Platform.runLater(() ->
                 {
+                    TC.nascondiBannerAttesa();
 
                     if(currentGiocatore instanceof  Bot) // caso bot
                     {
@@ -80,7 +78,7 @@ public class CartaProbabilita extends Carta
                         System.out.println("[PROBABILITA] " + currentGiocatore.getNome() + " TIRA IL DADO!");
 
                         int valoreDadoNew = partita.lancioDadoSingolo();
-                        TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos());
+                        TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos()); // TODO DA CAPIRE
                         System.out.println("[PROBABILITA] Valore dado: " + valoreDadoNew);
 
 
@@ -115,7 +113,6 @@ public class CartaProbabilita extends Carta
     {
         Thread thread = new Thread(() -> {
             try {
-                Thread.sleep(10);
 
                 Platform.runLater(() ->
                 {
@@ -139,7 +136,7 @@ public class CartaProbabilita extends Carta
                         TC.gestisciPulsanti(false, false, false);
                         System.out.println("[GAME] Sono un BOT");
 
-                        if(((Bot)currentGiocatore).attivoEffetto(partita)) // scambio la carta
+                        if(((Bot)currentGiocatore).attivoEffetto(partita, TC)) // scambio la carta
                         {
                             System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
                             // TODO capire come fare attesa per far capire se il bot ha deciso di usare la prob o no!
