@@ -1,6 +1,7 @@
 package com.spaccafx.Controllers;
 
 
+import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
@@ -420,7 +421,7 @@ public class PartitaClassicaController2 {
         }
     }
 
-    // METODO IMPORTANTE CLASSE PARTITA
+    // Pulsante crea partita
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
 
 
@@ -484,6 +485,8 @@ public class PartitaClassicaController2 {
 
 
         P.aggiungiListaGiocatori(GiocatoriPartita);
+
+        FileManager.salvaInformazioniPartita(P); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale
