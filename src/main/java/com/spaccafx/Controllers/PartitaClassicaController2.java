@@ -486,7 +486,7 @@ public class PartitaClassicaController2 {
 
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
-        FileManager.salvaInformazioniPartita(P); // salviamo le informazioni dati
+        FileManager.salvaInformazioniPartita(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale
