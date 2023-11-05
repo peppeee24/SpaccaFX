@@ -1,6 +1,7 @@
 package com.spaccafx.Controllers;
 
 
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
@@ -186,6 +187,7 @@ public class PartitaClassicaController2 {
 
 
     public void salvaDifficolta(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
         this.setDifficolta();
         System.out.println(difficolta);
         System.out.println("Imposto difficolta" + getDifficolta());
@@ -295,6 +297,7 @@ public class PartitaClassicaController2 {
 
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
+        AudioManager.bottoneSuono();
         System.out.println("Salvo i nomi");
         switch (getNumeroGiocatori()) {
             case 1:
@@ -374,6 +377,7 @@ public class PartitaClassicaController2 {
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
@@ -385,7 +389,7 @@ public class PartitaClassicaController2 {
     // Utilizziamo classe partita
     public void generaCodice(ActionEvent actionEvent) throws IOException
     {
-
+        AudioManager.bottoneSuono();
         Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
         alert3.setTitle("Piccolo LAG!");
         alert3.setContentText("Sto caricando il codice, attendi....");
@@ -413,6 +417,7 @@ public class PartitaClassicaController2 {
 
 
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
+           AudioManager.erroreSuono();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Parametri errati");
             alert.setContentText("Si puà giocare tra 2 e 4 giocatori, compresi bot, rivedi le impostazioni");
@@ -423,7 +428,7 @@ public class PartitaClassicaController2 {
 
     // Pulsante crea partita
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
-
+        AudioManager.bottoneSuono();
 
         // TODO CONTROLLARE STO CODICE
 

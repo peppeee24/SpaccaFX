@@ -1,6 +1,7 @@
 package com.spaccafx.Controllers;
 
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
@@ -9,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +24,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Optional;
 
 public class TavoloController
 {
@@ -96,6 +100,7 @@ public class TavoloController
     // region #ACTION EVENT METHODS
     public void start(ActionEvent actionEvent)
     {
+        AudioManager.bottoneSuono();
         // attendi lancio i dadi..
         gestisciPulsanti(false, true, true);
         partita.preStartGame();
@@ -103,10 +108,12 @@ public class TavoloController
     }
 
     public void scambiaCarta(ActionEvent actionEvent) {
+        AudioManager.bottoneSuono();
         partita.ScambiaCartaUI();
     } // all interno della partita faccio la mossa del giocatore attuale
 
     public void passaTurno(ActionEvent actionEvent) {
+        AudioManager.bottoneSuono();
         partita.passaTurnoUI();
         //disableDice();
     } // passo nella partita il turno del player
@@ -114,6 +121,7 @@ public class TavoloController
 
     public void scambiaConMazzo(ActionEvent actionEvent)
     {
+        AudioManager.bottoneSuono();
         partita.getCurrentGiocatore().setCarta(partita.mazzo.PescaCartaSenzaEffetto());
         updateCarteUI();
         pulsanteScambiaMazzo(false);
@@ -187,6 +195,7 @@ public class TavoloController
 
     public void mostraTutteCarteUI()
     {
+        AudioManager.giraCarteSuono();
         String playerName;
         for(IGiocatore giocatore : partita.giocatori)
         {
@@ -209,6 +218,7 @@ public class TavoloController
 
     public void impostaDadiUI()
     {
+        AudioManager.dadoSuono();
         int valoreDado = 0;
 
         for(IGiocatore giocatore : partita.giocatori)
@@ -410,6 +420,7 @@ public class TavoloController
     }
 
     public void HidePlayerUI(String player) {
+        AudioManager.perdenteSuono();
         System.out.println("[UI] elimino: " + player);
         System.out.flush();
         if (nomePlayer1.getText().equalsIgnoreCase(player)) {
@@ -468,7 +479,7 @@ public class TavoloController
 
     public void EndGameUI()
     {
-
+AudioManager.vittoriaSuono();
         gestisciPulsanti(false, false, false);
 
         popUpPane.setVisible(true);
@@ -575,7 +586,19 @@ public class TavoloController
     // per uscire dalla partita
     public void exitGame(MouseEvent mouseEvent) throws IOException
     {
-        // partita.saveOnFile();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Vuoi uscire dalla partita");
+        alert.setContentText("Se confermi i tuoi dati saranno salvati");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // partita.saveOnFile();
+        } else {
+            // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
+            System.out.println("Continua il gioco");
+        }
+
 
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -586,6 +609,7 @@ public class TavoloController
 
     public void rollLite(int valoreDado, int posPlayer)
     {
+        AudioManager.dadoSuono();
         String currentPlayer = partita.giocatori.get(posPlayer).getNome();
 
         if (nomePlayer1.getText().equalsIgnoreCase(currentPlayer))

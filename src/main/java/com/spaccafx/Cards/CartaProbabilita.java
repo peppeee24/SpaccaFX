@@ -1,6 +1,7 @@
 package com.spaccafx.Cards;
 
 import com.spaccafx.Controllers.TavoloController;
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.Bot;
@@ -89,11 +90,13 @@ public class CartaProbabilita extends Carta
                             TC.updateVitaUI();
                             System.out.println("[PROBABILITA] Ora possiedi " + currentGiocatore.getVita() + " vite");
                             TC.mostraBannerAttesa("PROBABILITA [DADI]", "Ti e uscito il valore del dado (" + valoreDadoNew + ") e hai guadagnato una vita-extra!");
+                            AudioManager.vitaUPSuono();
                         }
                         else
                         {
                             System.out.println("[PROBABILITA] Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
                             TC.mostraBannerAttesa("PROBABILITA [DADI]", "Sei stato sfortunato, e uscito il valore (" + valoreDadoNew + "). Niente vita-extra");
+
                         }
                     }
                 });
@@ -111,6 +114,7 @@ public class CartaProbabilita extends Carta
 
     private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // ok pensiamo
     {
+        // todo impostare suono per scambio com mazzo
         Thread thread = new Thread(() -> {
             try {
 

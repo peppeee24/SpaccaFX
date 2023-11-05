@@ -4,6 +4,7 @@ import com.spaccafx.Controllers.ShareData;
 import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.*;
 import com.spaccafx.ExternalApps.*;
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Player.*;
 import com.spaccafx.Cards.*;
@@ -87,6 +88,7 @@ public class Partita
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
     {
+
         Thread thread = new Thread(() -> {
             try {
 
@@ -102,6 +104,7 @@ public class Partita
 
                     this.currentGiocatorePos = cDistaccoMazziere;
                     TC.updateCarteUI(); // aggiorna le carte dei player graficamente
+                    AudioManager.giraCarteSuono();
 
                     String mossa = "Tocca al giocatore " + getCurrentGiocatore().getNome().toUpperCase() + " ruolo " + getCurrentGiocatore().getRuolo();
                     TC.mostraBannerAttesa("MOSSA", mossa);
@@ -387,6 +390,8 @@ public class Partita
                 + getCurrentGiocatore().getNome() +  " ha la carta: " + getCurrentGiocatore().getCarta());
 
         TC.updateCarteUI(); // riaggiorno la grafica
+        // TODO aggiungere suono scambio
+        AudioManager.distribuisciCarteSuono();
 
     }
 
@@ -406,6 +411,7 @@ public class Partita
                     {
                         getCurrentGiocatore().setCarta(mazzo.PescaCartaSenzaEffetto());
                         TC.updateCarteUI();
+                        AudioManager.giraCarteSuono();
 
                         System.out.println("[GAME] Sono MAZZIERE e pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + getCurrentGiocatore().getCarta().toString());
                         TC.mostraBannerAttesa("SCAMBIO", "Sono mazziere e ho pescato dal mazzo!");
@@ -541,11 +547,13 @@ public class Partita
                         {
                             System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
                             giocatoreDebole.removeVitaExtra();
+                            //AudioManager.vitaDownSuono();
                         }
                         else
                         {
                             System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
                             giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
+                           // AudioManager.vitaDownSuono();
                         }
 
                         if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
@@ -605,8 +613,10 @@ public class Partita
 
                     if(!giocatori.contains(giocatoreDebole))
                         risultato = "Il giocatore " + giocatoreDebole.getNome().toUpperCase() + " MORTO!";
-                    else
+                    else {
                         risultato = "Il giocatore " + giocatoreDebole.getNome().toUpperCase() + " ha perso una vita!";
+                        AudioManager.vitaDownSuono();
+                    }
 
 
                     TC.mostraBannerAttesa("RISULTATI", risultato);
@@ -760,6 +770,10 @@ public class Partita
 
     public void distribuisciCarte()
     {
+        AudioManager.distribuisciCarteSuono();
+        AudioManager.distribuisciCarteSuono();
+        AudioManager.distribuisciCarteSuono();
+        AudioManager.distribuisciCarteSuono();
         int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
 
         if(primoGiocatore >= giocatori.size()) // se il mazziere e alla fine e devo partire dal primo giocatore

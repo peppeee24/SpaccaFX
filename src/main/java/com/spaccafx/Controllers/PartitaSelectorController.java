@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
@@ -49,6 +50,7 @@ public class PartitaSelectorController {
     // fare for e cambiare id per ogni bottone     --- Play_IDPartita
 
     public void play1(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();
@@ -73,6 +75,7 @@ public class PartitaSelectorController {
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());

@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ public class MainMenuController {
 
     public PartitaClassicaController2 pcc;
 
+
     public void setPartitaClassicaController(PartitaClassicaController2 pcc) {
         this.pcc = pcc;
         System.out.println("MMC" + pcc);
@@ -30,6 +32,7 @@ public class MainMenuController {
 
     public void startSetting(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
+        AudioManager.bottoneSuono();
         FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("Login.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Login.load());
@@ -38,7 +41,7 @@ public class MainMenuController {
     }
 
     public void startGame(ActionEvent actionEvent) throws IOException { // PLAY
-
+        AudioManager.bottoneSuono();
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();
@@ -51,12 +54,13 @@ public class MainMenuController {
 
 
     public void startTutorial(ActionEvent actionEvent) throws IOException {
-
+        AudioManager.bottoneSuono();
     }
 
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
@@ -66,6 +70,7 @@ public class MainMenuController {
 
 
     public void telegram(MouseEvent mouseEvent) {
+        AudioManager.bottoneSuono();
         new Thread(() -> {
             try {
                 Desktop.getDesktop().browse(new URI("https://t.me/+tdRVfYk5QM4xZWRk"));
@@ -77,8 +82,9 @@ public class MainMenuController {
 
 
     public void setting(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         // TODO fare pagina per impotazioni audio e crediti
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Setting2.fxml"));
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Audio.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);

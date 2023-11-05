@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
@@ -31,7 +32,7 @@ public class PlayerScreenController {
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException { // bottone inizia
-
+        AudioManager.bottoneSuono();
         // TODO CREARE UNA PASSWORD PER OGNI PARTITA != DAL ID PARTITA
 
         int PasswordField = Integer.parseInt(passwordField.getText());
@@ -67,7 +68,7 @@ public class PlayerScreenController {
 
         } else {
 
-
+AudioManager.erroreSuono();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore");
             alert.setContentText("Codice partita Errato");
@@ -77,6 +78,7 @@ public class PlayerScreenController {
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());

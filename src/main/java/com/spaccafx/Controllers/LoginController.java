@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +32,7 @@ public class LoginController {
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
         String UserField = userField.getText();
         String PasswordField = passwordField.getText();
 
@@ -50,7 +52,7 @@ public class LoginController {
 
         } else {
 
-
+AudioManager.erroreSuono();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore");
             alert.setContentText("Username o Password non corretti");
@@ -60,6 +62,7 @@ public class LoginController {
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());

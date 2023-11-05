@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ public class SelectionMenuController {
 
 
     public void iniziaPartita(ActionEvent actionEvent) throws IOException {
-
+        AudioManager.bottoneSuono();
         FXMLLoader PartitaClassica = new FXMLLoader(Spacca.class.getResource("PartitaClassica2.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(PartitaClassica.load());
@@ -26,6 +27,7 @@ public class SelectionMenuController {
 
     // Seconda schheramta
     public void iniziaTorneo(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Torneo = new FXMLLoader(Spacca.class.getResource("Torneo.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Torneo.load());
@@ -36,6 +38,7 @@ public class SelectionMenuController {
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
