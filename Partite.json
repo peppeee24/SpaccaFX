@@ -1,0 +1,85 @@
+{
+  "Id_Partita": 62,
+  "Password": 211,
+  "Giocatori": {
+    "Giocatore1": {
+      "Nome": "we",
+      "Istanza": "Giocatore",
+      "IsAlive": true,
+      "CartaAttuale": "NESSUNA",
+      "Ruolo": "GIOCATORE",
+      "Vite": 2,
+      "Vita-Extra": 0
+    },
+    "Giocatore2": {
+      "Nome": "EzBot_525",
+      "Istanza": "EasyBot",
+      "IsAlive": true,
+      "CartaAttuale": "NESSUNA",
+      "Ruolo": "GIOCATORE",
+      "Vite": 2,
+      "Vita-Extra": 0
+    },
+    "Giocatore3": {
+      "Nome": "EzBot_74",
+      "Istanza": "EasyBot",
+      "IsAlive": true,
+      "CartaAttuale": "NESSUNA",
+      "Ruolo": "GIOCATORE",
+      "Vite": 2,
+      "Vita-Extra": 0
+    },
+    "Giocatore4": {
+      "Nome": "EzBot_558",
+      "Istanza": "EasyBot",
+      "IsAlive": true,
+      "CartaAttuale": "NESSUNA",
+      "Ruolo": "GIOCATORE",
+      "Vite": 2,
+      "Vita-Extra": 0
+    }
+  }
+}
+,
+{
+"Id_Partita": 839,
+"Password": 654,
+"Giocatori": {
+"Giocatore1": {
+"Nome": "we",
+"Istanza": "Giocatore",
+"IsAlive": true,
+"CartaAttuale": "NESSUNA",
+"Ruolo": "GIOCATORE",
+"Vite": 2,
+"Vita-Extra": 0
+},
+"Giocatore2": {
+"Nome": "EzBot_923",
+"Istanza": "EasyBot",
+"IsAlive": true,
+"CartaAttuale": "NESSUNA",
+"Ruolo": "GIOCATORE",
+"Vite": 2,
+"Vita-Extra": 0
+},
+"Giocatore3": {
+"Nome": "EzBot_199",
+"Istanza": "EasyBot",
+"IsAlive": true,
+"CartaAttuale": "NESSUNA",
+"Ruolo": "GIOCATORE",
+"Vite": 2,
+"Vita-Extra": 0
+},
+"Giocatore4": {
+"Nome": "EzBot_553",
+"Istanza": "EasyBot",
+"IsAlive": true,
+"CartaAttuale": "NESSUNA",
+"Ruolo": "GIOCATORE",
+"Vite": 2,
+"Vita-Extra": 0
+}
+}
+}

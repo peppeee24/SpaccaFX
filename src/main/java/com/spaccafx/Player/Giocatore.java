@@ -14,6 +14,7 @@ public class Giocatore implements IGiocatore
 
     public Giocatore()
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = "Giocatore";
         this.vita = 2;
         vitaExtra = 0;
@@ -22,6 +23,7 @@ public class Giocatore implements IGiocatore
 
     public Giocatore(Carta carta)
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = "Giocatore";
         this.vita = 2;
         vitaExtra = 0;
@@ -30,6 +32,7 @@ public class Giocatore implements IGiocatore
 
     public Giocatore(String nome)
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = nome;
         this.vita = 2;
         vitaExtra = 0;
@@ -38,6 +41,7 @@ public class Giocatore implements IGiocatore
 
     public Giocatore(String nome, Carta  carta)
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = nome;
         this.vita = 2;
         vitaExtra = 0;
@@ -54,6 +58,7 @@ public class Giocatore implements IGiocatore
     public int getVita(){return  this.vita;}
     public Carta getCarta(){return this.carta;}
     public int getValoreDado(){return this.valoreDado;}
+    public int getVitaExtra(){return this.vitaExtra;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
 
     public void addVitaExtra() {vitaExtra = 1;}

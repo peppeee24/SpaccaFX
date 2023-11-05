@@ -16,6 +16,7 @@ public abstract class Bot implements IGiocatore
 
     public Bot()
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = "Bot";
         this.vita = 2;
         vitaExtra = 0;
@@ -23,6 +24,7 @@ public abstract class Bot implements IGiocatore
     }
     public Bot(String nome)
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = nome;
         this.vita = 2;
         vitaExtra = 0;
@@ -30,6 +32,7 @@ public abstract class Bot implements IGiocatore
     }
     public Bot(Carta carta)
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = "Bot";
         this.vita = 2;
         vitaExtra = 0;
@@ -37,13 +40,12 @@ public abstract class Bot implements IGiocatore
     }
     public Bot(String nome, Carta carta)
     {
+        this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome=nome;
         this.vita= 2;
         vitaExtra = 0;
         this.carta=carta;
     }
-
-    //valutare se tenere i get e i set di tutto
 
     public void setNome(String nome){this.nome = nome;}
     public void setVita(int vita){this.vita = vita;}
@@ -55,6 +57,7 @@ public abstract class Bot implements IGiocatore
     public int getVita(){return  this.vita;}
     public Carta getCarta(){return this.carta;}
     public int getValoreDado(){return this.valoreDado;}
+    public int getVitaExtra(){return this.vitaExtra;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
     //public abstract int Scelta(Partita p);
     public abstract void SceltaBotUI(Partita p, TavoloController TC);

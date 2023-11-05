@@ -15,6 +15,7 @@ public interface IGiocatore
     public int getVita();
     public Carta getCarta();
     public int getValoreDado();
+    public int getVitaExtra();
     public RuoloGiocatore getRuolo();
 
     public void addVitaExtra();
