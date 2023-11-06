@@ -1,86 +1,88 @@
 {
-  "Id_Partita": 62,
-  "Password": 211,
-  "Giocatori": {
-    "Giocatore1": {
-      "Nome": "we",
-      "Istanza": "Giocatore",
-      "IsAlive": true,
-      "CartaAttuale": "NESSUNA",
-      "Ruolo": "GIOCATORE",
-      "Vite": 2,
-      "Vita-Extra": 0
+  "Partite": [
+    {
+      "Giocatori": {
+        "Giocatore1": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "Giocatore",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "cazzone",
+          "Vite": 2
+        },
+        "Giocatore2": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "AdvancedBot",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "AdvBot_888",
+          "Vite": 2
+        },
+        "Giocatore3": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "AdvancedBot",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "AdvBot_171",
+          "Vite": 2
+        },
+        "Giocatore4": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "AdvancedBot",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "AdvBot_939",
+          "Vite": 2
+        }
+      },
+      "Id_Partita": 219,
+      "Password": 1000
     },
-    "Giocatore2": {
-      "Nome": "EzBot_525",
-      "Istanza": "EasyBot",
-      "IsAlive": true,
-      "CartaAttuale": "NESSUNA",
-      "Ruolo": "GIOCATORE",
-      "Vite": 2,
-      "Vita-Extra": 0
-    },
-    "Giocatore3": {
-      "Nome": "EzBot_74",
-      "Istanza": "EasyBot",
-      "IsAlive": true,
-      "CartaAttuale": "NESSUNA",
-      "Ruolo": "GIOCATORE",
-      "Vite": 2,
-      "Vita-Extra": 0
-    },
-    "Giocatore4": {
-      "Nome": "EzBot_558",
-      "Istanza": "EasyBot",
-      "IsAlive": true,
-      "CartaAttuale": "NESSUNA",
-      "Ruolo": "GIOCATORE",
-      "Vite": 2,
-      "Vita-Extra": 0
+    {
+      "Giocatori": {
+        "Giocatore1": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "Giocatore",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "pepep",
+          "Vite": 2
+        },
+        "Giocatore2": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "Giocatore",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "sama",
+          "Vite": 2
+        },
+        "Giocatore3": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "AdvancedBot",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "AdvBot_235",
+          "Vite": 2
+        },
+        "Giocatore4": {
+          "Vita-Extra": 0,
+          "Ruolo": "GIOCATORE",
+          "IsAlive": true,
+          "Istanza": "AdvancedBot",
+          "CartaAttuale": "NESSUNA",
+          "Nome": "AdvBot_714",
+          "Vite": 2
+        }
+      },
+      "Id_Partita": 815,
+      "Password": 38
     }
-  }
+  ]
 }
-,
-{
-"Id_Partita": 839,
-"Password": 654,
-"Giocatori": {
-"Giocatore1": {
-"Nome": "we",
-"Istanza": "Giocatore",
-"IsAlive": true,
-"CartaAttuale": "NESSUNA",
-"Ruolo": "GIOCATORE",
-"Vite": 2,
-"Vita-Extra": 0
-},
-"Giocatore2": {
-"Nome": "EzBot_923",
-"Istanza": "EasyBot",
-"IsAlive": true,
-"CartaAttuale": "NESSUNA",
-"Ruolo": "GIOCATORE",
-"Vite": 2,
-"Vita-Extra": 0
-},
-"Giocatore3": {
-"Nome": "EzBot_199",
-"Istanza": "EasyBot",
-"IsAlive": true,
-"CartaAttuale": "NESSUNA",
-"Ruolo": "GIOCATORE",
-"Vite": 2,
-"Vita-Extra": 0
-},
-"Giocatore4": {
-"Nome": "EzBot_553",
-"Istanza": "EasyBot",
-"IsAlive": true,
-"CartaAttuale": "NESSUNA",
-"Ruolo": "GIOCATORE",
-"Vite": 2,
-"Vita-Extra": 0
-}
-}
-}
-{"Id_Partita":534,"Password":665,"Giocatori":{"Giocatore1":{"Nome":"lizard","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore2":{"Nome":"spock","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore3":{"Nome":"AdvBot_996","Istanza":"AdvancedBot","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore4":{"Nome":"AdvBot_949","Istanza":"AdvancedBot","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0}}}{"Id_Partita":400,"Password":209,"Giocatori":{"Giocatore1":{"Nome":"sasso","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore2":{"Nome":"carta","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore3":{"Nome":"formbii","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore4":{"Nome":"lizard","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0}}}{"Id_Partita":369,"Password":799,"Giocatori":{"Giocatore1":{"Nome":"Fede","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore2":{"Nome":"Dalia","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore3":{"Nome":"EzBot_122","Istanza":"EasyBot","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore4":{"Nome":"EzBot_766","Istanza":"EasyBot","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0}}}{"Id_Partita":931,"Password":167,"Giocatori":{"Giocatore1":{"Nome":"giuseppe","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore2":{"Nome":"federico","Istanza":"Giocatore","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore3":{"Nome":"AdvBot_845","Istanza":"AdvancedBot","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0},"Giocatore4":{"Nome":"AdvBot_736","Istanza":"AdvancedBot","IsAlive":true,"CartaAttuale":"NESSUNA","Ruolo":"GIOCATORE","Vite":2,"Vita-Extra":0}}}

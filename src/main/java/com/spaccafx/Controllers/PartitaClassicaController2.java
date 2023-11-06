@@ -62,10 +62,9 @@ public class PartitaClassicaController2 {
 
 
     @FXML
-    public void initialize() { // si attiva da SelectionMenuController
-
+    public void initialize() // si attiva da SelectionMenuController
+    {
         setNumeroGiocatori();
-
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -389,6 +388,8 @@ public class PartitaClassicaController2 {
     // Utilizziamo classe partita
     public void generaCodice(ActionEvent actionEvent) throws IOException
     {
+        //int currentIdPartita = FileManager.creaCodicePartitaUnico();
+
         AudioManager.bottoneSuono();
         Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
         alert3.setTitle("Piccolo LAG!");
@@ -398,9 +399,10 @@ public class PartitaClassicaController2 {
 
         int somma = getNumeroGiocatori() + getNumeroBot();
 
-        if (somma > 1 && somma < 5) {
+        if (somma > 1 && somma < 5)
+        {
             this.P = new Partita(somma);
-            P.generaCodicePartita(); // TODO CAPIRE LAG
+            P.generaCodicePartita();
             P.generaPasswordPartita();
             System.out.println("Codice Generato: " + P.getCodicePartita());
             System.out.println("Password Generata: " + P.getPasswordPartita());
@@ -491,7 +493,7 @@ public class PartitaClassicaController2 {
 
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
-        FileManager.salvaInformazioniPartita(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita); // salviamo le informazioni dati
+        FileManager.salvaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale
