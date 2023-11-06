@@ -52,6 +52,7 @@ public class CartaProbabilita extends Carta
 
                 Platform.runLater(() ->
                 {
+                    AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Aumenta vita con dado");
                     TC.mostraBannerAttesa("PROBABILITA [DADI]", "Lancia un dado. Se il valore uscito equivale a quello della tua carta prendi una vita");
                 });
@@ -120,6 +121,7 @@ public class CartaProbabilita extends Carta
 
                 Platform.runLater(() ->
                 {
+                    AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Posso scambiare la carta con il mazzo");
                     TC.mostraBannerAttesa("PROBABILITA [SCAMBIO-EXTRA]", "Puoi scambiare la carta con il mazzo");
                 });

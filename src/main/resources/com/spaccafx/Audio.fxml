@@ -33,7 +33,6 @@
 -->
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
@@ -78,25 +77,20 @@
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font></Label>
-                              <Button fx:id="salvaAudioButton" layoutX="634.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaAudio" prefHeight="54.0" prefWidth="128.0" style="-fx-background-color: #0E3C32;" text="SAVE" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor></Button>
-                              <CheckBox fx:id="suoniON" layoutX="263.0" layoutY="137.0" mnemonicParsing="false" onAction="#disattivaSuoni" text="Attiva suoni" />
-                              <Slider fx:id="volumeSlider" layoutX="243.0" layoutY="272.0" onDragDetected="#volume" prefHeight="16.0" prefWidth="261.0" showTickLabels="true" showTickMarks="true" />
-                              <Label fx:id="Volume" layoutX="263.0" layoutY="222.0" styleClass="Label" text="Volume" textAlignment="CENTER">
+                              <CheckBox fx:id="suoniOFF" layoutX="263.0" layoutY="137.0" mnemonicParsing="false" onAction="#disattivaSuoni" text="Disattiva Suoni" />
+                              <Slider fx:id="volumeSlider" layoutX="243.0" layoutY="318.0" prefHeight="16.0" prefWidth="261.0" showTickLabels="true" showTickMarks="true" />
+                              <Label fx:id="Volume" layoutX="263.0" layoutY="268.0" styleClass="Label" text="Volume" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="soundImage" fitHeight="45.0" fitWidth="50.0" layoutX="374.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="soundImage" fitHeight="45.0" fitWidth="50.0" layoutX="363.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Assets/Game/Environment/volume.png" />
                                  </image>
                               </ImageView>
+                              <CheckBox fx:id="musicaON" layoutX="263.0" layoutY="167.0" mnemonicParsing="false" onAction="#attivaMusica" text="Attiva Musica" />
+                              <CheckBox fx:id="musicaOFF" layoutX="263.0" layoutY="197.0" mnemonicParsing="false" onAction="#disattivaMusica" text="Disattiva Musica" />
                            </children>
                         </AnchorPane>
                      </right>

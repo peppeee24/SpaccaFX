@@ -3,6 +3,7 @@ package com.spaccafx.Cards;
 import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Enums.SemeCarta;
+import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.Bot;
@@ -51,6 +52,7 @@ public class CartaImprevisto extends Carta
 
                 Platform.runLater(() ->
                 {
+                    AudioManager.imprevistoSuono();
                     System.out.println("[IMPREVISTO] Sei obbligato a passare il turno!");
                     TC.mostraBannerAttesa("IMPREVISTO [PASSO-FORZATO]", "Sei obbligato a passare il turno!");
                 });
@@ -79,6 +81,7 @@ public class CartaImprevisto extends Carta
             try {
                 Platform.runLater(() ->
                 {
+                    AudioManager.imprevistoSuono();
                     System.out.println("[IMPREVISTO] Sei obbligato a scambiare la carta con il mazzo");
                     TC.mostraBannerAttesa("IMPREVISTO [SCAMBIO-FORZATO]", "Sei obbligato a scambiare la carta con il mazzo e a passare!");
                 });
