@@ -45,7 +45,7 @@ public class PartitaSelectorController
     private GridPane IdGridPartite;
     private ScrollPane IdScrollPartite;
 
-    Pane pane2, pane3, pane4, pane5, pane6, pane7;
+    //Pane pane2, pane3, pane4, pane5, pane6, pane7;
 
     // TODO impostare caricamento partite da file
 
@@ -71,34 +71,11 @@ public class PartitaSelectorController
 
     }
 
-    // fare for e cambiare id per ogni bottone     --- Play_IDPartita
-
-    public void play1(ActionEvent actionEvent) throws IOException {
-        AudioManager.bottoneSuono();
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent root = playerScreen.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-
-    }
 
 
 
-    public void betaDisable() {
-        pane2.setVisible(false);
-        pane3.setVisible(false);
-        pane4.setVisible(false);
-        pane5.setVisible(false);
-        pane6.setVisible(false);
-        pane7.setVisible(false);
-
-    }
-
-
-    public void indietro(MouseEvent mouseEvent) throws IOException {
+    public void indietro(MouseEvent mouseEvent) throws IOException
+    {
         AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -133,7 +110,10 @@ public class PartitaSelectorController
 
                         MatchData newMatchData = new MatchData();
                         int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
+                        int password = Integer.parseInt(partitaJSON.get("Password").toString());
                         newMatchData.setIdMatch("ID_Partita: " + idPartita);
+                        newMatchData.setCodice(idPartita);
+                        newMatchData.setPassword(password);
 
                         matchList.add(newMatchData);
 

@@ -1,6 +1,7 @@
 package com.spaccafx.Controllers;
 
 import com.spaccafx.Files.AudioManager;
+import com.spaccafx.Files.FileManager;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
@@ -16,19 +17,24 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class PlayerScreenController {
-
-
+public class PlayerScreenController
+{
     private int pwd;
 
     @FXML
     PasswordField passwordField;
-    PartitaClassicaController2 partitaClassicaController;
 
     public PlayerScreenController() { // costruttore
-       // this.pwd = ShareData.getInstance().getPassword();
-        this.partitaClassicaController = ShareData.getInstance().getPartitaClassicaController();
-        this.pwd=partitaClassicaController.P.getPasswordPartita();
+
+        //this.partitaClassicaController = ShareData.getInstance().getPartitaClassicaController();
+        //this.pwd=partitaClassicaController.P.getPasswordPartita();
+    }
+
+    public void setInfoPartita(int codicePartita, int passwordPartita)
+    {
+        this.pwd = FileManager.getPasswordPartita(codicePartita);
+        System.out.println("Sto prendendo la partita con id: " + codicePartita);
+        System.out.println("password: " + passwordPartita);
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException { // bottone inizia
@@ -42,18 +48,19 @@ public class PlayerScreenController {
         System.out.println("Codice Inserito:" + PasswordField);
 
 
-        if (pwd == PasswordField) {
+        if (pwd == PasswordField)
+        {
 
             ShareData sharedData = ShareData.getInstance();
-            sharedData.setPartitaClassicaController(partitaClassicaController);
-            sharedData.setPartita(partitaClassicaController.P);
+            //sharedData.setPartitaClassicaController(partitaClassicaController);
+            //sharedData.setPartita(partitaClassicaController.P);
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Accesso Eseguito");
             alert.setContentText("Stai per entrare nel gioco");
             Optional<ButtonType> result = alert.showAndWait();
 
-
+            /*
             FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo2.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = loaderTavolo.load();
@@ -65,6 +72,8 @@ public class PlayerScreenController {
             stage.setScene(scene);
             stage.show();
 
+
+             */
 
         } else {
 

@@ -2,9 +2,24 @@ package com.spaccafx.Controllers;
 
 public class MatchData
 {
-    String type;
-    String state;
-    String idMatch;
+    String type,state,idMatch;
+    int codice, password;
+
+    public int getCodice() {
+        return codice;
+    }
+
+    public void setCodice(int codice) {
+        this.codice = codice;
+    }
+
+    public int getPassword() {
+        return password;
+    }
+
+    public void setPassword(int password) {
+        this.password = password;
+    }
 
     public String getType() {
         return type;

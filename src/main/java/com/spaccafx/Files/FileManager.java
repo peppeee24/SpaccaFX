@@ -183,6 +183,43 @@ public class FileManager
         return partita;
     }
 
+    public static int getPasswordPartita(int codicePartita)
+    {
+        try
+        {
+            if (partiteFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(partiteFile));
+
+                // Ottieni l'array delle partite
+                JSONArray partiteArray = (JSONArray) root.get("Partite");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object partitaObject : partiteArray)
+                {
+                    JSONObject partitaJSON = (JSONObject) partitaObject;
+                    int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
+
+                    if (idPartita == codicePartita) // ho trovato la mia partita
+                    {
+                        int passwordPartita = Integer.parseInt(partitaJSON.get("Password").toString());
+                        return passwordPartita; // ho trovato la mia partita, do il codice
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente la partita che cerchi!");
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        // todo non va bene lasciarlo cosi
+        return 0; // se non ho trovato nessuna password
+    }
+
     //endregion
 
 
