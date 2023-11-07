@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class PlayerScreenController
 {
-    private int pwd;
+    private int pwd, codicePartita;
 
     @FXML
     PasswordField passwordField;
@@ -33,6 +33,7 @@ public class PlayerScreenController
     public void setInfoPartita(int codicePartita, int passwordPartita)
     {
         this.pwd = FileManager.getPasswordPartita(codicePartita);
+        this.codicePartita = codicePartita;
         System.out.println("Sto prendendo la partita con id: " + codicePartita);
         System.out.println("password: " + passwordPartita);
     }
@@ -60,7 +61,7 @@ public class PlayerScreenController
             alert.setContentText("Stai per entrare nel gioco");
             Optional<ButtonType> result = alert.showAndWait();
 
-            /*
+
             FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo2.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = loaderTavolo.load();
@@ -73,7 +74,9 @@ public class PlayerScreenController
             stage.show();
 
 
-             */
+            TavoloController tavoloController = loaderTavolo.getController();
+            tavoloController.inizializzaClassePartita(this.codicePartita);
+
 
         } else {
 

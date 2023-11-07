@@ -2,6 +2,7 @@ package com.spaccafx.Controllers;
 
 import com.spaccafx.Cards.Carta;
 import com.spaccafx.Files.AudioManager;
+import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Spacca;
@@ -57,9 +58,10 @@ public class TavoloController
     Button bottoneStart, bottoneEffetto, bottoneScambia, bottonePassa; // bottoni partita
 
 
-    private PartitaClassicaController2 PC;
+    //private PartitaClassicaController2 PC;
 
     private Partita partita;
+    private int codicePartita;
 
     //endregion
 
@@ -70,14 +72,22 @@ public class TavoloController
     }
 
     // costruttore
-    public TavoloController() {
+    public TavoloController()
+    {
         ShareData sharedData = ShareData.getInstance();
         ShareData.getInstance().setTavoloController(this);
-        this.PC = sharedData.getPartitaClassicaController(); // dipende quale carichiamo con i file
-        this.partita = sharedData.getPartita();
+    }
+
+    public void inizializzaClassePartita(int codicePartita)
+    {
+        // gli devo passare il codice che mando quando clicco sul bottone
+        setCodicePartita(codicePartita);
+        System.out.println("Codice della partita attuale: " + codicePartita);
+        this.partita = FileManager.leggiPartitaDaFile(codicePartita);
         this.partita.impostaTavoloController();
     }
 
+    private void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
 
     public void inizializzaTavolo()
     {
@@ -86,11 +96,11 @@ public class TavoloController
         gestisciPulsanti(false, false ,false);
         nascondiDadi();
 
-        // imposto nome giocatori
-        nomePlayer1.setText(PC.P.giocatori.get(0).getNome());
-        nomePlayer2.setText(PC.P.giocatori.get(1).getNome());
-        nomePlayer3.setText(PC.P.giocatori.get(2).getNome());
-        nomePlayer4.setText(PC.P.giocatori.get(3).getNome());
+        // imposto nome giocatori da prendere dal file
+        nomePlayer1.setText("File Json1");
+        nomePlayer2.setText("File Json2");
+        nomePlayer3.setText("File Json3");
+        nomePlayer4.setText("File Json4");
 
         aggiornaInfoUI();
     }
