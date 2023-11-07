@@ -82,7 +82,7 @@ public class TavoloController
     {
         // gli devo passare il codice che mando quando clicco sul bottone
         setCodicePartita(codicePartita);
-        System.out.println("Codice della partita attuale: " + codicePartita);
+        System.out.println("Codice della  partita attuale: " + codicePartita);
         this.partita = FileManager.leggiPartitaDaFile(codicePartita);
         this.partita.impostaTavoloController();
     }
