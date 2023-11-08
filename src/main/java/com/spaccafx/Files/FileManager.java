@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
+import com.spaccafx.Player.AdvancedBot;
+import com.spaccafx.Player.EasyBot;
+import com.spaccafx.Player.Giocatore;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -30,6 +33,7 @@ public class FileManager
             JSONObject nuovaPartita = new JSONObject();
             nuovaPartita.put("Id_Partita", codicePartita);
             nuovaPartita.put("Password", passwordPartita);
+            nuovaPartita.put("Stato", "FINISH");
 
             JSONObject giocatoriList = new JSONObject();
 
@@ -40,6 +44,8 @@ public class FileManager
                 player.put("Istanza", giocatore.getClass().getSimpleName());
                 player.put("IsAlive", true); // da cambiare
 
+                // creare array carte del giocatore
+                // se nullo imposto dei valori di default che vuol dire che il gioco deve ancora iniziare
                 String cartaPlayer = giocatore.getCarta() == null ? "NESSUNA" : giocatore.getCarta().toString();
 
                 player.put("CartaAttuale", cartaPlayer);
@@ -166,20 +172,43 @@ public class FileManager
         // Estrarre i dati dall'oggetto JSON e creare un oggetto Partita
         int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
         int password = Integer.parseInt(partitaJSON.get("Password").toString());
-        JSONArray giocatoriArray = (JSONArray) partitaJSON.get("Giocatori");
+        JSONObject giocatoriObject = (JSONObject) partitaJSON.get("Giocatori");
 
         // Esempio: crea una nuova istanza di Partita con i dati estratti
-        Partita partita = new Partita(giocatoriArray.size());
+        Partita partita = new Partita(giocatoriObject.size()); // imposto quanti giocatori ci sono
+        partita.setCodicePartita(idPartita);
+        partita.setPasswordPartita(password);
 
         // Aggiungi giocatori alla partita
-        for (Object giocatoreObject : giocatoriArray) {
-            JSONObject giocatoreJSON = (JSONObject) giocatoreObject;
-            // Estrarre i dati del giocatore dall'oggetto JSON
-            // Esempio: crea una nuova istanza di Giocatore e aggiungilo alla partita
-            //IGiocatore giocatore = new IGiocatore(/* passa i dati del giocatore */);
-            //partita.aggiungiGiocatore(giocatore);
-        }
+        for (Object giocatoreKey : giocatoriObject.keySet()) {
+            String nomeGiocatore = (String) giocatoreKey;
+            JSONObject giocatoreJSON = (JSONObject) giocatoriObject.get(nomeGiocatore);
 
+            String nomePlayer = giocatoreJSON.get("Nome").toString();
+            int vitaExtra = Integer.parseInt(giocatoreJSON.get("Vita-Extra").toString());
+            boolean isAlive = Boolean.parseBoolean(giocatoreJSON.get("IsAlive").toString());
+            int vite = Integer.parseInt(giocatoreJSON.get("Vite").toString());
+            String istanza = giocatoreJSON.get("Istanza").toString();
+
+            IGiocatore giocatore = null;
+
+            switch (istanza.toUpperCase())
+            {
+                case "GIOCATORE":   giocatore = new Giocatore(nomePlayer); // crea il giocatore in base all istanza
+                                    break;
+                case "ADVANCEDBOT": giocatore = new AdvancedBot(nomePlayer); break;
+                case "EASYBOT": giocatore = new EasyBot(nomePlayer); break;
+                default: giocatore = new Giocatore(nomePlayer);
+            }
+
+            System.out.println("Giocatore: " + giocatore.getNome() );
+            partita.aggiungiGiocatore(giocatore);
+        }
+        System.out.println("Carico partita con giocatori: " + partita.giocatori.size());
+        System.out.println("giocatore1: " + partita.giocatori.get(0).getNome());
+        System.out.println("giocatore2: " + partita.giocatori.get(1).getNome());
+        System.out.println("giocatore3: " + partita.giocatori.get(2).getNome());
+        System.out.println("giocatore4: " + partita.giocatori.get(3).getNome());
         return partita;
     }
 

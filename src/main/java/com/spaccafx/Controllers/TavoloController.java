@@ -82,9 +82,13 @@ public class TavoloController
     {
         // gli devo passare il codice che mando quando clicco sul bottone
         setCodicePartita(codicePartita);
-        System.out.println("Codice della  partita attuale: " + codicePartita);
+        System.out.println("Codice della partita attuale: " + codicePartita);
         this.partita = FileManager.leggiPartitaDaFile(codicePartita);
         this.partita.impostaTavoloController();
+
+        System.out.println("Codice della partita: " + partita.getCodicePartita());
+        inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player
+
     }
 
     private void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
@@ -95,12 +99,16 @@ public class TavoloController
         nascondiBannerAttesa();
         gestisciPulsanti(false, false ,false);
         nascondiDadi();
+    }
 
+    private void inizializzaNomiPlayer()
+    {
         // imposto nome giocatori da prendere dal file
-        nomePlayer1.setText("File Json1");
-        nomePlayer2.setText("File Json2");
-        nomePlayer3.setText("File Json3");
-        nomePlayer4.setText("File Json4");
+        // todo attenzione nel caso i player siano morti, fare il controllo non sempre da riempire con 4 nomi
+        nomePlayer1.setText(partita.giocatori.get(0).getNome()); // prendo il giocatore
+        nomePlayer2.setText(partita.giocatori.get(1).getNome());
+        nomePlayer3.setText(partita.giocatori.get(2).getNome());
+        nomePlayer4.setText(partita.giocatori.get(3).getNome());
 
         aggiornaInfoUI();
     }
@@ -602,7 +610,9 @@ AudioManager.vittoriaSuono();
         alert.setContentText("Se confermi i tuoi dati saranno salvati");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK)
+        {
+            // todo fermare il gioco e poi riprenderlo
             // partita.saveOnFile();
         } else {
             // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
@@ -610,7 +620,7 @@ AudioManager.vittoriaSuono();
         }
 
 
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);

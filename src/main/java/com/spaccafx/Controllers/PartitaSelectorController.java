@@ -111,9 +111,12 @@ public class PartitaSelectorController
                         MatchData newMatchData = new MatchData();
                         int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
                         int password = Integer.parseInt(partitaJSON.get("Password").toString());
+                        String stato = partitaJSON.get("Stato").toString();
+
                         newMatchData.setIdMatch("ID_Partita: " + idPartita);
                         newMatchData.setCodice(idPartita);
                         newMatchData.setPassword(password);
+                        newMatchData.setState(stato);
 
                         matchList.add(newMatchData);
 

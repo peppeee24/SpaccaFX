@@ -879,6 +879,9 @@ public class Partita
 
     public String getMazziereNome() {return giocatori.get(posMazziere).getNome();}
 
+    public void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
+    public void setPasswordPartita(int passwordPartita){this.passwordPartita = passwordPartita;}
+
     //endregion
 
 
