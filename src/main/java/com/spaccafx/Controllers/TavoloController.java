@@ -1,6 +1,7 @@
 package com.spaccafx.Controllers;
 
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
@@ -65,35 +66,70 @@ public class TavoloController
 
     //endregion
 
-    // inizializzo
-    public void initialize()
-    {
-        inizializzaTavolo();
-    }
+    public void initialize(){inizializzazioneTavolo(); }// tolgo tutto
 
     // costruttore
     public TavoloController()
     {
-        ShareData sharedData = ShareData.getInstance();
         ShareData.getInstance().setTavoloController(this);
     }
 
+    // prima METODO che viene eseguita dopo che fai l accesso
     public void inizializzaClassePartita(int codicePartita)
     {
         // gli devo passare il codice che mando quando clicco sul bottone
         setCodicePartita(codicePartita);
         System.out.println("Codice della partita attuale: " + codicePartita);
-        this.partita = FileManager.leggiPartitaDaFile(codicePartita);
+
+        this.partita = FileManager.leggiPartitaDaFile(codicePartita); // prendiamo la partita (codice, passw, giocatori, stato)
         this.partita.impostaTavoloController();
+        inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
+
+        //TODO RIMUOVERE DAL MAZZO CHE SI CREA LE CARTE CHE HANNO I GIOCATORI, ALTRIMENTI RISCHIO DUPLICAZIONE!!
 
         System.out.println("Codice della partita: " + partita.getCodicePartita());
-        inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player
 
+        preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
     }
 
     private void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
 
-    public void inizializzaTavolo()
+    public void preInizializzazioneTavolo(GameStatus gameStatus)
+    {
+        switch (gameStatus)
+        {
+            case STARTED:
+                            System.out.println("Il gioco sta per iniziare ora!");
+                            bottoneStart.setVisible(true);
+                            break;
+
+            // mettiamo alert dicendo che il gioco sta per essere ripreso
+            case STOPPED:   AudioManager.erroreSuono();
+                            bottoneStart.setVisible(false);
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("RIPRESA MATCH!");
+                            alert.setContentText("Vuoi veramente riprendere il gioco?");
+                            Optional<ButtonType> result = alert.showAndWait();
+
+                            if(result.isPresent() && result.get() == ButtonType.OK) // se accetta di riprendere
+                            {
+                                System.out.println("Stai per riprendere il gioco");
+                            }
+                            else
+                            {
+                                // lo riporto fuori e non carico nulla
+                            }
+                            break;
+
+            case PLAYING:
+            case ENDED:
+                            break;
+
+            default:
+        }
+    }
+
+    private void inizializzazioneTavolo()
     {
         nascondiCorone();
         nascondiBannerAttesa();
@@ -144,6 +180,39 @@ public class TavoloController
         updateCarteUI();
         pulsanteScambiaMazzo(false);
 
+    }
+
+    // per uscire dalla partita
+    public void exitGame(MouseEvent mouseEvent) throws IOException
+    {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Vuoi uscire dalla partita");
+        alert.setContentText("Se confermi i tuoi dati saranno salvati");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK)
+        {
+            if(partita.isGameRunning())
+                partita.setPartitaStatus(GameStatus.STOPPED);
+            else
+            {
+                // vuol dire che e finita/ deve ancora inziare/ sta giocando
+                // todo SISTEMARE TUTTO
+            }
+
+            FileManager.sovrascriviSalvataggiPartita(this.partita); // salvo tutti i dati di questa partita
+        } else {
+            // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
+            System.out.println("Continua il gioco");
+        }
+
+
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(Indietro.load());
+        stage.setScene(scene);
+        stage.show();
     }
     //endregion
 
@@ -601,31 +670,7 @@ AudioManager.vittoriaSuono();
 
 
 
-    // per uscire dalla partita
-    public void exitGame(MouseEvent mouseEvent) throws IOException
-    {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Vuoi uscire dalla partita");
-        alert.setContentText("Se confermi i tuoi dati saranno salvati");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK)
-        {
-            // todo fermare il gioco e poi riprenderlo
-            // partita.saveOnFile();
-        } else {
-            // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
-            System.out.println("Continua il gioco");
-        }
-
-
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(Indietro.load());
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void rollLite(int valoreDado, int posPlayer)
     {

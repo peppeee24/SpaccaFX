@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Manager.Partita;
@@ -23,11 +24,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.telegram.telegrambots.meta.api.objects.games.Game;
 
 
 import java.awt.*;
@@ -111,12 +114,12 @@ public class PartitaSelectorController
                         MatchData newMatchData = new MatchData();
                         int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
                         int password = Integer.parseInt(partitaJSON.get("Password").toString());
-                        String stato = partitaJSON.get("Stato").toString();
+                        GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));
 
-                        newMatchData.setIdMatch("ID_Partita: " + idPartita);
-                        newMatchData.setCodice(idPartita);
-                        newMatchData.setPassword(password);
-                        newMatchData.setState(stato);
+
+                        newMatchData.setCodice(idPartita); // id partita trovato
+                        newMatchData.setPassword(password); // password trovata
+                        newMatchData.setStatus(gameStatus);
 
                         matchList.add(newMatchData);
 

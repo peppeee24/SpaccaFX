@@ -1,6 +1,8 @@
 package com.spaccafx.Controllers;
 
 
+import com.spaccafx.Enums.GameStatus;
+import com.spaccafx.Enums.GameType;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
@@ -493,7 +495,8 @@ public class PartitaClassicaController2 {
 
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
-        FileManager.salvaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita); // salviamo le informazioni dati
+        // creiamo il salvataggio della nuova partita
+        FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale

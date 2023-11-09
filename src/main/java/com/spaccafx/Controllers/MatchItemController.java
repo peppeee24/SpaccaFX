@@ -32,29 +32,45 @@ public class MatchItemController
     private Label stateId;
 
     private int codicePartita, passwordPartita;
-    MatchData matchData;
-
 
     public void setData(MatchData matchData)
     {
-        this.partitaId.setText(matchData.getIdMatch());
-        playButtonId.setVisible(true);
+        this.partitaId.setText("ID: " + matchData.getCodice());
 
-
-        // TODO PROVVISORIO
-
-        // In base allo stato, abilita/ disabilita il bottone
-        switch (matchData.getState().toUpperCase())
+        switch (matchData.getStatus())
         {
-            case "STARTED":   stateId.setText("State: STARTED"); stateId.setTextFill(Color.GREEN); // crea il giocatore in base all istanza
-                break;
-            case "FINISH": stateId.setText("State: FINISH"); stateId.setTextFill(Color.BLUE); playButtonId.setDisable(true);  break;
-            case "WAITING": stateId.setText("State: WAITING"); stateId.setTextFill(Color.ORANGE);break;
-            default: stateId.setText("State: ERRROR"); stateId.setTextFill(Color.RED);
+            case STARTED:   stateId.setText("State: " + matchData.getStatus());
+                            stateId.setTextFill(Color.GREEN); // crea il giocatore in base all istanza
+                            playButtonId.setVisible(true); // lo rendiamo disponibile
+                            playButtonId.setDisable(false);
+                            break;
+
+            case STOPPED:   stateId.setText("State: " + matchData.getStatus());
+                            stateId.setTextFill(Color.ORANGE);
+                            playButtonId.setVisible(true);
+                            playButtonId.setDisable(false);
+                            break;
+
+            case PLAYING:   stateId.setText("State: " + matchData.getStatus());
+                            stateId.setTextFill(Color.BLUE);
+                            playButtonId.setVisible(false);
+                            playButtonId.setDisable(true);
+                            break;
+
+            case ENDED:     stateId.setText("State: " + matchData.getStatus());
+                            stateId.setTextFill(Color.RED);
+                            playButtonId.setVisible(true);
+                            playButtonId.setDisable(true); // lo disabilitamo perche il gioco e finito
+                            break;
+
+            default:        stateId.setText("State: ERRROR");
+                            stateId.setTextFill(Color.RED);
+                            playButtonId.setVisible(false);
+                            playButtonId.setDisable(true);
         }
 
         this.passwordPartita = matchData.getPassword();
-        this.codicePartita = matchData.codice;
+        this.codicePartita = matchData.getCodice();
     }
 
     public void accediPartita(javafx.event.ActionEvent actionEvent)

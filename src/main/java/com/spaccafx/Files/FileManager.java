@@ -3,6 +3,10 @@ package com.spaccafx.Files;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.spaccafx.Cards.Carta;
+import com.spaccafx.Enums.GameStatus;
+import com.spaccafx.Enums.GameType;
+import com.spaccafx.Enums.SemeCarta;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
@@ -25,7 +29,7 @@ public class FileManager
     // region #PARTITA
     public static File partiteFile = new File("Partite.json"); // unico file con più partite
 
-    public static void salvaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori)
+    public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status)
     {
         try
         {
@@ -33,7 +37,12 @@ public class FileManager
             JSONObject nuovaPartita = new JSONObject();
             nuovaPartita.put("Id_Partita", codicePartita);
             nuovaPartita.put("Password", passwordPartita);
-            nuovaPartita.put("Stato", "FINISH");
+            nuovaPartita.put("Stato", status.toString());
+            nuovaPartita.put("Tipo", gameType.toString());
+            nuovaPartita.put("CurrentGiocatore", 0);
+            nuovaPartita.put("PosMazziere", 0);
+            nuovaPartita.put("Round", 1);
+            nuovaPartita.put("isGameRunning", false);
 
             JSONObject giocatoriList = new JSONObject();
 
@@ -42,13 +51,34 @@ public class FileManager
                 JSONObject player = new JSONObject();
                 player.put("Nome", giocatore.getNome());
                 player.put("Istanza", giocatore.getClass().getSimpleName());
-                player.put("IsAlive", true); // da cambiare
+                player.put("IsAlive", true); // TODO da cambiare
 
                 // creare array carte del giocatore
                 // se nullo imposto dei valori di default che vuol dire che il gioco deve ancora iniziare
-                String cartaPlayer = giocatore.getCarta() == null ? "NESSUNA" : giocatore.getCarta().toString();
+                // Ottieni la carta del giocatore (assumendo che ogni giocatore ha solo una carta)
+                Carta cartaPlayer = giocatore.getCarta();
 
-                player.put("CartaAttuale", cartaPlayer);
+                if (cartaPlayer != null)
+                {
+                    // Creazione dell'oggetto JSON per la carta
+                    JSONObject cartaJSON = new JSONObject();
+                    cartaJSON.put("Valore", cartaPlayer.getValore());
+                    cartaJSON.put("Seme", cartaPlayer.getSeme().toString());
+
+                    // Aggiungi l'oggetto cartaJSON al giocatore
+                    player.put("Carta", cartaJSON);
+                }
+                else
+                {
+                    // Creazione dell'oggetto JSON per la carta
+                    JSONObject cartaJSON = new JSONObject();
+                    cartaJSON.put("Valore", 1);
+                    cartaJSON.put("Seme", SemeCarta.TOPO.toString()); // metto un seme a caso, TODO DA SISTEMARE
+
+                    // Aggiungi l'oggetto cartaJSON al giocatore
+                    player.put("Carta", cartaJSON);
+                }
+
                 player.put("Ruolo", giocatore.getRuolo().toString());
                 player.put("Vite", giocatore.getVita());
                 player.put("Vita-Extra", giocatore.getVitaExtra());
@@ -90,6 +120,67 @@ public class FileManager
         }
     }
 
+    // andiamo a salvare tutti i nuovi dati della partita, andandoli a sovrascrivere
+
+    public static void sovrascriviSalvataggiPartita(Partita partitaToSave)
+    {
+        try
+        {
+            JSONParser parser = new JSONParser();
+            JSONObject root = (JSONObject) parser.parse(new FileReader(partiteFile));
+
+            // Ottieni l'array delle partite
+            JSONArray partiteArray = (JSONArray) root.get("Partite");
+
+            for (Object partitaObject : partiteArray)
+            {
+                JSONObject partitaJSON = (JSONObject) partitaObject;
+                int idPartitaCorrente = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
+
+                // Verifica se l'ID della partita corrente corrisponde all'ID della partita che vuoi aggiornare
+                if (idPartitaCorrente == partitaToSave.getCodicePartita())
+                {
+                    // Aggiorna lo stato della partita
+                    partitaJSON.put("Stato", partitaToSave.getPartitaStatus().toString());
+
+                    // Aggiorna le informazioni dei giocatori
+                    JSONObject giocatoriList = (JSONObject) partitaJSON.get("Giocatori");
+
+
+                    // TODO IL FOR FA SISTEMATO NEL CASO IN CUI DEI GIOCATORI SONO MORTI E NON SI ANDREBBERO A SOVRASCRIVERE TUTTI QUELLI PRESENTI
+                    for (int i = 1; i <= partitaToSave.giocatori.size(); i++)
+                    {
+                        String nomeGiocatore = "Giocatore" + i;
+                        JSONObject giocatoreJSON = (JSONObject) giocatoriList.get(nomeGiocatore);
+
+                        IGiocatore nuovoGiocatore = partitaToSave.giocatori.get(i - 1);
+
+                        giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
+                        giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
+                        giocatoreJSON.put("CartaAttuale", nuovoGiocatore.getCarta().toString()); // Aggiorna con il nuovo valore
+                        // Aggiungi altri campi che desideri aggiornare per il giocatore
+                    }
+
+                    // Sovrascrivi il file con i dati aggiornati
+                    try (FileWriter fileWriter = new FileWriter(partiteFile))
+                    {
+                        fileWriter.write(root.toJSONString());
+                        System.out.println("Dati della partita aggiornati con successo nel file JSON.");
+                        return; // Esci dal metodo una volta che la partita è stata trovata e aggiornata
+                    }
+                }
+            }
+
+            System.out.println("Partita non trovata per l'ID: " + partitaToSave.getCodicePartita());
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+    //TODO DA VERIFICARE
     public static int creaCodicePartitaUnico()
     {
         int maxTentativi = 999; // Massimo numero di tentativi per generare un codice unico
@@ -168,19 +259,26 @@ public class FileManager
         return null; // Restituisci null se la partita non è stata trovata o ci sono errori
     }
 
-    public static Partita convertiJSONAPartita(JSONObject partitaJSON) {
+    public static Partita convertiJSONAPartita(JSONObject partitaJSON)
+    {
+
         // Estrarre i dati dall'oggetto JSON e creare un oggetto Partita
-        int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
-        int password = Integer.parseInt(partitaJSON.get("Password").toString());
+        int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString()); // prendo id
+        int password = Integer.parseInt(partitaJSON.get("Password").toString()); // prendo password
+        GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));  // prendo stato
+
+
         JSONObject giocatoriObject = (JSONObject) partitaJSON.get("Giocatori");
 
         // Esempio: crea una nuova istanza di Partita con i dati estratti
         Partita partita = new Partita(giocatoriObject.size()); // imposto quanti giocatori ci sono
         partita.setCodicePartita(idPartita);
         partita.setPasswordPartita(password);
+        partita.setPartitaStatus(gameStatus); // impostiamo lo stato che prendiamo
 
         // Aggiungi giocatori alla partita
-        for (Object giocatoreKey : giocatoriObject.keySet()) {
+        for (Object giocatoreKey : giocatoriObject.keySet())
+        {
             String nomeGiocatore = (String) giocatoreKey;
             JSONObject giocatoreJSON = (JSONObject) giocatoriObject.get(nomeGiocatore);
 
@@ -202,13 +300,11 @@ public class FileManager
             }
 
             System.out.println("Giocatore: " + giocatore.getNome() );
+            //TODO IMPOSTARE LA CARTA
             partita.aggiungiGiocatore(giocatore);
         }
-        System.out.println("Carico partita con giocatori: " + partita.giocatori.size());
-        System.out.println("giocatore1: " + partita.giocatori.get(0).getNome());
-        System.out.println("giocatore2: " + partita.giocatori.get(1).getNome());
-        System.out.println("giocatore3: " + partita.giocatori.get(2).getNome());
-        System.out.println("giocatore4: " + partita.giocatori.get(3).getNome());
+
+        System.out.println("Giocatori vivi in questa partita: " + partita.giocatori.size());
         return partita;
     }
 

@@ -23,6 +23,7 @@ public class Partita
     int codicePartita;
     int passwordPartita;
     boolean isGameRunning;
+    GameStatus partitaStatus;
     SpaccaTGBot telegramBot;
     TavoloController TC;
 
@@ -825,7 +826,7 @@ public class Partita
         return numeroPiuAlto;
     }
 
-    private boolean isGameRunning() { return giocatori.size() > 1; } // Restituisce true se ci sono piu di 1 giocatore vivi
+    public boolean isGameRunning() { return giocatori.size() > 1; } // Restituisce true se ci sono piu di 1 giocatore vivi
 
     public int getCurrentRound(){return this.currentRound;}
 
@@ -878,9 +879,11 @@ public class Partita
     }
 
     public String getMazziereNome() {return giocatori.get(posMazziere).getNome();}
-
     public void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
     public void setPasswordPartita(int passwordPartita){this.passwordPartita = passwordPartita;}
+    public void setIsGameRunning(boolean isGameRunning){this.isGameRunning = isGameRunning;}
+    public void setPartitaStatus(GameStatus partitaStatus){this.partitaStatus = partitaStatus;}
+    public GameStatus getPartitaStatus(){return this.partitaStatus;}
 
     //endregion
 

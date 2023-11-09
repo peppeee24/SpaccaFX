@@ -1,18 +1,20 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Enums.GameStatus;
+import com.spaccafx.Enums.GameType;
+
 public class MatchData
 {
-    String type,state,idMatch;
+    GameStatus status;
+    GameType gameType;
     int codice, password;
 
+
+    public GameStatus getStatus(){return this.status;}
+    public GameType getGameType(){return this.gameType;}
     public int getCodice() {
         return codice;
     }
-
-    public void setCodice(int codice) {
-        this.codice = codice;
-    }
-
     public int getPassword() {
         return password;
     }
@@ -21,29 +23,10 @@ public class MatchData
         this.password = password;
     }
 
-    public String getType() {
-        return type;
+    public void setCodice(int codice) {
+        this.codice = codice;
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getIdMatch() {
-        return idMatch;
-    }
-
-    public void setIdMatch(String idMatch) {
-        this.idMatch = idMatch;
-    }
-
+    public void setStatus(GameStatus status){this.status = status;}
+    public void setGameType(GameType gameType){this.gameType = gameType;}
 
 }

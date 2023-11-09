@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class PlayerScreenController
 {
-    private int pwd, codicePartita;
+    private int passwordPartita, codicePartita;
 
     @FXML
     PasswordField passwordField;
@@ -32,30 +32,25 @@ public class PlayerScreenController
 
     public void setInfoPartita(int codicePartita, int passwordPartita)
     {
-        this.pwd = FileManager.getPasswordPartita(codicePartita);
+        this.passwordPartita = passwordPartita;
         this.codicePartita = codicePartita;
-        System.out.println("Sto prendendo la partita con id: " + codicePartita);
-        System.out.println("password: " + passwordPartita);
+        System.out.println("Sto prendendo la PARTITA con ID: " + codicePartita);
+        System.out.println("Il match ha la Password: " + passwordPartita);
     }
 
-    public void loginAction(ActionEvent actionEvent) throws IOException { // bottone inizia
+    public void loginAction(ActionEvent actionEvent) throws IOException // bottone inizia
+    {
         AudioManager.bottoneSuono();
         // TODO CREARE UNA PASSWORD PER OGNI PARTITA != DAL ID PARTITA
 
         int PasswordField = Integer.parseInt(passwordField.getText());
-        System.out.println("Codice Ricevuto: " + this.pwd);
 
-        //System.out.println("PWD:" + pwd);
-        System.out.println("Codice Inserito:" + PasswordField);
+        System.out.println("Codice per accedere PARTITA: " + this.passwordPartita);
+        System.out.println("Codice INSERITO:" + PasswordField);
 
 
-        if (pwd == PasswordField)
+        if (passwordPartita == PasswordField)
         {
-
-            ShareData sharedData = ShareData.getInstance();
-            //sharedData.setPartitaClassicaController(partitaClassicaController);
-            //sharedData.setPartita(partitaClassicaController.P);
-
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Accesso Eseguito");
             alert.setContentText("Stai per entrare nel gioco");
@@ -66,9 +61,6 @@ public class PlayerScreenController
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = loaderTavolo.load();
 
-            // TavoloController tc = loaderTavolo.getController();
-            //  tc.passaggioController(this);
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -77,10 +69,10 @@ public class PlayerScreenController
             TavoloController tavoloController = loaderTavolo.getController();
             tavoloController.inizializzaClassePartita(this.codicePartita);
 
-
-        } else {
-
-AudioManager.erroreSuono();
+        }
+        else // se sbagliato
+        {
+            AudioManager.erroreSuono();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore");
             alert.setContentText("Codice partita Errato");
