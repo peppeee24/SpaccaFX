@@ -64,5 +64,6 @@ public class Giocatore implements IGiocatore
     public void addVitaExtra() {vitaExtra = 1;}
     public void removeVitaExtra(){vitaExtra = 0;}
     public boolean hasVitaExtra(){return vitaExtra == 1;} // restituisce true se ha 1 come vita extra
+    public void setVitaExtra(int vitaExtra){this.vitaExtra = vitaExtra;}
 
 }

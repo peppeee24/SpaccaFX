@@ -114,6 +114,10 @@ public class TavoloController
                             if(result.isPresent() && result.get() == ButtonType.OK) // se accetta di riprendere
                             {
                                 System.out.println("Stai per riprendere il gioco");
+                                System.out.println("Current Giocatore: " + partita.getCurrentGiocatore().getNome()
+                                        + " in posizione: " + partita.getCurrentGiocatorePos());
+
+                                partita.StampaInfoGiocatori();
                             }
                             else
                             {
@@ -185,38 +189,20 @@ public class TavoloController
     // per uscire dalla partita
     public void exitGame(MouseEvent mouseEvent) throws IOException
     {
+        partita.SavePartita(mouseEvent);
+    }
+    //endregion
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Vuoi uscire dalla partita");
-        alert.setContentText("Se confermi i tuoi dati saranno salvati");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK)
-        {
-            if(partita.isGameRunning())
-                partita.setPartitaStatus(GameStatus.STOPPED);
-            else
-            {
-                // vuol dire che e finita/ deve ancora inziare/ sta giocando
-                // todo SISTEMARE TUTTO
-            }
-
-            FileManager.sovrascriviSalvataggiPartita(this.partita); // salvo tutti i dati di questa partita
-        } else {
-            // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
-            System.out.println("Continua il gioco");
-        }
-
-
+    // region #METHODS
+    public void caricaMenuUI(MouseEvent mouseEvent) throws IOException
+    {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);
         stage.show();
     }
-    //endregion
 
-    // region #METHODS
     public void impostaCoroneMazziereUI()
     {
         nascondiCorone();

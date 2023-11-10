@@ -5,11 +5,16 @@ import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.*;
 import com.spaccafx.ExternalApps.*;
 import com.spaccafx.Files.AudioManager;
+import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Player.*;
 import com.spaccafx.Cards.*;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Partita
@@ -212,97 +217,6 @@ public class Partita
             TC.gestisciPulsanti(false, false, true);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-    /*private void controlloManoScambio(int currentGiocatorePos)
-    {
-        // controlliamo che carta ha e cosa attivare o meno graficamente
-        IGiocatore currentGiocatoreScambio = giocatori.get(currentGiocatorePos);
-        Carta currentMano = currentGiocatoreScambio.getCarta();
-        System.out.println("[CONTROLLA-MANO-SCAMBIO] Il giocatore possiede: " + currentMano.toString());
-
-        Thread thread = new Thread(() -> {
-            try {
-                Platform.runLater(() ->
-                {
-                    TC.mostraBannerAttesa("CONTROLLO-SCAMBIO", "Controlliamo la carta che hai ricevuto");
-                });
-
-                Thread.sleep(4000);
-
-                Platform.runLater(() ->
-                {
-                    TC.nascondiBannerAttesa();
-
-                    if(currentMano instanceof  CartaProbabilita)
-                    {
-                        System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale PROBABILITA");
-
-                        if(!((CartaProbabilita) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
-                        {
-                            // lancio dadi aumento vita
-                            // scambio con mazzo
-
-                            ((CartaProbabilita)currentMano).Effetto(this, currentGiocatoreScambio, TC); // attivo effetto su quel giocatore
-                        }
-
-                        if(currentGiocatoreScambio instanceof  Bot) // il bot passa il turno
-                            passaTurnoUI(); // passa il turno se prende o meno una carta prob attiva o da attivare
-                        else
-                            TC.gestisciPulsanti(false, false, true);
-
-                    }
-                    else if(currentMano instanceof  CartaImprevisto)
-                    {
-                        System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
-
-                        if(!((CartaImprevisto) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
-                        {
-                            // passa Obbligatorio
-                            // Scambio obbligatorio
-
-                            ((CartaImprevisto)currentMano).Effetto(this, currentGiocatoreScambio, TC); // passa sempre
-                        }
-                        else // se e stato gia attivato
-                        {
-                            System.out.println("ERRORE MAI DEVE USCIRE QUI");
-                            if(currentGiocatoreScambio instanceof  Bot) // il bot passa il turno
-                                passaTurnoUI(); // passa il turno se prende o meno una carta prob attiva o da attivare
-                            else
-                                TC.gestisciPulsanti(false, false, true);
-                        }
-
-                    }
-                    else // debug
-                    {
-                        System.out.println("[MANO] Ho una carta NORMALE");
-
-                        if(currentGiocatoreScambio instanceof  Bot) // il bot passa il turno
-                            passaTurnoUI(); // passa il turno se prende o meno una carta prob attiva o da attivare
-                        else
-                            TC.gestisciPulsanti(false, false, true);
-
-                    }
-                });
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        thread.start();
-
-    }
-
-     */
 
     private void controllaManoIniziale(int currentGiocatore) // metodo che viene richiamato appena si avanza di mano
     {
@@ -829,6 +743,7 @@ public class Partita
     public boolean isGameRunning() { return giocatori.size() > 1; } // Restituisce true se ci sono piu di 1 giocatore vivi
 
     public int getCurrentRound(){return this.currentRound;}
+    public int getPosMazziere(){return this.posMazziere;}
 
     public void generaCodicePartita()  { this.codicePartita =  (int)(1 + (Math.random() * 1000)); } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
 
@@ -885,6 +800,39 @@ public class Partita
     public void setPartitaStatus(GameStatus partitaStatus){this.partitaStatus = partitaStatus;}
     public GameStatus getPartitaStatus(){return this.partitaStatus;}
 
+    public void SavePartita(MouseEvent mouseEvent) throws IOException
+    {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Vuoi uscire dalla partita");
+        alert.setContentText("Se confermi i tuoi dati saranno salvati");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK)
+        {
+            if(isGameRunning())
+            {
+                setPartitaStatus(GameStatus.STOPPED);
+                TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu
+            }
+
+            else
+            {
+                // vuol dire che e finita/ deve ancora inziare/ sta giocando
+                // todo SISTEMARE TUTTO
+            }
+
+            FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
+        } else {
+            // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
+            System.out.println("Continua il gioco");
+        }
+
+    }
+
+    public void setCurrentGiocatorePos(int currentGiocatorePos) {this.currentGiocatorePos = currentGiocatorePos;}
+
+    public void setPosMazziere(int posMazziere){this.posMazziere = posMazziere;}
     //endregion
 
 

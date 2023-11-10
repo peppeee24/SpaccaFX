@@ -4,8 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Cards.CartaImprevisto;
+import com.spaccafx.Cards.CartaNormale;
+import com.spaccafx.Cards.CartaProbabilita;
 import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Enums.GameType;
+import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Enums.SemeCarta;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
@@ -142,6 +146,11 @@ public class FileManager
                 {
                     // Aggiorna lo stato della partita
                     partitaJSON.put("Stato", partitaToSave.getPartitaStatus().toString());
+                    partitaJSON.put("isGameRunning", partitaToSave.isGameRunning());
+                    partitaJSON.put("Round", partitaToSave.getCurrentRound());
+                    partitaJSON.put("CurrentGiocatore", partitaToSave.getCurrentGiocatorePos());
+                    partitaJSON.put("PosMazziere", partitaToSave.getPosMazziere());
+
 
                     // Aggiorna le informazioni dei giocatori
                     JSONObject giocatoriList = (JSONObject) partitaJSON.get("Giocatori");
@@ -155,10 +164,18 @@ public class FileManager
 
                         IGiocatore nuovoGiocatore = partitaToSave.giocatori.get(i - 1);
 
-                        giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
                         giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
-                        giocatoreJSON.put("CartaAttuale", nuovoGiocatore.getCarta().toString()); // Aggiorna con il nuovo valore
-                        // Aggiungi altri campi che desideri aggiornare per il giocatore
+                        giocatoreJSON.put("Ruolo", nuovoGiocatore.getRuolo().toString().toUpperCase());
+                        giocatoreJSON.put("IsAlive", true); // todo da cambiare
+                        giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
+                        giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
+
+                        // Salva le informazioni della carta attuale
+                        JSONObject cartaJSON = new JSONObject();
+                        cartaJSON.put("Valore", nuovoGiocatore.getCarta().getValore());
+                        cartaJSON.put("Seme", nuovoGiocatore.getCarta().getSeme().toString());
+                        giocatoreJSON.put("Carta", cartaJSON);
+
                     }
 
                     // Sovrascrivi il file con i dati aggiornati
@@ -265,6 +282,9 @@ public class FileManager
         // Estrarre i dati dall'oggetto JSON e creare un oggetto Partita
         int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString()); // prendo id
         int password = Integer.parseInt(partitaJSON.get("Password").toString()); // prendo password
+        int currentGioocatorePos = Integer.parseInt(partitaJSON.get("CurrentGiocatore").toString()); // prendo giocatore attuale
+        int posMazziere = Integer.parseInt(partitaJSON.get("PosMazziere").toString()); // prendo pos mazziere
+        boolean isGameRunning = Boolean.parseBoolean(partitaJSON.get("isGameRunning").toString()); // prendo pos mazziere
         GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));  // prendo stato
 
 
@@ -275,6 +295,9 @@ public class FileManager
         partita.setCodicePartita(idPartita);
         partita.setPasswordPartita(password);
         partita.setPartitaStatus(gameStatus); // impostiamo lo stato che prendiamo
+        partita.setCurrentGiocatorePos(currentGioocatorePos);
+        partita.setPosMazziere(posMazziere);
+        partita.setIsGameRunning(isGameRunning);
 
         // Aggiungi giocatori alla partita
         for (Object giocatoreKey : giocatoriObject.keySet())
@@ -287,6 +310,7 @@ public class FileManager
             boolean isAlive = Boolean.parseBoolean(giocatoreJSON.get("IsAlive").toString());
             int vite = Integer.parseInt(giocatoreJSON.get("Vite").toString());
             String istanza = giocatoreJSON.get("Istanza").toString();
+            RuoloGiocatore ruoloGiocatore = RuoloGiocatore.valueOf((String) giocatoreJSON.get("Ruolo"));
 
             IGiocatore giocatore = null;
 
@@ -299,8 +323,41 @@ public class FileManager
                 default: giocatore = new Giocatore(nomePlayer);
             }
 
+            giocatore.setNome(nomePlayer);
+            giocatore.setVita(vite);
+            giocatore.setVitaExtra(vitaExtra);
+            giocatore.setRuolo(ruoloGiocatore);
+
+            //TODO mettere se il giocatore e vivo
+
             System.out.println("Giocatore: " + giocatore.getNome() );
-            //TODO IMPOSTARE LA CARTA
+
+            JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
+            Carta cartaPlayer = null;
+            int valore = Integer.parseInt(cartaObject.get("Valore").toString());
+            SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
+
+            switch (semeCarta)
+            {
+                case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
+                    break;
+                case CANE:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                    break;
+                case GATTO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                    break;
+                case TOPO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                    break;
+                case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
+                    break;
+                default:
+                    System.out.println("Errore nella ripresa di una partita!");
+                    System.exit(-1);
+            }
+
+            giocatore.setCarta(cartaPlayer);
+
+
+
             partita.aggiungiGiocatore(giocatore);
         }
 

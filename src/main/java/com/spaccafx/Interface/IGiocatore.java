@@ -21,5 +21,6 @@ public interface IGiocatore
     public void addVitaExtra();
     public void removeVitaExtra();
     public boolean hasVitaExtra();
+    public void setVitaExtra(int vitaExtra);
 
 }
