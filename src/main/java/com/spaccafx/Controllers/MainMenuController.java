@@ -55,6 +55,12 @@ public class MainMenuController {
 
     public void startTutorial(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("Tutorial.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Parent root = playerScreen.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
