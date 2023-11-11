@@ -53,7 +53,7 @@ public class AudioController {
         musicaON = new CheckBox();
         volumeSlider =new Slider();
         playerSetting();
-     //   playAudio();
+        //   playAudio();
         volumeSlider.setValue(player.getVolume()*100);
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
             @Override
@@ -99,7 +99,7 @@ public class AudioController {
     public void disattivaSuoni(ActionEvent event) { // Rivedere come gestire
         if (!suoniOFF.isSelected());{
             // TODO da capire come implementare
-AudioManager.disattivaSuoni();
+            AudioManager.disattivaSuoni();
             System.out.println("Hai selezionato il checkbox per disattivare i suoni");
         }
 
@@ -135,5 +135,3 @@ AudioManager.disattivaSuoni();
     }
 
 }
-
-
