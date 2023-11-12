@@ -155,7 +155,8 @@ File sound =new File(risorsa.toURI());
             System.out.println("Errore nella riproduzione del suono");
         }
         // }
-    }    public static void probabilitaSuono () {
+    }
+    public static void probabilitaSuono () {
         //   if(suoniON.isSelected()) {
         try {
             URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/probabilita.wav");

@@ -2,21 +2,60 @@
 
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TutorialController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Regole">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="110.0" fitWidth="62.0" layoutX="14.0" layoutY="523.0" onDragDetected="#indietro" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="342.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuto su Spacca FX" />
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Carte">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="129.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Cards/VERME/VERME1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="240.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Cards/PESCE/PESCE1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="349.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Cards/SQUALO/SQUALO1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="551.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Cards/IMPREVISTO/IMPREVISTO1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="659.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Cards/PROBABILITA/PROBABILITA1.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="135.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VERME, PESCE e SQUALO sono i semi delle carteL’amministratore può impostare quante carte può contenere il mazzo, di base ci sono 9 carte per ogni seme, quindi 1 di Verme, 2 di Verme, ..., 9 di VermeLo stesso ovviamente vale per gli altri semi " wrappingWidth="328.854736328125" />
+                        <Text layoutX="506.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pescatore e stella marina, sono invece le carte Imprevisto e ProbabilitàPescandole otterrai dei Malus o dei bonus a seconda di quanto sarai fortunato" wrappingWidth="328.854736328125" />
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Untitled Tab">

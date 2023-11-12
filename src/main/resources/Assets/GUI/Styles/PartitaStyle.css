@@ -3,7 +3,7 @@
 .bodybg /* classe che ha le proprieta del body */
 {
  /*   -fx-background-image: url("../../Game/Environment/TavoloGioco.png"); */
-    -fx-background-color:  #31653c;
+    -fx-background-color:  #639BFF;
     -fx-background-size: 100% 100%;
 }
 
@@ -16,27 +16,34 @@
 .button
 {
     -fx-font-weight: bold;
-    -fx-background-color: #a82929;
+      -fx-background-color: #639BFF;
     -fx-background-radius: 22;
     -fx-font-size: 20;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
-.Spacca{
-    -fx-font-size: 80;
-    -fx-text-fill: black;
+.SpaccaTitolo{
+   -fx-font-size: 80;
+   -fx-text-fill: black;
 
 }
 
-.Fx{
-    -fx-font-size: 80;
-    -fx-text-fill: red;
+.FxTitolo{
+   -fx-font-size: 80;
+   -fx-text-fill: red;
 
 }
 
 .Label{
-    -fx-text-fill: black;
-    -fx-font-size: 20;
+   -fx-text-fill: black;
+   -fx-font-size: 20;
+
+}
+
+
+.LabelWhite{
+   -fx-text-fill: white;
+   -fx-font-size: 20;
 
 }
 
@@ -44,46 +51,40 @@
 
 .button:hover
 {
-    -fx-font-weight: bold;
-    -fx-background-color: white;
-    -fx-background-radius: 22;
-    -fx-font-size: 20;
-    -fx-text-fill: #558b2f;
-    -fx-border-color:  #558b2f;
-    -fx-border-radius: 20;
-    -fx-border-width: 3;
+   -fx-font-weight: bold;
+   -fx-background-color: white;
+   -fx-background-radius: 22;
+   -fx-font-size: 20;
+   -fx-text-fill: #639BFF;
+   -fx-border-color:  #639BFF;
+   -fx-border-radius: 20;
+   -fx-border-width: 3;
 }
 
 .button:pressed
 {
-    -fx-font-weight: bold;
-    -fx-background-color: white;
-    -fx-background-radius: 22;
-    -fx-font-size: 16;
-    -fx-text-fill: #558b2f;
-    -fx-border-color:  #558b2f;
-    -fx-border-radius: 20;
-    -fx-border-width: 3;
-    -fx-rotate: 10;
+   -fx-font-weight: bold;
+   -fx-background-color: white;
+   -fx-background-radius: 22;
+   -fx-font-size: 16;
+   -fx-text-fill: #639BFF;
+   -fx-border-color:  #639BFF;
+   -fx-border-radius: 20;
+   -fx-border-width: 3;
+   -fx-rotate: 10;
 }
 
-.playerBox
-{
-    -fx-background-color: #2f4f4f;
-    -fx-padding: 15;
-    -fx-spacing: 10;
-}
+
 
 .root
 {
-    -fx-font-family: "Retro Gaming";
-    /* -fx-padding: 10;  Aggiunge uno spazio di 10 pixel tra il bordo e il contenuto */
-    -fx-border-color: #453A2c; /* Colore del bordo */
-    -fx-border-width: 15; /* Larghezza del bordo */
-    -fx-border-style: solid; /* Stile del bordo (solido) */
+     -fx-font-family: "Retro Gaming";
+    /*-fx-padding: 10;  Aggiunge uno spazio di 10 pixel tra il bordo e il contenuto */
+    /* -fx-border-color: #453A2c;  Colore del bordo
+    -fx-border-width: 15; /* Larghezza del bordo
+    -fx-border-style: solid; /* Stile del bordo (solido)
     -fx-background-radius: 20 0 0 0;
-
-
+*/
 }
 
 /*
@@ -94,3 +95,18 @@
 }
 
  */
+@font-face {
+    -fx-font-family: "Retro Gaming";
+    -fx-src: url(arcade.ttf);
+}
+
+
+/* Imposta il colore di sfondo dell'AnchorPane su verde */
+.anchor-pane {
+    -fx-background-color: #639BFF;
+}
+
+
+
+
+

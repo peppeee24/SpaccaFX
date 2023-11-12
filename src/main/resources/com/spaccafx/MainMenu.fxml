@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1010.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MainMenuController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-35.0" AnchorPane.topAnchor="0.0">
          <left>
-            <AnchorPane prefHeight="630.0" prefWidth="250.0" style="-fx-background-color: #0E3C32;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="630.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="43.0" layoutY="296.0" text="MAIN MENU" textFill="WHITE">
+                  <Label layoutX="43.0" layoutY="296.0" styleClass="LabelWhite" text="MAIN MENU" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -45,9 +45,9 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ImageView fitHeight="521.0" fitWidth="525.0" layoutX="-58.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" rotate="-24.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="-58.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="532.0" fitWidth="853.0" layoutX="-255.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" rotate="-24.0" AnchorPane.bottomAnchor="33.675384521484375" AnchorPane.leftAnchor="-255.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="114.0">
                      <image>
-                        <Image url="@../../Assets/Game/Environment/trio.PNG" />
+                        <Image url="@../../Assets/Game/Environment/trioNEW.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="mainSetting" fitHeight="68.0" fitWidth="88.0" layoutX="72.0" layoutY="548.0" onMouseClicked="#setting" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="669.0" AnchorPane.topAnchor="548.0">
@@ -66,7 +66,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Button fx:id="playButton" layoutX="477.0" layoutY="237.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="200.0" style="-fx-background-color: #165A4C; -fx-background-radius: 20;" text="ADMIN" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="331.0" AnchorPane.leftAnchor="477.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="237.0">
+                  <Button fx:id="playButton" layoutX="477.0" layoutY="237.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="200.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" text="ADMIN" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="331.0" AnchorPane.leftAnchor="477.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="237.0">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -74,7 +74,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="gameButton" layoutX="431.0" layoutY="328.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="200.0" style="-fx-background-color: #165A4C; -fx-background-radius: 20;" text="PLAY" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="431.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="328.0">
+                  <Button fx:id="gameButton" layoutX="431.0" layoutY="328.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="200.0" text="PLAY" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="431.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="328.0">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="tutorialButton" layoutX="338.0" layoutY="423.0" mnemonicParsing="false" onAction="#startTutorial" prefHeight="62.0" prefWidth="200.0" style="-fx-background-color: #165A4C; -fx-background-radius: 20;" text="TUTORIAL" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="338.0" AnchorPane.rightAnchor="271.0" AnchorPane.topAnchor="423.0">
+                  <Button fx:id="tutorialButton" layoutX="344.0" layoutY="414.0" mnemonicParsing="false" onAction="#startTutorial" prefHeight="62.0" prefWidth="200.0" text="TUTORIAL" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="414.0">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -90,9 +90,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="182.0" layoutY="59.0" prefHeight="68.0" prefWidth="485.0" text="SPACCA FX (PROTOTYPE)" textAlignment="CENTER">
+                  <Label layoutX="161.0" layoutY="42.0" prefHeight="78.0" prefWidth="464.0" styleClass="Spacca" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" text="SPACCA FX" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="40.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
