@@ -132,8 +132,8 @@ public class Mazzo
         mazzoCarte.clear();
 
         CreoCarteNormali();
-        CreoCarteImprevisto();
-        CreoCarteProbabilita();
+        //CreoCarteImprevisto();
+        //CreoCarteProbabilita();
     }
 
     public Carta PescaCarta() //prende la prima carta dal mazzo

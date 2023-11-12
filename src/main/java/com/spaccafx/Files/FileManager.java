@@ -16,6 +16,7 @@ import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
 import com.spaccafx.Player.EasyBot;
 import com.spaccafx.Player.Giocatore;
+import javafx.scene.image.Image;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -337,6 +338,9 @@ public class FileManager
             int valore = Integer.parseInt(cartaObject.get("Valore").toString());
             SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
 
+            Image cartaImage;
+            cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
+
             switch (semeCarta)
             {
                 case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
@@ -354,9 +358,8 @@ public class FileManager
                     System.exit(-1);
             }
 
+            cartaPlayer.setImage(cartaImage); // imposto la visuale della carta
             giocatore.setCarta(cartaPlayer);
-
-
 
             partita.aggiungiGiocatore(giocatore);
         }
