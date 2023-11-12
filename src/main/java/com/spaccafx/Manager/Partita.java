@@ -813,9 +813,9 @@ public class Partita
             if(isGameRunning())
             {
                 setPartitaStatus(GameStatus.STOPPED);
+                System.out.println("Il gioco e stato messo in pausa correttamente!");
                 TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu
             }
-
             else
             {
                 // vuol dire che e finita/ deve ancora inziare/ sta giocando
@@ -833,6 +833,7 @@ public class Partita
     public void setCurrentGiocatorePos(int currentGiocatorePos) {this.currentGiocatorePos = currentGiocatorePos;}
 
     public void setPosMazziere(int posMazziere){this.posMazziere = posMazziere;}
+
     //endregion
 
 

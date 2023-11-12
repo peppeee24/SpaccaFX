@@ -118,6 +118,8 @@ public class TavoloController
                                         + " in posizione: " + partita.getCurrentGiocatorePos());
 
                                 partita.StampaInfoGiocatori();
+
+                                riprendiGioco(this.partita);
                             }
                             else
                             {
@@ -194,9 +196,17 @@ public class TavoloController
     //endregion
 
     // region #METHODS
+
+    public void riprendiGioco(Partita partita)
+    {
+        this.updateVitaUI(); // aggiorna tutte le vite dei player
+        this.updateCarteUI(); // aggiorna tutte le carte dei giocatori e scopre quella del giocatore a cui tocca
+        this.updateCartaCentraleMazzoUI(); // imposta la carta centrale
+    }
+
     public void caricaMenuUI(MouseEvent mouseEvent) throws IOException
     {
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);
@@ -222,6 +232,7 @@ public class TavoloController
     public void updateCarteUI() // new Method
     {
         String currentPlayerName = partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome(); // giocatore a cui tocca
+        System.out.println("[UpdateUI] - tocca la giocatore: " + currentPlayerName);
         Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/back.png")).toString()); // carta back
         String playerName;
 
