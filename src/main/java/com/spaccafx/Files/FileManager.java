@@ -78,7 +78,7 @@ public class FileManager
                     // Creazione dell'oggetto JSON per la carta
                     JSONObject cartaJSON = new JSONObject();
                     cartaJSON.put("Valore", 1);
-                    cartaJSON.put("Seme", SemeCarta.TOPO.toString()); // metto un seme a caso, TODO DA SISTEMARE
+                    cartaJSON.put("Seme", SemeCarta.VERME.toString()); // metto un seme a caso, TODO DA SISTEMARE
 
                     // Aggiungi l'oggetto cartaJSON al giocatore
                     player.put("Carta", cartaJSON);
@@ -345,11 +345,11 @@ public class FileManager
             {
                 case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
                     break;
-                case CANE:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                case SQUALO:   cartaPlayer = new CartaNormale(valore, semeCarta);
                     break;
-                case GATTO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                case PESCE:   cartaPlayer = new CartaNormale(valore, semeCarta);
                     break;
-                case TOPO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                case VERME:   cartaPlayer = new CartaNormale(valore, semeCarta);
                     break;
                 case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
                     break;

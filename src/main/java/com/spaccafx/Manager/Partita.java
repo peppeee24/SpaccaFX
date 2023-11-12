@@ -94,7 +94,6 @@ public class Partita
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
     {
-
         Thread thread = new Thread(() -> {
             try {
 

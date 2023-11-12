@@ -2,6 +2,7 @@ package com.spaccafx.Cards;
 
 import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.SemeCarta;
+import com.spaccafx.Files.FileManager;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -38,28 +39,28 @@ public class Mazzo
     {
 
         // RIEMPO CON LE CARTE NORMALI
-        for (int c=1; c<=carteNormali; c++) // CANE
+        for (int c=1; c<=carteNormali; c++) // SQUALO
         {
-            CartaNormale carta = new CartaNormale(c, SemeCarta.CANE);
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Cane/c" + c + ".PNG").toString());
+            CartaNormale carta = new CartaNormale(c, SemeCarta.SQUALO);
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.SQUALO + "/" + SemeCarta.SQUALO + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
             mazzoCarte.add(carta);
         }
 
-        for (int c=1; c<=carteNormali; c++) // GATTO
+        for (int c=1; c<=carteNormali; c++) // PESCE
         {
-            CartaNormale carta = new CartaNormale(c, SemeCarta.GATTO);
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Gatto/g" + c + ".PNG").toString());
+            CartaNormale carta = new CartaNormale(c, SemeCarta.PESCE);
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PESCE + "/" + SemeCarta.PESCE + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
             mazzoCarte.add(carta);
         }
 
-        for (int c=1; c<=carteNormali; c++) // TOPO
+        for (int c=1; c<=carteNormali; c++) // VERME
         {
-            CartaNormale carta = new CartaNormale(c, SemeCarta.TOPO);
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Topo/t" + c + ".PNG").toString());
+            CartaNormale carta = new CartaNormale(c, SemeCarta.VERME);
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.VERME + "/" + SemeCarta.VERME + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
             mazzoCarte.add(carta);
@@ -81,7 +82,7 @@ public class Mazzo
 
             CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Imprevisto/i" + newVal + ".PNG").toString());
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.IMPREVISTO + "/" + SemeCarta.IMPREVISTO + c + ".PNG").toString());
             cartaImprevisto.setImage(cartaImage);
 
             mazzoCarte.add(cartaImprevisto); // vuol dire che e unica e la creo
@@ -104,7 +105,7 @@ public class Mazzo
 
             CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/Probabilita/p" + newVal + ".PNG").toString());
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PROBABILITA + "/" + SemeCarta.PROBABILITA + c + ".PNG").toString());
             cartaProbabilita.setImage(cartaImage);
 
             mazzoCarte.add(cartaProbabilita); // vuol dire che e unica e la creo
@@ -132,8 +133,8 @@ public class Mazzo
         mazzoCarte.clear();
 
         CreoCarteNormali();
-        //CreoCarteImprevisto();
-        //CreoCarteProbabilita();
+        CreoCarteImprevisto();
+        CreoCarteProbabilita();
     }
 
     public Carta PescaCarta() //prende la prima carta dal mazzo
