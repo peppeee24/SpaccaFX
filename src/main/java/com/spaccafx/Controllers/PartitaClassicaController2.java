@@ -492,7 +492,7 @@ public class PartitaClassicaController2 {
                 break;
         }
 
-
+        //TODO IMPOSTARE DECISIONE DELLE VITE DEI PLAYER
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
         // creiamo il salvataggio della nuova partita

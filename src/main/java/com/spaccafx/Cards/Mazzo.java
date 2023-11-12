@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class Mazzo
 {
@@ -82,7 +83,7 @@ public class Mazzo
 
             CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.IMPREVISTO + "/" + SemeCarta.IMPREVISTO + c + ".PNG").toString());
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.IMPREVISTO + "/" + SemeCarta.IMPREVISTO + newVal + ".PNG").toString());
             cartaImprevisto.setImage(cartaImage);
 
             mazzoCarte.add(cartaImprevisto); // vuol dire che e unica e la creo
@@ -105,7 +106,7 @@ public class Mazzo
 
             CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PROBABILITA + "/" + SemeCarta.PROBABILITA + c + ".PNG").toString());
+            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PROBABILITA + "/" + SemeCarta.PROBABILITA + newVal + ".PNG").toString());
             cartaProbabilita.setImage(cartaImage);
 
             mazzoCarte.add(cartaProbabilita); // vuol dire che e unica e la creo
@@ -202,4 +203,29 @@ public class Mazzo
 
     public int getMaxCarteNormali(){return this.carteNormali;}
     public int getMaxCarteSpeciali(){return this.carteSpeciali;}
+
+    public void EliminaCarte(ArrayList<Carta> carteDaEliminare) // serve per eliminare le carte che sono duplicate una volta che le carico dal file
+    {
+        System.out.println("Carte prima dell'eliminazione: " + mazzoCarte.toString());
+
+        for (Carta cartaDaEliminare : carteDaEliminare) {
+            System.out.println("Devo eliminare la carta: " + cartaDaEliminare.toString());
+
+            // Itera attraverso mazzoCarte e rimuovi la carta corrente se è uguale a cartaDaEliminare
+            Iterator<Carta> iterator = mazzoCarte.iterator();
+            while (iterator.hasNext()) {
+                Carta currentCarta = iterator.next();
+                System.out.println("Sto valutando la carta: " + currentCarta.toString());
+                if (currentCarta.equals(cartaDaEliminare)) {
+                    iterator.remove();
+                    System.out.println("Carta rimossa!");
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Carte dopo l'eliminazione: " + mazzoCarte.toString());
+    }
+
+    public ArrayList<Carta> getMazzoCarte(){return  this.mazzoCarte;}
 }

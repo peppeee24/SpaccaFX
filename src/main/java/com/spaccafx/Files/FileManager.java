@@ -48,6 +48,7 @@ public class FileManager
             nuovaPartita.put("PosMazziere", 0);
             nuovaPartita.put("Round", 1);
             nuovaPartita.put("isGameRunning", false);
+            nuovaPartita.put("cDistaccoMazziere", 0);
 
             JSONObject giocatoriList = new JSONObject();
 
@@ -151,6 +152,7 @@ public class FileManager
                     partitaJSON.put("Round", partitaToSave.getCurrentRound());
                     partitaJSON.put("CurrentGiocatore", partitaToSave.getCurrentGiocatorePos());
                     partitaJSON.put("PosMazziere", partitaToSave.getPosMazziere());
+                    partitaJSON.put("cDistaccoMazziere", partitaToSave.getDistaccoMazziere());
 
 
                     // Aggiorna le informazioni dei giocatori
@@ -287,6 +289,7 @@ public class FileManager
         int posMazziere = Integer.parseInt(partitaJSON.get("PosMazziere").toString()); // prendo pos mazziere
         boolean isGameRunning = Boolean.parseBoolean(partitaJSON.get("isGameRunning").toString()); // prendo pos mazziere
         GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));  // prendo stato
+        int cDistaccoMazziere = Integer.parseInt(partitaJSON.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
 
 
         JSONObject giocatoriObject = (JSONObject) partitaJSON.get("Giocatori");
@@ -299,6 +302,7 @@ public class FileManager
         partita.setCurrentGiocatorePos(currentGioocatorePos);
         partita.setPosMazziere(posMazziere);
         partita.setIsGameRunning(isGameRunning);
+        partita.setDistaccoMazziere(cDistaccoMazziere);
 
         // Aggiungi giocatori alla partita
         for (Object giocatoreKey : giocatoriObject.keySet())
@@ -341,6 +345,7 @@ public class FileManager
             Image cartaImage;
             cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
 
+            //TODO METTERE SE L EFFETTO DELLA CARTA E STATO GIA ATTIVATO O MENO
             switch (semeCarta)
             {
                 case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
@@ -403,6 +408,81 @@ public class FileManager
 
         // todo non va bene lasciarlo cosi
         return 0; // se non ho trovato nessuna password
+    }
+
+    public static ArrayList<Carta> getPlayerCarte(int codicePartita)
+    {
+        try
+        {
+            if (partiteFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(partiteFile));
+
+                // Ottieni l'array delle partite
+                JSONArray partiteArray = (JSONArray) root.get("Partite");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object partitaObject : partiteArray)
+                {
+                    JSONObject partitaJSON = (JSONObject) partitaObject;
+                    int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
+                    if (idPartita == codicePartita)
+                    {
+                        return convertiCartePartitaJSON(partitaJSON);
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente la partita che cerchi!");
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null; // Restituisci null se la partita non è stata trovata o ci sono errori
+    }
+
+    public static ArrayList<Carta> convertiCartePartitaJSON(JSONObject partitaJSON)
+    {
+        ArrayList<Carta> playerCards = new ArrayList<>();
+
+        JSONObject giocatoriObject = (JSONObject) partitaJSON.get("Giocatori");
+
+        for (Object giocatoreKey : giocatoriObject.keySet())
+        {
+            String nomeGiocatore = (String) giocatoreKey;
+            JSONObject giocatoreJSON = (JSONObject) giocatoriObject.get(nomeGiocatore);
+
+            JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
+
+            Carta cartaPlayer = null;
+            int valore = Integer.parseInt(cartaObject.get("Valore").toString());
+            SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
+
+            switch (semeCarta)
+            {
+                case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
+                    break;
+                case SQUALO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                    break;
+                case PESCE:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                    break;
+                case VERME:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                    break;
+                case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
+                    break;
+                default:
+                    System.out.println("Errore nella ripresa di una partita!");
+                    System.exit(-1);
+            }
+
+            playerCards.add(cartaPlayer); // aggiungiamo la carta
+            System.out.println("Trovata carta: " + cartaPlayer.toString());
+        }
+
+        return playerCards;
     }
 
     //endregion

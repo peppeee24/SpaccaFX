@@ -16,7 +16,7 @@ public class Giocatore implements IGiocatore
     {
         this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = "Giocatore";
-        this.vita = 2;
+        this.vita = 1;
         vitaExtra = 0;
         this.carta = null;
     }
@@ -25,7 +25,7 @@ public class Giocatore implements IGiocatore
     {
         this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = "Giocatore";
-        this.vita = 2;
+        this.vita = 1;
         vitaExtra = 0;
         this.carta = carta;
     }
@@ -34,7 +34,7 @@ public class Giocatore implements IGiocatore
     {
         this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = nome;
-        this.vita = 2;
+        this.vita = 1;
         vitaExtra = 0;
         this.carta = null;
     }
@@ -43,7 +43,7 @@ public class Giocatore implements IGiocatore
     {
         this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome = nome;
-        this.vita = 2;
+        this.vita = 1;
         vitaExtra = 0;
         this.carta = carta;
     }

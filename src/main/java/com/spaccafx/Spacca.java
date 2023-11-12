@@ -51,6 +51,7 @@ public class Spacca extends Application {
                //     scene.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
 
                     stage.setTitle("Alpha Build SpaccaFX");
+
                     stage.setResizable(false);
                     stage.setScene(scene);
                     stage.show();
@@ -67,7 +68,6 @@ public class Spacca extends Application {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    stage.setTitle("Alpha Build SpaccaFX");
 
                     stage.setResizable(false);
                     stage.setScene(scene);
@@ -87,7 +87,6 @@ public class Spacca extends Application {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    stage.setTitle("Alpha Build SpaccaFX");
 
                     stage.setResizable(false);
                     stage.setScene(scene);

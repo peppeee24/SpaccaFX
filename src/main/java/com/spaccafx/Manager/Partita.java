@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -90,6 +91,17 @@ public class Partita
         // devo partire dalla posizione del mazziere in poi
         cDistaccoMazziere = posMazziere; // deve partire dal mazziere
         avanzaManoUI(); // ci avanza di giocatore in giocatore
+    }
+
+    // riprendi la partita dal giocatore che gli passo per parametro
+    public void riprendiPartita(int giocatoreRipresaPos)
+    {
+
+        ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita)); // metto le carte da eliminare
+        TC.gestisciPulsanti(false, true, true);
+        controllaManoIniziale(giocatoreRipresaPos);
+
+
     }
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
@@ -546,6 +558,7 @@ public class Partita
                     if(!isGameRunning()) // se NON sta ancora andando
                     {
                         System.out.println("[END] Gioco concluso con un vincitore!");
+                        setPartitaStatus(GameStatus.ENDED);
                         TC.EndGameUI(); // da rivedere
                     }
                     else // se sta andando il gioco, giocatori vivi
@@ -832,6 +845,15 @@ public class Partita
     public void setCurrentGiocatorePos(int currentGiocatorePos) {this.currentGiocatorePos = currentGiocatorePos;}
 
     public void setPosMazziere(int posMazziere){this.posMazziere = posMazziere;}
+    public int getDistaccoMazziere(){return this.cDistaccoMazziere;}
+    public void setDistaccoMazziere(int cDistaccoMazziere){this.cDistaccoMazziere = cDistaccoMazziere;}
+
+    public void ricaricaMazzo(ArrayList<Carta> carteDaEliminare)
+    {
+        this.mazzo = new Mazzo(); // genera un nuovo mazzo
+        this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
+
+    }
 
     //endregion
 

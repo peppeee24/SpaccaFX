@@ -1,12 +1,15 @@
 package com.spaccafx.Controllers;
 
 import com.spaccafx.Cards.Carta;
+import com.spaccafx.Cards.CartaImprevisto;
 import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
+import com.spaccafx.Player.Bot;
 import com.spaccafx.Spacca;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -202,6 +205,9 @@ public class TavoloController
         this.updateVitaUI(); // aggiorna tutte le vite dei player
         this.updateCarteUI(); // aggiorna tutte le carte dei giocatori e scopre quella del giocatore a cui tocca
         this.updateCartaCentraleMazzoUI(); // imposta la carta centrale
+        this.impostaCoroneMazziereUI(); // imposta chi e il mazziere
+
+        partita.riprendiPartita(partita.getCurrentGiocatorePos());
     }
 
     public void caricaMenuUI(MouseEvent mouseEvent) throws IOException
@@ -563,19 +569,67 @@ public class TavoloController
 
     public void EndGameUI()
     {
-AudioManager.vittoriaSuono();
-        gestisciPulsanti(false, false, false);
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() ->
+                {
+                    AudioManager.vittoriaSuono();
+                    gestisciPulsanti(false, false, false);
 
-        popUpPane.setVisible(true);
-        popUpPane.setDisable(false);
+                    popUpPane.setVisible(true);
+                    popUpPane.setDisable(false);
 
-        popUpTitleLabel.setVisible(true);
-        popUpTitleLabel.setText("VITTORIA");
-        popUpTitleLabel.setTextFill(Color.YELLOW);
+                    popUpTitleLabel.setVisible(true);
+                    popUpTitleLabel.setText("VITTORIA");
+                    popUpTitleLabel.setTextFill(Color.YELLOW);
 
-        popUpTextLabel.setVisible(true);
-        popUpTextLabel.setText("Congratulazioni al vincitore: " + partita.getVincitore().getNome().toUpperCase());
-        nascondiCorone();
+                    popUpTextLabel.setVisible(true);
+                    popUpTextLabel.setText("Congratulazioni al vincitore: " + partita.getVincitore().getNome().toUpperCase());
+                    nascondiCorone();
+                });
+
+                Thread.sleep(3000);
+
+                Platform.runLater(() ->
+                {
+                    popUpPane.setVisible(true);
+                    popUpPane.setDisable(false);
+
+                    popUpTitleLabel.setVisible(true);
+                    popUpTitleLabel.setText("LOBBY...");
+                    popUpTitleLabel.setTextFill(Color.YELLOW);
+
+                    popUpTextLabel.setVisible(true);
+                    popUpTextLabel.setText("Stai per ritornare al menu principale...");
+                });
+
+                Thread.sleep(1500);
+
+                /*Platform.runLater(() ->
+                {
+                    FXMLLoader menu = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
+                    try {
+                        Scene scene = new Scene(menu.load());
+                        stage.setScene(scene);
+                        stage.setTitle("Alpha Build SpaccaFX");
+                        stage.setResizable(false);
+                        stage.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+                 */
+
+                // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
+
     }
 
     //region # OTHER METHODS

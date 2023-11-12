@@ -6,6 +6,8 @@ import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 public abstract class Carta
 {
     protected int valore;
@@ -29,5 +31,22 @@ public abstract class Carta
     public abstract String toString();
 
     public abstract void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC);
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Carta otherCarta = (Carta) obj;
+        return valore == otherCarta.valore && this.seme.equals(otherCarta.seme);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(valore, this.seme);
+    }
 
 }
