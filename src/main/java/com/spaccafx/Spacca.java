@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -50,11 +51,22 @@ public class Spacca extends Application {
                     }
                //     scene.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
 
+                    InputStream styleStream = Spacca.class.getResourceAsStream("PartitaStyle.css");
+
+                    if (styleStream == null) {
+                        System.out.println("File CSS non trovato");
+                    } else {
+                        scene.getStylesheets().add(styleStream.toString());
+                        System.out.println("Impostato CSS!");
+                    }
+
+
                     stage.setTitle("Alpha Build SpaccaFX");
 
                     stage.setResizable(false);
                     stage.setScene(scene);
                     stage.show();
+
                 });
 
                 Thread.sleep(3000);

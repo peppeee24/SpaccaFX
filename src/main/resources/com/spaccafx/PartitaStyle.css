@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 
 .bodybg /* classe che ha le proprieta del body */
@@ -43,6 +44,7 @@
 
 .LabelWhite{
    -fx-text-fill: white;
+  -fx-font-family: 'Press Start 2P', sans-serif;
    -fx-font-size: 20;
 
 }
@@ -74,11 +76,14 @@
    -fx-rotate: 10;
 }
 
+.text {
+    -fx-font-family: 'Press Start 2P', sans-serif;
+}
 
 
 .root
 {
-     -fx-font-family: "Retro Gaming";
+     -fx-font-family: 'Press Start 2P', sans-serif;
     /*-fx-padding: 10;  Aggiunge uno spazio di 10 pixel tra il bordo e il contenuto */
     /* -fx-border-color: #453A2c;  Colore del bordo
     -fx-border-width: 15; /* Larghezza del bordo
@@ -96,8 +101,7 @@
 
  */
 @font-face {
-    -fx-font-family: "Retro Gaming";
-    -fx-src: url(arcade.ttf);
+    -fx-font-family: 'Press Start 2P', sans-serif;
 }
 
 
@@ -105,8 +109,3 @@
 .anchor-pane {
     -fx-background-color: #639BFF;
 }
-
-
-
-
-

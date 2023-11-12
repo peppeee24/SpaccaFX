@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1010.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1010.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MainMenuController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-35.0" AnchorPane.topAnchor="0.0">
          <left>
             <AnchorPane prefHeight="630.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="43.0" layoutY="296.0" styleClass="LabelWhite" text="MAIN MENU" textFill="WHITE">
+                  <Label layoutX="43.0" layoutY="296.0" styleClass="LabelWhite" stylesheets="@PartitaStyle.css" text="MAIN MENU" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -66,7 +66,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Button fx:id="playButton" layoutX="477.0" layoutY="237.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="200.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" text="ADMIN" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="331.0" AnchorPane.leftAnchor="477.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="237.0">
+                  <Button fx:id="playButton" layoutX="477.0" layoutY="237.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="200.0" stylesheets="@PartitaStyle.css" text="ADMIN" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="331.0" AnchorPane.leftAnchor="477.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="237.0">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -90,7 +90,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="161.0" layoutY="42.0" prefHeight="78.0" prefWidth="464.0" styleClass="Spacca" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" text="SPACCA FX" textAlignment="CENTER">
+                  <Label layoutX="161.0" layoutY="42.0" prefHeight="78.0" prefWidth="464.0" styleClass="text" stylesheets="@PartitaStyle.css" text="SPACCA FX" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
