@@ -11,6 +11,7 @@ public class CartaNormale extends Carta
     public CartaNormale(int valore, SemeCarta seme)
     {
         super(valore, seme);
+        this.attivato = false;
     }
 
     @Override

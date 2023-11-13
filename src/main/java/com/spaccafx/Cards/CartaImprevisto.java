@@ -12,9 +12,6 @@ import javafx.application.Platform;
 
 public class CartaImprevisto extends Carta
 {
-    private boolean attivato = false, attivatoSpecial=false;
-
-
     public CartaImprevisto(int valore, SemeCarta seme)
     {
         super(valore, seme);
@@ -115,12 +112,4 @@ public class CartaImprevisto extends Carta
 
         thread.start();
     }
-
-    public boolean isAttivato(){return this.attivato;}
-
-    public boolean isAttivatoSpecial(){return this.attivatoSpecial;}
-
-    public void setAttivato(boolean attivato){this.attivato=attivato;}
-
-    public void setAttivatoSpecial(boolean attivatoSpecial){this.attivatoSpecial=attivatoSpecial;}
 }

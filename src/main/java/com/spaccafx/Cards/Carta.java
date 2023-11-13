@@ -11,6 +11,7 @@ import java.util.Objects;
 public abstract class Carta
 {
     protected int valore;
+    protected boolean attivato = false;
 
     protected Image image;
     protected SemeCarta seme;
@@ -21,11 +22,13 @@ public abstract class Carta
     public void setValore(int valore){this.valore = valore;}
     public void setImage(Image image){this.image = image;}
     public void setSeme(SemeCarta seme){this.seme = seme;}
+    public void setCartaEffettoAttivato(boolean attivato){this.attivato = attivato;}
 
 
     public int getValore(){return this.valore;}
     public Image getImmagineCarta(){return this.image;}
     public SemeCarta getSeme(){return this.seme;}
+    public boolean getCartaEffettoAttivato(){return this.attivato;}
 
 
     public abstract String toString();
@@ -33,7 +36,8 @@ public abstract class Carta
     public abstract void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC);
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         if (this == obj) {
             return true;
         }

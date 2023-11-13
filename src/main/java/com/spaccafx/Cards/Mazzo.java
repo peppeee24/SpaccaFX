@@ -160,19 +160,19 @@ public class Mazzo
         System.out.println("Ho rimosso la carta pescata dal mazzo delle carte! (" + mazzoCarte.size() + " rimanenti)");
 
         if(carta instanceof  CartaProbabilita)
-            ((CartaProbabilita) carta).setAttivato(true);
+            ((CartaProbabilita) carta).setCartaEffettoAttivato(true);
         if(carta instanceof  CartaImprevisto)
-            ((CartaImprevisto) carta).setAttivato(true);
+            ((CartaImprevisto) carta).setCartaEffettoAttivato(true);
 
         return carta;
     }
 
-    public Carta mostraUltimaCartaMazzo(){
+    public Carta mostraUltimaCartaMazzo()
+    {
          Carta carta = mazzoCarte.get(mazzoCarte.size() - 1);
          return  carta;// prendo l ultima carta dal mazzo
 
         // una volta che viene pescata una carta, la devo eliminare dal mazzo e poi alla fine del turno gliela devo rimettere!
-
     }
 
     public void MescolaMazzo()

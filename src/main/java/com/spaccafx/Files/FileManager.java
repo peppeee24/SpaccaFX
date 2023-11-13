@@ -49,6 +49,7 @@ public class FileManager
             nuovaPartita.put("Round", 1);
             nuovaPartita.put("isGameRunning", false);
             nuovaPartita.put("cDistaccoMazziere", 0);
+            nuovaPartita.put("cartaGiaScambiata", false);
 
             JSONObject giocatoriList = new JSONObject();
 
@@ -70,6 +71,7 @@ public class FileManager
                     JSONObject cartaJSON = new JSONObject();
                     cartaJSON.put("Valore", cartaPlayer.getValore());
                     cartaJSON.put("Seme", cartaPlayer.getSeme().toString());
+                    cartaJSON.put("Attivata", cartaPlayer.getCartaEffettoAttivato()); // teoricamente sempre su false
 
                     // Aggiungi l'oggetto cartaJSON al giocatore
                     player.put("Carta", cartaJSON);
@@ -80,6 +82,7 @@ public class FileManager
                     JSONObject cartaJSON = new JSONObject();
                     cartaJSON.put("Valore", 1);
                     cartaJSON.put("Seme", SemeCarta.VERME.toString()); // metto un seme a caso, TODO DA SISTEMARE
+                    cartaJSON.put("Attivata", false);
 
                     // Aggiungi l'oggetto cartaJSON al giocatore
                     player.put("Carta", cartaJSON);
@@ -177,6 +180,8 @@ public class FileManager
                         JSONObject cartaJSON = new JSONObject();
                         cartaJSON.put("Valore", nuovoGiocatore.getCarta().getValore());
                         cartaJSON.put("Seme", nuovoGiocatore.getCarta().getSeme().toString());
+                        cartaJSON.put("Attivata", nuovoGiocatore.getCarta().getCartaEffettoAttivato());
+
                         giocatoreJSON.put("Carta", cartaJSON);
 
                     }
@@ -281,7 +286,6 @@ public class FileManager
 
     public static Partita convertiJSONAPartita(JSONObject partitaJSON)
     {
-
         // Estrarre i dati dall'oggetto JSON e creare un oggetto Partita
         int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString()); // prendo id
         int password = Integer.parseInt(partitaJSON.get("Password").toString()); // prendo password
@@ -290,6 +294,7 @@ public class FileManager
         boolean isGameRunning = Boolean.parseBoolean(partitaJSON.get("isGameRunning").toString()); // prendo pos mazziere
         GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));  // prendo stato
         int cDistaccoMazziere = Integer.parseInt(partitaJSON.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
+        boolean cartaGiaScambiata = Boolean.parseBoolean(partitaJSON.get("cartaGiaScambiata").toString()); // prendo se il player ha gia fatto lo scambio o no
 
 
         JSONObject giocatoriObject = (JSONObject) partitaJSON.get("Giocatori");
@@ -303,6 +308,7 @@ public class FileManager
         partita.setPosMazziere(posMazziere);
         partita.setIsGameRunning(isGameRunning);
         partita.setDistaccoMazziere(cDistaccoMazziere);
+        partita.setCartaGiaScambiata(cartaGiaScambiata);
 
         // Aggiungi giocatori alla partita
         for (Object giocatoreKey : giocatoriObject.keySet())
@@ -341,6 +347,7 @@ public class FileManager
             Carta cartaPlayer = null;
             int valore = Integer.parseInt(cartaObject.get("Valore").toString());
             SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
+            boolean isEffettoCartaAttivato = Boolean.parseBoolean(cartaObject.get("Attivata").toString());
 
             Image cartaImage;
             cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
@@ -363,6 +370,7 @@ public class FileManager
                     System.exit(-1);
             }
 
+            cartaPlayer.setCartaEffettoAttivato(isEffettoCartaAttivato);
             cartaPlayer.setImage(cartaImage); // imposto la visuale della carta
             giocatore.setCarta(cartaPlayer);
 

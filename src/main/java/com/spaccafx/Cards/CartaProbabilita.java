@@ -13,8 +13,6 @@ import java.util.Scanner;
 
 public class CartaProbabilita extends Carta
 {
-    boolean attivato = false;
-
     public CartaProbabilita(int valore, SemeCarta seme)
     {
         super(valore, seme);
@@ -163,7 +161,4 @@ public class CartaProbabilita extends Carta
 
         thread.start();
     }
-
-    public boolean isAttivato(){return this.attivato;}
-    public void setAttivato(boolean attivato){this.attivato=attivato;}
 }

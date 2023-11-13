@@ -29,6 +29,7 @@ public class Partita
     int codicePartita;
     int passwordPartita;
     boolean isGameRunning;
+    boolean cartaGiaScambiata;
     GameStatus partitaStatus;
     SpaccaTGBot telegramBot;
     TavoloController TC;
@@ -52,6 +53,7 @@ public class Partita
 
         this.codicePartita = 0;
         this.passwordPartita = 0;
+        this.cartaGiaScambiata = false;
         this.posMazziere = 0;
         this.currentGiocatorePos = 0;
         this.currentRound = 1; // quando si crea la partita parte gia dal round 1
@@ -198,7 +200,7 @@ public class Partita
     private void gestisciCartaProbabilita(Carta currentMano, IGiocatore currentGiocatoreScambio) {
         System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale PROBABILITA");
 
-        if (!((CartaProbabilita) currentMano).isAttivato()) {
+        if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato()) {
             ((CartaProbabilita) currentMano).Effetto(this, currentGiocatoreScambio, TC);
         }
 
@@ -208,7 +210,7 @@ public class Partita
     private void gestisciCartaImprevisto(Carta currentMano, IGiocatore currentGiocatoreScambio) {
         System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
 
-        if (!((CartaImprevisto) currentMano).isAttivato()) {
+        if (!((CartaImprevisto) currentMano).getCartaEffettoAttivato()) {
             ((CartaImprevisto) currentMano).Effetto(this, currentGiocatoreScambio, TC);
         } else {
             System.out.println("ERRORE MAI DEVE USCIRE QUI");
@@ -238,7 +240,7 @@ public class Partita
         if(currentMano instanceof  CartaProbabilita)
         {
             System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta PROBABILITA!");
-            if(!((CartaProbabilita) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+            if(!((CartaProbabilita) currentMano).getCartaEffettoAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 // lancio dadi aumento vita
                 // scambio con mazzo
@@ -253,7 +255,7 @@ public class Partita
         {
             System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta IMPREVISTO!");
 
-            if(!((CartaImprevisto) currentMano).isAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+            if(!((CartaImprevisto) currentMano).getCartaEffettoAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 // passa Obbligatorio
                 // Scambio obbligatorio
@@ -271,7 +273,7 @@ public class Partita
     }
 
 
-    boolean cartaGiaScambiata = false;
+
     public void ScambiaCartaUI()
     {
         Thread thread = new Thread(() -> {
@@ -854,6 +856,9 @@ public class Partita
         this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
 
     }
+
+    public boolean getCartaGiaScambiata(){return this.cartaGiaScambiata;}
+    public void setCartaGiaScambiata(boolean cartaGiaScambiata){this.cartaGiaScambiata = cartaGiaScambiata;}
 
     //endregion
 
