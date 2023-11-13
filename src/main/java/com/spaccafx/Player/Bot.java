@@ -13,7 +13,6 @@ public abstract class Bot implements IGiocatore
     protected Carta carta;
     private RuoloGiocatore ruolo;
     private int valoreDado;
-    boolean isAlive;
 
     public Bot()
     {
@@ -22,7 +21,6 @@ public abstract class Bot implements IGiocatore
         this.vita = 2;
         vitaExtra = 0;
         this.carta = null;
-        this.isAlive = true;
     }
     public Bot(String nome)
     {
@@ -31,7 +29,6 @@ public abstract class Bot implements IGiocatore
         this.vita = 2;
         vitaExtra = 0;
         this.carta = null;
-        this.isAlive = true;
     }
     public Bot(Carta carta)
     {
@@ -40,7 +37,6 @@ public abstract class Bot implements IGiocatore
         this.vita = 2;
         vitaExtra = 0;
         this.carta = carta;
-        this.isAlive = true;
     }
     public Bot(String nome, Carta carta)
     {
@@ -49,7 +45,6 @@ public abstract class Bot implements IGiocatore
         this.vita= 2;
         vitaExtra = 0;
         this.carta=carta;
-        this.isAlive = true;
     }
 
     public void setNome(String nome){this.nome = nome;}
@@ -57,7 +52,6 @@ public abstract class Bot implements IGiocatore
     public void setRuolo(RuoloGiocatore ruolo){this.ruolo = ruolo;}
     public void setDado(int valoreDado){this.valoreDado = valoreDado;}
     public void setCarta(Carta carta){this.carta = carta;}
-    public void setIsAlive(boolean isAlive){this.isAlive = isAlive;}
 
     public String getNome(){return this.nome;}
     public int getVita(){return  this.vita;}
@@ -65,7 +59,6 @@ public abstract class Bot implements IGiocatore
     public int getValoreDado(){return this.valoreDado;}
     public int getVitaExtra(){return this.vitaExtra;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
-    public boolean getIsAlive(){return this.isAlive;}
 
 
     //public abstract int Scelta(Partita p);

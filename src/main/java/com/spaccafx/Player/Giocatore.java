@@ -11,7 +11,6 @@ public class Giocatore implements IGiocatore
     private Carta carta;
     private RuoloGiocatore ruolo;
     private int valoreDado;
-    boolean isAlive;
 
     public Giocatore()
     {
@@ -20,7 +19,6 @@ public class Giocatore implements IGiocatore
         this.vita = 1;
         vitaExtra = 0;
         this.carta = null;
-        this.isAlive = true;
     }
 
     public Giocatore(Carta carta)
@@ -30,7 +28,6 @@ public class Giocatore implements IGiocatore
         this.vita = 1;
         vitaExtra = 0;
         this.carta = carta;
-        this.isAlive = true;
     }
 
     public Giocatore(String nome)
@@ -40,7 +37,6 @@ public class Giocatore implements IGiocatore
         this.vita = 1;
         vitaExtra = 0;
         this.carta = null;
-        this.isAlive = true;
     }
 
     public Giocatore(String nome, Carta  carta)
@@ -50,7 +46,6 @@ public class Giocatore implements IGiocatore
         this.vita = 1;
         vitaExtra = 0;
         this.carta = carta;
-        this.isAlive = true;
     }
 
     public void setNome(String nome){this.nome = nome;}
@@ -58,7 +53,6 @@ public class Giocatore implements IGiocatore
     public void setRuolo(RuoloGiocatore ruolo){this.ruolo = ruolo;}
     public void setDado(int valoreDado){this.valoreDado = valoreDado;}
     public void setCarta(Carta carta){this.carta = carta;}
-    public void setIsAlive(boolean isAlive){this.isAlive = isAlive;}
 
     public String getNome(){return this.nome;}
     public int getVita(){return  this.vita;}
@@ -66,7 +60,6 @@ public class Giocatore implements IGiocatore
     public int getValoreDado(){return this.valoreDado;}
     public int getVitaExtra(){return this.vitaExtra;}
     public RuoloGiocatore getRuolo(){return this.ruolo;}
-    public boolean getIsAlive(){return this.isAlive;}
 
     public void addVitaExtra() {vitaExtra = 1;}
     public void removeVitaExtra(){vitaExtra = 0;}

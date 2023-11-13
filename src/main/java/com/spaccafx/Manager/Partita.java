@@ -39,7 +39,7 @@ public class Partita
     //region #PUBLIC VARIABLES
     public Mazzo mazzo; // creo il mazzo con tutte le carte
     public ArrayList<IGiocatore> giocatori;
-    public ArrayList<IGiocatore> giocatoriMorti;
+    //public ArrayList<IGiocatore> giocatoriMorti;
 
     int cDistaccoMazziere;
     //endregion
@@ -48,7 +48,7 @@ public class Partita
 
     public Partita(int size) // size è il numero di giocatori a partita
     {
-        giocatoriMorti = new ArrayList<IGiocatore>();
+        //giocatoriMorti = new ArrayList<IGiocatore>();
         giocatori = new  ArrayList<IGiocatore>(size);
 
         this.codicePartita = 0;
@@ -101,14 +101,21 @@ public class Partita
 
         ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita)); // metto le carte da eliminare
 
-        //TODO CASO DEI PLAYER
-        if(this.cartaGiaScambiata) // se ha gia scambiato la carta
-            TC.gestisciPulsanti(false, false, true);
-        else
-            TC.gestisciPulsanti(false, true, true);
+        IGiocatore giocatoreRipresa = giocatori.get(giocatoreRipresaPos);
+
+        if(giocatoreRipresa instanceof Giocatore)
+        {
+            if(this.cartaGiaScambiata) // se ha gia scambiato la carta
+                TC.gestisciPulsanti(false, false, true);
+            else
+                TC.gestisciPulsanti(false, true, true);
+        }
+        else // se sono un bot
+        {
+            //TODO FARE IL CASO DEI BOT
+        }
 
         controllaManoIniziale(giocatoreRipresaPos);
-
     }
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
@@ -531,8 +538,8 @@ public class Partita
                             TC.HidePlayerUI(giocatoreDebole.getNome()); // rivedere
 
                             // todo vedere se togliere per i file
-                            giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
-                            giocatori.remove(giocatoreDebole);
+                            //giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                            giocatoreDebole.setRuolo(RuoloGiocatore.MORTO); // lo imposto come morto
 
                             System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
                         }
@@ -570,8 +577,8 @@ public class Partita
                             {
                                 TC.HidePlayerUI(giocatoreDebole.getNome());
 
-                                giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
-                                giocatori.remove(giocatoreDebole);
+                                //giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
+                                giocatoreDebole.setRuolo(RuoloGiocatore.MORTO); // lo imposto come morto
 
                                 System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
                             }
@@ -608,7 +615,7 @@ public class Partita
                     else // se sta andando il gioco, giocatori vivi
                     {
                         System.out.println("[GAME] Passo al prossimo round!");
-                        avanzaRoundUI();
+                        avanzaRoundUI2Test(); // TODO TEST
                     }
                 });
 
@@ -623,6 +630,17 @@ public class Partita
     private void avanzaRoundUI()
     {
         lancioDadiIniziale(); // vengono rilanciati i dadi
+        mazzo.MescolaMazzo(); // messe le carte, tolti gli effetti e rimescolato
+
+        this.currentRound ++; // aumenta il round
+        TC.aggiornaInfoUI(); // aggiorna la grafica
+
+        iniziaNuovoRoundUI(); // si reinizia la mano
+    }
+
+    private void avanzaRoundUI2Test()
+    {
+        RuotaMazziereUI(); // ruota il mazziere
         mazzo.MescolaMazzo(); // messe le carte, tolti gli effetti e rimescolato
 
         this.currentRound ++; // aumenta il round
@@ -796,7 +814,48 @@ public class Partita
         return numeroPiuAlto;
     }
 
-    public boolean isGameRunning() { return giocatori.size() > 1; } // Restituisce true se ci sono piu di 1 giocatore vivi
+    private void RuotaMazziereUI()
+    {
+        for (IGiocatore giocatore : giocatori)
+        {
+            if(!(giocatore.getRuolo() == RuoloGiocatore.MORTO))
+            {
+                giocatore.setRuolo(RuoloGiocatore.GIOCATORE);
+            }
+        }
+
+        // Trova la prossima posizione con il ruolo GIOCATORE, saltando quelli con il ruolo MORTO
+        int numeroGiocatori = giocatori.size();
+        int nuovaPosizione = (posMazziere + 1) % numeroGiocatori; //avanziamo di 1 la pos mazziere attuale rimanendo nell array
+
+        while (giocatori.get(nuovaPosizione).getRuolo() == RuoloGiocatore.MORTO) // fino a quando il player e un morto, avanzo
+        {
+            nuovaPosizione = (nuovaPosizione + 1) % numeroGiocatori;
+        }
+
+        // Assegna il ruolo di MAZZIERE al giocatore alla nuova posizione
+        giocatori.get(nuovaPosizione).setRuolo(RuoloGiocatore.MAZZIERE);
+        this.posMazziere = nuovaPosizione;
+        TC.impostaCoroneMazziereUI();
+
+        System.out.println("[ROTAZIONE-MAZZIERE] Il mazziere è stato ruotato correttamente!");
+    }
+
+    public boolean isGameRunning()
+    {
+        int countAlivePlayers = 0;
+
+        for (IGiocatore giocatore : giocatori) {
+            if ((giocatore.getRuolo() == RuoloGiocatore.GIOCATORE) || giocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
+            {
+                countAlivePlayers++;
+            }
+        }
+
+        // Restituisce true se ci sono più di 1 giocatore vivi, altrimenti false
+        return countAlivePlayers > 1;
+
+    } // Restituisce true se ci sono piu di 1 giocatore vivi
 
     public int getCurrentRound(){return this.currentRound;}
     public int getPosMazziere(){return this.posMazziere;}

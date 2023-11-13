@@ -59,7 +59,7 @@ public class Torneo
             //partite.get(currentMatch).startGame();
 
             System.out.println("\nPartita " + currentMatch + " finita! Il vincitore è " + partite.get(currentMatch).getVincitore().getNome() + " Andiamo alla prossima..");
-            removeDeadPLayerFromArrayList();
+            //removeDeadPLayerFromArrayList();
             aggiornaPartenza();
             currentMatch++;
             setWinner();
@@ -121,12 +121,14 @@ public class Torneo
             return partenza;
     }
 
-    private void removeDeadPLayerFromArrayList(){
+    /*private void removeDeadPLayerFromArrayList(){
         for(int i = 0; i < partite.get(currentMatch).giocatoriMorti.size(); i++){
             giocatori.remove(partite.get(currentMatch).giocatoriMorti.get(i));
             System.out.println("Hai rimosso " + partite.get(currentMatch).giocatoriMorti.get(i).getNome());
         }
     }
+
+     */
 
     public void showGiocatori(){
         for(int i = 0; i < giocatori.size(); i++){

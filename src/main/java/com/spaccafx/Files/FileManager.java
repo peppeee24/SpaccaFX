@@ -58,7 +58,6 @@ public class FileManager
                 JSONObject player = new JSONObject();
                 player.put("Nome", giocatore.getNome());
                 player.put("Istanza", giocatore.getClass().getSimpleName());
-                player.put("IsAlive", true); // TODO da cambiare
 
                 // creare array carte del giocatore
                 // se nullo imposto dei valori di default che vuol dire che il gioco deve ancora iniziare
@@ -173,7 +172,6 @@ public class FileManager
 
                         giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
                         giocatoreJSON.put("Ruolo", nuovoGiocatore.getRuolo().toString().toUpperCase());
-                        giocatoreJSON.put("IsAlive", nuovoGiocatore.getIsAlive());
                         giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
                         giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
 
@@ -321,7 +319,6 @@ public class FileManager
 
             String nomePlayer = giocatoreJSON.get("Nome").toString();
             int vitaExtra = Integer.parseInt(giocatoreJSON.get("Vita-Extra").toString());
-            boolean isAlive = Boolean.parseBoolean(giocatoreJSON.get("IsAlive").toString());
             int vite = Integer.parseInt(giocatoreJSON.get("Vite").toString());
             String istanza = giocatoreJSON.get("Istanza").toString();
             RuoloGiocatore ruoloGiocatore = RuoloGiocatore.valueOf((String) giocatoreJSON.get("Ruolo"));
@@ -341,7 +338,6 @@ public class FileManager
             giocatore.setVita(vite);
             giocatore.setVitaExtra(vitaExtra);
             giocatore.setRuolo(ruoloGiocatore);
-            giocatore.setIsAlive(isAlive);
 
             //TODO mettere se il giocatore e vivo
 
