@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1010.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MainMenuController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-35.0" AnchorPane.topAnchor="0.0">
          <left>
             <AnchorPane prefHeight="630.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="43.0" layoutY="296.0" styleClass="LabelWhite" stylesheets="@PartitaStyle.css" text="MAIN MENU" textFill="WHITE">
+                  <Label layoutX="28.0" layoutY="293.0" styleClass="LabelWhite" stylesheets="@PartitaStyle.css" text="MAIN MENU" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ImageView fitHeight="532.0" fitWidth="853.0" layoutX="-255.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" rotate="-24.0" AnchorPane.bottomAnchor="33.675384521484375" AnchorPane.leftAnchor="-255.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="114.0">
+                  <ImageView fitHeight="273.0" fitWidth="464.0" layoutX="77.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" rotate="-24.0" AnchorPane.bottomAnchor="172.0" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="315.5223693847656" AnchorPane.topAnchor="185.0">
                      <image>
                         <Image url="@../../Assets/Game/Environment/trioNEW.png" />
                      </image>
@@ -90,7 +90,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="161.0" layoutY="42.0" prefHeight="78.0" prefWidth="464.0" styleClass="text" stylesheets="@PartitaStyle.css" text="SPACCA FX" textAlignment="CENTER">
+                  <Label layoutX="75.0" layoutY="29.0" prefHeight="99.0" prefWidth="538.0" styleClass="SpaccaTitolo" stylesheets="@PartitaStyle.css" text="SPACCA" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="579.0" layoutY="29.0" prefHeight="99.0" prefWidth="114.0" styleClass="FxTitolo" stylesheets="@PartitaStyle.css" text="FX" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="225.0" style="-fx-border-color: black; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MatchItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="225.0" style="-fx-border-color: black; -fx-border-width: 2px;" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.MatchItemController">
    <children>
       <BorderPane layoutY="-27.0" prefHeight="215.0" prefWidth="225.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane prefHeight="45.0" prefWidth="225.0" style="-fx-background-color: #0e3c32;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="45.0" prefWidth="219.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="partitaId" alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="225.0" text="ID_PARTITA: " textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="partitaId" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="221.0" text="ID_PARTITA: " textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
@@ -24,12 +24,12 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="stateId" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="48.0" prefWidth="225.0" text="State: RUNNING" textAlignment="CENTER" textFill="#056800">
+                  <Label fx:id="stateId" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="48.0" prefWidth="215.0" text="State: RUNNING" textAlignment="CENTER" textFill="#056800">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="playButtonId" contentDisplay="CENTER" layoutX="66.0" layoutY="66.0" mnemonicParsing="false" onAction="#accediPartita" style="-fx-background-color: #0e3c32;" text="UNISCITI" textFill="WHITE">
+                  <Button fx:id="playButtonId" contentDisplay="CENTER" layoutX="20.0" layoutY="83.0" mnemonicParsing="false" onAction="#accediPartita" text="UNISCITI" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

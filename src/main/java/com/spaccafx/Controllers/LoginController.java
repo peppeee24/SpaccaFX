@@ -8,10 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 public class LoginController {
@@ -70,8 +74,20 @@ AudioManager.erroreSuono();
         stage.show();
     }
 
-    public void change(MouseEvent mouseEvent) throws IOException {
-        
+    public void telegram(MouseEvent mouseEvent) throws IOException {
+        AudioManager.erroreSuono();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Recupera passowrd");
+        alert.setContentText("Stai per essere reinderizzato su Telegram");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        new Thread(() -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://t.me/+tdRVfYk5QM4xZWRk"));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
 

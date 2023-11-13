@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
    <top>
       <AnchorPane prefHeight="59.0" prefWidth="1600.0" style="-fx-background-color: #0A232B; -fx-border-color: #f6f6f6; -fx-border-width: 0px 0px 5px 0px;" BorderPane.alignment="CENTER">
          <children>
@@ -27,12 +27,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="partitaIdLabel" styleClass="Label" text="ID_PARTITA: P345" textFill="WHITE">
+                  <Label fx:id="partitaIdLabel" styleClass="LabelWhite" text="ID_PARTITA: P345" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="roundIdLabel" styleClass="Label" text="ROUND 10" textFill="WHITE">
+                  <Label fx:id="roundIdLabel" styleClass="LabelWhite" text="ROUND 10" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -297,16 +297,16 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <HBox alignment="CENTER" layoutX="-80.0" layoutY="230.0" prefHeight="61.0" prefWidth="514.0" spacing="30.0">
+                        <HBox alignment="CENTER" layoutX="-119.0" layoutY="230.0" prefHeight="61.0" prefWidth="624.0" spacing="30.0">
                            <children>
-                              <Button fx:id="bottoneScambia" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="47.0" prefWidth="126.0" style="-fx-background-color: #AA0000; -fx-background-radius: 30;" text="SCAMBIA" textFill="WHITE">
+                              <Button fx:id="bottoneScambia" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="47.0" prefWidth="196.0" style="-fx-background-color: #AA0000; -fx-background-radius: 30;" text="SCAMBIA" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
-                              <Button fx:id="bottoneEffetto" layoutX="128.0" layoutY="17.0" mnemonicParsing="false" onAction="#scambiaConMazzo" prefHeight="47.0" prefWidth="126.0" style="-fx-background-color: #F7761F; -fx-background-radius: 30;" text="EFFETTO" textFill="WHITE">
+                              <Button fx:id="bottoneEffetto" layoutX="128.0" layoutY="17.0" mnemonicParsing="false" onAction="#scambiaConMazzo" prefHeight="47.0" prefWidth="178.0" style="-fx-background-color: #F7761F; -fx-background-radius: 30;" text="EFFETTO" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -314,7 +314,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button fx:id="bottonePassa" layoutX="191.0" layoutY="17.0" mnemonicParsing="false" onAction="#passaTurno" prefHeight="47.0" prefWidth="126.0" style="-fx-background-color: #165A4C; -fx-background-radius: 30;" text="PASSA" textFill="WHITE">
+                              <Button fx:id="bottonePassa" layoutX="191.0" layoutY="17.0" mnemonicParsing="false" onAction="#passaTurno" prefHeight="47.0" prefWidth="166.0" style="-fx-background-color: #165A4C; -fx-background-radius: 30;" text="PASSA" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -337,7 +337,7 @@
                      <effect>
                         <Shadow />
                      </effect></Pane>
-                  <Label fx:id="popUpTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="103.0" prefWidth="1603.0" text="EFFETTO CARTA" textAlignment="CENTER" textFill="#d31500">
+                  <Label fx:id="popUpTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="103.0" prefWidth="1603.0" styleClass="FxTitolo" text="EFFETTO CARTA" textAlignment="CENTER" textFill="#d31500">
                      <font>
                         <Font name="System Bold" size="55.0" />
                      </font>
@@ -348,7 +348,7 @@
                         <Glow level="1.0" />
                      </effect>
                   </Label>
-                  <Label fx:id="popUpTextLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="142.0" prefHeight="117.0" prefWidth="1605.0" text="EFFETTO DELLA CARTA/MOSSA" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="popUpTextLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="142.0" prefHeight="117.0" prefWidth="1605.0" styleClass="LabelWhite" text="EFFETTO DELLA CARTA/MOSSA" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>

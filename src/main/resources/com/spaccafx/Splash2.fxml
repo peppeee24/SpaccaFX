@@ -7,21 +7,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" styleClass="sfondo2" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="646.0" fitWidth="1036.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/splash22.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="219.0" layoutY="87.0" styleClass="SpaccaTitolo" text="SPACCA" />
-            <Label layoutX="608.0" layoutY="87.0" styleClass="FxTitolo" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" text="FX">
+            <Label layoutX="156.0" layoutY="81.0" styleClass="SpaccaTitolo" text="SPACCA" />
+            <Label layoutX="657.0" layoutY="81.0" styleClass="FxTitolo" text="FX">
                <font>
                   <Font size="39.0" />
                </font>
             </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="786.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Cards/OLD/New%20Template/Screenshot_2023-11-11_alle_20.03.05-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="436.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Cards/OLD/New%20Template/Screenshot_2023-11-11_alle_20.03.20-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="121.0" fitWidth="160.0" layoutX="116.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Cards/OLD/New%20Template/Screenshot_2023-11-11_alle_20.03.13-removebg-preview.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
