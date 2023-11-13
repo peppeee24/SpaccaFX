@@ -39,6 +39,12 @@
 
 }
 
+.EffettoCarta{
+    -fx-font-size: 60;
+    -fx-text-fill: red;
+
+}
+
 .Label{
    -fx-text-fill: black;
    -fx-font-size: 20;

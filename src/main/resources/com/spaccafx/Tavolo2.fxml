@@ -57,7 +57,7 @@
                               <Image url="@../../Assets/Cards/back.PNG" />
                            </image>
                         </ImageView>
-                        <Label fx:id="nomePlayer1" layoutX="139.0" layoutY="93.0" text="PLAYERNAME1" textFill="WHITE">
+                        <Label fx:id="nomePlayer1" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME1" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
@@ -115,7 +115,7 @@
                               <Image url="@../../Assets/Cards/back.PNG" />
                            </image>
                         </ImageView>
-                        <Label fx:id="nomePlayer3" layoutX="139.0" layoutY="93.0" text="PLAYERNAME3" textFill="WHITE">
+                        <Label fx:id="nomePlayer3" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME3" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
@@ -173,7 +173,7 @@
                               <Image url="@../../Assets/Cards/back.PNG" />
                            </image>
                         </ImageView>
-                        <Label fx:id="nomePlayer2" layoutX="139.0" layoutY="93.0" text="PLAYERNAME2" textFill="WHITE">
+                        <Label fx:id="nomePlayer2" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME2" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
@@ -231,7 +231,7 @@
                               <Image url="@../../Assets/Cards/back.PNG" />
                            </image>
                         </ImageView>
-                        <Label fx:id="nomePlayer4" layoutX="139.0" layoutY="93.0" text="PLAYERNAME4" textFill="WHITE">
+                        <Label fx:id="nomePlayer4" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME4" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
@@ -337,7 +337,7 @@
                      <effect>
                         <Shadow />
                      </effect></Pane>
-                  <Label fx:id="popUpTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="103.0" prefWidth="1603.0" styleClass="FxTitolo" text="EFFETTO CARTA" textAlignment="CENTER" textFill="#d31500">
+                  <Label fx:id="popUpTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="103.0" prefWidth="1603.0" styleClass="EffettoCarta" text="EFFETTO CARTA" textAlignment="CENTER" textFill="#d31500">
                      <font>
                         <Font name="System Bold" size="55.0" />
                      </font>

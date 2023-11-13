@@ -71,9 +71,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="224.0" fitWidth="277.0" layoutX="492.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="253.0" fitWidth="243.0" layoutX="462.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Assets/Game/Environment/botIcons.png" />
+                        <Image url="@../../Assets/Game/Environment/vs.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="torneo" layoutX="424.0" layoutY="394.0" mnemonicParsing="false" onAction="#iniziaTorneo" prefHeight="61.0" prefWidth="303.0" text="Torneo" textFill="WHITE">
@@ -86,7 +86,7 @@
                   </Button>
                   <ImageView fitHeight="224.0" fitWidth="277.0" layoutX="125.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Assets/Game/Environment/botIcons.png" />
+                        <Image url="@../../Assets/Game/Environment/cup.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="549.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
