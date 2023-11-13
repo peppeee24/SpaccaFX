@@ -150,7 +150,7 @@ public class FileManager
                 {
                     // Aggiorna lo stato della partita
                     partitaJSON.put("Stato", partitaToSave.getPartitaStatus().toString());
-                    partitaJSON.put("isGameRunning", partitaToSave.isGameRunning());
+                    partitaJSON.put("isGameRunning", partitaToSave.getIsGameRunning());
                     partitaJSON.put("Round", partitaToSave.getCurrentRound());
                     partitaJSON.put("CurrentGiocatore", partitaToSave.getCurrentGiocatorePos());
                     partitaJSON.put("PosMazziere", partitaToSave.getPosMazziere());

@@ -510,7 +510,10 @@ public class TavoloController
         }
     }
 
-    public void HidePlayerUI(String player) {
+    public void HidePlayerUI(String player)
+    {
+        // TODO DEVO NASCONDERE TUTTI I GIOCATORI CHE HANNO IL RUOLO MORTO!
+
         AudioManager.perdenteSuono();
         System.out.println("[UI] elimino: " + player);
         System.out.flush();

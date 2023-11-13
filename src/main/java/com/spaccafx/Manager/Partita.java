@@ -365,6 +365,8 @@ public class Partita
 
     private void gestisciScambioCarta() // TODO PROBLEMA NELLO SCAMBIO CON LE CARTE IMPREVISTO, CASO IN CUI IL GIOCATORE DOPO HA IMPREVISTO E LO PASSA A QUELLO PRIMA. FA UNA DESIONE CHE NON DEVE, SIA BOT CHE PLAYER
     {
+        // TODO DEVE SCAMBIARE CON IL GIOCATORE SUCCESSIVO CHE NON E UN MORTO!
+
         if(isGameStopped())
             return;
 
@@ -435,6 +437,8 @@ public class Partita
     {
         if(isGameStopped())
             return;
+
+        // TODO DEVE PASSARE AL GIOCATORE SUCCESSIVO CHE NON E UN MORTO!
 
         Thread thread = new Thread(() -> {
             try {
@@ -606,7 +610,7 @@ public class Partita
                     TC.nascondiBannerAttesa();
                     TC.updateVitaUI();
 
-                    if(!isGameRunning()) // se NON sta ancora andando
+                    if(!isGameEnded()) // se NON sta ancora andando
                     {
                         System.out.println("[END] Gioco concluso con un vincitore!");
                         setPartitaStatus(GameStatus.ENDED);
@@ -841,7 +845,7 @@ public class Partita
         System.out.println("[ROTAZIONE-MAZZIERE] Il mazziere è stato ruotato correttamente!");
     }
 
-    public boolean isGameRunning()
+    public boolean isGameEnded()
     {
         int countAlivePlayers = 0;
 
@@ -858,6 +862,7 @@ public class Partita
     } // Restituisce true se ci sono piu di 1 giocatore vivi
 
     public int getCurrentRound(){return this.currentRound;}
+    public boolean getIsGameRunning(){return this.isGameRunning;}
     public int getPosMazziere(){return this.posMazziere;}
 
     public void generaCodicePartita()  { this.codicePartita =  (int)(1 + (Math.random() * 1000)); } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
@@ -875,8 +880,9 @@ public class Partita
 
     public IGiocatore getVincitore()
     {
+        //TODO E SBAGLITO PERCHE PRENDE IL GIOCATORE ALLA POSIZIONE 0!!!
         IGiocatore vincitore = null;
-        if(!isGameRunning())
+        if(!isGameEnded())
             vincitore = giocatori.get(0); //se è rimasto solo un giocatore
 
         return vincitore;
@@ -925,20 +931,17 @@ public class Partita
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK)
         {
-            if(isGameRunning())
+            if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
             {
+                System.out.println("isGamerunning: " + this.isGameRunning);
                 setPartitaStatus(GameStatus.STOPPED);
                 System.out.println("Il gioco e stato messo in pausa correttamente!");
-                TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu
-            }
-            else
-            {
-                // vuol dire che e finita/ deve ancora inziare/ sta giocando
-                // todo SISTEMARE TUTTO
+
+                FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
             }
 
-            System.out.println("carta gia scambiata: " + this.cartaGiaScambiata);
-            FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
+            TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu a prescindere
+
         } else {
             // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
             System.out.println("Continua il gioco");
