@@ -44,6 +44,7 @@ public class PlayerScreenController
         // TODO CREARE UNA PASSWORD PER OGNI PARTITA != DAL ID PARTITA
 
         int PasswordField = Integer.parseInt(passwordField.getText());
+        // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA
 
         System.out.println("Codice per accedere PARTITA: " + this.passwordPartita);
         System.out.println("Codice INSERITO:" + PasswordField);

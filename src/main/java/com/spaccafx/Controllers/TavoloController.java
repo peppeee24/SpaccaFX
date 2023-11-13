@@ -207,6 +207,7 @@ public class TavoloController
         this.updateCartaCentraleMazzoUI(); // imposta la carta centrale
         this.impostaCoroneMazziereUI(); // imposta chi e il mazziere
 
+        partita.setPartitaStatus(GameStatus.PLAYING); // reimposto il gioco allo stato playing
         partita.riprendiPartita(partita.getCurrentGiocatorePos());
     }
 

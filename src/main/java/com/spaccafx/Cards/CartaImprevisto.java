@@ -23,8 +23,13 @@ public class CartaImprevisto extends Carta
     @Override
     public void Effetto(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
+        if(partita.isGameStopped())
+            return;
+
         if(this.attivato)
             return;
+
+
 
         TC.gestisciPulsanti(false,false,false);
 

@@ -17,10 +17,12 @@ public interface IGiocatore
     public int getValoreDado();
     public int getVitaExtra();
     public RuoloGiocatore getRuolo();
+    public boolean getIsAlive();
 
     public void addVitaExtra();
     public void removeVitaExtra();
     public boolean hasVitaExtra();
     public void setVitaExtra(int vitaExtra);
+    public void setIsAlive(boolean isAlive);
 
 }

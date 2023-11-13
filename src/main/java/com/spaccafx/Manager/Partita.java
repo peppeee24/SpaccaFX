@@ -100,14 +100,22 @@ public class Partita
     {
 
         ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita)); // metto le carte da eliminare
-        TC.gestisciPulsanti(false, true, true);
-        controllaManoIniziale(giocatoreRipresaPos);
 
+        //TODO CASO DEI PLAYER
+        if(this.cartaGiaScambiata) // se ha gia scambiato la carta
+            TC.gestisciPulsanti(false, false, true);
+        else
+            TC.gestisciPulsanti(false, true, true);
+
+        controllaManoIniziale(giocatoreRipresaPos);
 
     }
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
     {
+        if(isGameStopped())
+            return;
+
         Thread thread = new Thread(() -> {
             try {
 
@@ -165,7 +173,11 @@ public class Partita
     }
 
 
-    private void controlloManoScambio(int currentGiocatorePos) {
+    private void controlloManoScambio(int currentGiocatorePos)
+    {
+        if(isGameStopped())
+            return;
+
         IGiocatore currentGiocatoreScambio = giocatori.get(currentGiocatorePos);
         Carta currentMano = currentGiocatoreScambio.getCarta();
         System.out.println("[CONTROLLA-MANO-SCAMBIO] Il giocatore possiede: " + currentMano.toString());
@@ -198,6 +210,9 @@ public class Partita
     }
 
     private void gestisciCartaProbabilita(Carta currentMano, IGiocatore currentGiocatoreScambio) {
+        if(isGameStopped())
+            return;
+
         System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale PROBABILITA");
 
         if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato()) {
@@ -208,6 +223,9 @@ public class Partita
     }
 
     private void gestisciCartaImprevisto(Carta currentMano, IGiocatore currentGiocatoreScambio) {
+        if(isGameStopped())
+            return;
+
         System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
 
         if (!((CartaImprevisto) currentMano).getCartaEffettoAttivato()) {
@@ -219,11 +237,17 @@ public class Partita
     }
 
     private void gestisciCartaNormale(IGiocatore currentGiocatoreScambio) {
+        if(isGameStopped())
+            return;
+
         System.out.println("[MANO] Ho una carta NORMALE");
         gestisciTurno(currentGiocatoreScambio);
     }
 
     private void gestisciTurno(IGiocatore giocatore) {
+        if(isGameStopped())
+            return;
+
         if (giocatore instanceof Bot) {
             passaTurnoUI();
         } else {
@@ -233,6 +257,9 @@ public class Partita
 
     private void controllaManoIniziale(int currentGiocatore) // metodo che viene richiamato appena si avanza di mano
     {
+        if(isGameStopped())
+            return;
+
         // controlliamo che carta ha e cosa attivare o meno graficamente
         Carta currentMano = giocatori.get(currentGiocatore).getCarta();
         System.out.println("[CONTROLLA-MANO-INIZIALE] Il giocatore possiede: " + currentMano.toString());
@@ -276,6 +303,9 @@ public class Partita
 
     public void ScambiaCartaUI()
     {
+        if(isGameStopped())
+            return;
+
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() ->
@@ -301,6 +331,9 @@ public class Partita
 
     private void eseguiScambioPlayerSuccessivo(Carta currentCarta)
     {
+        if(isGameStopped())
+            return;
+
         IGiocatore nextPlayer;
         int nextIndexPlayer = currentGiocatorePos + 1;
 
@@ -325,11 +358,15 @@ public class Partita
 
     private void gestisciScambioCarta() // TODO PROBLEMA NELLO SCAMBIO CON LE CARTE IMPREVISTO, CASO IN CUI IL GIOCATORE DOPO HA IMPREVISTO E LO PASSA A QUELLO PRIMA. FA UNA DESIONE CHE NON DEVE, SIA BOT CHE PLAYER
     {
+        if(isGameStopped())
+            return;
+
         Carta cartaPlayerAttuale = getCurrentGiocatore().getCarta(); // prendo la sua carta
 
         if(getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
         {
-            this.cartaGiaScambiata = false;
+            this.cartaGiaScambiata = true;
+            System.out.println("carta gia scambiata: " + cartaGiaScambiata);
             // se pesco una carta speciale, l effetto non viene attivato e vale come carta normale, quindi non ce bisogno del controlloMano() per verificare se attivare o meno
             // l'effetto.
 
@@ -389,6 +426,9 @@ public class Partita
 
     public void passaTurnoUI()
     {
+        if(isGameStopped())
+            return;
+
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() -> {
@@ -432,6 +472,8 @@ public class Partita
     // TODO RICONTROLLARE TUTTO IL FLUSSO DI QUESTO METODO
     private void controllaRisultatiUI() // con questo metodo capiamo a chi togliere la vita dei player
     {
+        if(isGameStopped())
+            return;
 
         Thread thread = new Thread(() -> {
             try {
@@ -836,6 +878,7 @@ public class Partita
                 // todo SISTEMARE TUTTO
             }
 
+            System.out.println("carta gia scambiata: " + this.cartaGiaScambiata);
             FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
         } else {
             // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
@@ -860,6 +903,18 @@ public class Partita
     public boolean getCartaGiaScambiata(){return this.cartaGiaScambiata;}
     public void setCartaGiaScambiata(boolean cartaGiaScambiata){this.cartaGiaScambiata = cartaGiaScambiata;}
 
+    public boolean isGameStopped()
+    {
+        if(this.partitaStatus == GameStatus.STOPPED)
+        {
+            System.out.println("Il gioco e stato stoppato e non devo fare alcuna operazione");
+            return true;
+        }
+
+        return false;
+    }
+
+    public void setCurrentRound(int currentRound){this.currentRound = currentRound;}
     //endregion
 
 

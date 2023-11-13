@@ -156,6 +156,7 @@ public class FileManager
                     partitaJSON.put("CurrentGiocatore", partitaToSave.getCurrentGiocatorePos());
                     partitaJSON.put("PosMazziere", partitaToSave.getPosMazziere());
                     partitaJSON.put("cDistaccoMazziere", partitaToSave.getDistaccoMazziere());
+                    partitaJSON.put("cartaGiaScambiata", partitaToSave.getCartaGiaScambiata());
 
 
                     // Aggiorna le informazioni dei giocatori
@@ -172,7 +173,7 @@ public class FileManager
 
                         giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
                         giocatoreJSON.put("Ruolo", nuovoGiocatore.getRuolo().toString().toUpperCase());
-                        giocatoreJSON.put("IsAlive", true); // todo da cambiare
+                        giocatoreJSON.put("IsAlive", nuovoGiocatore.getIsAlive());
                         giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
                         giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
 
@@ -295,6 +296,7 @@ public class FileManager
         GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));  // prendo stato
         int cDistaccoMazziere = Integer.parseInt(partitaJSON.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
         boolean cartaGiaScambiata = Boolean.parseBoolean(partitaJSON.get("cartaGiaScambiata").toString()); // prendo se il player ha gia fatto lo scambio o no
+        int currentRound = Integer.parseInt(partitaJSON.get("Round").toString()); // prendo il round attuale della partita
 
 
         JSONObject giocatoriObject = (JSONObject) partitaJSON.get("Giocatori");
@@ -309,6 +311,7 @@ public class FileManager
         partita.setIsGameRunning(isGameRunning);
         partita.setDistaccoMazziere(cDistaccoMazziere);
         partita.setCartaGiaScambiata(cartaGiaScambiata);
+        partita.setCurrentRound(currentRound);
 
         // Aggiungi giocatori alla partita
         for (Object giocatoreKey : giocatoriObject.keySet())
@@ -338,6 +341,7 @@ public class FileManager
             giocatore.setVita(vite);
             giocatore.setVitaExtra(vitaExtra);
             giocatore.setRuolo(ruoloGiocatore);
+            giocatore.setIsAlive(isAlive);
 
             //TODO mettere se il giocatore e vivo
 
