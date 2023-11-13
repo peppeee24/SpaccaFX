@@ -34,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="245.0" fitWidth="248.0" layoutX="455.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="245.0" fitWidth="248.0" layoutX="101.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Assets/Game/Environment/vs.png" />
                      </image>
@@ -47,7 +47,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="224.0" fitWidth="277.0" layoutX="125.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="224.0" fitWidth="277.0" layoutX="483.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Assets/Game/Environment/cup.png" />
                      </image>
