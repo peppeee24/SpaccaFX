@@ -56,7 +56,7 @@ public class Spacca extends Application {
                     if (styleStream == null) {
                         System.out.println("File CSS non trovato");
                     } else {
-                        scene.getStylesheets().add(styleStream.toString());
+                        scene.getStylesheets().add(getClass().getResource("PartitaStyle.css").toExternalForm());
                         System.out.println("Impostato CSS!");
                     }
 
@@ -99,6 +99,7 @@ public class Spacca extends Application {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+
 
                     stage.setResizable(false);
                     stage.setScene(scene);

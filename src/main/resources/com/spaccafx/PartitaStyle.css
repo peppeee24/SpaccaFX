@@ -21,7 +21,7 @@
 .button
 {
     -fx-font-weight: bold;
-      -fx-background-color: #639BFF;
+    -fx-background-color: #356BAD;
     -fx-background-radius: 22;
     -fx-font-size: 20;
     -fx-text-fill: white;
@@ -123,4 +123,20 @@
 }
 .sfondo2{
     -fx-background-image: url("../../../resources/Assets/Game/Environment/bb.png");
+}
+
+.mainMenuSfondo1
+{
+  -fx-background-size: 100% 100%;
+  -fx-background-image: url("../../../resources/Assets/Game/Environment/mainMenuGif.gif");
+}
+
+.mainMenuSfondo2
+{
+  -fx-background-image: url("UI/mainMenuGif2.gif");
+}
+
+.line-color
+{
+  -fx-background-color: #356BAD;
 }
