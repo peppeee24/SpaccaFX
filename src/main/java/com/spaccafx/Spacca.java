@@ -23,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -42,6 +43,8 @@ public class Spacca extends Application {
 
                 Platform.runLater(() ->
                 {
+                    stage.initStyle(StageStyle.UTILITY); // per lasciare solo la x
+
                     FXMLLoader MainMenu = new FXMLLoader(Spacca.class.getResource("Splash1.fxml"));
                     Scene scene = null;
                     try {

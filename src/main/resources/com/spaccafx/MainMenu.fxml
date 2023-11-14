@@ -56,7 +56,7 @@
    <center>
       <Pane BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="playButton" layoutX="30.0" layoutY="128.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="264.0" stylesheets="@PartitaStyle.css" text="ADMIN" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="playButton" layoutX="36.0" layoutY="158.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="264.0" stylesheets="@PartitaStyle.css" text="ADMIN" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
@@ -64,7 +64,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="gameButton" layoutX="30.0" layoutY="222.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="264.0" text="PLAY" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="gameButton" layoutX="36.0" layoutY="252.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="264.0" text="PLAY" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
@@ -72,7 +72,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="tutorialButton" layoutX="30.0" layoutY="321.0" mnemonicParsing="false" onAction="#startTutorial" prefHeight="62.0" prefWidth="264.0" text="TUTORIAL" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="tutorialButton" layoutX="36.0" layoutY="351.0" mnemonicParsing="false" onAction="#startTutorial" prefHeight="62.0" prefWidth="264.0" text="TUTORIAL" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
@@ -83,21 +83,4 @@
          </children>
       </Pane>
    </center>
-   <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/error.png" />
-               </image>
-            </ImageView>
-         </children>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <BorderPane.margin>
-            <Insets left="20.0" right="20.0" />
-         </BorderPane.margin>
-      </HBox>
-   </top>
 </BorderPane>
