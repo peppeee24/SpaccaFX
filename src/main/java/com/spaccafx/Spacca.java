@@ -43,7 +43,7 @@ public class Spacca extends Application {
 
                 Platform.runLater(() ->
                 {
-                    stage.initStyle(StageStyle.UTILITY); // per lasciare solo la x
+                    //stage.initStyle(StageStyle.UTILITY); // per lasciare solo la x
 
                     FXMLLoader MainMenu = new FXMLLoader(Spacca.class.getResource("Splash1.fxml"));
                     Scene scene = null;

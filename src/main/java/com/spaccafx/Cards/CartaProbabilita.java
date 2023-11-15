@@ -53,6 +53,7 @@ public class CartaProbabilita extends Carta
 
                 Platform.runLater(() ->
                 {
+                    TC.setExitGame(false);
                     AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Aumenta vita con dado");
                     TC.mostraBannerAttesa("PROBABILITA [DADI]", "Lancia un dado. Se il valore uscito equivale a quello della tua carta prendi una vita");
@@ -105,7 +106,11 @@ public class CartaProbabilita extends Carta
 
                 Thread.sleep(4000);
 
-                Platform.runLater(TC::nascondiBannerAttesa);
+                Platform.runLater(() ->
+                {
+                    TC.nascondiBannerAttesa();
+                    TC.setExitGame(true);
+                });
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -122,6 +127,7 @@ public class CartaProbabilita extends Carta
 
                 Platform.runLater(() ->
                 {
+                    TC.setExitGame(false);
                     AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Posso scambiare la carta con il mazzo");
                     TC.mostraBannerAttesa("PROBABILITA [SCAMBIO-EXTRA]", "Puoi scambiare la carta con il mazzo");
@@ -153,7 +159,7 @@ public class CartaProbabilita extends Carta
                         {
                             System.out.println("[PROBABILITA] Il bot ha rifiutato lo scambiato con il mazzo");
                         }
-
+                        TC.setExitGame(false);
                     }
 
                 });

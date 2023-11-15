@@ -91,7 +91,7 @@ public class Partita
     public void startNewGame()
     {
         // devo partire dalla posizione del mazziere in poi
-        cDistaccoMazziere = posMazziere; // deve partire dal mazziere
+        this.cDistaccoMazziere = posMazziere; // deve partire dal mazziere
         avanzaManoUI(); // ci avanza di giocatore in giocatore
     }
 
@@ -123,6 +123,8 @@ public class Partita
         if(isGameStopped())
             return;
 
+        TC.setExitGame(true);
+
         Thread thread = new Thread(() -> {
             try {
 
@@ -130,10 +132,12 @@ public class Partita
                 {
                     this.cartaGiaScambiata = false;
 
-                    if(cDistaccoMazziere+1 > giocatori.size() - 1)
-                        cDistaccoMazziere = 0;
-                    else
-                        cDistaccoMazziere++;
+                    do
+                    {
+                        this.cDistaccoMazziere = (cDistaccoMazziere + 1) % giocatori.size();
+                        System.out.println("[AVANZA-MANO] Avanzo di mano e passo al giocatore: " + cDistaccoMazziere);
+                    } while (!isGiocatoreValido(cDistaccoMazziere));
+
 
 
                     this.currentGiocatorePos = cDistaccoMazziere;
@@ -179,6 +183,16 @@ public class Partita
         thread.start();
     }
 
+    private boolean isGiocatoreValido(int pos)
+    {
+        return isRuoloValido(giocatori.get(pos).getRuolo()) && !(giocatori.get(pos).getVita()<=0);
+    }
+
+    // Metodo per verificare se il ruolo è valido
+    private boolean isRuoloValido(RuoloGiocatore ruolo)
+    {
+        return ruolo.equals(RuoloGiocatore.GIOCATORE) || ruolo.equals(RuoloGiocatore.MAZZIERE);
+    }
 
     private void controlloManoScambio(int currentGiocatorePos)
     {
@@ -255,7 +269,8 @@ public class Partita
         if(isGameStopped())
             return;
 
-        if (giocatore instanceof Bot) {
+        if (giocatore instanceof Bot)
+        {
             passaTurnoUI();
         } else {
             TC.gestisciPulsanti(false, false, true);
@@ -342,10 +357,12 @@ public class Partita
             return;
 
         IGiocatore nextPlayer;
-        int nextIndexPlayer = currentGiocatorePos + 1;
+        int nextIndexPlayer = this.currentGiocatorePos;
 
-        if(nextIndexPlayer >= giocatori.size()) // se sono oltre il limite
-            nextIndexPlayer = 0; // prendo il primo giocatore
+        do
+        {
+            nextIndexPlayer = (nextIndexPlayer + 1) % giocatori.size(); // andiamo ad incrementare senza uscire dalla grandezza dei giocatori
+        }while(!isRuoloValido(giocatori.get(nextIndexPlayer).getRuolo()));
 
         System.out.println("[DEBUG] Indirizzo PLAYER successivo: " + nextIndexPlayer);
 
@@ -486,6 +503,8 @@ public class Partita
         if(isGameStopped())
             return;
 
+        TC.setExitGame(false);
+
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() ->
@@ -614,12 +633,12 @@ public class Partita
                     {
                         System.out.println("[END] Gioco concluso con un vincitore!");
                         setPartitaStatus(GameStatus.ENDED);
-                        TC.EndGameUI(); // da rivedere
+                        TC.EndGameUI(); // TODO DA COMPLETARLO
                     }
                     else // se sta andando il gioco, giocatori vivi
                     {
                         System.out.println("[GAME] Passo al prossimo round!");
-                        avanzaRoundUI2Test(); // TODO TEST
+                        avanzaRoundUI2Test();
                     }
                 });
 
@@ -644,6 +663,8 @@ public class Partita
 
     private void avanzaRoundUI2Test()
     {
+        TC.setExitGame(true);
+
         RuotaMazziereUI(); // ruota il mazziere
         mazzo.MescolaMazzo(); // messe le carte, tolti gli effetti e rimescolato
 
@@ -764,9 +785,8 @@ public class Partita
     public void distribuisciCarte()
     {
         AudioManager.distribuisciCarteSuono();
-        AudioManager.distribuisciCarteSuono();
-        AudioManager.distribuisciCarteSuono();
-        AudioManager.distribuisciCarteSuono();
+        // TODO DARE LE CARTE SOLAMENTE AI GIOCATORI VIVI!!
+
         int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
 
         if(primoGiocatore >= giocatori.size()) // se il mazziere e alla fine e devo partire dal primo giocatore

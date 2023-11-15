@@ -170,14 +170,17 @@ public class TavoloController
         bottoneStart.setVisible(false);
     }
 
-    public void scambiaCarta(ActionEvent actionEvent) {
+    public void scambiaCarta(ActionEvent actionEvent)
+    {
         AudioManager.bottoneSuono();
         partita.ScambiaCartaUI();
+        this.setExitGame(false);
     } // all interno della partita faccio la mossa del giocatore attuale
 
     public void passaTurno(ActionEvent actionEvent) {
         AudioManager.bottoneSuono();
         partita.passaTurnoUI();
+        this.setExitGame(false);
         //disableDice();
     } // passo nella partita il turno del player
 
@@ -188,7 +191,7 @@ public class TavoloController
         partita.getCurrentGiocatore().setCarta(partita.mazzo.PescaCartaSenzaEffetto());
         updateCarteUI();
         pulsanteScambiaMazzo(false);
-
+        this.setExitGame(true);
     }
 
     // per uscire dalla partita
@@ -237,6 +240,16 @@ public class TavoloController
     }
 
     public void updateCarteUI() // new Method
+    {
+        updateCarteViviUI();
+    }
+
+    private void updateCarteMortiUI()
+    {
+
+    }
+
+    private void updateCarteViviUI()
     {
         String currentPlayerName = partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome(); // giocatore a cui tocca
         System.out.println("[UpdateUI] - tocca la giocatore: " + currentPlayerName);
@@ -773,5 +786,7 @@ public class TavoloController
         }
 
     }
+
+    public void setExitGame(boolean state){this.exitGame.setVisible(state);}
 }
 
