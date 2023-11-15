@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1403.0" spacing="10.0" style="-fx-background-color: #00AFF2;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="bottoneScambia" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="47.0" prefWidth="196.0" style="-fx-background-color: #AA0000; -fx-background-radius: 30;" text="SCAMBIA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="bottoneEffetto" mnemonicParsing="false" onAction="#scambiaConMazzo" prefHeight="47.0" prefWidth="178.0" style="-fx-background-color: #F7761F; -fx-background-radius: 30;" text="EFFETTO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="bottonePassa" mnemonicParsing="false" onAction="#passaTurno" prefHeight="47.0" prefWidth="166.0" style="-fx-background-color: #165A4C; -fx-background-radius: 30;" text="PASSA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <Pane prefHeight="840.0" prefWidth="191.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="11.0" layoutY="302.0" prefHeight="78.0" prefWidth="170.0" text="WORK IN PROGRESS" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville Old Face" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="exitGame" fitHeight="42.0" fitWidth="40.0" layoutX="73.0" layoutY="693.0" onMouseClicked="#exitGame" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Home.jpg" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="partitaIdLabel" layoutX="15.0" layoutY="489.0" styleClass="LabelWhite" text="ID_PARTITA: P345" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="roundIdLabel" layoutX="45.0" layoutY="583.0" styleClass="LabelWhite" text="ROUND 10" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children></Pane>
+   </left>
+   <right>
+      <Pane BorderPane.alignment="CENTER">
+         <children>
+            <Pane>
+               <children>
+                  <Pane layoutX="621.0" layoutY="547.0" prefHeight="280.0" prefWidth="358.0">
+                     <children>
+                        <ImageView fx:id="cartaPlayer1" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../Assets/Cards/back.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nomePlayer1" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME1" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="132.0" layoutY="149.0" prefHeight="49.0" prefWidth="218.0">
+                           <children>
+                              <ImageView fx:id="life1Pl1" fitHeight="41.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life2Pl1" fitHeight="41.0" fitWidth="106.0" layoutX="78.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life3Pl1" fitHeight="41.0" fitWidth="106.0" layoutX="140.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="lifeGoldPl1" fitHeight="41.0" fitWidth="106.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="137.0" layoutY="194.0" prefHeight="61.0" prefWidth="174.0">
+                           <children>
+                              <ImageView fx:id="mazzierePlayer1Icon" fitHeight="49.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/corona.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="dicePl1" fitHeight="61.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Pane>
+                  <Pane layoutX="618.0" layoutY="10.0" prefHeight="280.0" prefWidth="358.0" rotate="180.0">
+                     <children>
+                        <ImageView fx:id="cartaPlayer3" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../Assets/Cards/back.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nomePlayer3" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME3" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="132.0" layoutY="149.0" prefHeight="49.0" prefWidth="218.0">
+                           <children>
+                              <ImageView fx:id="life1Pl3" fitHeight="41.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life2Pl3" fitHeight="41.0" fitWidth="106.0" layoutX="78.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life3Pl3" fitHeight="41.0" fitWidth="106.0" layoutX="140.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="lifeGoldPl3" fitHeight="41.0" fitWidth="106.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="137.0" layoutY="194.0" prefHeight="61.0" prefWidth="174.0">
+                           <children>
+                              <ImageView fx:id="mazzierePlayer3Icon" fitHeight="49.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/corona.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="dicePl3" fitHeight="61.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Pane>
+                  <Pane layoutX="-26.0" layoutY="276.0" prefHeight="280.0" prefWidth="358.0" rotate="90.0">
+                     <children>
+                        <ImageView fx:id="cartaPlayer2" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../Assets/Cards/back.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nomePlayer2" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME2" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="132.0" layoutY="149.0" prefHeight="49.0" prefWidth="218.0">
+                           <children>
+                              <ImageView fx:id="life1Pl2" fitHeight="41.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life2Pl2" fitHeight="41.0" fitWidth="106.0" layoutX="78.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life3Pl2" fitHeight="41.0" fitWidth="106.0" layoutX="140.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="lifeGoldPl2" fitHeight="41.0" fitWidth="106.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="137.0" layoutY="194.0" prefHeight="61.0" prefWidth="174.0">
+                           <children>
+                              <ImageView fx:id="mazzierePlayer2Icon" fitHeight="49.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/corona.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="dicePl2" fitHeight="61.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Pane>
+                  <Pane layoutX="1053.0" layoutY="273.0" prefHeight="280.0" prefWidth="358.0" rotate="-90.0">
+                     <children>
+                        <ImageView fx:id="cartaPlayer4" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../Assets/Cards/back.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nomePlayer4" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME4" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" layoutX="132.0" layoutY="149.0" prefHeight="49.0" prefWidth="218.0">
+                           <children>
+                              <ImageView fx:id="life1Pl4" fitHeight="41.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life2Pl4" fitHeight="41.0" fitWidth="106.0" layoutX="78.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="life3Pl4" fitHeight="41.0" fitWidth="106.0" layoutX="140.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="lifeGoldPl4" fitHeight="41.0" fitWidth="106.0" layoutX="99.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="137.0" layoutY="194.0" prefHeight="61.0" prefWidth="174.0">
+                           <children>
+                              <ImageView fx:id="mazzierePlayer4Icon" fitHeight="49.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/corona.PNG" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="dicePl4" fitHeight="61.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/dice/dice1.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Pane>
+                  <Pane layoutX="625.0" layoutY="276.0" prefHeight="280.0" prefWidth="358.0">
+                     <children>
+                        <ImageView fx:id="cartaCentrale" fitHeight="215.0" fitWidth="128.0" layoutX="123.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <image>
+                              <Image url="@../../Assets/Cards/back.PNG" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="bottoneStart" layoutX="80.0" layoutY="74.0" mnemonicParsing="false" onAction="#start" prefHeight="71.0" prefWidth="208.0" style="-fx-background-color: #1E123C; -fx-background-radius: 30;" text="START" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <HBox alignment="CENTER" layoutX="-119.0" layoutY="230.0" prefHeight="61.0" prefWidth="624.0" spacing="30.0" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="popUpPane" disable="true" prefHeight="360.0" prefWidth="1302.0" visible="false">
+               <children>
+                  <Pane opacity="0.5" prefHeight="361.0" prefWidth="1603.0" style="-fx-background-color: black;">
+                     <effect>
+                        <Shadow />
+                     </effect>
+                  </Pane>
+                  <Label fx:id="popUpTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="103.0" prefWidth="1603.0" styleClass="EffettoCarta" text="EFFETTO CARTA" textAlignment="CENTER" textFill="#d31500">
+                     <font>
+                        <Font name="System Bold" size="55.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                     <effect>
+                        <Glow level="1.0" />
+                     </effect>
+                  </Label>
+                  <Label fx:id="popUpTextLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="142.0" prefHeight="117.0" prefWidth="1605.0" styleClass="LabelWhite" text="EFFETTO DELLA CARTA/MOSSA" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                     <effect>
+                        <Glow level="0.49" />
+                     </effect>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="CROSSHAIR" />
+               </cursor>
+            </Pane>
+         </children>
+      </Pane>
+   </right>
+</BorderPane>

@@ -98,6 +98,7 @@ public class Partita
     // riprendi la partita dal giocatore che gli passo per parametro
     public void riprendiPartita(int giocatoreRipresaPos)
     {
+        //TODO METTERE COUNTDOWN PER RIPRESA GIOCO CON TANTO DI SOUND!
 
         ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita)); // metto le carte da eliminare
 

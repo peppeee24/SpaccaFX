@@ -65,7 +65,7 @@ public class AudioController {
     }
 
     public void playerSetting() throws URISyntaxException {
-        URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/sottofondo1.wav");
+        URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/ColonnaSonora.wav");
         File sound =new File(risorsa.toURI());
         Media media = new Media(risorsa.toString());
         player = new MediaPlayer(media);

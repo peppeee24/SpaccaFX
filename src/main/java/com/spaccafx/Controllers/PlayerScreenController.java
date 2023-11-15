@@ -58,12 +58,13 @@ public class PlayerScreenController
             Optional<ButtonType> result = alert.showAndWait();
 
 
-            FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo2.fxml"));
+            FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = loaderTavolo.load();
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
             stage.show();
 
 

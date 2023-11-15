@@ -107,6 +107,7 @@ public class TavoloController
                             break;
 
             // mettiamo alert dicendo che il gioco sta per essere ripreso
+            // TODO OVVIAMENTE METTERE CUSTOM ALERTS!
             case STOPPED:   AudioManager.erroreSuono();
                             bottoneStart.setVisible(false);
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
