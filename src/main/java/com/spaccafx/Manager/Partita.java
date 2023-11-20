@@ -529,7 +529,7 @@ public class Partita
 
                     for (IGiocatore giocatore : giocatori)
                     {
-                        if (giocatore.getCarta().getValore() == maxValue)
+                        if (giocatore.getCarta().getValore() == maxValue && giocatore.getRuolo() != RuoloGiocatore.MORTO) // Prendo il valore massimo delle carte dei player vivi
                         {
                             ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
                             giocatoriConValoreMassimo.add(giocatore);
@@ -639,7 +639,7 @@ public class Partita
                     else // se sta andando il gioco, giocatori vivi
                     {
                         System.out.println("[GAME] Passo al prossimo round!");
-                        avanzaRoundUI2Test();
+                        avanzaRoundUI();
                     }
                 });
 
@@ -652,17 +652,6 @@ public class Partita
     }
 
     private void avanzaRoundUI()
-    {
-        lancioDadiIniziale(); // vengono rilanciati i dadi
-        mazzo.MescolaMazzo(); // messe le carte, tolti gli effetti e rimescolato
-
-        this.currentRound ++; // aumenta il round
-        TC.aggiornaInfoUI(); // aggiorna la grafica
-
-        iniziaNuovoRoundUI(); // si reinizia la mano
-    }
-
-    private void avanzaRoundUI2Test()
     {
         TC.setExitGame(true);
 
@@ -786,7 +775,6 @@ public class Partita
     public void distribuisciCarte()
     {
         AudioManager.distribuisciCarteSuono();
-        // TODO DARE LE CARTE SOLAMENTE AI GIOCATORI VIVI!!
 
         int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
 
@@ -795,7 +783,8 @@ public class Partita
             System.out.println("Distribuisco le carte partendo dal PRIMO giocatore");
             for(IGiocatore giocatore : giocatori)
             {
-                giocatore.setCarta(mazzo.PescaCarta());
+                if(giocatore.getRuolo() != RuoloGiocatore.MORTO) // distribuisce la carta solo se il player no ne morto
+                    giocatore.setCarta(mazzo.PescaCarta());
             }
         }
         else // altrimenti devo vedere fino a quando non arriva all ultimo giocatore presente nell array
@@ -813,12 +802,16 @@ public class Partita
                     currentIndex = 0;
                 }
 
-                giocatori.get(currentIndex).setCarta(mazzo.PescaCarta());
+                if(giocatori.get(currentIndex).getRuolo() != RuoloGiocatore.MORTO) // se e un player vivo gli posso cambiare la carta
+                {
+                    giocatori.get(currentIndex).setCarta(mazzo.PescaCarta());
+                }
 
                 currentIndex++;
                 carteDistribuite++;
                 System.out.println("Carte distribuite: " + carteDistribuite);
-            }while(carteDistribuite < giocatori.size()); // fino a quando non do tot carte tanti quanti sono i player continuo a darle
+
+            }while(carteDistribuite < getCountGiocatoriVivi()); // fino a quando non do tot carte tanti quanti sono i player VIVI continuo a darle
         }
 
         System.out.println("Esco dalla distribuzione e do le info...");
@@ -830,9 +823,9 @@ public class Partita
         int numeroPiuAlto = 1; // metto il valore piu piccolo della carta possibile (da noi il piu piccolo e' il piu alto)
 
         // NEW METHOD
-        for (IGiocatore iGiocatore : lista) {
-            if (iGiocatore.getCarta().getValore() >= numeroPiuAlto) {
-                numeroPiuAlto = iGiocatore.getCarta().getValore(); // ho trovato una carta che supera quella che era piu piccola prima
+        for (IGiocatore giocatore : lista) {
+            if (giocatore.getCarta().getValore() >= numeroPiuAlto && giocatore.getRuolo() != RuoloGiocatore.MORTO) {
+                numeroPiuAlto = giocatore.getCarta().getValore(); // ho trovato una carta che supera quella che era piu piccola prima
             }
         }
 
@@ -995,6 +988,19 @@ public class Partita
         }
 
         return false;
+    }
+
+    private int getCountGiocatoriVivi()
+    {
+        int count = 0;
+
+        for (IGiocatore giocatore: giocatori)
+        {
+            if(giocatore.getRuolo() != RuoloGiocatore.MORTO)
+                count++;
+        }
+
+        return count; // restituisco il numero dei giocatori vivi
     }
 
     public void setCurrentRound(int currentRound){this.currentRound = currentRound;}

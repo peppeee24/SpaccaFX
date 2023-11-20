@@ -54,6 +54,7 @@ public class CartaImprevisto extends Carta
 
                 Platform.runLater(() ->
                 {
+                    TC.setExitGame(false);
                     AudioManager.imprevistoSuono();
                     System.out.println("[IMPREVISTO] Sei obbligato a passare il turno!");
                     TC.mostraBannerAttesa("IMPREVISTO [PASSO-FORZATO]", "Sei obbligato a passare il turno!");
@@ -65,7 +66,7 @@ public class CartaImprevisto extends Carta
                 {
                     TC.nascondiBannerAttesa();
                     //this.attivatoSpecial = true;
-                    partita.passaTurnoUI();
+                    partita.passaTurnoUI(); // viene riattivato qui il pulsante exit
                 });
 
             } catch (InterruptedException e) {
@@ -83,6 +84,7 @@ public class CartaImprevisto extends Carta
             try {
                 Platform.runLater(() ->
                 {
+                    TC.setExitGame(false);
                     AudioManager.imprevistoSuono();
                     System.out.println("[IMPREVISTO] Sei obbligato a scambiare la carta con il mazzo");
                     TC.mostraBannerAttesa("IMPREVISTO [SCAMBIO-FORZATO]", "Sei obbligato a scambiare la carta con il mazzo e a passare!");
@@ -107,7 +109,7 @@ public class CartaImprevisto extends Carta
 
                 Thread.sleep(3000); // attesa per lasciar vedere le carte che prende
 
-                Platform.runLater(partita::passaTurnoUI);
+                Platform.runLater(partita::passaTurnoUI); // viene riattivato qui il pulsante
 
 
             } catch (InterruptedException e) {

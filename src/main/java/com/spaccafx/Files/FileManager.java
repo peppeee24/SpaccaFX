@@ -452,7 +452,7 @@ public class FileManager
         return null; // Restituisci null se la partita non è stata trovata o ci sono errori
     }
 
-    public static ArrayList<Carta> convertiCartePartitaJSON(JSONObject partitaJSON)
+    public static ArrayList<Carta> convertiCartePartitaJSON(JSONObject partitaJSON) // prendo carte solo giocatori vivi
     {
         ArrayList<Carta> playerCards = new ArrayList<>();
 
@@ -463,31 +463,37 @@ public class FileManager
             String nomeGiocatore = (String) giocatoreKey;
             JSONObject giocatoreJSON = (JSONObject) giocatoriObject.get(nomeGiocatore);
 
-            JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
+            RuoloGiocatore ruoloGiocatore = RuoloGiocatore.valueOf((String) giocatoreJSON.get("Ruolo"));
 
-            Carta cartaPlayer = null;
-            int valore = Integer.parseInt(cartaObject.get("Valore").toString());
-            SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
-
-            switch (semeCarta)
+            if(ruoloGiocatore != RuoloGiocatore.MORTO)
             {
-                case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
-                    break;
-                case SQUALO:   cartaPlayer = new CartaNormale(valore, semeCarta);
-                    break;
-                case PESCE:   cartaPlayer = new CartaNormale(valore, semeCarta);
-                    break;
-                case VERME:   cartaPlayer = new CartaNormale(valore, semeCarta);
-                    break;
-                case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
-                    break;
-                default:
-                    System.out.println("Errore nella ripresa di una partita!");
-                    System.exit(-1);
+                JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
+
+                Carta cartaPlayer = null;
+                int valore = Integer.parseInt(cartaObject.get("Valore").toString());
+                SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
+
+                switch (semeCarta)
+                {
+                    case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
+                        break;
+                    case SQUALO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                        break;
+                    case PESCE:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                        break;
+                    case VERME:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                        break;
+                    case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
+                        break;
+                    default:
+                        System.out.println("Errore nella ripresa di una partita!");
+                        System.exit(-1);
+                }
+
+                playerCards.add(cartaPlayer); // aggiungiamo la carta
+                System.out.println("Trovata carta giocatore vivo: " + cartaPlayer.toString());
             }
 
-            playerCards.add(cartaPlayer); // aggiungiamo la carta
-            System.out.println("Trovata carta: " + cartaPlayer.toString());
         }
 
         return playerCards;

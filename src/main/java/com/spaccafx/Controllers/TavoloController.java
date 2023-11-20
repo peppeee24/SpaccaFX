@@ -3,6 +3,7 @@ package com.spaccafx.Controllers;
 import com.spaccafx.Cards.Carta;
 import com.spaccafx.Cards.CartaImprevisto;
 import com.spaccafx.Enums.GameStatus;
+import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
@@ -208,6 +209,7 @@ public class TavoloController
     {
         this.updateVitaUI(); // aggiorna tutte le vite dei player
         this.updateCarteUI(); // aggiorna tutte le carte dei giocatori e scopre quella del giocatore a cui tocca
+        this.updateCarteMortiUI(); // aggiorno la grafica dei player morti
         this.updateCartaCentraleMazzoUI(); // imposta la carta centrale
         this.impostaCoroneMazziereUI(); // imposta chi e il mazziere
 
@@ -247,7 +249,67 @@ public class TavoloController
 
     private void updateCarteMortiUI()
     {
+        Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/morte.png")).toString()); // carta back
+        String playerName;
 
+        for(IGiocatore giocatore : partita.giocatori)
+        {
+            if(giocatore.getRuolo() == RuoloGiocatore.MORTO) // aggiorno il back dei player morti
+            {
+                playerName = giocatore.getNome();
+                System.out.println("[Morte-UI] Aggiorno UI giocatore morto: " + playerName);
+
+                if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
+                {
+                    life1Pl1.setVisible(false);
+                    life2Pl1.setVisible(false);
+                    life3Pl1.setVisible(false);
+                    lifeGoldPl1.setVisible(false);
+                    dicePl1.setVisible(false);
+                    // humanPlayerSpace.setVisible(false);
+                    String nomeMorto = nomePlayer1.getText();
+                    nomePlayer1.setText(nomeMorto + " è morto");
+                    cartaPlayer1.setImage(back);
+                }
+                else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
+                {
+                    life1Pl2.setVisible(false);
+                    life2Pl2.setVisible(false);
+                    life3Pl2.setVisible(false);
+                    lifeGoldPl2.setVisible(false);
+                    dicePl2.setVisible(false);
+                    // humanPlayerSpace.setVisible(false);
+                    String nomeMorto = nomePlayer2.getText();
+                    nomePlayer2.setText(nomeMorto + " è morto");
+                    cartaPlayer2.setImage(back);
+                }
+                else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
+                {
+                    life1Pl3.setVisible(false);
+                    life2Pl3.setVisible(false);
+                    life3Pl3.setVisible(false);
+                    lifeGoldPl3.setVisible(false);
+                    dicePl3.setVisible(false);
+                    // humanPlayerSpace.setVisible(false);
+                    String nomeMorto = nomePlayer3.getText();
+                    nomePlayer3.setText(nomeMorto + " è morto");
+                    cartaPlayer3.setImage(back);
+                }
+                else // se il nome equivale al quarto
+                {
+                    life1Pl4.setVisible(false);
+                    life2Pl4.setVisible(false);
+                    life3Pl4.setVisible(false);
+                    lifeGoldPl4.setVisible(false);
+                    dicePl4.setVisible(false);
+                    // humanPlayerSpace.setVisible(false);
+                    String nomeMorto = nomePlayer4.getText();
+                    nomePlayer4.setText(nomeMorto + " è morto");
+                    cartaPlayer4.setImage(back);
+                }
+            }
+
+        }
     }
 
     private void updateCarteViviUI()
@@ -259,36 +321,40 @@ public class TavoloController
 
         for(IGiocatore giocatore : partita.giocatori)
         {
-            playerName = giocatore.getNome();
+            if(giocatore.getRuolo() != RuoloGiocatore.MORTO) // aggiorno soltanto le carte dei giocatori vivi
+            {
+                playerName = giocatore.getNome();
 
-            if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
-            {
-                if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
-                    cartaPlayer1.setImage(giocatore.getCarta().getImmagineCarta());
-                else // se non tocca a lui gli copro la carta
-                    cartaPlayer1.setImage(back);
+                if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
+                {
+                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                        cartaPlayer1.setImage(giocatore.getCarta().getImmagineCarta());
+                    else // se non tocca a lui gli copro la carta
+                        cartaPlayer1.setImage(back);
+                }
+                else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
+                {
+                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                        cartaPlayer2.setImage(giocatore.getCarta().getImmagineCarta());
+                    else // se non tocca a lui gli copro la carta
+                        cartaPlayer2.setImage(back);
+                }
+                else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
+                {
+                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                        cartaPlayer3.setImage(giocatore.getCarta().getImmagineCarta());
+                    else // se non tocca a lui gli copro la carta
+                        cartaPlayer3.setImage(back);
+                }
+                else if(playerName.equalsIgnoreCase(nomePlayer4.getText())) // se il nome equivale al quarto
+                {
+                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                        cartaPlayer4.setImage(giocatore.getCarta().getImmagineCarta());
+                    else // se non tocca a lui gli copro la carta
+                        cartaPlayer4.setImage(back);
+                }
             }
-            else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
-            {
-                if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
-                    cartaPlayer2.setImage(giocatore.getCarta().getImmagineCarta());
-                else // se non tocca a lui gli copro la carta
-                    cartaPlayer2.setImage(back);
-            }
-            else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
-            {
-                if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
-                    cartaPlayer3.setImage(giocatore.getCarta().getImmagineCarta());
-                else // se non tocca a lui gli copro la carta
-                    cartaPlayer3.setImage(back);
-            }
-            else if(playerName.equalsIgnoreCase(nomePlayer4.getText())) // se il nome equivale al quarto
-            {
-                if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
-                    cartaPlayer4.setImage(giocatore.getCarta().getImmagineCarta());
-                else // se non tocca a lui gli copro la carta
-                    cartaPlayer4.setImage(back);
-            }
+
         }
     }
 
@@ -304,16 +370,19 @@ public class TavoloController
         String playerName;
         for(IGiocatore giocatore : partita.giocatori)
         {
-            playerName = giocatore.getNome();
+            if(giocatore.getRuolo() != RuoloGiocatore.MORTO) // mostro tutte le carte solo dei giocatori vivi
+            {
+                playerName = giocatore.getNome();
 
-            if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
-                cartaPlayer1.setImage(giocatore.getCarta().getImmagineCarta());
-            else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
-                cartaPlayer2.setImage(giocatore.getCarta().getImmagineCarta());
-            else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
-                cartaPlayer3.setImage(giocatore.getCarta().getImmagineCarta());
-            else // se il nome equivale al quarto
-                cartaPlayer4.setImage(giocatore.getCarta().getImmagineCarta());
+                if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
+                    cartaPlayer1.setImage(giocatore.getCarta().getImmagineCarta());
+                else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
+                    cartaPlayer2.setImage(giocatore.getCarta().getImmagineCarta());
+                else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
+                    cartaPlayer3.setImage(giocatore.getCarta().getImmagineCarta());
+                else // se il nome equivale al quarto
+                    cartaPlayer4.setImage(giocatore.getCarta().getImmagineCarta());
+            }
         }
     }
 
@@ -526,7 +595,6 @@ public class TavoloController
 
     public void HidePlayerUI(String player)
     {
-        // TODO DEVO NASCONDERE TUTTI I GIOCATORI CHE HANNO IL RUOLO MORTO!
 
         AudioManager.perdenteSuono();
         System.out.println("[UI] elimino: " + player);
