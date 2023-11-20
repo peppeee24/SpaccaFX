@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 public class Partita
 {
@@ -97,29 +98,94 @@ public class Partita
     }
 
     // riprendi la partita dal giocatore che gli passo per parametro
-    public void riprendiPartita(int giocatoreRipresaPos)
+
+    /*public void riprendiPartita(int giocatoreRipresaPos)
     {
-        //TODO METTERE COUNTDOWN PER RIPRESA GIOCO CON TANTO DI SOUND!
-
-        ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita)); // metto le carte da eliminare
-
-        IGiocatore giocatoreRipresa = giocatori.get(giocatoreRipresaPos);
-
-        if(giocatoreRipresa instanceof Giocatore)
+        Thread thread = new Thread(() ->
         {
-            if(this.cartaGiaScambiata) // se ha gia scambiato la carta
-                TC.gestisciPulsanti(false, false, true);
-            else
-                TC.gestisciPulsanti(false, true, true);
+            try {
+                Platform.runLater(() ->
+                {
+                    //TODO METTERE COUNTDOWN PER RIPRESA GIOCO CON TANTO DI SOUND!
+                    ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita)); // metto le carte da eliminare
+                    TC.mostraBannerAttesa("RIPRESA", "RIPRENDO LA PARTITA...");
+                });
 
-            controllaManoIniziale(giocatoreRipresaPos);
-        }
-        else // se sono un bot
-        {
-            //TODO FARE IL CASO DEI BOT
-            TC.gestisciPulsanti(false, false, false);
-            controllaManoRipresaBot(giocatoreRipresaPos);
-        }
+                Thread.sleep(4000);
+
+                Platform.runLater(() ->
+                {
+                    IGiocatore giocatoreRipresa = giocatori.get(giocatoreRipresaPos);
+
+                    if(giocatoreRipresa instanceof Giocatore)
+                    {
+                        if(this.cartaGiaScambiata) // se ha gia scambiato la carta
+                            TC.gestisciPulsanti(false, false, true);
+                        else
+                            TC.gestisciPulsanti(false, true, true);
+
+                        controllaManoIniziale(giocatoreRipresaPos);
+                    }
+                    else // se sono un bot
+                    {
+                        //TODO FARE IL CASO DEI BOT
+                        TC.gestisciPulsanti(false, false, false);
+                        controllaManoRipresaBot(giocatoreRipresaPos);
+
+                        if(!(giocatoreRipresa.getCarta() instanceof CartaImprevisto))
+                            ((Bot) giocatoreRipresa).SceltaBotUI(this, TC);
+                    }
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
+    }
+
+     */
+
+    public void riprendiPartita(int giocatoreRipresaPos) {
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() -> {
+                    // TODO METTERE COUNTDOWN PER RIPRESA GIOCO CON TANTO DI SOUND!
+                    ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita)); // metto le carte da eliminare
+                    TC.mostraBannerAttesa("RIPRESA", "RIPRENDO LA PARTITA...");
+                });
+
+                Thread.sleep(4000);
+
+                Platform.runLater(() -> {
+                    IGiocatore giocatoreRipresa = giocatori.get(giocatoreRipresaPos);
+
+                    if (giocatoreRipresa instanceof Giocatore) {
+                        if (this.cartaGiaScambiata) // se ha gia scambiato la carta
+                            TC.gestisciPulsanti(false, false, true);
+                        else
+                            TC.gestisciPulsanti(false, true, true);
+
+                        controllaManoIniziale(giocatoreRipresaPos);
+                    } else // se sono un bot
+                    {
+                        // TODO FARE IL CASO DEI BOT
+                        TC.gestisciPulsanti(false, false, false);
+
+                        // Esegui controllaManoRipresaBot e poi il codice successivo
+                        controllaManoRipresaBot(giocatoreRipresaPos)
+                                .thenRun(() -> {
+                                    if (!(giocatoreRipresa.getCarta() instanceof CartaImprevisto))
+                                        ((Bot) giocatoreRipresa).SceltaBotUI(this, TC);
+                                });
+                    }
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
     }
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
@@ -233,54 +299,38 @@ public class Partita
 
         thread.start();
     }
-    private void controllaManoRipresaBot(int currentGiocatorePos)
-    {
-        if(isGameStopped())
-            return;
 
-        IGiocatore currentGiocatoreRipresa = giocatori.get(currentGiocatorePos);
-        Carta currentMano = currentGiocatoreRipresa.getCarta();
-        System.out.println("[CONTROLLA-MANO-RIPRESA-BOT] Il giocatore possiede: " + currentMano.toString());
+    private CompletableFuture<Void> controllaManoRipresaBot(int currentGiocatorePos) {
+        return CompletableFuture.runAsync(() -> {
+            if (isGameStopped())
+                return;
 
-        if (currentMano instanceof CartaProbabilita)
-        {
-            System.out.println("[CONTROLLO-MANO-RIPRESA-BOT] Ho una carta speciale PROBABILITA");
+            IGiocatore currentGiocatoreRipresa = giocatori.get(currentGiocatorePos);
+            Carta currentMano = currentGiocatoreRipresa.getCarta();
+            System.out.println("[CONTROLLA-MANO-RIPRESA-BOT] Il giocatore possiede: " + currentMano.toString());
 
-            if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato())
-            {
-                ((CartaProbabilita) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
+            if (currentMano instanceof CartaProbabilita) {
+                System.out.println("[CONTROLLO-MANO-RIPRESA-BOT] Ho una carta speciale PROBABILITA");
 
+                if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato()) {
+                    ((CartaProbabilita) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
+                }
+
+            } else if (currentMano instanceof CartaImprevisto) {
+                System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
+
+                if (!((CartaImprevisto) currentMano).getCartaEffettoAttivato()) {
+                    ((CartaImprevisto) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
+                } else {
+                    if (!this.cartaGiaScambiata) {
+                        ((Bot) currentGiocatoreRipresa).SceltaBotUI(this, TC);
+                    } else {
+                        this.passaTurnoUI();
+                    }
+                }
             }
-
-            if(!this.cartaGiaScambiata)
-                ((Bot)currentGiocatoreRipresa).SceltaBotUI(this, TC); // gli faccio fare la scelta se non ho gia scambiato
-            else
-                this.passaTurnoUI();
-
-        }
-        else if (currentMano instanceof CartaImprevisto)
-        {
-            System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
-
-            if (!((CartaImprevisto) currentMano).getCartaEffettoAttivato())
-            {
-                ((CartaImprevisto) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
-            }
-            else
-            {
-                System.out.println("ERRORE MAI DEVE USCIRE QUI");
-                gestisciTurno(currentGiocatoreRipresa);
-            }
-        } else
-        {
-            System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale NORMALE");
-            if(!this.cartaGiaScambiata)
-                ((Bot)currentGiocatoreRipresa).SceltaBotUI(this, TC); // gli faccio fare la scelta se non ho gia scambiato
-            else
-                this.passaTurnoUI();
-        }
+        });
     }
-
 
     private void gestisciCartaProbabilita(Carta currentMano, IGiocatore currentGiocatoreScambio) {
         if(isGameStopped())

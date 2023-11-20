@@ -10,6 +10,7 @@ import com.spaccafx.Enums.*;
 import javafx.application.Platform;
 
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
 
 public class CartaProbabilita extends Carta
 {
@@ -48,14 +49,14 @@ public class CartaProbabilita extends Carta
 
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
-        if(partita.isGameStopped())
-            return;
-
         Thread thread = new Thread(() -> {
             try {
 
                 Platform.runLater(() ->
                 {
+                    if(partita.isGameStopped())
+                        return;
+
                     TC.setExitGame(false);
                     AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Aumenta vita con dado");
@@ -124,15 +125,15 @@ public class CartaProbabilita extends Carta
 
     private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // ok pensiamo
     {
-        if(partita.isGameStopped())
-            return;
-
         // todo impostare suono per scambio com mazzo
         Thread thread = new Thread(() -> {
             try {
 
                 Platform.runLater(() ->
                 {
+                    if(partita.isGameStopped())
+                        return;
+
                     TC.setExitGame(false);
                     AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Posso scambiare la carta con il mazzo");
