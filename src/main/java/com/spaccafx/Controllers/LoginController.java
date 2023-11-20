@@ -42,10 +42,14 @@ public class LoginController {
 
         if (user.compareTo(UserField) == 0 && pwd.compareTo(PasswordField) == 0) {
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            /*Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Accesso Eseguito");
             alert.setContentText("Stai per essere reindirizzato");
             Optional<ButtonType> result = alert.showAndWait();
+
+             */
+
+            AlertController.showConfirm("Accesso Eseguito, stai per essere reindirizzato");
 
 
             FXMLLoader SelectionMenu = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
@@ -57,10 +61,11 @@ public class LoginController {
         } else {
 
 AudioManager.erroreSuono();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Errore");
-            alert.setContentText("Username o Password non corretti");
-            Optional<ButtonType> result = alert.showAndWait();
+
+            AudioManager.erroreSuono();
+            AlertController.showErrore( "Errore: Credenziali errate!");
+
+
         }
     }
 
@@ -76,10 +81,15 @@ AudioManager.erroreSuono();
 
     public void telegram(MouseEvent mouseEvent) throws IOException {
         AudioManager.erroreSuono();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+      /*  Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Recupera passowrd");
         alert.setContentText("Stai per essere reinderizzato su Telegram");
         Optional<ButtonType> result = alert.showAndWait();
+
+       */
+
+        AlertController.showConfirm("Stai per essere reinderizzato su Telegram");
 
         new Thread(() -> {
             try {

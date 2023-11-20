@@ -51,18 +51,24 @@ public class AudioController {
         suoniOFF = new CheckBox();
         musicaOFF = new CheckBox();
         musicaON = new CheckBox();
-        volumeSlider =new Slider();
+       // volumeSlider =new Slider();
         playerSetting();
         //   playAudio();
-        volumeSlider.setValue(player.getVolume()*100);
-        volumeSlider.valueProperty().addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {
-                player.setVolume(volumeSlider.getValue()/100);
-            }
-        });
+        if (volumeSlider != null) {
+            volumeSlider.setValue(player.getVolume() * 100);
 
+            volumeSlider.valueProperty().addListener(new InvalidationListener() {
+                @Override
+                public void invalidated(Observable observable) {
+                    player.setVolume(volumeSlider.getValue() / 100);
+                }
+            });
+        } else {
+            System.err.println("Lo slider del volume non è stato inizializzato correttamente.");
+        }
     }
+
+
 
     public void playerSetting() throws URISyntaxException {
         URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/ColonnaSonora.wav");

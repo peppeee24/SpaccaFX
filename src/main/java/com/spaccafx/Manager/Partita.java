@@ -1,5 +1,6 @@
 package com.spaccafx.Manager;
 
+import com.spaccafx.Controllers.AlertController;
 import com.spaccafx.Controllers.ShareData;
 import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.*;
@@ -992,13 +993,16 @@ public class Partita
 
     public void SavePartita(MouseEvent mouseEvent) throws IOException
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Vuoi uscire dalla partita");
         alert.setContentText("Se confermi i tuoi dati saranno salvati");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK)
-        {
+       */
+        AlertController.showConfirm("Salvo i dati del gioco");
+
+      //  Optional<ButtonType> result = alert.showAndWait();
+      //  if (result.isPresent() && result.get() == ButtonType.OK)
+       // {
             if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
             {
                 System.out.println("isGamerunning: " + this.isGameRunning);
@@ -1010,10 +1014,10 @@ public class Partita
 
             TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu a prescindere
 
-        } else {
+       // } else {
             // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
             System.out.println("Continua il gioco");
-        }
+      //  }
 
     }
 

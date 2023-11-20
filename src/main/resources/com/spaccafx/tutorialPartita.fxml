@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" styleClass="bodybg" stylesheets="@../../Assets/GUI/Styles/PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TutorialController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" styleClass="bodybg" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TutorialController">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -20,7 +20,7 @@
                               <Image url="@../../Assets/Game/Environment/indietro.PNG" />
                            </image>
                         </ImageView>
-                        <Text layoutX="342.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuto su Spacca FX" />
+                        <Text layoutX="303.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Label" text="Benvenuto su Spacca FX" />
                      </children></AnchorPane>
             </content>
           </Tab>

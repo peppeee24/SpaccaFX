@@ -52,10 +52,14 @@ public class PlayerScreenController
 
         if (passwordPartita == PasswordField)
         {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+           /* Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Accesso Eseguito");
             alert.setContentText("Stai per entrare nel gioco");
             Optional<ButtonType> result = alert.showAndWait();
+
+            */
+
+            AlertController.showConfirm("Conferma: Accesso Eseguito, stai per entrare nel gioco");
 
 
             FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
@@ -75,10 +79,13 @@ public class PlayerScreenController
         else // se sbagliato
         {
             AudioManager.erroreSuono();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+        /*    Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore");
             alert.setContentText("Codice partita Errato");
             Optional<ButtonType> result = alert.showAndWait();
+
+         */
+            AlertController.showErrore("Errore: Codice partita Errato!");
         }
     }
 
@@ -90,6 +97,27 @@ public class PlayerScreenController
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    public void portaATutorial(MouseEvent mouseEvent) throws IOException {
+        AudioManager.erroreSuono();
+
+      /*  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Recupera passowrd");
+        alert.setContentText("Stai per essere reinderizzato su Telegram");
+        Optional<ButtonType> result = alert.showAndWait();
+
+       */
+
+        AlertController.showConfirm("Stai per essere reinderizzato al Tutorial");
+
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Tutorial.fxml"));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(Indietro.load());
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 

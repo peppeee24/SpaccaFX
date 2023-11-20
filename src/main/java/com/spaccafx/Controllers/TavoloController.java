@@ -110,13 +110,16 @@ public class TavoloController
             // TODO OVVIAMENTE METTERE CUSTOM ALERTS!
             case STOPPED:   AudioManager.erroreSuono();
                             bottoneStart.setVisible(false);
-                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+                          /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("RIPRESA MATCH!");
                             alert.setContentText("Vuoi veramente riprendere il gioco?");
                             Optional<ButtonType> result = alert.showAndWait();
 
-                            if(result.isPresent() && result.get() == ButtonType.OK) // se accetta di riprendere
-                            {
+                           */
+                            AlertController.showConfirm("Vuoi riprendere la partita?");
+
+
                                 System.out.println("Stai per riprendere il gioco");
                                 System.out.println("Current Giocatore: " + partita.getCurrentGiocatore().getNome()
                                         + " in posizione: " + partita.getCurrentGiocatorePos());
@@ -124,11 +127,9 @@ public class TavoloController
                                 partita.StampaInfoGiocatori();
 
                                 riprendiGioco(this.partita);
-                            }
-                            else
-                            {
+
                                 // lo riporto fuori e non carico nulla
-                            }
+
                             break;
 
             case PLAYING:

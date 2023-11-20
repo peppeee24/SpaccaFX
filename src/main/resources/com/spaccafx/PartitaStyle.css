@@ -39,6 +39,24 @@
 
 }
 
+.AlertRosso{
+    -fx-font-size: 30;
+    -fx-text-fill: red;
+
+}
+
+.AlertArancio{
+    -fx-font-size: 30;
+    -fx-text-fill: orange;
+
+}
+
+.AlertBlu{
+    -fx-font-size: 30;
+    -fx-text-fill: blue;
+
+}
+
 .EffettoCarta{
     -fx-font-size: 60;
     -fx-text-fill: red;
@@ -62,6 +80,13 @@
    -fx-text-fill: white;
   -fx-font-family: 'Press Start 2P', sans-serif;
    -fx-font-size: 20;
+
+}
+
+.LabelWhiteError{
+    -fx-text-fill: white;
+    -fx-font-family: 'Press Start 2P', sans-serif;
+    -fx-font-size: 10;
 
 }
 

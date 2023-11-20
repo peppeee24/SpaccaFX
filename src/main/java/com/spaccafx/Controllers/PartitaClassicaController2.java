@@ -393,10 +393,14 @@ public class PartitaClassicaController2 {
         //int currentIdPartita = FileManager.creaCodicePartitaUnico();
 
         AudioManager.bottoneSuono();
-        Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
+
+    /*    Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
         alert3.setTitle("Piccolo LAG!");
         alert3.setContentText("Sto caricando il codice, attendi....");
         Optional<ButtonType> result3 = alert3.showAndWait();
+
+     */
+        AlertController.showWarning("Attenzione: Attendi Caricamento");
 
 
         int somma = getNumeroGiocatori() + getNumeroBot();
@@ -414,18 +418,24 @@ public class PartitaClassicaController2 {
             // codicePartita.getStyleClass().add("copiable-label");
             // TODO non riesco a rendere selezionabile la label
 
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+           /* Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Codice partita generato");
             alert.setContentText("Comunica il codice ai giocatori che dovranno inserirlo successivamente");
             Optional<ButtonType> result = alert.showAndWait();
 
+            */
+            AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
+
 
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
            AudioManager.erroreSuono();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+          /*  Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Parametri errati");
             alert.setContentText("Si puà giocare tra 2 e 4 giocatori, compresi bot, rivedi le impostazioni");
             Optional<ButtonType> result = alert.showAndWait();
+
+           */
+            AlertController.showErrore("Errore: Player/BOT non impostati correttamente");
 
         }
     }
