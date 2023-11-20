@@ -49,6 +49,9 @@ public class CartaImprevisto extends Carta
 
     private void ObbligoPasso(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
+        if(partita.isGameStopped())
+            return;
+
         Thread thread = new Thread(() -> {
             try {
 
@@ -79,6 +82,8 @@ public class CartaImprevisto extends Carta
 
     private void ObbligoScambioConMazzo(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // TODO rivedere controllaMano con questo metodo, problema setcartagiocatore
     {
+        if(partita.isGameStopped())
+            return;
 
         Thread thread = new Thread(() -> {
             try {

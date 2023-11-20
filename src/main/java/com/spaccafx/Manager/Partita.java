@@ -114,6 +114,10 @@ public class Partita
         else // se sono un bot
         {
             //TODO FARE IL CASO DEI BOT
+            if(this.cartaGiaScambiata)
+                this.passaTurnoUI(); // il bot puo decidere solo di passare il turno
+            else
+                controllaManoRipresaBot(giocatoreRipresaPos);
         }
 
         controllaManoIniziale(giocatoreRipresaPos);
@@ -230,6 +234,25 @@ public class Partita
 
         thread.start();
     }
+    private void controllaManoRipresaBot(int currentGiocatorePos)
+    {
+        if(isGameStopped())
+            return;
+
+        IGiocatore currentGiocatoreRipresa = giocatori.get(currentGiocatorePos);
+        Carta currentMano = currentGiocatoreRipresa.getCarta();
+        System.out.println("[CONTROLLA-MANO-RIPRESA-BOT] Il giocatore possiede: " + currentMano.toString());
+
+        if (currentMano instanceof CartaProbabilita)
+        {
+            gestisciCartaProbabilita(currentMano, currentGiocatoreRipresa);
+        } else if (currentMano instanceof CartaImprevisto) {
+            gestisciCartaImprevisto(currentMano, currentGiocatoreRipresa);
+        } else {
+            gestisciCartaNormale(currentGiocatoreRipresa);
+        }
+    }
+
 
     private void gestisciCartaProbabilita(Carta currentMano, IGiocatore currentGiocatoreScambio) {
         if(isGameStopped())
@@ -273,7 +296,9 @@ public class Partita
         if (giocatore instanceof Bot)
         {
             passaTurnoUI();
-        } else {
+        }
+        else
+        {
             TC.gestisciPulsanti(false, false, true);
         }
     }
@@ -937,7 +962,6 @@ public class Partita
 
     public void SavePartita(MouseEvent mouseEvent) throws IOException
     {
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Vuoi uscire dalla partita");
         alert.setContentText("Se confermi i tuoi dati saranno salvati");

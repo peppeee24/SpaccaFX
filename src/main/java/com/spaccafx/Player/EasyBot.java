@@ -33,6 +33,9 @@ public class EasyBot extends Bot
     @Override
     public void SceltaBotUI(Partita p, TavoloController TC)
     {
+        if(p.isGameStopped())
+            return;
+
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() ->

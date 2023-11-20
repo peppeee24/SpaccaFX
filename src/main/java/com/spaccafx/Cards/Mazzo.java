@@ -46,6 +46,7 @@ public class Mazzo
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.SQUALO + "/" + SemeCarta.SQUALO + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
+            carta.setCartaEffettoAttivato(true);
             mazzoCarte.add(carta);
         }
 
@@ -55,6 +56,7 @@ public class Mazzo
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PESCE + "/" + SemeCarta.PESCE + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
+            carta.setCartaEffettoAttivato(true);
             mazzoCarte.add(carta);
         }
 
@@ -64,6 +66,7 @@ public class Mazzo
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.VERME + "/" + SemeCarta.VERME + c + ".PNG").toString());
 
             carta.setImage(cartaImage);
+            carta.setCartaEffettoAttivato(true);
             mazzoCarte.add(carta);
         }
     }
@@ -85,6 +88,7 @@ public class Mazzo
 
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.IMPREVISTO + "/" + SemeCarta.IMPREVISTO + newVal + ".PNG").toString());
             cartaImprevisto.setImage(cartaImage);
+            cartaImprevisto.setCartaEffettoAttivato(false);
 
             mazzoCarte.add(cartaImprevisto); // vuol dire che e unica e la creo
         }
@@ -108,6 +112,7 @@ public class Mazzo
 
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PROBABILITA + "/" + SemeCarta.PROBABILITA + newVal + ".PNG").toString());
             cartaProbabilita.setImage(cartaImage);
+            cartaProbabilita.setCartaEffettoAttivato(false);
 
             mazzoCarte.add(cartaProbabilita); // vuol dire che e unica e la creo
 

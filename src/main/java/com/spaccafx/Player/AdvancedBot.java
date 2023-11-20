@@ -25,6 +25,9 @@ public class AdvancedBot extends Bot
     @Override
     public void SceltaBotUI(Partita p, TavoloController TC)
     {
+        if(p.isGameStopped())
+            return;
+
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() ->
@@ -59,6 +62,7 @@ public class AdvancedBot extends Bot
     @Override
     public boolean attivoEffetto(Partita p, TavoloController TC)
     {
+
         final int[] min = { 0 }; // Dichiarare min al di fuori del thread
 
         Thread thread = new Thread(() -> {

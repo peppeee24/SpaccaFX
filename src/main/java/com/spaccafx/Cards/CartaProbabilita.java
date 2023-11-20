@@ -48,6 +48,9 @@ public class CartaProbabilita extends Carta
 
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
+        if(partita.isGameStopped())
+            return;
+
         Thread thread = new Thread(() -> {
             try {
 
@@ -121,6 +124,9 @@ public class CartaProbabilita extends Carta
 
     private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // ok pensiamo
     {
+        if(partita.isGameStopped())
+            return;
+
         // todo impostare suono per scambio com mazzo
         Thread thread = new Thread(() -> {
             try {
