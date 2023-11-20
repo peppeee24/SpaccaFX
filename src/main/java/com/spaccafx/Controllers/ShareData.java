@@ -11,6 +11,8 @@ public class ShareData {
     private TavoloController tavoloController;
 
     private PartitaSelectorController partitaSelectorController;
+
+    private AudioController audioController;
     private int codice;
 
     private ShareData() {
@@ -48,6 +50,14 @@ public class ShareData {
         this.partitaSelectorController = partitaSelectorController;
     }
 
+    public AudioController getAudioController() {
+        return audioController;
+    }
+
+    public void setAudioController(AudioController audioController) {
+        this.audioController = audioController;
+    }
+
     public Partita getPartita() {
         return partita;
     }
@@ -56,13 +66,5 @@ public class ShareData {
         this.partita = partita;
     }
 
-    /*public void setPassword(Partita partita) {
-        this.codice = partita.getCodicePartita();
-    }
 
-    public int getPassword() {
-        return codice;
-    }
-
-     */
 }

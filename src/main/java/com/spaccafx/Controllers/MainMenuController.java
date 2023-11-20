@@ -24,7 +24,23 @@ public class MainMenuController {
 
     public PartitaClassicaController2 pcc;
 
+    private ShareData shareData;
 
+
+    public void setShareData(ShareData shareData) {
+        this.shareData = shareData;
+    }
+
+    public void initialize() throws URISyntaxException {
+
+
+        // Fai partire la musica
+        if (shareData != null && shareData.getAudioController() != null) {
+            System.out.println("Playing audio...");
+            shareData.getAudioController().playAudio();
+        } else
+            System.out.println("AudioController not found in ShareData");
+    }
     public void setPartitaClassicaController(PartitaClassicaController2 pcc) {
         this.pcc = pcc;
         System.out.println("MMC" + pcc);

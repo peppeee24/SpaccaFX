@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
@@ -40,20 +41,35 @@ public class AudioController {
 
     @FXML
     Tab tabVolume, tabRiconoscimenti;
+    @FXML
     Slider volumeSlider;
-    CheckBox suoniOFF, musicaOFF, musicaON;
+
+    @FXML
     ImageView soundImage;
-    MediaPlayer player;
+    @FXML
+    static MediaPlayer player;
+
+    @FXML
+    Button musicaONButton, musicaOFFButton;
+
+    private ShareData shareData; // Aggiungi un riferimento all'istanza di ShareData
+
+    public void setShareData(ShareData shareData) {
+        this.shareData = shareData;
+    }
 
 
 
     public void initialize() throws URISyntaxException {
-        suoniOFF = new CheckBox();
-        musicaOFF = new CheckBox();
-        musicaON = new CheckBox();
-       // volumeSlider =new Slider();
+
+        ShareData.getInstance().setAudioController(this); // gli passo classe partitacontroller
+      //  ShareData.getInstance().set(this.P);
         playerSetting();
         //   playAudio();
+
+// Inizializza l'istanza di ShareData e setta se stesso come AudioController
+
+
         if (volumeSlider != null) {
             volumeSlider.setValue(player.getVolume() * 100);
 
@@ -63,14 +79,26 @@ public class AudioController {
                     player.setVolume(volumeSlider.getValue() / 100);
                 }
             });
+            ShareData shareData = ShareData.getInstance();
+            shareData.setAudioController(this);
+
         } else {
             System.err.println("Lo slider del volume non è stato inizializzato correttamente.");
         }
+
+        player.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                resetMedia(); // Riavvia la canzone dall'inizio
+                playAudio(); // Avvia la riproduzione
+            }
+        });
+
     }
 
 
 
-    public void playerSetting() throws URISyntaxException {
+    public  void playerSetting() throws URISyntaxException {
         URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/ColonnaSonora.wav");
         File sound =new File(risorsa.toURI());
         Media media = new Media(risorsa.toString());
@@ -80,7 +108,7 @@ public class AudioController {
     }
 
     //play audio
-    public void playAudio()
+    public  void playAudio()
     {
         player.play();
     }
@@ -96,41 +124,25 @@ public class AudioController {
         player.pause();
     }
 
+
+
     public void resetMedia() {
         player.seek(Duration.seconds(0));
     }
 
 
 
-    public void disattivaSuoni(ActionEvent event) { // Rivedere come gestire
-        if (!suoniOFF.isSelected());{
-            // TODO da capire come implementare
-            AudioManager.disattivaSuoni();
-            System.out.println("Hai selezionato il checkbox per disattivare i suoni");
-        }
-
+    public void musicaPlayButton(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
+        playAudio();
 
     }
 
-
-    public void disattivaMusica(ActionEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (!musicaOFF.isSelected() == true){
-            pauseAudio();
-            System.out.println("Ho premuto il checkbox per disattivare l'audio");
-        }
+    public void musicaStopButton(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
+        pauseAudio();
 
     }
-
-    public void attivaMusica(ActionEvent event) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        if (!musicaON.isSelected() == true){
-            resetMedia();
-            playAudio();
-            System.out.println("Ho premuto il checkbox per attivare l'audio");
-        }
-
-    }
-
-
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));

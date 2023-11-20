@@ -1,6 +1,8 @@
 package com.spaccafx;
 
 import com.spaccafx.Cards.CartaImprevisto;
+import com.spaccafx.Controllers.AudioController;
+import com.spaccafx.Controllers.ShareData;
 import com.spaccafx.ExternalApps.SpaccaTGBot;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Interface.IGiocatore;
@@ -36,6 +38,8 @@ import java.io.*;
 public class Spacca extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
+
 
 // TODO inserire animazioni
         Thread thread = new Thread(() -> {
@@ -94,6 +98,7 @@ public class Spacca extends Application {
                 Thread.sleep(3000);
 
                 Platform.runLater(() -> {
+
 
                     FXMLLoader MainMenu = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
                     Scene scene = null;

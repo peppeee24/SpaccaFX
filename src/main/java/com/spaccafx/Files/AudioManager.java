@@ -170,13 +170,6 @@ File sound =new File(risorsa.toURI());
         // }
     }
 
-    public static void disattivaSuoni(){
-
-
-    }
-
-
-
 
 
 }
