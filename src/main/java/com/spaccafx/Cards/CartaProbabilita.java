@@ -34,12 +34,12 @@ public class CartaProbabilita extends Carta
 
         //partita.mazzo.StampaMazzo(); // DA CANCELLARE PER DEBUG!
 
-        int scelta = (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
+        int scelta = (int)((1 + Math.random() * 1)); //genero o 1 o 2 che sono i "codici" delle scelte;
 
         switch(scelta)
         {
-            case 1:  ScambiaCartaConMazzoUI(partita, currentGiocatore, TC); break;
-            case 2:  AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
+            case 1:  AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
+            //case 2:  AumentaVitaConDadoUI(partita, currentGiocatore, TC); break;
             default: break;
         }
 

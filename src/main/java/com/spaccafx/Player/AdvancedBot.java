@@ -25,13 +25,16 @@ public class AdvancedBot extends Bot
     @Override
     public void SceltaBotUI(Partita p, TavoloController TC)
     {
-        if(p.isGameStopped())
-            return;
-
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() ->
                 {
+                    if(p.isGameStopped())
+                        return;
+
+                    TC.setExitGame(false);
+                    TC.gestisciPulsanti(false, false, false);
+
                     System.out.println("[ADV-BOT] Sto facendo la scelta...");
                     TC.mostraBannerAttesa("[ADV-BOT]", "Sto decidendo la scelta...");
                 });

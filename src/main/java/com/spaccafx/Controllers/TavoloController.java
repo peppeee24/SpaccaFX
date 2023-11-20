@@ -88,8 +88,7 @@ public class TavoloController
         this.partita = FileManager.leggiPartitaDaFile(codicePartita); // prendiamo la partita (codice, passw, giocatori, stato)
         this.partita.impostaTavoloController();
         inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
-
-        //TODO RIMUOVERE DAL MAZZO CHE SI CREA LE CARTE CHE HANNO I GIOCATORI, ALTRIMENTI RISCHIO DUPLICAZIONE!!
+        this.updateVitaUI();
 
         System.out.println("Codice della partita: " + partita.getCodicePartita());
 
@@ -730,6 +729,10 @@ public class TavoloController
    public void gestisciPulsanteScambio(boolean sNormale){
        bottoneScambia.setVisible(sNormale);
    }
+
+    public void gestisciPulsantePassa(boolean passa){
+        bottonePassa.setVisible(passa);
+    }
     public void mostraCorone()
     {
         mazzierePlayer1Icon.setVisible(true);

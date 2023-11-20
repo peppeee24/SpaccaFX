@@ -110,17 +110,15 @@ public class Partita
                 TC.gestisciPulsanti(false, false, true);
             else
                 TC.gestisciPulsanti(false, true, true);
+
+            controllaManoIniziale(giocatoreRipresaPos);
         }
         else // se sono un bot
         {
             //TODO FARE IL CASO DEI BOT
-            if(this.cartaGiaScambiata)
-                this.passaTurnoUI(); // il bot puo decidere solo di passare il turno
-            else
-                controllaManoRipresaBot(giocatoreRipresaPos);
+            TC.gestisciPulsanti(false, false, false);
+            controllaManoRipresaBot(giocatoreRipresaPos);
         }
-
-        controllaManoIniziale(giocatoreRipresaPos);
     }
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
@@ -129,6 +127,7 @@ public class Partita
             return;
 
         TC.setExitGame(true);
+        TC.gestisciPulsanti(false, false, false);
 
         Thread thread = new Thread(() -> {
             try {
@@ -162,7 +161,6 @@ public class Partita
 
                     if(currentGiocatore instanceof Bot)
                     {
-                        TC.gestisciPulsanti(false, false, false); // facciamo scomparire i bottoni ai bot inizialmente
                         System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
                         controllaManoIniziale(currentGiocatorePos);
 
@@ -245,11 +243,40 @@ public class Partita
 
         if (currentMano instanceof CartaProbabilita)
         {
-            gestisciCartaProbabilita(currentMano, currentGiocatoreRipresa);
-        } else if (currentMano instanceof CartaImprevisto) {
-            gestisciCartaImprevisto(currentMano, currentGiocatoreRipresa);
-        } else {
-            gestisciCartaNormale(currentGiocatoreRipresa);
+            System.out.println("[CONTROLLO-MANO-RIPRESA-BOT] Ho una carta speciale PROBABILITA");
+
+            if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato())
+            {
+                ((CartaProbabilita) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
+
+            }
+
+            if(!this.cartaGiaScambiata)
+                ((Bot)currentGiocatoreRipresa).SceltaBotUI(this, TC); // gli faccio fare la scelta se non ho gia scambiato
+            else
+                this.passaTurnoUI();
+
+        }
+        else if (currentMano instanceof CartaImprevisto)
+        {
+            System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
+
+            if (!((CartaImprevisto) currentMano).getCartaEffettoAttivato())
+            {
+                ((CartaImprevisto) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
+            }
+            else
+            {
+                System.out.println("ERRORE MAI DEVE USCIRE QUI");
+                gestisciTurno(currentGiocatoreRipresa);
+            }
+        } else
+        {
+            System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale NORMALE");
+            if(!this.cartaGiaScambiata)
+                ((Bot)currentGiocatoreRipresa).SceltaBotUI(this, TC); // gli faccio fare la scelta se non ho gia scambiato
+            else
+                this.passaTurnoUI();
         }
     }
 
@@ -353,6 +380,8 @@ public class Partita
     {
         if(isGameStopped())
             return;
+
+        TC.gestisciPulsanteScambio(false);
 
         Thread thread = new Thread(() -> {
             try {
@@ -481,7 +510,7 @@ public class Partita
         if(isGameStopped())
             return;
 
-        // TODO DEVE PASSARE AL GIOCATORE SUCCESSIVO CHE NON E UN MORTO!
+        TC.gestisciPulsanti(false, false, false);
 
         Thread thread = new Thread(() -> {
             try {
@@ -530,6 +559,7 @@ public class Partita
             return;
 
         TC.setExitGame(false);
+        TC.gestisciPulsanti(false,false,false);
 
         Thread thread = new Thread(() -> {
             try {
@@ -997,7 +1027,6 @@ public class Partita
     {
         this.mazzo = new Mazzo(); // genera un nuovo mazzo
         this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
-
     }
 
     public boolean getCartaGiaScambiata(){return this.cartaGiaScambiata;}
