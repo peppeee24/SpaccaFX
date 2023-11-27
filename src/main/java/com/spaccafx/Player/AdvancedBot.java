@@ -35,7 +35,7 @@ public class AdvancedBot extends Bot
                     TC.setExitGame(false);
                     TC.gestisciPulsanti(false, false, false);
 
-                    System.out.println("[ADV-BOT] Sto facendo la scelta...");
+                    System.out.println("[ADV-BOT - SCELTA NORMALE] Sto facendo la scelta...");
                     TC.mostraBannerAttesa("[ADV-BOT]", "Sto decidendo la scelta...");
                 });
 
@@ -72,7 +72,7 @@ public class AdvancedBot extends Bot
             try {
                 Platform.runLater(() ->
                 {
-                    System.out.println("[ADV-BOT] Sto facendo la scelta...");
+                    System.out.println("[ADV-BOT - EFFETTO SCELTA] Sto facendo la scelta...");
                     TC.mostraBannerAttesa("[ADV-BOT]", "Sto decidendo la scelta...");
                 });
 
