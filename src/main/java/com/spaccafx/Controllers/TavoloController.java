@@ -60,7 +60,7 @@ public class TavoloController
     ImageView dicePl1, dicePl2, dicePl3, dicePl4, exitGame; // dadi
 
     @FXML
-    Button bottoneStart, bottoneEffetto, bottoneScambia, bottonePassa; // bottoni partita
+    Button bottoneStart, bottoneEffetto, bottoneScambia, bottonePassa, bottoneRiprendiBot; // bottoni partita
 
 
     //private PartitaClassicaController2 PC;
@@ -97,6 +97,22 @@ public class TavoloController
 
     private void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
 
+    public void riprendiBot()
+    {
+        if(partita.getCurrentGiocatore() instanceof Bot)
+        {
+            gestisciPulsanteRiprendiBot(false);
+
+            if(partita.getCartaGiaScambiata())
+                partita.passaTurnoUI();
+            else
+                ((Bot) partita.getCurrentGiocatore()).SceltaBotUI(this.partita, this);
+
+        }
+    }
+
+
+
     public void preInizializzazioneTavolo(GameStatus gameStatus)
     {
         switch (gameStatus)
@@ -108,6 +124,7 @@ public class TavoloController
 
             // mettiamo alert dicendo che il gioco sta per essere ripreso
             // TODO OVVIAMENTE METTERE CUSTOM ALERTS!
+            // TODO METTERE LEADERBOARDS
             case STOPPED:   AudioManager.erroreSuono();
                             bottoneStart.setVisible(false);
 
@@ -145,6 +162,7 @@ public class TavoloController
         nascondiCorone();
         nascondiBannerAttesa();
         gestisciPulsanti(false, false ,false);
+        gestisciPulsanteRiprendiBot(false);
         nascondiDadi();
     }
 
@@ -729,6 +747,11 @@ public class TavoloController
 
    public void gestisciPulsanteScambio(boolean sNormale){
        bottoneScambia.setVisible(sNormale);
+   }
+
+   public void gestisciPulsanteRiprendiBot(boolean flag)
+   {
+       bottoneRiprendiBot.setVisible(flag);
    }
 
     public void gestisciPulsantePassa(boolean passa){

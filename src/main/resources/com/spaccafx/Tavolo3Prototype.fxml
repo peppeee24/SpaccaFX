@@ -41,6 +41,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="bottoneRiprendiBot" layoutX="1010.0" layoutY="17.0" mnemonicParsing="false" onAction="#riprendiBot" prefHeight="47.0" prefWidth="196.0" style="-fx-background-color: #AA0000; -fx-background-radius: 30;" text="CONTINUA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
          <BorderPane.margin>
             <Insets left="20.0" right="20.0" />

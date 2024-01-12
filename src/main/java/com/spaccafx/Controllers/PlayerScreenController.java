@@ -69,7 +69,7 @@ public class PlayerScreenController
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-           // stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
+            //stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
             stage.show();
 
 
