@@ -63,7 +63,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label fx:id="giocaatore1" prefHeight="14.0" prefWidth="210.0" text="Giocatore1" GridPane.rowIndex="1" />
+                        <Label fx:id="giocatore1" prefHeight="14.0" prefWidth="210.0" text="Giocatore1" GridPane.rowIndex="1" />
                         <Label fx:id="giocatore2" text="Giocatore2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="giocatore3" text="Giocatore3" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Label fx:id="giocatore4" text="Giocatore4" GridPane.columnIndex="3" GridPane.rowIndex="1" />

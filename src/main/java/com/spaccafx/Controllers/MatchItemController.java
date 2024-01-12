@@ -83,17 +83,17 @@ public class MatchItemController
         try
         {
             AudioManager.bottoneSuono();
-            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+            FXMLLoader preGameScreen = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Parent root = playerScreen.load();
+            Parent root = preGameScreen.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-            PlayerScreenController playerController = playerScreen.getController();
-            playerController.setInfoPartita(codicePartita, passwordPartita);
+            PreGameController preGameController = preGameScreen.getController();
+            preGameController.setInfoPartita(codicePartita, passwordPartita);
         }
         catch (IOException e)
         {

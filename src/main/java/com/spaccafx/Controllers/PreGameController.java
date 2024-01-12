@@ -28,26 +28,42 @@ public class PreGameController
 
     @FXML
     ImageView user1, user2, user3, user4, cuore1, cuore2, cuore3, cuore4;
+
+    private int codicePartita, passwordPartita;
+
+    public void setInfoPartita(int codicePartita, int passwordPartita)
+    {
+        this.codicePartita = codicePartita;
+        this.passwordPartita = passwordPartita;
+    }
+
     public void apriTavolo(ActionEvent actionEvent) throws IOException // bottone inizia
     {
-        AudioManager.bottoneSuono();
+        // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
+        // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
+        // prendo le info dal json
 
+        System.out.println("Ho cliccato sul bottone");
+        try
+        {
+            AudioManager.bottoneSuono();
+            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
 
-
-            FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Parent root = loaderTavolo.load();
 
+            Parent root = playerScreen.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
             stage.show();
 
-        TavoloController tavoloController = loaderTavolo.getController();
-        //tavoloController.inizializzaClassePartita(this.codicePartita);
-
-
+            PlayerScreenController playerController = playerScreen.getController();
+            playerController.setInfoPartita(codicePartita, passwordPartita);
         }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
