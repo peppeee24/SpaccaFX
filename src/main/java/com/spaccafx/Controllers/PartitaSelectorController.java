@@ -48,9 +48,6 @@ public class PartitaSelectorController
     private GridPane IdGridPartite;
     private ScrollPane IdScrollPartite;
 
-    //Pane pane2, pane3, pane4, pane5, pane6, pane7;
-
-    // TODO impostare caricamento partite da file
 
     PartitaClassicaController2 PC;
 
