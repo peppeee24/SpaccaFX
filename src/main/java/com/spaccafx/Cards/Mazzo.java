@@ -13,8 +13,6 @@ public class Mazzo
 {
     ArrayList<Carta> mazzoCarte;
     ArrayList<Carta> cartePescate;
-
-    // ArrayList<Integer> valoriMax = {1,2,3,4,5,6,7,8,9,10}; // TODO PER MIGLORARE EFFICIENZA SCELTA VALORI CARTE PROB E IMPREVISTO (da rivedere non sicuro sia meglio)
     private int carteNormali;
     private int carteSpeciali;
 

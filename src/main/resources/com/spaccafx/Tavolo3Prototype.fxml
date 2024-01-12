@@ -81,6 +81,14 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
+            <ImageView fx:id="leaderboard" fitHeight="42.0" fitWidth="40.0" layoutX="73.0" layoutY="250.0" onMouseClicked="#openLeaderboard" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/key.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children></Pane>
    </left>
    <right>

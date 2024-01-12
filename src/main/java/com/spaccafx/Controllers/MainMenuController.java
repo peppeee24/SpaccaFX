@@ -120,7 +120,6 @@ public class MainMenuController {
     @FXML
     Toggle english;
 
-    // TODO da impostare cambio lingua
 
 
 }
