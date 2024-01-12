@@ -999,10 +999,19 @@ public class Partita
 
     public IGiocatore getVincitore()
     {
-        //TODO E SBAGLITO PERCHE PRENDE IL GIOCATORE ALLA POSIZIONE 0!!!
         IGiocatore vincitore = null;
+
         if(!isGameEnded())
-            vincitore = giocatori.get(0); //se è rimasto solo un giocatore
+        {
+            for (IGiocatore giocatore : giocatori)
+            {
+                if (giocatore.getVita() > 0)
+                {
+                    vincitore = giocatore;
+                    break;
+                }
+            }
+        }
 
         return vincitore;
     }
