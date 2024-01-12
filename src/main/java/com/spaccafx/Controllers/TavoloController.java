@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -57,7 +58,7 @@ public class TavoloController
     ImageView mazzierePlayer1Icon, mazzierePlayer2Icon, mazzierePlayer3Icon, mazzierePlayer4Icon; // icone del mazziere
 
     @FXML
-    ImageView dicePl1, dicePl2, dicePl3, dicePl4, exitGame; // dadi
+    ImageView dicePl1, dicePl2, dicePl3, dicePl4, exitGame, leaderboard; // dadi
 
     @FXML
     Button bottoneStart, bottoneEffetto, bottoneScambia, bottonePassa, bottoneRiprendiBot; // bottoni partita
@@ -67,6 +68,7 @@ public class TavoloController
 
     private Partita partita;
     private int codicePartita;
+    private Stage leaderboardStage; // Variabile di stato per tenere traccia della finestra della classifica
 
     //endregion
 
@@ -154,6 +156,39 @@ public class TavoloController
                             break;
 
             default:
+        }
+    }
+
+    public void openLeaderboard()
+    {
+        if (leaderboardStage == null) {
+            try {
+                // Carica il file FXML per la finestra della classifica
+                FXMLLoader loader = new FXMLLoader(Spacca.class.getResource("leaderboard.fxml"));
+                Parent root = loader.load();
+
+                // Crea una nuova scena
+                Scene scene = new Scene(root);
+
+                // Crea una nuova finestra per la classifica
+                leaderboardStage = new Stage();
+                leaderboardStage.setTitle("Classifica");
+                leaderboardStage.setScene(scene);
+
+                // Gestisce l'evento di chiusura della finestra della classifica
+                leaderboardStage.setOnCloseRequest(event -> {
+                    leaderboardStage = null; // Ripristina la variabile quando la finestra viene chiusa
+                });
+
+                // Mostra la finestra della classifica
+                leaderboardStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Gestire eventuali eccezioni nel caricamento del file FXML
+            }
+        } else {
+            // Se la finestra è già stata creata, riportala in primo piano
+            leaderboardStage.toFront();
         }
     }
 
