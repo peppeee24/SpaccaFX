@@ -920,7 +920,7 @@ public class Partita
 
     //region #METHODS
 
-    public int lancioDadoSingolo() { return (int)(1 + Math.random() * (6));}
+    public synchronized int lancioDadoSingolo() { return (int)(1 + Math.random() * (6));}
 
     public void aggiungiGiocatore(IGiocatore giocatore){this.giocatori.add(giocatore);}
 

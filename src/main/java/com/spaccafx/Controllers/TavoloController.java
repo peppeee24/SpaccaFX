@@ -438,7 +438,7 @@ public class TavoloController
 
 
 
-    public void mostraBannerAttesa(String titolo, String effetto)
+    public synchronized void mostraBannerAttesa(String titolo, String effetto)
     {
         popUpPane.setVisible(true);
         popUpPane.setDisable(false);
