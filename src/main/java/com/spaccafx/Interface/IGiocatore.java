@@ -9,6 +9,7 @@ public interface IGiocatore
     public void setVita(int vita);
     public void setRuolo(RuoloGiocatore ruolo);
     public void setDado(int valoreDado);
+    public void setPlayerRounds(int playerRounds);
     public void setCarta(Carta carta);
 
     public String getNome();
@@ -16,6 +17,7 @@ public interface IGiocatore
     public Carta getCarta();
     public int getValoreDado();
     public int getVitaExtra();
+    public int getPlayerRounds();
     public RuoloGiocatore getRuolo();
 
     public void addVitaExtra();

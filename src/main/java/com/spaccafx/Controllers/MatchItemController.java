@@ -79,7 +79,8 @@ public class MatchItemController
         // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
         // prendo le info dal json
 
-        System.out.println("Ho cliccato sul bottone");
+        System.out.println("[MatchItemController] ti sto reindirizzando al pregame screen]");
+
         try
         {
             AudioManager.bottoneSuono();

@@ -35,6 +35,7 @@ public class Partita
     int currentGiocatorePos; // viene dopo il mazziere
     int codicePartita;
     int passwordPartita;
+    int cDistaccoMazziere;
     boolean isGameRunning;
     boolean cartaGiaScambiata;
     GameStatus partitaStatus;
@@ -46,9 +47,6 @@ public class Partita
     //region #PUBLIC VARIABLES
     public Mazzo mazzo; // creo il mazzo con tutte le carte
     public ArrayList<IGiocatore> giocatori;
-    //public ArrayList<IGiocatore> giocatoriMorti;
-
-    int cDistaccoMazziere;
     //endregion
 
     //endregion
@@ -758,6 +756,7 @@ public class Partita
 
     private void avanzaRoundUI()
     {
+        aumentaPlayerRounds();
         TC.setExitGame(true);
 
         RuotaMazziereUI(); // ruota il mazziere
@@ -1018,6 +1017,15 @@ public class Partita
 
     public int getCurrentGiocatorePos(){return this.currentGiocatorePos;}
     public IGiocatore getCurrentGiocatore(){return giocatori.get(currentGiocatorePos);}
+
+    private void aumentaPlayerRounds()
+    {
+        for(IGiocatore giocatore : giocatori)
+        {
+            if(giocatore.getRuolo() != RuoloGiocatore.MORTO)
+                giocatore.setPlayerRounds(giocatore.getPlayerRounds()+1);
+        }
+    }
 
     // endregion
 

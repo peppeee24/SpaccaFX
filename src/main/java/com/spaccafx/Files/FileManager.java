@@ -90,6 +90,7 @@ public class FileManager
                 player.put("Ruolo", giocatore.getRuolo().toString());
                 player.put("Vite", giocatore.getVita());
                 player.put("Vita-Extra", giocatore.getVitaExtra());
+                player.put("PlayerRounds", giocatore.getPlayerRounds());
 
                 giocatoriList.put("Giocatore" + (i + 1), player);
             }
@@ -174,6 +175,7 @@ public class FileManager
                         giocatoreJSON.put("Ruolo", nuovoGiocatore.getRuolo().toString().toUpperCase());
                         giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
                         giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
+                        giocatoreJSON.put("PLayerRounds", nuovoGiocatore.getPlayerRounds());
 
                         // Salva le informazioni della carta attuale
                         JSONObject cartaJSON = new JSONObject();
@@ -322,6 +324,7 @@ public class FileManager
             int vite = Integer.parseInt(giocatoreJSON.get("Vite").toString());
             String istanza = giocatoreJSON.get("Istanza").toString();
             RuoloGiocatore ruoloGiocatore = RuoloGiocatore.valueOf((String) giocatoreJSON.get("Ruolo"));
+            int playerRounds = Integer.parseInt(giocatoreJSON.get("PlayerRounds").toString());
 
             IGiocatore giocatore = null;
 
@@ -338,6 +341,7 @@ public class FileManager
             giocatore.setVita(vite);
             giocatore.setVitaExtra(vitaExtra);
             giocatore.setRuolo(ruoloGiocatore);
+            giocatore.setPlayerRounds(playerRounds);
 
             //TODO mettere se il giocatore e vivo
 
