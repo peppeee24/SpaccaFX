@@ -878,6 +878,7 @@ public class Partita
 
     public void distribuisciCarte()
     {
+        pulisciManoGiocatori(); // nuovo metodo
         AudioManager.distribuisciCarteSuono();
 
         int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
@@ -920,6 +921,16 @@ public class Partita
 
         System.out.println("Esco dalla distribuzione e do le info...");
         StampaInfoGiocatori();
+    }
+
+    private void pulisciManoGiocatori()
+    {
+        for(IGiocatore giocatore : giocatori)
+        {
+            giocatore.setCarta(null);
+        }
+
+        this.mazzo.MescolaMazzo();
     }
 
     private int trovaValoreCartaAlta(ArrayList<IGiocatore> lista)

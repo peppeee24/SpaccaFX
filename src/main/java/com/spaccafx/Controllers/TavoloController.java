@@ -213,15 +213,21 @@ public class TavoloController
                     giocatoriLeaderboard.add(copiaGiocatore);
                 }
 
-                // Ordina l'ArrayList in base alla vita dei giocatori utilizzando un comparatore
+                // Ordina l'ArrayList in base alla vita e ai rounds dei giocatori utilizzando un comparatore
                 Collections.sort(giocatoriLeaderboard, new Comparator<IGiocatore>() {
                     @Override
                     public int compare(IGiocatore giocatore1, IGiocatore giocatore2) {
                         // Confronta i giocatori in base alla vita
-                        return Integer.compare(giocatore2.getVita(), giocatore1.getVita());
+                        int compareVita = Integer.compare(giocatore2.getVita(), giocatore1.getVita());
+
+                        // Se i giocatori hanno la stessa vita, confronta in base ai round
+                        if (compareVita == 0) {
+                            return Integer.compare(giocatore2.getPlayerRounds(), giocatore1.getPlayerRounds());
+                        } else {
+                            return compareVita; // Ordina prima per vita
+                        }
                     }
                 });
-
 
 
                 int riga = 1;
