@@ -157,6 +157,7 @@ public class CartaProbabilita extends Carta
                             System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
                             // TODO capire come fare attesa per far capire se il bot ha deciso di usare la prob o no!
                             currentGiocatore.setCarta(partita.mazzo.PescaCartaSenzaEffetto());
+                            TC.updateCarteUI();
                         }
                         else
                         {
