@@ -22,6 +22,7 @@ public class EasyBot extends Bot
     public EasyBot(String nome, Carta carta){
         super(nome,carta);
     }
+    public EasyBot(String nome, int playerRounds, int vite) {super(nome, playerRounds, vite);}
 
     /*@Override
     public int Scelta(Partita p) { //ipotizziamo che l'easyBot scelga randomicamente se switchare o no la carta

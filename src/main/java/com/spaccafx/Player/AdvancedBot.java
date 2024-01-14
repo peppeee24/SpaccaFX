@@ -20,6 +20,7 @@ public class AdvancedBot extends Bot
     public AdvancedBot(String nome, Carta carta){
         super(nome,carta);
     }
+    public AdvancedBot(String nome, int playerRounds, int vite) {super(nome, playerRounds, vite);}
 
 
     @Override

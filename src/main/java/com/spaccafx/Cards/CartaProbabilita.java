@@ -9,9 +9,6 @@ import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Enums.*;
 import javafx.application.Platform;
 
-import java.util.Scanner;
-import java.util.concurrent.CompletableFuture;
-
 public class CartaProbabilita extends Carta
 {
     public CartaProbabilita(int valore, SemeCarta seme)

@@ -21,11 +21,33 @@ public class Mazzo
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
 
-        carteNormali = 5; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
-        carteSpeciali = 5; // DA TOGLIERE QUESTO ALLA FINE, CAMBIARLO
-        // TODO FARE UNA VERIFICA PER VEDERE SE IL N. CARTE SPECIALI < CARTE NORMALI (GRAFICAMENTE QUANDO IMPOSTI I SETTINGS DI GIOCO)
+        carteNormali = 5;
+        carteSpeciali = 5;
 
         RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
+    }
+
+    public Mazzo(int carteNormali, int carteSpeciali)
+    {
+        mazzoCarte = new ArrayList<Carta>();
+        cartePescate = new ArrayList<Carta>();
+
+        this.carteNormali = carteNormali;
+        this.carteSpeciali = carteSpeciali;
+
+        RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
+    }
+
+    public Mazzo(boolean flag)
+    {
+        mazzoCarte = new ArrayList<Carta>();
+        cartePescate = new ArrayList<Carta>();
+
+        carteNormali = 5;
+        carteSpeciali = 5;
+
+        if(flag)
+            RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
     }
 
     public void RiempiMazzo() // riempo il mazzo di 20 carte (per ora)
@@ -36,7 +58,7 @@ public class Mazzo
 
     private void CreoCarteNormali()
     {
-
+        System.out.println("Ho creato le carti normali, max: " + getMaxCarteNormali());
         // RIEMPO CON LE CARTE NORMALI
         for (int c=1; c<=carteNormali; c++) // SQUALO
         {
@@ -132,13 +154,16 @@ public class Mazzo
         return true; // non esiste
     }
 
-    private void CreoCarte()
+    public void CreoCarte()
     {
+        System.out.println("[MAZZO] STO CREANDO UN NUOVO MAZZO...");
         mazzoCarte.clear();
 
         CreoCarteNormali();
         CreoCarteImprevisto();
         CreoCarteProbabilita();
+
+        Collections.shuffle(mazzoCarte);
     }
 
     public Carta PescaCarta() //prende la prima carta dal mazzo

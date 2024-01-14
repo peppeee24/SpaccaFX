@@ -8,6 +8,7 @@ import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
+import com.spaccafx.Player.AdvancedBot;
 import com.spaccafx.Player.Bot;
 import com.spaccafx.Player.EasyBot;
 import com.spaccafx.Player.Giocatore;
@@ -199,17 +200,18 @@ public class TavoloController
                     // Crea una copia del giocatore e aggiungila alla nuova lista
                     IGiocatore copiaGiocatore;
 
-                    /*if(giocatore instanceof Bot)
+                    if(giocatore instanceof Bot)
                     {
-                        //if(giocatore instanceof EasyBot)
-                            //copiaGiocatore = new EasyBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
+                        if(giocatore instanceof EasyBot)
+                            copiaGiocatore = new EasyBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
+                        else
+                            copiaGiocatore = new AdvancedBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
                     }
                     else
                     {
                         copiaGiocatore = new Giocatore(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
-                    }*/
+                    }
 
-                    copiaGiocatore = new Giocatore(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
                     giocatoriLeaderboard.add(copiaGiocatore);
                 }
 

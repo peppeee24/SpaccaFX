@@ -175,13 +175,23 @@ public class FileManager
                         giocatoreJSON.put("Ruolo", nuovoGiocatore.getRuolo().toString().toUpperCase());
                         giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
                         giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
-                        giocatoreJSON.put("PLayerRounds", nuovoGiocatore.getPlayerRounds());
+                        giocatoreJSON.put("PlayerRounds", nuovoGiocatore.getPlayerRounds());
 
                         // Salva le informazioni della carta attuale
                         JSONObject cartaJSON = new JSONObject();
-                        cartaJSON.put("Valore", nuovoGiocatore.getCarta().getValore());
-                        cartaJSON.put("Seme", nuovoGiocatore.getCarta().getSeme().toString());
-                        cartaJSON.put("Attivata", nuovoGiocatore.getCarta().getCartaEffettoAttivato());
+
+                        Carta cartaGiocatore = nuovoGiocatore.getCarta();
+
+                        if(cartaGiocatore == null)
+                        {
+                            cartaGiocatore = new CartaNormale(1, SemeCarta.VERME); // Dato che il player e morto salvo una carta di default casuale
+                            cartaGiocatore.setCartaEffettoAttivato(true);
+                        }
+
+
+                        cartaJSON.put("Valore", cartaGiocatore.getValore());
+                        cartaJSON.put("Seme", cartaGiocatore.getSeme().toString());
+                        cartaJSON.put("Attivata", cartaGiocatore.getCartaEffettoAttivato());
 
                         giocatoreJSON.put("Carta", cartaJSON);
 

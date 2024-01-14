@@ -88,7 +88,7 @@ public class Partita
 
     public void iniziaNuovoRoundUI()
     {
-        distribuisciCarte();
+        distribuisciCarte(); // vado a ricreare le carte togliendo tutti effetti
         startNewGame();
     }
 
@@ -632,7 +632,7 @@ public class Partita
 
                     for (IGiocatore giocatore : giocatori)
                     {
-                        if (giocatore.getCarta().getValore() == maxValue && giocatore.getRuolo() != RuoloGiocatore.MORTO) // Prendo il valore massimo delle carte dei player vivi
+                        if ((giocatore.getCarta().getValore() == maxValue) && giocatore.getRuolo() != RuoloGiocatore.MORTO) // Prendo il valore massimo delle carte dei player vivi
                         {
                             ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
                             giocatoriConValoreMassimo.add(giocatore);
@@ -760,7 +760,7 @@ public class Partita
         TC.setExitGame(true);
 
         RuotaMazziereUI(); // ruota il mazziere
-        mazzo.MescolaMazzo(); // messe le carte, tolti gli effetti e rimescolato
+        this.mazzo.CreoCarte();
 
         this.currentRound ++; // aumenta il round
         TC.aggiornaInfoUI(); // aggiorna la grafica
@@ -878,7 +878,6 @@ public class Partita
 
     public void distribuisciCarte()
     {
-        pulisciManoGiocatori(); // nuovo metodo
         AudioManager.distribuisciCarteSuono();
 
         int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
@@ -889,7 +888,10 @@ public class Partita
             for(IGiocatore giocatore : giocatori)
             {
                 if(giocatore.getRuolo() != RuoloGiocatore.MORTO) // distribuisce la carta solo se il player no ne morto
+                {
                     giocatore.setCarta(mazzo.PescaCarta());
+                    System.out.println("Ho dato la carta al giocatore: " + giocatore.getNome());
+                }
             }
         }
         else // altrimenti devo vedere fino a quando non arriva all ultimo giocatore presente nell array
@@ -910,10 +912,11 @@ public class Partita
                 if(giocatori.get(currentIndex).getRuolo() != RuoloGiocatore.MORTO) // se e un player vivo gli posso cambiare la carta
                 {
                     giocatori.get(currentIndex).setCarta(mazzo.PescaCarta());
+                    System.out.println("Ho dato la carta al giocatore: " + giocatori.get(currentIndex).getNome());
+                    carteDistribuite++;
                 }
 
                 currentIndex++;
-                carteDistribuite++;
                 System.out.println("Carte distribuite: " + carteDistribuite);
 
             }while(carteDistribuite < getCountGiocatoriVivi()); // fino a quando non do tot carte tanti quanti sono i player VIVI continuo a darle
@@ -923,25 +926,21 @@ public class Partita
         StampaInfoGiocatori();
     }
 
-    private void pulisciManoGiocatori()
-    {
-        for(IGiocatore giocatore : giocatori)
-        {
-            giocatore.setCarta(null);
-        }
-
-        this.mazzo.MescolaMazzo();
-    }
-
     private int trovaValoreCartaAlta(ArrayList<IGiocatore> lista)
     {
         int numeroPiuAlto = 1; // metto il valore piu piccolo della carta possibile (da noi il piu piccolo e' il piu alto)
 
         // NEW METHOD
-        for (IGiocatore giocatore : lista) {
-            if (giocatore.getCarta().getValore() >= numeroPiuAlto && giocatore.getRuolo() != RuoloGiocatore.MORTO) {
-                numeroPiuAlto = giocatore.getCarta().getValore(); // ho trovato una carta che supera quella che era piu piccola prima
+        for (IGiocatore giocatore : lista)
+        {
+            if(giocatore.getRuolo() != RuoloGiocatore.MORTO)
+            {
+                if (giocatore.getCarta().getValore() >= numeroPiuAlto)
+                {
+                    numeroPiuAlto = giocatore.getCarta().getValore(); // ho trovato una carta che supera quella che era piu piccola prima
+                }
             }
+
         }
 
         return numeroPiuAlto;
@@ -1053,8 +1052,15 @@ public class Partita
     {
         for (IGiocatore currentGiocatore : giocatori)
         {
+            Carta cartaGiocatore = currentGiocatore.getCarta();
+
+            if(cartaGiocatore == null)
+            {
+                cartaGiocatore = new CartaNormale(1, SemeCarta.VERME);
+            }
+
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
-                    ", Carta: " + currentGiocatore.getCarta().toString() +
+                    ", Carta: " + cartaGiocatore.toString() +
                     ", Vite: " + currentGiocatore.getVita() +
                     ", Vita Extra: " + currentGiocatore.hasVitaExtra() +
                     ", Ruolo: " + currentGiocatore.getRuolo());
@@ -1106,7 +1112,8 @@ public class Partita
 
     public void ricaricaMazzo(ArrayList<Carta> carteDaEliminare)
     {
-        this.mazzo = new Mazzo(); // genera un nuovo mazzo
+        this.mazzo = new Mazzo(false); // se messo su false non mi rigenera le carte nel costruttore
+        this.mazzo.CreoCarte(); // ricreo il mazzo
         this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
     }
 
