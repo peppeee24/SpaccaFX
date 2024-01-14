@@ -94,7 +94,7 @@ public class MatchItemController
             stage.show();
 
             PreGameController preGameController = preGameScreen.getController();
-            preGameController.setInfoPartita(codicePartita, passwordPartita);
+            preGameController.setInfoPartita2(codicePartita, passwordPartita);
         }
         catch (IOException e)
         {

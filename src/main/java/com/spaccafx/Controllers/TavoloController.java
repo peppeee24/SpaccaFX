@@ -842,6 +842,8 @@ public class TavoloController
                     popUpTextLabel.setVisible(true);
                     popUpTextLabel.setText("Stai per ritornare al menu principale...");
                 });
+                // TODO aprire leaderboard
+                this.openLeaderboard();
 
                 Thread.sleep(1500);
 
@@ -860,8 +862,7 @@ public class TavoloController
                 });
 
                  */
-                // TODO aprire leaderboard
-                this.openLeaderboard();
+
 
                 // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
 

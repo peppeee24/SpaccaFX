@@ -4,6 +4,9 @@ import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
+import com.spaccafx.Player.AdvancedBot;
+import com.spaccafx.Player.EasyBot;
+import com.spaccafx.Player.Giocatore;
 import com.spaccafx.Spacca;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -64,6 +68,70 @@ public class PreGameController
         currentPlayer.setText("Toccherà al giocatore: " +p.getCurrentGiocatore().getNome());
 
     }
+
+
+    public void setInfoPartita2(int codicePartita, int passwordPartita) {
+        this.codicePartita = codicePartita;
+        this.passwordPartita = passwordPartita;
+
+        // Carichiamo i dati dal file
+        Partita p = FileManager.leggiPartitaDaFile(codicePartita);
+        ArrayList<IGiocatore> giocatori = p.giocatori;
+
+        // Imposta i dettagli per ogni giocatore
+        for (int i = 0; i < giocatori.size(); i++) {
+            IGiocatore giocatore = giocatori.get(i);
+            ImageView imageView = null;
+            Label nomeLabel = null;
+            Label viteLabel = null;
+
+            // Assegna le ImageView e le Label in base all'indice del giocatore
+            switch (i) {
+                case 0:
+                    imageView = user1;
+                    nomeLabel = giocatore1;
+                    viteLabel = numerovite1;
+                    break;
+                case 1:
+                    imageView = user2;
+                    nomeLabel = giocatore2;
+                    viteLabel = numerovite2;
+                    break;
+                case 2:
+                    imageView = user3;
+                    nomeLabel = giocatore3;
+                    viteLabel = numerovite3;
+                    break;
+                case 3:
+                    imageView = user4;
+                    nomeLabel = giocatore4;
+                    viteLabel = numerovite4;
+                    break;
+            }
+
+            // Imposta nome e vite
+            if (nomeLabel != null && viteLabel != null) {
+                nomeLabel.setText(giocatore.getNome());
+                viteLabel.setText(Integer.toString(giocatore.getVita()));
+            }
+
+            // Assegna l'immagine corrispondente in base al tipo di giocatore
+            if (imageView != null) {
+                if (giocatore instanceof EasyBot) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/easyBot.PNG")));
+                } else if (giocatore instanceof AdvancedBot) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/hardBot.PNG")));
+                } else if (giocatore instanceof Giocatore) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/userIcons.png")));
+                }
+            }
+        }
+
+        // Imposta altre informazioni sulla partita
+        currentRound.setText("La partita riprenderà dal Round: " + p.getCurrentRound());
+        currentPlayer.setText("Toccherà al giocatore: " + p.getCurrentGiocatore().getNome());
+    }
+
 
     public void apriTavolo(ActionEvent actionEvent) throws IOException // bottone inizia
     {
