@@ -860,6 +860,8 @@ public class TavoloController
                 });
 
                  */
+                // TODO aprire leaderboard
+                this.openLeaderboard();
 
                 // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
 
