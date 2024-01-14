@@ -13,7 +13,7 @@ public abstract class Bot implements IGiocatore
     protected Carta carta;
     private RuoloGiocatore ruolo;
     private int valoreDado;
-    private int playerRounds = 1;
+    private int playerRounds;
 
     public Bot()
     {

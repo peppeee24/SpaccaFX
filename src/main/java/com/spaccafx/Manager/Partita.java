@@ -1054,11 +1054,6 @@ public class Partita
         {
             Carta cartaGiocatore = currentGiocatore.getCarta();
 
-            if(cartaGiocatore == null)
-            {
-                cartaGiocatore = new CartaNormale(1, SemeCarta.VERME);
-            }
-
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
                     ", Carta: " + cartaGiocatore.toString() +
                     ", Vite: " + currentGiocatore.getVita() +

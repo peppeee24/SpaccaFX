@@ -97,12 +97,12 @@ public class Mazzo
         {
             // RIEMPO CON LE CARTE PROBABILITA
             int newVal = (int)(1 + Math.random() * (carteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
-            System.out.println("Valore nuova carta Imprevisto: " + newVal);
+            //System.out.println("Valore nuova carta Imprevisto: " + newVal);
 
             while(!(isCartaUnica(newVal, SemeCarta.IMPREVISTO))) // fino a quando non esiste cambio valore
                 newVal = (int)(1 + Math.random() * (carteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
-            System.out.println("Imposto valore: " + newVal);
+            //System.out.println("Imposto valore: " + newVal);
 
             CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO);
 
@@ -121,12 +121,12 @@ public class Mazzo
         {
             // RIEMPO CON LE CARTE PROBABILITA
             int newVal = (int)(1 + Math.random() * (carteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
-            System.out.println("Valore nuova carta Probabilita: " + newVal);
+            //System.out.println("Valore nuova carta Probabilita: " + newVal);
 
             while(!(isCartaUnica(newVal, SemeCarta.PROBABILITA))) // fino a quando non esiste cambio valore
                 newVal = (int)(1 + Math.random() * (carteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
-            System.out.println("Imposto valore: " + newVal);
+            //System.out.println("Imposto valore: " + newVal);
 
             CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA);
 
@@ -157,13 +157,17 @@ public class Mazzo
     public void CreoCarte()
     {
         System.out.println("[MAZZO] STO CREANDO UN NUOVO MAZZO...");
-        mazzoCarte.clear();
+        this.mazzoCarte.clear();
+        this.cartePescate.clear();
 
         CreoCarteNormali();
         CreoCarteImprevisto();
         CreoCarteProbabilita();
 
-        Collections.shuffle(mazzoCarte);
+        Collections.shuffle(this.mazzoCarte);
+        System.out.println("Mazzo creato: " + mazzoCarte.toString());
+
+
     }
 
     public Carta PescaCarta() //prende la prima carta dal mazzo

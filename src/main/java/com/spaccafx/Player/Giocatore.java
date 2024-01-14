@@ -11,7 +11,7 @@ public class Giocatore implements IGiocatore
     private Carta carta;
     private RuoloGiocatore ruolo;
     private int valoreDado;
-    private int playerRounds = 1;
+    private int playerRounds ;
 
     public Giocatore()
     {
