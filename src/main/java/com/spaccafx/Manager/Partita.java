@@ -135,6 +135,7 @@ public class Partita
 
         TC.setExitGame(true);
         TC.gestisciPulsanti(false, false, false);
+        TC.gestisciPulsanteRiprendiBot(false);
 
         Thread thread = new Thread(() -> {
             try {
@@ -174,10 +175,6 @@ public class Partita
 
                         // all'inizio del suo turno se NON ha una carta imprevisto in mano,
                         // fa una mossa, altrimenti passera obbligatoriamente!
-
-
-                        // DOPO IL TERMINE
-                        TC.gestisciPulsanteRiprendiBot(true);
 
                         //if(!(currentGiocatore.getCarta() instanceof CartaImprevisto))
                             //((Bot) currentGiocatore).SceltaBotUI(this, TC);
@@ -390,6 +387,7 @@ public class Partita
 
         // controlliamo che carta ha e cosa attivare o meno graficamente
         Carta currentMano = giocatori.get(currentGiocatore).getCarta();
+        IGiocatore currentGiocatoreObj = giocatori.get(currentGiocatore);
         System.out.println("[CONTROLLA-MANO-INIZIALE] Il giocatore possiede: " + currentMano.toString());
 
         if(currentMano instanceof  CartaProbabilita)
@@ -405,6 +403,11 @@ public class Partita
             {
                 System.out.println("[CONTROLLA-MANO-INIZIALE] Effetto gia attivato!");
             }
+
+            if(currentGiocatoreObj instanceof Bot)
+            {
+                TC.gestisciPulsanteRiprendiBot(true);
+            }
         }
         else if(currentMano instanceof  CartaImprevisto)
         {
@@ -418,12 +421,19 @@ public class Partita
             }
             else
             {
-                System.out.println("[CONTROLLA-MANO-INIZIALE] Effetto gia attivato!");
+                if(currentGiocatoreObj instanceof Bot)
+                {
+                    TC.gestisciPulsanteRiprendiBot(true);
+                }
             }
         }
         else // debug
         {
             System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta NORMALE!");
+            if(currentGiocatoreObj instanceof Bot)
+            {
+                TC.gestisciPulsanteRiprendiBot(true);
+            }
         }
     }
 
