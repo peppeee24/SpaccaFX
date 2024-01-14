@@ -174,8 +174,13 @@ public class Partita
 
                         // all'inizio del suo turno se NON ha una carta imprevisto in mano,
                         // fa una mossa, altrimenti passera obbligatoriamente!
-                        if(!(currentGiocatore.getCarta() instanceof CartaImprevisto))
-                            ((Bot) currentGiocatore).SceltaBotUI(this, TC);
+
+
+                        // DOPO IL TERMINE
+                        TC.gestisciPulsanteRiprendiBot(true);
+
+                        //if(!(currentGiocatore.getCarta() instanceof CartaImprevisto))
+                            //((Bot) currentGiocatore).SceltaBotUI(this, TC);
                     }
                     else // e un player
                     {
