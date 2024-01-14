@@ -29,10 +29,9 @@ public class PreGameController
     Button giocaButton;
 
     @FXML
-    Label numerovite1, numerovite2,numerovite3,numerovite4,giocatore1,giocatore2,giocatore3,giocatore4;
+    Label numerovite1, numerovite2,numerovite3,numerovite4,giocatore1,giocatore2,giocatore3,giocatore4, currentPlayer, currentRound;
 
-    @FXML
-    Text currentPlayer, currentRound;
+
 
     @FXML
     ImageView user1, user2, user3, user4, cuore1, cuore2, cuore3, cuore4;
@@ -61,8 +60,8 @@ public class PreGameController
         giocatore4.setText(giocatori.get(3).getNome());
         numerovite4.setText(Integer.toString(giocatori.get(3).getVita()));
 
-        currentRound.setText(Integer.toString(p.getCurrentRound()));
-        currentPlayer.setText(p.getCurrentGiocatore().getNome());
+        currentRound.setText("La partita riprenderà dal Round: " +(Integer.toString(p.getCurrentRound())));
+        currentPlayer.setText("Toccherà al giocatore: " +p.getCurrentGiocatore().getNome());
 
     }
 

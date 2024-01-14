@@ -17,7 +17,7 @@ public class AudioManager {
         //   if(suoniON.isSelected()) {
 
         try {
-URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/UI/ButtonClick.wav");
+URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/ButtonClick.wav");
 File sound =new File(risorsa.toURI());
 
             Clip c = AudioSystem.getClip();
@@ -25,7 +25,7 @@ File sound =new File(risorsa.toURI());
             c.start();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono bottone");
         }
         //}
     }
@@ -34,13 +34,13 @@ File sound =new File(risorsa.toURI());
     public static void distribuisciCarteSuono () {
         //  if(suoniON.isSelected()) {
         try {
-            URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/distribusciCarte.wav");
+            URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/distribuisciCarte.wav");
             File sound =new File(risorsa.toURI());
             Clip c = AudioSystem.getClip();
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono distribuisci carte");
         }
         // }
     }
@@ -54,7 +54,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono giraCarte");
         }
         // }
     }
@@ -68,7 +68,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono vittoria");
         }
         // }
     }
@@ -82,7 +82,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono dado");
         }
         // }
     }
@@ -96,7 +96,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono errore");
         }
         // }
     }
@@ -110,7 +110,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono prendete");
         }
         // }
     }
@@ -124,7 +124,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono vita UP");
         }
         // }
     }
@@ -138,7 +138,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono vita down");
         }
         // }
     }
@@ -152,7 +152,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono imprevisto");
         }
         // }
     }
@@ -165,7 +165,7 @@ File sound =new File(risorsa.toURI());
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono");
+            System.out.println("Errore nella riproduzione del suono probabilità");
         }
         // }
     }

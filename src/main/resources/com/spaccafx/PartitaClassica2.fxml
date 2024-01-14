@@ -164,7 +164,7 @@
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font></Label>
-                              <ChoiceBox fx:id="difficoltaBotMenu" layoutX="284.0" layoutY="123.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                              <ChoiceBox fx:id="difficoltaBotMenu" layoutX="284.0" layoutY="123.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;" value="Facile">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
                                        <String fx:value="Facile" />
@@ -285,22 +285,20 @@
                                     <Font name="System Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox layoutX="324.0" layoutY="169.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                              <ChoiceBox fx:id="carteNormaliMenu" layoutX="324.0" layoutY="169.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                       <String fx:value="5" />
                                        <String fx:value="6" />
                                        <String fx:value="7" />
                                        <String fx:value="8" />
                                        <String fx:value="9" />
-                                       <String fx:value="10" />
                                     </FXCollections>
                                  </items>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ChoiceBox>
-                              <Button layoutX="508.0" layoutY="166.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="114.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="saveNormaliButton" layoutX="508.0" layoutY="166.0" mnemonicParsing="false" onAction="#saveNormali" prefHeight="35.0" prefWidth="114.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -313,21 +311,45 @@
                                     <Font name="System Bold" size="22.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox layoutX="325.0" layoutY="232.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                              <ChoiceBox fx:id="carteSpecialiMenu" layoutX="325.0" layoutY="232.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
                                        <String fx:value="1" />
                                        <String fx:value="2" />
                                        <String fx:value="3" />
                                        <String fx:value="4" />
-                                       <String fx:value="5" />
                                     </FXCollections>
                                  </items>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ChoiceBox>
-                              <Button layoutX="511.0" layoutY="229.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="113.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="saveSpecialiButton" layoutX="511.0" layoutY="229.0" mnemonicParsing="false" onAction="#saveSpeciali" prefHeight="35.0" prefWidth="113.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label layoutX="29.0" layoutY="299.0" styleClass="Label" text="Numero Vite">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="viteMenu" layoutX="325.0" layoutY="286.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="1" />
+                                       <String fx:value="2" />
+                                       <String fx:value="3" />
+                                    </FXCollections>
+                                 </items>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ChoiceBox>
+                              <Button fx:id="saveViteButton" layoutX="511.0" layoutY="282.0" mnemonicParsing="false" onAction="#saveVite" prefHeight="35.0" prefWidth="113.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

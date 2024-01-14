@@ -24,7 +24,6 @@ public class LeaderboardController
     // TODO Controllare tutti i suoini
     // TODO fixare popup probabilta NON hai vinto vita extra
 
-
     // TODO bug distribuzione carte con imprevisto e passo turno (recupero carte dai file)
 
     public void setDataLeaderboard(Partita p)

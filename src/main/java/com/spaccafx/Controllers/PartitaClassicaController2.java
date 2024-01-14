@@ -1,6 +1,7 @@
 package com.spaccafx.Controllers;
 
 
+import com.spaccafx.Cards.Mazzo;
 import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Enums.GameType;
 import com.spaccafx.Files.AudioManager;
@@ -34,17 +35,18 @@ import java.util.Optional;
 
 public class PartitaClassicaController2 {
 
-    private int numeroGiocatori, numeroBotMenu; // sono i dati della partita
+    private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, A1, A2, A3; // sono i dati della partita
 
 
     Partita P; // // TODO guardare dichiaro classe partita
 
+
     @FXML
     Tab playerTab, botTbb, creaTab;
 
     @FXML
-    ChoiceBox<Integer> numeroGiocatoriMenu;
+    ChoiceBox<Integer> numeroGiocatoriMenu, viteMenu, carteNormaliMenu,carteSpecialiMenu;
 
     @FXML
     ChoiceBox<String> difficoltaBotMenu;
@@ -93,12 +95,18 @@ public class PartitaClassicaController2 {
 
     }
 
+
     public void dB(ActionEvent event) {
+
         difficolta = difficoltaBotMenu.getValue();
+
     }
 
 
+
+
     public String getDifficolta() {
+
         return difficolta;
     }
 
@@ -113,6 +121,84 @@ public class PartitaClassicaController2 {
 
     public int getNumeroBot() {
         return numeroBotMenu;
+    }
+
+
+
+    public void setNumeroCarteNormali() {
+
+        carteNormaliMenu.setOnAction(this::nCN);
+
+    }
+
+    // legge i dati dal menu tendina dei giocatori
+    public void nCN(ActionEvent event) {
+        numeroCarteNormali = carteNormaliMenu.getValue();
+        setNumeroCarteNormali();
+        System.out.println("Numero carte Normali : " + numeroCarteNormali);
+    }
+
+    public int getNumeroCarteNormali() {
+        return numeroCarteNormali;
+    }
+
+
+    public void setNumeroCarteSpeciali() {
+
+        carteSpecialiMenu.setOnAction(this::nCS);
+
+    }
+
+    // legge i dati dal menu tendina dei giocatori
+    public void nCS(ActionEvent event) {
+        numeroCarteSpeciali = carteSpecialiMenu.getValue();
+        setNumeroCarteSpeciali();
+        System.out.println("Numero carte Speciali : " + numeroCarteSpeciali);
+    }
+
+    public int getNumeroCarteSpeciali() {
+        return numeroCarteSpeciali;
+    }
+
+
+
+    public void setNumeroVite() {viteMenu.setOnAction(this::nV);}
+
+    // legge i dati dal menu tendina dei giocatori
+    public void nV(ActionEvent event) {
+        numeroVite = viteMenu.getValue();
+        setNumeroVite();
+        System.out.println("Numero vite : " + numeroVite);
+    }
+
+    public int getNumeroVite() {
+        return numeroVite;
+    }
+
+
+    public void saveNormali(ActionEvent actionEvent) throws IOException  // pulsante
+    {
+        AudioManager.bottoneSuono();
+        System.out.println("Salvo il numero di carte normali");
+
+
+
+    }
+
+    public void saveSpeciali(ActionEvent actionEvent) throws IOException  // pulsante
+    {
+        AudioManager.bottoneSuono();
+        System.out.println("Salvo il numero di carte speciali");
+        this.setNumeroCarteSpeciali();
+
+    }
+
+    public void saveVite(ActionEvent actionEvent) throws IOException  // pulsante
+    {
+        AudioManager.bottoneSuono();
+        System.out.println("Salvo il numero di vite");
+        this.setNumeroVite();
+
     }
 
 
@@ -266,34 +352,36 @@ public class PartitaClassicaController2 {
         }
     }
 
+    private void controlloGiocatori() {
+        // Assumiamo che tutti i campi e le immagini siano inizialmente invisibili
+        playerName1.setVisible(false);
+        playerName2.setVisible(false);
+        playerName3.setVisible(false);
+        playerName4.setVisible(false);
 
-    public void controlloGiocatori() {
+        twoLabel.setVisible(false);
+        treeLabel.setVisible(false);
+        fourLabel.setVisible(false);
 
-        // vedere come si fa con un for
-        if (getNumeroGiocatori() == 3)  {
-            fourLabel.setVisible(false);
-            playerName4.setVisible(false);
-
-
-        } else if (getNumeroGiocatori() == 2) {
-            treeLabel.setVisible(false);
-            playerName3.setVisible(false);
-            fourLabel.setVisible(false);
-            playerName4.setVisible(false);
-
-
-        } else if (getNumeroGiocatori() == 1) {
-            twoLabel.setVisible(false);
-            playerName2.setVisible(false);
-            treeLabel.setVisible(false);
-            playerName3.setVisible(false);
-            fourLabel.setVisible(false);
-            playerName4.setVisible(false);
-
+        // Rendi visibili i campi e le immagini in base al numero di giocatori
+        if (numeroGiocatori >= 1) {
+            playerName1.setVisible(true);
         }
-
-
+        if (numeroGiocatori >= 2) {
+            playerName2.setVisible(true);
+            twoLabel.setVisible(true);
+        }
+        if (numeroGiocatori >= 3) {
+            playerName3.setVisible(true);
+            treeLabel.setVisible(true);
+        }
+        if (numeroGiocatori >= 4) {
+            playerName4.setVisible(true);
+            fourLabel.setVisible(true);
+        }
     }
+
+
 
 
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori

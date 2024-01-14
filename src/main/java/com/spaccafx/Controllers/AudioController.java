@@ -145,6 +145,7 @@ public class AudioController {
     }
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());

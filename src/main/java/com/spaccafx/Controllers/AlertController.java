@@ -35,6 +35,7 @@ public class AlertController {
 
     public void okButton(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
+        AudioManager.bottoneSuono();
         Stage stage = (Stage) okButtonError.getScene().getWindow();
 
         // Chiudi la finestra
@@ -44,6 +45,7 @@ public class AlertController {
 
     public void okButtonConfirm(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
+        AudioManager.bottoneSuono();
         Stage stage = (Stage) okButtonError.getScene().getWindow();
 
         // Chiudi la finestra
@@ -52,6 +54,7 @@ public class AlertController {
 
     public void noButton(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
+        AudioManager.bottoneSuono();
         Stage stage = (Stage) okButtonError.getScene().getWindow();
 
         // Chiudi la finestra
