@@ -42,6 +42,7 @@ public class CartaProbabilita extends Carta
 
         this.attivato=true;
     }
+    // test
 
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
@@ -152,6 +153,7 @@ public class CartaProbabilita extends Carta
                         TC.gestisciPulsanti(false, false, false);
                         System.out.println("[GAME] Sono un BOT");
 
+                        // TODO SISTEMARE I THREAD NELL-IF
                         if(((Bot)currentGiocatore).attivoEffetto(partita, TC)) // scambio la carta
                         {
                             System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
