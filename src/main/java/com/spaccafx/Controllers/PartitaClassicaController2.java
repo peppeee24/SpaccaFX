@@ -318,10 +318,13 @@ public class PartitaClassicaController2 {
                         labelBot1.setText(getA1());
                         labelBot1.setVisible(true);
                         hardBot1.setVisible(true);
+                        easyBot1.setVisible(false);
+
                     } else {
                         labelBot1.setText(getE1());
                         labelBot1.setVisible(true);
                         easyBot1.setVisible(true);
+                        hardBot1.setVisible(false);
                     }
                     break;
                 case 2:
@@ -332,6 +335,8 @@ public class PartitaClassicaController2 {
                         labelBot2.setText(getA2());
                         labelBot2.setVisible(true);
                         hardBot2.setVisible(true);
+                        easyBot1.setVisible(false);
+                        easyBot2.setVisible(false);
                     } else {
                         labelBot1.setText(getE1());
                         labelBot1.setVisible(true);
@@ -339,6 +344,8 @@ public class PartitaClassicaController2 {
                         labelBot2.setText(getE2());
                         labelBot2.setVisible(true);
                         easyBot2.setVisible(true);
+                        hardBot1.setVisible(false);
+                        hardBot2.setVisible(false);
                     }
                     break;
                 case 3:

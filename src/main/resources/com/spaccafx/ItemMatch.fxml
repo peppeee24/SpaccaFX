@@ -29,7 +29,7 @@
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="playButtonId" contentDisplay="CENTER" layoutX="5.0" layoutY="61.0" mnemonicParsing="false" onAction="#accediPartita" prefHeight="44.0" prefWidth="199.0" text="UNISCITI" textFill="WHITE">
+                  <Button fx:id="playButtonId" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="61.0" mnemonicParsing="false" onAction="#accediPartita" prefHeight="44.0" prefWidth="199.0" text="UNISCITI" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="leaderboardButtonId" contentDisplay="CENTER" layoutX="1.0" layoutY="108.0" mnemonicParsing="false" onAction="#leaderboardPartita" prefHeight="44.0" prefWidth="211.0" text="LEADERBOARD" textFill="WHITE">
+                  <Button fx:id="leaderboardButtonId" contentDisplay="CENTER" layoutX="10.0" layoutY="113.0" mnemonicParsing="false" onAction="#leaderboardPartita" prefHeight="44.0" prefWidth="211.0" style="-fx-background-color: orange;" styleClass="LabelWhite15" text="LEADERBOARD" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

@@ -27,7 +27,7 @@ public class LeaderboardScreenController
     public void indietro(MouseEvent mouseEvent) throws IOException
     {
         AudioManager.bottoneSuono();
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);

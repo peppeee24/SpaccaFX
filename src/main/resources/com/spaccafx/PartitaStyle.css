@@ -83,12 +83,21 @@
 
 }
 
+.LabelWhite15{
+    -fx-text-fill: white;
+    -fx-font-family: 'Press Start 2P', sans-serif;
+    -fx-font-size: 15;
+
+}
+
 .LabelWhiteError{
     -fx-text-fill: white;
     -fx-font-family: 'Press Start 2P', sans-serif;
     -fx-font-size: 10;
 
 }
+
+
 
 
 .button:hover
