@@ -13,27 +13,27 @@ public class Mazzo
 {
     ArrayList<Carta> mazzoCarte;
     ArrayList<Carta> cartePescate;
-    private int carteNormali;
-    private int carteSpeciali;
+    private int maxCarteNormali;
+    private int maxCarteSpeciali;
 
     public Mazzo()
     {
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
 
-        carteNormali = 5;
-        carteSpeciali = 5;
+        maxCarteNormali = 5;
+        maxCarteSpeciali = 5;
 
         RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
     }
 
-    public Mazzo(int carteNormali, int carteSpeciali)
+    public Mazzo(int maxCarteNormali, int maxCarteSpeciali)
     {
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
 
-        this.carteNormali = carteNormali;
-        this.carteSpeciali = carteSpeciali;
+        this.maxCarteNormali = maxCarteNormali;
+        this.maxCarteSpeciali = maxCarteSpeciali;
 
         RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
     }
@@ -43,8 +43,20 @@ public class Mazzo
         mazzoCarte = new ArrayList<Carta>();
         cartePescate = new ArrayList<Carta>();
 
-        carteNormali = 5;
-        carteSpeciali = 5;
+        this.maxCarteNormali = 5;
+        this.maxCarteSpeciali = 5;
+
+        if(flag)
+            RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
+    }
+
+    public Mazzo(boolean flag, int maxCarteNormali, int maxCarteSpeciali)
+    {
+        mazzoCarte = new ArrayList<Carta>();
+        cartePescate = new ArrayList<Carta>();
+
+        this.maxCarteNormali = maxCarteNormali;
+        this.maxCarteSpeciali = maxCarteSpeciali;
 
         if(flag)
             RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
@@ -60,7 +72,7 @@ public class Mazzo
     {
         System.out.println("Ho creato le carti normali, max: " + getMaxCarteNormali());
         // RIEMPO CON LE CARTE NORMALI
-        for (int c=1; c<=carteNormali; c++) // SQUALO
+        for (int c=1; c<=maxCarteNormali; c++) // SQUALO
         {
             CartaNormale carta = new CartaNormale(c, SemeCarta.SQUALO);
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.SQUALO + "/" + SemeCarta.SQUALO + c + ".PNG").toString());
@@ -70,7 +82,7 @@ public class Mazzo
             mazzoCarte.add(carta);
         }
 
-        for (int c=1; c<=carteNormali; c++) // PESCE
+        for (int c=1; c<=maxCarteNormali; c++) // PESCE
         {
             CartaNormale carta = new CartaNormale(c, SemeCarta.PESCE);
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PESCE + "/" + SemeCarta.PESCE + c + ".PNG").toString());
@@ -80,7 +92,7 @@ public class Mazzo
             mazzoCarte.add(carta);
         }
 
-        for (int c=1; c<=carteNormali; c++) // VERME
+        for (int c=1; c<=maxCarteNormali; c++) // VERME
         {
             CartaNormale carta = new CartaNormale(c, SemeCarta.VERME);
             Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.VERME + "/" + SemeCarta.VERME + c + ".PNG").toString());
@@ -93,14 +105,14 @@ public class Mazzo
 
     private void CreoCarteImprevisto()
     {
-        for(int c=1; c<=carteSpeciali; c++)
+        for(int c=1; c<=maxCarteSpeciali; c++)
         {
             // RIEMPO CON LE CARTE PROBABILITA
-            int newVal = (int)(1 + Math.random() * (carteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
+            int newVal = (int)(1 + Math.random() * (maxCarteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
             //System.out.println("Valore nuova carta Imprevisto: " + newVal);
 
             while(!(isCartaUnica(newVal, SemeCarta.IMPREVISTO))) // fino a quando non esiste cambio valore
-                newVal = (int)(1 + Math.random() * (carteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
+                newVal = (int)(1 + Math.random() * (maxCarteNormali)); // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
             //System.out.println("Imposto valore: " + newVal);
 
@@ -117,14 +129,14 @@ public class Mazzo
 
     private void CreoCarteProbabilita()
     {
-        for(int c=1; c<=carteSpeciali; c++)
+        for(int c=1; c<=maxCarteSpeciali; c++)
         {
             // RIEMPO CON LE CARTE PROBABILITA
-            int newVal = (int)(1 + Math.random() * (carteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
+            int newVal = (int)(1 + Math.random() * (maxCarteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
             //System.out.println("Valore nuova carta Probabilita: " + newVal);
 
             while(!(isCartaUnica(newVal, SemeCarta.PROBABILITA))) // fino a quando non esiste cambio valore
-                newVal = (int)(1 + Math.random() * (carteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
+                newVal = (int)(1 + Math.random() * (maxCarteNormali));  // valore carta da 1 a MAXCARTENORNMALI (ho tanti valori tanti quanti il n. max di carte normali)
 
             //System.out.println("Imposto valore: " + newVal);
 
@@ -233,8 +245,11 @@ public class Mazzo
         }
     }
 
-    public int getMaxCarteNormali(){return this.carteNormali;}
-    public int getMaxCarteSpeciali(){return this.carteSpeciali;}
+    public int getMaxCarteNormali(){return this.maxCarteNormali;}
+    public int getMaxCarteSpeciali(){return this.maxCarteSpeciali;}
+
+    public void setMaxCarteNormali(int maxCarteNormali){this.maxCarteNormali = maxCarteNormali;}
+    public void setMaxCarteSpeciali(int maxCarteSpeciali){this.maxCarteSpeciali = maxCarteSpeciali;}
 
     public void EliminaCarte(ArrayList<Carta> carteDaEliminare) // serve per eliminare le carte che sono duplicate una volta che le carico dal file
     {

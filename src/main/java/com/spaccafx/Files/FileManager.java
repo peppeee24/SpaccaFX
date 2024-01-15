@@ -34,7 +34,7 @@ public class FileManager
     // region #PARTITA
     public static File partiteFile = new File("Partite.json"); // unico file con più partite
 
-    public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status)
+    public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
     {
         try
         {
@@ -50,6 +50,9 @@ public class FileManager
             nuovaPartita.put("isGameRunning", false);
             nuovaPartita.put("cDistaccoMazziere", 0);
             nuovaPartita.put("cartaGiaScambiata", false);
+            nuovaPartita.put("maxCarteNormali", maxCarteNormali);
+            nuovaPartita.put("maxCarteSpeciali", maxCarteSpeciali);
+            nuovaPartita.put("numeroPlayerVite", numeroPlayerVite);
 
             JSONObject giocatoriList = new JSONObject();
 
@@ -88,7 +91,7 @@ public class FileManager
                 }
 
                 player.put("Ruolo", giocatore.getRuolo().toString());
-                player.put("Vite", giocatore.getVita());
+                player.put("Vite", numeroPlayerVite);
                 player.put("Vita-Extra", giocatore.getVitaExtra());
                 player.put("PlayerRounds", giocatore.getPlayerRounds());
 
@@ -157,6 +160,9 @@ public class FileManager
                     partitaJSON.put("PosMazziere", partitaToSave.getPosMazziere());
                     partitaJSON.put("cDistaccoMazziere", partitaToSave.getDistaccoMazziere());
                     partitaJSON.put("cartaGiaScambiata", partitaToSave.getCartaGiaScambiata());
+                    partitaJSON.put("maxCarteNormali", partitaToSave.getMaxCarteNormali());
+                    partitaJSON.put("maxCarteSpeciali", partitaToSave.getMaxCarteSpeciali());
+                    partitaJSON.put("numeroPlayerVite", partitaToSave.getNumeroPlayerVite());
 
 
                     // Aggiorna le informazioni dei giocatori
@@ -307,6 +313,9 @@ public class FileManager
         int cDistaccoMazziere = Integer.parseInt(partitaJSON.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
         boolean cartaGiaScambiata = Boolean.parseBoolean(partitaJSON.get("cartaGiaScambiata").toString()); // prendo se il player ha gia fatto lo scambio o no
         int currentRound = Integer.parseInt(partitaJSON.get("Round").toString()); // prendo il round attuale della partita
+        int maxCarteNormali = Integer.parseInt(partitaJSON.get("maxCarteNormali").toString()); // prendo il max carte normali
+        int maxCarteSpeciali = Integer.parseInt(partitaJSON.get("maxCarteSpeciali").toString()); // prendo il max carte speciali
+        int numeroPlayerVite = Integer.parseInt(partitaJSON.get("numeroPlayerVite").toString()); // prendo il n di vite iniziali dei player
 
 
         JSONObject giocatoriObject = (JSONObject) partitaJSON.get("Giocatori");
@@ -322,6 +331,9 @@ public class FileManager
         partita.setDistaccoMazziere(cDistaccoMazziere);
         partita.setCartaGiaScambiata(cartaGiaScambiata);
         partita.setCurrentRound(currentRound);
+        partita.setMaxCarteNormali(maxCarteNormali);
+        partita.setMaxCarteSpeciali(maxCarteSpeciali);
+        partita.setNumeroPlayerVite(numeroPlayerVite);
 
         // Aggiungi giocatori alla partita
         for (Object giocatoreKey : giocatoriObject.keySet())

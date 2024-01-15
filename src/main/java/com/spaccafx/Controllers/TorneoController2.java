@@ -699,7 +699,7 @@ public class TorneoController2 {
             Partite.add(P);
 
             // creiamo il salvataggio della nuova partita
-            FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED); // salviamo le informazioni dati
+            //FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED); // salviamo le informazioni dati
 
 
             // ti riporta al menu principale

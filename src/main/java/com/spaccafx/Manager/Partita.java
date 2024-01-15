@@ -36,6 +36,8 @@ public class Partita
     int codicePartita;
     int passwordPartita;
     int cDistaccoMazziere;
+    int maxCarteNormali, maxCarteSpeciali;
+    int numeroPlayerVite;
     boolean isGameRunning;
     boolean cartaGiaScambiata;
     GameStatus partitaStatus;
@@ -81,7 +83,7 @@ public class Partita
     public void preStartGame() // quando si clicca sul bottone start all'inizio
     {
         this.isGameRunning = true;
-        mazzo = new Mazzo();
+        mazzo = new Mazzo(true, maxCarteNormali, maxCarteSpeciali);
         lancioDadiIniziale(); // Lancio dadi iniziale + stabilimento INIZIALE mazziere
         TC.startGameUI();
     }
@@ -1084,6 +1086,8 @@ public class Partita
     public void setIsGameRunning(boolean isGameRunning){this.isGameRunning = isGameRunning;}
     public void setPartitaStatus(GameStatus partitaStatus){this.partitaStatus = partitaStatus;}
     public GameStatus getPartitaStatus(){return this.partitaStatus;}
+    public int getNumeroPlayerVite(){return  this.numeroPlayerVite;}
+    public void setNumeroPlayerVite(int numeroPlayerVite){this.numeroPlayerVite = numeroPlayerVite;}
 
     public void SavePartita(MouseEvent mouseEvent) throws IOException
     {
@@ -1123,13 +1127,19 @@ public class Partita
 
     public void ricaricaMazzo(ArrayList<Carta> carteDaEliminare)
     {
-        this.mazzo = new Mazzo(false); // se messo su false non mi rigenera le carte nel costruttore
+        this.mazzo = new Mazzo(false, maxCarteNormali, maxCarteSpeciali); // se messo su false non mi rigenera le carte nel costruttore
         this.mazzo.CreoCarte(); // ricreo il mazzo
         this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
     }
 
     public boolean getCartaGiaScambiata(){return this.cartaGiaScambiata;}
     public void setCartaGiaScambiata(boolean cartaGiaScambiata){this.cartaGiaScambiata = cartaGiaScambiata;}
+
+    public int getMaxCarteNormali(){return this.maxCarteNormali;}
+    public int getMaxCarteSpeciali(){return this.maxCarteSpeciali;}
+
+    public void setMaxCarteNormali(int maxCarteNormali){this.maxCarteNormali = maxCarteNormali;}
+    public void setMaxCarteSpeciali(int maxCarteSpeciali){this.maxCarteSpeciali = maxCarteSpeciali;}
 
     public boolean isGameStopped()
     {

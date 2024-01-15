@@ -666,7 +666,8 @@ public class PartitaClassicaController2 {
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
         // creiamo il salvataggio della nuova partita
-        FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED); // salviamo le informazioni dati
+        System.out.println("DEBUG: " + numeroCarteNormali + " -------  " + numeroCarteSpeciali + " -------  " + numeroVite);
+        FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale
