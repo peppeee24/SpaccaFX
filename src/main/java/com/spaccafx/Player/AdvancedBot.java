@@ -64,43 +64,14 @@ public class AdvancedBot extends Bot
     }
 
     @Override
-    public boolean attivoEffetto(Partita p, TavoloController TC)
+    public boolean attivoEffetto(Partita p, TavoloController TC) // TODO CONTROLLARE SE ATTIVA EFFETTO IN MANIERA GIUSTA NEI ADV_BOT
     {
+        int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
 
-        final int[] min = { 0 }; // Dichiarare min al di fuori del thread
-
-        Thread thread = new Thread(() -> {
-            try {
-                Platform.runLater(() ->
-                {
-                    System.out.println("[ADV-BOT - EFFETTO SCELTA] Sto facendo la scelta...");
-                    TC.mostraBannerAttesa("[ADV-BOT]", "Sto decidendo la scelta...");
-                });
-
-
-                Thread.sleep(3000);
-
-                Platform.runLater(() -> {
-                    TC.nascondiBannerAttesa();
-
-                    System.out.println("[HARD-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
-                    min[0] = (int)(p.mazzo.getMaxCarteNormali() / 2);
-                    System.out.println("[HARD-BOT] Il valore minimo per NON passare e: " +  min[0]);
-                });
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        thread.start();
-
-        try {
-            thread.join(); // Attendi che il thread termini
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return carta.getValore() >  min[0];
+        if(carta.getValore() <= min)
+            return false; //non cambia la carta
+        else
+            return true; // cambia la carta
     }
 
 

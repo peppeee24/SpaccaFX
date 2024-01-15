@@ -42,7 +42,7 @@ public class CartaProbabilita extends Carta
 
         this.attivato=true;
     }
-    // test
+
 
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
@@ -69,6 +69,7 @@ public class CartaProbabilita extends Carta
                     if(currentGiocatore instanceof  Bot) // caso bot
                     {
                         TC.gestisciPulsanti(false, false, false); // togliamo i pulsanti
+                        TC.gestisciPulsanteRiprendiBot(false);
                     }
 
 
@@ -110,6 +111,10 @@ public class CartaProbabilita extends Carta
                 Platform.runLater(() ->
                 {
                     TC.nascondiBannerAttesa();
+
+                    if(currentGiocatore instanceof Bot)
+                        TC.gestisciPulsanteRiprendiBot(true);
+
                     TC.setExitGame(true);
                 });
 
@@ -120,9 +125,8 @@ public class CartaProbabilita extends Carta
         thread.start();
     }
 
-    private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // ok pensiamo
+    private void ScambiaCartaConMazzoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
-        // todo impostare suono per scambio com mazzo
         Thread thread = new Thread(() -> {
             try {
 
@@ -147,27 +151,15 @@ public class CartaProbabilita extends Carta
                     if(currentGiocatore instanceof Giocatore) // se sono un giocatore normale
                     {
                         TC.pulsanteScambiaMazzo(true); // metto il bottone scambio extra
+                        TC.setExitGame(true);
                     }
                     else // se sono un bot
                     {
-                        TC.gestisciPulsanti(false, false, false);
-                        System.out.println("[GAME] Sono un BOT");
-
-                        // TODO SISTEMARE I THREAD NELL-IF
-                        if(((Bot)currentGiocatore).attivoEffetto(partita, TC)) // scambio la carta
-                        {
-                            System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
-                            // TODO capire come fare attesa per far capire se il bot ha deciso di usare la prob o no!
-                            currentGiocatore.setCarta(partita.mazzo.PescaCartaSenzaEffetto());
-                            TC.updateCarteUI();
-                        }
-                        else
-                        {
-                            System.out.println("[PROBABILITA] Il bot ha rifiutato lo scambiato con il mazzo");
-                        }
-                        TC.setExitGame(false);
+                        gestisciLogicaScambiaConMazzoBot(partita, currentGiocatore, TC);
+                        TC.gestisciPulsanteRiprendiBot(true);
                     }
 
+                    TC.setExitGame(true);
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -176,4 +168,66 @@ public class CartaProbabilita extends Carta
 
         thread.start();
     }
+
+    private void gestisciLogicaScambiaConMazzoBot(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
+    {
+        // Assicurati che queste modifiche dell'UI siano eseguite sull'EDT
+        Platform.runLater(() -> {
+            TC.gestisciPulsanti(false, false, false);
+            TC.gestisciPulsanteRiprendiBot(false);
+            TC.setExitGame(false);
+            System.out.println("[GAME] Sono un BOT");
+        });
+
+
+        if (((Bot) currentGiocatore).attivoEffetto(partita, TC))
+        {
+            System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
+            Platform.runLater(() -> TC.mostraBannerAttesa("PROBABILITA [SCAMBIO-EXTRA]", "Il bot ha scambiato la carta con il mazzo"));
+
+
+            // Gestione della pausa per il banner del bot in un thread separato
+            new Thread(() -> {
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    e.printStackTrace();
+                }
+
+                // Aggiornamenti dell'interfaccia utente dopo la pausa
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+                    AudioManager.distribuisciCarteSuono();
+                    currentGiocatore.setCarta(partita.mazzo.PescaCartaSenzaEffetto());
+                    TC.updateCarteUI();
+                    TC.gestisciPulsanteRiprendiBot(true);
+                });
+            }).start();
+        }
+        else
+        {
+            System.out.println("[PROBABILITA] Il bot ha rifiutato lo scambio!");
+            Platform.runLater(() -> TC.mostraBannerAttesa("PROBABILITA [SCAMBIO-EXTRA]", "Il bot ha rifiutato lo scambio extra"));
+
+
+            // Gestione della pausa per il banner del bot in un thread separato
+            new Thread(() -> {
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    e.printStackTrace();
+                }
+
+                // Aggiornamenti dell'interfaccia utente dopo la pausa
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+                    TC.gestisciPulsanteRiprendiBot(true);
+                });
+
+            }).start();
+        }
+    }
 }
+

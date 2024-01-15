@@ -372,7 +372,8 @@ public class Partita
 
         if (giocatore instanceof Bot)
         {
-            passaTurnoUI();
+            TC.gestisciPulsanteRiprendiBot(true);
+            //passaTurnoUI();
         }
         else
         {
@@ -438,7 +439,7 @@ public class Partita
     }
 
 
-
+    // TODO SISTEMARE PROBLEMA CHE SE UN BOT SCAMBIA UNA CARTA E BECCA UNA CARTA PROBABILITA O IMPREVISTO, NON FA VEDERE EFFETTO.
     public void ScambiaCartaUI()
     {
         if(isGameStopped())
@@ -498,9 +499,8 @@ public class Partita
 
     }
 
-    private void gestisciScambioCarta() // TODO PROBLEMA NELLO SCAMBIO CON LE CARTE IMPREVISTO, CASO IN CUI IL GIOCATORE DOPO HA IMPREVISTO E LO PASSA A QUELLO PRIMA. FA UNA DESIONE CHE NON DEVE, SIA BOT CHE PLAYER
+    private void gestisciScambioCarta()
     {
-        // TODO DEVE SCAMBIARE CON IL GIOCATORE SUCCESSIVO CHE NON E UN MORTO!
 
         if(isGameStopped())
             return;
@@ -612,6 +612,7 @@ public class Partita
     private void reimpostaGrafica()
     {
         TC.gestisciPulsanti(false, true, true); // rimetti i pulsanti normali
+        TC.gestisciPulsanteRiprendiBot(false);
     }
 
 
