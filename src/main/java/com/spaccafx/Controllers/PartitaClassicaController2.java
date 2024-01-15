@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class PartitaClassicaController2 {
-
+   // TODo per commit
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3,E4, A1, A2, A3,A4; // sono i dati della partita
 
