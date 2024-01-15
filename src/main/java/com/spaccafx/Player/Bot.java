@@ -48,12 +48,12 @@ public abstract class Bot implements IGiocatore
         this.carta=carta;
     }
 
-    public Bot(String nome, int rounds, int vite)
+    public Bot(String nome, int rounds, int vite, int viteExtra)
     {
         this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome=nome;
         this.vita= vite;
-        vitaExtra = 0;
+        this.vitaExtra = viteExtra;
         this.carta=null;
         this.playerRounds = rounds;
     }

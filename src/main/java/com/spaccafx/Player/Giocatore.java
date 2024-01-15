@@ -49,12 +49,12 @@ public class Giocatore implements IGiocatore
         this.carta = carta;
     }
 
-    public Giocatore(String nome, int rounds, int vite)
+    public Giocatore(String nome, int rounds, int vite, int vitaExtra)
     {
         this.ruolo = RuoloGiocatore.GIOCATORE;
         this.nome=nome;
         this.vita= vite;
-        vitaExtra = 0;
+        this.vitaExtra = vitaExtra;
         this.carta=null;
         this.playerRounds = rounds;
     }

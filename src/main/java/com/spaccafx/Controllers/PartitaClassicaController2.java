@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class PartitaClassicaController2 {
-   // TODo per commit
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3,E4, A1, A2, A3,A4; // sono i dati della partita
 
@@ -556,7 +555,6 @@ public class PartitaClassicaController2 {
             codicePartita.setText("Codice: " + P.getCodicePartita());
             //   codicePartita.wrapTextProperty().set(true);
             // codicePartita.getStyleClass().add("copiable-label");
-            // TODO non riesco a rendere selezionabile la label
 
            /* Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Codice partita generato");
@@ -583,8 +581,6 @@ public class PartitaClassicaController2 {
     // Pulsante crea partita
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
-
-        // TODO CONTROLLARE STO CODICE
 
         ArrayList<IGiocatore> GiocatoriPartita = new ArrayList<>();
 
@@ -659,7 +655,6 @@ public class PartitaClassicaController2 {
                 break;
         }
 
-        //TODO IMPOSTARE DECISIONE DELLE VITE DEI PLAYER
         P.aggiungiListaGiocatori(GiocatoriPartita);
 
         // creiamo il salvataggio della nuova partita

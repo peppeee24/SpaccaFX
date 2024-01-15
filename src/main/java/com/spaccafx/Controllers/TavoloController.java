@@ -141,8 +141,7 @@ public class TavoloController
                             break;
 
             // mettiamo alert dicendo che il gioco sta per essere ripreso
-            // TODO OVVIAMENTE METTERE CUSTOM ALERTS!
-            // TODO METTERE LEADERBOARDS
+            // TODO QUANDO SI CLICCA SU CUSTOM ALERTS NO, CHIUDE IL GIOCO
             case STOPPED:   AudioManager.erroreSuono();
                             bottoneStart.setVisible(false);
 
@@ -178,6 +177,7 @@ public class TavoloController
     public void openLeaderboard()
     {
         if (leaderboardStage == null) {
+            // TODO METTERE SUONO APERTURA LEADERBOARD
             try {
                 // Carica il file FXML per la finestra della classifica
                 FXMLLoader loaderLeaderboard = new FXMLLoader(Spacca.class.getResource("leaderboard.fxml"));
@@ -196,20 +196,19 @@ public class TavoloController
                 ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(partita.giocatori.size());
                 for (IGiocatore giocatore : partita.giocatori)
                 {
-                    // TODO SISTEMARE LA CLASSIFICA CON I BOT
                     // Crea una copia del giocatore e aggiungila alla nuova lista
                     IGiocatore copiaGiocatore;
 
                     if(giocatore instanceof Bot)
                     {
                         if(giocatore instanceof EasyBot)
-                            copiaGiocatore = new EasyBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
+                            copiaGiocatore = new EasyBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
                         else
-                            copiaGiocatore = new AdvancedBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
+                            copiaGiocatore = new AdvancedBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
                     }
                     else
                     {
-                        copiaGiocatore = new Giocatore(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita());
+                        copiaGiocatore = new Giocatore(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
                     }
 
                     giocatoriLeaderboard.add(copiaGiocatore);
@@ -219,10 +218,21 @@ public class TavoloController
                 Collections.sort(giocatoriLeaderboard, new Comparator<IGiocatore>() {
                     @Override
                     public int compare(IGiocatore giocatore1, IGiocatore giocatore2) {
-                        // Confronta i giocatori in base alla vita
+                        // Confronta i giocatori in base alla vita extra
+                        boolean vitaExtra1 = giocatore1.hasVitaExtra();
+                        boolean vitaExtra2 = giocatore2.hasVitaExtra();
+
+                        // Primo criterio: giocatori con vita extra prima
+                        if (vitaExtra1 && !vitaExtra2) {
+                            return -1;
+                        } else if (!vitaExtra1 && vitaExtra2) {
+                            return 1;
+                        }
+
+                        // Secondo criterio: confronta i giocatori in base alla vita
                         int compareVita = Integer.compare(giocatore2.getVita(), giocatore1.getVita());
 
-                        // Se i giocatori hanno la stessa vita, confronta in base ai round
+                        // Terzo criterio: se i giocatori hanno la stessa vita, confronta in base ai round
                         if (compareVita == 0) {
                             return Integer.compare(giocatore2.getPlayerRounds(), giocatore1.getPlayerRounds());
                         } else {
@@ -242,7 +252,8 @@ public class TavoloController
                     AnchorPane anchorPane = fxmlLoader.load();
 
                     SinglePlayerScoreboardController singlePlayerScoreboardController = fxmlLoader.getController();
-                    singlePlayerScoreboardController.setData(posizione, giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita()); // mettere vite extra
+                    System.out.println("Viota extra: " + giocatore.getVitaExtra());
+                    singlePlayerScoreboardController.setData(posizione, giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra()); // mettere vite extra
 
                     // Ottenere l'AnchorPane dal tuo controller
                     //AnchorPane singleAnchorPane = singlePlayerScoreboardController.getAnchorPane();
@@ -842,7 +853,6 @@ public class TavoloController
                     popUpTextLabel.setVisible(true);
                     popUpTextLabel.setText("Stai per ritornare al menu principale...");
                 });
-                // TODO aprire leaderboard
                 this.openLeaderboard();
 
                 Thread.sleep(1500);

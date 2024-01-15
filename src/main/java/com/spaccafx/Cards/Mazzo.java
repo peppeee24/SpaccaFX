@@ -226,7 +226,7 @@ public class Mazzo
         {
             //mazzoCarte.addAll(cartePescate);
             cartePescate.clear(); // cancello le carte che ho pescato
-            CreoCarte(); // TODO EVITARE CHE OGNI VOLTA VENGA RICREATO MAZZO, SPRECO RISORSE
+            CreoCarte();
 
         }
 

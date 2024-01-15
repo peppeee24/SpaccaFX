@@ -84,7 +84,7 @@ public class FileManager
                     // Creazione dell'oggetto JSON per la carta
                     JSONObject cartaJSON = new JSONObject();
                     cartaJSON.put("Valore", 1);
-                    cartaJSON.put("Seme", SemeCarta.VERME.toString()); // metto un seme a caso, TODO DA SISTEMARE
+                    cartaJSON.put("Seme", SemeCarta.VERME.toString()); // metto un seme a caso
                     cartaJSON.put("Attivata", false);
 
                     // Aggiungi l'oggetto cartaJSON al giocatore
@@ -180,7 +180,6 @@ public class FileManager
                     JSONObject giocatoriList = (JSONObject) partitaJSON.get("Giocatori");
 
 
-                    // TODO IL FOR FA SISTEMATO NEL CASO IN CUI DEI GIOCATORI SONO MORTI E NON SI ANDREBBERO A SOVRASCRIVERE TUTTI QUELLI PRESENTI
                     for (int i = 1; i <= partitaToSave.giocatori.size(); i++)
                     {
                         String nomeGiocatore = "Giocatore" + i;
@@ -376,8 +375,6 @@ public class FileManager
             giocatore.setRuolo(ruoloGiocatore);
             giocatore.setPlayerRounds(playerRounds);
 
-            //TODO mettere se il giocatore e vivo
-
             System.out.println("Giocatore: " + giocatore.getNome() );
 
             JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
@@ -389,7 +386,6 @@ public class FileManager
             Image cartaImage;
             cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
 
-            //TODO METTERE SE L EFFETTO DELLA CARTA E STATO GIA ATTIVATO O MENO
             switch (semeCarta)
             {
                 case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);

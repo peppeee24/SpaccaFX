@@ -1,6 +1,5 @@
 package com.spaccafx.Enums;
 
-// TODO DA USARE PER VERIFICARE LO STATO DELLA PARTITA
 public enum GameStatus
 {
     STARTED, // caso in cui viene creata la partita e bisogna ancora fare la prima mossa

@@ -20,7 +20,7 @@ public class AdvancedBot extends Bot
     public AdvancedBot(String nome, Carta carta){
         super(nome,carta);
     }
-    public AdvancedBot(String nome, int playerRounds, int vite) {super(nome, playerRounds, vite);}
+    public AdvancedBot(String nome, int playerRounds, int vite, int viteExtra) {super(nome, playerRounds, vite, viteExtra);}
 
 
     @Override
@@ -64,7 +64,7 @@ public class AdvancedBot extends Bot
     }
 
     @Override
-    public boolean attivoEffetto(Partita p, TavoloController TC) // TODO CONTROLLARE SE ATTIVA EFFETTO IN MANIERA GIUSTA NEI ADV_BOT
+    public boolean attivoEffetto(Partita p, TavoloController TC)
     {
         int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
 

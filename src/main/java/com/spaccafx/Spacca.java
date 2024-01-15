@@ -40,8 +40,6 @@ public class Spacca extends Application {
     public void start(Stage stage) throws IOException {
 
 
-
-// TODO inserire animazioni
         Thread thread = new Thread(() -> {
             try {
 

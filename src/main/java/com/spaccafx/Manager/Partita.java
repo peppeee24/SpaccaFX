@@ -440,8 +440,6 @@ public class Partita
         }
     }
 
-
-    // TODO SISTEMARE PROBLEMA CHE SE UN BOT SCAMBIA UNA CARTA E BECCA UNA CARTA PROBABILITA O IMPREVISTO, NON FA VEDERE EFFETTO.
     public void ScambiaCartaUI()
     {
         if(isGameStopped())
@@ -618,7 +616,6 @@ public class Partita
     }
 
 
-    // TODO RICONTROLLARE TUTTO IL FLUSSO DI QUESTO METODO
     private void controllaRisultatiUI() // con questo metodo capiamo a chi togliere la vita dei player
     {
         if(isGameStopped())
@@ -682,8 +679,6 @@ public class Partita
                         {
                             TC.HidePlayerUI(giocatoreDebole.getNome()); // rivedere
 
-                            // todo vedere se togliere per i file
-                            //giocatoriMorti.add(giocatoreDebole); // viene messo nella lista degli eliminati
                             giocatoreDebole.setRuolo(RuoloGiocatore.MORTO); // lo imposto come morto
 
                             System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
@@ -810,7 +805,7 @@ public class Partita
         this.stabilisciMazziere();
     }
 
-    public void stabilisciMazziere() // todo controlla
+    public void stabilisciMazziere()
     {
         ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>(); // lista giocatori che hanno lo stesso valore
         int valorePiuAlto = trovaValoreDadoAlto(giocatori); // valore dei dadi piu alto tra tutti i player
