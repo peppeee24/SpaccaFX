@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PreGameController">
+   <children>
+      <BorderPane prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="16.0" layoutY="293.0" prefHeight="58.0" prefWidth="220.0" styleClass="LabelWhite" text="LEADERBOARD" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="549.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="currentPlayer" layoutX="163.0" layoutY="535.0" />
+                  <Label fx:id="currentRound" layoutX="163.0" layoutY="569.0" />
+                  <Label fx:id="partitaNumeroLabel" layoutX="262.0" layoutY="139.0" styleClass="Label" text="Partita n: ">
+                     <font>
+                        <Font name="System Bold Italic" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="59.0" layoutY="-39.0" prefHeight="230.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
+                     <font>
+                        <Font name="System Bold Italic" size="27.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="638.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/cup.png" />
+                     </image>
+                  </ImageView>
+                  <ScrollPane layoutY="168.0" prefHeight="270.0" prefWidth="776.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

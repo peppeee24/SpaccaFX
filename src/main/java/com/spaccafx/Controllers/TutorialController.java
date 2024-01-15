@@ -25,7 +25,7 @@ public class TutorialController {
     public void tutorialTorneo(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
         AudioManager.bottoneSuono();
-        FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("tutorialTorneo.fxml"));
+        FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("TutorialTorneo.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Login.load());
         stage.setScene(scene);
@@ -34,7 +34,7 @@ public class TutorialController {
 
     public void tutorialPartita(ActionEvent actionEvent) throws IOException { // PLAY
         AudioManager.bottoneSuono();
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("tutorialPartita.fxml"));
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TutorialPartita.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();
         Scene scene = new Scene(root);

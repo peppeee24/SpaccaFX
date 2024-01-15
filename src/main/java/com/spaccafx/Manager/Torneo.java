@@ -8,11 +8,11 @@ import java.util.Objects;
 
 public class Torneo
 {
-    String codiceTorneo;
+    String codiceTorneo, passwordTorneo;
     ArrayList<Partita> partite;
     ArrayList<IGiocatore> giocatori;
 
-    //ArrayList<IGiocatore> vincitori;
+   // ArrayList<IGiocatore> vincitori;
 
     IGiocatore winner; //finchè è null vuol dire che non c'è ancora un vincitore del torneo
 
@@ -39,6 +39,8 @@ public class Torneo
 
 
         System.out.println("Generato codice torneo: " + codiceTorneo);
+        System.out.println("Generata password torneo: " + passwordTorneo);
+
         System.out.println("NGiocatori totali: " + nGiocatoriTot);
         System.out.println("NTavoli: " + nGiocatoriTot/4);
     }
@@ -73,7 +75,12 @@ public class Torneo
 
     private String generaCodiceTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
-        return "TORNEO_" + (int)(1 + (Math.random() * 1000));
+        return "TORNEO: " + (int)(1 + (Math.random() * 1000));
+    }
+
+    private String generaPasswordTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    {
+        return "PASSWORD: " + (int)(1 + (Math.random() * 1000));
     }
 
     private boolean ControllaFineTorneo()
@@ -140,6 +147,14 @@ public class Torneo
         if(giocatori.size() < 2){
             winner = giocatori.get(0);
         }
+    }
+
+    public String getCodiceTorneo(){
+        return codiceTorneo;
+    }
+
+    public String getPasswordTorneo(){
+        return passwordTorneo;
     }
     /*
     TODO NOTES:
