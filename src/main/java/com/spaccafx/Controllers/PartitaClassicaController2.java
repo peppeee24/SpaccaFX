@@ -36,7 +36,7 @@ import java.util.Optional;
 public class PartitaClassicaController2 {
 
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, A1, A2, A3; // sono i dati della partita
+    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3,E4, A1, A2, A3,A4; // sono i dati della partita
 
 
     Partita P; // // TODO guardare dichiaro classe partita
@@ -55,10 +55,10 @@ public class PartitaClassicaController2 {
     TextField playerName1, playerName2, playerName3, playerName4;
 
     @FXML
-    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, botCounter, passwordPartita;
+    Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, labelBot4, botCounter, passwordPartita;
 
     @FXML
-    ImageView twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, easyBot1, easyBot2, easyBot3;
+    ImageView oneLabel,twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3,hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
     // creo bot per settare nomi/ difficolta
     EasyBot E = new EasyBot(); // TODO NON VA BENE
@@ -218,6 +218,16 @@ public class PartitaClassicaController2 {
         return E2;
     }
 
+    public void getEasyBot4() {
+        E4 = E.generaNomeBot();
+
+    }
+
+    public String getE4() {
+
+        return E4;
+    }
+
     public void getEasyBot3() {
         E3 = E.generaNomeBot();
 
@@ -254,22 +264,36 @@ public class PartitaClassicaController2 {
         return A3;
     }
 
+    public void getAdvBot4() {
+        A4 = A.generaNomeBot();
+
+    }
+
+    public String getA4() {
+        return A4;
+    }
+
     public void nascondiBot() { // viene attivato quando clicchi sul bottone salva
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
         labelBot3.setVisible(false);
+        labelBot4.setVisible(false);
         hardBot1.setVisible(false);
         hardBot2.setVisible(false);
         hardBot3.setVisible(false);
+        hardBot4.setVisible(false);
         easyBot1.setVisible(false);
         easyBot2.setVisible(false);
         easyBot3.setVisible(false);
+        easyBot4.setVisible(false);
         getAdvBot1();
         getAdvBot2();
         getAdvBot3();
+        getAdvBot4();
         getEasyBot1();
         getEasyBot2();
         getEasyBot3();
+        getEasyBot4();
     }
 
 
@@ -285,7 +309,7 @@ public class PartitaClassicaController2 {
     // per i bot
     public void impostaDifficolta() {
 
-        if (difficolta != null) { // TODO Impostare default choicebox
+        if (difficolta != null) {
             switch (getNumeroBot())  // getnumero() bot viene generato quando salvo i dati dei player
             {
                 case 0:
@@ -344,6 +368,35 @@ public class PartitaClassicaController2 {
                         easyBot3.setVisible(true);
                     }
                     break;
+                case 4:
+                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                        labelBot1.setText(getA1());
+                        labelBot1.setVisible(true);
+                        hardBot1.setVisible(true);
+                        labelBot2.setText(getA2());
+                        labelBot2.setVisible(true);
+                        hardBot2.setVisible(true);
+                        labelBot3.setText(getA3());
+                        labelBot3.setVisible(true);
+                        hardBot3.setVisible(true);
+                        labelBot4.setText(getA4());
+                        labelBot4.setVisible(true);
+                        hardBot4.setVisible(true);
+                    } else {
+                        labelBot1.setText(getE1());
+                        labelBot1.setVisible(true);
+                        easyBot1.setVisible(true);
+                        labelBot2.setText(getE2());
+                        labelBot2.setVisible(true);
+                        easyBot2.setVisible(true);
+                        labelBot3.setText(getE3());
+                        labelBot3.setVisible(true);
+                        easyBot3.setVisible(true);
+                        labelBot4.setText(getE4());
+                        labelBot4.setVisible(true);
+                        easyBot4.setVisible(true);
+                    }
+                    break;
                 default:
 
             }
@@ -359,6 +412,7 @@ public class PartitaClassicaController2 {
         playerName3.setVisible(false);
         playerName4.setVisible(false);
 
+        oneLabel.setVisible(false);
         twoLabel.setVisible(false);
         treeLabel.setVisible(false);
         fourLabel.setVisible(false);
@@ -366,6 +420,7 @@ public class PartitaClassicaController2 {
         // Rendi visibili i campi e le immagini in base al numero di giocatori
         if (numeroGiocatori >= 1) {
             playerName1.setVisible(true);
+            oneLabel.setVisible(true);
         }
         if (numeroGiocatori >= 2) {
             playerName2.setVisible(true);
@@ -516,7 +571,7 @@ public class PartitaClassicaController2 {
 
 
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
-           AudioManager.erroreSuono();
+            AudioManager.erroreSuono();
           /*  Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Parametri errati");
             alert.setContentText("Si puà giocare tra 2 e 4 giocatori, compresi bot, rivedi le impostazioni");
@@ -546,11 +601,13 @@ public class PartitaClassicaController2 {
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
-        } else {
+        } else if (getNumeroGiocatori() == 4) {
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore4()));
+        } else {
+            // TODO sistemare qui
         }
 
 
@@ -566,6 +623,21 @@ public class PartitaClassicaController2 {
                     GiocatoriPartita.add(new EasyBot(getE1()));
                     GiocatoriPartita.add(new EasyBot(getE2()));
                     GiocatoriPartita.add(new EasyBot(getE3()));
+
+                }
+                break;
+            case 4:
+
+                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                    GiocatoriPartita.add(new AdvancedBot(getA1()));
+                    GiocatoriPartita.add(new AdvancedBot(getA2()));
+                    GiocatoriPartita.add(new AdvancedBot(getA3()));
+                    GiocatoriPartita.add(new AdvancedBot(getA4()));
+                } else {
+                    GiocatoriPartita.add(new EasyBot(getE1()));
+                    GiocatoriPartita.add(new EasyBot(getE2()));
+                    GiocatoriPartita.add(new EasyBot(getE3()));
+                    GiocatoriPartita.add(new EasyBot(getE4()));
 
                 }
                 break;
@@ -609,13 +681,8 @@ public class PartitaClassicaController2 {
         //  mmc.setPartitaClassicaController(this);
         ShareData.getInstance().setPartitaClassicaController(this); // gli passo classe partitacontroller
         ShareData.getInstance().setPartita(this.P);
-      //  ShareData.getInstance().setPassword(this.P); // non serve
-
-
-
+        //  ShareData.getInstance().setPassword(this.P); // non serve
 
     }
 
 }
-
-

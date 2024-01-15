@@ -88,8 +88,10 @@
                                     <Image url="@../../Assets/Game/Environment/dischi.gif" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="musicaONButton" layoutX="176.0" layoutY="158.0" mnemonicParsing="false" onAction="#musicaPlayButton" text="Musica ON" />
-                              <Button fx:id="musicaOFFButton" layoutX="405.0" layoutY="158.0" mnemonicParsing="false" onAction="#musicaStopButton" text="Musica OFF" />
+                              <Button fx:id="musicaONButton" layoutX="41.0" layoutY="159.0" mnemonicParsing="false" onAction="#musicaPlayButton" style="-fx-background-color: green;" text="Arcade Music ON" />
+                              <Button fx:id="musicaOFFButton" layoutX="403.0" layoutY="159.0" mnemonicParsing="false" onAction="#musicaStopButton" style="-fx-background-color: red;" text="Arcade Music OFF" />
+                              <Button fx:id="musicaONButton2" layoutX="41.0" layoutY="213.0" mnemonicParsing="false" onAction="#musicaPlayButton2" style="-fx-background-color: green;" text="Lounge Music ON" />
+                              <Button fx:id="musicaOFFButton2" layoutX="405.0" layoutY="213.0" mnemonicParsing="false" onAction="#musicaStopButton2" style="-fx-background-color: red;" text="Lounge Music OFF" />
                            </children>
                         </AnchorPane>
                      </right>

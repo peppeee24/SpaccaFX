@@ -21,7 +21,7 @@
                   <Font size="15.0" />
                </font></Label>
             <Label layoutX="136.0" layoutY="445.0" styleClass="Label" text="Laboratorio di Programmazione Interent " />
-            <Label layoutX="276.0" layoutY="481.0" styleClass="Label" text="Anno Accademico 2022/2023" />
+            <Label layoutX="192.0" layoutY="481.0" styleClass="Label" text="Progetto Anno Accademico 2022/2023" />
          </children>
       </Pane>
    </children>

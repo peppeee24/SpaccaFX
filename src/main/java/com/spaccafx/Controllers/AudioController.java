@@ -47,10 +47,10 @@ public class AudioController {
     @FXML
     ImageView soundImage;
     @FXML
-    static MediaPlayer player;
+    static MediaPlayer player, player2;
 
     @FXML
-    Button musicaONButton, musicaOFFButton;
+    Button musicaONButton,musicaONButton2, musicaOFFButton,musicaOFFButton2;
 
     private ShareData shareData; // Aggiungi un riferimento all'istanza di ShareData
 
@@ -63,8 +63,9 @@ public class AudioController {
     public void initialize() throws URISyntaxException {
 
         ShareData.getInstance().setAudioController(this); // gli passo classe partitacontroller
-      //  ShareData.getInstance().set(this.P);
+        //  ShareData.getInstance().set(this.P);
         playerSetting();
+        playerSetting2();
         //   playAudio();
 
 // Inizializza l'istanza di ShareData e setta se stesso come AudioController
@@ -77,13 +78,14 @@ public class AudioController {
                 @Override
                 public void invalidated(Observable observable) {
                     player.setVolume(volumeSlider.getValue() / 100);
+                    player2.setVolume(volumeSlider.getValue() / 100);
                 }
             });
             ShareData shareData = ShareData.getInstance();
             shareData.setAudioController(this);
 
         } else {
-            System.err.println("Lo slider del volume non è stato inizializzato correttamente.");
+            System.err.println("Lo slider del volume non Ã¨ stato inizializzato correttamente.");
         }
 
         player.setOnEndOfMedia(new Runnable() {
@@ -107,27 +109,56 @@ public class AudioController {
 
     }
 
+    public  void playerSetting2() throws URISyntaxException {
+        URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/lounge.wav");
+        File sound =new File(risorsa.toURI());
+        Media media2 = new Media(risorsa.toString());
+        player2 = new MediaPlayer(media2);
+        player2.setOnError(() -> System.out.println(media2.getError().toString()));
+
+    }
+
     //play audio
     public  void playAudio()
     {
         player.play();
     }
+    public  void playAudio2()
+    {
+        player2.play();
+    }
 
     //pause audio
     public  void pauseAudio()
     {
-        if (player.getStatus().equals(Status.PAUSED))
+        if (player.getStatus().equals(Status.PAUSED) || player2.getStatus().equals(Status.PAUSED) )
         {
             System.out.println("audio is already paused");
             return;
         }
         player.pause();
+        player2.pause();
     }
 
+    public  void pauseAudio2()
+    {
+        if ( player2.getStatus().equals(Status.PAUSED) )
+        {
+            System.out.println("audio is already paused");
+            return;
+        }
+
+        player2.pause();
+    }
 
 
     public void resetMedia() {
         player.seek(Duration.seconds(0));
+    }
+
+
+    public void resetMedia2() {
+        player2.seek(Duration.seconds(0));
     }
 
 
@@ -138,9 +169,21 @@ public class AudioController {
 
     }
 
+    public void musicaPlayButton2(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
+        playAudio2();
+
+    }
+
     public void musicaStopButton(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
         pauseAudio();
+
+    }
+
+    public void musicaStopButton2(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
+        pauseAudio2();
 
     }
 

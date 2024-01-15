@@ -133,6 +133,10 @@ public class PreGameController
     }
 
 
+
+
+
+
     public void apriTavolo(ActionEvent actionEvent) throws IOException // bottone inizia
     {
         // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
@@ -172,16 +176,4 @@ public class PreGameController
         stage.show();
     }
 
-
-
-
-
 }
-
-
-
-
-
-
-
-
