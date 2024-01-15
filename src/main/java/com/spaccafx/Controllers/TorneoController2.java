@@ -63,6 +63,12 @@ public class TorneoController2 {
     public void initialize() // si attiva da SelectionMenuController
     {
         setNumeroGiocatori();
+        setDifficolta();
+
+        setNumeroVite();
+        setNumeroCarteSpeciali();
+        setNumeroCarteNormali();
+
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -72,7 +78,7 @@ public class TorneoController2 {
 
     // legge i dati dal menu tendina dei giocatori
     public void nG(ActionEvent event) {
-        numeroGiocatori = numeroGiocatoriMenu.getValue();
+        numeroGiocatori = Integer.parseInt(String.valueOf(numeroGiocatoriMenu.getValue()));
         setNumeroGiocatori();
         this.controlloGiocatori();
         setNumeroBot();
@@ -127,7 +133,7 @@ public class TorneoController2 {
 
     // legge i dati dal menu tendina dei giocatori
     public void nCN(ActionEvent event) {
-        numeroCarteNormali = carteNormaliMenu.getValue();
+        numeroCarteNormali = Integer.parseInt(String.valueOf(carteNormaliMenu.getValue()));
         setNumeroCarteNormali();
         System.out.println("Numero carte Normali : " + numeroCarteNormali);
     }
@@ -145,7 +151,7 @@ public class TorneoController2 {
 
     // legge i dati dal menu tendina dei giocatori
     public void nCS(ActionEvent event) {
-        numeroCarteSpeciali = carteSpecialiMenu.getValue();
+        numeroCarteSpeciali = Integer.parseInt(String.valueOf(carteSpecialiMenu.getValue()));
         setNumeroCarteSpeciali();
         System.out.println("Numero carte Speciali : " + numeroCarteSpeciali);
     }
@@ -160,7 +166,7 @@ public class TorneoController2 {
 
     // legge i dati dal menu tendina dei giocatori
     public void nV(ActionEvent event) {
-        numeroVite = viteMenu.getValue();
+        numeroVite = Integer.parseInt(String.valueOf(viteMenu.getValue()));
         setNumeroVite();
         System.out.println("Numero vite : " + numeroVite);
     }
@@ -170,31 +176,18 @@ public class TorneoController2 {
     }
 
 
-    public void saveNormali(ActionEvent actionEvent) throws IOException  // pulsante
-    {
+
+    public void salvaImpostazioni(ActionEvent actionEvent) throws IOException { // PLAY
+
         AudioManager.bottoneSuono();
-        System.out.println("Salvo il numero di carte normali");
-
-
-
-    }
-
-    public void saveSpeciali(ActionEvent actionEvent) throws IOException  // pulsante
-    {
-        AudioManager.bottoneSuono();
-        System.out.println("Salvo il numero di carte speciali");
-        this.setNumeroCarteSpeciali();
-
-    }
-
-    public void saveVite(ActionEvent actionEvent) throws IOException  // pulsante
-    {
-        AudioManager.bottoneSuono();
-        System.out.println("Salvo il numero di vite");
+        System.out.println("Salvo il numero di vite" + getNumeroVite());
         this.setNumeroVite();
+        System.out.println("Salvo il numero di carte speciali" + getNumeroCarteSpeciali());
+        this.setNumeroCarteSpeciali();
+        System.out.println("Salvo il numero di carte normali" + getNumeroCarteNormali());
+        this.setNumeroCarteNormali();
 
     }
-
 
     public void getEasyBot1() {
         E1 = E.generaNomeBot();
@@ -699,7 +692,7 @@ public class TorneoController2 {
             Partite.add(P);
 
             // creiamo il salvataggio della nuova partita
-            //FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED); // salviamo le informazioni dati
+            FileManager.creaPartitaTorneoSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED,numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
 
 
             // ti riporta al menu principale
