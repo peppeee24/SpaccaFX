@@ -156,6 +156,20 @@ File sound =new File(risorsa.toURI());
         }
         // }
     }
+
+    public static void leaderboardSuono () {
+        //   if(suoniON.isSelected()) {
+        try {
+            URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/lead.wav");
+            File sound =new File(risorsa.toURI());
+            Clip c = AudioSystem.getClip();
+            c.open(AudioSystem.getAudioInputStream(sound));
+            c.start();
+        } catch (Exception e) {
+            System.out.println("Errore nella riproduzione del suono leaderboard");
+        }
+        // }
+    }
     public static void probabilitaSuono () {
         //   if(suoniON.isSelected()) {
         try {

@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -302,7 +303,7 @@ public class PartitaClassicaController2 {
     }
 
 
-    // per i bot
+
     public void impostaDifficolta() {
 
         if (difficolta != null) {
@@ -359,6 +360,9 @@ public class PartitaClassicaController2 {
                         labelBot3.setText(getA3());
                         labelBot3.setVisible(true);
                         hardBot3.setVisible(true);
+                        easyBot1.setVisible(false);
+                        easyBot2.setVisible(false);
+                        easyBot3.setVisible(false);
                     } else {
                         labelBot1.setText(getE1());
                         labelBot1.setVisible(true);
@@ -369,6 +373,10 @@ public class PartitaClassicaController2 {
                         labelBot3.setText(getE3());
                         labelBot3.setVisible(true);
                         easyBot3.setVisible(true);
+                        hardBot1.setVisible(false);
+                        hardBot2.setVisible(false);
+                        hardBot3.setVisible(false);
+
                     }
                     break;
                 case 4:
@@ -385,6 +393,10 @@ public class PartitaClassicaController2 {
                         labelBot4.setText(getA4());
                         labelBot4.setVisible(true);
                         hardBot4.setVisible(true);
+                        easyBot1.setVisible(false);
+                        easyBot2.setVisible(false);
+                        easyBot3.setVisible(false);
+                        easyBot4.setVisible(false);
                     } else {
                         labelBot1.setText(getE1());
                         labelBot1.setVisible(true);
@@ -398,6 +410,10 @@ public class PartitaClassicaController2 {
                         labelBot4.setText(getE4());
                         labelBot4.setVisible(true);
                         easyBot4.setVisible(true);
+                        hardBot1.setVisible(false);
+                        hardBot2.setVisible(false);
+                        hardBot3.setVisible(false);
+                        hardBot4.setVisible(false);
                     }
                     break;
                 default:
@@ -407,6 +423,47 @@ public class PartitaClassicaController2 {
             System.out.println("Difficoltà è null");
         }
     }
+
+
+
+    /*
+public void impostaDifficolta() {
+    if (difficolta == null) {
+        System.out.println("Difficoltà è null");
+        return;
+    }
+
+    String[] nomiBot = {getE1(), getE2(), getE3(), getE4()};
+    String[] difficoltaBot = {easyBot1, easyBot2, easyBot3, easyBot4};
+    String[] labelBot = {labelBot1, labelBot2, labelBot3, labelBot4};
+    String[] hardBot = {hardBot1, hardBot2, hardBot3, hardBot4};
+
+    int numeroBot = getNumeroBot();
+
+    if (numeroBot == 0) {
+        difficoltaBotMenu.setVisible(false);
+        difficoltaBotLabel.setVisible(false);
+        numeroBotLabel.setText("Non ci sono bot");
+    } else {
+        for (int i = 0; i < numeroBot; i++) {
+            if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                labelBot[i].setText(nomiBot[i]);
+                labelBot[i].setVisible(true);
+                hardBot[i].setVisible(true);
+                difficoltaBot[i].setVisible(false);
+            } else {
+                labelBot[i].setText(nomiBot[i]);
+                labelBot[i].setVisible(true);
+                difficoltaBot[i].setVisible(true);
+                hardBot[i].setVisible(false);
+            }
+        }
+    }
+}
+
+     */
+
+
 
     private void controlloGiocatori() {
         // Assumiamo che tutti i campi e le immagini siano inizialmente invisibili

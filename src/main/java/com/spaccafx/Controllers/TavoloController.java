@@ -247,12 +247,13 @@ public class TavoloController
                 // PARTE NUOVA
                 for (IGiocatore giocatore : giocatoriLeaderboard)
                 {
+                    AudioManager.leaderboardSuono();
                     FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("SinglePlayerScoreboard.fxml"));
 
                     AnchorPane anchorPane = fxmlLoader.load();
 
                     SinglePlayerScoreboardController singlePlayerScoreboardController = fxmlLoader.getController();
-                    System.out.println("Viota extra: " + giocatore.getVitaExtra());
+                    System.out.println("Vita extra: " + giocatore.getVitaExtra());
                     singlePlayerScoreboardController.setData(posizione, giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra()); // mettere vite extra
 
                     // Ottenere l'AnchorPane dal tuo controller
