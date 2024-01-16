@@ -238,7 +238,7 @@
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font></Label>
-                              <ChoiceBox fx:id="difficoltaBotMenu" layoutX="284.0" layoutY="123.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;" value="Facile">
+                              <ChoiceBox fx:id="difficoltaBotMenu" layoutX="284.0" layoutY="123.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
                                        <String fx:value="Facile" />
@@ -366,25 +366,9 @@
                      <right>
                         <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="inviaButton" layoutX="606.0" layoutY="533.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="54.0" prefWidth="155.0" text="CREATE" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="inviaButton" layoutX="606.0" layoutY="533.0" mnemonicParsing="false" onAction="#impostaTorneo" prefHeight="54.0" prefWidth="155.0" text="CREATE" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Label fx:id="codicePartita" layoutX="66.0" layoutY="248.0" styleClass="Label" text="Codice: ">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="generaCodiceButton" layoutX="57.0" layoutY="337.0" mnemonicParsing="false" onAction="#generaCodice" text="Genera Codice" textAlignment="CENTER" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -403,7 +387,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label fx:id="passwordPartita" layoutX="66.0" layoutY="288.0" styleClass="Label" text="Password: ">
+                              <Label fx:id="codiceTorneo" layoutX="147.0" layoutY="189.0" styleClass="Label" text="Codice: ">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -411,7 +395,7 @@
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="codiceTorneo" layoutX="376.0" layoutY="248.0" styleClass="Label" text="Codice: ">
+                              <Label fx:id="passwordTorneo" layoutX="147.0" layoutY="241.0" styleClass="Label" text="Password: ">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -419,15 +403,7 @@
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="passwordTorneo" layoutX="376.0" layoutY="288.0" styleClass="Label" text="Password: ">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="generaCodiceTorneoButton" layoutX="376.0" layoutY="343.0" mnemonicParsing="false" onAction="#generaCodice" text="Genera Codice" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="generaCodiceTorneoButton" layoutX="347.0" layoutY="288.0" mnemonicParsing="false" onAction="#generaCodice" text="Genera Codice" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>

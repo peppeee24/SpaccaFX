@@ -35,10 +35,6 @@ public class Torneo
         this.nGiocatoriMatch = trovaNGiocatori();
         this.partenza = 0;
 
-
-        System.out.println("Generato codice torneo: " + codiceTorneo);
-        System.out.println("Generata password torneo: " + passwordTorneo);
-
         System.out.println("NGiocatori totali: " + nGiocatoriTot);
         System.out.println("NTavoli: " + nGiocatoriTot/4);
     }
@@ -72,14 +68,14 @@ public class Torneo
     }*/
     // TODO cambiare con file
 
-    public int generaCodiceTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    public void generaCodiceTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
-        return (int)(1 + (Math.random() * 1000));
+        this.codiceTorneo= (int)(1 + (Math.random() * 1000));
     }
 
-    public int generaPasswordTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    public void generaPasswordTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
-        return  (int)(1 + (Math.random() * 1000));
+        this.passwordTorneo=  (int)(1 + (Math.random() * 1000));
     }
 
     private boolean ControllaFineTorneo()

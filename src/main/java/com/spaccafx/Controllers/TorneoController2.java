@@ -551,9 +551,19 @@ public TorneoController2(){
             passwordTorneo.setText("Password: " + T.getPasswordTorneo());
             codiceTorneo.setText("Codice: " + T.getCodiceTorneo());
 
-            AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
+            AlertController.showWarning("Codice torneo generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
 
 
+    }
+
+    public void impostaTorneo(ActionEvent actionEvent) throws IOException {
+        AudioManager.bottoneSuono();
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Parent root = playerScreen.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
