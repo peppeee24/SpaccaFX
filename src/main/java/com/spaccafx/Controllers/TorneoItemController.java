@@ -32,7 +32,7 @@ import java.util.Comparator;
 public class TorneoItemController
 {
     @FXML
-    private Label partitaId;
+    private Label torneoId;
 
     @FXML
     private Button playButtonId, leaderboardButtonId;
@@ -41,11 +41,11 @@ public class TorneoItemController
     private Label stateId;
 
 
-    private int codicePartita, passwordPartita;
+    private int codiceTorneo, passwordTorneo;
 
     public void setData(MatchData matchData)
     {
-        this.partitaId.setText("ID: " + matchData.getCodice());
+        this.torneoId.setText("ID: " + matchData.getCodice());
 
         switch (matchData.getStatus())
         {
@@ -79,10 +79,12 @@ public class TorneoItemController
                             playButtonId.setDisable(true);
         }
 
-        this.passwordPartita = matchData.getPassword();
-        this.codicePartita = matchData.getCodice();
+        this.passwordTorneo = matchData.getPassword();
+        this.codiceTorneo = matchData.getCodice();
     }
 
+
+    // TODO FARE ACCEDI TORNEO
     public void accediPartita(javafx.event.ActionEvent actionEvent)
     {
         // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
@@ -104,7 +106,7 @@ public class TorneoItemController
             stage.show();
 
             PreGameController preGameController = preGameScreen.getController();
-            preGameController.setInfoPartita2(codicePartita, passwordPartita);
+            preGameController.setInfoPartita2(codiceTorneo, passwordTorneo);
         }
         catch (IOException e)
         {
@@ -112,6 +114,7 @@ public class TorneoItemController
         }
     }
 
+    // TODO FARE LEADERBOARD TORNEO
     public void leaderboardPartita(javafx.event.ActionEvent actionEvent)
     {
         try
@@ -127,7 +130,7 @@ public class TorneoItemController
             stage.setScene(scene);
 
             // Bisogna prendere i dati della partita dalla quale clicco sulla leaderboard.
-            Partita partita = FileManager.leggiPartitaDaFile(codicePartita);
+            Partita partita = FileManager.leggiPartitaDaFile(codiceTorneo);
 
             ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(partita.giocatori.size());
             for (IGiocatore giocatore : partita.giocatori)

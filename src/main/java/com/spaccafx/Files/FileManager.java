@@ -541,9 +541,11 @@ public class FileManager
             nuovoTorneo.put("MaxCarteSpeciali", maxCarteSpeciali);
             nuovoTorneo.put("NumeroPlayerVite", numeroPlayerVite);
             nuovoTorneo.put("Tipo", gameType.toString());
+            nuovoTorneo.put("CurrentMatch", 0);
 
             JSONObject partiteList = new JSONObject();
 
+            // TODO DOVREBBE CREARE 5 PARTITE LA CUI 5 E VUOTA PERCHE CI ANDRANNO POI I VINCITORI.
             for(int c=0; c<4; c++) // creo le mie 4 partite con i giocatori
             {
                 JSONObject giocatoriList = new JSONObject();
