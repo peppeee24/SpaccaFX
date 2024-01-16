@@ -4,7 +4,6 @@ import com.spaccafx.Interface.IGiocatore;
 
 import java.util.ArrayList;
 
-import java.util.Objects;
 
 public class Torneo
 {
@@ -16,12 +15,10 @@ public class Torneo
 
     IGiocatore winner; //finchè è null vuol dire che non c'è ancora un vincitore del torneo
 
-    private int currentMatch;
-
+    private int currentMatch; // numero partita attuale
     private int nGiocatoriTot;
 
     private int nGiocatoriMatch;
-
 
     private int partenza;
 

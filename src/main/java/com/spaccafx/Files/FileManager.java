@@ -33,7 +33,6 @@ public class FileManager
 
     // region #PARTITA
     public static File partiteFile = new File("Partite.json"); // unico file con più partite
-    public static File TorneiFile = new File("Tornei.json"); // unico file con più partite
 
     public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
     {
@@ -132,15 +131,6 @@ public class FileManager
             e.printStackTrace();
         }
     }
-
-
-
-    public static void creaPartitaTorneoSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
-    {
-
-    }
-
-
 
 
     // andiamo a salvare tutti i nuovi dati della partita, andandoli a sovrascrivere
@@ -535,6 +525,15 @@ public class FileManager
     //endregion
 
 
+    // region #TORNEI
+    public static File TorneiFile = new File("Tornei.json"); // unico file con più tornei
+
+    public static void creaPartitaTorneoSuFile(int codiceTorneo, int passwordTorneo, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
+    {
+
+    }
+
+    // endregion
 
 }
 

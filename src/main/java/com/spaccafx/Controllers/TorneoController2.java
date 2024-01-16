@@ -685,7 +685,7 @@ public class TorneoController2 {
                     break;
             }
 
-            //TODO IMPOSTARE DECISIONE DELLE VITE DEI PLAYER
+
             P.aggiungiListaGiocatori(GiocatoriPartita);
         //    T.aggiungiGiocatoreTorneo();
             ArrayList<Partita> Partite =new ArrayList<>();
