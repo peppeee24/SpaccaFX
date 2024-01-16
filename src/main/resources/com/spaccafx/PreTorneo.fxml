@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PreGameController">
+   <children>
+      <BorderPane prefHeight="630.0" prefWidth="1024.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="21.0" layoutY="293.0" prefHeight="58.0" prefWidth="220.0" styleClass="LabelWhite" text="VERIFICA DATI" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="indietro" fitHeight="100.0" fitWidth="67.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true" translateY="560.0">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Partita 1">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <BorderPane prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <right>
+                              <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="giocaButton" layoutX="634.0" layoutY="534.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
+                                       <font>
+                                          <Font name="System Bold Italic" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane layoutX="59.0" layoutY="177.0" prefHeight="311.0" prefWidth="640.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label fx:id="giocatore1" prefHeight="14.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore4" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <ImageView fx:id="user1" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user2" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user3" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user4" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore1" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore2" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore3" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore4" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="numerovite2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite3" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite4" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    <Label fx:id="currentPlayer" layoutX="163.0" layoutY="535.0" />
+                                    <Label fx:id="currentRound" layoutX="163.0" layoutY="569.0" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Partita 2">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <BorderPane prefHeight="630.0" prefWidth="1024.0">
+                           <right>
+                              <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="giocaButton1" layoutX="634.0" layoutY="558.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
+                                       <font>
+                                          <Font name="System Bold Italic" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane layoutX="59.0" layoutY="177.0" prefHeight="311.0" prefWidth="640.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label fx:id="giocatore11" prefHeight="14.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore21" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore31" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore41" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <ImageView fx:id="user11" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user21" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user31" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user41" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore11" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore21" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore31" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore41" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="numerovite21" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite11" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite31" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite41" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    <Label fx:id="currentPlayer1" layoutX="163.0" layoutY="535.0" />
+                                    <Label fx:id="currentRound1" layoutX="163.0" layoutY="569.0" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                        </BorderPane>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Partita 3">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <BorderPane prefHeight="630.0" prefWidth="1024.0">
+                           <right>
+                              <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="giocaButton3" layoutX="634.0" layoutY="556.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
+                                       <font>
+                                          <Font name="System Bold Italic" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane layoutX="59.0" layoutY="177.0" prefHeight="311.0" prefWidth="640.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label fx:id="giocatore13" prefHeight="14.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore23" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore33" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore43" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <ImageView fx:id="user13" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user23" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user33" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user43" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore13" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore23" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore33" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore43" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="numerovite23" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite13" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite33" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite43" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    <Label fx:id="currentPlayer3" layoutX="163.0" layoutY="535.0" />
+                                    <Label fx:id="currentRound3" layoutX="163.0" layoutY="569.0" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+            <Tab text="Partita 4">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <BorderPane prefHeight="630.0" prefWidth="1024.0">
+                           <right>
+                              <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="giocaButton2" layoutX="634.0" layoutY="556.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
+                                       <font>
+                                          <Font name="System Bold Italic" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane layoutX="59.0" layoutY="177.0" prefHeight="311.0" prefWidth="640.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label fx:id="giocatore12" prefHeight="14.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore22" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore32" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore42" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <ImageView fx:id="user12" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user22" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user32" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user42" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore12" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore22" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore32" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore42" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="numerovite22" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite12" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite32" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite42" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    <Label fx:id="currentPlayer2" layoutX="163.0" layoutY="535.0" />
+                                    <Label fx:id="currentRound2" layoutX="163.0" layoutY="569.0" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+            <Tab text="Partita FINALE">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="630.0" prefWidth="1024.0">
+                           <right>
+                              <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="giocaButton4" layoutX="641.0" layoutY="522.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
+                                       <font>
+                                          <Font name="System Bold Italic" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane layoutX="59.0" layoutY="177.0" prefHeight="311.0" prefWidth="640.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label fx:id="giocatore14" prefHeight="14.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore24" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore34" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="giocatore44" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <ImageView fx:id="user14" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user24" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user34" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="user44" fitHeight="112.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore14" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore24" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore34" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cuore44" fitHeight="52.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="numerovite24" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite14" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite34" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <Label fx:id="numerovite44" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    <Label fx:id="currentPlayer4" layoutX="163.0" layoutY="535.0" />
+                                    <Label fx:id="currentRound4" layoutX="163.0" layoutY="569.0" />
+                                 </children>
+                              </AnchorPane>
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
