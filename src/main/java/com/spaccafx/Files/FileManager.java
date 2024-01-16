@@ -33,6 +33,7 @@ public class FileManager
 
     // region #PARTITA
     public static File partiteFile = new File("Partite.json"); // unico file con più partite
+    public static File torneiFile = new File("Tornei.json"); // unico file con più partite
 
     public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
     {
@@ -526,11 +527,104 @@ public class FileManager
 
 
     // region #TORNEI
-    public static File TorneiFile = new File("Tornei.json"); // unico file con più tornei
 
     public static void creaPartitaTorneoSuFile(int codiceTorneo, int passwordTorneo, ArrayList<Partita> partite, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
     {
+        try
+        {
+            // Crea un oggetto JSON per la nuova partita
+            JSONObject nuovoTorneo = new JSONObject();
+            nuovoTorneo.put("Id_Torneo", codiceTorneo);
+            nuovoTorneo.put("Password", passwordTorneo);
+            nuovoTorneo.put("Stato", status.toString());
+            nuovoTorneo.put("MaxCarteNormali", maxCarteNormali);
+            nuovoTorneo.put("MaxCarteSpeciali", maxCarteSpeciali);
+            nuovoTorneo.put("NumeroPlayerVite", numeroPlayerVite);
+            nuovoTorneo.put("Tipo", gameType.toString());
 
+            JSONObject partiteList = new JSONObject();
+
+            for(int c=0; c<4; c++) // creo le mie 4 partite con i giocatori
+            {
+                JSONObject giocatoriList = new JSONObject();
+
+                for (int i = 0; i < partite.get(c).giocatori.size(); i++)
+                {
+                    IGiocatore giocatore = partite.get(c).giocatori.get(i);
+                    JSONObject player = new JSONObject();
+                    player.put("Nome", giocatore.getNome());
+                    player.put("Istanza", giocatore.getClass().getSimpleName());
+
+                    // creare array carte del giocatore
+                    // se nullo imposto dei valori di default che vuol dire che il gioco deve ancora iniziare
+                    // Ottieni la carta del giocatore (assumendo che ogni giocatore ha solo una carta)
+                    Carta cartaPlayer = giocatore.getCarta();
+
+                    if (cartaPlayer != null)
+                    {
+                        // Creazione dell'oggetto JSON per la carta
+                        JSONObject cartaJSON = new JSONObject();
+                        cartaJSON.put("Valore", cartaPlayer.getValore());
+                        cartaJSON.put("Seme", cartaPlayer.getSeme().toString());
+                        cartaJSON.put("Attivata", cartaPlayer.getCartaEffettoAttivato()); // teoricamente sempre su false
+
+                        // Aggiungi l'oggetto cartaJSON al giocatore
+                        player.put("Carta", cartaJSON);
+                    }
+                    else
+                    {
+                        // Creazione dell'oggetto JSON per la carta
+                        JSONObject cartaJSON = new JSONObject();
+                        cartaJSON.put("Valore", 1);
+                        cartaJSON.put("Seme", SemeCarta.VERME.toString()); // metto un seme a caso
+                        cartaJSON.put("Attivata", false);
+
+                        // Aggiungi l'oggetto cartaJSON al giocatore
+                        player.put("Carta", cartaJSON);
+                    }
+
+                    player.put("Ruolo", giocatore.getRuolo().toString());
+                    player.put("Vite", numeroPlayerVite);
+                    player.put("Vita-Extra", giocatore.getVitaExtra());
+                    player.put("PlayerRounds", giocatore.getPlayerRounds());
+
+                    giocatoriList.put("Giocatore" + (i + 1), player);
+                }
+                partiteList.put("Partita" + (c + 1), giocatoriList);
+            }
+
+            nuovoTorneo.put("Partite", partiteList);
+
+            // Leggi il JSON esistente dal file, se esiste
+            JSONObject root = new JSONObject();
+            if (torneiFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                root = (JSONObject) parser.parse(new FileReader(torneiFile));
+            }
+
+            // Aggiungi la nuova partita ai dati esistenti
+            JSONArray partiteArray = (JSONArray) root.get("Tornei");
+            if (partiteArray == null)
+            {
+                partiteArray = new JSONArray();
+            }
+            partiteArray.add(nuovoTorneo);
+            root.put("Tornei", partiteArray);
+
+            // Sovrascrivi il file con i dati aggiornati
+            try (FileWriter fileWriter = new FileWriter(torneiFile))
+            {
+                fileWriter.write(root.toJSONString());
+            }
+
+            System.out.println("Torneo aggiunto con successo al file JSON.");
+
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     // endregion

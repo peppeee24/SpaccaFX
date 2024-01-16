@@ -544,7 +544,7 @@ public TorneoController2(){
 
 
             this.T = new Torneo(16);
-           T.generaCodiceTorneo();
+            T.generaCodiceTorneo();
             T.generaPasswordTorneo();
             System.out.println("Codice Generato: " +  T.getCodiceTorneo());
             System.out.println("Password Generata: " + T.getPasswordTorneo());
@@ -556,8 +556,12 @@ public TorneoController2(){
 
     }
 
-    public void impostaTorneo(ActionEvent actionEvent) throws IOException {
+    public void impostaTorneo(ActionEvent actionEvent) throws IOException
+    {
         AudioManager.bottoneSuono();
+        FileManager.creaPartitaTorneoSuFile(this.T.getCodiceTorneo(), this.T.getPasswordTorneo(), this.partiteXTorneo, GameType.TORNEO, GameStatus.STARTED, this.numeroCarteNormali, this.numeroCarteSpeciali, this.numeroVite);
+
+
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();
