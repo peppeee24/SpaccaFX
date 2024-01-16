@@ -55,7 +55,6 @@ public class Partita
 
     public Partita(int size) // size è il numero di giocatori a partita
     {
-        //giocatoriMorti = new ArrayList<IGiocatore>();
         giocatori = new  ArrayList<IGiocatore>(size);
 
         this.codicePartita = 0;
@@ -173,13 +172,6 @@ public class Partita
                     {
                         System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
                         controllaManoIniziale(currentGiocatorePos);
-
-
-                        // all'inizio del suo turno se NON ha una carta imprevisto in mano,
-                        // fa una mossa, altrimenti passera obbligatoriamente!
-
-                        //if(!(currentGiocatore.getCarta() instanceof CartaImprevisto))
-                            //((Bot) currentGiocatore).SceltaBotUI(this, TC);
                     }
                     else // e un player
                     {

@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -60,9 +61,9 @@ public class TorneoController2 {
     // creo bot per settare nomi/ difficolta
     EasyBot E = new EasyBot(); // TODO NON VA BENE
     AdvancedBot A = new AdvancedBot();
-    ArrayList<Partita> PartiteXTorneo;
+    ArrayList<Partita> partiteXTorneo;
 public TorneoController2(){
-    PartiteXTorneo = new ArrayList<Partita>();
+    partiteXTorneo = new ArrayList<Partita>();
 }
     @FXML
     public void initialize() // si attiva da SelectionMenuController
@@ -562,29 +563,28 @@ public TorneoController2(){
 
 
         AudioManager.bottoneSuono();
-        PartiteXTorneo.set(contatorePartita,new Partita(4));
+        partiteXTorneo.add(new Partita(4));
+        Partita p = partiteXTorneo.get(contatorePartita);
 
             // TODO CONTROLLARE STO CODICE
 
-            ArrayList<IGiocatore> GiocatoriPartita = new ArrayList<>();
-
             if (getNumeroGiocatori() == 1) {
                 System.out.println("Nome giocatore 1: " + getNomeGiocatore1());
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
 
             } else if (getNumeroGiocatori() == 2) {
 
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore2()));
             } else if (getNumeroGiocatori() == 3) {
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore2()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore3()));
             } else if (getNumeroGiocatori() == 4) {
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
-                GiocatoriPartita.add(new Giocatore(getNomeGiocatore4()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore2()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore3()));
+                p.aggiungiGiocatore(new Giocatore(getNomeGiocatore4()));
             } else {
 
             }
@@ -595,46 +595,46 @@ public TorneoController2(){
                 case 3:
 
                     if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        GiocatoriPartita.add(new AdvancedBot(getA1()));
-                        GiocatoriPartita.add(new AdvancedBot(getA2()));
-                        GiocatoriPartita.add(new AdvancedBot(getA3()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA1()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA2()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA3()));
                     } else {
-                        GiocatoriPartita.add(new EasyBot(getE1()));
-                        GiocatoriPartita.add(new EasyBot(getE2()));
-                        GiocatoriPartita.add(new EasyBot(getE3()));
+                        p.aggiungiGiocatore(new EasyBot(getE1()));
+                        p.aggiungiGiocatore(new EasyBot(getE2()));
+                        p.aggiungiGiocatore(new EasyBot(getE3()));
 
                     }
                     break;
                 case 4:
 
                     if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        GiocatoriPartita.add(new AdvancedBot(getA1()));
-                        GiocatoriPartita.add(new AdvancedBot(getA2()));
-                        GiocatoriPartita.add(new AdvancedBot(getA3()));
-                        GiocatoriPartita.add(new AdvancedBot(getA4()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA1()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA2()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA3()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA4()));
                     } else {
-                        GiocatoriPartita.add(new EasyBot(getE1()));
-                        GiocatoriPartita.add(new EasyBot(getE2()));
-                        GiocatoriPartita.add(new EasyBot(getE3()));
-                        GiocatoriPartita.add(new EasyBot(getE4()));
+                        p.aggiungiGiocatore(new EasyBot(getE1()));
+                        p.aggiungiGiocatore(new EasyBot(getE2()));
+                        p.aggiungiGiocatore(new EasyBot(getE3()));
+                        p.aggiungiGiocatore(new EasyBot(getE4()));
 
                     }
                     break;
                 case 2:
 
                     if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        GiocatoriPartita.add(new AdvancedBot(getA1()));
-                        GiocatoriPartita.add(new AdvancedBot(getA2()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA1()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA2()));
                     } else {
-                        GiocatoriPartita.add(new EasyBot(getE1()));
-                        GiocatoriPartita.add(new EasyBot(getE2()));
+                        p.aggiungiGiocatore(new EasyBot(getE1()));
+                        p.aggiungiGiocatore(new EasyBot(getE2()));
                     }
                     break;
                 case 1:
                     if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-                        GiocatoriPartita.add(new AdvancedBot(getA1()));
+                        p.aggiungiGiocatore(new AdvancedBot(getA1()));
                     } else {
-                        GiocatoriPartita.add(new EasyBot(getE1()));
+                        p.aggiungiGiocatore(new EasyBot(getE1()));
                     }
                     break;
                 default:
@@ -642,33 +642,47 @@ public TorneoController2(){
             }
 
 
-            P.aggiungiListaGiocatori(GiocatoriPartita);
-        //    T.aggiungiGiocatoreTorneo();
-            ArrayList<Partita> Partite =new ArrayList<>();
-            Partite.add(P);
-
-            // creiamo il salvataggio della nuova partita
-            FileManager.creaPartitaTorneoSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED,numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
-
-
-            // ti riporta al menu principale
-            FXMLLoader impostaGioco = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(impostaGioco.load());
-            stage.setScene(scene);
-            stage.show();
-
-            // Mi permette di creare un "oggetto del controller", in questo modo riesco a passare tutto al controller senza creare un nuovo oggetto della classe che provocherebbe due istanze aperte
-            //   MainMenuController mmc = impostaGioco.getController();
-            //  mmc.setPartitaClassicaController(this);
-            //ShareData.getInstance().setTorneoController(this); // gli passo classe partitacontroller
-            ShareData.getInstance().setPartita(this.P);
-            //  ShareData.getInstance().setPassword(this.P); // non serve
-
+        System.out.println("La mia partita contiene " + p.giocatori.size() + " giocatori");
+        System.out.println("La mia partita contiene " + partiteXTorneo.get(contatorePartita).giocatori.size() + " giocatori");
 
         this.contatorePartita++;
+
+        if(contatorePartita < 4)
+        {
+            FXMLLoader impostaTorneo = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
+            Parent root = impostaTorneo.load();
+
+            TorneoController2 torneoController = impostaTorneo.getController();
+            torneoController.salvaDati(this.partiteXTorneo, this.numeroCarteNormali, this.numeroVite,this.numeroCarteSpeciali, this.contatorePartita);
+            torneoController.impostazioniPreliminariTab.setDisable(true);
+            torneoController.creaTab.setDisable(true);
+            torneoController.playerTab.setDisable(false);
+            torneoController.botTab.setDisable(false);
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            impostazioniPreliminariTab.setDisable(true);
+            playerTab.setDisable(true);
+            botTab.setDisable(true);
+            creaTab.setDisable(false);
         }
 
+        }
+
+
+        private void salvaDati(ArrayList<Partita> partiteXTorneo, int numeroCarteNormali, int numeroVite,int numeroCarteSpeciali,int contatorePartita)
+        {
+            this.partiteXTorneo = partiteXTorneo;
+            this.numeroCarteNormali = numeroCarteNormali;
+            this.numeroVite = numeroVite;
+            this.numeroCarteSpeciali = numeroCarteSpeciali;
+            this.contatorePartita = contatorePartita;
+        }
 
     }
 

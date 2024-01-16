@@ -528,7 +528,7 @@ public class FileManager
     // region #TORNEI
     public static File TorneiFile = new File("Tornei.json"); // unico file con più tornei
 
-    public static void creaPartitaTorneoSuFile(int codiceTorneo, int passwordTorneo, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
+    public static void creaPartitaTorneoSuFile(int codiceTorneo, int passwordTorneo, ArrayList<Partita> partite, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
     {
 
     }

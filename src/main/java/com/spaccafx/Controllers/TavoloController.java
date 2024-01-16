@@ -838,9 +838,10 @@ public class TavoloController
                     popUpTextLabel.setVisible(true);
                     popUpTextLabel.setText("Congratulazioni al vincitore: " + partita.getVincitore().getNome().toUpperCase());
                     nascondiCorone();
+                    this.openLeaderboard();
                 });
 
-                Thread.sleep(3000);
+                Thread.sleep(5000);
 
                 Platform.runLater(() ->
                 {
@@ -854,28 +855,30 @@ public class TavoloController
                     popUpTextLabel.setVisible(true);
                     popUpTextLabel.setText("Stai per ritornare al menu principale...");
                 });
-                this.openLeaderboard();
 
-                Thread.sleep(1500);
+                Thread.sleep(4000);
 
                 /*Platform.runLater(() ->
                 {
                     FXMLLoader menu = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
                     try {
+
+                        // TODO METTERE CHE DEVI CHIUDERE ANCHE LA LEADERBOARD QUANDO ESCI
+                        // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
+
                         Scene scene = new Scene(menu.load());
                         stage.setScene(scene);
                         stage.setTitle("Alpha Build SpaccaFX");
                         stage.setResizable(false);
                         stage.show();
+
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 });
 
                  */
-
-
-                // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
 
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
