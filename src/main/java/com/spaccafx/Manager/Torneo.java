@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Torneo
 {
-    String codiceTorneo, passwordTorneo;
+    int codiceTorneo, passwordTorneo;
     ArrayList<Partita> partite;
     ArrayList<IGiocatore> giocatori;
 
@@ -29,7 +29,8 @@ public class Torneo
 
         this.nGiocatoriTot = nGiocatoriTot;
         this.currentMatch = 0;
-        this.codiceTorneo = generaCodiceTorneo();
+        this.codiceTorneo = 0;
+        this.passwordTorneo=0;
         this.winner = null;
         this.nGiocatoriMatch = trovaNGiocatori();
         this.partenza = 0;
@@ -69,15 +70,16 @@ public class Torneo
     {
 
     }*/
+    // TODO cambiare con file
 
-    private String generaCodiceTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    public int generaCodiceTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
-        return "TORNEO: " + (int)(1 + (Math.random() * 1000));
+        return (int)(1 + (Math.random() * 1000));
     }
 
-    private String generaPasswordTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
+    public int generaPasswordTorneo() // # MODIFICARE - Prevedere il caso venga generato un codice uguale a una partita gia esistente!
     {
-        return "PASSWORD: " + (int)(1 + (Math.random() * 1000));
+        return  (int)(1 + (Math.random() * 1000));
     }
 
     private boolean ControllaFineTorneo()
@@ -146,11 +148,11 @@ public class Torneo
         }
     }
 
-    public String getCodiceTorneo(){
+    public int getCodiceTorneo(){
         return codiceTorneo;
     }
 
-    public String getPasswordTorneo(){
+    public int getPasswordTorneo(){
         return passwordTorneo;
     }
     /*

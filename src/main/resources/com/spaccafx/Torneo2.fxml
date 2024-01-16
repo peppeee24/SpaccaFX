@@ -46,7 +46,7 @@
                      <right>
                         <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
                            <children>
-                              <Button layoutX="633.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaImpostazioni" prefHeight="54.0" prefWidth="128.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                              <Button layoutX="565.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaImpostazioni" prefHeight="54.0" prefWidth="196.0" text="CONTINUA" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -342,15 +342,14 @@
                                     </Label>
                                  </children>
                               </GridPane>
-                              <Label layoutX="108.0" layoutY="506.0" text="*clicca due volte per selezionare" />
-                              <Label layoutX="438.0" layoutY="130.0" text="*" />
+                              <Button layoutX="622.0" layoutY="530.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="41.0" prefWidth="117.0" text="NEXT" />
                            </children>
                         </AnchorPane>
                      </right>
                   </BorderPane>
                </content>
           </Tab>
-            <Tab fx:id="CreaTab" styleClass="riempiTab" text="Crea">
+            <Tab fx:id="creaTab" styleClass="riempiTab" text="Crea">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <left>

@@ -27,16 +27,19 @@ import java.util.ArrayList;
 
 public class TorneoController2 {
 
-    private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali, contaPartite=0; // sono i dati della partita
+    private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali, contatorePartita; // sono i dati della partita
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3,E4, A1, A2, A3,A4; // sono i dati della partita
 
 
     Partita P; // // TODO guardare dichiaro classe partita
+
+
+
     Torneo T;
 
 
     @FXML
-    Tab playerTab, botTbb, creaTab,impostazioniPreliminariTab;
+    Tab playerTab, botTab, creaTab,impostazioniPreliminariTab;
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu, viteMenu, carteNormaliMenu,carteSpecialiMenu;
@@ -48,7 +51,7 @@ public class TorneoController2 {
     TextField playerName1, playerName2, playerName3, playerName4;
 
     @FXML
-    Label codicePartita,codiceTorneo, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, labelBot4, botCounter, passwordPartita,passwordTorneo;
+    Label codiceTorneo, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, labelBot4, botCounter,passwordTorneo;
 
     @FXML
     ImageView oneLabel,twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3,hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
@@ -57,8 +60,10 @@ public class TorneoController2 {
     // creo bot per settare nomi/ difficolta
     EasyBot E = new EasyBot(); // TODO NON VA BENE
     AdvancedBot A = new AdvancedBot();
-
-
+    ArrayList<Partita> PartiteXTorneo;
+public TorneoController2(){
+    PartiteXTorneo = new ArrayList<Partita>();
+}
     @FXML
     public void initialize() // si attiva da SelectionMenuController
     {
@@ -68,8 +73,12 @@ public class TorneoController2 {
         setNumeroVite();
         setNumeroCarteSpeciali();
         setNumeroCarteNormali();
+        playerTab.setDisable(true);
+        botTab.setDisable(true);
+        creaTab.setDisable(true);
 
     }
+
 
     // legge i dati dal menu tendina dei giocatori
     public void setNumeroGiocatori() {
@@ -177,6 +186,9 @@ public class TorneoController2 {
 
 
 
+
+
+
     public void salvaImpostazioni(ActionEvent actionEvent) throws IOException { // PLAY
 
         AudioManager.bottoneSuono();
@@ -186,6 +198,10 @@ public class TorneoController2 {
         this.setNumeroCarteSpeciali();
         System.out.println("Salvo il numero di carte normali" + getNumeroCarteNormali());
         this.setNumeroCarteNormali();
+        impostazioniPreliminariTab.setDisable(true);
+        playerTab.setDisable(false);
+        botTab.setDisable(false);
+
 
     }
 
@@ -523,70 +539,20 @@ public class TorneoController2 {
 
         AudioManager.bottoneSuono();
 
-    /*    Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
-        alert3.setTitle("Piccolo LAG!");
-        alert3.setContentText("Sto caricando il codice, attendi....");
-        Optional<ButtonType> result3 = alert3.showAndWait();
-
-     */
         AlertController.showWarning("Attenzione: Attendi Caricamento");
 
 
-        int somma = getNumeroGiocatori() + getNumeroBot();
+            this.T = new Torneo(16);
+           T.generaCodiceTorneo();
+            T.generaPasswordTorneo();
+            System.out.println("Codice Generato: " +  T.getCodiceTorneo());
+            System.out.println("Password Generata: " + T.getPasswordTorneo());
+            passwordTorneo.setText("Password: " + T.getPasswordTorneo());
+            codiceTorneo.setText("Codice: " + T.getCodiceTorneo());
 
-        if (somma > 1 && somma < 5) {
-            this.P = new Partita(somma);
-            P.generaCodicePartita();
-            P.generaPasswordPartita();
-            System.out.println("Codice Generato: " + P.getCodicePartita());
-            System.out.println("Password Generata: " + P.getPasswordPartita());
-            passwordPartita.setText("Password: " + P.getPasswordPartita());
-            codicePartita.setText("Codice: " + P.getCodicePartita());
-            //   codicePartita.wrapTextProperty().set(true);
-            // codicePartita.getStyleClass().add("copiable-label");
-            // TODO non riesco a rendere selezionabile la label
-
-           /* Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Codice partita generato");
-            alert.setContentText("Comunica il codice ai giocatori che dovranno inserirlo successivamente");
-            Optional<ButtonType> result = alert.showAndWait();
-
-            */
             AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
 
 
-        } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
-            AudioManager.erroreSuono();
-          /*  Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Parametri errati");
-            alert.setContentText("Si puà giocare tra 2 e 4 giocatori, compresi bot, rivedi le impostazioni");
-            Optional<ButtonType> result = alert.showAndWait();
-
-           */
-            AlertController.showErrore("Errore: Player/BOT non impostati correttamente");
-
-        }
-
-        contaPartite++;
-        if (contaPartite == 4) {
-
-            inviaButton.setText("Iniza Tornero");
-            generaCodiceTorneoButton.setVisible(true);
-            codiceTorneo.setText("Codice Torneo: " + T.getCodiceTorneo());
-            System.out.println("Codice torneo:"+T.getCodiceTorneo());
-            passwordTorneo.setText("Password Torneo" + T.getPasswordTorneo());
-            System.out.println("Password Torneo:"+T.getPasswordTorneo());
-            generaCodiceButton.setVisible(false);
-            codicePartita.setVisible(false);
-            passwordPartita.setVisible(false);
-
-        } else if (contaPartite > 0) {
-            impostazioniPreliminariTab.setDisable(true);
-        } else {
-            generaCodiceTorneoButton.setVisible(false);
-            codiceTorneo.setVisible(false);
-            passwordTorneo.setVisible(false);
-        }
     }
 
 
@@ -594,18 +560,9 @@ public class TorneoController2 {
     // Pulsante crea partita
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
 
+
         AudioManager.bottoneSuono();
-
-        if (contaPartite == 4) {
-
-            FXMLLoader impostaGioco = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(impostaGioco.load());
-            stage.setScene(scene);
-            stage.show();
-
-        } else {
-
+        PartiteXTorneo.set(contatorePartita,new Partita(4));
 
             // TODO CONTROLLARE STO CODICE
 
@@ -614,10 +571,9 @@ public class TorneoController2 {
             if (getNumeroGiocatori() == 1) {
                 System.out.println("Nome giocatore 1: " + getNomeGiocatore1());
                 GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-                T.aggiungiGiocatoreTorneo(new Giocatore(getNomeGiocatore1()));
+
             } else if (getNumeroGiocatori() == 2) {
-                T.aggiungiGiocatoreTorneo(new Giocatore(getNomeGiocatore1()));
-                T.aggiungiGiocatoreTorneo(new Giocatore(getNomeGiocatore2()));
+
                 GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
                 GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
             } else if (getNumeroGiocatori() == 3) {
@@ -708,9 +664,11 @@ public class TorneoController2 {
             //ShareData.getInstance().setTorneoController(this); // gli passo classe partitacontroller
             ShareData.getInstance().setPartita(this.P);
             //  ShareData.getInstance().setPassword(this.P); // non serve
+
+
+        this.contatorePartita++;
         }
 
 
     }
 
-}
