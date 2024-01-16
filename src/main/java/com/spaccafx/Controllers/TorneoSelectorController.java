@@ -29,8 +29,8 @@ public class TorneoSelectorController
 {
 
     @FXML
-    private GridPane IdGridPartite;
-    private ScrollPane IdScrollPartite;
+    private GridPane IdGridTorneo;
+    private ScrollPane IdScrollTorneo;
 
     PartitaClassicaController2 PC;
 
@@ -43,19 +43,8 @@ public class TorneoSelectorController
         //  betaDisable();
 
         matchList = new ArrayList<MatchData>();
-        caricaTuttePartiteDisponibili();
-
-        //ShareData sharedData = ShareData.getInstance();
-        //ShareData.getInstance().setPartitaSelectorController(this);
-        //this.PC = sharedData.getPartitaClassicaController();
-        //this.partita = sharedData.getPartita();
-        //partita1Label.setText("Partita: " + partita.getCodicePartita());
-
-
+        caricaTuttePartiteTorneoDisponibili();
     }
-
-
-
 
     public void indietro(MouseEvent mouseEvent) throws IOException
     {
@@ -67,50 +56,50 @@ public class TorneoSelectorController
         stage.show();
     }
 
-    private void caricaTuttePartiteDisponibili()
+    private void caricaTuttePartiteTorneoDisponibili()
     {
         try
         {
-            if (FileManager.partiteFile.exists())
+            if (FileManager.torneiFile.exists())
             {
                 JSONParser parser = new JSONParser();
-                JSONObject root = (JSONObject) parser.parse(new FileReader(FileManager.partiteFile));
+                JSONObject root = (JSONObject) parser.parse(new FileReader(FileManager.torneiFile));
 
                 // Ottieni l'array delle partite
-                JSONArray partiteArray = (JSONArray) root.get("Partite");
+                JSONArray torneiArray = (JSONArray) root.get("Tornei");
 
                 int colonna = 0, riga = 1;
 
                 // Carica tutte le partite
                 try
                 {
-                    for (Object partitaObject : partiteArray)
+                    for (Object torneoObject : torneiArray)
                     {
 
-                        System.out.println("Carico una partita JSON");
+                        System.out.println("Carico un torneo JSON");
 
-                        JSONObject partitaJSON = (JSONObject) partitaObject;
+                        JSONObject torneoJSON = (JSONObject) torneoObject;
 
                         MatchData newMatchData = new MatchData();
-                        int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
-                        int password = Integer.parseInt(partitaJSON.get("Password").toString());
-                        GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));
+                        int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
+                        int password = Integer.parseInt(torneoJSON.get("Password").toString());
+                        GameStatus gameStatus = GameStatus.valueOf((String) torneoJSON.get("Stato"));
 
 
-                        newMatchData.setCodice(idPartita); // id partita trovato
+                        newMatchData.setCodice(idTorneo); // id torneo trovato
                         newMatchData.setPassword(password); // password trovata
                         newMatchData.setStatus(gameStatus);
 
                         matchList.add(newMatchData);
 
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(Spacca.class.getResource("ItemMatch.fxml"));
+                        fxmlLoader.setLocation(Spacca.class.getResource("ItemTorneo.fxml"));
                         System.out.println("Location fxml-loader: " + fxmlLoader.getLocation());
 
                         AnchorPane anchorPane = fxmlLoader.load();
 
-                        MatchItemController matchItemController = fxmlLoader.getController();
-                        matchItemController.setData(newMatchData);
+                        TorneoItemController torneoItemController = fxmlLoader.getController();
+                        torneoItemController.setData(newMatchData);
 
                         if(colonna == 3)
                         {
@@ -118,12 +107,12 @@ public class TorneoSelectorController
                             riga++;
                         }
 
-                        IdGridPartite.add(anchorPane, colonna++, riga);
+                        IdGridTorneo.add(anchorPane, colonna++, riga);
 
                         // set  Grid Width
-                        IdGridPartite.setMinWidth(Region.USE_COMPUTED_SIZE);
-                        IdGridPartite.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                        IdGridPartite.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                        IdGridTorneo.setMinWidth(Region.USE_COMPUTED_SIZE);
+                        IdGridTorneo.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                        IdGridTorneo.setMaxWidth(Region.USE_COMPUTED_SIZE);
 
 
                         GridPane.setMargin(anchorPane, new Insets(10));
@@ -136,7 +125,7 @@ public class TorneoSelectorController
             }
             else
             {
-                System.out.println("[FILE-MANAGER] Non e presente la partita che cerchi!");
+                System.out.println("[FILE-MANAGER] Non e presente il torneo che cerchi!");
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();

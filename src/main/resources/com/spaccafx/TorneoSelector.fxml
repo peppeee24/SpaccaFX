@@ -33,9 +33,9 @@
                         <Font name="System Bold Italic" size="27.0" />
                      </font>
                   </Label>
-                  <ScrollPane fx:id="IdScrollTornei" layoutY="75.0" prefHeight="454.0" prefWidth="774.0" style="-fx-background-color: transparent;">
+                  <ScrollPane fx:id="IdScrollTorneo" layoutY="75.0" prefHeight="454.0" prefWidth="774.0" style="-fx-background-color: transparent;">
                      <content>
-                        <GridPane fx:id="IdGridTornei" prefHeight="0.0" prefWidth="38.0">
+                        <GridPane fx:id="IdGridTorneo" prefHeight="0.0" prefWidth="38.0">
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" />
                            </rowConstraints>
