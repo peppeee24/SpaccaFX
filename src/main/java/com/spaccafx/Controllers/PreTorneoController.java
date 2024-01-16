@@ -28,7 +28,7 @@ public class PreTorneoController
 {
 
     @FXML
-    Button giocaButton;
+    Button giocaButton; //todo per comit
 
     @FXML
     Label numerovite1, numerovite2,numerovite3,numerovite4,numerovite11, numerovite21,numerovite31,numerovite41,numerovite12, numerovite22,numerovite32,numerovite42, numerovite13, numerovite23,numerovite33,numerovite43, numerovite14, numerovite24,numerovite34,numerovite44;
