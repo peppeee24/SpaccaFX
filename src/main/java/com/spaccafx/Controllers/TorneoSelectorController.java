@@ -32,10 +32,6 @@ public class TorneoSelectorController
     private GridPane IdGridPartite;
     private ScrollPane IdScrollPartite;
 
-    //Pane pane2, pane3, pane4, pane5, pane6, pane7;
-
-    // TODO impostare caricamento partite da file
-
     PartitaClassicaController2 PC;
 
     Partita partita;
@@ -81,7 +77,7 @@ public class TorneoSelectorController
                 JSONObject root = (JSONObject) parser.parse(new FileReader(FileManager.partiteFile));
 
                 // Ottieni l'array delle partite
-                JSONArray partiteArray = (JSONArray) root.get("Tornei");
+                JSONArray partiteArray = (JSONArray) root.get("Partite");
 
                 int colonna = 0, riga = 1;
 

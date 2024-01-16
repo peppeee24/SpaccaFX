@@ -1,0 +1,458 @@
+{
+  "Tornei": [
+    {
+      "MaxCarteNormali": 9,
+      "Partite": {
+        "Partita4": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_626",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_699",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_769",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_1000",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          }
+        },
+        "Partita3": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_619",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_314",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_846",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_472",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          }
+        },
+        "Partita2": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_816",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_113",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_985",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_1",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          }
+        },
+        "Partita1": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_26",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_543",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_723",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_834",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 3,
+            "PlayerRounds": 0
+          }
+        }
+      },
+      "Tipo": "TORNEO",
+      "Id_Torneo": 824,
+      "MaxCarteSpeciali": 4,
+      "Stato": "STARTED",
+      "NumeroPlayerVite": 3,
+      "Password": 761
+    },
+    {
+      "MaxCarteNormali": 8,
+      "Partite": {
+        "Partita4": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_8",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_448",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_656",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_182",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          }
+        },
+        "Partita3": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_505",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_264",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_818",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "EasyBot",
+            "Nome": "EzBot_189",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          }
+        },
+        "Partita2": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_625",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_272",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_804",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_590",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          }
+        },
+        "Partita1": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_102",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_983",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_965",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": "AdvancedBot",
+            "Nome": "AdvBot_552",
+            "Carta": {
+              "Attivata": false,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          }
+        }
+      },
+      "Tipo": "TORNEO",
+      "Id_Torneo": 690,
+      "MaxCarteSpeciali": 1,
+      "Stato": "STARTED",
+      "NumeroPlayerVite": 2,
+      "Password": 785
+    }
+  ]
+}
