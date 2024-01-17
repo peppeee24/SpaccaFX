@@ -30,10 +30,10 @@ import java.util.ArrayList;
 
 public class FileManager
 {
-
-    // region #PARTITA
     public static File partiteFile = new File("Partite.json"); // unico file con più partite
     public static File torneiFile = new File("Tornei.json"); // unico file con più partite
+
+    // region #PARTITA
 
     public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
     {
@@ -791,7 +791,41 @@ public class FileManager
         return partite;
     }
 
+    public static int getCurrentMatchTorneo(int codiceTorneo)
+    {
+        try
+        {
+            if (torneiFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
 
+                // Ottieni l'array delle partite
+                JSONArray torneoArray = (JSONArray) root.get("Tornei");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object torneoObject : torneoArray)
+                {
+                    JSONObject torneoJSON = (JSONObject) torneoObject;
+                    int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
+                    if (idTorneo == codiceTorneo)
+                    {
+                        return Integer.parseInt(torneoJSON.get("CurrentMatch").toString());
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente il torneo che cerchi!");
+            }
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return 0; // Restituisci null se la partita non è stata trovata o ci sono errori
+    }
     // endregion
 
 }
