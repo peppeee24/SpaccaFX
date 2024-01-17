@@ -53,38 +53,114 @@ public class PreTorneoController
 
 
 
-        /*ArrayList<IGiocatore> giocatori = p.giocatori;
+
 
         // Imposta i dettagli per ogni giocatore
-        for (int i = 0; i < giocatori.size(); i++) {
-            IGiocatore giocatore = giocatori.get(i);
+        for (int i = 0; i <4; i++) { //for gira partite // TODO aggiungere round finale
+            for(int j=0;j<4;j++){ // for gira partita singola
+
+            IGiocatore giocatore = p.get(i).giocatori.get(j);
             ImageView imageView = null;
             Label nomeLabel = null;
             Label viteLabel = null;
 
             // Assegna le ImageView e le Label in base all'indice del giocatore
-            switch (i) {
-                case 0:
-                    imageView = user1;
-                    nomeLabel = giocatore1;
-                    viteLabel = numerovite1;
-                    break;
-                case 1:
-                    imageView = user2;
-                    nomeLabel = giocatore2;
-                    viteLabel = numerovite2;
-                    break;
-                case 2:
-                    imageView = user3;
-                    nomeLabel = giocatore3;
-                    viteLabel = numerovite3;
-                    break;
-                case 3:
-                    imageView = user4;
-                    nomeLabel = giocatore4;
-                    viteLabel = numerovite4;
-                    break;
-            }
+                if(i == 0) {
+                    switch (j) {
+                        case 0:
+                            imageView = user1;
+                            nomeLabel = giocatore1;
+                            viteLabel = numerovite1;
+                            break;
+                        case 1:
+                            imageView = user2;
+                            nomeLabel = giocatore2;
+                            viteLabel = numerovite2;
+                            break;
+                        case 2:
+                            imageView = user3;
+                            nomeLabel = giocatore3;
+                            viteLabel = numerovite3;
+                            break;
+                        case 3:
+                            imageView = user4;
+                            nomeLabel = giocatore4;
+                            viteLabel = numerovite4;
+                            break;
+                    }
+                } else if(i==1){
+                    switch (j) {
+                        case 0:
+                            imageView = user11;
+                            nomeLabel = giocatore11;
+                            viteLabel = numerovite11;
+                            break;
+                        case 1:
+                            imageView = user21;
+                            nomeLabel = giocatore21;
+                            viteLabel = numerovite21;
+                            break;
+                        case 2:
+                            imageView = user31;
+                            nomeLabel = giocatore31;
+                            viteLabel = numerovite31;
+                            break;
+                        case 3:
+                            imageView = user41;
+                            nomeLabel = giocatore41;
+                            viteLabel = numerovite41;
+                            break;
+                    }
+
+                } else if(i==2){
+                    switch (j) {
+                        case 0:
+                            imageView = user12;
+                            nomeLabel = giocatore12;
+                            viteLabel = numerovite12;
+                            break;
+                        case 1:
+                            imageView = user22;
+                            nomeLabel = giocatore22;
+                            viteLabel = numerovite22;
+                            break;
+                        case 2:
+                            imageView = user32;
+                            nomeLabel = giocatore32;
+                            viteLabel = numerovite32;
+                            break;
+                        case 3:
+                            imageView = user42;
+                            nomeLabel = giocatore42;
+                            viteLabel = numerovite42;
+                            break;
+                    }
+                } else if(i==3){
+                    switch (j) {
+                        case 0:
+                            imageView = user13;
+                            nomeLabel = giocatore13;
+                            viteLabel = numerovite13;
+                            break;
+                        case 1:
+                            imageView = user23;
+                            nomeLabel = giocatore23;
+                            viteLabel = numerovite23;
+                            break;
+                        case 2:
+                            imageView = user33;
+                            nomeLabel = giocatore33;
+                            viteLabel = numerovite33;
+                            break;
+                        case 3:
+                            imageView = user43;
+                            nomeLabel = giocatore43;
+                            viteLabel = numerovite43;
+                            break;
+                    }
+                } else if(i==4){
+                    // TODO capire come gestire il round finale
+                }
 
             // Imposta nome e vite
             if (nomeLabel != null && viteLabel != null) {
@@ -102,13 +178,18 @@ public class PreTorneoController
                     imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/userIcons.png")));
                 }
             }
+
+                // Imposta altre informazioni sulla partita
+                currentRound.setText("La partita riprenderà dal Round: " + p.get(j).getCurrentRound());
+                currentPlayer.setText("Toccherà al giocatore: " + p.get(j).getCurrentGiocatore().getNome());
+            }
+            // TODO partita
+
         }
 
-        // Imposta altre informazioni sulla partita
-        currentRound.setText("La partita riprenderà dal Round: " + p.getCurrentRound());
-        currentPlayer.setText("Toccherà al giocatore: " + p.getCurrentGiocatore().getNome());
 
-         */
+
+
     }
 
 
