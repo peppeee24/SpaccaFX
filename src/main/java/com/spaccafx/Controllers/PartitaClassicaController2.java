@@ -723,7 +723,7 @@ public void impostaDifficolta() {
 
         // creiamo il salvataggio della nuova partita
         System.out.println("DEBUG: " + numeroCarteNormali + " -------  " + numeroCarteSpeciali + " -------  " + numeroVite);
-        FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, GameType.PARTITA, GameStatus.STARTED, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
+        FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale

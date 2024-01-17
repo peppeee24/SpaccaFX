@@ -1080,10 +1080,6 @@ public class Partita
     public void SavePartita(MouseEvent mouseEvent) throws IOException
     {
 
-        // TODO BISOGNA CAPIRE SE SI E NEL TORNEO E IN UNA PARTITA SINGOLA
-        // USANDO GAMETYPE
-
-
       /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Vuoi uscire dalla partita");
         alert.setContentText("Se confermi i tuoi dati saranno salvati");
@@ -1094,14 +1090,23 @@ public class Partita
       //  Optional<ButtonType> result = alert.showAndWait();
       //  if (result.isPresent() && result.get() == ButtonType.OK)
        // {
-            if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
-            {
-                System.out.println("isGamerunning: " + this.isGameRunning);
-                setPartitaStatus(GameStatus.STOPPED);
-                System.out.println("Il gioco e stato messo in pausa correttamente!");
 
-                FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
+            if(this.gameType == GameType.PARTITA)
+            {
+                if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
+                {
+                    System.out.println("isGamerunning: " + this.isGameRunning);
+                    setPartitaStatus(GameStatus.STOPPED);
+                    System.out.println("Il gioco e stato messo in pausa correttamente!");
+
+                    FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
+                }
             }
+            else
+            {
+                // siamo in un torneo
+            }
+
 
             TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu a prescindere
 

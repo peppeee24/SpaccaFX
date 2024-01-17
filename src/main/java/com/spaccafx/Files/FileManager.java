@@ -35,7 +35,7 @@ public class FileManager
     public static File partiteFile = new File("Partite.json"); // unico file con più partite
     public static File torneiFile = new File("Tornei.json"); // unico file con più partite
 
-    public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, GameType gameType, GameStatus status, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
+    public static void creaPartitaSuFile(int codicePartita, int passwordPartita, ArrayList<IGiocatore> giocatori, int maxCarteNormali, int maxCarteSpeciali, int numeroPlayerVite)
     {
         try
         {
@@ -43,8 +43,8 @@ public class FileManager
             JSONObject nuovaPartita = new JSONObject();
             nuovaPartita.put("Id_Partita", codicePartita);
             nuovaPartita.put("Password", passwordPartita);
-            nuovaPartita.put("Stato", status.toString());
-            nuovaPartita.put("Tipo", gameType.toString());
+            nuovaPartita.put("Stato", GameStatus.STARTED.toString());
+            nuovaPartita.put("Tipo", GameType.PARTITA.toString());
             nuovaPartita.put("CurrentGiocatore", 0);
             nuovaPartita.put("PosMazziere", 0);
             nuovaPartita.put("Round", 1);
