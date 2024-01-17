@@ -32,10 +32,15 @@ public class PreTorneoController {
 
     @FXML
     Label numerovite1, numerovite2, numerovite3, numerovite4, numerovite11, numerovite21, numerovite31, numerovite41, numerovite12, numerovite22, numerovite32, numerovite42, numerovite13, numerovite23, numerovite33, numerovite43, numerovite14, numerovite24, numerovite34, numerovite44;
+    @FXML
     Label giocatore1, giocatore2, giocatore3, giocatore4, giocatore11, giocatore21, giocatore31, giocatore41, giocatore12, giocatore22, giocatore32, giocatore42, giocatore13, giocatore23, giocatore33, giocatore43, giocatore14, giocatore24, giocatore34, giocatore44;
-    Label currentPlayer, currentRound;
+    @FXML
+    Label currentPlayer, currentRound,currentPlayer1, currentRound1,currentPlayer2, currentRound2,currentPlayer3, currentRound3;
 
-    Tab partitaFinaleTab;
+  @FXML
+  Tab partitaFinaleTab;
+
+
 
 
     @FXML
@@ -45,9 +50,9 @@ public class PreTorneoController {
 
 
     public void setInfoTorneo(int codiceTorneo, int passwordTorneo) {
-
-        giocaButton.setVisible(true);
         partitaFinaleTab.setDisable(true);
+        giocaButton.setVisible(true);
+
 
         this.codiceTorneo = codiceTorneo;
         this.passwordTorneo = passwordTorneo;
@@ -183,8 +188,16 @@ public class PreTorneoController {
                 }
 
                 // Imposta altre informazioni sulla partita
-                currentRound.setText("La partita riprenderà dal Round: " + p.get(j).getCurrentRound());
-                currentPlayer.setText("Toccherà al giocatore: " + p.get(j).getCurrentGiocatore().getNome());
+                currentRound.setText("La partita riprenderà dal Round: " + p.get(0).getCurrentRound());
+                currentPlayer.setText("Toccherà al giocatore: " + p.get(0).getCurrentGiocatore().getNome());
+                currentRound1.setText("La partita riprenderà dal Round: " + p.get(1).getCurrentRound());
+                currentPlayer1.setText("Toccherà al giocatore: " + p.get(1).getCurrentGiocatore().getNome());
+                currentRound2.setText("La partita riprenderà dal Round: " + p.get(2).getCurrentRound());
+                currentPlayer2.setText("Toccherà al giocatore: " + p.get(2).getCurrentGiocatore().getNome());
+                currentRound3.setText("La partita riprenderà dal Round: " + p.get(3).getCurrentRound());
+                currentPlayer3.setText("Toccherà al giocatore: " + p.get(3).getCurrentGiocatore().getNome());
+                //currentRound4.setText("La partita riprenderà dal Round: " + p.get(0).getCurrentRound());
+                //currentPlayer4.setText("Toccherà al giocatore: " + p.get(0).getCurrentGiocatore().getNome());
             }
 
 
