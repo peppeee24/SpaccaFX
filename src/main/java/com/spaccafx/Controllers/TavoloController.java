@@ -113,6 +113,20 @@ public class TavoloController
         preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
     }
 
+    public void inizializzaClasseTorneo(int codiceTorneo, int currentMatch)
+    {
+        // gli devo passare il codice che mando quando clicco sul bottone
+        System.out.println("Codice del torneo attuale: " + codiceTorneo);
+
+
+        this.partita = FileManager.getCurrentPartitaTorneo(codiceTorneo, currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
+        this.partita.impostaTavoloController();
+        inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
+        this.updateVitaUI();
+
+        preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
+    }
+
     private void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
 
     public void riprendiBot()

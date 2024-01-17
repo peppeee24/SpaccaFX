@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class TorneoScreenController
 {
-    private int passwordTorneo, codiceTorneo;
+    private int passwordTorneo, codiceTorneo, currentMatch;
 
     @FXML
     PasswordField passwordField;
@@ -27,12 +27,15 @@ public class TorneoScreenController
         //this.pwd=partitaClassicaController.P.getPasswordPartita();
     }
 
-    public void setInfoTorneo(int codiceTorneo, int passwordTorneo)
+    public void setInfoTorneo(int codiceTorneo, int passwordTorneo, int currentMatch)
     {
         this.passwordTorneo = passwordTorneo;
         this.codiceTorneo = codiceTorneo;
+        this.currentMatch = currentMatch;
+
         System.out.println("Sto prendendo il TORNEO con ID: " + codiceTorneo);
         System.out.println("Il torneo ha la Password: " + passwordTorneo);
+        System.out.println("Riprendo dal match: " + currentMatch);
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException // bottone inizia
@@ -43,7 +46,7 @@ public class TorneoScreenController
         int PasswordField = Integer.parseInt(passwordField.getText());
         // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA
 
-        System.out.println("Codice per accedere PARTITA: " + this.passwordTorneo);
+        System.out.println("Codice per accedere TORNEO: " + this.passwordTorneo);
         System.out.println("Codice INSERITO:" + PasswordField);
 
 
@@ -66,7 +69,7 @@ public class TorneoScreenController
 
 
             TavoloController tavoloController = loaderTavolo.getController();
-            tavoloController.inizializzaClassePartita(this.codiceTorneo);
+            tavoloController.inizializzaClasseTorneo(this.codiceTorneo, this.currentMatch);
 
         }
         else // se sbagliato

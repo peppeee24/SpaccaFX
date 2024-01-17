@@ -221,7 +221,7 @@ public class PreTorneoController {
                 stage.show();
 
                 TorneoScreenController torneoScreenController = torneoScreen.getController();
-                torneoScreenController.setInfoTorneo(codiceTorneo, passwordTorneo);
+                torneoScreenController.setInfoTorneo(codiceTorneo, passwordTorneo, currentMatch);
             } catch (IOException e) {
                 e.printStackTrace();
             }

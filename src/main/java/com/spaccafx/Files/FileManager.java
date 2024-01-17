@@ -826,6 +826,60 @@ public class FileManager
 
         return 0; // Restituisci null se la partita non è stata trovata o ci sono errori
     }
+
+
+    public static Partita getCurrentPartitaTorneo(int codiceTorneo, int currentMatch)
+    {
+        try
+        {
+            if (torneiFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
+
+                // Ottieni l'array delle partite
+                JSONArray torneoArray = (JSONArray) root.get("Tornei");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object torneoObject : torneoArray)
+                {
+                    JSONObject torneoJSON = (JSONObject) torneoObject;
+                    int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
+                    if (idTorneo == codiceTorneo)
+                    {
+                        return convertiSpecificaPartitaTorneo(torneoJSON, currentMatch);
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente il torneo che cerchi!");
+            }
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return null; // Restituisci null se la partita non è stata trovata o ci sono errori
+    }
+
+
+    public static Partita convertiSpecificaPartitaTorneo(JSONObject torneoJSON, int currentMatch)
+    {
+        // Estrarre i dati dall'oggetto JSON generici del torneo
+        int maxCarteNormali = Integer.parseInt(torneoJSON.get("MaxCarteNormali").toString()); // prendo il max carte normali
+        int maxCarteSpeciali = Integer.parseInt(torneoJSON.get("MaxCarteSpeciali").toString()); // prendo il max carte speciali
+
+        Partita p = convertiJSONAPartitaTorneo(torneoJSON).get(currentMatch);
+
+        System.out.println("partita " + p.giocatori.get(0).getNome());
+
+        p.setMaxCarteSpeciali(maxCarteSpeciali);
+        p.setMaxCarteNormali(maxCarteNormali);
+
+        return p;
+    }
     // endregion
 
 }
