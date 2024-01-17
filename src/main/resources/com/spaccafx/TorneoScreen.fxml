@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TorneoScreenController">
+   <children>
+      <BorderPane prefHeight="630.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="75.0" layoutY="293.0" styleClass="LabelWhite" text="LOBBY" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
+               <children>
+                  <PasswordField fx:id="passwordField" layoutX="284.0" layoutY="351.0" prefHeight="33.0" prefWidth="210.0" promptText="Match_Password" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="loginButton" layoutX="634.0" layoutY="556.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="JOIN" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="549.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Hyperlink layoutX="228.0" layoutY="590.0" onMouseClicked="#portaATutorial" text="Do you know how to play?" />
+                  <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="INSERT YOUR PASSWORD">
+                     <font>
+                        <Font name="System Bold Italic" size="27.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="126.0" fitWidth="137.0" layoutX="190.0" layoutY="296.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/keyy.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>
