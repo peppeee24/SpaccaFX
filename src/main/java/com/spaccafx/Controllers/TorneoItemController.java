@@ -85,28 +85,28 @@ public class TorneoItemController
 
 
     // TODO FARE ACCEDI TORNEO
-    public void accediPartita(javafx.event.ActionEvent actionEvent)
+    public void accediTorneo(javafx.event.ActionEvent actionEvent)
     {
-        // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
+        // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre torneo, dove carica
         // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
         // prendo le info dal json
 
-        System.out.println("[MatchItemController] ti sto reindirizzando al pregame screen");
+        System.out.println("[MatchItemController] ti sto reindirizzando al pre-torneo screen");
 
         try
         {
             AudioManager.bottoneSuono();
-            FXMLLoader preGameScreen = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
+            FXMLLoader preTorneoScreen = new FXMLLoader(Spacca.class.getResource("PreTorneo.fxml"));
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Parent root = preGameScreen.load();
+            Parent root = preTorneoScreen.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-            PreGameController preGameController = preGameScreen.getController();
-            preGameController.setInfoPartita2(codiceTorneo, passwordTorneo);
+            PreTorneoController preTorneoController = preTorneoScreen.getController();
+            preTorneoController.setInfoTorneo(codiceTorneo, passwordTorneo);
         }
         catch (IOException e)
         {

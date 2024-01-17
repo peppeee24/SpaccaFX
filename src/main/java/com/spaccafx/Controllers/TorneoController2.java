@@ -559,7 +559,7 @@ public TorneoController2(){
     public void impostaTorneo(ActionEvent actionEvent) throws IOException
     {
         AudioManager.bottoneSuono();
-        FileManager.creaPartitaTorneoSuFile(this.T.getCodiceTorneo(), this.T.getPasswordTorneo(), this.partiteXTorneo, GameType.TORNEO, GameStatus.STARTED, this.numeroCarteNormali, this.numeroCarteSpeciali, this.numeroVite);
+        FileManager.creaTorneoSuFile(this.T.getCodiceTorneo(), this.T.getPasswordTorneo(), this.partiteXTorneo, GameType.TORNEO, GameStatus.STARTED, this.numeroCarteNormali, this.numeroCarteSpeciali, this.numeroVite);
 
 
         FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));

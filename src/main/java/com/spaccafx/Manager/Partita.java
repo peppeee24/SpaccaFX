@@ -41,6 +41,7 @@ public class Partita
     boolean isGameRunning;
     boolean cartaGiaScambiata;
     GameStatus partitaStatus;
+    GameType gameType;
     SpaccaTGBot telegramBot;
     TavoloController TC;
 
@@ -1127,6 +1128,9 @@ public class Partita
 
     public void setMaxCarteNormali(int maxCarteNormali){this.maxCarteNormali = maxCarteNormali;}
     public void setMaxCarteSpeciali(int maxCarteSpeciali){this.maxCarteSpeciali = maxCarteSpeciali;}
+
+    public void setGameType(GameType gameType){this.gameType = gameType;}
+    public GameType getGameType(){return this.gameType;}
 
     public boolean isGameStopped()
     {

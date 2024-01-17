@@ -40,43 +40,17 @@ public class PreTorneoController
     @FXML
     ImageView user1, user2, user3, user4, user11, user21, user31, user41, user12, user22, user32, user42,user13, user23, user33, user43, user14, user24, user34, user44  ;
 
-    private int codicePartita, passwordPartita;
+    private int codiceTorneo, passwordTorneo;
 
-    public void setInfoPartita(int codicePartita, int passwordPartita)
+
+    public void setInfoTorneo(int codiceTorneo, int passwordTorneo)
     {
-        this.codicePartita = codicePartita;
-        this.passwordPartita = passwordPartita;
-
-        // carichiamo i dati dal file
-
-        Partita p = FileManager.leggiPartitaDaFile(codicePartita);
-        ArrayList<IGiocatore> giocatori = p.giocatori;
-
-        giocatore1.setText(giocatori.get(0).getNome());
-        numerovite1.setText(Integer.toString(giocatori.get(0).getVita()));
-
-        giocatore2.setText(giocatori.get(1).getNome());
-        numerovite2.setText(Integer.toString(giocatori.get(1).getVita()));
-
-        giocatore3.setText(giocatori.get(2).getNome());
-        numerovite3.setText(Integer.toString(giocatori.get(2).getVita()));
-
-        giocatore4.setText(giocatori.get(3).getNome());
-        numerovite4.setText(Integer.toString(giocatori.get(3).getVita()));
-
-        currentRound.setText("La partita riprenderà dal Round: " +(Integer.toString(p.getCurrentRound())));
-        currentPlayer.setText("Toccherà al giocatore: " +p.getCurrentGiocatore().getNome());
-
-    }
-
-
-    public void setInfoPartita2(int codicePartita, int passwordPartita) {
-        this.codicePartita = codicePartita;
-        this.passwordPartita = passwordPartita;
+        this.codiceTorneo = codiceTorneo;
+        this.passwordTorneo = passwordTorneo;
 
         // Carichiamo i dati dal file
-        Partita p = FileManager.leggiPartitaDaFile(codicePartita);
-        ArrayList<IGiocatore> giocatori = p.giocatori;
+        //Partita p = FileManager.leggiPartitaDaFile(codicePartita);
+        /*ArrayList<IGiocatore> giocatori = p.giocatori;
 
         // Imposta i dettagli per ogni giocatore
         for (int i = 0; i < giocatori.size(); i++) {
@@ -130,11 +104,9 @@ public class PreTorneoController
         // Imposta altre informazioni sulla partita
         currentRound.setText("La partita riprenderà dal Round: " + p.getCurrentRound());
         currentPlayer.setText("Toccherà al giocatore: " + p.getCurrentGiocatore().getNome());
+
+         */
     }
-
-
-
-
 
 
     public void apriTavolo(ActionEvent actionEvent) throws IOException // bottone inizia
@@ -157,7 +129,7 @@ public class PreTorneoController
             stage.show();
 
             PlayerScreenController playerController = playerScreen.getController();
-            playerController.setInfoPartita(codicePartita, passwordPartita);
+            //playerController.setInfoPartita(codicePartita, passwordPartita);
         }
         catch (IOException e)
         {
@@ -169,7 +141,7 @@ public class PreTorneoController
     public void indietro(MouseEvent mouseEvent) throws IOException
     {
         AudioManager.bottoneSuono();
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
         stage.setScene(scene);
