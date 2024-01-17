@@ -198,17 +198,17 @@ public class PreTorneoController {
             System.out.println("Ho cliccato sul bottone");
             try {
                 AudioManager.bottoneSuono();
-                FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TorneoScreen.fxml"));
+                FXMLLoader torneoScreen = new FXMLLoader(Spacca.class.getResource("TorneoScreen.fxml"));
 
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-                Parent root = playerScreen.load();
+                Parent root = torneoScreen.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
 
-                PlayerScreenController playerController = playerScreen.getController();
-                //playerController.setInfoPartita(codicePartita, passwordPartita);
+                TorneoScreenController torneoScreenController = torneoScreen.getController();
+                torneoScreenController.setInfoTorneo(codiceTorneo, passwordTorneo);
             } catch (IOException e) {
                 e.printStackTrace();
             }

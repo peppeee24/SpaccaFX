@@ -31,8 +31,8 @@ public class TorneoScreenController
     {
         this.passwordTorneo = passwordTorneo;
         this.codiceTorneo = codiceTorneo;
-        System.out.println("Sto prendendo la PARTITA con ID: " + codiceTorneo);
-        System.out.println("Il match ha la Password: " + passwordTorneo);
+        System.out.println("Sto prendendo il TORNEO con ID: " + codiceTorneo);
+        System.out.println("Il torneo ha la Password: " + passwordTorneo);
     }
 
     public void loginAction(ActionEvent actionEvent) throws IOException // bottone inizia
@@ -53,7 +53,7 @@ public class TorneoScreenController
 
             AlertController.showConfirm("Conferma: Accesso Eseguito, stai per entrare nel gioco");
 
-
+            // TODO APRIRE IL RELATIVO TAVOLO
             FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
             //FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
