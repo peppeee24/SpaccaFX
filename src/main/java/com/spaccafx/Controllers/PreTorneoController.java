@@ -194,14 +194,11 @@ public class PreTorneoController {
 
         public void apriTavolo (ActionEvent actionEvent) throws IOException // bottone inizia
         {
-            // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
-            // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
-            // prendo le info dal json
 
             System.out.println("Ho cliccato sul bottone");
             try {
                 AudioManager.bottoneSuono();
-                FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+                FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TorneoScreen.fxml"));
 
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 

@@ -25,22 +25,6 @@
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="indietro" fitHeight="100.0" fitWidth="67.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true" translateY="560.0">
-                     <image>
-                        <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <Button fx:id="giocaButton" layoutX="50.0" layoutY="380.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
                </children>
             </AnchorPane>
          </left>
@@ -215,7 +199,8 @@
                               </AnchorPane>
                            </right>
                         </BorderPane>
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
             <Tab text="Partita 3">
@@ -302,7 +287,8 @@
                         </BorderPane>
                      </children>
                   </AnchorPane>
-               </content></Tab>
+               </content>
+            </Tab>
             <Tab text="Partita 4">
                <content>
                   <AnchorPane>
@@ -387,7 +373,8 @@
                         </BorderPane>
                      </children>
                   </AnchorPane>
-               </content></Tab>
+               </content>
+            </Tab>
             <Tab fx:id="partitaFinaleTab" text="Partita FINALE">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -476,5 +463,21 @@
             </Tab>
         </tabs>
       </TabPane>
+      <Button fx:id="giocaButton" layoutX="60.0" layoutY="390.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="indietro" fitHeight="600.0" fitWidth="67.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>
