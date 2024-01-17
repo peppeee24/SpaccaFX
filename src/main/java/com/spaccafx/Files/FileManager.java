@@ -311,6 +311,7 @@ public class FileManager
         int posMazziere = Integer.parseInt(partitaJSON.get("PosMazziere").toString()); // prendo pos mazziere
         boolean isGameRunning = Boolean.parseBoolean(partitaJSON.get("isGameRunning").toString()); // prendo pos mazziere
         GameStatus gameStatus = GameStatus.valueOf((String) partitaJSON.get("Stato"));  // prendo stato
+        GameType gameType = GameType.valueOf((String) partitaJSON.get("Tipo"));  // prendo stato
         int cDistaccoMazziere = Integer.parseInt(partitaJSON.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
         boolean cartaGiaScambiata = Boolean.parseBoolean(partitaJSON.get("cartaGiaScambiata").toString()); // prendo se il player ha gia fatto lo scambio o no
         int currentRound = Integer.parseInt(partitaJSON.get("Round").toString()); // prendo il round attuale della partita
@@ -335,6 +336,7 @@ public class FileManager
         partita.setMaxCarteNormali(maxCarteNormali);
         partita.setMaxCarteSpeciali(maxCarteSpeciali);
         partita.setNumeroPlayerVite(numeroPlayerVite);
+        partita.setGameType(gameType);
 
         // Aggiungi giocatori alla partita
         for (Object giocatoreKey : giocatoriObject.keySet())
@@ -697,6 +699,7 @@ public class FileManager
             int posMazziere = Integer.parseInt(singolaPartitaJSON.get("PosMazziere").toString()); // prendo pos mazziere
             boolean isGameRunning = Boolean.parseBoolean(singolaPartitaJSON.get("isGameRunning").toString()); // prendo pos mazziere
             GameStatus gameStatus = GameStatus.valueOf((String) singolaPartitaJSON.get("Stato"));  // prendo stato
+            GameType gameType = GameType.valueOf((String) singolaPartitaJSON.get("Tipo"));  // prendo stato
             int cDistaccoMazziere = Integer.parseInt(singolaPartitaJSON.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
             boolean cartaGiaScambiata = Boolean.parseBoolean(singolaPartitaJSON.get("cartaGiaScambiata").toString()); // prendo se il player ha gia fatto lo scambio o no
             int currentRound = Integer.parseInt(singolaPartitaJSON.get("Round").toString()); // prendo il round attuale della partita
@@ -713,6 +716,7 @@ public class FileManager
             singolaPartitaTorneo.setDistaccoMazziere(cDistaccoMazziere);
             singolaPartitaTorneo.setCartaGiaScambiata(cartaGiaScambiata);
             singolaPartitaTorneo.setCurrentRound(currentRound);
+            singolaPartitaTorneo.setGameType(gameType);
 
             // Aggiungi giocatori alla partita
             for (Object giocatoreKey : giocatoriObject.keySet())

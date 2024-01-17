@@ -1079,6 +1079,11 @@ public class Partita
 
     public void SavePartita(MouseEvent mouseEvent) throws IOException
     {
+
+        // TODO BISOGNA CAPIRE SE SI E NEL TORNEO E IN UNA PARTITA SINGOLA
+        // USANDO GAMETYPE
+
+
       /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Vuoi uscire dalla partita");
         alert.setContentText("Se confermi i tuoi dati saranno salvati");

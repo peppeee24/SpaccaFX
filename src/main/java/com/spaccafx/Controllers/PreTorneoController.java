@@ -49,7 +49,10 @@ public class PreTorneoController
         this.passwordTorneo = passwordTorneo;
 
         // Carichiamo i dati dal file
-        //Partita p = FileManager.leggiPartitaDaFile(codicePartita);
+        ArrayList<Partita> p = FileManager.leggiTorneoDaFile(codiceTorneo);
+
+
+
         /*ArrayList<IGiocatore> giocatori = p.giocatori;
 
         // Imposta i dettagli per ogni giocatore
