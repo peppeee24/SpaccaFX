@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,48 +25,50 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PreTorneoController
-{
+public class PreTorneoController {
 
     @FXML
-    Button giocaButton; //todo per comit
+    Button giocaButton;
 
     @FXML
-    Label numerovite1, numerovite2,numerovite3,numerovite4,numerovite11, numerovite21,numerovite31,numerovite41,numerovite12, numerovite22,numerovite32,numerovite42, numerovite13, numerovite23,numerovite33,numerovite43, numerovite14, numerovite24,numerovite34,numerovite44;
-    Label giocatore1,giocatore2,giocatore3,giocatore4, giocatore11,giocatore21,giocatore31,giocatore41,giocatore12,giocatore22,giocatore32,giocatore42,giocatore13,giocatore23,giocatore33,giocatore43,giocatore14,giocatore24,giocatore34,giocatore44;
-            Label currentPlayer, currentRound;
+    Label numerovite1, numerovite2, numerovite3, numerovite4, numerovite11, numerovite21, numerovite31, numerovite41, numerovite12, numerovite22, numerovite32, numerovite42, numerovite13, numerovite23, numerovite33, numerovite43, numerovite14, numerovite24, numerovite34, numerovite44;
+    Label giocatore1, giocatore2, giocatore3, giocatore4, giocatore11, giocatore21, giocatore31, giocatore41, giocatore12, giocatore22, giocatore32, giocatore42, giocatore13, giocatore23, giocatore33, giocatore43, giocatore14, giocatore24, giocatore34, giocatore44;
+    Label currentPlayer, currentRound;
 
+    Tab partitaFinaleTab;
 
 
     @FXML
-    ImageView user1, user2, user3, user4, user11, user21, user31, user41, user12, user22, user32, user42,user13, user23, user33, user43, user14, user24, user34, user44  ;
+    ImageView user1, user2, user3, user4, user11, user21, user31, user41, user12, user22, user32, user42, user13, user23, user33, user43, user14, user24, user34, user44;
 
-    private int codiceTorneo, passwordTorneo;
+    private int codiceTorneo, passwordTorneo, currentMatch;
 
 
-    public void setInfoTorneo(int codiceTorneo, int passwordTorneo)
-    {
+    public void setInfoTorneo(int codiceTorneo, int passwordTorneo) {
+
+        giocaButton.setVisible(true);
+        partitaFinaleTab.setDisable(true);
+
         this.codiceTorneo = codiceTorneo;
         this.passwordTorneo = passwordTorneo;
+        this.currentMatch = FileManager.getCurrentMatchTorneo(codiceTorneo);
+
 
         // Carichiamo i dati dal file
         ArrayList<Partita> p = FileManager.leggiTorneoDaFile(codiceTorneo);
 
 
-
-
-
         // Imposta i dettagli per ogni giocatore
-        for (int i = 0; i <4; i++) { //for gira partite // TODO aggiungere round finale
-            for(int j=0;j<4;j++){ // for gira partita singola
+        for (int i = 0; i < 4; i++) { //for gira partite // TODO aggiungere round finale
+            for (int j = 0; j < 4; j++) { // for gira partita singola
 
-            IGiocatore giocatore = p.get(i).giocatori.get(j);
-            ImageView imageView = null;
-            Label nomeLabel = null;
-            Label viteLabel = null;
+                IGiocatore giocatore = p.get(i).giocatori.get(j);
+                ImageView imageView = null;
+                Label nomeLabel = null;
+                Label viteLabel = null;
 
-            // Assegna le ImageView e le Label in base all'indice del giocatore
-                if(i == 0) {
+                // Assegna le ImageView e le Label in base all'indice del giocatore
+                if (i == 0) {
                     switch (j) {
                         case 0:
                             imageView = user1;
@@ -88,7 +91,7 @@ public class PreTorneoController
                             viteLabel = numerovite4;
                             break;
                     }
-                } else if(i==1){
+                } else if (i == 1) {
                     switch (j) {
                         case 0:
                             imageView = user11;
@@ -112,7 +115,7 @@ public class PreTorneoController
                             break;
                     }
 
-                } else if(i==2){
+                } else if (i == 2) {
                     switch (j) {
                         case 0:
                             imageView = user12;
@@ -135,7 +138,7 @@ public class PreTorneoController
                             viteLabel = numerovite42;
                             break;
                     }
-                } else if(i==3){
+                } else if (i == 3) {
                     switch (j) {
                         case 0:
                             imageView = user13;
@@ -158,78 +161,71 @@ public class PreTorneoController
                             viteLabel = numerovite43;
                             break;
                     }
-                } else if(i==4){
+                } else if (i == 4) {
                     // TODO capire come gestire il round finale
                 }
 
-            // Imposta nome e vite
-            if (nomeLabel != null && viteLabel != null) {
-                nomeLabel.setText(giocatore.getNome());
-                viteLabel.setText(Integer.toString(giocatore.getVita()));
-            }
-
-            // Assegna l'immagine corrispondente in base al tipo di giocatore
-            if (imageView != null) {
-                if (giocatore instanceof EasyBot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/easyBot.PNG")));
-                } else if (giocatore instanceof AdvancedBot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/hardBot.PNG")));
-                } else if (giocatore instanceof Giocatore) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/userIcons.png")));
+                // Imposta nome e vite
+                if (nomeLabel != null && viteLabel != null) {
+                    nomeLabel.setText(giocatore.getNome());
+                    viteLabel.setText(Integer.toString(giocatore.getVita()));
                 }
-            }
+
+                // Assegna l'immagine corrispondente in base al tipo di giocatore
+                if (imageView != null) {
+                    if (giocatore instanceof EasyBot) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/easyBot.PNG")));
+                    } else if (giocatore instanceof AdvancedBot) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/hardBot.PNG")));
+                    } else if (giocatore instanceof Giocatore) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/userIcons.png")));
+                    }
+                }
 
                 // Imposta altre informazioni sulla partita
                 currentRound.setText("La partita riprenderà dal Round: " + p.get(j).getCurrentRound());
                 currentPlayer.setText("Toccherà al giocatore: " + p.get(j).getCurrentGiocatore().getNome());
             }
-            // TODO partita
+
 
         }
-
-
-
-
     }
 
 
-    public void apriTavolo(ActionEvent actionEvent) throws IOException // bottone inizia
-    {
-        // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
-        // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
-        // prendo le info dal json
+        public void apriTavolo (ActionEvent actionEvent) throws IOException // bottone inizia
+        {
+            // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
+            // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
+            // prendo le info dal json
 
-        System.out.println("Ho cliccato sul bottone");
-        try
+            System.out.println("Ho cliccato sul bottone");
+            try {
+                AudioManager.bottoneSuono();
+                FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
+
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+                Parent root = playerScreen.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+                PlayerScreenController playerController = playerScreen.getController();
+                //playerController.setInfoPartita(codicePartita, passwordPartita);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        public void indietro (MouseEvent mouseEvent) throws IOException
         {
             AudioManager.bottoneSuono();
-            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PlayerScreen.fxml"));
-
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            Parent root = playerScreen.load();
-            Scene scene = new Scene(root);
+            FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(Indietro.load());
             stage.setScene(scene);
             stage.show();
-
-            PlayerScreenController playerController = playerScreen.getController();
-            //playerController.setInfoPartita(codicePartita, passwordPartita);
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+
     }
-
-
-    public void indietro(MouseEvent mouseEvent) throws IOException
-    {
-        AudioManager.bottoneSuono();
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(Indietro.load());
-        stage.setScene(scene);
-        stage.show();
-    }
-
-}

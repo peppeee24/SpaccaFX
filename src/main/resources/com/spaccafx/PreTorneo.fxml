@@ -33,6 +33,14 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <Button fx:id="giocaButton" layoutX="50.0" layoutY="380.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </left>
@@ -47,14 +55,6 @@
                            <right>
                               <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="giocaButton" layoutX="634.0" layoutY="534.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Button>
                                     <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
                                        <font>
                                           <Font name="System Bold Italic" size="27.0" />
@@ -141,14 +141,6 @@
                            <right>
                               <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="giocaButton1" layoutX="634.0" layoutY="558.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Button>
                                     <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
                                        <font>
                                           <Font name="System Bold Italic" size="27.0" />
@@ -234,14 +226,6 @@
                            <right>
                               <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="giocaButton3" layoutX="634.0" layoutY="556.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Button>
                                     <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
                                        <font>
                                           <Font name="System Bold Italic" size="27.0" />
@@ -327,14 +311,6 @@
                            <right>
                               <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="giocaButton2" layoutX="634.0" layoutY="556.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Button>
                                     <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
                                        <font>
                                           <Font name="System Bold Italic" size="27.0" />
@@ -412,7 +388,7 @@
                      </children>
                   </AnchorPane>
                </content></Tab>
-            <Tab text="Partita FINALE">
+            <Tab fx:id="partitaFinaleTab" text="Partita FINALE">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -420,14 +396,6 @@
                            <right>
                               <AnchorPane prefHeight="630.0" prefWidth="776.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="giocaButton4" layoutX="641.0" layoutY="522.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="GIOCA" textFill="WHITE">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Button>
                                     <Label layoutX="172.0" layoutY="84.0" styleClass="Label" text="DATI DELLA TUA PARTITA">
                                        <font>
                                           <Font name="System Bold Italic" size="27.0" />
