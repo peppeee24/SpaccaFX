@@ -444,7 +444,7 @@ public class FileManager
         return 0; // se non ho trovato nessuna password
     }
 
-    public static ArrayList<Carta> getPlayerCarte(int codicePartita)
+    public static ArrayList<Carta> getPlayerCartePartita(int codicePartita)
     {
         try
         {
@@ -880,6 +880,281 @@ public class FileManager
 
         return p;
     }
+
+    // TODO METTERE PER OGNI PARTITA UN CAMPO CHIAMATO VINCITORE
+    public static boolean sovrascriviSalvataggiPartitaTorneo(Partita partitaToSave, int codiceTorneo, int currentMatch)
+    {
+        // adesso dobbiamo andare a prendere tra i tornei quello specifico del codice.
+        // Una volta trovato andiamo a trovare il match specifico e andiamo ad assegnare tutti i dati della partita
+
+        try
+        {
+            if (torneiFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
+
+                // Ottieni l'array delle partite
+                JSONArray torneoArray = (JSONArray) root.get("Tornei");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object torneoObject : torneoArray)
+                {
+                    JSONObject torneoJSON = (JSONObject) torneoObject;
+                    int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
+                    if (idTorneo == codiceTorneo)
+                    {
+                        torneoJSON.put("CurrentMatch", currentMatch);
+                        System.out.println("Ho trovato il mio torneo codice: " + codiceTorneo);
+                        return cambiaDatiSingolaPartitaTorneo(torneoJSON, partitaToSave, currentMatch, root);
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente il torneo che cerchi!");
+            }
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+    // TODO SISTEMARE E CONTROLLARE TUTTO
+    public static boolean cambiaDatiSingolaPartitaTorneo(JSONObject torneoJSON, Partita partitaToSave, int currentMatch, JSONObject root)
+    {
+        JSONObject partiteObj = (JSONObject) torneoJSON.get("Partite");
+
+        if (currentMatch >= 0 && currentMatch < 4) // compreso tra le 4 partite
+        {
+            // Adesso devo prendere i dati delle singole partite
+            String gameName = "Partita"+(4 - currentMatch);
+            JSONObject singolaPartitaJSON = (JSONObject) partiteObj.get(gameName);
+
+            // Aggiorna lo stato della partita
+            singolaPartitaJSON.put("Stato", partitaToSave.getPartitaStatus().toString()); // si
+            singolaPartitaJSON.put("isGameRunning", partitaToSave.getIsGameRunning()); // si
+            singolaPartitaJSON.put("Round", partitaToSave.getCurrentRound()); // si
+            singolaPartitaJSON.put("CurrentGiocatore", partitaToSave.getCurrentGiocatorePos()); // si
+            singolaPartitaJSON.put("PosMazziere", partitaToSave.getPosMazziere()); // si
+            singolaPartitaJSON.put("cDistaccoMazziere", partitaToSave.getDistaccoMazziere()); // si
+            singolaPartitaJSON.put("cartaGiaScambiata", partitaToSave.getCartaGiaScambiata()); // si
+
+
+            // Aggiorna le informazioni dei giocatori
+            JSONObject giocatoriList = (JSONObject) singolaPartitaJSON.get("Giocatori");
+
+
+            for (int i = 1; i <= partitaToSave.giocatori.size(); i++)
+            {
+                String nomeGiocatore = "Giocatore" + i;
+                JSONObject giocatoreJSON = (JSONObject) giocatoriList.get(nomeGiocatore);
+
+                IGiocatore nuovoGiocatore = partitaToSave.giocatori.get(i - 1);
+
+                giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
+                giocatoreJSON.put("Ruolo", nuovoGiocatore.getRuolo().toString().toUpperCase());
+                giocatoreJSON.put("Vita-Extra", nuovoGiocatore.getVitaExtra());
+                giocatoreJSON.put("Vite", nuovoGiocatore.getVita());
+                giocatoreJSON.put("PlayerRounds", nuovoGiocatore.getPlayerRounds());
+
+                // Salva le informazioni della carta attuale
+                JSONObject cartaJSON = new JSONObject();
+
+                Carta cartaGiocatore = nuovoGiocatore.getCarta();
+
+                if(cartaGiocatore == null)
+                {
+                    cartaGiocatore = new CartaNormale(1, SemeCarta.VERME); // Dato che il player e morto salvo una carta di default casuale
+                    cartaGiocatore.setCartaEffettoAttivato(true);
+                }
+
+
+                cartaJSON.put("Valore", cartaGiocatore.getValore());
+                cartaJSON.put("Seme", cartaGiocatore.getSeme().toString());
+                cartaJSON.put("Attivata", cartaGiocatore.getCartaEffettoAttivato());
+
+                giocatoreJSON.put("Carta", cartaJSON);
+
+            }
+
+
+            // Sovrascrivi il file con i dati aggiornati
+            try (FileWriter fileWriter = new FileWriter(torneiFile))
+            {
+                fileWriter.write(root.toJSONString());
+                System.out.println("Dati della partita" + currentMatch + " aggiornati con successo nel file JSON dei TORNEI.");
+                return true; // Esci dal metodo una volta che la partita è stata trovata e aggiornata
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+            System.out.println("Errore salvataggi partita: " + currentMatch + " nel file JSON dei TORNEI.");
+            return false;
+
+        }
+        else
+        {
+            System.out.println("Indice partita non valido: " + currentMatch);
+            return false;
+        }
+    }
+
+    public static ArrayList<Carta> getPlayerCartePartitaTorneo(int codiceTorneo, int currentMatch)
+    {
+        try
+        {
+            if (torneiFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
+
+                // Ottieni l'array delle partite
+                JSONArray torneoArray = (JSONArray) root.get("Tornei");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object torneoObject : torneoArray)
+                {
+                    JSONObject torneoJSON = (JSONObject) torneoObject;
+                    int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
+                    if (idTorneo == codiceTorneo)
+                    {
+                        System.out.println("Ho trovato il mio torneo codice: " + codiceTorneo);
+                        return convertiCartePartitaTorneoJSON(torneoJSON, currentMatch);
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente il torneo che cerchi!");
+            }
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+    public static ArrayList<Carta> convertiCartePartitaTorneoJSON(JSONObject torneoJSON, int currentMatch) // prendo carte solo giocatori vivi
+    {
+        ArrayList<Carta> playerCards = new ArrayList<>();
+
+        JSONObject partiteObj = (JSONObject) torneoJSON.get("Partite");
+
+        if (currentMatch >= 0 && currentMatch < 4) // compreso tra le 5 partite
+        {
+            // Adesso devo prendere i dati delle singole partite
+            String gameName = "Partita" + (4 - currentMatch);
+            JSONObject singolaPartitaJSON = (JSONObject) partiteObj.get(gameName);
+
+            JSONObject giocatoriObject = (JSONObject) singolaPartitaJSON.get("Giocatori");
+
+            for (Object giocatoreKey : giocatoriObject.keySet())
+            {
+                String nomeGiocatore = (String) giocatoreKey;
+                JSONObject giocatoreJSON = (JSONObject) giocatoriObject.get(nomeGiocatore);
+
+                RuoloGiocatore ruoloGiocatore = RuoloGiocatore.valueOf((String) giocatoreJSON.get("Ruolo"));
+
+                if(ruoloGiocatore != RuoloGiocatore.MORTO)
+                {
+                    JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
+
+                    Carta cartaPlayer = null;
+                    int valore = Integer.parseInt(cartaObject.get("Valore").toString());
+                    SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
+
+                    switch (semeCarta)
+                    {
+                        case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
+                            break;
+                        case SQUALO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                            break;
+                        case PESCE:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                            break;
+                        case VERME:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                            break;
+                        case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
+                            break;
+                        default:
+                            System.out.println("Errore nella ripresa di una partita!");
+                            System.exit(-1);
+                    }
+
+                    playerCards.add(cartaPlayer); // aggiungiamo la carta
+                    System.out.println("Trovata carta giocatore vivo: " + cartaPlayer.toString());
+                }
+
+            }
+
+            return playerCards;
+        }
+
+        System.out.println("Errore nel caricamento delle carte nel TORNEO!!");
+        return null;
+    }
+
+    public static boolean aumentaCurrentMatchTorneo(int codiceTorneo, int currentMatch)
+    {
+        // adesso dobbiamo andare a prendere tra i tornei quello specifico del codice.
+        // Una volta trovato andiamo a trovare il match specifico e andiamo ad assegnare tutti i dati della partita
+
+        try
+        {
+            if (torneiFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
+
+                // Ottieni l'array delle partite
+                JSONArray torneoArray = (JSONArray) root.get("Tornei");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object torneoObject : torneoArray)
+                {
+                    JSONObject torneoJSON = (JSONObject) torneoObject;
+                    int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
+                    if (idTorneo == codiceTorneo)
+                    {
+                        torneoJSON.put("CurrentMatch", currentMatch);
+
+                        // Sovrascrivi il file con i dati aggiornati
+                        try (FileWriter fileWriter = new FileWriter(torneiFile))
+                        {
+                            fileWriter.write(root.toJSONString());
+                            System.out.println("Aumentato il current match della partita " + currentMatch + " nel file JSON dei TORNEI.");
+                            return true; // Esci dal metodo una volta che la partita è stata trovata e aggiornata
+                        }
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente il torneo che cerchi!");
+            }
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        System.out.println("[ERRORE] Salvataggi della partita " + currentMatch + " nel file JSON dei TORNEI FALLITA!!!");
+        return false;
+    }
+
     // endregion
 
 }

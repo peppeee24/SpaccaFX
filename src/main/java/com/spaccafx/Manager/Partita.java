@@ -111,7 +111,11 @@ public class Partita
             try {
                 Platform.runLater(() -> {
                     TC.mostraBannerAttesa("CONTROLLO-RIPRESA", "Controlliamo la carta");
-                    ricaricaMazzo(FileManager.getPlayerCarte(this.codicePartita));
+
+                    if(this.gameType == GameType.PARTITA)
+                        ricaricaMazzo(FileManager.getPlayerCartePartita(this.codicePartita));
+                    else
+                        ricaricaMazzo(FileManager.getPlayerCartePartitaTorneo(this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()));
                 });
 
                 Thread.sleep(4000);
@@ -268,7 +272,8 @@ public class Partita
         gestisciTurnoRipresa(currentGiocatoreRipresa);
     }
 
-    private void gestisciTurnoRipresa(IGiocatore currentGiocatoreRipresa) {
+    private void gestisciTurnoRipresa(IGiocatore currentGiocatoreRipresa)
+    {
         if(isGameStopped())
             return;
 
@@ -1091,6 +1096,7 @@ public class Partita
       //  if (result.isPresent() && result.get() == ButtonType.OK)
        // {
 
+            // se siamo in una partita
             if(this.gameType == GameType.PARTITA)
             {
                 if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
@@ -1104,7 +1110,16 @@ public class Partita
             }
             else
             {
+                // TODO SISTEMARE LO STATO DEL TORNEO QUANDO SI ESCE
                 // siamo in un torneo
+                if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
+                {
+                    System.out.println("isGamerunning: " + this.isGameRunning);
+                    setPartitaStatus(GameStatus.STOPPED);
+                    System.out.println("Il gioco e stato messo in pausa correttamente!");
+
+                    FileManager.sovrascriviSalvataggiPartitaTorneo(this, this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()); // salvo tutti i dati di questa partita
+                }
             }
 
 

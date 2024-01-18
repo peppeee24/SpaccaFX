@@ -3,6 +3,7 @@ package com.spaccafx.Controllers;
 import com.spaccafx.Cards.Carta;
 import com.spaccafx.Cards.CartaImprevisto;
 import com.spaccafx.Enums.GameStatus;
+import com.spaccafx.Enums.GameType;
 import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
@@ -83,7 +84,7 @@ public class TavoloController
     //private PartitaClassicaController2 PC;
 
     private Partita partita;
-    private int codicePartita;
+    private int currentMatch, codiceTorneo;
     private Stage leaderboardStage; // Variabile di stato per tenere traccia della finestra della classifica
 
     //endregion
@@ -100,7 +101,6 @@ public class TavoloController
     public void inizializzaClassePartita(int codicePartita)
     {
         // gli devo passare il codice che mando quando clicco sul bottone
-        setCodicePartita(codicePartita);
         System.out.println("Codice della partita attuale: " + codicePartita);
 
         this.partita = FileManager.leggiPartitaDaFile(codicePartita); // prendiamo la partita (codice, passw, giocatori, stato)
@@ -117,6 +117,8 @@ public class TavoloController
     {
         // gli devo passare il codice che mando quando clicco sul bottone
         System.out.println("Codice del torneo attuale: " + codiceTorneo);
+        this.setCurrentMatch(currentMatch);
+        this.setCodiceTorneo(codiceTorneo);
 
 
         this.partita = FileManager.getCurrentPartitaTorneo(codiceTorneo, currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
@@ -127,7 +129,11 @@ public class TavoloController
         preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
     }
 
-    private void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
+    private void setCodiceTorneo(int codiceTorneo){this.codiceTorneo = codiceTorneo;}
+    public int getCodiceTorneo(){return  this.codiceTorneo;}
+    private void setCurrentMatch(int currentMatch){this.currentMatch = currentMatch;}
+    public int getCurrentMatch(){return this.currentMatch;}
+
 
     public void riprendiBot()
     {
@@ -872,27 +878,52 @@ public class TavoloController
 
                 Thread.sleep(4000);
 
-                /*Platform.runLater(() ->
+                Platform.runLater(() ->
                 {
-                    FXMLLoader menu = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
-                    try {
+
+                    if(this.partita.getGameType() == GameType.PARTITA)
+                    {
+                        // ritorna semplicemente alla lobby delle partite
+                        // devo salvare tutti i miei dati della partita finita
+                    }
+                    else
+                    {
+                        // siamo in un torneo
+                        // aumento il currentMatch e salvo su file e ritorno al match dei tornei
+
+                        FileManager.sovrascriviSalvataggiPartitaTorneo(this.partita, this.codiceTorneo, this.currentMatch); // salvo i dati della mia partita finita
+
+                        if(this.currentMatch != 4) // non puo superarlo perche le partite nel torneo sono al MASSIMO 5 (da 0 a 4)
+                        {
+                            this.setCurrentMatch(this.currentMatch+1);
+                            FileManager.aumentaCurrentMatchTorneo(this.codiceTorneo, this.currentMatch);
+                        }
+                    }
+
+                    //FXMLLoader menu = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
+                    //try {
 
                         // TODO METTERE CHE DEVI CHIUDERE ANCHE LA LEADERBOARD QUANDO ESCI
                         // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
 
-                        Scene scene = new Scene(menu.load());
+
+                        // TODO METTERE DISTINZIONE TRA SE LA PARTITA FA PARTE DI UN TORNEO O E UNA PARTITA NORMALE.
+
+                        /*Scene scene = new Scene(menu.load());
                         stage.setScene(scene);
                         stage.setTitle("Alpha Build SpaccaFX");
                         stage.setResizable(false);
                         stage.show();
 
+                         */
 
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+
+                    //} catch (IOException e) {
+                        //throw new RuntimeException(e);
+                    //}
                 });
 
-                 */
+
 
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
