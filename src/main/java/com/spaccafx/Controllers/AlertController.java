@@ -13,23 +13,40 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.function.Consumer;
 
 public class AlertController {
+    // TODO continuare aggiornamento Confirm
 
-   @FXML
+    @FXML
     Label errorTypeLabel;
-   @FXML
-    Button okButtonError, noButtonConfirm;
+    @FXML
+    Button okButtonError;
+    @FXML
+     Button noButtonConfirm;
+
+    private Consumer<Boolean> okNoHandler;
+
+    private boolean isOkButtonPressed = false;
+
+    public boolean isOkButtonPressed() {
+        return isOkButtonPressed;
+    }
 
 
     public void initialize() // si attiva da SelectionMenuController
     {
-      setErrorLabel("Errore");
+        setErrorLabel("Errore");
     }
+
 
     private void setErrorLabel(String errorMessage) {
         errorTypeLabel.setText(errorMessage);
+
     }
 
 
@@ -50,7 +67,14 @@ public class AlertController {
 
         // Chiudi la finestra
         stage.close();
+
+        isOkButtonPressed = true;
+
+        if (okNoHandler != null) {
+            okNoHandler.accept(true);
+        }
     }
+
 
     public void noButton(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
@@ -60,9 +84,10 @@ public class AlertController {
         // Chiudi la finestra
         stage.close();
 
-        Platform.exit();
-        System.exit(0);
+      //  Platform.exit();
+      //  System.exit(0);
     }
+
 
 
 
@@ -82,7 +107,7 @@ public class AlertController {
             stage.setScene(scene);
 
             // Blocca l'interazione con la finestra principale
-          //  stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            //  stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.initModality(Modality.WINDOW_MODAL);
 
             stage.showAndWait();
@@ -117,7 +142,7 @@ public class AlertController {
     }
 
 
-    public static void showConfirm(String errorMessage) {
+    public static boolean showConfirm(String errorMessage) {
         try {
             FXMLLoader loader = new FXMLLoader(Spacca.class.getResource("Confirmation.fxml"));
             Stage stage = new Stage();
@@ -136,15 +161,12 @@ public class AlertController {
             stage.initModality(Modality.WINDOW_MODAL);
 
             stage.showAndWait();
+            return errorController.isOkButtonPressed();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
 
-
-
 }
-
-
-

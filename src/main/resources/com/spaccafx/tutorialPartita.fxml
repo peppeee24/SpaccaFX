@@ -167,17 +167,17 @@
                                           <Image url="@../../Assets/Cards/PROBABILITA/PROBABILITA1.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                        <image>
                                           <Image url="@../../Assets/Cards/IMPREVISTO/IMPREVISTO1.png" />
                                        </image>
                                     </ImageView>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PROBABILITA:" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPREVISTO:" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SCAMBIA CARTA CON MAZZO" wrappingWidth="226.0" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AUMENTA VITA CON DADI" wrappingWidth="225.0" GridPane.rowIndex="3" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PASSO FORZATO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SCAMBIO FORZATO" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPREVISTO:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1) SCAMBIA CARTA CON MAZZO" wrappingWidth="226.0" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2) AUMENTA VITA CON DADI" wrappingWidth="225.0" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1) PASSO FORZATO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2) SCAMBIO FORZATO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                               <Text layoutX="81.0" layoutY="95.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Per rendere più entusiasmante l’esperienza di gioco abbiamo aggiunto imprevisti e probabilità che potranno aiutare o penalizzare l’utente" wrappingWidth="652.0" />
@@ -217,6 +217,33 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <GridPane layoutX="105.0" layoutY="123.0" prefHeight="374.0" prefWidth="518.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                                       <image>
+                                          <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                       <image>
+                                          <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
+                                       </image>
+                                    </ImageView>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EASYBOT" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HARDBOT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sono robot generati automaticamente dal sistema, hanno la capacità di eseguire in automatico tutte le azioni proprio come un utente reale, l’unica eccezione è il fatto che non ragionano, quindi sceglieranno randomicamente la mossa da svolgere" wrappingWidth="242.0" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sono robot generati automaticamente dal sistema, hanno la capacità di eseguire in automatico tutte le azioni proprio come un utente reale perfino il ragionamento, in fatti in base al valore della propria carta, decideranno se passare il turno o scambiare la carta" wrappingWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                      </right>

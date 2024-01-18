@@ -133,12 +133,12 @@
                               </ImageView>
                               <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="506.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../Assets/Game/Environment/fede.png" />
+                                    <Image url="@../../Assets/Game/Environment/peppe.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="286.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="283.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../Assets/Game/Environment/fede.png" />
+                                    <Image url="@../../Assets/Game/Environment/sama2.png" />
                                  </image>
                               </ImageView>
                               <Label layoutX="69.0" layoutY="326.0" text="Federico " />

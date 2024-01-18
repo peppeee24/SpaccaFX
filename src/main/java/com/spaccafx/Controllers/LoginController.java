@@ -42,32 +42,24 @@ public class LoginController {
 
         if (user.compareTo(UserField) == 0 && pwd.compareTo(PasswordField) == 0) {
 
-            /*Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Accesso Eseguito");
-            alert.setContentText("Stai per essere reindirizzato");
-            Optional<ButtonType> result = alert.showAndWait();
+            boolean isOkPressed = AlertController.showConfirm("Accesso Eseguito, stai per essere reindirizzato");
 
-             */
+            if (isOkPressed) {
 
-            AlertController.showConfirm("Accesso Eseguito, stai per essere reindirizzato");
+                FXMLLoader SelectionMenu = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(SelectionMenu.load());
+                stage.setScene(scene);
+                stage.show();
+            }
 
+            } else {
+                AudioManager.erroreSuono();
+                AlertController.showErrore("Errore: Credenziali errate!");
 
-            FXMLLoader SelectionMenu = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(SelectionMenu.load());
-            stage.setScene(scene);
-            stage.show();
-
-        } else {
-
-AudioManager.erroreSuono();
-
-            AudioManager.erroreSuono();
-            AlertController.showErrore( "Errore: Credenziali errate!");
-
-
+            }
         }
-    }
+
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
@@ -80,24 +72,23 @@ AudioManager.erroreSuono();
     }
 
     public void telegram(MouseEvent mouseEvent) throws IOException {
-        AudioManager.erroreSuono();
+        AudioManager.bottoneSuono();
 
-      /*  Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Recupera passowrd");
-        alert.setContentText("Stai per essere reinderizzato su Telegram");
-        Optional<ButtonType> result = alert.showAndWait();
 
-       */
+        boolean isOkPressed = AlertController.showConfirm("Stai per essere reinderizzato su Telegram");
 
-        AlertController.showConfirm("Stai per essere reinderizzato su Telegram");
+        if (isOkPressed) {
+            new Thread(() -> {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://t.me/+tdRVfYk5QM4xZWRk"));
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }).start();
 
-        new Thread(() -> {
-            try {
-                Desktop.getDesktop().browse(new URI("https://t.me/+tdRVfYk5QM4xZWRk"));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        }
+
+
     }
 
 

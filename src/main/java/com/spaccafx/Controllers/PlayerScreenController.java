@@ -52,40 +52,36 @@ public class PlayerScreenController
 
         if (passwordPartita == PasswordField)
         {
-           /* Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Accesso Eseguito");
-            alert.setContentText("Stai per entrare nel gioco");
-            Optional<ButtonType> result = alert.showAndWait();
 
-            */
+            boolean isOkPressed = AlertController.showConfirm("Conferma: Accesso Eseguito, stai per entrare nel gioco");
 
-            AlertController.showConfirm("Conferma: Accesso Eseguito, stai per entrare nel gioco");
+            if (isOkPressed) {
 
+                AlertController.showWarning("Attendi caricamento tavolo");
+                FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
+                //FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Parent root = loaderTavolo.load();
 
-            FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
-            //FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Parent root = loaderTavolo.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            //stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
-            stage.show();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                //stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
+                stage.show();
 
 
-            TavoloController tavoloController = loaderTavolo.getController();
-            tavoloController.inizializzaClassePartita(this.codicePartita);
+                TavoloController tavoloController = loaderTavolo.getController();
+                tavoloController.inizializzaClassePartita(this.codicePartita);
+            }
+
+
+
+
 
         }
         else // se sbagliato
         {
             AudioManager.erroreSuono();
-        /*    Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Errore");
-            alert.setContentText("Codice partita Errato");
-            Optional<ButtonType> result = alert.showAndWait();
 
-         */
             AlertController.showErrore("Errore: Codice partita Errato!");
         }
     }
@@ -102,22 +98,21 @@ public class PlayerScreenController
 
 
     public void portaATutorial(MouseEvent mouseEvent) throws IOException {
-        AudioManager.erroreSuono();
+        AudioManager.leaderboardSuono();
 
-      /*  Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Recupera passowrd");
-        alert.setContentText("Stai per essere reinderizzato su Telegram");
-        Optional<ButtonType> result = alert.showAndWait();
 
-       */
+        boolean isOkPressed = AlertController.showConfirm("Stai per essere reinderizzato al Tutorial");
 
-        AlertController.showConfirm("Stai per essere reinderizzato al Tutorial");
+        if (isOkPressed) {
 
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Tutorial.fxml"));
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(Indietro.load());
-        stage.setScene(scene);
-        stage.show();
+            FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Tutorial.fxml"));
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(Indietro.load());
+            stage.setScene(scene);
+            stage.show();
+        }
+
+
 
     }
 

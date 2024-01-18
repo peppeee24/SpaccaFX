@@ -78,6 +78,7 @@ public class PartitaClassicaController2 {
         setNumeroCarteSpeciali();
         setNumeroCarteNormali();
 
+
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -606,6 +607,7 @@ public void impostaDifficolta() {
         AlertController.showWarning("Attenzione: Attendi Caricamento");
 
 
+
         int somma = getNumeroGiocatori() + getNumeroBot();
 
         if (somma > 1 && somma < 5)
@@ -620,23 +622,13 @@ public void impostaDifficolta() {
             //   codicePartita.wrapTextProperty().set(true);
             // codicePartita.getStyleClass().add("copiable-label");
 
-           /* Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Codice partita generato");
-            alert.setContentText("Comunica il codice ai giocatori che dovranno inserirlo successivamente");
-            Optional<ButtonType> result = alert.showAndWait();
 
-            */
             AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
 
 
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
             AudioManager.erroreSuono();
-          /*  Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Parametri errati");
-            alert.setContentText("Si puà giocare tra 2 e 4 giocatori, compresi bot, rivedi le impostazioni");
-            Optional<ButtonType> result = alert.showAndWait();
 
-           */
             AlertController.showErrore("Errore: Player/BOT non impostati correttamente");
 
         }

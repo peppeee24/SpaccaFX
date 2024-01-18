@@ -405,6 +405,11 @@
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="518.0" fitWidth="243.0" layoutX="23.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/FISHERMAN%20GIF.gif" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </right>

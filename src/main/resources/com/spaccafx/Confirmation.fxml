@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="450.0" styleClass="anchor-pane" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.AlertController">
    <children>
-      <ImageView fitHeight="205.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="166.0" fitWidth="168.0" layoutX="-6.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Assets/Game/Environment/fish.gif" />
+            <Image url="@../../Assets/Game/Environment/gary.gif" />
          </image>
       </ImageView>
       <Label layoutX="103.0" layoutY="28.0" prefHeight="33.0" prefWidth="261.0" styleClass="AlertBlu" text="CONFERMA" textFill="#da0606">
@@ -20,7 +20,7 @@
          </font>
       </Label>
       <Label fx:id="errorTypeLabel" layoutX="174.0" layoutY="86.0" prefHeight="49.0" prefWidth="226.0" styleClass="LabelWhiteError" text="Conferma:" wrapText="true" />
-      <Button fx:id="okButtonError" layoutX="367.0" layoutY="164.0" mnemonicParsing="false" onAction="#okButtonConfirm" prefHeight="33.0" prefWidth="0.0" text="OK" />
+      <Button fx:id="okButtonError" layoutX="367.0" layoutY="164.0" mnemonicParsing="false" onAction="#okButtonConfirm" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: red;" text="OK" />
       <Button fx:id="noButtonConfirm" layoutX="287.0" layoutY="164.0" mnemonicParsing="false" onAction="#noButton" prefHeight="35.0" prefWidth="67.0" text="NO" />
    </children>
 </AnchorPane>

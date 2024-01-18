@@ -387,7 +387,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label fx:id="codiceTorneo" layoutX="147.0" layoutY="189.0" styleClass="Label" text="Codice: ">
+                              <Label fx:id="codiceTorneo" layoutX="354.0" layoutY="192.0" styleClass="Label" text="Codice: ">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -395,7 +395,7 @@
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="passwordTorneo" layoutX="147.0" layoutY="241.0" styleClass="Label" text="Password: ">
+                              <Label fx:id="passwordTorneo" layoutX="354.0" layoutY="241.0" styleClass="Label" text="Password: ">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -411,6 +411,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
+                              <ImageView fitHeight="295.0" fitWidth="348.0" layoutX="33.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/fish.gif" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </right>
