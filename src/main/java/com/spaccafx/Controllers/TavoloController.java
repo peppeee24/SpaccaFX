@@ -38,6 +38,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -120,8 +122,12 @@ public class TavoloController
         this.setCurrentMatch(currentMatch);
         this.setCodiceTorneo(codiceTorneo);
 
+        // se diverso da 4, carico una partita normale
+        if(this.currentMatch != 4)
+            this.partita = FileManager.getCurrentPartitaTorneo(this.codiceTorneo, this.currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
+        else
+            this.partita = FileManager.getFinalePartitaTorneo(this.codiceTorneo); // prendo i dati della partita finale
 
-        this.partita = FileManager.getCurrentPartitaTorneo(codiceTorneo, currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
         this.partita.impostaTavoloController();
         inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
         this.updateVitaUI();
@@ -891,12 +897,17 @@ public class TavoloController
                         // siamo in un torneo
                         // aumento il currentMatch e salvo su file e ritorno al match dei tornei
 
-                        FileManager.sovrascriviSalvataggiPartitaTorneo(this.partita, this.codiceTorneo, this.currentMatch); // salvo i dati della mia partita finita
-
                         if(this.currentMatch != 4) // non puo superarlo perche le partite nel torneo sono al MASSIMO 5 (da 0 a 4)
                         {
+                            // Ogni volta che finisce una partita, prendo il vincitore e lo metto gia nella partita finale!
+                            FileManager.sovrascriviSalvataggiPartitaTorneo(this.partita, this.codiceTorneo, this.currentMatch); // salvo i dati della mia partita finita
                             this.setCurrentMatch(this.currentMatch+1);
                             FileManager.aumentaCurrentMatchTorneo(this.codiceTorneo, this.currentMatch);
+                            FileManager.popolaPartitaFinaleTorneo(this.codiceTorneo, this.partita);
+                        }
+                        else
+                        {
+                            FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this.partita, this.codiceTorneo); // salvo i dati della mia partita finale finita
                         }
                     }
 

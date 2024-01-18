@@ -115,7 +115,13 @@ public class Partita
                     if(this.gameType == GameType.PARTITA)
                         ricaricaMazzo(FileManager.getPlayerCartePartita(this.codicePartita));
                     else
-                        ricaricaMazzo(FileManager.getPlayerCartePartitaTorneo(this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()));
+                    {
+                        if(this.TC.getCurrentMatch() != 4)
+                            ricaricaMazzo(FileManager.getPlayerCartePartitaTorneo(this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()));
+                        else
+                            ricaricaMazzo(FileManager.getPlayerCartePartitaTorneoFinale(this.TC.getCodiceTorneo()));
+                    }
+
                 });
 
                 Thread.sleep(4000);
@@ -1118,7 +1124,12 @@ public class Partita
                     setPartitaStatus(GameStatus.STOPPED);
                     System.out.println("Il gioco e stato messo in pausa correttamente!");
 
-                    FileManager.sovrascriviSalvataggiPartitaTorneo(this, this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()); // salvo tutti i dati di questa partita
+                    // Bisogna capire dove sovrascrivere
+                    if(this.TC.getCurrentMatch() != 4)
+                        FileManager.sovrascriviSalvataggiPartitaTorneo(this, this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()); // salvo tutti i dati di questa partita tra quelle normali
+                    else
+                        FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this, this.TC.getCodiceTorneo()); // salvo tutti i dati di questa partita FINALE
+
                 }
             }
 
