@@ -121,7 +121,6 @@ public class Partita
                         else
                             ricaricaMazzo(FileManager.getPlayerCartePartitaTorneoFinale(this.TC.getCodiceTorneo()));
                     }
-
                 });
 
                 Thread.sleep(4000);

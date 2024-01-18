@@ -904,6 +904,7 @@ public class TavoloController
                             this.setCurrentMatch(this.currentMatch+1);
                             FileManager.aumentaCurrentMatchTorneo(this.codiceTorneo, this.currentMatch);
                             FileManager.popolaPartitaFinaleTorneo(this.codiceTorneo, this.partita);
+                            // TODO SISTEMARE SOVRASCRIZIONE TORNEI
                         }
                         else
                         {
@@ -917,8 +918,6 @@ public class TavoloController
                         // TODO METTERE CHE DEVI CHIUDERE ANCHE LA LEADERBOARD QUANDO ESCI
                         // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
 
-
-                        // TODO METTERE DISTINZIONE TRA SE LA PARTITA FA PARTE DI UN TORNEO O E UNA PARTITA NORMALE.
 
                         /*Scene scene = new Scene(menu.load());
                         stage.setScene(scene);

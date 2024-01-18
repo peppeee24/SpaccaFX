@@ -1412,7 +1412,7 @@ public class FileManager
                     int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
                     if (idTorneo == codiceTorneo)
                     {
-                        return modificaGiocatoriFinaleTorneo(torneoJSON, partitaCompleted);
+                        return modificaGiocatoriFinaleTorneo(torneoJSON, partitaCompleted, root);
                     }
                 }
             }
@@ -1430,7 +1430,7 @@ public class FileManager
     }
 
 
-    public static boolean modificaGiocatoriFinaleTorneo(JSONObject torneoJSON, Partita partitaCompleted) {
+    public static boolean modificaGiocatoriFinaleTorneo(JSONObject torneoJSON, Partita partitaCompleted, JSONObject root) {
         JSONObject partitaFinale = (JSONObject) torneoJSON.get("PartitaFinale");
 
         // Verifica se la partita finale esiste
@@ -1452,7 +1452,7 @@ public class FileManager
                             giocatore.put("Nome", vincitore.getNome());
 
                             // Salva le modifiche nel file
-                            if (salvaModifiche(torneoJSON)) {
+                            if (salvaModifiche(root)) {
                                 System.out.println("Giocatore vincente della partita finale aggiornato con successo nel file JSON dei TORNEI.");
                                 return true;
                             } else {
@@ -1472,9 +1472,9 @@ public class FileManager
         return giocatore != null && giocatore.get("Nome") == null && giocatore.get("Istanza") == null;
     }
 
-    private static boolean salvaModifiche(JSONObject torneoJSON) {
+    private static boolean salvaModifiche(JSONObject root) {
         try (FileWriter fileWriter = new FileWriter(torneiFile)) {
-            fileWriter.write(torneoJSON.toJSONString());
+            fileWriter.write(root.toJSONString());
             return true;
         } catch (IOException e) {
             e.printStackTrace();
