@@ -24,7 +24,6 @@ public class Spacca extends Application {
 
                 Platform.runLater(() ->
                 {
-                    //stage.initStyle(StageStyle.UTILITY); // per lasciare solo la x
 
                     FXMLLoader MainMenu = new FXMLLoader(Spacca.class.getResource("Splash1.fxml"));
                     Scene scene = null;
@@ -96,24 +95,6 @@ public class Spacca extends Application {
         });
 
         thread.start();
-
-
-/*
-        try {
-
-            FXMLLoader MainMenu = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
-            Scene scene = new Scene(MainMenu.load());
-            stage.setTitle("Alpha Build SpaccaFX");
-
-            stage.setResizable(true);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
- */
     }
 
     public static void main(String[] args) {

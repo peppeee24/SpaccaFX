@@ -101,8 +101,6 @@ public class SpaccaTGBot extends TelegramLongPollingBot
         {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
