@@ -159,6 +159,10 @@
     -fx-background-image: url("../../../resources/Assets/Game/Environment/bb.png");
 }
 
+.sfondo3{
+    -fx-background-image: url("UI/SelectionMenuAdmin.png");
+}
+
 .mainMenuSfondo1
 {
   -fx-background-size: 100% 100%;

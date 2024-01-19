@@ -22,8 +22,6 @@ import java.net.URISyntaxException;
 
 public class MainMenuController {
 
-    public PartitaClassicaController2 pcc;
-
     private ShareData shareData;
 
 
@@ -41,10 +39,8 @@ public class MainMenuController {
         } else
             System.out.println("AudioController not found in ShareData");
     }
-    public void setPartitaClassicaController(PartitaClassicaController2 pcc) {
-        this.pcc = pcc;
-        System.out.println("MMC" + pcc);
-    }
+
+    //region #BUTTONS
 
     public void startSetting(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
@@ -112,14 +108,7 @@ public class MainMenuController {
         stage.show();
     }
 
-
-    @FXML
-    Toggle italian;
-
-    @FXML
-    Toggle english;
-
-
+    // endregion
 
 }
 

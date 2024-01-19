@@ -16,32 +16,15 @@
          <children>
             <ImageView fx:id="mainSetting" fitHeight="60.0" fitWidth="50.0" onMouseClicked="#setting" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Assets/Game/Environment/settings.png" />
+                  <Image url="@../../Assets/Game/Environment/settings2.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="telegram" fitHeight="58.0" fitWidth="116.0" onMouseClicked="#telegram" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="telegram" fitHeight="50.0" fitWidth="51.0" onMouseClicked="#telegram" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Assets/Game/Environment/telegram.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <Pane maxHeight="-Infinity" prefHeight="5.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <ImageView fitHeight="45.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/ukFlag.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fitHeight="45.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/italianFlag.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -56,7 +39,7 @@
    <center>
       <Pane BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="playButton" layoutX="36.0" layoutY="158.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="264.0" stylesheets="@PartitaStyle.css" text="ADMIN" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="playButton" layoutX="36.0" layoutY="170.0" mnemonicParsing="false" onAction="#startSetting" prefHeight="62.0" prefWidth="264.0" stylesheets="@PartitaStyle.css" text="ADMIN" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
@@ -64,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="gameButton" layoutX="36.0" layoutY="252.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="264.0" text="PLAY" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="gameButton" layoutX="36.0" layoutY="264.0" mnemonicParsing="false" onAction="#startGame" prefHeight="62.0" prefWidth="264.0" text="PLAY" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
@@ -72,7 +55,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="tutorialButton" layoutX="36.0" layoutY="351.0" mnemonicParsing="false" onAction="#startTutorial" prefHeight="62.0" prefWidth="264.0" text="TUTORIAL" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="tutorialButton" layoutX="36.0" layoutY="363.0" mnemonicParsing="false" onAction="#startTutorial" prefHeight="62.0" prefWidth="264.0" text="TUTORIAL" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>

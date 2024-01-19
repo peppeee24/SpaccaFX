@@ -74,8 +74,6 @@ public class TorneoScreenController
 
             }
 
-
-
         }
         else // se sbagliato
         {

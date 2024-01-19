@@ -35,6 +35,7 @@ public class LoginController {
         userField.requestFocus();
     }
 
+    // region #BUTTONS
     public void loginAction(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
         String UserField = userField.getText();
@@ -91,6 +92,7 @@ public class LoginController {
 
     }
 
+    // endregion
 
 }
 
