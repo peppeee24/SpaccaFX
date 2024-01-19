@@ -189,17 +189,19 @@ public class TorneoController2 {
     public void salvaImpostazioni(ActionEvent actionEvent) throws IOException { // PLAY
 
         AudioManager.bottoneSuono();
-        System.out.println("Salvo il numero di vite" + getNumeroVite());
-        this.setNumeroVite();
-        System.out.println("Salvo il numero di carte speciali" + getNumeroCarteSpeciali());
-        this.setNumeroCarteSpeciali();
-        System.out.println("Salvo il numero di carte normali" + getNumeroCarteNormali());
-        this.setNumeroCarteNormali();
-        impostazioniPreliminariTab.setDisable(true);
-        playerTab.setDisable(false);
-        botTab.setDisable(false);
-
-
+        if(numeroVite!=0 && numeroCarteSpeciali!=0 && numeroCarteNormali!=0){
+            System.out.println("Salvo il numero di vite " + getNumeroVite());
+            this.setNumeroVite();
+            System.out.println("Salvo il numero di carte speciali " + getNumeroCarteSpeciali());
+            this.setNumeroCarteSpeciali();
+            System.out.println("Salvo il numero di carte normali " + getNumeroCarteNormali());
+            this.setNumeroCarteNormali();
+            impostazioniPreliminariTab.setDisable(true);
+            playerTab.setDisable(false);
+            //botTab.setDisable(false);
+        } else {
+            AlertController.showErrore("Inserisci tutti i valori correttamente");
+        }
     }
 
     public void getEasyBot1() {
@@ -475,43 +477,55 @@ public class TorneoController2 {
                 break;
         }
 
-        if (!(pn1.equalsIgnoreCase(pn2)   && pn1.equalsIgnoreCase(pn3)  && pn1.equalsIgnoreCase(pn4)  && pn2.equalsIgnoreCase(pn3)   && pn2.equalsIgnoreCase(pn4)  && pn3.equalsIgnoreCase(pn4) )) {
-            System.out.println(getNomeGiocatore1() + getNomeGiocatore2() + getNomeGiocatore3() + getNomeGiocatore4());
+        if (!(pn1.equalsIgnoreCase(pn2)   || pn1.equalsIgnoreCase(pn3)  || pn1.equalsIgnoreCase(pn4)  || pn2.equalsIgnoreCase(pn3)   || pn2.equalsIgnoreCase(pn4)  || pn3.equalsIgnoreCase(pn4) )) {
+            System.out.println(playerName1.getText() + playerName2.getText() + playerName3.getText() + playerName4.getText());
 
             switch (getNumeroGiocatori()) {
                 case 1:
-                    if(!(pn1.equals(null))) {
+                    if(!(playerName1.getText().equals(""))) {
                         setNomeGiocatore1();
+                        AudioManager.leaderboardSuono();
+                        AlertController.showWarning("I nomi sono stati salvati con successo!");
+                        enableBotTab();
                     }else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
                     break;
                 case 2:
-                    if(!(pn1.equals(null) && pn2.equals(null))) {
+                    if(!(playerName1.getText().equals("") || playerName2.getText().equals(""))) {
                         setNomeGiocatore1();
                         setNomeGiocatore2();
+                        AudioManager.leaderboardSuono();
+                        AlertController.showWarning("I nomi sono stati salvati con successo!");
+                        enableBotTab();
                     }else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
                     break;
                 case 3:
-                    if(!(pn1.equals(null) && pn2.equals(null) && pn3.equals(null))) {
+                    if(!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals(""))) {
                         setNomeGiocatore1();
                         setNomeGiocatore2();
                         setNomeGiocatore3();
+                        AudioManager.leaderboardSuono();
+                        AlertController.showWarning("I nomi sono stati salvati con successo!");
+                        enableBotTab();
                     }else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
                     break;
                 case 4:
-                    if(!(pn1.equals(null) && pn2.equals(null) && pn3.equals(null) && pn4.equals(null))) {
+                    if(!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals("") || playerName4.getText().equals(""))) {
                         setNomeGiocatore1();
                         setNomeGiocatore2();
                         setNomeGiocatore3();
                         setNomeGiocatore4();
+                        AudioManager.leaderboardSuono();
+                        AlertController.showWarning("I nomi sono stati salvati con successo!");
+                        //enableBotTab();
                     }else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
@@ -524,15 +538,19 @@ public class TorneoController2 {
             }
             this.nascondiBot();
 
-            AudioManager.leaderboardSuono();
-            AlertController.showWarning("I nomi sono stati salvati con successo!");
+
         } else {
             AudioManager.erroreSuono();
-            AlertController.showErrore("Non ci possono essere giocatori con lo stesso nome, RIPROVA ");
+            AlertController.showErrore("Non ci possono essere giocatori con lo stesso o senza, RIPROVA ");
         }
+
     }
 
-
+    private void enableBotTab(){
+        if(getNumeroGiocatori()!=4) {
+            botTab.setDisable(false);
+        }
+    }
     public void setNomeGiocatore1() {
         nomeGiocatore1 = playerName1.getText();
 

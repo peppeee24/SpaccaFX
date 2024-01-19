@@ -246,7 +246,7 @@
                   </BorderPane>
                </content>
           </Tab>
-            <Tab fx:id="CreaTab1" styleClass="riempiTab" text="Impostazioni">
+            <Tab fx:id="impostazioniTab" styleClass="riempiTab" text="Impostazioni">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <left>
@@ -343,7 +343,7 @@
                   </BorderPane>
                </content>
             </Tab>
-            <Tab fx:id="CreaTab" styleClass="riempiTab" text="Crea">
+            <Tab fx:id="creaTab" styleClass="riempiTab" text="Crea">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <left>
