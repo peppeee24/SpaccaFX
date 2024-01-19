@@ -334,6 +334,14 @@ public class TavoloController {
         }
     }
 
+    public void closeLeaderboard()
+    {
+        if (leaderboardStage != null) {
+            leaderboardStage.close();
+            leaderboardStage = null; // Imposta a null dopo la chiusura
+        }
+    }
+
     private void inizializzazioneTavolo() {
         nascondiCorone();
         nascondiBannerAttesa();
@@ -802,10 +810,13 @@ public class TavoloController {
                     this.openLeaderboard();
                 });
 
-                Thread.sleep(5000);
+                Thread.sleep(7000);
 
                 Platform.runLater(() ->
                 {
+                    // chiudo la leaderboard
+                    closeLeaderboard();
+
                     popUpPane.setVisible(true);
                     popUpPane.setDisable(false);
 
