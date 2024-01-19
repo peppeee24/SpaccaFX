@@ -12,7 +12,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class TorneoScreenController
 {
@@ -53,23 +56,26 @@ public class TorneoScreenController
         if (passwordTorneo == PasswordField)
         {
 
+            boolean isOkPressed = AlertController.showConfirm("Conferma: Accesso Eseguito, stai per entrare nel gioco");
 
-            AlertController.showConfirm("Conferma: Accesso Eseguito, stai per entrare nel gioco");
+            if (isOkPressed) {
+                FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
+                //FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Parent root = loaderTavolo.load();
 
-            // TODO APRIRE IL RELATIVO TAVOLO
-            FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
-            //FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Parent root = loaderTavolo.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            //stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
-            stage.show();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                //stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
+                stage.show();
 
 
-            TavoloController tavoloController = loaderTavolo.getController();
-            tavoloController.inizializzaClasseTorneo(this.codiceTorneo, this.currentMatch);
+                TavoloController tavoloController = loaderTavolo.getController();
+                tavoloController.inizializzaClasseTorneo(this.codiceTorneo, this.currentMatch);
+
+            }
+
+
 
         }
         else // se sbagliato
@@ -95,13 +101,19 @@ public class TorneoScreenController
         AudioManager.erroreSuono();
 
 
-        AlertController.showConfirm("Stai per essere reinderizzato al Tutorial");
 
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Tutorial.fxml"));
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(Indietro.load());
-        stage.setScene(scene);
-        stage.show();
+        boolean isOkPressed = AlertController.showConfirm("Stai per essere reinderizzato al Tutorial");
+
+        if (isOkPressed) {
+            FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Tutorial.fxml"));
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(Indietro.load());
+            stage.setScene(scene);
+            stage.show();
+
+        }
+
+
 
     }
 

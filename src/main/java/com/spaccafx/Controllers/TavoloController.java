@@ -52,8 +52,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-public class TavoloController
-{
+public class TavoloController {
     // region #VARIABLES
     @FXML
     Label nomePlayer1, nomePlayer2, nomePlayer3, nomePlayer4; // nome giocatori
@@ -62,7 +61,7 @@ public class TavoloController
     Label partitaIdLabel, roundIdLabel; // general UI
 
     @FXML
-    Label  popUpTitleLabel, popUpTextLabel; // banner pop up panel
+    Label popUpTitleLabel, popUpTextLabel; // banner pop up panel
 
     @FXML
     Pane popUpPane;
@@ -91,17 +90,17 @@ public class TavoloController
 
     //endregion
 
-    public void initialize(){inizializzazioneTavolo(); }// tolgo tutto
+    public void initialize() {
+        inizializzazioneTavolo();
+    }// tolgo tutto
 
     // costruttore
-    public TavoloController()
-    {
+    public TavoloController() {
         ShareData.getInstance().setTavoloController(this);
     }
 
     // prima METODO che viene eseguita dopo che fai l accesso
-    public void inizializzaClassePartita(int codicePartita)
-    {
+    public void inizializzaClassePartita(int codicePartita) {
         // gli devo passare il codice che mando quando clicco sul bottone
         System.out.println("Codice della partita attuale: " + codicePartita);
 
@@ -115,15 +114,14 @@ public class TavoloController
         preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
     }
 
-    public void inizializzaClasseTorneo(int codiceTorneo, int currentMatch)
-    {
+    public void inizializzaClasseTorneo(int codiceTorneo, int currentMatch) {
         // gli devo passare il codice che mando quando clicco sul bottone
         System.out.println("Codice del torneo attuale: " + codiceTorneo);
         this.setCurrentMatch(currentMatch);
         this.setCodiceTorneo(codiceTorneo);
 
         // se diverso da 4, carico una partita normale
-        if(this.currentMatch != 4)
+        if (this.currentMatch != 4)
             this.partita = FileManager.getCurrentPartitaTorneo(this.codiceTorneo, this.currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
         else
             this.partita = FileManager.getFinalePartitaTorneo(this.codiceTorneo); // prendo i dati della partita finale
@@ -135,19 +133,28 @@ public class TavoloController
         preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
     }
 
-    private void setCodiceTorneo(int codiceTorneo){this.codiceTorneo = codiceTorneo;}
-    public int getCodiceTorneo(){return  this.codiceTorneo;}
-    private void setCurrentMatch(int currentMatch){this.currentMatch = currentMatch;}
-    public int getCurrentMatch(){return this.currentMatch;}
+    private void setCodiceTorneo(int codiceTorneo) {
+        this.codiceTorneo = codiceTorneo;
+    }
+
+    public int getCodiceTorneo() {
+        return this.codiceTorneo;
+    }
+
+    private void setCurrentMatch(int currentMatch) {
+        this.currentMatch = currentMatch;
+    }
+
+    public int getCurrentMatch() {
+        return this.currentMatch;
+    }
 
 
-    public void riprendiBot()
-    {
-        if(partita.getCurrentGiocatore() instanceof Bot)
-        {
+    public void riprendiBot() {
+        if (partita.getCurrentGiocatore() instanceof Bot) {
             gestisciPulsanteRiprendiBot(false);
 
-            if(partita.getCartaGiaScambiata())
+            if (partita.getCartaGiaScambiata())
                 partita.passaTurnoUI();
             else
                 ((Bot) partita.getCurrentGiocatore()).SceltaBotUI(this.partita, this);
@@ -156,52 +163,61 @@ public class TavoloController
     }
 
 
-
-    public void preInizializzazioneTavolo(GameStatus gameStatus)
-    {
-        switch (gameStatus)
-        {
+    public void preInizializzazioneTavolo(GameStatus gameStatus) {
+        switch (gameStatus) {
             case STARTED:
-                            System.out.println("Il gioco sta per iniziare ora!");
-                            bottoneStart.setVisible(true);
-                            break;
+                System.out.println("Il gioco sta per iniziare ora!");
+                bottoneStart.setVisible(true);
+                break;
 
-            // mettiamo alert dicendo che il gioco sta per essere ripreso
-            // TODO QUANDO SI CLICCA SU CUSTOM ALERTS NO, CHIUDE IL GIOCO
-            case STOPPED:   AudioManager.erroreSuono();
-                            bottoneStart.setVisible(false);
-
-                          /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                            alert.setTitle("RIPRESA MATCH!");
-                            alert.setContentText("Vuoi veramente riprendere il gioco?");
-                            Optional<ButtonType> result = alert.showAndWait();
-
-                           */
-                            AlertController.showConfirm("Vuoi riprendere la partita?");
+            case STOPPED:
+                AudioManager.erroreSuono();
+                bottoneStart.setVisible(false);
 
 
-                                System.out.println("Stai per riprendere il gioco");
-                                System.out.println("Current Giocatore: " + partita.getCurrentGiocatore().getNome()
-                                        + " in posizione: " + partita.getCurrentGiocatorePos());
+                boolean isOkPressed = AlertController.showConfirm("Vuoi riprendere la partita?");
 
-                                partita.StampaInfoGiocatori();
+                if (isOkPressed) {
 
-                                riprendiGioco(this.partita);
+                    System.out.println("Stai per riprendere il gioco");
+                    System.out.println("Current Giocatore: " + partita.getCurrentGiocatore().getNome()
+                            + " in posizione: " + partita.getCurrentGiocatorePos());
 
-                                // lo riporto fuori e non carico nulla
+                    partita.StampaInfoGiocatori();
 
-                            break;
+                    riprendiGioco(this.partita);
+
+                    // lo riporto fuori e non carico nulla
+
+                    break;
+                } else {
+                    try {
+                        Stage currentStage = (Stage) popUpPane.getScene().getWindow();
+                        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
+                        Stage stage = new Stage();
+                        Parent root = playerScreen.load();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+
+                        currentStage.close();
+
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } // TODO aggiungere caso in cui scelgo di riprendere o no la partita del torneo
+
 
             case PLAYING:
             case ENDED:
-                            break;
+                break;
 
             default:
         }
     }
 
-    public void openLeaderboard()
-    {
+    public void openLeaderboard() {
         if (leaderboardStage == null) {
             // TODO METTERE SUONO APERTURA LEADERBOARD
             try {
@@ -220,20 +236,16 @@ public class TavoloController
                 leaderboardStage.setScene(scene);
 
                 ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(partita.giocatori.size());
-                for (IGiocatore giocatore : partita.giocatori)
-                {
+                for (IGiocatore giocatore : partita.giocatori) {
                     // Crea una copia del giocatore e aggiungila alla nuova lista
                     IGiocatore copiaGiocatore;
 
-                    if(giocatore instanceof Bot)
-                    {
-                        if(giocatore instanceof EasyBot)
+                    if (giocatore instanceof Bot) {
+                        if (giocatore instanceof EasyBot)
                             copiaGiocatore = new EasyBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
                         else
                             copiaGiocatore = new AdvancedBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
-                    }
-                    else
-                    {
+                    } else {
                         copiaGiocatore = new Giocatore(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
                     }
 
@@ -271,8 +283,7 @@ public class TavoloController
                 int riga = 1;
                 int posizione = 1;
                 // PARTE NUOVA
-                for (IGiocatore giocatore : giocatoriLeaderboard)
-                {
+                for (IGiocatore giocatore : giocatoriLeaderboard) {
                     AudioManager.leaderboardSuono();
                     FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("SinglePlayerScoreboard.fxml"));
 
@@ -286,14 +297,11 @@ public class TavoloController
                     //AnchorPane singleAnchorPane = singlePlayerScoreboardController.getAnchorPane();
 
                     // Imposta il colore di sfondo dell'AnchorPane in base al player se vivo o morto
-                    if(giocatore.getVita() == 0)
-                    {
+                    if (giocatore.getVita() == 0) {
                         BackgroundFill backgroundFill = new BackgroundFill(Color.ORANGERED, null, null); // Cambia il colore a tuo piacimento
                         Background background = new Background(backgroundFill);
                         anchorPane.setBackground(background);
-                    }
-                    else
-                    {
+                    } else {
                         BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTGREEN, null, null); // Cambia il colore a tuo piacimento
                         Background background = new Background(backgroundFill);
                         anchorPane.setBackground(background);
@@ -309,7 +317,6 @@ public class TavoloController
                 }
 
 
-
                 // Gestisce l'evento di chiusura della finestra della classifica
                 leaderboardStage.setOnCloseRequest(event -> {
                     leaderboardStage = null; // Ripristina la variabile quando la finestra viene chiusa
@@ -317,31 +324,25 @@ public class TavoloController
 
                 // Mostra la finestra della classifica
                 leaderboardStage.show();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
                 // Gestire eventuali eccezioni nel caricamento del file FXML
             }
-        }
-        else
-        {
+        } else {
             // Se la finestra è già stata creata, riportala in primo piano
             leaderboardStage.toFront();
         }
     }
 
-    private void inizializzazioneTavolo()
-    {
+    private void inizializzazioneTavolo() {
         nascondiCorone();
         nascondiBannerAttesa();
-        gestisciPulsanti(false, false ,false);
+        gestisciPulsanti(false, false, false);
         gestisciPulsanteRiprendiBot(false);
         nascondiDadi();
     }
 
-    private void inizializzaNomiPlayer()
-    {
+    private void inizializzaNomiPlayer() {
         // imposto nome giocatori da prendere dal file
         // todo attenzione nel caso i player siano morti, fare il controllo non sempre da riempire con 4 nomi
         nomePlayer1.setText(partita.giocatori.get(0).getNome()); // prendo il giocatore
@@ -353,10 +354,8 @@ public class TavoloController
     }
 
 
-
     // region #ACTION EVENT METHODS
-    public void start(ActionEvent actionEvent)
-    {
+    public void start(ActionEvent actionEvent) {
         AudioManager.bottoneSuono();
         // attendi lancio i dadi..
         gestisciPulsanti(false, true, true);
@@ -364,8 +363,7 @@ public class TavoloController
         bottoneStart.setVisible(false);
     }
 
-    public void scambiaCarta(ActionEvent actionEvent)
-    {
+    public void scambiaCarta(ActionEvent actionEvent) {
         AudioManager.bottoneSuono();
         partita.ScambiaCartaUI();
         this.setExitGame(false);
@@ -379,8 +377,7 @@ public class TavoloController
     } // passo nella partita il turno del player
 
 
-    public void scambiaConMazzo(ActionEvent actionEvent)
-    {
+    public void scambiaConMazzo(ActionEvent actionEvent) {
         AudioManager.bottoneSuono();
         partita.getCurrentGiocatore().setCarta(partita.mazzo.PescaCartaSenzaEffetto());
         updateCarteUI();
@@ -389,16 +386,14 @@ public class TavoloController
     }
 
     // per uscire dalla partita
-    public void exitGame(MouseEvent mouseEvent) throws IOException
-    {
+    public void exitGame(MouseEvent mouseEvent) throws IOException {
         partita.SavePartita(mouseEvent);
     }
     //endregion
 
     // region #METHODS
 
-    public void riprendiGioco(Partita partita)
-    {
+    public void riprendiGioco(Partita partita) {
         this.updateVitaUI(); // aggiorna tutte le vite dei player
         this.updateCarteUI(); // aggiorna tutte le carte dei giocatori e scopre quella del giocatore a cui tocca
         this.updateCarteMortiUI(); // aggiorno la grafica dei player morti
@@ -409,8 +404,7 @@ public class TavoloController
         partita.riprendiPartita(partita.getCurrentGiocatorePos());
     }
 
-    public void caricaMenuUI(MouseEvent mouseEvent) throws IOException
-    {
+    public void caricaMenuUI(MouseEvent mouseEvent) throws IOException {
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());
@@ -418,8 +412,7 @@ public class TavoloController
         stage.show();
     }
 
-    public void impostaCoroneMazziereUI()
-    {
+    public void impostaCoroneMazziereUI() {
         nascondiCorone();
 
         String mazziere = partita.getMazziereNome();
@@ -439,19 +432,17 @@ public class TavoloController
         updateCarteViviUI();
     }
 
-    private void updateCarteMortiUI()
-    {
+    private void updateCarteMortiUI() {
         Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/morte.png")).toString()); // carta back
         String playerName;
 
-        for(IGiocatore giocatore : partita.giocatori)
-        {
-            if(giocatore.getRuolo() == RuoloGiocatore.MORTO) // aggiorno il back dei player morti
+        for (IGiocatore giocatore : partita.giocatori) {
+            if (giocatore.getRuolo() == RuoloGiocatore.MORTO) // aggiorno il back dei player morti
             {
                 playerName = giocatore.getNome();
                 System.out.println("[Morte-UI] Aggiorno UI giocatore morto: " + playerName);
 
-                if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
+                if (playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
                 {
                     life1Pl1.setVisible(false);
                     life2Pl1.setVisible(false);
@@ -462,8 +453,7 @@ public class TavoloController
                     String nomeMorto = nomePlayer1.getText();
                     nomePlayer1.setText(nomeMorto + " è morto");
                     cartaPlayer1.setImage(back);
-                }
-                else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
+                } else if (playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
                 {
                     life1Pl2.setVisible(false);
                     life2Pl2.setVisible(false);
@@ -474,8 +464,7 @@ public class TavoloController
                     String nomeMorto = nomePlayer2.getText();
                     nomePlayer2.setText(nomeMorto + " è morto");
                     cartaPlayer2.setImage(back);
-                }
-                else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
+                } else if (playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
                 {
                     life1Pl3.setVisible(false);
                     life2Pl3.setVisible(false);
@@ -486,8 +475,7 @@ public class TavoloController
                     String nomeMorto = nomePlayer3.getText();
                     nomePlayer3.setText(nomeMorto + " è morto");
                     cartaPlayer3.setImage(back);
-                }
-                else // se il nome equivale al quarto
+                } else // se il nome equivale al quarto
                 {
                     life1Pl4.setVisible(false);
                     life2Pl4.setVisible(false);
@@ -504,43 +492,38 @@ public class TavoloController
         }
     }
 
-    private void updateCarteViviUI()
-    {
+    private void updateCarteViviUI() {
         String currentPlayerName = partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome(); // giocatore a cui tocca
         System.out.println("[UpdateUI] - tocca la giocatore: " + currentPlayerName);
         Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/back.png")).toString()); // carta back
         String playerName;
 
-        for(IGiocatore giocatore : partita.giocatori)
-        {
-            if(giocatore.getRuolo() != RuoloGiocatore.MORTO) // aggiorno soltanto le carte dei giocatori vivi
+        for (IGiocatore giocatore : partita.giocatori) {
+            if (giocatore.getRuolo() != RuoloGiocatore.MORTO) // aggiorno soltanto le carte dei giocatori vivi
             {
                 playerName = giocatore.getNome();
 
-                if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
+                if (playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
                 {
-                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                    if (playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
                         cartaPlayer1.setImage(giocatore.getCarta().getImmagineCarta());
                     else // se non tocca a lui gli copro la carta
                         cartaPlayer1.setImage(back);
-                }
-                else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
+                } else if (playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
                 {
-                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                    if (playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
                         cartaPlayer2.setImage(giocatore.getCarta().getImmagineCarta());
                     else // se non tocca a lui gli copro la carta
                         cartaPlayer2.setImage(back);
-                }
-                else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
+                } else if (playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
                 {
-                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                    if (playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
                         cartaPlayer3.setImage(giocatore.getCarta().getImmagineCarta());
                     else // se non tocca a lui gli copro la carta
                         cartaPlayer3.setImage(back);
-                }
-                else if(playerName.equalsIgnoreCase(nomePlayer4.getText())) // se il nome equivale al quarto
+                } else if (playerName.equalsIgnoreCase(nomePlayer4.getText())) // se il nome equivale al quarto
                 {
-                    if(playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
+                    if (playerName.equalsIgnoreCase(currentPlayerName)) // se tocca a lui
                         cartaPlayer4.setImage(giocatore.getCarta().getImmagineCarta());
                     else // se non tocca a lui gli copro la carta
                         cartaPlayer4.setImage(back);
@@ -550,27 +533,24 @@ public class TavoloController
         }
     }
 
-    public void aggiornaInfoUI()
-    {
+    public void aggiornaInfoUI() {
         partitaIdLabel.setText("ID_PARTITA: " + partita.getCodicePartita());
         roundIdLabel.setText("ROUND " + partita.getCurrentRound());
     }
 
-    public void mostraTutteCarteUI()
-    {
+    public void mostraTutteCarteUI() {
         AudioManager.giraCarteSuono();
         String playerName;
-        for(IGiocatore giocatore : partita.giocatori)
-        {
-            if(giocatore.getRuolo() != RuoloGiocatore.MORTO) // mostro tutte le carte solo dei giocatori vivi
+        for (IGiocatore giocatore : partita.giocatori) {
+            if (giocatore.getRuolo() != RuoloGiocatore.MORTO) // mostro tutte le carte solo dei giocatori vivi
             {
                 playerName = giocatore.getNome();
 
-                if(playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
+                if (playerName.equalsIgnoreCase(nomePlayer1.getText())) // se il nome equivale al primo
                     cartaPlayer1.setImage(giocatore.getCarta().getImmagineCarta());
-                else if(playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
+                else if (playerName.equalsIgnoreCase(nomePlayer2.getText())) // se il nome equivale al secondo
                     cartaPlayer2.setImage(giocatore.getCarta().getImmagineCarta());
-                else if(playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
+                else if (playerName.equalsIgnoreCase(nomePlayer3.getText())) // se il nome equivale al terzo
                     cartaPlayer3.setImage(giocatore.getCarta().getImmagineCarta());
                 else // se il nome equivale al quarto
                     cartaPlayer4.setImage(giocatore.getCarta().getImmagineCarta());
@@ -582,36 +562,27 @@ public class TavoloController
     //endregion
 
 
-    public void impostaDadiUI()
-    {
+    public void impostaDadiUI() {
         AudioManager.dadoSuono();
         int valoreDado = 0;
 
-        for(IGiocatore giocatore : partita.giocatori)
-        {
-            if (giocatore.getNome().equalsIgnoreCase(nomePlayer1.getText()))
-            {
+        for (IGiocatore giocatore : partita.giocatori) {
+            if (giocatore.getNome().equalsIgnoreCase(nomePlayer1.getText())) {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
                 dicePl1.setVisible(true);
                 dicePl1.setImage(myImage);
-            }
-            else if (giocatore.getNome().equalsIgnoreCase(nomePlayer2.getText()))
-            {
+            } else if (giocatore.getNome().equalsIgnoreCase(nomePlayer2.getText())) {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
                 dicePl2.setVisible(true);
                 dicePl2.setImage(myImage);
-            }
-            else if (giocatore.getNome().equalsIgnoreCase(nomePlayer3.getText()))
-            {
+            } else if (giocatore.getNome().equalsIgnoreCase(nomePlayer3.getText())) {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
                 dicePl3.setVisible(true);
                 dicePl3.setImage(myImage);
-            }
-            else if (giocatore.getNome().equalsIgnoreCase(nomePlayer4.getText()))
-            {
+            } else if (giocatore.getNome().equalsIgnoreCase(nomePlayer4.getText())) {
                 valoreDado = giocatore.getValoreDado();
                 Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
                 dicePl4.setVisible(true);
@@ -628,10 +599,7 @@ public class TavoloController
     }
 
 
-
-
-    public synchronized void mostraBannerAttesa(String titolo, String effetto)
-    {
+    public synchronized void mostraBannerAttesa(String titolo, String effetto) {
         popUpPane.setVisible(true);
         popUpPane.setDisable(false);
 
@@ -642,140 +610,110 @@ public class TavoloController
     }
 
 
-
-
-    public void updateCartaCentraleMazzoUI()
-    {
+    public void updateCartaCentraleMazzoUI() {
         Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/back.PNG")).toString());
         cartaCentrale.setImage(back);
     }
 
-    public void mostraMazzoCentrale(Carta c)
-    {
+    public void mostraMazzoCentrale(Carta c) {
         cartaCentrale.setImage(c.getImmagineCarta());
     }
 
-    public void updateVitaUI()
-    {
-        for (int i = 0; i < partita.giocatori.size(); i++)
-        {
+    public void updateVitaUI() {
+        for (int i = 0; i < partita.giocatori.size(); i++) {
             String nome = partita.giocatori.get(i).getNome();
             int vita = partita.giocatori.get(i).getVita();
             boolean vitaExtra = partita.giocatori.get(i).hasVitaExtra();
 
-            if (nome.equalsIgnoreCase(nomePlayer1.getText()))
-            {
+            if (nome.equalsIgnoreCase(nomePlayer1.getText())) {
                 lifeGoldPl1.setVisible(false);
 
-                if (vita == 3)
-                {
+                if (vita == 3) {
                     life1Pl1.setVisible(true);
                     life2Pl1.setVisible(true);
                     life3Pl1.setVisible(true);
 
-                }
-                else if (vita == 2)
-                {
+                } else if (vita == 2) {
                     life1Pl1.setVisible(true);
                     life2Pl1.setVisible(true);
                     life3Pl1.setVisible(false);
-                }
-                else if (vita == 1)
-                {
+                } else if (vita == 1) {
                     life1Pl1.setVisible(true);
                     life2Pl1.setVisible(false);
                     life3Pl1.setVisible(false);
                 }
 
-                if(vitaExtra) // fa vedere vita extra
+                if (vitaExtra) // fa vedere vita extra
                 {
                     lifeGoldPl1.setVisible(true);
                 }
             }
 
-            if (nome.equalsIgnoreCase(nomePlayer2.getText()))
-            {
+            if (nome.equalsIgnoreCase(nomePlayer2.getText())) {
                 lifeGoldPl2.setVisible(false);
 
-                if (vita == 3)
-                {
+                if (vita == 3) {
                     life1Pl2.setVisible(true);
                     life2Pl2.setVisible(true);
                     life3Pl2.setVisible(true);
-                }
-                else if (vita == 2)
-                {
+                } else if (vita == 2) {
                     life1Pl2.setVisible(true);
                     life2Pl2.setVisible(true);
                     life3Pl2.setVisible(false);
-                }
-                else if (vita == 1)
-                {
+                } else if (vita == 1) {
                     life1Pl2.setVisible(true);
                     life2Pl2.setVisible(false);
                     life3Pl2.setVisible(false);
                 }
 
-                if(vitaExtra) // fa vedere vita extra
+                if (vitaExtra) // fa vedere vita extra
                 {
                     lifeGoldPl2.setVisible(true);
                 }
             }
 
-            if (nome.equalsIgnoreCase(nomePlayer3.getText()))
-            {
+            if (nome.equalsIgnoreCase(nomePlayer3.getText())) {
                 lifeGoldPl3.setVisible(false);
 
-                if (vita == 3)
-                {
+                if (vita == 3) {
                     life1Pl3.setVisible(true);
                     life2Pl3.setVisible(true);
                     life3Pl3.setVisible(true);
-                }
-                else if (vita == 2)
-                {
+                } else if (vita == 2) {
                     life1Pl3.setVisible(true);
                     life2Pl3.setVisible(true);
                     life3Pl3.setVisible(false);
-                }
-                else if (vita == 1)
-                {
+                } else if (vita == 1) {
                     life1Pl3.setVisible(true);
                     life2Pl3.setVisible(false);
                     life3Pl3.setVisible(false);
                 }
 
-                if(vitaExtra) // fa vedere vita extra
+                if (vitaExtra) // fa vedere vita extra
                 {
                     lifeGoldPl3.setVisible(true);
                 }
 
             }
 
-            if (nome.equalsIgnoreCase(nomePlayer4.getText()))
-            {
+            if (nome.equalsIgnoreCase(nomePlayer4.getText())) {
                 lifeGoldPl4.setVisible(false);
 
-                if (vita == 3)
-                {
+                if (vita == 3) {
                     life1Pl4.setVisible(true);
                     life2Pl4.setVisible(true);
                     life3Pl4.setVisible(true);
-                }
-                else if (vita == 2)
-                {
+                } else if (vita == 2) {
                     life1Pl4.setVisible(true);
                     life2Pl4.setVisible(true);
                     life3Pl4.setVisible(false);
-                }
-                else if (vita == 1)
-                {
+                } else if (vita == 1) {
                     life1Pl4.setVisible(true);
                     life2Pl4.setVisible(false);
                     life3Pl4.setVisible(false);
                 }
 
-                if(vitaExtra) // fa vedere vita extra
+                if (vitaExtra) // fa vedere vita extra
                 {
                     lifeGoldPl4.setVisible(true);
                 }
@@ -785,8 +723,7 @@ public class TavoloController
         }
     }
 
-    public void HidePlayerUI(String player)
-    {
+    public void HidePlayerUI(String player) {
 
         AudioManager.perdenteSuono();
         System.out.println("[UI] elimino: " + player);
@@ -845,8 +782,7 @@ public class TavoloController
         }
     }
 
-    public void EndGameUI()
-    {
+    public void EndGameUI() {
         Thread thread = new Thread(() -> {
             try {
                 Platform.runLater(() ->
@@ -887,35 +823,61 @@ public class TavoloController
                 Platform.runLater(() ->
                 {
 
-                    if(this.partita.getGameType() == GameType.PARTITA)
-                    {
+                    if (this.partita.getGameType() == GameType.PARTITA) {
                         // ritorna semplicemente alla lobby delle partite
                         // devo salvare tutti i miei dati della partita finita
-                    }
-                    else
-                    {
+
+                        try {
+                            Stage currentStage = (Stage) popUpPane.getScene().getWindow();
+                            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
+                            Stage stage = new Stage();
+                            Parent root = playerScreen.load();
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+
+                            currentStage.close();
+
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
                         // siamo in un torneo
                         // aumento il currentMatch e salvo su file e ritorno al match dei tornei
 
-                        if(this.currentMatch != 4) // non puo superarlo perche le partite nel torneo sono al MASSIMO 5 (da 0 a 4)
+                        if (this.currentMatch != 4) // non puo superarlo perche le partite nel torneo sono al MASSIMO 5 (da 0 a 4)
                         {
                             // Ogni volta che finisce una partita, prendo il vincitore e lo metto gia nella partita finale!
                             FileManager.sovrascriviSalvataggiPartitaTorneo(this.partita, this.codiceTorneo, this.currentMatch); // salvo i dati della mia partita finita
-                            this.setCurrentMatch(this.currentMatch+1);
+                            this.setCurrentMatch(this.currentMatch + 1);
                             FileManager.aumentaCurrentMatchTorneo(this.codiceTorneo, this.currentMatch);
                             FileManager.popolaPartitaFinaleTorneo(this.codiceTorneo, this.partita);
-                        }
-                        else
-                        {
+                        } else {
                             FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this.partita, this.codiceTorneo); // salvo i dati della mia partita finale finita
+                        }
+                        try {
+                            Stage currentStage = (Stage) popUpPane.getScene().getWindow();
+                            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TorneoSelector.fxml"));
+                            Stage stage = new Stage();
+                            Parent root = playerScreen.load();
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+
+                            currentStage.close();
+
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
                         }
                     }
 
                     //FXMLLoader menu = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
                     //try {
 
-                        // TODO METTERE CHE DEVI CHIUDERE ANCHE LA LEADERBOARD QUANDO ESCI
-                        // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
+                    // TODO METTERE CHE DEVI CHIUDERE ANCHE LA LEADERBOARD QUANDO ESCI
+                    // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
 
 
                         /*Scene scene = new Scene(menu.load());
@@ -928,10 +890,9 @@ public class TavoloController
 
 
                     //} catch (IOException e) {
-                        //throw new RuntimeException(e);
+                    //throw new RuntimeException(e);
                     //}
                 });
-
 
 
             } catch (InterruptedException e) {
@@ -945,27 +906,25 @@ public class TavoloController
 
     //region # OTHER METHODS
 
-    public void gestisciPulsanti(boolean sMazzo, boolean sNormale, boolean passa)
-    {
+    public void gestisciPulsanti(boolean sMazzo, boolean sNormale, boolean passa) {
         bottoneEffetto.setVisible(sMazzo);
         bottoneScambia.setVisible(sNormale);
         bottonePassa.setVisible(passa);
     }
 
-   public void gestisciPulsanteScambio(boolean sNormale){
-       bottoneScambia.setVisible(sNormale);
-   }
+    public void gestisciPulsanteScambio(boolean sNormale) {
+        bottoneScambia.setVisible(sNormale);
+    }
 
-   public void gestisciPulsanteRiprendiBot(boolean flag)
-   {
-       bottoneRiprendiBot.setVisible(flag);
-   }
+    public void gestisciPulsanteRiprendiBot(boolean flag) {
+        bottoneRiprendiBot.setVisible(flag);
+    }
 
-    public void gestisciPulsantePassa(boolean passa){
+    public void gestisciPulsantePassa(boolean passa) {
         bottonePassa.setVisible(passa);
     }
-    public void mostraCorone()
-    {
+
+    public void mostraCorone() {
         mazzierePlayer1Icon.setVisible(true);
         mazzierePlayer2Icon.setVisible(true);
         mazzierePlayer3Icon.setVisible(true);
@@ -973,16 +932,14 @@ public class TavoloController
 
     }
 
-    public void nascondiCorone()
-    {
+    public void nascondiCorone() {
         mazzierePlayer1Icon.setVisible(false);
         mazzierePlayer2Icon.setVisible(false);
         mazzierePlayer3Icon.setVisible(false);
         mazzierePlayer4Icon.setVisible(false);
     }
 
-    public void nascondiBannerAttesa()
-    {
+    public void nascondiBannerAttesa() {
         popUpPane.setVisible(false);
         popUpPane.setDisable(true);
         popUpTitleLabel.setVisible(false);
@@ -996,21 +953,20 @@ public class TavoloController
         dicePl4.setVisible(false);
     }
 
-    public void mostraDadi()
-    {
+    public void mostraDadi() {
         dicePl1.setVisible(true);
         dicePl2.setVisible(true);
         dicePl3.setVisible(true);
         dicePl4.setVisible(true);
     }
 
-    public void pulsanteScambiaMazzo(boolean isVisibile){this.bottoneEffetto.setVisible(isVisibile);}
+    public void pulsanteScambiaMazzo(boolean isVisibile) {
+        this.bottoneEffetto.setVisible(isVisibile);
+    }
     //endregion
 
 
-
-    public void startGameUI()
-    {
+    public void startGameUI() {
         impostaCoroneMazziereUI();
         updateVitaUI();
         updateCartaCentraleMazzoUI();
@@ -1018,13 +974,11 @@ public class TavoloController
         partita.iniziaNuovoRoundUI();
     }
 
-    public void mostraCarta(int pos)
-    {
+    public void mostraCarta(int pos) {
         IGiocatore currentGiocatore = partita.giocatori.get(pos);
         String playerName = currentGiocatore.getNome();
 
-        if (playerName.equalsIgnoreCase(nomePlayer1.getText()))
-        {
+        if (playerName.equalsIgnoreCase(nomePlayer1.getText())) {
             cartaPlayer1.setImage(currentGiocatore.getCarta().getImmagineCarta()); // player1
 
         } else if (playerName.equalsIgnoreCase(nomePlayer2.getText())) {
@@ -1038,18 +992,11 @@ public class TavoloController
     }
 
 
-
-
-
-
-
-    public void rollLite(int valoreDado, int posPlayer)
-    {
+    public void rollLite(int valoreDado, int posPlayer) {
         AudioManager.dadoSuono();
         String currentPlayer = partita.giocatori.get(posPlayer).getNome();
 
-        if (nomePlayer1.getText().equalsIgnoreCase(currentPlayer))
-        {
+        if (nomePlayer1.getText().equalsIgnoreCase(currentPlayer)) {
             Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
             dicePl1.setImage(myImage);
             dicePl1.setVisible(true);
@@ -1058,8 +1005,7 @@ public class TavoloController
             dicePl4.setVisible(false);
         }
 
-        if (nomePlayer2.getText().equalsIgnoreCase(currentPlayer))
-        {
+        if (nomePlayer2.getText().equalsIgnoreCase(currentPlayer)) {
             Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
             dicePl2.setImage(myImage);
             dicePl1.setVisible(false);
@@ -1068,8 +1014,7 @@ public class TavoloController
             dicePl4.setVisible(false);
         }
 
-        if (nomePlayer3.getText().equalsIgnoreCase(currentPlayer))
-        {
+        if (nomePlayer3.getText().equalsIgnoreCase(currentPlayer)) {
             Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
             dicePl3.setImage(myImage);
             dicePl1.setVisible(false);
@@ -1078,8 +1023,7 @@ public class TavoloController
             dicePl4.setVisible(false);
         }
 
-        if (nomePlayer4.getText().equalsIgnoreCase(currentPlayer))
-        {
+        if (nomePlayer4.getText().equalsIgnoreCase(currentPlayer)) {
             Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
             dicePl4.setImage(myImage);
             dicePl1.setVisible(false);
@@ -1090,6 +1034,8 @@ public class TavoloController
 
     }
 
-    public void setExitGame(boolean state){this.exitGame.setVisible(state);}
+    public void setExitGame(boolean state) {
+        this.exitGame.setVisible(state);
+    }
 }
 

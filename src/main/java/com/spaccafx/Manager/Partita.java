@@ -17,11 +17,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
@@ -1095,11 +1098,11 @@ public class Partita
         alert.setContentText("Se confermi i tuoi dati saranno salvati");
 
        */
-        AlertController.showConfirm("Salvo i dati del gioco");
 
-      //  Optional<ButtonType> result = alert.showAndWait();
-      //  if (result.isPresent() && result.get() == ButtonType.OK)
-       // {
+        boolean isOkPressed = AlertController.showConfirm("Salvo i dati del gioco");
+
+        if (isOkPressed) {
+
 
             // se siamo in una partita
             if(this.gameType == GameType.PARTITA)
@@ -1134,11 +1137,11 @@ public class Partita
 
 
             TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu a prescindere
+        }
 
-       // } else {
-            // TODO impostare che se si clicca su annulla non succede nulla e si chiude il popup
+
             System.out.println("Continua il gioco");
-      //  }
+    
 
     }
 
