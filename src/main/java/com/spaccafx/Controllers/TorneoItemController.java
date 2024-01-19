@@ -121,104 +121,38 @@ public class TorneoItemController
         try
         {
             AudioManager.bottoneSuono();
-            FXMLLoader loaderLeaderboard = new FXMLLoader(Spacca.class.getResource("LeaderboardScreen.fxml"));
-            Parent root = loaderLeaderboard.load();
+            FXMLLoader loaderLeaderboardTorneo = new FXMLLoader(Spacca.class.getResource("LeaderboardScreenTorneo.fxml"));
+            Parent root = loaderLeaderboardTorneo.load();
 
-            LeaderboardScreenController leaderboardController = loaderLeaderboard.getController();
+            LeaderboardScreenTorneoController leaderboardTorneoController = loaderLeaderboardTorneo.getController();
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
 
-            // Bisogna prendere i dati della partita dalla quale clicco sulla leaderboard.
-            Partita partita = FileManager.leggiPartitaDaFile(codiceTorneo);
+            // Bisogna prendere i dati delle partite dalla quale clicco sulla leaderboard.
+            ArrayList<Partita> partiteNormaliTorneo = FileManager.leggiTorneoDaFile(this.codiceTorneo);
 
-            ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(partita.giocatori.size());
-            for (IGiocatore giocatore : partita.giocatori)
+            for(int c=0; c<5;c++)
             {
-                // Crea una copia del giocatore e aggiungila alla nuova lista
-                IGiocatore copiaGiocatore;
-
-                if(giocatore instanceof Bot)
+                // prendo i dati delle mie 4 partite
+                if(c!= 4)
                 {
-                    if(giocatore instanceof EasyBot)
-                        copiaGiocatore = new EasyBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
-                    else
-                        copiaGiocatore = new AdvancedBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
+                    // prendo i miei giocatori della partita
+                    ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(4);
+                    loadSingleMatchLeaderboard(giocatoriLeaderboard, partiteNormaliTorneo.get(c), leaderboardTorneoController.getGridPaneScoreboard(c));
                 }
                 else
                 {
-                    copiaGiocatore = new Giocatore(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
-                }
-
-                giocatoriLeaderboard.add(copiaGiocatore);
-            }
-
-            // Ordina l'ArrayList in base alla vita e ai rounds dei giocatori utilizzando un comparatore
-            Collections.sort(giocatoriLeaderboard, new Comparator<IGiocatore>() {
-                @Override
-                public int compare(IGiocatore giocatore1, IGiocatore giocatore2) {
-                    // Confronta i giocatori in base alla vita extra
-                    boolean vitaExtra1 = giocatore1.hasVitaExtra();
-                    boolean vitaExtra2 = giocatore2.hasVitaExtra();
-
-                    // Primo criterio: giocatori con vita extra prima
-                    if (vitaExtra1 && !vitaExtra2) {
-                        return -1;
-                    } else if (!vitaExtra1 && vitaExtra2) {
-                        return 1;
-                    }
-
-                    // Secondo criterio: confronta i giocatori in base alla vita
-                    int compareVita = Integer.compare(giocatore2.getVita(), giocatore1.getVita());
-
-                    // Terzo criterio: se i giocatori hanno la stessa vita, confronta in base ai round
-                    if (compareVita == 0) {
-                        return Integer.compare(giocatore2.getPlayerRounds(), giocatore1.getPlayerRounds());
-                    } else {
-                        return compareVita; // Ordina prima per vita
-                    }
-                }
-            });
-
-
-            int riga = 1;
-            int posizione = 1;
-            // PARTE NUOVA
-            for (IGiocatore giocatore : giocatoriLeaderboard)
-            {
-                FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("SinglePlayerScoreboard.fxml"));
-
-                AnchorPane anchorPane = fxmlLoader.load();
-
-                SinglePlayerScoreboardController singlePlayerScoreboardController = fxmlLoader.getController();
-                System.out.println("Viota extra: " + giocatore.getVitaExtra());
-                singlePlayerScoreboardController.setData(posizione, giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra()); // mettere vite extra
-
-                // Ottenere l'AnchorPane dal tuo controller
-                //AnchorPane singleAnchorPane = singlePlayerScoreboardController.getAnchorPane();
-
-                // Imposta il colore di sfondo dell'AnchorPane in base al player se vivo o morto
-                if(giocatore.getVita() == 0)
-                {
-                    BackgroundFill backgroundFill = new BackgroundFill(Color.ORANGERED, null, null); // Cambia il colore a tuo piacimento
-                    Background background = new Background(backgroundFill);
-                    anchorPane.setBackground(background);
-                }
-                else
-                {
-                    BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTGREEN, null, null); // Cambia il colore a tuo piacimento
-                    Background background = new Background(backgroundFill);
-                    anchorPane.setBackground(background);
+                    // prendo i dati della finale
+                    Partita partitaFinale = FileManager.getFinalePartitaTorneo(this.codiceTorneo);
+                    ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(4);
+                    loadSingleMatchLeaderboard(giocatoriLeaderboard, partitaFinale, leaderboardTorneoController.getGridPaneScoreboard(c));
+                    // TODO MOSTRARLO SOLO SE LA PARTITA FINALE E PRESENTE E NON CI SONO GIOCATORI NULL, ALTRIMENTI ERRORE
                 }
 
 
-                leaderboardController.getGridPaneScoreboard().add(anchorPane, 0, riga);
 
-                GridPane.setMargin(anchorPane, new Insets(10));
-
-                riga++;
-                posizione++;
             }
 
             stage.show();
@@ -226,6 +160,98 @@ public class TorneoItemController
         catch (IOException e)
         {
             e.printStackTrace();
+        }
+    }
+
+    private void loadSingleMatchLeaderboard(ArrayList<IGiocatore> giocatoriLeaderboard, Partita partita, GridPane singleMatchPane) throws IOException {
+
+
+        for (IGiocatore giocatore : partita.giocatori)
+        {
+            // Crea una copia del giocatore e aggiungila alla nuova lista
+            IGiocatore copiaGiocatore;
+
+            if(giocatore instanceof Bot)
+            {
+                if(giocatore instanceof EasyBot)
+                    copiaGiocatore = new EasyBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
+                else
+                    copiaGiocatore = new AdvancedBot(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
+            }
+            else
+            {
+                copiaGiocatore = new Giocatore(giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra());
+            }
+
+            giocatoriLeaderboard.add(copiaGiocatore);
+        }
+
+        // Ordina l'ArrayList in base alla vita e ai rounds dei giocatori utilizzando un comparatore
+        Collections.sort(giocatoriLeaderboard, new Comparator<IGiocatore>() {
+            @Override
+            public int compare(IGiocatore giocatore1, IGiocatore giocatore2) {
+                // Confronta i giocatori in base alla vita extra
+                boolean vitaExtra1 = giocatore1.hasVitaExtra();
+                boolean vitaExtra2 = giocatore2.hasVitaExtra();
+
+                // Primo criterio: giocatori con vita extra prima
+                if (vitaExtra1 && !vitaExtra2) {
+                    return -1;
+                } else if (!vitaExtra1 && vitaExtra2) {
+                    return 1;
+                }
+
+                // Secondo criterio: confronta i giocatori in base alla vita
+                int compareVita = Integer.compare(giocatore2.getVita(), giocatore1.getVita());
+
+                // Terzo criterio: se i giocatori hanno la stessa vita, confronta in base ai round
+                if (compareVita == 0) {
+                    return Integer.compare(giocatore2.getPlayerRounds(), giocatore1.getPlayerRounds());
+                } else {
+                    return compareVita; // Ordina prima per vita
+                }
+            }
+        });
+
+        // adesso devo associare ad ogni partita il relativo pannello
+
+        int riga = 1;
+        int posizione = 1;
+        // PARTE NUOVA
+        for (IGiocatore giocatore : giocatoriLeaderboard)
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("SinglePlayerScoreboard.fxml"));
+
+            AnchorPane anchorPane = fxmlLoader.load();
+
+            SinglePlayerScoreboardController singlePlayerScoreboardController = fxmlLoader.getController();
+            System.out.println("Viota extra: " + giocatore.getVitaExtra());
+            singlePlayerScoreboardController.setData(posizione, giocatore.getNome(), giocatore.getPlayerRounds(), giocatore.getVita(), giocatore.getVitaExtra()); // mettere vite extra
+
+            // Ottenere l'AnchorPane dal tuo controller
+            //AnchorPane singleAnchorPane = singlePlayerScoreboardController.getAnchorPane();
+
+            // Imposta il colore di sfondo dell'AnchorPane in base al player se vivo o morto
+            if(giocatore.getVita() == 0)
+            {
+                BackgroundFill backgroundFill = new BackgroundFill(Color.ORANGERED, null, null); // Cambia il colore a tuo piacimento
+                Background background = new Background(backgroundFill);
+                anchorPane.setBackground(background);
+            }
+            else
+            {
+                BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTGREEN, null, null); // Cambia il colore a tuo piacimento
+                Background background = new Background(backgroundFill);
+                anchorPane.setBackground(background);
+            }
+
+
+            singleMatchPane.add(anchorPane, 0, riga);
+
+            GridPane.setMargin(anchorPane, new Insets(10));
+
+            riga++;
+            posizione++;
         }
     }
 }

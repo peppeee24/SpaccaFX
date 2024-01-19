@@ -26,8 +26,18 @@ public class LeaderboardScreenTorneoController
     Label torneoNumeroLabel;
 
 
-    public GridPane getGridPaneScoreboard(){return  this.IdGridLeaderboard1;}
-    
+
+    public GridPane getGridPaneScoreboard(int c)
+    {
+        return switch (c) {
+            case 0 -> this.IdGridLeaderboard1;
+            case 1 -> this.IdGridLeaderboard2;
+            case 2 -> this.IdGridLeaderboard3;
+            case 3 -> this.IdGridLeaderboard4;
+            case 4 -> this.IdGridLeaderboard5;
+            default -> this.IdGridLeaderboard1;
+        };
+    }
 
     public void indietro(MouseEvent mouseEvent) throws IOException
     {
