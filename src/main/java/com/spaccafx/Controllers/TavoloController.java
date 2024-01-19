@@ -206,7 +206,7 @@ public class TavoloController {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                } // TODO aggiungere caso in cui scelgo di riprendere o no la partita del torneo
+                }
 
 
             case PLAYING:
@@ -344,7 +344,6 @@ public class TavoloController {
 
     private void inizializzaNomiPlayer() {
         // imposto nome giocatori da prendere dal file
-        // todo attenzione nel caso i player siano morti, fare il controllo non sempre da riempire con 4 nomi
         nomePlayer1.setText(partita.giocatori.get(0).getNome()); // prendo il giocatore
         nomePlayer2.setText(partita.giocatori.get(1).getNome());
         nomePlayer3.setText(partita.giocatori.get(2).getNome());
@@ -881,7 +880,6 @@ public class TavoloController {
                     //try {
 
                     // TODO METTERE CHE DEVI CHIUDERE ANCHE LA LEADERBOARD QUANDO ESCI
-                    // TODO METTERE CHE DOPO UN ATTESA TI RIPORTA AL MENU PRINCIPALE!!
 
 
                         /*Scene scene = new Scene(menu.load());

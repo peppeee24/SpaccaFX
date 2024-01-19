@@ -41,7 +41,6 @@ public class PlayerScreenController
     public void loginAction(ActionEvent actionEvent) throws IOException // bottone inizia
     {
         AudioManager.bottoneSuono();
-        // TODO CREARE UNA PASSWORD PER OGNI PARTITA != DAL ID PARTITA
 
         int PasswordField = Integer.parseInt(passwordField.getText());
         // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA
