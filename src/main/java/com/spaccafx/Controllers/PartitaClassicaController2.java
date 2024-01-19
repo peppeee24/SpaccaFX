@@ -38,10 +38,6 @@ public class PartitaClassicaController2 {
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
     private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3,E4, A1, A2, A3,A4; // sono i dati della partita
 
-
-    Partita P; // // TODO guardare dichiaro classe partita
-
-
     @FXML
     Tab playerTab, botTbb, creaTab;
 
@@ -66,6 +62,7 @@ public class PartitaClassicaController2 {
 
 
 
+    int codiceP, passwordP;
 
 
     @FXML
@@ -78,7 +75,8 @@ public class PartitaClassicaController2 {
         setNumeroCarteSpeciali();
         setNumeroCarteNormali();
 
-
+        this.codiceP = 0;
+        this.passwordP = 0;
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -427,44 +425,6 @@ public class PartitaClassicaController2 {
 
 
 
-    /*
-public void impostaDifficolta() {
-    if (difficolta == null) {
-        System.out.println("Difficoltà è null");
-        return;
-    }
-
-    String[] nomiBot = {getE1(), getE2(), getE3(), getE4()};
-    String[] difficoltaBot = {easyBot1, easyBot2, easyBot3, easyBot4};
-    String[] labelBot = {labelBot1, labelBot2, labelBot3, labelBot4};
-    String[] hardBot = {hardBot1, hardBot2, hardBot3, hardBot4};
-
-    int numeroBot = getNumeroBot();
-
-    if (numeroBot == 0) {
-        difficoltaBotMenu.setVisible(false);
-        difficoltaBotLabel.setVisible(false);
-        numeroBotLabel.setText("Non ci sono bot");
-    } else {
-        for (int i = 0; i < numeroBot; i++) {
-            if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                labelBot[i].setText(nomiBot[i]);
-                labelBot[i].setVisible(true);
-                hardBot[i].setVisible(true);
-                difficoltaBot[i].setVisible(false);
-            } else {
-                labelBot[i].setText(nomiBot[i]);
-                labelBot[i].setVisible(true);
-                difficoltaBot[i].setVisible(true);
-                hardBot[i].setVisible(false);
-            }
-        }
-    }
-}
-
-     */
-
-
 
     private void controlloGiocatori() {
         // Assumiamo che tutti i campi e le immagini siano inizialmente invisibili
@@ -536,16 +496,6 @@ public void impostaDifficolta() {
     public void setNomeGiocatore1() {
         nomeGiocatore1 = playerName1.getText();
 
-        /*
-        if(nomeGiocatore1.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Campo vuoto");
-            alert.setContentText("Inserisci un nome per continuare a giocare");
-            Optional<ButtonType> result = alert.showAndWait();
-        }
-
-         */
-
     }
 
     public void setNomeGiocatore2() {
@@ -594,16 +544,7 @@ public void impostaDifficolta() {
     // Utilizziamo classe partita
     public void generaCodice(ActionEvent actionEvent) throws IOException
     {
-        //int currentIdPartita = FileManager.creaCodicePartitaUnico();
-
         AudioManager.bottoneSuono();
-
-    /*    Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
-        alert3.setTitle("Piccolo LAG!");
-        alert3.setContentText("Sto caricando il codice, attendi....");
-        Optional<ButtonType> result3 = alert3.showAndWait();
-
-     */
         AlertController.showWarning("Attenzione: Attendi Caricamento");
 
 
@@ -612,15 +553,14 @@ public void impostaDifficolta() {
 
         if (somma > 1 && somma < 5)
         {
-            this.P = new Partita(somma);
-            P.generaCodicePartita();
-            P.generaPasswordPartita();
-            System.out.println("Codice Generato: " + P.getCodicePartita());
-            System.out.println("Password Generata: " + P.getPasswordPartita());
-            passwordPartita.setText("Password: " + P.getPasswordPartita());
-            codicePartita.setText("Codice: " + P.getCodicePartita());
-            //   codicePartita.wrapTextProperty().set(true);
-            // codicePartita.getStyleClass().add("copiable-label");
+            this.codiceP = FileManager.creaCodicePartitaUnico();
+            this.passwordP = FileManager.creaPasswordPartitaUnica();
+
+
+            System.out.println("Codice Generato: " + codiceP);
+            System.out.println("Password Generata: " + passwordP);
+            passwordPartita.setText("Password: " + passwordP);
+            codicePartita.setText("Codice: " + codiceP);
 
 
             AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
@@ -711,11 +651,11 @@ public void impostaDifficolta() {
                 break;
         }
 
-        P.aggiungiListaGiocatori(GiocatoriPartita);
+        //P.aggiungiListaGiocatori(GiocatoriPartita);
 
         // creiamo il salvataggio della nuova partita
         System.out.println("DEBUG: " + numeroCarteNormali + " -------  " + numeroCarteSpeciali + " -------  " + numeroVite);
-        FileManager.creaPartitaSuFile(P.getCodicePartita(), P.getPasswordPartita(), GiocatoriPartita, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
+        FileManager.creaPartitaSuFile(this.codiceP, this.passwordP, GiocatoriPartita, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale
@@ -728,8 +668,8 @@ public void impostaDifficolta() {
         // Mi permette di creare un "oggetto del controller", in questo modo riesco a passare tutto al controller senza creare un nuovo oggetto della classe che provocherebbe due istanze aperte
         //   MainMenuController mmc = impostaGioco.getController();
         //  mmc.setPartitaClassicaController(this);
-        ShareData.getInstance().setPartitaClassicaController(this); // gli passo classe partitacontroller
-        ShareData.getInstance().setPartita(this.P);
+        //ShareData.getInstance().setPartitaClassicaController(this); // gli passo classe partitacontroller
+        //ShareData.getInstance().setPartita(this.P);
         //  ShareData.getInstance().setPassword(this.P); // non serve
 
     }

@@ -1,37 +1,16 @@
 package com.spaccafx;
 
-import com.spaccafx.Cards.CartaImprevisto;
-import com.spaccafx.Controllers.AudioController;
-import com.spaccafx.Controllers.ShareData;
 import com.spaccafx.ExternalApps.SpaccaTGBot;
-import com.spaccafx.Files.AudioManager;
-import com.spaccafx.Interface.IGiocatore;
-import com.spaccafx.Manager.GameManager;
-import com.spaccafx.Manager.Partita;
-import com.spaccafx.Manager.Torneo;
-import com.spaccafx.Player.AdvancedBot;
-import com.spaccafx.Player.Bot;
-import com.spaccafx.Player.EasyBot;
-import com.spaccafx.Player.Giocatore;
 
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-
-import java.util.*;
 
 import java.io.*;
 

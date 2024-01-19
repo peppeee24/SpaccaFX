@@ -133,9 +133,7 @@ public class FileManager
         }
     }
 
-
     // andiamo a salvare tutti i nuovi dati della partita, andandoli a sovrascrivere
-
     public static void sovrascriviSalvataggiPartita(Partita partitaToSave)
     {
         try
@@ -222,11 +220,9 @@ public class FileManager
         }
     }
 
-
-    //TODO DA VERIFICARE
     public static int creaCodicePartitaUnico()
     {
-        int maxTentativi = 999; // Massimo numero di tentativi per generare un codice unico
+        int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
 
         try {
             if (!partiteFile.exists()) {
@@ -246,19 +242,70 @@ public class FileManager
                     JSONObject partitaJSON = (JSONObject) partitaObject;
                     int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
 
-                    if (idPartita == i) {
+                    if (idPartita == i)
+                    {
+                        System.out.println("Il codice che ho generato " + i + " e gia associato ad una partita, ne creo un altro.");
                         codeExists = true;
                         break; // Il codice esiste, passa al successivo
                     }
                 }
 
-                if (!codeExists) {
+                if (!codeExists)
+                {
+                    System.out.println("Il codice che ho generato univoco della partita e: " + i);
                     return i; // Il codice è unico, restituiscilo
                 }
             }
 
             // Se hai esaurito tutti i possibili codici, gestiscilo in base alle tue esigenze.
             System.out.println("[FILE-MANAGER] Errore: Impossibile generare un codice ID unico.");
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            System.out.println("[FILE-MANAGER] Errore");
+        }
+
+        return -1; // Valore speciale che indica un errore o impossibilità di generare un codice unico
+    }
+
+    public static int creaPasswordPartitaUnica()
+    {
+        int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
+
+        try {
+            if (!partiteFile.exists()) {
+                return (int) (1 + Math.random() * maxTentativi); // Se il file non esiste, genera casualmente un codice
+            }
+
+            JSONParser parser = new JSONParser();
+            JSONObject root = (JSONObject) parser.parse(new FileReader(partiteFile));
+
+            // Ottieni l'array delle partite
+            JSONArray partiteArray = (JSONArray) root.get("Partite");
+
+            for (int i = 1; i <= maxTentativi; i++) {
+                boolean codeExists = false;
+
+                for (Object partitaObject : partiteArray) {
+                    JSONObject partitaJSON = (JSONObject) partitaObject;
+                    int passwordPartita = Integer.parseInt(partitaJSON.get("Password").toString());
+
+                    if (passwordPartita == i)
+                    {
+                        System.out.println("La password che ho generato " + i + " e gia associato ad una partita, ne creo un altra.");
+                        codeExists = true;
+                        break; // Il codice esiste, passa al successivo
+                    }
+                }
+
+                if (!codeExists)
+                {
+                    System.out.println("La password che ho generato univoca della partita e: " + i);
+                    return i; // Il codice è unico, restituiscilo
+                }
+            }
+
+            // Se hai esaurito tutti i possibili codici, gestiscilo in base alle tue esigenze.
+            System.out.println("[FILE-MANAGER] Errore: Impossibile generare una password ID unica.");
         } catch (IOException | ParseException e) {
             e.printStackTrace();
             System.out.println("[FILE-MANAGER] Errore");
@@ -658,6 +705,100 @@ public class FileManager
         }
     }
 
+    public static int creaCodiceTorneoUnico()
+    {
+        int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
+
+        try {
+            if (!partiteFile.exists()) {
+                return (int) (1 + Math.random() * maxTentativi); // Se il file non esiste, genera casualmente un codice
+            }
+
+            JSONParser parser = new JSONParser();
+            JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
+
+            // Ottieni l'array delle partite
+            JSONArray partiteArray = (JSONArray) root.get("Tornei");
+
+            for (int i = 1; i <= maxTentativi; i++) {
+                boolean codeExists = false;
+
+                for (Object partitaObject : partiteArray) {
+                    JSONObject partitaJSON = (JSONObject) partitaObject;
+                    int idPartita = Integer.parseInt(partitaJSON.get("Id_Torneo").toString());
+
+                    if (idPartita == i)
+                    {
+                        System.out.println("Il codice che ho generato " + i + " e gia associato ad un torneo, ne creo un altro.");
+                        codeExists = true;
+                        break; // Il codice esiste, passa al successivo
+                    }
+                }
+
+                if (!codeExists)
+                {
+                    System.out.println("Il codice che ho generato univoco del torneo e: " + i);
+                    return i; // Il codice è unico, restituiscilo
+                }
+            }
+
+            // Se hai esaurito tutti i possibili codici, gestiscilo in base alle tue esigenze.
+            System.out.println("[FILE-MANAGER] Errore: Impossibile generare un codice ID unico.");
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            System.out.println("[FILE-MANAGER] Errore");
+        }
+
+        return -1; // Valore speciale che indica un errore o impossibilità di generare un codice unico
+    }
+
+    public static int creaPasswordTorneoUnico()
+    {
+        int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
+
+        try {
+            if (!partiteFile.exists()) {
+                return (int) (1 + Math.random() * maxTentativi); // Se il file non esiste, genera casualmente un codice
+            }
+
+            JSONParser parser = new JSONParser();
+            JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
+
+            // Ottieni l'array delle partite
+            JSONArray partiteArray = (JSONArray) root.get("Tornei");
+
+            for (int i = 1; i <= maxTentativi; i++) {
+                boolean codeExists = false;
+
+                for (Object partitaObject : partiteArray) {
+                    JSONObject partitaJSON = (JSONObject) partitaObject;
+                    int idPartita = Integer.parseInt(partitaJSON.get("Password").toString());
+
+                    if (idPartita == i)
+                    {
+                        System.out.println("La password che ho generato " + i + " e gia associato ad un torneo, ne creo un altra.");
+                        codeExists = true;
+                        break; // Il codice esiste, passa al successivo
+                    }
+                }
+
+                if (!codeExists)
+                {
+                    System.out.println("La password che ho generato univoca del torneo e: " + i);
+                    return i; // Il codice è unico, restituiscilo
+                }
+            }
+
+            // Se hai esaurito tutti i possibili codici, gestiscilo in base alle tue esigenze.
+            System.out.println("[FILE-MANAGER] Errore: Impossibile generare una password torneo unica.");
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            System.out.println("[FILE-MANAGER] Errore");
+        }
+
+        return -1; // Valore speciale che indica un errore o impossibilità di generare un codice unico
+    }
+
     public static void creaPartitaTorneoFinale(JSONObject torneoJSON,JSONObject partitaFinale, int numeroPlayerVite) {
         // Crea un oggetto JSON per la nuova partita finale del torneo
         partitaFinale.put("cartaGiaScambiata", false);
@@ -957,7 +1098,6 @@ public class FileManager
         return p;
     }
 
-    // TODO METTERE PER OGNI PARTITA UN CAMPO CHIAMATO VINCITORE
     public static boolean sovrascriviSalvataggiPartitaTorneo(Partita partitaToSave, int codiceTorneo, int currentMatch)
     {
         // adesso dobbiamo andare a prendere tra i tornei quello specifico del codice.

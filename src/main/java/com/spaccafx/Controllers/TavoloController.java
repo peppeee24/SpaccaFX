@@ -904,7 +904,6 @@ public class TavoloController
                             this.setCurrentMatch(this.currentMatch+1);
                             FileManager.aumentaCurrentMatchTorneo(this.codiceTorneo, this.currentMatch);
                             FileManager.popolaPartitaFinaleTorneo(this.codiceTorneo, this.partita);
-                            // TODO SISTEMARE SOVRASCRIZIONE TORNEI
                         }
                         else
                         {
