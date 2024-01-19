@@ -80,7 +80,7 @@ public class CartaImprevisto extends Carta
         thread.start();
     }
 
-    private void ObbligoScambioConMazzo(Partita partita, IGiocatore currentGiocatore, TavoloController TC) // TODO rivedere controllaMano con questo metodo, problema setcartagiocatore
+    private void ObbligoScambioConMazzo(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
         if(partita.isGameStopped())
             return;

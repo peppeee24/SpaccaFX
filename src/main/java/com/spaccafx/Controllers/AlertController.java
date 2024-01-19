@@ -20,7 +20,6 @@ import java.net.URISyntaxException;
 import java.util.function.Consumer;
 
 public class AlertController {
-    // TODO continuare aggiornamento Confirm
 
     @FXML
     Label errorTypeLabel;

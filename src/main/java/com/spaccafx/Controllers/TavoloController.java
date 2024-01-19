@@ -857,7 +857,9 @@ public class TavoloController {
                             FileManager.popolaPartitaFinaleTorneo(this.codiceTorneo, this.partita);
                         } else {
                             FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this.partita, this.codiceTorneo); // salvo i dati della mia partita finale finita
+                            FileManager.sovrascriviStatoTorneo(this.codiceTorneo, GameStatus.ENDED);
                         }
+
                         try {
                             Stage currentStage = (Stage) popUpPane.getScene().getWindow();
                             FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TorneoSelector.fxml"));

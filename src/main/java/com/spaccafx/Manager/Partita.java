@@ -28,8 +28,7 @@ import java.net.URISyntaxException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-public class Partita
-{
+public class Partita {
     //region #VARIABLES
 
     //region #PRIVATE VARIABLES
@@ -59,7 +58,7 @@ public class Partita
 
     public Partita(int size) // size è il numero di giocatori a partita
     {
-        giocatori = new  ArrayList<IGiocatore>(size);
+        giocatori = new ArrayList<IGiocatore>(size);
 
         this.codicePartita = 0;
         this.passwordPartita = 0;
@@ -75,8 +74,7 @@ public class Partita
     }
 
 
-    public void impostaTavoloController()
-    {
+    public void impostaTavoloController() {
         ShareData sharedData = ShareData.getInstance();
         this.TC = sharedData.getTavoloController();
     }
@@ -91,23 +89,20 @@ public class Partita
         TC.startGameUI();
     }
 
-    public void iniziaNuovoRoundUI()
-    {
+    public void iniziaNuovoRoundUI() {
         distribuisciCarte(); // vado a ricreare le carte togliendo tutti effetti
         startNewGame();
     }
 
-    public void startNewGame()
-    {
+    public void startNewGame() {
         // devo partire dalla posizione del mazziere in poi
         this.cDistaccoMazziere = posMazziere; // deve partire dal mazziere
         avanzaManoUI(); // ci avanza di giocatore in giocatore
     }
 
 
-    public void riprendiPartita(int giocatoreRipresaPos)
-    {
-        if(isGameStopped())
+    public void riprendiPartita(int giocatoreRipresaPos) {
+        if (isGameStopped())
             return;
 
         Thread thread = new Thread(() -> {
@@ -115,11 +110,10 @@ public class Partita
                 Platform.runLater(() -> {
                     TC.mostraBannerAttesa("CONTROLLO-RIPRESA", "Controlliamo la carta");
 
-                    if(this.gameType == GameType.PARTITA)
+                    if (this.gameType == GameType.PARTITA)
                         ricaricaMazzo(FileManager.getPlayerCartePartita(this.codicePartita));
-                    else
-                    {
-                        if(this.TC.getCurrentMatch() != 4)
+                    else {
+                        if (this.TC.getCurrentMatch() != 4)
                             ricaricaMazzo(FileManager.getPlayerCartePartitaTorneo(this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()));
                         else
                             ricaricaMazzo(FileManager.getPlayerCartePartitaTorneoFinale(this.TC.getCodiceTorneo()));
@@ -144,7 +138,7 @@ public class Partita
 
     private void avanzaManoUI() // ogni volta che tocca a un giocatore/bot
     {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         TC.setExitGame(true);
@@ -158,12 +152,10 @@ public class Partita
                 {
                     this.cartaGiaScambiata = false;
 
-                    do
-                    {
+                    do {
                         this.cDistaccoMazziere = (cDistaccoMazziere + 1) % giocatori.size();
                         System.out.println("[AVANZA-MANO] Avanzo di mano e passo al giocatore: " + cDistaccoMazziere);
                     } while (!isGiocatoreValido(cDistaccoMazziere));
-
 
 
                     this.currentGiocatorePos = cDistaccoMazziere;
@@ -181,12 +173,10 @@ public class Partita
 
                     IGiocatore currentGiocatore = getCurrentGiocatore();
 
-                    if(currentGiocatore instanceof Bot)
-                    {
+                    if (currentGiocatore instanceof Bot) {
                         System.out.println("[GAME] Tocca al BOT: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
                         controllaManoIniziale(currentGiocatorePos);
-                    }
-                    else // e un player
+                    } else // e un player
                     {
                         TC.gestisciPulsanti(false, true, true); // fa la mossa con i pulsanti
                         System.out.println("[GAME] Tocca al giocatore: " + currentGiocatore.getNome() + " in posizione: " + currentGiocatorePos);
@@ -208,19 +198,16 @@ public class Partita
         thread.start();
     }
 
-    private boolean isGiocatoreValido(int pos)
-    {
-        return isRuoloValido(giocatori.get(pos).getRuolo()) && !(giocatori.get(pos).getVita()<=0);
+    private boolean isGiocatoreValido(int pos) {
+        return isRuoloValido(giocatori.get(pos).getRuolo()) && !(giocatori.get(pos).getVita() <= 0);
     }
 
     // Metodo per verificare se il ruolo è valido
-    private boolean isRuoloValido(RuoloGiocatore ruolo)
-    {
+    private boolean isRuoloValido(RuoloGiocatore ruolo) {
         return ruolo.equals(RuoloGiocatore.GIOCATORE) || ruolo.equals(RuoloGiocatore.MAZZIERE);
     }
 
-    private void controlloManoRipresa(int currentGiocatorePos)
-    {
+    private void controlloManoRipresa(int currentGiocatorePos) {
         if (isGameStopped())
             return;
 
@@ -247,9 +234,8 @@ public class Partita
 
         System.out.println("[CONTROLLO-MANO-RIPRESA] Ho una carta speciale PROBABILITA");
 
-        if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato())
-        {
-           ((CartaProbabilita) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
+        if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato()) {
+            ((CartaProbabilita) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
         }
 
 
@@ -257,43 +243,37 @@ public class Partita
     }
 
     private void gestisciCartaImprevistoRipresa(Carta currentMano, IGiocatore currentGiocatoreRipresa) {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         System.out.println("[CONTROLLO-MANO-RIPRESA] Ho una carta speciale IMPREVISTO");
 
         if (!((CartaImprevisto) currentMano).getCartaEffettoAttivato()) {
             ((CartaImprevisto) currentMano).Effetto(this, currentGiocatoreRipresa, TC);
-        }
-        else
-        {
+        } else {
             System.out.println("[CONTROLLO-MANO-RIPRESA] Imprevisto gia attivo!");
             gestisciTurnoRipresa(currentGiocatoreRipresa);
         }
     }
 
     private void gestisciCartaNormaleRipresa(IGiocatore currentGiocatoreRipresa) {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         System.out.println("[MANO] Ho una carta NORMALE");
         gestisciTurnoRipresa(currentGiocatoreRipresa);
     }
 
-    private void gestisciTurnoRipresa(IGiocatore currentGiocatoreRipresa)
-    {
-        if(isGameStopped())
+    private void gestisciTurnoRipresa(IGiocatore currentGiocatoreRipresa) {
+        if (isGameStopped())
             return;
 
-        if (currentGiocatoreRipresa instanceof Bot)
-        {
+        if (currentGiocatoreRipresa instanceof Bot) {
             TC.gestisciPulsanteRiprendiBot(true);
-        }
-        else
-        {
+        } else {
             TC.gestisciPulsanteRiprendiBot(false);
 
-            if(this.cartaGiaScambiata)
+            if (this.cartaGiaScambiata)
                 TC.gestisciPulsanteScambio(false);
             else
                 TC.gestisciPulsanteScambio(true);
@@ -303,9 +283,8 @@ public class Partita
     }
 
 
-    private void controlloManoScambio(int currentGiocatorePos)
-    {
-        if(isGameStopped())
+    private void controlloManoScambio(int currentGiocatorePos) {
+        if (isGameStopped())
             return;
 
         IGiocatore currentGiocatoreScambio = giocatori.get(currentGiocatorePos);
@@ -340,7 +319,7 @@ public class Partita
     }
 
     private void gestisciCartaProbabilita(Carta currentMano, IGiocatore currentGiocatoreScambio) {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale PROBABILITA");
@@ -353,7 +332,7 @@ public class Partita
     }
 
     private void gestisciCartaImprevisto(Carta currentMano, IGiocatore currentGiocatoreScambio) {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         System.out.println("[CONTROLLO-MANO-SCAMBIO] Ho una carta speciale IMPREVISTO");
@@ -367,7 +346,7 @@ public class Partita
     }
 
     private void gestisciCartaNormale(IGiocatore currentGiocatoreScambio) {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         System.out.println("[MANO] Ho una carta NORMALE");
@@ -375,23 +354,20 @@ public class Partita
     }
 
     private void gestisciTurno(IGiocatore giocatore) {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
-        if (giocatore instanceof Bot)
-        {
+        if (giocatore instanceof Bot) {
             TC.gestisciPulsanteRiprendiBot(true);
             //passaTurnoUI();
-        }
-        else
-        {
+        } else {
             TC.gestisciPulsanti(false, false, true);
         }
     }
 
     private void controllaManoIniziale(int currentGiocatore) // metodo che viene richiamato appena si avanza di mano
     {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         // controlliamo che carta ha e cosa attivare o meno graficamente
@@ -399,56 +375,44 @@ public class Partita
         IGiocatore currentGiocatoreObj = giocatori.get(currentGiocatore);
         System.out.println("[CONTROLLA-MANO-INIZIALE] Il giocatore possiede: " + currentMano.toString());
 
-        if(currentMano instanceof  CartaProbabilita)
-        {
+        if (currentMano instanceof CartaProbabilita) {
             System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta PROBABILITA!");
-            if(!((CartaProbabilita) currentMano).getCartaEffettoAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+            if (!((CartaProbabilita) currentMano).getCartaEffettoAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 // lancio dadi aumento vita
                 // scambio con mazzo
-                ((CartaProbabilita)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
-            }
-            else
-            {
+                ((CartaProbabilita) currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+            } else {
                 System.out.println("[CONTROLLA-MANO-INIZIALE] Effetto gia attivato!");
             }
 
-            if(currentGiocatoreObj instanceof Bot)
-            {
+            if (currentGiocatoreObj instanceof Bot) {
                 TC.gestisciPulsanteRiprendiBot(true);
             }
-        }
-        else if(currentMano instanceof  CartaImprevisto)
-        {
+        } else if (currentMano instanceof CartaImprevisto) {
             System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta IMPREVISTO!");
 
-            if(!((CartaImprevisto) currentMano).getCartaEffettoAttivato()) // caso in cui l'effetto della carta non sia stato attivato
+            if (!((CartaImprevisto) currentMano).getCartaEffettoAttivato()) // caso in cui l'effetto della carta non sia stato attivato
             {
                 // passa Obbligatorio
                 // Scambio obbligatorio
-                ((CartaImprevisto)currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
-            }
-            else
-            {
-                if(currentGiocatoreObj instanceof Bot)
-                {
+                ((CartaImprevisto) currentMano).Effetto(this, giocatori.get(currentGiocatore), TC);
+            } else {
+                if (currentGiocatoreObj instanceof Bot) {
                     TC.gestisciPulsanteRiprendiBot(true);
                 }
             }
-        }
-        else // debug
+        } else // debug
         {
             System.out.println("[CONTROLLA-MANO-INIZIALE] Possiedo carta NORMALE!");
-            if(currentGiocatoreObj instanceof Bot)
-            {
+            if (currentGiocatoreObj instanceof Bot) {
                 TC.gestisciPulsanteRiprendiBot(true);
             }
         }
     }
 
-    public void ScambiaCartaUI()
-    {
-        if(isGameStopped())
+    public void ScambiaCartaUI() {
+        if (isGameStopped())
             return;
 
         TC.gestisciPulsanteScambio(false);
@@ -476,18 +440,16 @@ public class Partita
         thread.start();
     }
 
-    private void eseguiScambioPlayerSuccessivo(Carta currentCarta)
-    {
-        if(isGameStopped())
+    private void eseguiScambioPlayerSuccessivo(Carta currentCarta) {
+        if (isGameStopped())
             return;
 
         IGiocatore nextPlayer;
         int nextIndexPlayer = this.currentGiocatorePos;
 
-        do
-        {
+        do {
             nextIndexPlayer = (nextIndexPlayer + 1) % giocatori.size(); // andiamo ad incrementare senza uscire dalla grandezza dei giocatori
-        }while(!isRuoloValido(giocatori.get(nextIndexPlayer).getRuolo()));
+        } while (!isRuoloValido(giocatori.get(nextIndexPlayer).getRuolo()));
 
         System.out.println("[DEBUG] Indirizzo PLAYER successivo: " + nextIndexPlayer);
 
@@ -497,7 +459,7 @@ public class Partita
         getCurrentGiocatore().setCarta(cartaNextPlayer);
 
         System.out.println("[GAME] Ho scambiato la carta con il player successivo, adesso "
-                + getCurrentGiocatore().getNome() +  " ha la carta: " + getCurrentGiocatore().getCarta());
+                + getCurrentGiocatore().getNome() + " ha la carta: " + getCurrentGiocatore().getCarta());
 
         TC.updateCarteUI(); // riaggiorno la grafica
         // TODO aggiungere suono scambio
@@ -505,15 +467,14 @@ public class Partita
 
     }
 
-    private void gestisciScambioCarta()
-    {
+    private void gestisciScambioCarta() {
 
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         Carta cartaPlayerAttuale = getCurrentGiocatore().getCarta(); // prendo la sua carta
 
-        if(getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
+        if (getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) // se e il mazziere la scambio con il mazzo
         {
             this.cartaGiaScambiata = true;
             System.out.println("carta gia scambiata: " + cartaGiaScambiata);
@@ -549,10 +510,9 @@ public class Partita
 
             thread.start();
 
-        }
-        else // sono un giocatore normale NON MAZZIERE
+        } else // sono un giocatore normale NON MAZZIERE
         {
-            if(!cartaGiaScambiata) // la carta non e stata ancora scambiata, faccio lo scambio!
+            if (!cartaGiaScambiata) // la carta non e stata ancora scambiata, faccio lo scambio!
             {
                 System.out.println("[GAME] Non ho mai scambiato, posso scambiare!");
                 eseguiScambioPlayerSuccessivo(cartaPlayerAttuale); // scambio con il player dopo
@@ -561,8 +521,7 @@ public class Partita
 
                 // se sono un bot posso rifare una scelta solo se ho una carta normale/ probabilita
                 controlloManoScambio(currentGiocatorePos); // gli controllo la mano dopo lo scambio
-            }
-            else // se HA GIA scambiato la carta
+            } else // se HA GIA scambiato la carta
             {
                 System.out.println("[GAME] Ho gia scambiato, NON posso rifarlo!");
                 System.out.println("[GAME] Passo al prossimo giocatore!");
@@ -574,9 +533,8 @@ public class Partita
     }
 
 
-    public void passaTurnoUI()
-    {
-        if(isGameStopped())
+    public void passaTurnoUI() {
+        if (isGameStopped())
             return;
 
         TC.gestisciPulsanti(false, false, false);
@@ -597,14 +555,12 @@ public class Partita
                     reimpostaGrafica();
                     this.cartaGiaScambiata = false;
 
-                    if (getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE)
-                    {
+                    if (getCurrentGiocatore().getRuolo() == RuoloGiocatore.MAZZIERE) {
                         // finisce il round e controlla i risultati
                         System.out.println("[GAME] Round finito, controllo i risultati..");
 
                         controllaRisultatiUI();
-                    }
-                    else
+                    } else
                         avanzaManoUI(); // vado avanti
                 });
             } catch (InterruptedException e) {
@@ -615,8 +571,7 @@ public class Partita
         thread.start();
     }
 
-    private void reimpostaGrafica()
-    {
+    private void reimpostaGrafica() {
         TC.gestisciPulsanti(false, true, true); // rimetti i pulsanti normali
         TC.gestisciPulsanteRiprendiBot(false);
     }
@@ -624,11 +579,11 @@ public class Partita
 
     private void controllaRisultatiUI() // con questo metodo capiamo a chi togliere la vita dei player
     {
-        if(isGameStopped())
+        if (isGameStopped())
             return;
 
         TC.setExitGame(false);
-        TC.gestisciPulsanti(false,false,false);
+        TC.gestisciPulsanti(false, false, false);
 
         Thread thread = new Thread(() -> {
             try {
@@ -651,8 +606,7 @@ public class Partita
 
                     IGiocatore giocatoreDebole = null;
 
-                    for (IGiocatore giocatore : giocatori)
-                    {
+                    for (IGiocatore giocatore : giocatori) {
                         if ((giocatore.getCarta().getValore() == maxValue) && giocatore.getRuolo() != RuoloGiocatore.MORTO) // Prendo il valore massimo delle carte dei player vivi
                         {
                             ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.getOrDefault(maxValue, new ArrayList<>());
@@ -663,25 +617,22 @@ public class Partita
 
                     ArrayList<IGiocatore> giocatoriConValoreMassimo = mapSet.get(maxValue);
 
-                    if(giocatoriConValoreMassimo.size() <= 1) // se abbiamo solo un perdente
+                    if (giocatoriConValoreMassimo.size() <= 1) // se abbiamo solo un perdente
                     {
                         System.out.println("[CHECK-GAME] * 1 SOLO Giocatore perdente!");
                         giocatoreDebole = giocatoriConValoreMassimo.get(0);
 
-                        if(giocatoreDebole.hasVitaExtra())
-                        {
+                        if (giocatoreDebole.hasVitaExtra()) {
                             System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
                             giocatoreDebole.removeVitaExtra();
                             //AudioManager.vitaDownSuono();
-                        }
-                        else
-                        {
+                        } else {
                             System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
                             giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
-                           // AudioManager.vitaDownSuono();
+                            // AudioManager.vitaDownSuono();
                         }
 
-                        if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+                        if (giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                         {
                             TC.HidePlayerUI(giocatoreDebole.getNome()); // rivedere
 
@@ -689,37 +640,30 @@ public class Partita
 
                             System.out.println("\n\t[CHECK-GAME] ** (ELIMINATO) " + giocatoreDebole.getNome() + " **");
                         }
-                    }
-                    else // vuol dire che ci sono piu giocatori (spareggio)
+                    } else // vuol dire che ci sono piu giocatori (spareggio)
                     {
-                        System.out.println("[CHECK-GAME] * " +  giocatoriConValoreMassimo.size() + " MOLTEPLICI Giocatori perdenti!");
+                        System.out.println("[CHECK-GAME] * " + giocatoriConValoreMassimo.size() + " MOLTEPLICI Giocatori perdenti!");
 
                         // Controllo Seme
 
-                        for(IGiocatore giocatore : giocatoriConValoreMassimo)
-                        {
-                            if(giocatoreDebole == null || ((((Carta)giocatore.getCarta()).getSeme().compareTo(((Carta)giocatoreDebole.getCarta()).getSeme())) > 0))
-                            {
+                        for (IGiocatore giocatore : giocatoriConValoreMassimo) {
+                            if (giocatoreDebole == null || ((((Carta) giocatore.getCarta()).getSeme().compareTo(((Carta) giocatoreDebole.getCarta()).getSeme())) > 0)) {
                                 giocatoreDebole = giocatore;
                                 System.out.println("Giocatore perdente attuale: " + giocatoreDebole.getNome());
                             }
                         }
 
-                        if(giocatoreDebole != null)
-                        {
-                            if(giocatoreDebole.hasVitaExtra())
-                            {
+                        if (giocatoreDebole != null) {
+                            if (giocatoreDebole.hasVitaExtra()) {
                                 System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita EXTRA del giocatore");
                                 giocatoreDebole.removeVitaExtra();
-                            }
-                            else
-                            {
+                            } else {
                                 System.out.println("[CHECK-GAME] " + giocatoreDebole.getNome() + " tolta vita NORMALE del giocatore");
                                 giocatoreDebole.setVita(giocatoreDebole.getVita() - 1); // tolgo 1 vita
                             }
 
 
-                            if(giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
+                            if (giocatoreDebole.getVita() <= 0 && !giocatoreDebole.hasVitaExtra()) // se il giocatore in questione ha 0 o meno vite, viene ELIMINATO dalla partita
                             {
                                 TC.HidePlayerUI(giocatoreDebole.getNome());
 
@@ -734,7 +678,7 @@ public class Partita
 
                     String risultato;
 
-                    if(!giocatori.contains(giocatoreDebole))
+                    if (!giocatori.contains(giocatoreDebole))
                         risultato = "Il giocatore " + giocatoreDebole.getNome().toUpperCase() + " MORTO!";
                     else {
                         risultato = "Il giocatore " + giocatoreDebole.getNome().toUpperCase() + " ha perso una vita!";
@@ -752,13 +696,12 @@ public class Partita
                     TC.nascondiBannerAttesa();
                     TC.updateVitaUI();
 
-                    if(!isGameEnded()) // se NON sta ancora andando
+                    if (!isGameEnded()) // se NON sta ancora andando
                     {
                         System.out.println("[END] Gioco concluso con un vincitore!");
                         setPartitaStatus(GameStatus.ENDED);
                         TC.EndGameUI(); // TODO DA COMPLETARLO
-                    }
-                    else // se sta andando il gioco, giocatori vivi
+                    } else // se sta andando il gioco, giocatori vivi
                     {
                         System.out.println("[GAME] Passo al prossimo round!");
                         avanzaRoundUI();
@@ -773,15 +716,14 @@ public class Partita
         thread.start();
     }
 
-    private void avanzaRoundUI()
-    {
+    private void avanzaRoundUI() {
         aumentaPlayerRounds();
         TC.setExitGame(true);
 
         RuotaMazziereUI(); // ruota il mazziere
         this.mazzo.CreoCarte();
 
-        this.currentRound ++; // aumenta il round
+        this.currentRound++; // aumenta il round
         TC.aggiornaInfoUI(); // aggiorna la grafica
 
         iniziaNuovoRoundUI(); // si reinizia la mano
@@ -791,11 +733,9 @@ public class Partita
 
     //region #GAME SETUP
 
-    public void lancioDadiIniziale()
-    {
+    public void lancioDadiIniziale() {
 
-        for(int c=0; c<giocatori.size() ;c++)
-        {
+        for (int c = 0; c < giocatori.size(); c++) {
             IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
             int valoreDado = lancioDadoSingolo(); // prendo valore a caso del dado
 
@@ -811,16 +751,14 @@ public class Partita
         this.stabilisciMazziere();
     }
 
-    public void stabilisciMazziere()
-    {
+    public void stabilisciMazziere() {
         ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>(); // lista giocatori che hanno lo stesso valore
         int valorePiuAlto = trovaValoreDadoAlto(giocatori); // valore dei dadi piu alto tra tutti i player
 
         System.out.println("Il valore piu alto : " + valorePiuAlto);
 
         // NEW METHOD
-        for (IGiocatore iGiocatore : giocatori)
-        {
+        for (IGiocatore iGiocatore : giocatori) {
             if (iGiocatore.getValoreDado() >= valorePiuAlto)
                 perdenti.add(iGiocatore); // metto il giocatore con il valore perdente dentro la lista e non gli assegno ancora il ruolo..
             else
@@ -835,7 +773,7 @@ public class Partita
         {
             System.out.println("\n** PIU PERSONE HANNO IL DADO CON LO STESSO VALORE ** \n");
 
-            for(IGiocatore perdente : perdenti)
+            for (IGiocatore perdente : perdenti)
                 perdente.setDado(lancioDadoSingolo()); // faccio ritirare i dadi ai giocatori perdenti
 
             MostraDadiGicatoriAttuali(perdenti); // faccio una sorta di debug per vedere i dadi che sono usciti
@@ -843,9 +781,8 @@ public class Partita
             int spareggioValorePiuAlto = trovaValoreDadoAlto(perdenti); // controllo quale dei perdenti che ha rilanciato ha il valore piu alto
             System.out.println("Il valore dei dati tra i perdenti piu alto è " + spareggioValorePiuAlto);
 
-            for(int c = 0; c < perdenti.size(); c++)
-            {
-                if(perdenti.get(c).getValoreDado() < spareggioValorePiuAlto) // per sicurezza metto maggiore uguale
+            for (int c = 0; c < perdenti.size(); c++) {
+                if (perdenti.get(c).getValoreDado() < spareggioValorePiuAlto) // per sicurezza metto maggiore uguale
                 {
                     perdenti.get(c).setRuolo(RuoloGiocatore.GIOCATORE); // se ha un valore piu basso, allora e per forza di cose un player
                     System.out.println("Il giocatore: " + perdenti.get(c).getNome() + " non e un perdente (e un PLAYER)");
@@ -856,19 +793,16 @@ public class Partita
         }
 
 
-        if(giocatori.contains(perdenti.get(0)))
-        {
+        if (giocatori.contains(perdenti.get(0))) {
             posMazziere = giocatori.indexOf(perdenti.get(0));
             giocatori.get(posMazziere).setRuolo(RuoloGiocatore.MAZZIERE); // prendo il giocatore perdente e gli assegno il ruolo mazziere. Il giocatore e PER FORZA presente
             // metto il mazziere per primo nella lista!
-        }
-        else
-        {
+        } else {
             System.out.println("ERRORE MADORNALE DA SISTEMARE ASSOLUTAMENTE. NON DEVE MAI COMPARIRE!");
             System.exit(1); //FINISCO IL PROGRAMMA PERCHE NON PUO CONTINUARE!
         }
 
-        System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE ("+ giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
+        System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE (" + giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
         TC.impostaCoroneMazziereUI();
     }
 
@@ -877,17 +811,19 @@ public class Partita
 
     //region #METHODS
 
-    public synchronized int lancioDadoSingolo() { return (int)(1 + Math.random() * (6));}
+    public synchronized int lancioDadoSingolo() {
+        return (int) (1 + Math.random() * (6));
+    }
 
-    public void aggiungiGiocatore(IGiocatore giocatore){this.giocatori.add(giocatore);}
+    public void aggiungiGiocatore(IGiocatore giocatore) {
+        this.giocatori.add(giocatore);
+    }
 
-    private int trovaValoreDadoAlto(ArrayList<IGiocatore> lista)
-    {
+    private int trovaValoreDadoAlto(ArrayList<IGiocatore> lista) {
         int numeroPiuAlto = 1; // metto il valore piu piccolo del dado possibile (da noi il piu piccolo e' il piu alto)
 
         // NEW METHOD
-        for (IGiocatore giocatore : lista)
-        {
+        for (IGiocatore giocatore : lista) {
             if (giocatore.getValoreDado() >= numeroPiuAlto)
                 numeroPiuAlto = giocatore.getValoreDado();
         }
@@ -895,40 +831,36 @@ public class Partita
         return numeroPiuAlto;
     }
 
-    public void distribuisciCarte()
-    {
+    public void distribuisciCarte() {
         AudioManager.distribuisciCarteSuono();
 
-        int primoGiocatore = posMazziere+1; // parto dalla posizione del giocatore dopo al mazziere
+        int primoGiocatore = posMazziere + 1; // parto dalla posizione del giocatore dopo al mazziere
 
-        if(primoGiocatore >= giocatori.size()) // se il mazziere e alla fine e devo partire dal primo giocatore
+        if (primoGiocatore >= giocatori.size()) // se il mazziere e alla fine e devo partire dal primo giocatore
         {
             System.out.println("Distribuisco le carte partendo dal PRIMO giocatore");
-            for(IGiocatore giocatore : giocatori)
-            {
-                if(giocatore.getRuolo() != RuoloGiocatore.MORTO) // distribuisce la carta solo se il player no ne morto
+            for (IGiocatore giocatore : giocatori) {
+                if (giocatore.getRuolo() != RuoloGiocatore.MORTO) // distribuisce la carta solo se il player no ne morto
                 {
                     giocatore.setCarta(mazzo.PescaCarta());
                     System.out.println("Ho dato la carta al giocatore: " + giocatore.getNome());
                 }
             }
-        }
-        else // altrimenti devo vedere fino a quando non arriva all ultimo giocatore presente nell array
+        } else // altrimenti devo vedere fino a quando non arriva all ultimo giocatore presente nell array
         {
             int carteDistribuite = 0;
             int currentIndex = primoGiocatore;
             System.out.println("Distribuisco dal giocatore n.: " + currentIndex);
 
             System.out.println("Distribuisco le carte partendo nel MEZZO tra un giocatore");
-            do
-            {
-                if(currentIndex >= giocatori.size()) // se sono l ultimo giocatore
+            do {
+                if (currentIndex >= giocatori.size()) // se sono l ultimo giocatore
                 {
                     System.out.println("Riparto dall'array dei giocatori");
                     currentIndex = 0;
                 }
 
-                if(giocatori.get(currentIndex).getRuolo() != RuoloGiocatore.MORTO) // se e un player vivo gli posso cambiare la carta
+                if (giocatori.get(currentIndex).getRuolo() != RuoloGiocatore.MORTO) // se e un player vivo gli posso cambiare la carta
                 {
                     giocatori.get(currentIndex).setCarta(mazzo.PescaCarta());
                     System.out.println("Ho dato la carta al giocatore: " + giocatori.get(currentIndex).getNome());
@@ -938,24 +870,20 @@ public class Partita
                 currentIndex++;
                 System.out.println("Carte distribuite: " + carteDistribuite);
 
-            }while(carteDistribuite < getCountGiocatoriVivi()); // fino a quando non do tot carte tanti quanti sono i player VIVI continuo a darle
+            } while (carteDistribuite < getCountGiocatoriVivi()); // fino a quando non do tot carte tanti quanti sono i player VIVI continuo a darle
         }
 
         System.out.println("Esco dalla distribuzione e do le info...");
         StampaInfoGiocatori();
     }
 
-    private int trovaValoreCartaAlta(ArrayList<IGiocatore> lista)
-    {
+    private int trovaValoreCartaAlta(ArrayList<IGiocatore> lista) {
         int numeroPiuAlto = 1; // metto il valore piu piccolo della carta possibile (da noi il piu piccolo e' il piu alto)
 
         // NEW METHOD
-        for (IGiocatore giocatore : lista)
-        {
-            if(giocatore.getRuolo() != RuoloGiocatore.MORTO)
-            {
-                if (giocatore.getCarta().getValore() >= numeroPiuAlto)
-                {
+        for (IGiocatore giocatore : lista) {
+            if (giocatore.getRuolo() != RuoloGiocatore.MORTO) {
+                if (giocatore.getCarta().getValore() >= numeroPiuAlto) {
                     numeroPiuAlto = giocatore.getCarta().getValore(); // ho trovato una carta che supera quella che era piu piccola prima
                 }
             }
@@ -965,12 +893,9 @@ public class Partita
         return numeroPiuAlto;
     }
 
-    private void RuotaMazziereUI()
-    {
-        for (IGiocatore giocatore : giocatori)
-        {
-            if(!(giocatore.getRuolo() == RuoloGiocatore.MORTO))
-            {
+    private void RuotaMazziereUI() {
+        for (IGiocatore giocatore : giocatori) {
+            if (!(giocatore.getRuolo() == RuoloGiocatore.MORTO)) {
                 giocatore.setRuolo(RuoloGiocatore.GIOCATORE);
             }
         }
@@ -992,13 +917,11 @@ public class Partita
         System.out.println("[ROTAZIONE-MAZZIERE] Il mazziere è stato ruotato correttamente!");
     }
 
-    public boolean isGameEnded()
-    {
+    public boolean isGameEnded() {
         int countAlivePlayers = 0;
 
         for (IGiocatore giocatore : giocatori) {
-            if ((giocatore.getRuolo() == RuoloGiocatore.GIOCATORE) || giocatore.getRuolo() == RuoloGiocatore.MAZZIERE)
-            {
+            if ((giocatore.getRuolo() == RuoloGiocatore.GIOCATORE) || giocatore.getRuolo() == RuoloGiocatore.MAZZIERE) {
                 countAlivePlayers++;
             }
         }
@@ -1008,33 +931,47 @@ public class Partita
 
     } // Restituisce true se ci sono piu di 1 giocatore vivi
 
-    public int getCurrentRound(){return this.currentRound;}
-    public boolean getIsGameRunning(){return this.isGameRunning;}
-    public int getPosMazziere(){return this.posMazziere;}
+    public int getCurrentRound() {
+        return this.currentRound;
+    }
 
-    public void generaCodicePartita()  { this.codicePartita =  (int)(1 + (Math.random() * 1000)); } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
+    public boolean getIsGameRunning() {
+        return this.isGameRunning;
+    }
 
-    public void generaPasswordPartita()  { this.passwordPartita =  (int)(1 + (Math.random() * 1000)); }
+    public int getPosMazziere() {
+        return this.posMazziere;
+    }
+
+    public void generaCodicePartita() {
+        this.codicePartita = (int) (1 + (Math.random() * 1000));
+    } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
+
+    public void generaPasswordPartita() {
+        this.passwordPartita = (int) (1 + (Math.random() * 1000));
+    }
 
 
-    public int getCodicePartita() { return this.codicePartita; }
+    public int getCodicePartita() {
+        return this.codicePartita;
+    }
 
-    public int getPasswordPartita() { return this.passwordPartita; }
+    public int getPasswordPartita() {
+        return this.passwordPartita;
+    }
 
     // public boolean isGameRunning(){return this.isGameRunning;}
 
-    public void aggiungiListaGiocatori(ArrayList<IGiocatore> giocatori) {this.giocatori = giocatori;} // # MODIFICARE - Controllare che il num dei player sia inferiore al max
+    public void aggiungiListaGiocatori(ArrayList<IGiocatore> giocatori) {
+        this.giocatori = giocatori;
+    } // # MODIFICARE - Controllare che il num dei player sia inferiore al max
 
-    public IGiocatore getVincitore()
-    {
+    public IGiocatore getVincitore() {
         IGiocatore vincitore = null;
 
-        if(!isGameEnded())
-        {
-            for (IGiocatore giocatore : giocatori)
-            {
-                if (giocatore.getVita() > 0)
-                {
+        if (!isGameEnded()) {
+            for (IGiocatore giocatore : giocatori) {
+                if (giocatore.getVita() > 0) {
                     vincitore = giocatore;
                     break;
                 }
@@ -1044,15 +981,18 @@ public class Partita
         return vincitore;
     }
 
-    public int getCurrentGiocatorePos(){return this.currentGiocatorePos;}
-    public IGiocatore getCurrentGiocatore(){return giocatori.get(currentGiocatorePos);}
+    public int getCurrentGiocatorePos() {
+        return this.currentGiocatorePos;
+    }
 
-    private void aumentaPlayerRounds()
-    {
-        for(IGiocatore giocatore : giocatori)
-        {
-            if(giocatore.getRuolo() != RuoloGiocatore.MORTO)
-                giocatore.setPlayerRounds(giocatore.getPlayerRounds()+1);
+    public IGiocatore getCurrentGiocatore() {
+        return giocatori.get(currentGiocatorePos);
+    }
+
+    private void aumentaPlayerRounds() {
+        for (IGiocatore giocatore : giocatori) {
+            if (giocatore.getRuolo() != RuoloGiocatore.MORTO)
+                giocatore.setPlayerRounds(giocatore.getPlayerRounds() + 1);
         }
     }
 
@@ -1060,17 +1000,14 @@ public class Partita
 
     //region #DEBUG
 
-    private void MostraDadiGicatoriAttuali(ArrayList<IGiocatore> lista)
-    {
+    private void MostraDadiGicatoriAttuali(ArrayList<IGiocatore> lista) {
         for (IGiocatore giocatore : lista) {
             System.out.println("Giocatore: " + giocatore.getNome() + " Dado: " + giocatore.getValoreDado());
         }
     }
 
-    public void StampaInfoGiocatori()
-    {
-        for (IGiocatore currentGiocatore : giocatori)
-        {
+    public void StampaInfoGiocatori() {
+        for (IGiocatore currentGiocatore : giocatori) {
             Carta cartaGiocatore = currentGiocatore.getCarta();
 
             System.out.println("\n> Giocatore: " + currentGiocatore.getNome() +
@@ -1081,17 +1018,39 @@ public class Partita
         }
     }
 
-    public String getMazziereNome() {return giocatori.get(posMazziere).getNome();}
-    public void setCodicePartita(int codicePartita){this.codicePartita=codicePartita;}
-    public void setPasswordPartita(int passwordPartita){this.passwordPartita = passwordPartita;}
-    public void setIsGameRunning(boolean isGameRunning){this.isGameRunning = isGameRunning;}
-    public void setPartitaStatus(GameStatus partitaStatus){this.partitaStatus = partitaStatus;}
-    public GameStatus getPartitaStatus(){return this.partitaStatus;}
-    public int getNumeroPlayerVite(){return  this.numeroPlayerVite;}
-    public void setNumeroPlayerVite(int numeroPlayerVite){this.numeroPlayerVite = numeroPlayerVite;}
+    public String getMazziereNome() {
+        return giocatori.get(posMazziere).getNome();
+    }
 
-    public void SavePartita(MouseEvent mouseEvent) throws IOException
-    {
+    public void setCodicePartita(int codicePartita) {
+        this.codicePartita = codicePartita;
+    }
+
+    public void setPasswordPartita(int passwordPartita) {
+        this.passwordPartita = passwordPartita;
+    }
+
+    public void setIsGameRunning(boolean isGameRunning) {
+        this.isGameRunning = isGameRunning;
+    }
+
+    public void setPartitaStatus(GameStatus partitaStatus) {
+        this.partitaStatus = partitaStatus;
+    }
+
+    public GameStatus getPartitaStatus() {
+        return this.partitaStatus;
+    }
+
+    public int getNumeroPlayerVite() {
+        return this.numeroPlayerVite;
+    }
+
+    public void setNumeroPlayerVite(int numeroPlayerVite) {
+        this.numeroPlayerVite = numeroPlayerVite;
+    }
+
+    public void SavePartita(MouseEvent mouseEvent) throws IOException {
 
       /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Vuoi uscire dalla partita");
@@ -1105,9 +1064,8 @@ public class Partita
 
 
             // se siamo in una partita
-            if(this.gameType == GameType.PARTITA)
-            {
-                if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
+            if (this.gameType == GameType.PARTITA) {
+                if (getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
                 {
                     System.out.println("isGamerunning: " + this.isGameRunning);
                     setPartitaStatus(GameStatus.STOPPED);
@@ -1115,19 +1073,17 @@ public class Partita
 
                     FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
                 }
-            }
-            else
-            {
+            } else {
                 // TODO SISTEMARE LO STATO DEL TORNEO QUANDO SI ESCE
                 // siamo in un torneo
-                if(getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
+                if (getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
                 {
                     System.out.println("isGamerunning: " + this.isGameRunning);
                     setPartitaStatus(GameStatus.STOPPED);
                     System.out.println("Il gioco e stato messo in pausa correttamente!");
 
                     // Bisogna capire dove sovrascrivere
-                    if(this.TC.getCurrentMatch() != 4)
+                    if (this.TC.getCurrentMatch() != 4)
                         FileManager.sovrascriviSalvataggiPartitaTorneo(this, this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()); // salvo tutti i dati di questa partita tra quelle normali
                     else
                         FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this, this.TC.getCodiceTorneo()); // salvo tutti i dati di questa partita FINALE
@@ -1140,40 +1096,67 @@ public class Partita
         }
 
 
-            System.out.println("Continua il gioco");
-    
+        System.out.println("Continua il gioco");
+
 
     }
 
-    public void setCurrentGiocatorePos(int currentGiocatorePos) {this.currentGiocatorePos = currentGiocatorePos;}
+    public void setCurrentGiocatorePos(int currentGiocatorePos) {
+        this.currentGiocatorePos = currentGiocatorePos;
+    }
 
-    public void setPosMazziere(int posMazziere){this.posMazziere = posMazziere;}
-    public int getDistaccoMazziere(){return this.cDistaccoMazziere;}
-    public void setDistaccoMazziere(int cDistaccoMazziere){this.cDistaccoMazziere = cDistaccoMazziere;}
+    public void setPosMazziere(int posMazziere) {
+        this.posMazziere = posMazziere;
+    }
 
-    public void ricaricaMazzo(ArrayList<Carta> carteDaEliminare)
-    {
+    public int getDistaccoMazziere() {
+        return this.cDistaccoMazziere;
+    }
+
+    public void setDistaccoMazziere(int cDistaccoMazziere) {
+        this.cDistaccoMazziere = cDistaccoMazziere;
+    }
+
+    public void ricaricaMazzo(ArrayList<Carta> carteDaEliminare) {
         this.mazzo = new Mazzo(false, maxCarteNormali, maxCarteSpeciali); // se messo su false non mi rigenera le carte nel costruttore
         this.mazzo.CreoCarte(); // ricreo il mazzo
         this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
     }
 
-    public boolean getCartaGiaScambiata(){return this.cartaGiaScambiata;}
-    public void setCartaGiaScambiata(boolean cartaGiaScambiata){this.cartaGiaScambiata = cartaGiaScambiata;}
+    public boolean getCartaGiaScambiata() {
+        return this.cartaGiaScambiata;
+    }
 
-    public int getMaxCarteNormali(){return this.maxCarteNormali;}
-    public int getMaxCarteSpeciali(){return this.maxCarteSpeciali;}
+    public void setCartaGiaScambiata(boolean cartaGiaScambiata) {
+        this.cartaGiaScambiata = cartaGiaScambiata;
+    }
 
-    public void setMaxCarteNormali(int maxCarteNormali){this.maxCarteNormali = maxCarteNormali;}
-    public void setMaxCarteSpeciali(int maxCarteSpeciali){this.maxCarteSpeciali = maxCarteSpeciali;}
+    public int getMaxCarteNormali() {
+        return this.maxCarteNormali;
+    }
 
-    public void setGameType(GameType gameType){this.gameType = gameType;}
-    public GameType getGameType(){return this.gameType;}
+    public int getMaxCarteSpeciali() {
+        return this.maxCarteSpeciali;
+    }
 
-    public boolean isGameStopped()
-    {
-        if(this.partitaStatus == GameStatus.STOPPED)
-        {
+    public void setMaxCarteNormali(int maxCarteNormali) {
+        this.maxCarteNormali = maxCarteNormali;
+    }
+
+    public void setMaxCarteSpeciali(int maxCarteSpeciali) {
+        this.maxCarteSpeciali = maxCarteSpeciali;
+    }
+
+    public void setGameType(GameType gameType) {
+        this.gameType = gameType;
+    }
+
+    public GameType getGameType() {
+        return this.gameType;
+    }
+
+    public boolean isGameStopped() {
+        if (this.partitaStatus == GameStatus.STOPPED) {
             System.out.println("Il gioco e stato stoppato e non devo fare alcuna operazione");
             return true;
         }
@@ -1181,22 +1164,21 @@ public class Partita
         return false;
     }
 
-    private int getCountGiocatoriVivi()
-    {
+    private int getCountGiocatoriVivi() {
         int count = 0;
 
-        for (IGiocatore giocatore: giocatori)
-        {
-            if(giocatore.getRuolo() != RuoloGiocatore.MORTO)
+        for (IGiocatore giocatore : giocatori) {
+            if (giocatore.getRuolo() != RuoloGiocatore.MORTO)
                 count++;
         }
 
         return count; // restituisco il numero dei giocatori vivi
     }
 
-    public void setCurrentRound(int currentRound){this.currentRound = currentRound;}
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
     //endregion
-
 
 
 }

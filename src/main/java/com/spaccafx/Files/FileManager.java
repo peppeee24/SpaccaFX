@@ -1850,6 +1850,43 @@ public class FileManager
         return null;
     }
 
+    public static void sovrascriviStatoTorneo(int codiceTorneo, GameStatus gameStatus)
+    {
+        try
+        {
+            if (torneiFile.exists())
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject root = (JSONObject) parser.parse(new FileReader(torneiFile));
+
+                // Ottieni l'array delle partite
+                JSONArray torneoArray = (JSONArray) root.get("Tornei");
+
+                // Cerca la partita con il codicePartita specificato
+                for (Object torneoObject : torneoArray)
+                {
+                    JSONObject torneoJSON = (JSONObject) torneoObject;
+                    int idTorneo = Integer.parseInt(torneoJSON.get("Id_Torneo").toString());
+                    if (idTorneo == codiceTorneo)
+                    {
+                        System.out.println("Ho trovato il mio torneo codice: " + codiceTorneo);
+
+                        // Aggiorna lo stato della partita
+                        torneoJSON.put("Stato", gameStatus.toString());
+                        salvaModifiche(root);
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("[FILE-MANAGER] Non e presente il torneo che cerchi!");
+            }
+        }
+        catch (IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+    }
     // endregion
 
 }

@@ -37,7 +37,7 @@ import java.util.Optional;
 
 public class PartitaClassicaController2 {
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3,E4, A1, A2, A3,A4; // sono i dati della partita
+    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, E4, A1, A2, A3, A4; // sono i dati della partita
 
     @FXML
     Tab playerTab, botTbb, creaTab;
@@ -46,7 +46,7 @@ public class PartitaClassicaController2 {
     Button generaCodiceButton, inviaButton;
 
     @FXML
-    ChoiceBox<Integer> numeroGiocatoriMenu, viteMenu, carteNormaliMenu,carteSpecialiMenu;
+    ChoiceBox<Integer> numeroGiocatoriMenu, viteMenu, carteNormaliMenu, carteSpecialiMenu;
 
     @FXML
     ChoiceBox<String> difficoltaBotMenu;
@@ -58,12 +58,11 @@ public class PartitaClassicaController2 {
     Label codicePartita, numeroBotLabel, difficoltaBotLabel, labelBot1, labelBot2, labelBot3, labelBot4, botCounter, passwordPartita;
 
     @FXML
-    ImageView oneLabel,twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3,hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
+    ImageView oneLabel, twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
     // creo bot per settare nomi/ difficolta
     EasyBot E = new EasyBot(); // TODO NON VA BENE
     AdvancedBot A = new AdvancedBot();
-
 
 
     int codiceP, passwordP;
@@ -118,8 +117,6 @@ public class PartitaClassicaController2 {
     }
 
 
-
-
     public String getDifficolta() {
 
         return difficolta;
@@ -137,7 +134,6 @@ public class PartitaClassicaController2 {
     public int getNumeroBot() {
         return numeroBotMenu;
     }
-
 
 
     public void setNumeroCarteNormali() {
@@ -176,8 +172,9 @@ public class PartitaClassicaController2 {
     }
 
 
-
-    public void setNumeroVite() {viteMenu.setOnAction(this::nV);}
+    public void setNumeroVite() {
+        viteMenu.setOnAction(this::nV);
+    }
 
     // legge i dati dal menu tendina dei giocatori
     public void nV(ActionEvent event) {
@@ -189,7 +186,6 @@ public class PartitaClassicaController2 {
     public int getNumeroVite() {
         return numeroVite;
     }
-
 
 
     public void salvaImpostazioni(ActionEvent actionEvent) throws IOException { // PLAY
@@ -307,7 +303,6 @@ public class PartitaClassicaController2 {
         System.out.println("Imposto difficolta" + getDifficolta());
         this.impostaDifficolta();
     }
-
 
 
     public void impostaDifficolta() {
@@ -431,8 +426,6 @@ public class PartitaClassicaController2 {
     }
 
 
-
-
     private void controlloGiocatori() {
         // Assumiamo che tutti i campi e le immagini siano inizialmente invisibili
         playerName1.setVisible(false);
@@ -465,8 +458,6 @@ public class PartitaClassicaController2 {
     }
 
 
-
-
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
         AudioManager.bottoneSuono();
@@ -490,7 +481,8 @@ public class PartitaClassicaController2 {
                 setNomeGiocatore3();
                 setNomeGiocatore4();
                 break;
-            default: break;
+            default:
+                break;
 
 
         }
@@ -549,17 +541,14 @@ public class PartitaClassicaController2 {
 
 
     // Utilizziamo classe partita
-    public void generaCodice(ActionEvent actionEvent) throws IOException
-    {
+    public void generaCodice(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
         AlertController.showWarning("Attenzione: Attendi Caricamento");
 
 
-
         int somma = getNumeroGiocatori() + getNumeroBot();
 
-        if (somma > 1 && somma < 5)
-        {
+        if (somma > 1 && somma < 5) {
             this.codiceP = FileManager.creaCodicePartitaUnico();
             this.passwordP = FileManager.creaPasswordPartitaUnica();
 
