@@ -827,6 +827,8 @@ public class TavoloController {
                         // ritorna semplicemente alla lobby delle partite
                         // devo salvare tutti i miei dati della partita finita
 
+                        FileManager.sovrascriviSalvataggiPartita(this.partita);
+
                         try {
                             Stage currentStage = (Stage) popUpPane.getScene().getWindow();
                             FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));

@@ -55,6 +55,13 @@ public class FileManager
             nuovaPartita.put("maxCarteSpeciali", maxCarteSpeciali);
             nuovaPartita.put("numeroPlayerVite", numeroPlayerVite);
 
+            // Dobbiamo creare un oggetto che abbia tutti i dati del vincitore (nome, istanza)
+            JSONObject vincitore = new JSONObject();
+            vincitore.put("Nome", "TBD");
+            vincitore.put("Istanza", "Giocatore");
+
+            nuovaPartita.put("Vincitore", vincitore);
+
             JSONObject giocatoriList = new JSONObject();
 
             for (int i = 0; i < giocatori.size(); i++) {
@@ -163,6 +170,16 @@ public class FileManager
                     partitaJSON.put("maxCarteNormali", partitaToSave.getMaxCarteNormali());
                     partitaJSON.put("maxCarteSpeciali", partitaToSave.getMaxCarteSpeciali());
                     partitaJSON.put("numeroPlayerVite", partitaToSave.getNumeroPlayerVite());
+
+                    // Bisogna vedere se abbiamo anche un vincitore nella partita
+
+                    IGiocatore giocatoreVincitore = partitaToSave.getVincitore();
+                    if(giocatoreVincitore != null)
+                    {
+                        JSONObject vincitoreJSON = (JSONObject) partitaJSON.get("Vincitore");
+                        vincitoreJSON.put("Nome", giocatoreVincitore.getNome());
+                        vincitoreJSON.put("Istanza", giocatoreVincitore.getClass().getSimpleName());
+                    }
 
 
                     // Aggiorna le informazioni dei giocatori
@@ -1171,7 +1188,6 @@ public class FileManager
 
 
             // Bisogna vedere se abbiamo anche un vincitore nella partita
-
             IGiocatore giocatoreVincitore = partitaToSave.getVincitore();
             if(giocatoreVincitore != null)
             {
