@@ -83,8 +83,6 @@ public class TorneoItemController
         this.codiceTorneo = matchData.getCodice();
     }
 
-
-    // TODO FARE ACCEDI TORNEO
     public void accediTorneo(javafx.event.ActionEvent actionEvent)
     {
         // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre torneo, dove carica
@@ -115,7 +113,6 @@ public class TorneoItemController
         }
     }
 
-    // TODO FARE LEADERBOARD TORNEO
     public void leaderboardPartita(javafx.event.ActionEvent actionEvent)
     {
         try

@@ -334,8 +334,7 @@ public class TavoloController {
         }
     }
 
-    public void closeLeaderboard()
-    {
+    public void closeLeaderboard() {
         if (leaderboardStage != null) {
             leaderboardStage.close();
             leaderboardStage = null; // Imposta a null dopo la chiusura
@@ -411,12 +410,14 @@ public class TavoloController {
         partita.riprendiPartita(partita.getCurrentGiocatorePos());
     }
 
-    public void caricaMenuUI(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(Indietro.load());
-        stage.setScene(scene);
-        stage.show();
+    public void caricaMenuUI(MouseEvent mouseEvent) throws IOException
+    {
+        closeLeaderboard();
+
+        if(this.partita.getGameType() == GameType.PARTITA)
+            ritornaMenuPartiteSingole();
+        else
+            ritornaMenuTornei();
     }
 
     public void impostaCoroneMazziereUI() {
@@ -838,22 +839,8 @@ public class TavoloController {
                         // devo salvare tutti i miei dati della partita finita
 
                         FileManager.sovrascriviSalvataggiPartita(this.partita);
+                        ritornaMenuPartiteSingole();
 
-                        try {
-                            Stage currentStage = (Stage) popUpPane.getScene().getWindow();
-                            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
-                            Stage stage = new Stage();
-                            Parent root = playerScreen.load();
-                            Scene scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.show();
-
-                            currentStage.close();
-
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
                     } else {
                         // siamo in un torneo
                         // aumento il currentMatch e salvo su file e ritorno al match dei tornei
@@ -870,41 +857,8 @@ public class TavoloController {
                             FileManager.sovrascriviStatoTorneo(this.codiceTorneo, GameStatus.ENDED);
                         }
 
-                        try {
-                            Stage currentStage = (Stage) popUpPane.getScene().getWindow();
-                            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TorneoSelector.fxml"));
-                            Stage stage = new Stage();
-                            Parent root = playerScreen.load();
-                            Scene scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.show();
-
-                            currentStage.close();
-
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        ritornaMenuTornei();
                     }
-
-                    //FXMLLoader menu = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
-                    //try {
-
-                    // TODO METTERE CHE DEVI CHIUDERE ANCHE LA LEADERBOARD QUANDO ESCI
-
-
-                        /*Scene scene = new Scene(menu.load());
-                        stage.setScene(scene);
-                        stage.setTitle("Alpha Build SpaccaFX");
-                        stage.setResizable(false);
-                        stage.show();
-
-                         */
-
-
-                    //} catch (IOException e) {
-                    //throw new RuntimeException(e);
-                    //}
                 });
 
 
@@ -917,6 +871,41 @@ public class TavoloController {
 
     }
 
+    private void ritornaMenuTornei() {
+        try {
+            Stage currentStage = (Stage) popUpPane.getScene().getWindow();
+            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TorneoSelector.fxml"));
+            Stage stage = new Stage();
+            Parent root = playerScreen.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            currentStage.close();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void ritornaMenuPartiteSingole() {
+        try {
+            Stage currentStage = (Stage) popUpPane.getScene().getWindow();
+            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("PartitaSelector.fxml"));
+            Stage stage = new Stage();
+            Parent root = playerScreen.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            currentStage.close();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     //region # OTHER METHODS
 
     public void gestisciPulsanti(boolean sMazzo, boolean sNormale, boolean passa) {

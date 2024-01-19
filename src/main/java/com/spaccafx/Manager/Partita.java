@@ -700,7 +700,7 @@ public class Partita {
                     {
                         System.out.println("[END] Gioco concluso con un vincitore!");
                         setPartitaStatus(GameStatus.ENDED);
-                        TC.EndGameUI(); // TODO DA COMPLETARLO
+                        TC.EndGameUI();
                     } else // se sta andando il gioco, giocatori vivi
                     {
                         System.out.println("[GAME] Passo al prossimo round!");
@@ -931,69 +931,69 @@ public class Partita {
 
     } // Restituisce true se ci sono piu di 1 giocatore vivi
 
-    public int getCurrentRound() {
-        return this.currentRound;
-    }
-
-    public boolean getIsGameRunning() {
-        return this.isGameRunning;
-    }
-
-    public int getPosMazziere() {
-        return this.posMazziere;
-    }
-
-    public void generaCodicePartita() {
-        this.codicePartita = (int) (1 + (Math.random() * 1000));
-    } // TODO PREVEDERE CASO IN CUI VENGA GENERATO CODICE ESISTENTE
-
-    public void generaPasswordPartita() {
-        this.passwordPartita = (int) (1 + (Math.random() * 1000));
-    }
-
-
-    public int getCodicePartita() {
-        return this.codicePartita;
-    }
-
-    public int getPasswordPartita() {
-        return this.passwordPartita;
-    }
-
-    // public boolean isGameRunning(){return this.isGameRunning;}
 
     public void aggiungiListaGiocatori(ArrayList<IGiocatore> giocatori) {
         this.giocatori = giocatori;
-    } // # MODIFICARE - Controllare che il num dei player sia inferiore al max
-
-    public IGiocatore getVincitore() {
-        IGiocatore vincitore = null;
-
-        if (!isGameEnded()) {
-            for (IGiocatore giocatore : giocatori) {
-                if (giocatore.getVita() > 0) {
-                    vincitore = giocatore;
-                    break;
-                }
-            }
-        }
-
-        return vincitore;
     }
 
-    public int getCurrentGiocatorePos() {
-        return this.currentGiocatorePos;
-    }
 
-    public IGiocatore getCurrentGiocatore() {
-        return giocatori.get(currentGiocatorePos);
-    }
 
     private void aumentaPlayerRounds() {
         for (IGiocatore giocatore : giocatori) {
             if (giocatore.getRuolo() != RuoloGiocatore.MORTO)
                 giocatore.setPlayerRounds(giocatore.getPlayerRounds() + 1);
         }
+    }
+
+    public void SavePartita(MouseEvent mouseEvent) throws IOException {
+
+        // se siamo in una partita
+        if (this.gameType == GameType.PARTITA) {
+            if (getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
+            {
+                System.out.println("isGamerunning: " + this.isGameRunning);
+                setPartitaStatus(GameStatus.STOPPED);
+                System.out.println("Il gioco e stato messo in pausa correttamente!");
+
+                FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
+            }
+        } else {
+
+            // siamo in un torneo
+            if (getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
+            {
+                System.out.println("isGamerunning: " + this.isGameRunning);
+                setPartitaStatus(GameStatus.STOPPED);
+                System.out.println("Il gioco e stato messo in pausa correttamente!");
+
+                // Bisogna capire dove sovrascrivere
+                if (this.TC.getCurrentMatch() != 4)
+                    FileManager.sovrascriviSalvataggiPartitaTorneo(this, this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()); // salvo tutti i dati di questa partita tra quelle normali
+                else
+                    FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this, this.TC.getCodiceTorneo()); // salvo tutti i dati di questa partita FINALE
+
+            }
+        }
+
+        TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu a prescindere
+    }
+
+
+
+    public void ricaricaMazzo(ArrayList<Carta> carteDaEliminare) {
+        this.mazzo = new Mazzo(false, maxCarteNormali, maxCarteSpeciali); // se messo su false non mi rigenera le carte nel costruttore
+        this.mazzo.CreoCarte(); // ricreo il mazzo
+        this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
+    }
+
+
+    public boolean isGameStopped() {
+        if (this.partitaStatus == GameStatus.STOPPED) {
+            System.out.println("Il gioco e stato stoppato e non devo fare alcuna operazione!");
+            return true;
+        }
+
+        return false;
     }
 
     // endregion
@@ -1018,8 +1018,128 @@ public class Partita {
         }
     }
 
+
+    //endregion
+
+    // region #GETTER
+    private int getCountGiocatoriVivi() {
+        int count = 0;
+
+        for (IGiocatore giocatore : giocatori) {
+            if (giocatore.getRuolo() != RuoloGiocatore.MORTO)
+                count++;
+        }
+
+        return count; // restituisco il numero dei giocatori vivi
+    }
+    public GameType getGameType() {
+        return this.gameType;
+    }
+
+    public int getMaxCarteNormali() {
+        return this.maxCarteNormali;
+    }
+
+    public int getMaxCarteSpeciali() {
+        return this.maxCarteSpeciali;
+    }
+
+    public boolean getCartaGiaScambiata() {
+        return this.cartaGiaScambiata;
+    }
+
+    public int getDistaccoMazziere() {
+        return this.cDistaccoMazziere;
+    }
+
+    public GameStatus getPartitaStatus() {
+        return this.partitaStatus;
+    }
+
+    public int getNumeroPlayerVite() {
+        return this.numeroPlayerVite;
+    }
+
     public String getMazziereNome() {
         return giocatori.get(posMazziere).getNome();
+    }
+
+    public IGiocatore getVincitore() {
+        IGiocatore vincitore = null;
+
+        if (!isGameEnded()) {
+            for (IGiocatore giocatore : giocatori) {
+                if (giocatore.getVita() > 0) {
+                    vincitore = giocatore;
+                    break;
+                }
+            }
+        }
+
+        return vincitore;
+    }
+
+    public int getCurrentGiocatorePos() {
+        return this.currentGiocatorePos;
+    }
+
+    public IGiocatore getCurrentGiocatore() {
+        return giocatori.get(currentGiocatorePos);
+    }
+
+    public int getCurrentRound() {
+        return this.currentRound;
+    }
+
+    public boolean getIsGameRunning() {
+        return this.isGameRunning;
+    }
+
+    public int getPosMazziere() {
+        return this.posMazziere;
+    }
+
+    public int getCodicePartita() {
+        return this.codicePartita;
+    }
+
+    public int getPasswordPartita() {
+        return this.passwordPartita;
+    }
+
+    // endregion
+
+    // region #SETTER
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
+
+    public void setCartaGiaScambiata(boolean cartaGiaScambiata) {
+        this.cartaGiaScambiata = cartaGiaScambiata;
+    }
+
+    public void setMaxCarteNormali(int maxCarteNormali) {
+        this.maxCarteNormali = maxCarteNormali;
+    }
+
+    public void setMaxCarteSpeciali(int maxCarteSpeciali) {
+        this.maxCarteSpeciali = maxCarteSpeciali;
+    }
+
+    public void setGameType(GameType gameType) {
+        this.gameType = gameType;
+    }
+
+    public void setCurrentGiocatorePos(int currentGiocatorePos) {
+        this.currentGiocatorePos = currentGiocatorePos;
+    }
+
+    public void setPosMazziere(int posMazziere) {
+        this.posMazziere = posMazziere;
+    }
+
+    public void setDistaccoMazziere(int cDistaccoMazziere) {
+        this.cDistaccoMazziere = cDistaccoMazziere;
     }
 
     public void setCodicePartita(int codicePartita) {
@@ -1038,147 +1158,14 @@ public class Partita {
         this.partitaStatus = partitaStatus;
     }
 
-    public GameStatus getPartitaStatus() {
-        return this.partitaStatus;
-    }
 
-    public int getNumeroPlayerVite() {
-        return this.numeroPlayerVite;
-    }
 
     public void setNumeroPlayerVite(int numeroPlayerVite) {
         this.numeroPlayerVite = numeroPlayerVite;
     }
 
-    public void SavePartita(MouseEvent mouseEvent) throws IOException {
+    // endregion
 
-      /*  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Vuoi uscire dalla partita");
-        alert.setContentText("Se confermi i tuoi dati saranno salvati");
-
-       */
-
-        boolean isOkPressed = AlertController.showConfirm("Salvo i dati del gioco");
-
-        if (isOkPressed) {
-
-
-            // se siamo in una partita
-            if (this.gameType == GameType.PARTITA) {
-                if (getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
-                {
-                    System.out.println("isGamerunning: " + this.isGameRunning);
-                    setPartitaStatus(GameStatus.STOPPED);
-                    System.out.println("Il gioco e stato messo in pausa correttamente!");
-
-                    FileManager.sovrascriviSalvataggiPartita(this); // salvo tutti i dati di questa partita
-                }
-            } else {
-                // TODO SISTEMARE LO STATO DEL TORNEO QUANDO SI ESCE
-                // siamo in un torneo
-                if (getIsGameRunning()) // se sta andando salvo, altrimenti non sovrascrivo nulla....
-                {
-                    System.out.println("isGamerunning: " + this.isGameRunning);
-                    setPartitaStatus(GameStatus.STOPPED);
-                    System.out.println("Il gioco e stato messo in pausa correttamente!");
-
-                    // Bisogna capire dove sovrascrivere
-                    if (this.TC.getCurrentMatch() != 4)
-                        FileManager.sovrascriviSalvataggiPartitaTorneo(this, this.TC.getCodiceTorneo(), this.TC.getCurrentMatch()); // salvo tutti i dati di questa partita tra quelle normali
-                    else
-                        FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this, this.TC.getCodiceTorneo()); // salvo tutti i dati di questa partita FINALE
-
-                }
-            }
-
-
-            TC.caricaMenuUI(mouseEvent); // ritorno indietro al menu a prescindere
-        }
-
-
-        System.out.println("Continua il gioco");
-
-
-    }
-
-    public void setCurrentGiocatorePos(int currentGiocatorePos) {
-        this.currentGiocatorePos = currentGiocatorePos;
-    }
-
-    public void setPosMazziere(int posMazziere) {
-        this.posMazziere = posMazziere;
-    }
-
-    public int getDistaccoMazziere() {
-        return this.cDistaccoMazziere;
-    }
-
-    public void setDistaccoMazziere(int cDistaccoMazziere) {
-        this.cDistaccoMazziere = cDistaccoMazziere;
-    }
-
-    public void ricaricaMazzo(ArrayList<Carta> carteDaEliminare) {
-        this.mazzo = new Mazzo(false, maxCarteNormali, maxCarteSpeciali); // se messo su false non mi rigenera le carte nel costruttore
-        this.mazzo.CreoCarte(); // ricreo il mazzo
-        this.mazzo.EliminaCarte(carteDaEliminare); // dal mazzo che genero cancello le carte che gli passo per parametro
-    }
-
-    public boolean getCartaGiaScambiata() {
-        return this.cartaGiaScambiata;
-    }
-
-    public void setCartaGiaScambiata(boolean cartaGiaScambiata) {
-        this.cartaGiaScambiata = cartaGiaScambiata;
-    }
-
-    public int getMaxCarteNormali() {
-        return this.maxCarteNormali;
-    }
-
-    public int getMaxCarteSpeciali() {
-        return this.maxCarteSpeciali;
-    }
-
-    public void setMaxCarteNormali(int maxCarteNormali) {
-        this.maxCarteNormali = maxCarteNormali;
-    }
-
-    public void setMaxCarteSpeciali(int maxCarteSpeciali) {
-        this.maxCarteSpeciali = maxCarteSpeciali;
-    }
-
-    public void setGameType(GameType gameType) {
-        this.gameType = gameType;
-    }
-
-    public GameType getGameType() {
-        return this.gameType;
-    }
-
-    public boolean isGameStopped() {
-        if (this.partitaStatus == GameStatus.STOPPED) {
-            System.out.println("Il gioco e stato stoppato e non devo fare alcuna operazione");
-            return true;
-        }
-
-        return false;
-    }
-
-    private int getCountGiocatoriVivi() {
-        int count = 0;
-
-        for (IGiocatore giocatore : giocatori) {
-            if (giocatore.getRuolo() != RuoloGiocatore.MORTO)
-                count++;
-        }
-
-        return count; // restituisco il numero dei giocatori vivi
-    }
-
-    public void setCurrentRound(int currentRound) {
-        this.currentRound = currentRound;
-    }
-    //endregion
 
 
 }

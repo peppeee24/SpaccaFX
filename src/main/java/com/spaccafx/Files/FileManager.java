@@ -508,7 +508,6 @@ public class FileManager
             e.printStackTrace();
         }
 
-        // todo non va bene lasciarlo cosi
         return 0; // se non ho trovato nessuna password
     }
 
