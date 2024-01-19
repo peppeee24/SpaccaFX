@@ -462,7 +462,6 @@ public class Partita {
                 + getCurrentGiocatore().getNome() + " ha la carta: " + getCurrentGiocatore().getCarta());
 
         TC.updateCarteUI(); // riaggiorno la grafica
-        // TODO aggiungere suono scambio
         AudioManager.distribuisciCarteSuono();
 
     }

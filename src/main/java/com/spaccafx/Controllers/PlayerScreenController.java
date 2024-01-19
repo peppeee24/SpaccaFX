@@ -43,7 +43,8 @@ public class PlayerScreenController
         AudioManager.bottoneSuono();
 
         int PasswordField = Integer.parseInt(passwordField.getText());
-        // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA
+        // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA OPPURE UN NUMERO TROPPO LUNGO, QUANDO SI VUOLE INSERIRE IL CODICE DELLA PARTITA PER ENTRARE.
+        // TODO SISTEMARE ANCHE IL FATTO CHE LA CHIAVE TI PORTI INDIETRO DI MENU, ANCHE NEI TORNEI
 
         System.out.println("Codice per accedere PARTITA: " + this.passwordPartita);
         System.out.println("Codice INSERITO:" + PasswordField);

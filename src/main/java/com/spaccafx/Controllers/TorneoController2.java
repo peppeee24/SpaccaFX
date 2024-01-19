@@ -653,8 +653,6 @@ public class TorneoController2 {
         partiteXTorneo.add(new Partita(4));
         Partita p = partiteXTorneo.get(contatorePartita);
 
-        // TODO CONTROLLARE STO CODICE
-
         if (getNumeroGiocatori() == 1) {
             System.out.println("Nome giocatore 1: " + getNomeGiocatore1());
             p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));

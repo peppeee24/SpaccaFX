@@ -46,7 +46,7 @@ public class TorneoScreenController
         AudioManager.bottoneSuono();
 
         int PasswordField = Integer.parseInt(passwordField.getText());
-        // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA
+        // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA (VEDI PLAYER SCREEN CONTROLLER)
 
         System.out.println("Codice per accedere TORNEO: " + this.passwordTorneo);
         System.out.println("Codice INSERITO:" + PasswordField);

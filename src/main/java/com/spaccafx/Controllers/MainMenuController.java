@@ -105,7 +105,6 @@ public class MainMenuController {
 
     public void setting(MouseEvent mouseEvent) throws IOException {
         AudioManager.bottoneSuono();
-        // TODO fare pagina per impotazioni audio e crediti
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("Audio.fxml"));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Indietro.load());

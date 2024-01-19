@@ -689,7 +689,7 @@ public class PartitaClassicaController2 {
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
             GiocatoriPartita.add(new Giocatore(getNomeGiocatore4()));
         } else {
-            // TODO sistemare qui
+
         }
 
 
