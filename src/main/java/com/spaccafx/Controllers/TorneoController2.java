@@ -440,11 +440,40 @@ public class TorneoController2 {
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
         AudioManager.bottoneSuono();
-        String pn1 =playerName1.getText();
-        String pn2= playerName2.getText();
-        String pn3 = playerName3.getText();
-        String pn4 = playerName4.getText();
 
+        String pn1 ="";
+        String pn2= "";
+        String pn3 = "";
+        String pn4 = "";
+
+        switch(getNumeroGiocatori()){ //non è un granchè ma risolve il problema dei giocatori quando sono null, cossì posSIAKMO FARE LED CONDIZIONE PROSSIME
+            case 1:
+                pn1 =playerName1.getText();
+                pn2= "verijhvnerthunbv";
+                pn3 = "gbwoktermbojqet";
+                pn4 = "rtbkmitrbmirt";
+                break;
+            case 2:
+                pn1 =playerName1.getText();
+                pn2= playerName2.getText();
+                pn3 = "dfbijmq9obm";
+                pn4 = "eobtjmvortejmgb9uipw";
+                break;
+            case 3:
+                pn1 =playerName1.getText();
+                pn2= playerName2.getText();
+                pn3 = playerName3.getText();
+                pn4 = "rgbkeito0qbkjio9wjg";
+                break;
+            case 4:
+                pn1 =playerName1.getText();
+                pn2= playerName2.getText();
+                pn3 = playerName3.getText();
+                pn4 = playerName4.getText();
+                break;
+            default:
+                break;
+        }
 
         if (!(pn1.equalsIgnoreCase(pn2)   && pn1.equalsIgnoreCase(pn3)  && pn1.equalsIgnoreCase(pn4)  && pn2.equalsIgnoreCase(pn3)   && pn2.equalsIgnoreCase(pn4)  && pn3.equalsIgnoreCase(pn4) )) {
             System.out.println(getNomeGiocatore1() + getNomeGiocatore2() + getNomeGiocatore3() + getNomeGiocatore4());
@@ -494,15 +523,13 @@ public class TorneoController2 {
 
             }
             this.nascondiBot();
+
             AudioManager.leaderboardSuono();
             AlertController.showWarning("I nomi sono stati salvati con successo!");
-
         } else {
             AudioManager.erroreSuono();
             AlertController.showErrore("Non ci possono essere giocatori con lo stesso nome, RIPROVA ");
-
         }
-
     }
 
 

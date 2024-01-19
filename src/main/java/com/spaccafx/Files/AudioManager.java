@@ -76,13 +76,13 @@ File sound =new File(risorsa.toURI());
     public static void dadoSuono () {
         //   if(suoniON.isSelected()) {
         try {
-            URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/dice2.wav");
+            URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/dice.wav");
             File sound =new File(risorsa.toURI());
             Clip c = AudioSystem.getClip();
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono dado" + e.getMessage());
+            System.out.println("Errore nella riproduzione del suono dado " + e.getMessage());
         }
         // }
     }
@@ -173,13 +173,13 @@ File sound =new File(risorsa.toURI());
     public static void probabilitaSuono () {
         //   if(suoniON.isSelected()) {
         try {
-            URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/prob2.wav");
+            URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/Game/probabilita.wav");
             File sound =new File(risorsa.toURI());
             Clip c = AudioSystem.getClip();
             c.open(AudioSystem.getAudioInputStream(sound));
             c.start();
         } catch (Exception e) {
-            System.out.println("Errore nella riproduzione del suono probabilità" + e.getMessage());
+            System.out.println("Errore nella riproduzione del suono probabilità "  + e.getMessage());
         }
         // }
     }
