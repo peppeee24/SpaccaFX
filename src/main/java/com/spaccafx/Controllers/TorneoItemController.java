@@ -96,7 +96,7 @@ public class TorneoItemController
         try
         {
             AudioManager.bottoneSuono();
-            AlertController.showWarning("Caricamento torneo in corso");
+            //AlertController.showWarning("Caricamento torneo in corso");
             FXMLLoader preTorneoScreen = new FXMLLoader(Spacca.class.getResource("PreTorneo.fxml"));
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

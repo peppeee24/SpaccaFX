@@ -440,33 +440,68 @@ public class TorneoController2 {
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
         AudioManager.bottoneSuono();
-        System.out.println("Salvo i nomi");
-        switch (getNumeroGiocatori()) {
-            case 1:
-                setNomeGiocatore1();
-                break;
-            case 2:
-                setNomeGiocatore1();
-                setNomeGiocatore2();
-                break;
-            case 3:
-                setNomeGiocatore1();
-                setNomeGiocatore2();
-                setNomeGiocatore3();
-                break;
-            case 4:
-                setNomeGiocatore1();
-                setNomeGiocatore2();
-                setNomeGiocatore3();
-                setNomeGiocatore4();
-                break;
-            default:
-                break;
+        String pn1 =playerName1.getText();
+        String pn2= playerName2.getText();
+        String pn3 = playerName3.getText();
+        String pn4 = playerName4.getText();
 
+
+        if (!(pn1.equalsIgnoreCase(pn2)   && pn1.equalsIgnoreCase(pn3)  && pn1.equalsIgnoreCase(pn4)  && pn2.equalsIgnoreCase(pn3)   && pn2.equalsIgnoreCase(pn4)  && pn3.equalsIgnoreCase(pn4) )) {
+            System.out.println(getNomeGiocatore1() + getNomeGiocatore2() + getNomeGiocatore3() + getNomeGiocatore4());
+
+            switch (getNumeroGiocatori()) {
+                case 1:
+                    if(!(pn1.equals(null))) {
+                        setNomeGiocatore1();
+                    }else {
+                        AudioManager.erroreSuono();
+                        AlertController.showErrore("Devi impostare il nome del giocatore");
+                    }
+                    break;
+                case 2:
+                    if(!(pn1.equals(null) && pn2.equals(null))) {
+                        setNomeGiocatore1();
+                        setNomeGiocatore2();
+                    }else {
+                        AudioManager.erroreSuono();
+                        AlertController.showErrore("Devi impostare il nome del giocatore");
+                    }
+                    break;
+                case 3:
+                    if(!(pn1.equals(null) && pn2.equals(null) && pn3.equals(null))) {
+                        setNomeGiocatore1();
+                        setNomeGiocatore2();
+                        setNomeGiocatore3();
+                    }else {
+                        AudioManager.erroreSuono();
+                        AlertController.showErrore("Devi impostare il nome del giocatore");
+                    }
+                    break;
+                case 4:
+                    if(!(pn1.equals(null) && pn2.equals(null) && pn3.equals(null) && pn4.equals(null))) {
+                        setNomeGiocatore1();
+                        setNomeGiocatore2();
+                        setNomeGiocatore3();
+                        setNomeGiocatore4();
+                    }else {
+                        AudioManager.erroreSuono();
+                        AlertController.showErrore("Devi impostare il nome del giocatore");
+                    }
+                    break;
+                default:
+                    break;
+
+
+            }
+            this.nascondiBot();
+            AudioManager.leaderboardSuono();
+            AlertController.showWarning("I nomi sono stati salvati con successo!");
+
+        } else {
+            AudioManager.erroreSuono();
+            AlertController.showErrore("Non ci possono essere giocatori con lo stesso nome, RIPROVA ");
 
         }
-        this.nascondiBot();
-
 
     }
 
