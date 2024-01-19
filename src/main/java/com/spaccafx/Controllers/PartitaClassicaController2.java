@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,6 +41,9 @@ public class PartitaClassicaController2 {
 
     @FXML
     Tab playerTab, botTbb, creaTab;
+
+    @FXML
+    Button generaCodiceButton, inviaButton;
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu, viteMenu, carteNormaliMenu,carteSpecialiMenu;
@@ -77,6 +81,9 @@ public class PartitaClassicaController2 {
 
         this.codiceP = 0;
         this.passwordP = 0;
+
+        inviaButton.setVisible(false);
+        generaCodiceButton.setVisible(true);
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -564,6 +571,8 @@ public class PartitaClassicaController2 {
 
 
             AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
+            generaCodiceButton.setVisible(false);
+            inviaButton.setVisible(true);
 
 
         } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
@@ -654,7 +663,7 @@ public class PartitaClassicaController2 {
         //P.aggiungiListaGiocatori(GiocatoriPartita);
 
         // creiamo il salvataggio della nuova partita
-        System.out.println("DEBUG: " + numeroCarteNormali + " -------  " + numeroCarteSpeciali + " -------  " + numeroVite);
+        //System.out.println("DEBUG: " + numeroCarteNormali + " -------  " + numeroCarteSpeciali + " -------  " + numeroVite);
         FileManager.creaPartitaSuFile(this.codiceP, this.passwordP, GiocatoriPartita, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
 
 

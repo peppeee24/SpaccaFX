@@ -223,6 +223,7 @@ public class FileManager
     public static int creaCodicePartitaUnico()
     {
         int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
+        int codice = 0;
 
         try {
             if (!partiteFile.exists()) {
@@ -237,14 +238,15 @@ public class FileManager
 
             for (int i = 1; i <= maxTentativi; i++) {
                 boolean codeExists = false;
+                codice = (int) (1 + Math.random() * maxTentativi);
 
                 for (Object partitaObject : partiteArray) {
                     JSONObject partitaJSON = (JSONObject) partitaObject;
                     int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
 
-                    if (idPartita == i)
+                    if (idPartita == codice)
                     {
-                        System.out.println("Il codice che ho generato " + i + " e gia associato ad una partita, ne creo un altro.");
+                        System.out.println("Il codice che ho generato " + codice + " e gia associato ad una partita, ne creo un altro.");
                         codeExists = true;
                         break; // Il codice esiste, passa al successivo
                     }
@@ -252,8 +254,8 @@ public class FileManager
 
                 if (!codeExists)
                 {
-                    System.out.println("Il codice che ho generato univoco della partita e: " + i);
-                    return i; // Il codice è unico, restituiscilo
+                    System.out.println("Il codice che ho generato univoco della partita e: " + codice);
+                    return codice; // Il codice è unico, restituiscilo
                 }
             }
 
@@ -270,6 +272,7 @@ public class FileManager
     public static int creaPasswordPartitaUnica()
     {
         int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
+        int password = 0;
 
         try {
             if (!partiteFile.exists()) {
@@ -284,14 +287,15 @@ public class FileManager
 
             for (int i = 1; i <= maxTentativi; i++) {
                 boolean codeExists = false;
+                password = (int) (1 + Math.random() * maxTentativi);
 
                 for (Object partitaObject : partiteArray) {
                     JSONObject partitaJSON = (JSONObject) partitaObject;
                     int passwordPartita = Integer.parseInt(partitaJSON.get("Password").toString());
 
-                    if (passwordPartita == i)
+                    if (passwordPartita == password)
                     {
-                        System.out.println("La password che ho generato " + i + " e gia associato ad una partita, ne creo un altra.");
+                        System.out.println("La password che ho generato " + password + " e gia associato ad una partita, ne creo un altra.");
                         codeExists = true;
                         break; // Il codice esiste, passa al successivo
                     }
@@ -299,8 +303,8 @@ public class FileManager
 
                 if (!codeExists)
                 {
-                    System.out.println("La password che ho generato univoca della partita e: " + i);
-                    return i; // Il codice è unico, restituiscilo
+                    System.out.println("La password che ho generato univoca della partita e: " + password);
+                    return password; // Il codice è unico, restituiscilo
                 }
             }
 
@@ -708,9 +712,10 @@ public class FileManager
     public static int creaCodiceTorneoUnico()
     {
         int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
+        int codice = 0;
 
         try {
-            if (!partiteFile.exists()) {
+            if (!torneiFile.exists()) {
                 return (int) (1 + Math.random() * maxTentativi); // Se il file non esiste, genera casualmente un codice
             }
 
@@ -722,14 +727,15 @@ public class FileManager
 
             for (int i = 1; i <= maxTentativi; i++) {
                 boolean codeExists = false;
+                codice = (int) (1 + Math.random() * maxTentativi);
 
                 for (Object partitaObject : partiteArray) {
                     JSONObject partitaJSON = (JSONObject) partitaObject;
                     int idPartita = Integer.parseInt(partitaJSON.get("Id_Torneo").toString());
 
-                    if (idPartita == i)
+                    if (idPartita == codice)
                     {
-                        System.out.println("Il codice che ho generato " + i + " e gia associato ad un torneo, ne creo un altro.");
+                        System.out.println("Il codice che ho generato " + codice + " e gia associato ad un torneo, ne creo un altro.");
                         codeExists = true;
                         break; // Il codice esiste, passa al successivo
                     }
@@ -737,8 +743,8 @@ public class FileManager
 
                 if (!codeExists)
                 {
-                    System.out.println("Il codice che ho generato univoco del torneo e: " + i);
-                    return i; // Il codice è unico, restituiscilo
+                    System.out.println("Il codice che ho generato univoco del torneo e: " + codice);
+                    return codice; // Il codice è unico, restituiscilo
                 }
             }
 
@@ -755,9 +761,10 @@ public class FileManager
     public static int creaPasswordTorneoUnico()
     {
         int maxTentativi = 9999; // Massimo numero di tentativi per generare un codice unico
+        int password = 0;
 
         try {
-            if (!partiteFile.exists()) {
+            if (!torneiFile.exists()) {
                 return (int) (1 + Math.random() * maxTentativi); // Se il file non esiste, genera casualmente un codice
             }
 
@@ -769,14 +776,15 @@ public class FileManager
 
             for (int i = 1; i <= maxTentativi; i++) {
                 boolean codeExists = false;
+                password = (int) (1 + Math.random() * maxTentativi);
 
                 for (Object partitaObject : partiteArray) {
                     JSONObject partitaJSON = (JSONObject) partitaObject;
                     int idPartita = Integer.parseInt(partitaJSON.get("Password").toString());
 
-                    if (idPartita == i)
+                    if (idPartita == password)
                     {
-                        System.out.println("La password che ho generato " + i + " e gia associato ad un torneo, ne creo un altra.");
+                        System.out.println("La password che ho generato " + password + " e gia associato ad un torneo, ne creo un altra.");
                         codeExists = true;
                         break; // Il codice esiste, passa al successivo
                     }
@@ -784,8 +792,8 @@ public class FileManager
 
                 if (!codeExists)
                 {
-                    System.out.println("La password che ho generato univoca del torneo e: " + i);
-                    return i; // Il codice è unico, restituiscilo
+                    System.out.println("La password che ho generato univoca del torneo e: " + password);
+                    return password; // Il codice è unico, restituiscilo
                 }
             }
 

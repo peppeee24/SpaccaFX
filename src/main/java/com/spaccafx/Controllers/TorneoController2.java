@@ -46,7 +46,9 @@ public class TorneoController2 {
 
     @FXML
     ImageView oneLabel, twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
-    Button inviaButton, generaCodiceTorneoButton, generaCodiceButton;
+
+    @FXML
+    Button inviaButton, generaCodiceTorneoButton;
 
     // creo bot per settare nomi/ difficolta
     EasyBot E = new EasyBot(); // TODO NON VA BENE
@@ -75,6 +77,9 @@ public class TorneoController2 {
 
         this.passwordT = 0;
         this.codiceT = 0;
+
+        inviaButton.setVisible(false);
+        generaCodiceTorneoButton.setVisible(true);
     }
 
 
@@ -532,8 +537,6 @@ public class TorneoController2 {
 
         AlertController.showWarning("Attenzione: Attendi Caricamento");
 
-
-        //this.T = new Torneo(16);
         this.codiceT = FileManager.creaCodiceTorneoUnico();
         this.passwordT = FileManager.creaPasswordTorneoUnico();
 
@@ -544,7 +547,8 @@ public class TorneoController2 {
 
         AlertController.showWarning("Codice torneo generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
 
-
+        generaCodiceTorneoButton.setVisible(false);
+        inviaButton.setVisible(true);
     }
 
     public void impostaTorneo(ActionEvent actionEvent) throws IOException {
