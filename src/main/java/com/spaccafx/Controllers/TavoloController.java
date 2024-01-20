@@ -219,7 +219,7 @@ public class TavoloController {
 
     public void openLeaderboard() {
         if (leaderboardStage == null) {
-            // TODO METTERE SUONO APERTURA LEADERBOARD
+            AudioManager.leaderboardSuono();
             try {
                 // Carica il file FXML per la finestra della classifica
                 FXMLLoader loaderLeaderboard = new FXMLLoader(Spacca.class.getResource("leaderboard.fxml"));

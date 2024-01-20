@@ -541,6 +541,12 @@ public class PartitaClassicaController2 {
                 pn3 = playerName3.getText();
                 pn4 = playerName4.getText();
                 break;
+            case 0:
+                pn1 ="fjhrkspvrjhhhfkwpvf";
+                pn2= "verijhvnerthunbv";
+                pn3 = "gbwoktermbojqet";
+                pn4 = "rtbkmitrbmirt";
+                break;
             default:
                 break;
         }
@@ -598,6 +604,10 @@ public class PartitaClassicaController2 {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
+                    break;
+                case 0:
+                    AlertController.showWarning("Non hai impostato giocatori, la partita sarà governata da solo bot");
+                    enableBotTab();
                     break;
                 default:
                     break;

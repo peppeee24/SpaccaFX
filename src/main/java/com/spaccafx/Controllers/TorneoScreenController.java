@@ -44,9 +44,9 @@ public class TorneoScreenController
     public void loginAction(ActionEvent actionEvent) throws IOException // bottone inizia
     {
         AudioManager.bottoneSuono();
-
+try{
         int PasswordField = Integer.parseInt(passwordField.getText());
-        // TODO SISTEMARE ERRORE DI CONVERSIONE NEL CASO INSERISCA UNA STRINGA (VEDI PLAYER SCREEN CONTROLLER)
+
 
         System.out.println("Codice per accedere TORNEO: " + this.passwordTorneo);
         System.out.println("Codice INSERITO:" + PasswordField);
@@ -81,6 +81,11 @@ public class TorneoScreenController
 
             AlertController.showErrore("Errore: Codice partita Errato!");
         }
+} catch (NumberFormatException e) {
+    // Gestione dell'eccezione nel caso in cui il testo non sia un numero
+    AudioManager.erroreSuono();
+    AlertController.showErrore("Errore: Inserisci un numero valido per la password!");
+}
     }
 
 

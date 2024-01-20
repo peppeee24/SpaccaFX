@@ -473,6 +473,12 @@ public class TorneoController2 {
                 pn3 = playerName3.getText();
                 pn4 = playerName4.getText();
                 break;
+            case 0:
+                pn1 ="fjhrkspvrjhhhfkwpvf";
+                pn2= "verijhvnerthunbv";
+                pn3 = "gbwoktermbojqet";
+                pn4 = "rtbkmitrbmirt";
+                break;
             default:
                 break;
         }
@@ -531,6 +537,10 @@ public class TorneoController2 {
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
                     break;
+                case 0:
+                    AlertController.showWarning("Non hai impostato giocatori, la partita sarà governata da solo bot");
+                    enableBotTab();
+                    break;
                 default:
                     break;
 
@@ -547,7 +557,7 @@ public class TorneoController2 {
     }
 
     private void enableBotTab(){
-        if(getNumeroGiocatori()!=4) {
+        if(getNumeroGiocatori()!=4 || getNumeroGiocatori()==0) {
             botTab.setDisable(false);
         }
     }
@@ -633,6 +643,7 @@ public class TorneoController2 {
 
     public void impostaTorneo(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
+        // TODO errore nella creazione del codice e password della partita
         FileManager.creaTorneoSuFile(this.codiceT, this.passwordT, this.partiteXTorneo, GameType.TORNEO, GameStatus.STARTED, this.numeroCarteNormali, this.numeroCarteSpeciali, this.numeroVite);
 
 

@@ -85,7 +85,7 @@ public class CartaProbabilita extends Carta
                         System.out.println("[PROBABILITA] " + currentGiocatore.getNome() + " TIRA IL DADO!");
 
                         int valoreDadoNew = partita.lancioDadoSingolo();
-                        TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos()); // TODO DA CAPIRE
+                        TC.rollLite(valoreDadoNew, partita.getCurrentGiocatorePos()); // TODO BANNER VITA EXTRA PROBABILITA
                         System.out.println("[PROBABILITA] Valore dado: " + valoreDadoNew);
 
 

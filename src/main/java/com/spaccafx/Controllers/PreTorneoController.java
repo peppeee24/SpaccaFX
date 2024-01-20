@@ -168,6 +168,7 @@ public class PreTorneoController {
                     }
                 } else if (i == 4) {
                     // TODO capire come gestire il round finale
+
                 }
 
                 // Imposta nome e vite
