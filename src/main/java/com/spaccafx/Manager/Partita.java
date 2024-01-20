@@ -69,7 +69,7 @@ public class Partita {
         this.isGameRunning = false;
         this.cDistaccoMazziere = 0;
 
-        this.telegramBot = new SpaccaTGBot(); // TODO CAMBIARE INIZILIAZZAZIONE BOT, DA METTERE SOLO QUANDO SI AVVIA IL PROGRAMMA E NON OGNI VOLTA CHE SI CREA UNA PARTITA
+        this.telegramBot = new SpaccaTGBot();
 
     }
 

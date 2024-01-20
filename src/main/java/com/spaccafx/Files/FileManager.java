@@ -1163,8 +1163,6 @@ public class FileManager
         return false;
     }
 
-
-    // TODO SISTEMARE E CONTROLLARE TUTTO
     public static boolean cambiaDatiSingolaPartitaTorneo(JSONObject torneoJSON, Partita partitaToSave, int currentMatch, JSONObject root)
     {
         JSONObject partiteObj = (JSONObject) torneoJSON.get("Partite");
@@ -1445,18 +1443,26 @@ public class FileManager
 
     public static Partita restituisciFinalePartitaTorneo(JSONObject torneoJSON)
     {
-        // Estrarre i dati dall'oggetto JSON generici del torneo
-        int maxCarteNormali = Integer.parseInt(torneoJSON.get("MaxCarteNormali").toString()); // prendo il max carte normali
-        int maxCarteSpeciali = Integer.parseInt(torneoJSON.get("MaxCarteSpeciali").toString()); // prendo il max carte speciali
+        try
+        {
+            // Estrarre i dati dall'oggetto JSON generici del torneo
+            int maxCarteNormali = Integer.parseInt(torneoJSON.get("MaxCarteNormali").toString()); // prendo il max carte normali
+            int maxCarteSpeciali = Integer.parseInt(torneoJSON.get("MaxCarteSpeciali").toString()); // prendo il max carte speciali
 
-        Partita p = convertiJSONAPartitaFinaleTorneo(torneoJSON);
+            Partita p = convertiJSONAPartitaFinaleTorneo(torneoJSON);
 
-        System.out.println("partita " + p.giocatori.get(0).getNome());
+            System.out.println("partita " + p.giocatori.get(0).getNome());
 
-        p.setMaxCarteSpeciali(maxCarteSpeciali);
-        p.setMaxCarteNormali(maxCarteNormali);
+            p.setMaxCarteSpeciali(maxCarteSpeciali);
+            p.setMaxCarteNormali(maxCarteNormali);
 
-        return p;
+            return p;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
     }
 
 
@@ -1464,96 +1470,104 @@ public class FileManager
     {
         JSONObject partitaObject = (JSONObject) torneoJSON.get("PartitaFinale");
 
-        // Estrarre i dati dall'oggetto JSON e creare un oggetto Partita
-        int currentGioocatorePos = Integer.parseInt(partitaObject.get("CurrentGiocatore").toString()); // prendo giocatore attuale
-        int posMazziere = Integer.parseInt(partitaObject.get("PosMazziere").toString()); // prendo pos mazziere
-        boolean isGameRunning = Boolean.parseBoolean(partitaObject.get("isGameRunning").toString()); // prendo pos mazziere
-        GameStatus gameStatus = GameStatus.valueOf((String) partitaObject.get("Stato"));  // prendo stato
-        GameType gameType = GameType.valueOf((String) partitaObject.get("Tipo"));  // prendo stato
-        int cDistaccoMazziere = Integer.parseInt(partitaObject.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
-        boolean cartaGiaScambiata = Boolean.parseBoolean(partitaObject.get("cartaGiaScambiata").toString()); // prendo se il player ha gia fatto lo scambio o no
-        int currentRound = Integer.parseInt(partitaObject.get("Round").toString()); // prendo il round attuale della partita
-
-
-        // Esempio: crea una nuova istanza di Partita con i dati estratti
-        Partita partitaFinale = new Partita(4);
-        partitaFinale.setPartitaStatus(gameStatus); // impostiamo lo stato che prendiamo
-        partitaFinale.setCurrentGiocatorePos(currentGioocatorePos);
-        partitaFinale.setPosMazziere(posMazziere);
-        partitaFinale.setIsGameRunning(isGameRunning);
-        partitaFinale.setDistaccoMazziere(cDistaccoMazziere);
-        partitaFinale.setCartaGiaScambiata(cartaGiaScambiata);
-        partitaFinale.setCurrentRound(currentRound);
-        partitaFinale.setGameType(gameType);
-
-        JSONObject giocatoriObject = (JSONObject) partitaObject.get("Giocatori");
-
-        // Aggiungi giocatori alla partita
-        for (Object giocatoreKey : giocatoriObject.keySet())
+        try
         {
-            String nomeGiocatore = (String) giocatoreKey;
-            JSONObject giocatoreJSON = (JSONObject) giocatoriObject.get(nomeGiocatore);
+            // Estrarre i dati dall'oggetto JSON e creare un oggetto Partita
+            int currentGioocatorePos = Integer.parseInt(partitaObject.get("CurrentGiocatore").toString()); // prendo giocatore attuale
+            int posMazziere = Integer.parseInt(partitaObject.get("PosMazziere").toString()); // prendo pos mazziere
+            boolean isGameRunning = Boolean.parseBoolean(partitaObject.get("isGameRunning").toString()); // prendo pos mazziere
+            GameStatus gameStatus = GameStatus.valueOf((String) partitaObject.get("Stato"));  // prendo stato
+            GameType gameType = GameType.valueOf((String) partitaObject.get("Tipo"));  // prendo stato
+            int cDistaccoMazziere = Integer.parseInt(partitaObject.get("cDistaccoMazziere").toString()); // prendo il distacco del mazziere
+            boolean cartaGiaScambiata = Boolean.parseBoolean(partitaObject.get("cartaGiaScambiata").toString()); // prendo se il player ha gia fatto lo scambio o no
+            int currentRound = Integer.parseInt(partitaObject.get("Round").toString()); // prendo il round attuale della partita
 
-            String nomePlayer = giocatoreJSON.get("Nome").toString();
-            int vitaExtra = Integer.parseInt(giocatoreJSON.get("Vita-Extra").toString());
-            int vite = Integer.parseInt(giocatoreJSON.get("Vite").toString());
-            String istanza = giocatoreJSON.get("Istanza").toString();
-            RuoloGiocatore ruoloGiocatore = RuoloGiocatore.valueOf((String) giocatoreJSON.get("Ruolo"));
-            int playerRounds = Integer.parseInt(giocatoreJSON.get("PlayerRounds").toString());
 
-            IGiocatore giocatore = null;
+            // Esempio: crea una nuova istanza di Partita con i dati estratti
+            Partita partitaFinale = new Partita(4);
+            partitaFinale.setPartitaStatus(gameStatus); // impostiamo lo stato che prendiamo
+            partitaFinale.setCurrentGiocatorePos(currentGioocatorePos);
+            partitaFinale.setPosMazziere(posMazziere);
+            partitaFinale.setIsGameRunning(isGameRunning);
+            partitaFinale.setDistaccoMazziere(cDistaccoMazziere);
+            partitaFinale.setCartaGiaScambiata(cartaGiaScambiata);
+            partitaFinale.setCurrentRound(currentRound);
+            partitaFinale.setGameType(gameType);
 
-            switch (istanza.toUpperCase())
+            JSONObject giocatoriObject = (JSONObject) partitaObject.get("Giocatori");
+
+            // Aggiungi giocatori alla partita
+            for (Object giocatoreKey : giocatoriObject.keySet())
             {
-                case "GIOCATORE":   giocatore = new Giocatore(nomePlayer); // crea il giocatore in base all istanza
-                    break;
-                case "ADVANCEDBOT": giocatore = new AdvancedBot(nomePlayer); break;
-                case "EASYBOT": giocatore = new EasyBot(nomePlayer); break;
-                default: giocatore = new Giocatore(nomePlayer);
+                String nomeGiocatore = (String) giocatoreKey;
+                JSONObject giocatoreJSON = (JSONObject) giocatoriObject.get(nomeGiocatore);
+
+                String nomePlayer = giocatoreJSON.get("Nome").toString();
+                int vitaExtra = Integer.parseInt(giocatoreJSON.get("Vita-Extra").toString());
+                int vite = Integer.parseInt(giocatoreJSON.get("Vite").toString());
+                String istanza = giocatoreJSON.get("Istanza").toString();
+                RuoloGiocatore ruoloGiocatore = RuoloGiocatore.valueOf((String) giocatoreJSON.get("Ruolo"));
+                int playerRounds = Integer.parseInt(giocatoreJSON.get("PlayerRounds").toString());
+
+                IGiocatore giocatore = null;
+
+                switch (istanza.toUpperCase())
+                {
+                    case "GIOCATORE":   giocatore = new Giocatore(nomePlayer); // crea il giocatore in base all istanza
+                        break;
+                    case "ADVANCEDBOT": giocatore = new AdvancedBot(nomePlayer); break;
+                    case "EASYBOT": giocatore = new EasyBot(nomePlayer); break;
+                    default: giocatore = new Giocatore(nomePlayer);
+                }
+
+                giocatore.setNome(nomePlayer);
+                giocatore.setVita(vite);
+                giocatore.setVitaExtra(vitaExtra);
+                giocatore.setRuolo(ruoloGiocatore);
+                giocatore.setPlayerRounds(playerRounds);
+
+                System.out.println("Giocatore: " + giocatore.getNome() );
+
+                JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
+                Carta cartaPlayer = null;
+                int valore = Integer.parseInt(cartaObject.get("Valore").toString());
+                SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
+                boolean isEffettoCartaAttivato = Boolean.parseBoolean(cartaObject.get("Attivata").toString());
+
+                Image cartaImage;
+                cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
+
+                switch (semeCarta)
+                {
+                    case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
+                        break;
+                    case SQUALO:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                        break;
+                    case PESCE:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                        break;
+                    case VERME:   cartaPlayer = new CartaNormale(valore, semeCarta);
+                        break;
+                    case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
+                        break;
+                    default:
+                        System.out.println("Errore nella ripresa di una partita!");
+                        System.exit(-1);
+                }
+
+                cartaPlayer.setCartaEffettoAttivato(isEffettoCartaAttivato);
+                cartaPlayer.setImage(cartaImage); // imposto la visuale della carta
+                giocatore.setCarta(cartaPlayer);
+
+                partitaFinale.aggiungiGiocatore(giocatore);
             }
 
-            giocatore.setNome(nomePlayer);
-            giocatore.setVita(vite);
-            giocatore.setVitaExtra(vitaExtra);
-            giocatore.setRuolo(ruoloGiocatore);
-            giocatore.setPlayerRounds(playerRounds);
-
-            System.out.println("Giocatore: " + giocatore.getNome() );
-
-            JSONObject cartaObject = (JSONObject) giocatoreJSON.get("Carta"); // prendo la carta dal player
-            Carta cartaPlayer = null;
-            int valore = Integer.parseInt(cartaObject.get("Valore").toString());
-            SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
-            boolean isEffettoCartaAttivato = Boolean.parseBoolean(cartaObject.get("Attivata").toString());
-
-            Image cartaImage;
-            cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
-
-            switch (semeCarta)
-            {
-                case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
-                    break;
-                case SQUALO:   cartaPlayer = new CartaNormale(valore, semeCarta);
-                    break;
-                case PESCE:   cartaPlayer = new CartaNormale(valore, semeCarta);
-                    break;
-                case VERME:   cartaPlayer = new CartaNormale(valore, semeCarta);
-                    break;
-                case IMPREVISTO:   cartaPlayer = new CartaImprevisto(valore, semeCarta);
-                    break;
-                default:
-                    System.out.println("Errore nella ripresa di una partita!");
-                    System.exit(-1);
-            }
-
-            cartaPlayer.setCartaEffettoAttivato(isEffettoCartaAttivato);
-            cartaPlayer.setImage(cartaImage); // imposto la visuale della carta
-            giocatore.setCarta(cartaPlayer);
-
-            partitaFinale.aggiungiGiocatore(giocatore);
+            return partitaFinale;
         }
-
-        return partitaFinale;
+        catch (Exception e) {
+        // Gestisci l'eccezione in modo appropriato, ad esempio loggandola
+        //System.err.println("Errore nel parsing del JSON della partita: " + e.getMessage());
+        return null; // Oppure lancia un'eccezione, a seconda delle tue esigenze
+        }
     }
 
     public static boolean popolaPartitaFinaleTorneo(int codiceTorneo, Partita partitaCompleted)

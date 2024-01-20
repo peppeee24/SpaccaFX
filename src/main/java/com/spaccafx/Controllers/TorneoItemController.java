@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Interface.IGiocatore;
@@ -143,9 +144,12 @@ public class TorneoItemController
                 {
                     // prendo i dati della finale
                     Partita partitaFinale = FileManager.getFinalePartitaTorneo(this.codiceTorneo);
-                    ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(4);
-                    loadSingleMatchLeaderboard(giocatoriLeaderboard, partitaFinale, leaderboardTorneoController.getGridPaneScoreboard(c));
-                    // TODO MOSTRARLO SOLO SE LA PARTITA FINALE E PRESENTE E NON CI SONO GIOCATORI NULL, ALTRIMENTI ERRORE
+
+                    if(partitaFinale != null)
+                    {
+                        ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(4);
+                        loadSingleMatchLeaderboard(giocatoriLeaderboard, partitaFinale, leaderboardTorneoController.getGridPaneScoreboard(c));
+                    }
                 }
 
 

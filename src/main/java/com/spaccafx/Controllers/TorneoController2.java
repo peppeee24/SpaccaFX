@@ -54,7 +54,7 @@ public class TorneoController2 {
     Button inviaButton, generaCodiceTorneoButton, setBotButton;
 
     // creo bot per settare nomi/ difficolta
-    EasyBot E = new EasyBot(); // TODO NON VA BENE
+    EasyBot E = new EasyBot();
     AdvancedBot A = new AdvancedBot();
     ArrayList<Partita> partiteXTorneo;
 
