@@ -43,7 +43,7 @@ public class PartitaClassicaController2 {
     Tab playerTab, botTab, creaTab,impostazioniTab;
 
     @FXML
-    Button generaCodiceButton, inviaButton;
+    Button generaCodiceButton, inviaButton,setBotButton;
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu, viteMenu, carteNormaliMenu, carteSpecialiMenu;
@@ -627,12 +627,11 @@ public class PartitaClassicaController2 {
 
     private void enableBotTab(){
         if(getNumeroGiocatori()==4) {
-            //creaTab.setDisable(false);
+
             impostazioniTab.setDisable(false);
         } else {
             botTab.setDisable(false);
-            //   creaTab.setDisable(true);
-            //  impostazioniTab.setDisable(true);
+
         }
     }
     public void indietro(MouseEvent mouseEvent) throws IOException {

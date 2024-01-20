@@ -5,6 +5,7 @@ import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Enums.GameType;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
+import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
 import com.spaccafx.Player.EasyBot;
@@ -23,6 +24,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TorneoController2 {
 
@@ -48,7 +51,7 @@ public class TorneoController2 {
     ImageView oneLabel, twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
     @FXML
-    Button inviaButton, generaCodiceTorneoButton;
+    Button inviaButton, generaCodiceTorneoButton, setBotButton;
 
     // creo bot per settare nomi/ difficolta
     EasyBot E = new EasyBot(); // TODO NON VA BENE
@@ -189,7 +192,7 @@ public class TorneoController2 {
     public void salvaImpostazioni(ActionEvent actionEvent) throws IOException { // PLAY
 
         AudioManager.bottoneSuono();
-        if(numeroVite!=0 && numeroCarteSpeciali!=0 && numeroCarteNormali!=0){
+        if (numeroVite != 0 && numeroCarteSpeciali != 0 && numeroCarteNormali != 0) {
             System.out.println("Salvo il numero di vite " + getNumeroVite());
             this.setNumeroVite();
             System.out.println("Salvo il numero di carte speciali " + getNumeroCarteSpeciali());
@@ -200,6 +203,7 @@ public class TorneoController2 {
             playerTab.setDisable(false);
             //botTab.setDisable(false);
         } else {
+            AudioManager.erroreSuono();
             AlertController.showErrore("Inserisci tutti i valori correttamente");
         }
     }
@@ -441,41 +445,42 @@ public class TorneoController2 {
 
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
+
         AudioManager.bottoneSuono();
 
-        String pn1 ="";
-        String pn2= "";
+        String pn1 = "";
+        String pn2 = "";
         String pn3 = "";
         String pn4 = "";
 
-        switch(getNumeroGiocatori()){ //non è un granchè ma risolve il problema dei giocatori quando sono null, cossì posSIAKMO FARE LED CONDIZIONE PROSSIME
+        switch (getNumeroGiocatori()) { //non è un granchè ma risolve il problema dei giocatori quando sono null, cossì posSIAKMO FARE LED CONDIZIONE PROSSIME
             case 1:
-                pn1 =playerName1.getText();
-                pn2= "verijhvnerthunbv";
+                pn1 = playerName1.getText();
+                pn2 = "verijhvnerthunbv";
                 pn3 = "gbwoktermbojqet";
                 pn4 = "rtbkmitrbmirt";
                 break;
             case 2:
-                pn1 =playerName1.getText();
-                pn2= playerName2.getText();
+                pn1 = playerName1.getText();
+                pn2 = playerName2.getText();
                 pn3 = "dfbijmq9obm";
                 pn4 = "eobtjmvortejmgb9uipw";
                 break;
             case 3:
-                pn1 =playerName1.getText();
-                pn2= playerName2.getText();
+                pn1 = playerName1.getText();
+                pn2 = playerName2.getText();
                 pn3 = playerName3.getText();
                 pn4 = "rgbkeito0qbkjio9wjg";
                 break;
             case 4:
-                pn1 =playerName1.getText();
-                pn2= playerName2.getText();
+                pn1 = playerName1.getText();
+                pn2 = playerName2.getText();
                 pn3 = playerName3.getText();
                 pn4 = playerName4.getText();
                 break;
             case 0:
-                pn1 ="fjhrkspvrjhhhfkwpvf";
-                pn2= "verijhvnerthunbv";
+                pn1 = "fjhrkspvrjhhhfkwpvf";
+                pn2 = "verijhvnerthunbv";
                 pn3 = "gbwoktermbojqet";
                 pn4 = "rtbkmitrbmirt";
                 break;
@@ -483,56 +488,68 @@ public class TorneoController2 {
                 break;
         }
 
-        if (!(pn1.equalsIgnoreCase(pn2)   || pn1.equalsIgnoreCase(pn3)  || pn1.equalsIgnoreCase(pn4)  || pn2.equalsIgnoreCase(pn3)   || pn2.equalsIgnoreCase(pn4)  || pn3.equalsIgnoreCase(pn4) )) {
+        if (!(pn1.equalsIgnoreCase(pn2) || pn1.equalsIgnoreCase(pn3) || pn1.equalsIgnoreCase(pn4) || pn2.equalsIgnoreCase(pn3) || pn2.equalsIgnoreCase(pn4) || pn3.equalsIgnoreCase(pn4))) {
             System.out.println(playerName1.getText() + playerName2.getText() + playerName3.getText() + playerName4.getText());
 
             switch (getNumeroGiocatori()) {
                 case 1:
-                    if(!(playerName1.getText().equals(""))) {
+                    if (!(playerName1.getText().equals(""))) {
+
                         setNomeGiocatore1();
                         AudioManager.leaderboardSuono();
                         AlertController.showWarning("I nomi sono stati salvati con successo!");
                         enableBotTab();
-                    }else {
+
+
+                    } else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
                     break;
                 case 2:
-                    if(!(playerName1.getText().equals("") || playerName2.getText().equals(""))) {
+                    if (!(playerName1.getText().equals("") || playerName2.getText().equals(""))) {
+
                         setNomeGiocatore1();
                         setNomeGiocatore2();
                         AudioManager.leaderboardSuono();
                         AlertController.showWarning("I nomi sono stati salvati con successo!");
                         enableBotTab();
-                    }else {
+
+
+                    } else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
                     break;
                 case 3:
-                    if(!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals(""))) {
+                    if (!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals(""))) {
+
                         setNomeGiocatore1();
                         setNomeGiocatore2();
                         setNomeGiocatore3();
                         AudioManager.leaderboardSuono();
                         AlertController.showWarning("I nomi sono stati salvati con successo!");
                         enableBotTab();
-                    }else {
+
+
+                    } else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
                     break;
                 case 4:
-                    if(!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals("") || playerName4.getText().equals(""))) {
+                    if (!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals("") || playerName4.getText().equals(""))) {
+
                         setNomeGiocatore1();
                         setNomeGiocatore2();
                         setNomeGiocatore3();
                         setNomeGiocatore4();
                         AudioManager.leaderboardSuono();
                         AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        //enableBotTab();
-                    }else {
+
+                        enableBotTab();
+                       // botTab.setDisable(true);
+                    } else {
                         AudioManager.erroreSuono();
                         AlertController.showErrore("Devi impostare il nome del giocatore");
                     }
@@ -548,7 +565,6 @@ public class TorneoController2 {
             }
             this.nascondiBot();
 
-
         } else {
             AudioManager.erroreSuono();
             AlertController.showErrore("Non ci possono essere giocatori con lo stesso o senza, RIPROVA ");
@@ -556,23 +572,56 @@ public class TorneoController2 {
 
     }
 
-    private void enableBotTab(){
-        if(getNumeroGiocatori()!=4 || getNumeroGiocatori()==0) {
+    private void enableBotTab() {
+        if (getNumeroGiocatori() != 4 || getNumeroGiocatori() == 0) {
             botTab.setDisable(false);
+        } else {
+            botTab.setDisable(false);
+            setBotButton.setVisible(false);
+            difficoltaBotMenu.setVisible(false);
+            difficoltaBotLabel.setVisible(false);
+
         }
+
     }
+
+
+    public boolean controlloNomiTotale2() {
+
+        boolean esito = true; // Imposto esito a true di default
+
+        ArrayList<Partita> p = FileManager.leggiTorneoDaFile(codiceT);
+
+        Set<String> nomiIncontrati = new HashSet<>(); // Utilizzo un set per tenere traccia dei nomi già incontrati
+
+        for (int i = 0; i < 4; i++) { // For per le partite
+            for (int j = 0; j < 4; j++) { // For per i giocatori in una partita singola
+
+                IGiocatore giocatore = p.get(i).giocatori.get(j);
+
+                String nomeGiocatore = giocatore.getNome();
+
+                // Controllo se il nome è già stato incontrato
+                if (nomiIncontrati.contains(nomeGiocatore)) {
+                    AudioManager.erroreSuono();
+                    AlertController.showErrore("Esiste già un giocatore in questo torneo chiamato: " + nomeGiocatore + ", reimposta la partita");
+                    esito = false; // Imposto esito a false se trovo un nome duplicato
+                    break; // Esco dal ciclo in quanto ho già trovato un nome duplicato
+                } else {
+                    // Aggiungo il nome al set perché l'ho incontrato ora
+                    nomiIncontrati.add(nomeGiocatore);
+                }
+            }
+            if (!esito) {
+                break; // Esco anche dal ciclo esterno se ho trovato un nome duplicato
+            }
+        }
+
+        return esito;
+    }
+
     public void setNomeGiocatore1() {
         nomeGiocatore1 = playerName1.getText();
-
-        /*
-        if(nomeGiocatore1.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Campo vuoto");
-            alert.setContentText("Inserisci un nome per continuare a giocare");
-            Optional<ButtonType> result = alert.showAndWait();
-        }
-
-         */
 
     }
 
@@ -643,16 +692,26 @@ public class TorneoController2 {
 
     public void impostaTorneo(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
-        // TODO errore nella creazione del codice e password della partita
         FileManager.creaTorneoSuFile(this.codiceT, this.passwordT, this.partiteXTorneo, GameType.TORNEO, GameStatus.STARTED, this.numeroCarteNormali, this.numeroCarteSpeciali, this.numeroVite);
 
+        if (controlloNomiTotale2()) {
+            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent root = playerScreen.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            FileManager.sovrascriviStatoTorneo(codiceT, GameStatus.ENDED); // TODO cancellare dal file la partita creata in caso di doppio giocatore
+            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent root = playerScreen.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
 
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent root = playerScreen.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
     }
 
 
