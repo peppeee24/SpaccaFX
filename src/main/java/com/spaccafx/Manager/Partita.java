@@ -16,6 +16,7 @@ import javafx.concurrent.Task;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+import org.telegram.telegrambots.meta.generics.TelegramBot;
 
 import java.awt.*;
 import java.io.File;
@@ -1105,6 +1106,8 @@ public class Partita {
     public int getPasswordPartita() {
         return this.passwordPartita;
     }
+
+    public SpaccaTGBot getTelegramBot(){return  this.telegramBot;}
 
     // endregion
 

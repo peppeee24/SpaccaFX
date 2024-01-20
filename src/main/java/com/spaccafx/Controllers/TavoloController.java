@@ -839,6 +839,9 @@ public class TavoloController {
                         // devo salvare tutti i miei dati della partita finita
 
                         FileManager.sovrascriviSalvataggiPartita(this.partita);
+
+                        // mando messaggio vincitore partita
+                        this.partita.getTelegramBot().messaggioVincitorePartita(this.partita.getCodicePartita(), this.partita.getVincitore().getNome());
                         ritornaMenuPartiteSingole();
 
                     } else {
@@ -849,10 +852,12 @@ public class TavoloController {
                         {
                             // Ogni volta che finisce una partita, prendo il vincitore e lo metto gia nella partita finale!
                             FileManager.sovrascriviSalvataggiPartitaTorneo(this.partita, this.codiceTorneo, this.currentMatch); // salvo i dati della mia partita finita
+                            this.partita.getTelegramBot().messaggioVincitorePartitaTorneo(this.codiceTorneo, this.currentMatch+1, this.partita.getVincitore().getNome());
                             this.setCurrentMatch(this.currentMatch + 1);
                             FileManager.aumentaCurrentMatchTorneo(this.codiceTorneo, this.currentMatch);
                             FileManager.popolaPartitaFinaleTorneo(this.codiceTorneo, this.partita);
                         } else {
+                            this.partita.getTelegramBot().messaggioVincitoreTorneo(this.codiceTorneo, this.partita.getVincitore().getNome());
                             FileManager.sovrascriviSalvataggiPartitaFinaleTorneo(this.partita, this.codiceTorneo); // salvo i dati della mia partita finale finita
                             FileManager.sovrascriviStatoTorneo(this.codiceTorneo, GameStatus.ENDED);
                         }
