@@ -1,1 +1,708 @@
-{"Tornei":[{"MaxCarteNormali":7,"Partite":{"Partita4":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_698","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_780","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_20","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_775","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita3":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_527","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_407","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_22","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_593","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita2":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"lollo","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"gg","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"santi","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"mucca","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita1":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"gg","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"hh","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_31","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_879","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false}},"Tipo":"TORNEO","Id_Torneo":4552,"PartitaFinale":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"MaxCarteSpeciali":3,"Stato":"STARTED","NumeroPlayerVite":2,"Password":2165,"CurrentMatch":0},{"MaxCarteNormali":7,"Partite":{"Partita4":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_670","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_257","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_710","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_885","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita3":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"edewd","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"popopopo","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"qaasd","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_614","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita2":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_460","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_578","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_406","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_765","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita1":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"ggg","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"hhh","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"jjjj","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"lllll","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false}},"Tipo":"TORNEO","Id_Torneo":6771,"PartitaFinale":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":3,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"MaxCarteSpeciali":3,"Stato":"STARTED","NumeroPlayerVite":3,"Password":1361,"CurrentMatch":0},{"MaxCarteNormali":7,"Partite":{"Partita4":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_379","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_337","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_852","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"EasyBot","Nome":"EzBot_848","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita3":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_436","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_10","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_318","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"AdvancedBot","Nome":"AdvBot_646","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita2":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"cd","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"cdd","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"we","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"fg","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"Partita1":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"we","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"cdd","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"cd","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":"Giocatore","Nome":"f","Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false}},"Tipo":"TORNEO","Id_Torneo":5115,"PartitaFinale":{"cartaGiaScambiata":false,"Tipo":"TORNEO","Round":1,"CurrentGiocatore":0,"PosMazziere":0,"cDistaccoMazziere":0,"Giocatori":{"Giocatore1":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore2":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore3":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0},"Giocatore4":{"Vita-Extra":0,"Ruolo":"GIOCATORE","Istanza":null,"Nome":null,"Carta":{"Attivata":true,"Valore":1,"Seme":"VERME"},"Vite":2,"PlayerRounds":0}},"Stato":"STARTED","Vincitore":{"Istanza":"Giocatore","Nome":"TBD"},"isGameRunning":false},"MaxCarteSpeciali":2,"Stato":"ENDED","NumeroPlayerVite":2,"Password":2767,"CurrentMatch":0}]}
+{
+  "Tornei": [
+    {
+      "MaxCarteNormali": 7,
+      "Partite": {
+        "Partita4": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_862",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_936",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_422",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_655",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        },
+        "Partita3": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_430",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_346",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_368",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "AdvancedBot",
+              "Nome": "AdvBot_334",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        },
+        "Partita2": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_968",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_129",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_957",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_397",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        },
+        "Partita1": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_84",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_33",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_143",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_85",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        }
+      },
+      "Tipo": "TORNEO",
+      "Id_Torneo": 2038,
+      "PartitaFinale": {
+        "cartaGiaScambiata": false,
+        "Tipo": "TORNEO",
+        "Round": 1,
+        "CurrentGiocatore": 0,
+        "PosMazziere": 0,
+        "cDistaccoMazziere": 0,
+        "Giocatori": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          }
+        },
+        "Stato": "STARTED",
+        "Vincitore": {
+          "Istanza": "Giocatore",
+          "Nome": "TBD"
+        },
+        "isGameRunning": false
+      },
+      "MaxCarteSpeciali": 1,
+      "Stato": "STARTED",
+      "NumeroPlayerVite": 2,
+      "Password": 2565,
+      "CurrentMatch": 0
+    },
+    {
+      "MaxCarteNormali": 6,
+      "Partite": {
+        "Partita4": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "Giocatore",
+              "Nome": "ciaopne",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_780",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_751",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_778",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        },
+        "Partita3": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "Giocatore",
+              "Nome": "we",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "Giocatore",
+              "Nome": "sd",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "Giocatore",
+              "Nome": "gg",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_283",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        },
+        "Partita2": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_125",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_579",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_705",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_346",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        },
+        "Partita1": {
+          "cartaGiaScambiata": false,
+          "Tipo": "TORNEO",
+          "Round": 1,
+          "CurrentGiocatore": 0,
+          "PosMazziere": 0,
+          "cDistaccoMazziere": 0,
+          "Giocatori": {
+            "Giocatore1": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_375",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore2": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_141",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore3": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_626",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            },
+            "Giocatore4": {
+              "Vita-Extra": 0,
+              "Ruolo": "GIOCATORE",
+              "Istanza": "EasyBot",
+              "Nome": "EzBot_897",
+              "Carta": {
+                "Attivata": true,
+                "Valore": 1,
+                "Seme": "VERME"
+              },
+              "Vite": 2,
+              "PlayerRounds": 0
+            }
+          },
+          "Stato": "STARTED",
+          "Vincitore": {
+            "Istanza": "Giocatore",
+            "Nome": "TBD"
+          },
+          "isGameRunning": false
+        }
+      },
+      "Tipo": "TORNEO",
+      "Id_Torneo": 3462,
+      "PartitaFinale": {
+        "cartaGiaScambiata": false,
+        "Tipo": "TORNEO",
+        "Round": 1,
+        "CurrentGiocatore": 0,
+        "PosMazziere": 0,
+        "cDistaccoMazziere": 0,
+        "Giocatori": {
+          "Giocatore1": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore2": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore3": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          },
+          "Giocatore4": {
+            "Vita-Extra": 0,
+            "Ruolo": "GIOCATORE",
+            "Istanza": null,
+            "Nome": null,
+            "Carta": {
+              "Attivata": true,
+              "Valore": 1,
+              "Seme": "VERME"
+            },
+            "Vite": 2,
+            "PlayerRounds": 0
+          }
+        },
+        "Stato": "STARTED",
+        "Vincitore": {
+          "Istanza": "Giocatore",
+          "Nome": "TBD"
+        },
+        "isGameRunning": false
+      },
+      "MaxCarteSpeciali": 2,
+      "Stato": "STARTED",
+      "NumeroPlayerVite": 2,
+      "Password": 6391,
+      "CurrentMatch": 0
+    }
+  ]
+}

@@ -701,7 +701,7 @@ public class TorneoController2 {
             stage.setScene(scene);
             stage.show();
         } else {
-            FileManager.sovrascriviStatoTorneo(codiceT, GameStatus.ENDED); // TODO cancellare dal file la partita creata in caso di doppio giocatore
+            FileManager.eliminaTorneo(this.codiceT);
             FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = playerScreen.load();

@@ -335,6 +335,52 @@ public class FileManager
         return -1; // Valore speciale che indica un errore o impossibilità di generare un codice unico
     }
 
+    public static void eliminaPartita(int idPartita) {
+        JSONParser parser = new JSONParser();
+
+        try {
+            // Carica il file JSON
+            Object obj = parser.parse(new FileReader(partiteFile));
+
+            // Converte l'oggetto in un JSONObject
+            JSONObject jsonObject = (JSONObject) obj;
+
+            // Ottieni l'array "Partite"
+            JSONArray partiteArray = (JSONArray) jsonObject.get("Partite");
+
+            // Trova e rimuovi la partita con l'ID specificato
+            int indexToRemove = -1;
+            for (int i = 0; i < partiteArray.size(); i++) {
+                JSONObject partita = (JSONObject) partiteArray.get(i);
+                long idPartitaCorrente = (long) partita.get("Id_Partita");
+
+                if (idPartitaCorrente == idPartita) {
+                    indexToRemove = i;
+                    break;
+                }
+            }
+
+            // Rimuovi la partita se trovata
+            if (indexToRemove != -1) {
+                partiteArray.remove(indexToRemove);
+
+                // Salva le modifiche nel file JSON
+                try (FileWriter file = new FileWriter(partiteFile))
+                {
+                    file.write(jsonObject.toJSONString());
+                    System.out.println("Partita eliminata con successo.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Nessuna partita trovata con l'ID specificato.");
+            }
+
+        } catch (ParseException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // carico una determinata partita in base al codice che gli passo
     public static Partita leggiPartitaDaFile(int codicePartita)
     {
@@ -886,6 +932,54 @@ public class FileManager
         partitaFinale.put("Giocatori", giocatoriList);
         torneoJSON.put("PartitaFinale", partitaFinale);
     }
+
+    public static void eliminaTorneo(int idTorneo)
+    {
+        JSONParser parser = new JSONParser();
+
+        try {
+            // Carica il file JSON
+            Object obj = parser.parse(new FileReader(torneiFile));
+
+            // Converte l'oggetto in un JSONObject
+            JSONObject jsonObject = (JSONObject) obj;
+
+            // Ottieni l'array "Tornei"
+            JSONArray torneiArray = (JSONArray) jsonObject.get("Tornei");
+
+            // Trova e rimuovi il torneo con l'ID specificato
+            int indexToRemove = -1;
+            for (int i = 0; i < torneiArray.size(); i++)
+            {
+                JSONObject torneo = (JSONObject) torneiArray.get(i);
+                long idTorneoCorrente = (long) torneo.get("Id_Torneo");
+
+                if (idTorneoCorrente == idTorneo) {
+                    indexToRemove = i;
+                    break;
+                }
+            }
+
+            // Rimuovi il torneo se trovato
+            if (indexToRemove != -1) {
+                torneiArray.remove(indexToRemove);
+
+                // Salva le modifiche nel file JSON
+                try (FileWriter file = new FileWriter(torneiFile)) {
+                    file.write(jsonObject.toJSONString());
+                    System.out.println("Torneo eliminato con successo.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Nessun torneo trovato con l'ID specificato.");
+            }
+
+        } catch (ParseException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // carico una determinata partita in base al codice che gli passo
     public static ArrayList<Partita> leggiTorneoDaFile(int codiceTorneo)

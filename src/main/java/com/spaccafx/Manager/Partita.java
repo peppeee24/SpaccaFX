@@ -803,32 +803,6 @@ public class Partita {
 
         System.out.println("\n\t** NUOVO MAZZIERE IN CIRCOLAZIONE (" + giocatori.get(posMazziere).getNome() + ") **" + " Pos mazziere: " + posMazziere);
         TC.impostaCoroneMazziereUI();
-        // TODO impostare banne che avverte chi è il mazziere al primo round
-/*
-        Thread thread = new Thread(() -> {
-            try {
-                Platform.runLater(() -> {
-                    TC.mostraBannerAttesa("MAZZIERE", "Il mazziere è " + giocatori.get(posMazziere).getNome());
-
-                });
-
-                Thread.sleep(4000);
-
-                Platform.runLater(() -> {
-                    TC.nascondiBannerAttesa();
-
-
-                });
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        thread.start();
-
- */
-
-
     }
 
 

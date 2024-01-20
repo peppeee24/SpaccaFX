@@ -99,7 +99,7 @@ public class Spacca extends Application {
 
     public static void main(String[] args) {
         launch();
-        //InitializeTelegramBot();
+        InitializeTelegramBot();
     }
 
 
