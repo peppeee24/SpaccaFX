@@ -14,9 +14,9 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1024.0" spacing="30.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <ImageView fx:id="mainSetting" fitHeight="60.0" fitWidth="50.0" onMouseClicked="#setting" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="mainSetting" fitHeight="48.0" fitWidth="48.0" onMouseClicked="#setting" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Assets/Game/Environment/settings2.png" />
+                  <Image url="@../../Assets/Game/Environment/settingg.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

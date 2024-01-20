@@ -129,8 +129,9 @@ _Verifica che l'email sia corretta:_
 
 ## 🖥️ SOFTWARES USATI
 _Qui troverai la lista di software utilizzati_
-1. IntelliJ
-2. Asesprite
-3. SceneBuilder
-4. BFXR
-
+1. IntelliJ IDEA: https://www.jetbrains.com/idea/
+2. Asesprite: https://www.aseprite.org/
+3. PixilArt: https://www.pixilart.com/
+4. Adobe Photoshop: https://shorturl.at/bcnuN
+5. Scene Builder: https://gluonhq.com/products/scene-builder/ 
+6. Telegram: https://web.telegram.org/a/
