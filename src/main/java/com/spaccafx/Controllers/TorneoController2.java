@@ -597,7 +597,7 @@ public class TorneoController2 {
         for (int i = 0; i < 4; i++) { // For per le partite
             for (int j = 0; j < 4; j++) { // For per i giocatori in una partita singola
 
-                IGiocatore giocatore = p.get(i).giocatori.get(j);
+                IGiocatore giocatore = p.get(i).giocatori.get(j); // TODO ERRORE QUI, DA RIVEDERE
 
                 String nomeGiocatore = giocatore.getNome();
 

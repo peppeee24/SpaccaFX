@@ -98,15 +98,15 @@ public class SpaccaTGBot extends TelegramLongPollingBot
         switch ((int)(0 + Math.random() * (3 - 1)))
         {
             case 0:
-                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: "+ currentMatch + " ) Acclamate tutti il vincitore " + vincitore + ". Grazie per aver giocato!"); break;
+                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: "+ currentMatch + "/4 ) Acclamate tutti il vincitore " + vincitore + ". Grazie per aver giocato!"); break;
             case 1:
-                snd.setText(clessidra_emoji +" [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + " ) Congratulazioni " + vincitore + " per la vittoria! Buon proseguimento!"); break;
+                snd.setText(clessidra_emoji +" [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + "/4 ) Congratulazioni " + vincitore + " per la vittoria! Buon proseguimento!"); break;
             case 2:
-                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + " ) E stato troppo facile per " + vincitore + " vincere.. Ottimo lavoro!"); break;
+                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + "/4 ) E stato troppo facile per " + vincitore + " vincere.. Ottimo lavoro!"); break;
             case 3:
-                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + " ) Che giocate " + vincitore + "! Ottima vittoria!!"); break;
+                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + "/4 ) Che giocate " + vincitore + "! Ottima vittoria!!"); break;
             default:
-                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + " ) Belle mosse: " + vincitore + ". Buon proseguimento!"); break;
+                snd.setText(clessidra_emoji + " [EVENTO] (TORNEO - " + codiceTorneo + " ) ( MATCH: " + currentMatch + "/4 ) Belle mosse: " + vincitore + ". Buon proseguimento!"); break;
         }
 
         try

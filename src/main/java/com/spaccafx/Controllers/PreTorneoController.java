@@ -35,12 +35,10 @@ public class PreTorneoController {
     @FXML
     Label giocatore1, giocatore2, giocatore3, giocatore4, giocatore11, giocatore21, giocatore31, giocatore41, giocatore12, giocatore22, giocatore32, giocatore42, giocatore13, giocatore23, giocatore33, giocatore43, giocatore14, giocatore24, giocatore34, giocatore44;
     @FXML
-    Label currentPlayer, currentRound,currentPlayer1, currentRound1,currentPlayer2, currentRound2,currentPlayer3, currentRound3;
+    Label currentPlayer, currentRound, currentPlayer1, currentRound1, currentPlayer2, currentRound2, currentPlayer3, currentRound3;
 
-  @FXML
-  Tab partitaFinaleTab;
-
-
+    @FXML
+    Tab partitaFinaleTab;
 
 
     @FXML
@@ -166,8 +164,8 @@ public class PreTorneoController {
                             viteLabel = numerovite43;
                             break;
                     }
-                } else if (i == 4 && i==currentMatch) {
-             partitaFinaleTab.setDisable(false);
+                } else if (i == 4 && i == currentMatch) {
+                    partitaFinaleTab.setDisable(false);
 
                     switch (j) {
                         case 0:
@@ -223,43 +221,40 @@ public class PreTorneoController {
                 //currentRound4.setText("La partita riprenderà dal Round: " + p.get(0).getCurrentRound());
                 //currentPlayer4.setText("Toccherà al giocatore: " + p.get(0).getCurrentGiocatore().getNome());
             }
-
-
         }
     }
 
 
-        public void apriTavolo (ActionEvent actionEvent) throws IOException // bottone inizia
-        {
+    public void apriTavolo(ActionEvent actionEvent) throws IOException // bottone inizia
+    {
 
-            System.out.println("Ho cliccato sul bottone");
-            try {
-                AudioManager.bottoneSuono();
-                FXMLLoader torneoScreen = new FXMLLoader(Spacca.class.getResource("TorneoScreen.fxml"));
-
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-                Parent root = torneoScreen.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-
-                TorneoScreenController torneoScreenController = torneoScreen.getController();
-                torneoScreenController.setInfoTorneo(codiceTorneo, passwordTorneo, currentMatch);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        public void indietro (MouseEvent mouseEvent) throws IOException
-        {
+        System.out.println("Ho cliccato sul bottone");
+        try {
             AudioManager.bottoneSuono();
-            FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(Indietro.load());
+            FXMLLoader torneoScreen = new FXMLLoader(Spacca.class.getResource("TorneoScreen.fxml"));
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            Parent root = torneoScreen.load();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        }
 
+            TorneoScreenController torneoScreenController = torneoScreen.getController();
+            torneoScreenController.setInfoTorneo(codiceTorneo, passwordTorneo, currentMatch);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+    public void indietro(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
+        FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenuGiocatore.fxml"));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(Indietro.load());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+}
