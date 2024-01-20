@@ -166,10 +166,31 @@ public class PreTorneoController {
                             viteLabel = numerovite43;
                             break;
                     }
-                } else if (i == 4) {
+                } else if (i == 4 && i==currentMatch) {
                     // TODO capire come gestire il round finale
 
-
+                    switch (j) {
+                        case 0:
+                            imageView = user14;
+                            nomeLabel = giocatore14;
+                            viteLabel = numerovite14;
+                            break;
+                        case 1:
+                            imageView = user24;
+                            nomeLabel = giocatore24;
+                            viteLabel = numerovite24;
+                            break;
+                        case 2:
+                            imageView = user34;
+                            nomeLabel = giocatore34;
+                            viteLabel = numerovite34;
+                            break;
+                        case 3:
+                            imageView = user44;
+                            nomeLabel = giocatore44;
+                            viteLabel = numerovite44;
+                            break;
+                    }
 
                 }
 
