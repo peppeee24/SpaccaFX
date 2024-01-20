@@ -167,7 +167,7 @@ public class PreTorneoController {
                             break;
                     }
                 } else if (i == 4 && i==currentMatch) {
-                    // TODO capire come gestire il round finale
+             partitaFinaleTab.setDisable(false);
 
                     switch (j) {
                         case 0:
