@@ -640,7 +640,6 @@ public class TorneoController2 {
 
     }
 
-
     public String getNomeGiocatore1() {
         return nomeGiocatore1;
     }
