@@ -19,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -38,7 +40,9 @@ public class MatchItemController
     private Label partitaId;
 
     @FXML
-    private Button playButtonId, leaderboardButtonId;
+    private Button playButtonId;
+    @FXML
+    ImageView deleteMatchButton;
 
     @FXML
     private Label stateId;
@@ -227,4 +231,42 @@ public class MatchItemController
             e.printStackTrace();
         }
     }
+
+    public void deleteMatch(MouseEvent event)
+    {
+        // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
+        // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
+        // prendo le info dal json
+
+        System.out.println("[MatchItemController] Devo cancellare una determinata partita");
+
+        /*
+        try
+        {
+            AudioManager.bottoneSuono();
+
+            // TODO FARE CANCELLAZIONE PARTITE
+            FXMLLoader preGameScreen = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            Parent root = preGameScreen.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            PreGameController preGameController = preGameScreen.getController();
+            preGameController.setInfoPartita2(codicePartita, passwordPartita);
+
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+         */
+    }
+
+
 }

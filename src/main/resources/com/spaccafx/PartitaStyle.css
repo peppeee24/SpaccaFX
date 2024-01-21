@@ -11,9 +11,9 @@
 .riempiTab
 {
 
-    -fx-background-color:  #639BFF;
+    -fx-background-color:  #00AFF2;
+    -fx-font-size: 22;
     -fx-text-fill: white;
-    -fx-font-size: 18;
 }
 
 
@@ -79,7 +79,7 @@
 .LabelWhite{
    -fx-text-fill: white;
   -fx-font-family: 'Press Start 2P', sans-serif;
-   -fx-font-size: 20;
+   -fx-font-size: 18;
 
 }
 
@@ -149,7 +149,7 @@
 
 /* Imposta il colore di sfondo dell'AnchorPane su verde */
 .anchor-pane {
-    -fx-background-color: #639BFF;
+    -fx-background-color: #00AFF2;
 }
 
 .sfondo1{
