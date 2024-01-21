@@ -47,7 +47,7 @@
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font></Label>
-                              <Text layoutX="56.0" layoutY="85.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ogni partita è formata da 4 utenti che possono essere PERSONE o BOT. Le partita possono essere composte da 4 PERSONE, 4 BOT oppure da un numero misto tra PERSONE e BOT. All’inizio di ogni partita il sistema lancerà un dado per ogni utente, chi avrà il dado più alto sarà il mazziere, ovvero colui che “distribuisce” le carte e quindi l’ultimo utente a giocare nel round. Lo scopo del gioco è avere alla fine di ogni round la carta con il numero e seme (vedi pannello carte) più basso possibile Ad ogni turno ogni giocatore avrà una carta, parte il giocatore successivo al mazziere, scopre la carta e decide se cambiare la carta con il giocatore successivo (che non potrà rifiutare il cambio), oppure se passare il turno mantenendo la carta attuale. Alla fine del turno si scoprono tutte le carte, chi avrà la carta più alta perderà una vita (vite e numero delle carte selezionabili prima del gioco)Il gioco termina quando rimane solo un giocatore in vita. " wrappingWidth="660.0" />
+                              <Text layoutX="56.0" layoutY="84.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Il gioco è composto da partite con 4 utenti, che possono essere persone fisiche, bot o una combinazione di entrambi. Dopo che l'admin ha impostato la partita, comunica agli utenti un username e una password per l'accesso. Ogni giocatore riceve una carta, e il mazziere, determinato da un lancio di dadi, è l'ultimo a giocare. Dal secondo turno, il mazziere ruota in senso orario, partendo dalla sinistra. L'obiettivo è mantenere la carta più bassa per evitare di perdere vite. Se si ha una carta alta, si deve scambiarla con il giocatore alla sinistra, che non può rifiutare lo scambio. Il mazziere scambia la sua carta con il mazzo. Ogni turno, i giocatori scambiano le carte secondo i criteri dell'obiettivo. Alla fine di ogni turno, chi ha la carta più alta perde una vita, mentre chi ha la carta più bassa vince il turno. Il gioco continua fino a quando rimane un solo giocatore o gli altri esauriscono le vite. La partita può essere messa in pausa e ripresa in qualsiasi momento." wrappingWidth="663.0" />
                            </children>
                         </AnchorPane>
                      </center>
@@ -82,14 +82,13 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <GridPane layoutX="73.0" layoutY="118.0" prefHeight="347.0" prefWidth="625.0">
+                              <GridPane layoutX="114.0" layoutY="118.0" prefHeight="123.0" prefWidth="584.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
@@ -108,12 +107,12 @@
                                           <Image url="@../../Assets/Cards/SQUALO/SQUALO1.png" />
                                        </image>
                                     </ImageView>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VERME" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PESCE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SQUALO" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                                  </children>
                               </GridPane>
-                              <Text layoutX="52.0" layoutY="459.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Il gioco contiene 3 semi ed ogni seme ha una potenza diversa: Squalo&gt;Pesce&gt;Verme. Quindi a parità di numero, vince il round chi ha il seme più potente " wrappingWidth="668.0" />
+                              <Text layoutX="55.0" layoutY="361.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ogni seme ha una potenza diversa: Squalo &gt; Pesce &gt; Verme. Quindi, a parità di numero, vince chi ha il seme più potente. Il mazzo contiene fino a 9 carte per seme, il numero di carte sarà selezionabile dall'admin nella configurazione della partita." wrappingWidth="668.0" />
+                              <Text layoutX="133.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VERME" />
+                              <Text layoutX="324.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PESCE" />
+                              <Text layoutX="519.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SQUALO" />
                            </children>
                         </AnchorPane>
                      </right>
@@ -124,9 +123,9 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <left>
-                        <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="598.0" prefWidth="227.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
                            <children>
-                              <Label layoutX="3.0" layoutY="277.0" styleClass="LabelWhite" text="IMPOSTAZIONI" textFill="WHITE">
+                              <Label layoutX="33.0" layoutY="279.0" styleClass="LabelWhite" text="SPECIALI" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="27.0" />
                                  </font>
@@ -135,14 +134,14 @@
                         </AnchorPane>
                      </left>
                      <right>
-                        <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="598.0" prefWidth="796.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
                            <children>
                               <Label layoutX="248.0" layoutY="52.0" styleClass="Label" text="CARTE SPECIALI" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="indietro11" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="indietro11" fitHeight="73.0" fitWidth="67.0" layoutX="6.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../Assets/Game/Environment/indietro.PNG" />
                                  </image>
@@ -150,16 +149,13 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <GridPane layoutX="164.0" layoutY="235.0" prefHeight="314.0" prefWidth="488.0">
+                              <GridPane layoutX="152.0" layoutY="258.0" prefHeight="109.0" prefWidth="496.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -172,15 +168,14 @@
                                           <Image url="@../../Assets/Cards/IMPREVISTO/IMPREVISTO1.png" />
                                        </image>
                                     </ImageView>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PROBABILITA:" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IMPREVISTO:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1) SCAMBIA CARTA CON MAZZO" wrappingWidth="226.0" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2) AUMENTA VITA CON DADI" wrappingWidth="225.0" GridPane.rowIndex="3" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1) PASSO FORZATO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2) SCAMBIO FORZATO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
-                              <Text layoutX="81.0" layoutY="95.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Per rendere più entusiasmante l’esperienza di gioco abbiamo aggiunto imprevisti e probabilità che potranno aiutare o penalizzare l’utente" wrappingWidth="652.0" />
+                              <Text layoutX="81.0" layoutY="108.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Per rendere più entusiasmante l’esperienza di gioco abbiamo aggiunto imprevisti e probabilità che potranno aiutare o penalizzare l’utente" wrappingWidth="652.0" />
+                              <Text fill="RED" layoutX="129.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROBABILITA'" />
+                              <Text fill="RED" layoutX="456.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMPREVISTO" />
+                              <Text layoutX="102.0" layoutY="447.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puoi sostituire la tua carta con una dal mazzo.Si lancia un dado, se il numero del dado è uguale al numero della carta, si ottiene una vita extra." textAlignment="CENTER" wrappingWidth="246.0" />
+                              <Text layoutX="76.0" layoutY="168.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queste due nuove tipologie di carte stabiliscono una nuova gerarchia della &quot;potenza&quot; delle carte: Probabilità &gt; Squalo &gt; Pesce &gt; Verme &gt; Imprevisto." wrappingWidth="663.0" />
+                              <Text layoutX="405.0" layoutY="446.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Non puoi scambiare.Sei obbligato a scambiare la carta con il mazzo.Dopo ogni imprevisto, si passa il turno automaticamente." textAlignment="CENTER" wrappingWidth="259.0" />
                            </children>
                         </AnchorPane>
                      </right>
@@ -217,7 +212,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <GridPane layoutX="105.0" layoutY="123.0" prefHeight="374.0" prefWidth="518.0">
+                              <GridPane layoutX="119.0" layoutY="123.0" prefHeight="281.0" prefWidth="504.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -240,46 +235,10 @@
                                     </ImageView>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EASYBOT" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HARDBOT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sono robot generati automaticamente dal sistema, hanno la capacità di eseguire in automatico tutte le azioni proprio come un utente reale, l’unica eccezione è il fatto che non ragionano, quindi sceglieranno randomicamente la mossa da svolgere" wrappingWidth="242.0" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sono robot generati automaticamente dal sistema, hanno la capacità di eseguire in automatico tutte le azioni proprio come un utente reale perfino il ragionamento, in fatti in base al valore della propria carta, decideranno se passare il turno o scambiare la carta" wrappingWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sono robot generati automaticamente dal sistema, hanno la capacità di eseguire in automatico tutte le azioni proprio come un utente reale, l’unica eccezione è il fatto che non ragionano, quindi sceglieranno randomicamente la mossa da svolgere" textAlignment="CENTER" wrappingWidth="242.0" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sono robot generati automaticamente dal sistema, hanno la capacità di eseguire in automatico tutte le azioni proprio come un utente reale perfino il ragionamento, in fatti in base al valore della propria carta, decideranno se passare il turno o scambiare la carta" textAlignment="CENTER" wrappingWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
-                           </children>
-                        </AnchorPane>
-                     </right>
-                  </BorderPane>
-               </content>
-            </Tab>
-            <Tab fx:id="CreaTab2" styleClass="riempiTab" text="UNTITLED">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <left>
-                        <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="73.0" layoutY="277.0" styleClass="LabelWhite" text="CREA" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </left>
-                     <right>
-                        <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="307.0" layoutY="66.0" styleClass="Label" text="STEP FINALE" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold Italic" size="27.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fx:id="indietro12" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
                            </children>
                         </AnchorPane>
                      </right>

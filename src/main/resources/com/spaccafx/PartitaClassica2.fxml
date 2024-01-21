@@ -178,62 +178,62 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <ImageView fx:id="easyBot1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="easyBot1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot1" styleClass="Label" text="Nome bot" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot1" styleClass="Label15" text="Nome bot" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fx:id="hardBot1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="hardBot1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="easyBot2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <ImageView fx:id="easyBot2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="hardBot2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <ImageView fx:id="hardBot2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot2" styleClass="Label" text="Nome bot" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot2" styleClass="Label15" text="Nome bot" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fx:id="easyBot4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                    <ImageView fx:id="easyBot4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="hardBot4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                    <ImageView fx:id="hardBot4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot4" styleClass="Label" text="Nome bot" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot4" styleClass="Label15" text="Nome bot" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fx:id="easyBot3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                    <ImageView fx:id="easyBot3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="hardBot3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                    <ImageView fx:id="hardBot3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BASELINE">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot3" styleClass="Label" text="Nome bot" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot3" styleClass="Label15" text="Nome bot" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>

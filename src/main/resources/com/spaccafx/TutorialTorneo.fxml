@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TutorialController">
    <children>
@@ -43,6 +44,7 @@
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font></Label>
+                              <Text layoutX="81.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Il flow di gioco è identico alla partita, la miodalità torneo è consigliata per un numero di giocatori elevato." wrappingWidth="656.0" />
                            </children>
                         </AnchorPane>
                      </center>
@@ -53,9 +55,9 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <left>
-                        <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="598.0" prefWidth="211.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
                            <children>
-                              <Label layoutX="11.0" layoutY="277.0" styleClass="LabelWhite" text="CARTE NORMALI" textFill="WHITE">
+                              <Label layoutX="53.0" layoutY="279.0" styleClass="LabelWhite" text="ROUND" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="27.0" />
                                  </font>
@@ -63,9 +65,9 @@
                            </children></AnchorPane>
                      </left>
                      <right>
-                        <AnchorPane prefHeight="601.0" prefWidth="778.0" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="598.0" prefWidth="813.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label fx:id="numeroBotLabel" layoutX="239.0" layoutY="62.0" styleClass="Label" text="CARTE NEL GIOCO">
+                              <Label fx:id="numeroBotLabel" layoutX="250.0" layoutY="62.0" styleClass="Label" text="4 ROUND + 1">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font></Label>
@@ -77,84 +79,13 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Text layoutX="134.0" layoutY="124.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I 16 giocatori sono divisi in 4 tavoli, dove si sfideranno tra di loro. Ci saranno dunque 4 vincitori, uno per ogni tavolo. Questi vincitori formeranno il tavolo della partita finale, il vincitore di questa ultima partità, sarà il vincitore dell'intero torneo" wrappingWidth="545.0" />
                            </children>
                         </AnchorPane>
                      </right>
                   </BorderPane>
                </content>
           </Tab>
-            <Tab fx:id="CreaTab1" styleClass="riempiTab" text="Vincitore">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <left>
-                        <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="3.0" layoutY="277.0" styleClass="LabelWhite" text="IMPOSTAZIONI" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </left>
-                     <right>
-                        <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="88.0" layoutY="67.0" styleClass="Label" text="CARTE SPECIALI" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold Italic" size="27.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fx:id="indietro11" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                     </right>
-                  </BorderPane>
-               </content>
-            </Tab>
-            <Tab fx:id="CreaTab" styleClass="riempiTab" text="UNTITLED">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <left>
-                        <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="73.0" layoutY="277.0" styleClass="LabelWhite" text="CREA" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </left>
-                     <right>
-                        <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="307.0" layoutY="66.0" styleClass="Label" text="STEP FINALE" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold Italic" size="27.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fx:id="indietro1" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                     </right>
-                  </BorderPane>
-               </content>
-            </Tab>
         </tabs>
       </TabPane>
    </children>
