@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -31,21 +32,29 @@
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="playButtonId" alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="50.0" mnemonicParsing="false" onAction="#accediPartita" prefHeight="44.0" prefWidth="199.0" styleClass="LabelWhite15" text="UNISCITI" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                  <Button fx:id="playButtonId" alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="50.0" mnemonicParsing="false" onAction="#accediPartita" prefHeight="44.0" prefWidth="199.0" text="UNISCITI" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <styleClass>
+                        <String fx:value="LabelWhite15" />
+                        <String fx:value="buttonUnisciti" />
+                     </styleClass>
                   </Button>
-                  <Button fx:id="leaderboardButtonId" contentDisplay="CENTER" layoutX="40.0" layoutY="102.0" mnemonicParsing="false" onAction="#leaderboardPartita" prefHeight="44.0" prefWidth="211.0" style="-fx-background-color: orange;" styleClass="LabelWhite13" text="LEADERBOARD" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                  <Button fx:id="leaderboardButtonId" contentDisplay="CENTER" layoutX="40.0" layoutY="102.0" mnemonicParsing="false" onAction="#leaderboardPartita" prefHeight="44.0" prefWidth="211.0" style="-fx-background-color: orange;" text="LEADERBOARD" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <styleClass>
+                        <String fx:value="LabelWhite13" />
+                        <String fx:value="buttonLead" />
+                     </styleClass>
                   </Button>
                   <ImageView fx:id="deleteMatchButton" fitHeight="27.0" fitWidth="25.0" layoutX="1.0" layoutY="139.0" onMouseClicked="#deleteMatch" pickOnBounds="true" preserveRatio="true">
                      <image>

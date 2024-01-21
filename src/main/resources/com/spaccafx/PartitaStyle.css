@@ -117,6 +117,30 @@
    -fx-border-width: 3;
 }
 
+.buttonUnisciti:hover
+{
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-font-size: 15;
+    -fx-text-fill: #639BFF;
+    -fx-border-color:  #639BFF;
+    -fx-border-radius: 20;
+    -fx-border-width: 3;
+}
+
+.buttonLead:hover
+{
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-font-size: 10;
+    -fx-text-fill: #639BFF;
+    -fx-border-color:  #639BFF;
+    -fx-border-radius: 20;
+    -fx-border-width: 3;
+}
+
 .button:pressed
 {
    -fx-font-weight: bold;
