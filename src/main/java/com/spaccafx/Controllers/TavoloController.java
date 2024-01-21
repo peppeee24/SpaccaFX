@@ -1044,5 +1044,9 @@ public class TavoloController {
     public void setExitGame(boolean state) {
         this.exitGame.setVisible(state);
     }
+
+    // TODO rimpicciolire testo banne probabilita
+    // TODO verificare suono scambia con mazzo
+    // TODO ingrandine nomi label giocatori/bot nel tavolo
 }
 
