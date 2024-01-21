@@ -187,6 +187,12 @@
   -fx-background-image: url("UI/gamewallpaper.gif");
 }
 
+.tutorialSfondo
+{
+    -fx-background-size: 100% 100%;
+    -fx-background-image: url("UI/bb.png");
+}
+
 .line-color
 {
   -fx-background-color: #356BAD;
