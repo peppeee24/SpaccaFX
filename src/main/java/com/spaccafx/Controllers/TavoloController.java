@@ -234,6 +234,7 @@ public class TavoloController {
                 leaderboardStage = new Stage();
                 leaderboardStage.setTitle("Classifica - PARTITA");
                 leaderboardStage.setScene(scene);
+                leaderboardStage.setResizable(false);
 
                 ArrayList<IGiocatore> giocatoriLeaderboard = new ArrayList<>(partita.giocatori.size());
                 for (IGiocatore giocatore : partita.giocatori) {
@@ -295,17 +296,6 @@ public class TavoloController {
 
                     // Ottenere l'AnchorPane dal tuo controller
                     //AnchorPane singleAnchorPane = singlePlayerScoreboardController.getAnchorPane();
-
-                    // Imposta il colore di sfondo dell'AnchorPane in base al player se vivo o morto
-                    if (giocatore.getVita() == 0) {
-                        BackgroundFill backgroundFill = new BackgroundFill(Color.ORANGERED, null, null); // Cambia il colore a tuo piacimento
-                        Background background = new Background(backgroundFill);
-                        anchorPane.setBackground(background);
-                    } else {
-                        BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTGREEN, null, null); // Cambia il colore a tuo piacimento
-                        Background background = new Background(backgroundFill);
-                        anchorPane.setBackground(background);
-                    }
 
 
                     leaderboardController.getGridPane().add(anchorPane, 0, riga);
@@ -883,6 +873,7 @@ public class TavoloController {
             Stage stage = new Stage();
             Parent root = playerScreen.load();
             Scene scene = new Scene(root);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
 
@@ -902,6 +893,7 @@ public class TavoloController {
             Parent root = playerScreen.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
 
             currentStage.close();
