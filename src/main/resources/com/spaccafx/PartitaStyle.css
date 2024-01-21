@@ -184,7 +184,7 @@
 .gameSfondo
 {
   -fx-background-size: 100% 100%;
-  -fx-background-image: url("UI/ocean.gif");
+  -fx-background-image: url("UI/gamewallpaper.gif");
 }
 
 .line-color
