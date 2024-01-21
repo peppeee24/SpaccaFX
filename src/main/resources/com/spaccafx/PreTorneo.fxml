@@ -390,7 +390,7 @@
                                        </children>
                                     </GridPane>
                                     <Label fx:id="currentPlayer3" layoutX="163.0" layoutY="535.0" />
-                                    <Label fx:id="currentRound2" layoutX="163.0" layoutY="569.0" />
+                                    <Label fx:id="currentRound3" layoutX="163.0" layoutY="569.0" />
                                     <ImageView fx:id="indietro21" fitHeight="71.0" fitWidth="83.0" layoutX="14.0" layoutY="514.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../Assets/Game/Environment/indietro.PNG" />
