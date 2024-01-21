@@ -28,11 +28,6 @@
             </AnchorPane>
          </left>
       </BorderPane>
-      <Label fx:id="torneoNumeroLabel" layoutX="20.0" layoutY="350.0" styleClass="Label" text="Torneo n: ">
-         <font>
-            <Font name="System Bold Italic" size="27.0" />
-         </font>
-      </Label>
       <TabPane prefHeight="630.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab styleClass="riempiTab" text="Partita 1">

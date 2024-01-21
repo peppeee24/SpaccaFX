@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
@@ -38,11 +39,6 @@
                   </ImageView>
                   <Label fx:id="currentPlayer" layoutX="163.0" layoutY="535.0" />
                   <Label fx:id="currentRound" layoutX="163.0" layoutY="569.0" />
-                  <Label fx:id="partitaNumeroLabel" layoutX="262.0" layoutY="139.0" styleClass="Label" text="Partita n: ">
-                     <font>
-                        <Font name="System Bold Italic" size="27.0" />
-                     </font>
-                  </Label>
                   <Label layoutX="59.0" layoutY="-39.0" prefHeight="230.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
                      <font>
                         <Font name="System Bold Italic" size="27.0" />
@@ -62,6 +58,63 @@
                         </GridPane>
                      </content>
                   </ScrollPane>
+                  <HBox alignment="CENTER" layoutY="120.0" prefHeight="59.0" prefWidth="774.0" spacing="40.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="76.0" spacing="1.0">
+                           <children>
+                              <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="POS" />
+                              <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/corona.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="376.0" layoutY="10.0" prefHeight="57.0" prefWidth="108.0" spacing="1.0">
+                           <children>
+                              <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="NAME" />
+                              <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/user.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="470.0" layoutY="10.0" prefHeight="57.0" prefWidth="146.0" spacing="1.0">
+                           <children>
+                              <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="ROUNDS" />
+                              <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/timer.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="565.0" layoutY="10.0" prefHeight="57.0" prefWidth="100.0" spacing="1.0">
+                           <children>
+                              <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="VITE" />
+                              <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="659.0" layoutY="10.0" prefHeight="57.0" prefWidth="121.0" spacing="1.0">
+                           <children>
+                              <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="EXTRA" />
+                              <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
                </children>
             </AnchorPane>
          </right>

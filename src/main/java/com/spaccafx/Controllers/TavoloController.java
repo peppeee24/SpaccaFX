@@ -232,7 +232,7 @@ public class TavoloController {
 
                 // Crea una nuova finestra per la classifica
                 leaderboardStage = new Stage();
-                leaderboardStage.setTitle("Classifica - PARTITA");
+                leaderboardStage.setTitle("Classifica - SpaccaFX");
                 leaderboardStage.setScene(scene);
                 leaderboardStage.setResizable(false);
 
@@ -874,6 +874,7 @@ public class TavoloController {
             Parent root = playerScreen.load();
             Scene scene = new Scene(root);
             stage.setResizable(false);
+            stage.setTitle("SpaccaFX - Game");
             stage.setScene(scene);
             stage.show();
 
@@ -893,6 +894,7 @@ public class TavoloController {
             Parent root = playerScreen.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("SpaccaFX - Game");
             stage.setResizable(false);
             stage.show();
 

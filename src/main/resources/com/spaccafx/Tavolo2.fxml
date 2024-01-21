@@ -29,9 +29,9 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fx:id="leaderboard" fitHeight="42.0" fitWidth="40.0" layoutX="176.0" layoutY="17.0" onMouseClicked="#openLeaderboard" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="leaderboard" fitHeight="38.0" fitWidth="47.0" layoutX="176.0" layoutY="17.0" onMouseClicked="#openLeaderboard" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Assets/Game/Environment/key.png" />
+                              <Image url="@../../Assets/Game/Environment/leaderboard12.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />

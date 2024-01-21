@@ -96,6 +96,12 @@
     -fx-font-size: 13;
 }
 
+.LabelBlack13{
+    -fx-text-fill: black;
+    -fx-font-family: 'Press Start 2P', sans-serif;
+    -fx-font-size: 13;
+}
+
 
 .LabelWhiteError{
     -fx-text-fill: white;

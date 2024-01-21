@@ -44,7 +44,7 @@ public class Spacca extends Application {
                     }
 
 
-                    stage.setTitle("Alpha Build SpaccaFX");
+                    stage.setTitle("SpaccaFX - Game");
 
                     stage.setResizable(false);
                     stage.setScene(scene);
