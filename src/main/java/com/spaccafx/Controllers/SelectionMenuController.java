@@ -21,7 +21,6 @@ public class SelectionMenuController {
         Scene scene = new Scene(PartitaClassica.load());
         stage.setScene(scene);
         stage.show();
-
     }
 
 
