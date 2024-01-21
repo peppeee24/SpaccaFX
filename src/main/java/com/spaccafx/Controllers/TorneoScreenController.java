@@ -58,14 +58,13 @@ try{
             boolean isOkPressed = AlertController.showConfirm("Conferma: Accesso Eseguito, stai per entrare nel gioco");
 
             if (isOkPressed) {
-                FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo3Prototype.fxml"));
+                FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("Tavolo2.fxml"));
                 //FXMLLoader loaderTavolo = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 Parent root = loaderTavolo.load();
 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                //stage.setFullScreen(true); // todo FIXXARE PROBLEMI GRAFICA ADATTIVA
                 stage.show();
 
 

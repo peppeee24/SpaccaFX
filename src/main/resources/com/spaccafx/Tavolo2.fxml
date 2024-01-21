@@ -19,11 +19,19 @@
          <children>
             <Pane prefHeight="59.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1600.0" spacing="500.0">
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1600.0" spacing="300.0">
                      <children>
                         <ImageView fx:id="exitGame" fitHeight="42.0" fitWidth="40.0" onMouseClicked="#exitGame" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Home.jpg" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="leaderboard" fitHeight="42.0" fitWidth="40.0" layoutX="176.0" layoutY="17.0" onMouseClicked="#openLeaderboard" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/key.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -47,7 +55,7 @@
       </AnchorPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="864.0" prefWidth="1600.0" style="-fx-background-color: #0D2F38;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="864.0" prefWidth="1600.0" styleClass="gameSfondo" stylesheets="@PartitaStyle.css" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="790.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -301,6 +309,14 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <Button fx:id="bottoneRiprendiBot" layoutX="57.0" layoutY="63.0" mnemonicParsing="false" onAction="#riprendiBot" prefHeight="71.0" prefWidth="241.0" style="-fx-background-color: #1E123C; -fx-background-radius: 30;" text="CONTINUA" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                         <HBox alignment="CENTER" layoutX="-119.0" layoutY="230.0" prefHeight="61.0" prefWidth="624.0" spacing="30.0">
                            <children>
                               <Button fx:id="bottoneScambia" mnemonicParsing="false" onAction="#scambiaCarta" prefHeight="47.0" prefWidth="196.0" style="-fx-background-color: #AA0000; -fx-background-radius: 30;" text="SCAMBIA" textFill="WHITE">
@@ -335,7 +351,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="popUpPane" layoutY="233.0" prefHeight="360.0" prefWidth="1600.0" AnchorPane.bottomAnchor="248.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="233.0">
+            <Pane fx:id="popUpPane" layoutY="233.0" prefHeight="360.0" prefWidth="1600.0" visible="false" AnchorPane.bottomAnchor="248.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="233.0">
                <children>
                   <Pane opacity="0.5" prefHeight="361.0" prefWidth="1603.0" style="-fx-background-color: black;">
                      <effect>

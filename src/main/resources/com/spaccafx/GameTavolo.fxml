@@ -3,57 +3,26 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="gameSfondo" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TavoloController">
    <children>
-      <SplitPane dividerPositions="0.08348794063079777" orientation="VERTICAL" prefHeight="900.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="1598.0" style="-fx-background-color: #074263;" SplitPane.resizableWithParent="false">
+      <BorderPane prefHeight="900.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="104.0" prefWidth="1600.0" BorderPane.alignment="CENTER" />
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="788.0" prefWidth="1600.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1598.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <ImageView fx:id="exitGame" fitHeight="42.0" fitWidth="40.0" onMouseClicked="#exitGame" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Home.jpg" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                        <Label fx:id="partitaIdLabel" styleClass="LabelWhite" text="ID_PARTITA: P345" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="25.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="roundIdLabel" styleClass="LabelWhite" text="ROUND 10" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="25.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="leaderboard" fitHeight="42.0" fitWidth="40.0" onMouseClicked="#openLeaderboard" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/key.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="gameSfondo">
-               <children>
-                  <Pane layoutX="780.0" layoutY="638.0" prefHeight="280.0" prefWidth="358.0" AnchorPane.bottomAnchor="0.0">
+                  <Pane layoutX="621.0" layoutY="210.0" prefHeight="280.0" prefWidth="358.0" AnchorPane.bottomAnchor="0.0">
                      <children>
                         <ImageView fx:id="cartaPlayer1" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
                            <cursor>
@@ -111,7 +80,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Pane>
-                  <Pane layoutX="780.0" layoutY="57.0" prefHeight="280.0" prefWidth="358.0" rotate="180.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="621.0" layoutY="75.0" prefHeight="280.0" prefWidth="358.0" rotate="180.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fx:id="cartaPlayer3" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
                            <cursor>
@@ -169,7 +138,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Pane>
-                  <Pane layoutX="115.0" layoutY="358.0" prefHeight="280.0" prefWidth="358.0" rotate="90.0" AnchorPane.leftAnchor="0.0">
+                  <Pane layoutX="621.0" layoutY="254.0" prefHeight="280.0" prefWidth="358.0" rotate="90.0" AnchorPane.leftAnchor="0.0">
                      <children>
                         <ImageView fx:id="cartaPlayer2" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
                            <cursor>
@@ -227,7 +196,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Pane>
-                  <Pane layoutX="1445.0" layoutY="358.0" prefHeight="280.0" prefWidth="358.0" rotate="-90.0" AnchorPane.rightAnchor="0.0">
+                  <Pane layoutX="1141.0" layoutY="254.0" prefHeight="280.0" prefWidth="358.0" rotate="-90.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <ImageView fx:id="cartaPlayer4" fitHeight="215.0" fitWidth="128.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
                            <cursor>
@@ -285,7 +254,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Pane>
-                  <Pane layoutX="780.0" layoutY="358.0" prefHeight="280.0" prefWidth="358.0">
+                  <Pane layoutX="621.0" layoutY="254.0" prefHeight="280.0" prefWidth="358.0">
                      <children>
                         <ImageView fx:id="cartaCentrale" fitHeight="215.0" fitWidth="128.0" layoutX="123.0" pickOnBounds="true" preserveRatio="true">
                            <cursor>
@@ -337,7 +306,8 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                           </children></HBox>
+                           </children>
+                        </HBox>
                      </children>
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
@@ -345,16 +315,16 @@
                   </Pane>
                </children>
             </AnchorPane>
-        </items>
-      </SplitPane>
-      <Pane fx:id="popUpPane" disable="true" layoutX="4.0" layoutY="356.0" prefHeight="376.0" prefWidth="1921.0" visible="false" AnchorPane.bottomAnchor="348.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="354.0">
+         </bottom>
+      </BorderPane>
+      <Pane fx:id="popUpPane" disable="true" layoutX="4.0" layoutY="316.0" prefHeight="354.0" prefWidth="1598.0" visible="false" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="316.0">
          <children>
-            <Pane layoutY="-12.0" opacity="0.5" prefHeight="373.0" prefWidth="1907.0" style="-fx-background-color: black;">
+            <Pane layoutY="-12.0" opacity="0.5" prefHeight="371.0" prefWidth="1603.0" style="-fx-background-color: black;">
                <effect>
                   <Shadow />
                </effect>
             </Pane>
-            <Label fx:id="popUpTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="103.0" prefWidth="1903.0" styleClass="EffettoCarta" text="EFFETTO CARTA" textAlignment="CENTER" textFill="#d31500">
+            <Label fx:id="popUpTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="27.0" prefHeight="103.0" prefWidth="1589.0" styleClass="EffettoCarta" text="EFFETTO CARTA" textAlignment="CENTER" textFill="#d31500">
                <font>
                   <Font name="System Bold" size="55.0" />
                </font>
@@ -365,7 +335,7 @@
                   <Glow level="1.0" />
                </effect>
             </Label>
-            <Label fx:id="popUpTextLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="142.0" prefHeight="117.0" prefWidth="1907.0" styleClass="LabelWhite" text="EFFETTO DELLA CARTA/MOSSA" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="popUpTextLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="142.0" prefHeight="117.0" prefWidth="1591.0" styleClass="LabelWhite" text="EFFETTO DELLA CARTA/MOSSA" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
