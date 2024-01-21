@@ -209,6 +209,7 @@ public class PreTorneoController {
                     }
                 }
 
+                // TODO MOSTRARE SOLAMENTE SE IL GIOCO E IN CORSO, ALTRIMENTI NO
                 // Imposta altre informazioni sulla partita
                 currentRound.setText("La partita riprenderà dal Round: " + p.get(0).getCurrentRound());
                 currentPlayer.setText("Toccherà al giocatore: " + p.get(0).getCurrentGiocatore().getNome());
