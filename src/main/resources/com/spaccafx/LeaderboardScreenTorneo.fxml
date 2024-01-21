@@ -33,26 +33,18 @@
             <Font name="System Bold Italic" size="27.0" />
          </font>
       </Label>
-      <ImageView fx:id="indietro" fitHeight="100.0" fitWidth="67.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <TabPane prefHeight="630.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Partita 1">
+          <Tab styleClass="riempiTab" text="Partita 1">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="290.0" prefHeight="147.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
+                        <Label layoutX="322.0" layoutY="28.0" prefHeight="67.0" prefWidth="663.0" styleClass="EffettoCarta" text="CLASSIFICA ">
                            <font>
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/cup.png" />
                            </image>
@@ -66,20 +58,28 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
+                        <ImageView fx:id="indietro" fitHeight="100.0" fitWidth="67.0" layoutX="269.0" layoutY="517.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Partita 2">
+          <Tab styleClass="riempiTab" text="Partita 2">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="290.0" layoutY="16.0" prefHeight="118.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
+                        <Label layoutX="322.0" layoutY="28.0" prefHeight="67.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
                            <font>
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="876.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/cup.png" />
                            </image>
@@ -93,20 +93,28 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
+                        <ImageView fx:id="indietro1" fitHeight="100.0" fitWidth="67.0" layoutX="269.0" layoutY="517.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Partita 3">
+            <Tab styleClass="riempiTab" text="Partita 3">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="290.0" layoutY="14.0" prefHeight="110.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
+                        <Label layoutX="322.0" layoutY="28.0" prefHeight="59.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
                            <font>
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="902.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/cup.png" />
                            </image>
@@ -120,20 +128,28 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
+                        <ImageView fx:id="indietro11" fitHeight="100.0" fitWidth="67.0" layoutX="269.0" layoutY="517.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Partita 4">
+            <Tab styleClass="riempiTab" text="Partita 4">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="290.0" prefHeight="108.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
+                        <Label layoutX="322.0" layoutY="28.0" prefHeight="67.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
                            <font>
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="902.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/cup.png" />
                            </image>
@@ -147,20 +163,28 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
+                        <ImageView fx:id="indietro12" fitHeight="100.0" fitWidth="67.0" layoutX="269.0" layoutY="517.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Partita FINALE">
+            <Tab styleClass="riempiTab" text="Partita FINALE">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="303.0" layoutY="6.0" prefHeight="138.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
+                        <Label layoutX="322.0" layoutY="28.0" prefHeight="67.0" prefWidth="694.0" styleClass="EffettoCarta" text="CLASSIFICA ">
                            <font>
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="889.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/cup.png" />
                            </image>
@@ -174,6 +198,14 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
+                        <ImageView fx:id="indietro121" fitHeight="100.0" fitWidth="67.0" layoutX="269.0" layoutY="517.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>

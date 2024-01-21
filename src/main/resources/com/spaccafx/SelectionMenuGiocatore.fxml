@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="630.0" prefWidth="1024.0" styleClass="sfondo3" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.SelectionMenuGiocatoreController">
    <children>
-      <Button fx:id="partitaClassica" layoutX="109.0" layoutY="404.0" mnemonicParsing="false" onAction="#iniziaPartita" prefHeight="61.0" prefWidth="277.0" text="Classica" textFill="WHITE">
+      <Button fx:id="partitaClassica" layoutX="84.0" layoutY="404.0" mnemonicParsing="false" onAction="#iniziaPartita" prefHeight="61.0" prefWidth="277.0" text="Classica" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -17,9 +17,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="224.0" fitWidth="387.0" layoutX="54.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="252.0" fitWidth="277.0" layoutX="98.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Assets/Game/Environment/singleMatch.gif" />
+            <Image url="@../../Assets/Game/Environment/ddh4slr-82c38d93-e1a3-4414-9128-d8613670dc97.gif" />
          </image>
       </ImageView>
       <Button fx:id="torneo" layoutX="640.0" layoutY="404.0" mnemonicParsing="false" onAction="#iniziaTorneo" prefHeight="61.0" prefWidth="303.0" text="Torneo" textFill="WHITE">
@@ -42,6 +42,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </ImageView>
+      <ImageView fitHeight="252.0" fitWidth="277.0" layoutX="96.0" layoutY="140.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Assets/Game/Environment/ddh4slr-82c38d93-e1a3-4414-9128-d8613670dc97.gif" />
+         </image>
       </ImageView>
    </children>
 </AnchorPane>

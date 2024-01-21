@@ -232,40 +232,28 @@ public class MatchItemController
         }
     }
 
-    public void deleteMatch(MouseEvent event)
-    {
+
         // una volta che clicco su un determinato pulsante play, mi deve aprire la schermata di un pre partita, dove carica
         // delle determinate informazioni di tale partita (giocatori, tipo, round, se sta ancora andando etc..)
         // prendo le info dal json
 
-        System.out.println("[MatchItemController] Devo cancellare una determinata partita");
+        public void deleteMatch(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
 
-        /*
-        try
-        {
-            AudioManager.bottoneSuono();
 
-            // TODO FARE CANCELLAZIONE PARTITE
-            FXMLLoader preGameScreen = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
+            FXMLLoader loaderDeleteGame = new FXMLLoader(Spacca.class.getResource("LoginDelete.fxml"));
+            Parent root = loaderDeleteGame.load();
 
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            LoginDeleteController loginDeleteController = loaderDeleteGame.getController();
+            loginDeleteController.setEliminazione(this.codicePartita, 0);
 
-            Parent root = preGameScreen.load();
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-            PreGameController preGameController = preGameScreen.getController();
-            preGameController.setInfoPartita2(codicePartita, passwordPartita);
+        System.out.println("[MatchItemController] Devo cancellare una determinata partita");
 
-
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
-         */
     }
 
 

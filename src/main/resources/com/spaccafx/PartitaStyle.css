@@ -12,8 +12,9 @@
 {
 
     -fx-background-color:  #00AFF2;
-    -fx-font-size: 22;
     -fx-text-fill: white;
+    -fx-font-family: 'Press Start 2P', sans-serif;
+    -fx-font-size: 18;
 }
 
 
@@ -87,8 +88,14 @@
     -fx-text-fill: white;
     -fx-font-family: 'Press Start 2P', sans-serif;
     -fx-font-size: 15;
-
 }
+
+.LabelWhite13{
+    -fx-text-fill: white;
+    -fx-font-family: 'Press Start 2P', sans-serif;
+    -fx-font-size: 13;
+}
+
 
 .LabelWhiteError{
     -fx-text-fill: white;

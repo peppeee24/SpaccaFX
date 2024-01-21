@@ -31,7 +31,7 @@
       </BorderPane>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Partita 1">
+          <Tab styleClass="riempiTab" text="Partita 1">
                <content>
                   <AnchorPane>
                      <children>
@@ -109,6 +109,14 @@
                                     </GridPane>
                                     <Label fx:id="currentPlayer" layoutX="163.0" layoutY="535.0" />
                                     <Label fx:id="currentRound" layoutX="163.0" layoutY="569.0" />
+                                    <ImageView fx:id="indietro" fitHeight="71.0" fitWidth="83.0" layoutX="14.0" layoutY="514.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </right>
@@ -117,7 +125,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab text="Partita 2">
+          <Tab styleClass="riempiTab" text="Partita 2">
                <content>
                   <AnchorPane>
                      <children>
@@ -195,6 +203,14 @@
                                     </GridPane>
                                     <Label fx:id="currentPlayer1" layoutX="163.0" layoutY="535.0" />
                                     <Label fx:id="currentRound1" layoutX="163.0" layoutY="569.0" />
+                                    <ImageView fx:id="indietro1" fitHeight="71.0" fitWidth="83.0" layoutX="14.0" layoutY="514.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </right>
@@ -203,7 +219,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Partita 3">
+            <Tab styleClass="riempiTab" text="Partita 3">
                <content>
                   <AnchorPane>
                      <children>
@@ -281,6 +297,14 @@
                                     </GridPane>
                                     <Label fx:id="currentPlayer3" layoutX="163.0" layoutY="535.0" />
                                     <Label fx:id="currentRound3" layoutX="163.0" layoutY="569.0" />
+                                    <ImageView fx:id="indietro2" fitHeight="71.0" fitWidth="83.0" layoutX="14.0" layoutY="514.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </right>
@@ -289,7 +313,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Partita 4">
+            <Tab styleClass="riempiTab" text="Partita 4">
                <content>
                   <AnchorPane>
                      <children>
@@ -367,6 +391,14 @@
                                     </GridPane>
                                     <Label fx:id="currentPlayer2" layoutX="163.0" layoutY="535.0" />
                                     <Label fx:id="currentRound2" layoutX="163.0" layoutY="569.0" />
+                                    <ImageView fx:id="indietro21" fitHeight="71.0" fitWidth="83.0" layoutX="14.0" layoutY="514.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </right>
@@ -375,7 +407,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="partitaFinaleTab" text="Partita FINALE">
+            <Tab fx:id="partitaFinaleTab" styleClass="riempiTab" text="Partita FINALE">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -453,6 +485,14 @@
                                     </GridPane>
                                     <Label fx:id="currentPlayer4" layoutX="163.0" layoutY="535.0" />
                                     <Label fx:id="currentRound4" layoutX="163.0" layoutY="569.0" />
+                                    <ImageView fx:id="indietro211" fitHeight="71.0" fitWidth="83.0" layoutX="14.0" layoutY="514.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
                            </right>
@@ -471,13 +511,5 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <ImageView fx:id="indietro" fitHeight="600.0" fitWidth="67.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
    </children>
 </AnchorPane>

@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -254,5 +255,24 @@ public class TorneoItemController
             riga++;
             posizione++;
         }
+    }
+
+    public void deleteMatch(MouseEvent mouseEvent) throws IOException {
+        AudioManager.bottoneSuono();
+
+
+        FXMLLoader loaderDeleteGame = new FXMLLoader(Spacca.class.getResource("LoginDelete.fxml"));
+        Parent root = loaderDeleteGame.load();
+
+        LoginDeleteController loginDeleteController = loaderDeleteGame.getController();
+        loginDeleteController.setEliminazione(this.codiceTorneo,1);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        System.out.println("[TorneoItemController] Devo cancellare una determinata torneo");
+
     }
 }

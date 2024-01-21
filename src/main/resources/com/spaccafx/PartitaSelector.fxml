@@ -17,7 +17,17 @@
          <left>
             <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="45.0" layoutY="293.0" styleClass="LabelWhite" text="SELECTOR" textFill="WHITE">
+                  <Label layoutX="45.0" layoutY="293.0" prefHeight="20.0" prefWidth="163.0" styleClass="LabelWhite" text="PARTITA" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="55.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Assets/Game/Environment/vs.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="37.0" layoutY="319.0" prefHeight="20.0" prefWidth="163.0" styleClass="LabelWhite" text="SELECTOR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
