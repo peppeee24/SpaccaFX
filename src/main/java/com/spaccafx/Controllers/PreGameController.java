@@ -75,6 +75,7 @@ public class PreGameController
         this.passwordPartita = passwordPartita;
 
         // Carichiamo i dati dal file
+        //AlertController.showErrore("Sto caricando i dati della partita: " + codicePartita);
         Partita p = FileManager.leggiPartitaDaFile(codicePartita);
         ArrayList<IGiocatore> giocatori = p.giocatori;
 

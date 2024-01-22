@@ -1,3 +1,5 @@
+package com.spaccafx;
+
 import com.spaccafx.Spacca;
 
 public class SpaccaMain
