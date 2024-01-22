@@ -3,6 +3,7 @@ package com.spaccafx.Cards;
 import com.spaccafx.Controllers.TavoloController;
 import com.spaccafx.Enums.SemeCarta;
 import com.spaccafx.Files.FileManager;
+import com.spaccafx.Files.ResourceLoader;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class Mazzo
         for (int c=1; c<=maxCarteNormali; c++) // SQUALO
         {
             CartaNormale carta = new CartaNormale(c, SemeCarta.SQUALO);
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.SQUALO + "/" + SemeCarta.SQUALO + c + ".PNG").toString());
+            Image cartaImage = ResourceLoader.loadImage("/Assets/Cards/" + SemeCarta.SQUALO + "/" + SemeCarta.SQUALO + c + ".png");
 
             carta.setImage(cartaImage);
             carta.setCartaEffettoAttivato(true);
@@ -85,7 +86,7 @@ public class Mazzo
         for (int c=1; c<=maxCarteNormali; c++) // PESCE
         {
             CartaNormale carta = new CartaNormale(c, SemeCarta.PESCE);
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PESCE + "/" + SemeCarta.PESCE + c + ".PNG").toString());
+            Image cartaImage = ResourceLoader.loadImage("/Assets/Cards/" + SemeCarta.PESCE + "/" + SemeCarta.PESCE + c + ".png");
 
             carta.setImage(cartaImage);
             carta.setCartaEffettoAttivato(true);
@@ -95,7 +96,7 @@ public class Mazzo
         for (int c=1; c<=maxCarteNormali; c++) // VERME
         {
             CartaNormale carta = new CartaNormale(c, SemeCarta.VERME);
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.VERME + "/" + SemeCarta.VERME + c + ".PNG").toString());
+            Image cartaImage = ResourceLoader.loadImage("/Assets/Cards/" + SemeCarta.VERME + "/" + SemeCarta.VERME + c + ".png");
 
             carta.setImage(cartaImage);
             carta.setCartaEffettoAttivato(true);
@@ -118,7 +119,7 @@ public class Mazzo
 
             CartaImprevisto cartaImprevisto = new CartaImprevisto(newVal, SemeCarta.IMPREVISTO);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.IMPREVISTO + "/" + SemeCarta.IMPREVISTO + newVal + ".PNG").toString());
+            Image cartaImage = ResourceLoader.loadImage("/Assets/Cards/" + SemeCarta.IMPREVISTO + "/" + SemeCarta.IMPREVISTO + newVal + ".png");
             cartaImprevisto.setImage(cartaImage);
             cartaImprevisto.setCartaEffettoAttivato(false);
 
@@ -142,7 +143,7 @@ public class Mazzo
 
             CartaProbabilita cartaProbabilita = new CartaProbabilita(newVal, SemeCarta.PROBABILITA);
 
-            Image cartaImage = new Image(getClass().getResource("/Assets/Cards/" + SemeCarta.PROBABILITA + "/" + SemeCarta.PROBABILITA + newVal + ".PNG").toString());
+            Image cartaImage = ResourceLoader.loadImage("/Assets/Cards/" + SemeCarta.PROBABILITA + "/" + SemeCarta.PROBABILITA + newVal + ".png");
             cartaProbabilita.setImage(cartaImage);
             cartaProbabilita.setCartaEffettoAttivato(false);
 

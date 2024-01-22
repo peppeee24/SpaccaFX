@@ -71,6 +71,5 @@ public class ResourceLoader {
             System.out.println("Errore nella riproduzione del suono");
         }
     }
-    //TODO SBORRIAMO
 
 }

@@ -101,18 +101,30 @@ public class TavoloController {
     }
 
     // prima METODO che viene eseguita dopo che fai l accesso
-    public void inizializzaClassePartita(int codicePartita) {
-        // gli devo passare il codice che mando quando clicco sul bottone
-        System.out.println("Codice della partita attuale: " + codicePartita);
+    public void inizializzaClassePartita(int codicePartita)
+    {
+        try
+        {
+            // gli devo passare il codice che mando quando clicco sul bottone
+            System.out.println("Codice della partita attuale: " + codicePartita);
 
-        this.partita = FileManager.leggiPartitaDaFile(codicePartita); // prendiamo la partita (codice, passw, giocatori, stato)
-        this.partita.impostaTavoloController();
-        inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
-        this.updateVitaUI();
+            this.partita = FileManager.leggiPartitaDaFile(codicePartita); // prendiamo la partita (codice, passw, giocatori, stato)
+            this.partita.impostaTavoloController();
+            inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
+            this.updateVitaUI();
 
-        System.out.println("Codice della partita: " + partita.getCodicePartita());
+            System.out.println("Codice della partita: " + partita.getCodicePartita());
 
-        preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
+            preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore insolito: " + e.getMessage());
+            test.show();
+            System.exit(0);
+        }
+
     }
 
     public void inizializzaClasseTorneo(int codiceTorneo, int currentMatch) {
@@ -353,11 +365,21 @@ public class TavoloController {
 
     // region #ACTION EVENT METHODS
     public void start(ActionEvent actionEvent) {
-        AudioManager.bottoneSuono();
-        // attendi lancio i dadi..
-        gestisciPulsanti(false, true, true);
-        partita.preStartGame();
-        bottoneStart.setVisible(false);
+        try
+        {
+            AudioManager.bottoneSuono();
+            // attendi lancio i dadi..
+            gestisciPulsanti(false, true, true);
+            partita.preStartGame();
+            bottoneStart.setVisible(false);
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore di caricamento: " + e.getMessage());
+            test.show();
+        }
+
     }
 
     public void scambiaCarta(ActionEvent actionEvent) {
@@ -610,7 +632,7 @@ public class TavoloController {
 
 
     public void updateCartaCentraleMazzoUI() {
-        Image back = ResourceLoader.loadImage("/Assets/Cards/back.PNG");
+        Image back = ResourceLoader.loadImage("/Assets/Cards/back.png");
         cartaCentrale.setImage(back);
     }
 
@@ -1012,7 +1034,7 @@ public class TavoloController {
         String currentPlayer = partita.giocatori.get(posPlayer).getNome();
 
         if (nomePlayer1.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
             dicePl1.setImage(myImage);
             dicePl1.setVisible(true);
             dicePl2.setVisible(false);
@@ -1021,7 +1043,7 @@ public class TavoloController {
         }
 
         if (nomePlayer2.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
             dicePl2.setImage(myImage);
             dicePl1.setVisible(false);
             dicePl2.setVisible(true);
@@ -1030,7 +1052,7 @@ public class TavoloController {
         }
 
         if (nomePlayer3.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
             dicePl3.setImage(myImage);
             dicePl1.setVisible(false);
             dicePl2.setVisible(false);
@@ -1039,7 +1061,7 @@ public class TavoloController {
         }
 
         if (nomePlayer4.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
             dicePl4.setImage(myImage);
             dicePl1.setVisible(false);
             dicePl2.setVisible(false);
