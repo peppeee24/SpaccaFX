@@ -19,20 +19,12 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.util.Duration;
 import javax.sound.sampled.*;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-/*
- * If you get "cannot access class com.sun.glass.utils.NativeLibLoader" exception you may need to
- * add a VM argument: --add-modules javafx.controls,javafx.media as explained here:
- * https://stackoverflow.com/questions/53237287/module-error-when-running-javafx-media-application
- */
-
-
-// https://youtu.be/-D2OIekCKes
-
-
 
 public class AudioController {
 
@@ -47,7 +39,7 @@ public class AudioController {
     static MediaPlayer player, player2;
 
     @FXML
-    Button musicaONButton,musicaONButton2, musicaOFFButton,musicaOFFButton2;
+    Button musicaONButton, musicaONButton2, musicaOFFButton, musicaOFFButton2;
 
     private ShareData shareData; // Aggiungi un riferimento all'istanza di ShareData
 
@@ -56,8 +48,7 @@ public class AudioController {
     }
 
 
-
-    public void initialize() throws URISyntaxException {
+    /*public void initialize() throws URISyntaxException {
         ShareData.getInstance().setAudioController(this); // gli passo classe partitacontroller
         //  ShareData.getInstance().set(this.P);
         playerSetting();
@@ -92,26 +83,110 @@ public class AudioController {
             }
         });
 
+    }*/
+
+    public void initialize() throws URISyntaxException {
+        ShareData.getInstance().setAudioController(this);
+
+        playerSetting();
+        playerSetting2();
+
+        if (volumeSlider != null) {
+            if (player != null) {
+                volumeSlider.setValue(player.getVolume() * 100);
+
+                volumeSlider.valueProperty().addListener(new InvalidationListener() {
+                    @Override
+                    public void invalidated(Observable observable) {
+                        if (player != null) {
+                            player.setVolume(volumeSlider.getValue() / 100);
+                        }
+                        if (player2 != null) {
+                            player2.setVolume(volumeSlider.getValue() / 100);
+                        }
+                    }
+                });
+            } else {
+                System.err.println("MediaPlayer 'player' is null");
+            }
+
+            ShareData shareData = ShareData.getInstance();
+            shareData.setAudioController(this);
+        } else {
+            System.err.println("Lo slider del volume non è stato inizializzato correttamente.");
+        }
+
+        if (player != null) {
+            player.setOnEndOfMedia(() -> {
+                resetMedia();
+                playAudio();
+            });
+        }
     }
 
 
 
-    public  void playerSetting() throws URISyntaxException {
-        URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/ColonnaSonora.wav");
-        File sound =new File(risorsa.toURI());
-        Media media = new Media(risorsa.toString());
-        player = new MediaPlayer(media);
-        player.setOnError(() -> System.out.println(media.getError().toString()));
+    public void playerSetting() throws URISyntaxException {
+        //URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/ColonnaSonora.wav");
+        //File sound =new File(risorsa.toURI());
+
+        try {
+            // Carica il file audio come InputStream direttamente dal JAR
+            InputStream risorsa = AudioManager.class.getResourceAsStream("/Assets/Game/Environment/Sounds/BackgroundMusic/ColonnaSonora.wav");
+
+            if (risorsa != null) {
+                // Converte l'InputStream in un array di byte
+                byte[] audioBytes = risorsa.readAllBytes();
+
+                // Crea un ByteArrayInputStream dal array di byte
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(audioBytes);
+
+                // Crea l'AudioInputStream
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(byteArrayInputStream);
+
+                Media media = new Media(risorsa.toString());
+                player = new MediaPlayer(media);
+                player.setOnError(() -> System.out.println(media.getError().toString()));
+
+            } else {
+                System.out.println("Risorsa non trovata");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Errore nella riproduzione del suono");
+        }
 
     }
 
     public  void playerSetting2() throws URISyntaxException {
-        URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/lounge.wav");
-        File sound =new File(risorsa.toURI());
-        Media media2 = new Media(risorsa.toString());
-        player2 = new MediaPlayer(media2);
-        player2.setOnError(() -> System.out.println(media2.getError().toString()));
+        //URL risorsa= AudioManager.class.getResource("/Assets/Game/Environment/Sounds/BackgroundMusic/lounge.wav");
+        //File sound =new File(risorsa.toURI());
 
+        try {
+            // Carica il file audio come InputStream direttamente dal JAR
+            InputStream risorsa = AudioManager.class.getResourceAsStream("/Assets/Game/Environment/Sounds/BackgroundMusic/lounge.wav");
+
+            if (risorsa != null) {
+                // Converte l'InputStream in un array di byte
+                byte[] audioBytes = risorsa.readAllBytes();
+
+                // Crea un ByteArrayInputStream dal array di byte
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(audioBytes);
+
+                // Crea l'AudioInputStream
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(byteArrayInputStream);
+
+                Media media2 = new Media(risorsa.toString());
+                player2 = new MediaPlayer(media2);
+                player2.setOnError(() -> System.out.println(media2.getError().toString()));
+
+            } else {
+                System.out.println("Risorsa non trovata");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Errore nella riproduzione del suono");
+        }
     }
 
     //play audio
