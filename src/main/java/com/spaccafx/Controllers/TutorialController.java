@@ -34,13 +34,13 @@ public class TutorialController {
 
     public void tutorialPartita(ActionEvent actionEvent) throws IOException { // PLAY
         AudioManager.bottoneSuono();
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TutorialPartita.fxml"));
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("tutorialPartita.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+// TODO per commit
 
     }
 

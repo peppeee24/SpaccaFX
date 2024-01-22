@@ -641,6 +641,7 @@ public class FileManager
                 int valore = Integer.parseInt(cartaObject.get("Valore").toString());
                 SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
 
+
                 switch (semeCarta)
                 {
                     case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
