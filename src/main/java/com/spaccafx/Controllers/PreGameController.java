@@ -2,6 +2,7 @@ package com.spaccafx.Controllers;
 
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
+import com.spaccafx.Files.ResourceLoader;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
@@ -42,32 +43,6 @@ public class PreGameController
 
     private int codicePartita, passwordPartita;
 
-    public void setInfoPartita(int codicePartita, int passwordPartita)
-    {
-        this.codicePartita = codicePartita;
-        this.passwordPartita = passwordPartita;
-
-        // carichiamo i dati dal file
-
-        Partita p = FileManager.leggiPartitaDaFile(codicePartita);
-        ArrayList<IGiocatore> giocatori = p.giocatori;
-
-        giocatore1.setText(giocatori.get(0).getNome());
-        numerovite1.setText(Integer.toString(giocatori.get(0).getVita()));
-
-        giocatore2.setText(giocatori.get(1).getNome());
-        numerovite2.setText(Integer.toString(giocatori.get(1).getVita()));
-
-        giocatore3.setText(giocatori.get(2).getNome());
-        numerovite3.setText(Integer.toString(giocatori.get(2).getVita()));
-
-        giocatore4.setText(giocatori.get(3).getNome());
-        numerovite4.setText(Integer.toString(giocatori.get(3).getVita()));
-
-        currentRound.setText("La partita riprenderà dal Round: " +(Integer.toString(p.getCurrentRound())));
-        currentPlayer.setText("Toccherà al giocatore: " +p.getCurrentGiocatore().getNome());
-
-    }
 
 
     public void setInfoPartita2(int codicePartita, int passwordPartita) {
@@ -119,11 +94,11 @@ public class PreGameController
             // Assegna l'immagine corrispondente in base al tipo di giocatore
             if (imageView != null) {
                 if (giocatore instanceof EasyBot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/easyBot.PNG")));
+                    imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/easyBot.PNG"));
                 } else if (giocatore instanceof AdvancedBot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/hardBot.PNG")));
+                    imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/hardBot.PNG"));
                 } else if (giocatore instanceof Giocatore) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Assets/Game/Environment/userIcons.png")));
+                    imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/userIcons.png"));
                 }
             }
         }
