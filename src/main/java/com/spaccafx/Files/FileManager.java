@@ -26,10 +26,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -513,10 +510,6 @@ public class FileManager
                 SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
                 boolean isEffettoCartaAttivato = Boolean.parseBoolean(cartaObject.get("Attivata").toString());
 
-                //cartaImage = new Image(("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
-                String imagePath = "/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG";
-                Image cartaImage = new Image(FileManager.class.getResourceAsStream(imagePath));
-                //Image cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
 
                 switch (semeCarta)
                 {
@@ -535,8 +528,10 @@ public class FileManager
                         System.exit(-1);
                 }
 
+                String imagePath = "/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".png";
+
                 cartaPlayer.setCartaEffettoAttivato(isEffettoCartaAttivato);
-                cartaPlayer.setImage(cartaImage); // imposto la visuale della carta
+                cartaPlayer.setImage(ResourceLoader.loadImage(imagePath));
                 giocatore.setCarta(cartaPlayer);
 
                 partita.aggiungiGiocatore(giocatore);
