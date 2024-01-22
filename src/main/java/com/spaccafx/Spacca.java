@@ -46,6 +46,13 @@ public class Spacca extends Application {
 
                     stage.setTitle("SpaccaFX - Game");
 
+                    stage.setOnCloseRequest(event -> {
+                        // Aggiungi qui la logica di chiusura dell'applicazione
+                        System.out.println("L'utente sta chiudendo l'applicazione");
+                        // Chiudi l'applicazione
+                        System.exit(0);
+                    });
+
                     stage.setResizable(false);
                     stage.setScene(scene);
                     stage.show();

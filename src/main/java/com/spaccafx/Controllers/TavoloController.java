@@ -875,6 +875,13 @@ public class TavoloController {
             Scene scene = new Scene(root);
             stage.setResizable(false);
             stage.setTitle("SpaccaFX - Game");
+            stage.setOnCloseRequest(event -> {
+                // Aggiungi qui la logica di chiusura dell'applicazione
+                System.out.println("L'utente sta chiudendo l'applicazione");
+                // Chiudi l'applicazione
+                System.exit(0);
+            });
+
             stage.setScene(scene);
             stage.show();
 
@@ -895,6 +902,12 @@ public class TavoloController {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("SpaccaFX - Game");
+            stage.setOnCloseRequest(event -> {
+                // Aggiungi qui la logica di chiusura dell'applicazione
+                System.out.println("L'utente sta chiudendo l'applicazione");
+                // Chiudi l'applicazione
+                System.exit(0);
+            });
             stage.setResizable(false);
             stage.show();
 

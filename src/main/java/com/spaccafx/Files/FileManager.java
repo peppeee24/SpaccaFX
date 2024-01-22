@@ -7,6 +7,7 @@ import com.spaccafx.Cards.Carta;
 import com.spaccafx.Cards.CartaImprevisto;
 import com.spaccafx.Cards.CartaNormale;
 import com.spaccafx.Cards.CartaProbabilita;
+import com.spaccafx.Controllers.AlertController;
 import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Enums.GameType;
 import com.spaccafx.Enums.RuoloGiocatore;
@@ -26,12 +27,26 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class FileManager
 {
-    public static File partiteFile = new File("Partite.json"); // unico file con più partite
-    public static File torneiFile = new File("Tornei.json"); // unico file con più partite
+    public static File partiteFile = new File(getJarDirectory(), "Partite.json"); // unico file con più partite
+    public static File torneiFile = new File(getJarDirectory(), "Tornei.json"); // unico file con più tornei
+
+
+    private static File getJarDirectory() {
+        try {
+            String jarPath = FileManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+            File jarFile = new File(jarPath);
+            return jarFile.getParentFile();  // Ritorna la directory contenente il JAR
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            // Gestisci l'eccezione a seconda delle tue esigenze
+            return null;
+        }
+    }
 
     // region #PARTITA
 
@@ -386,7 +401,7 @@ public class FileManager
     {
         try
         {
-            if (partiteFile.exists())
+            if (FileManager.partiteFile.exists())
             {
                 JSONParser parser = new JSONParser();
                 JSONObject root = (JSONObject) parser.parse(new FileReader(partiteFile));
@@ -401,7 +416,8 @@ public class FileManager
                     int idPartita = Integer.parseInt(partitaJSON.get("Id_Partita").toString());
                     if (idPartita == codicePartita)
                     {
-                        return convertiJSONAPartita(partitaJSON);
+                        //AlertController.showErrore("Restituisco la partita: " + codicePartita);
+                        return FileManager.convertiJSONAPartita(partitaJSON);
                     }
                 }
             }
@@ -411,6 +427,7 @@ public class FileManager
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
+            AlertController.showErrore("Errore nel caricare la partita: " + codicePartita);
         }
 
         return null; // Restituisci null se la partita non è stata trovata o ci sono errori
