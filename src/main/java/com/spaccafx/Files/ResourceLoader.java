@@ -27,6 +27,7 @@ public class ResourceLoader
 
                 // L'immagine è stata trovata, puoi utilizzare inputStream
                 Image cartaImage = new Image(byteArrayInputStream);
+                return cartaImage;
             }
             else
             {
