@@ -66,7 +66,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                            <image>
-                              <Image url="@../../Assets/Cards/back.PNG" />
+                              <Image url="@../../Assets/Cards/back.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="nomePlayer1" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME1" textFill="WHITE">
@@ -124,7 +124,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                            <image>
-                              <Image url="@../../Assets/Cards/back.PNG" />
+                              <Image url="@../../Assets/Cards/back.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="nomePlayer3" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME3" textFill="WHITE">
@@ -182,7 +182,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                            <image>
-                              <Image url="@../../Assets/Cards/back.PNG" />
+                              <Image url="@../../Assets/Cards/back.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="nomePlayer2" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME2" textFill="WHITE">
@@ -240,7 +240,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                            <image>
-                              <Image url="@../../Assets/Cards/back.PNG" />
+                              <Image url="@../../Assets/Cards/back.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="nomePlayer4" layoutX="139.0" layoutY="93.0" styleClass="LabelWhite" text="PLAYERNAME4" textFill="WHITE">
