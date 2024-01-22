@@ -7,6 +7,7 @@ import com.spaccafx.Enums.GameType;
 import com.spaccafx.Enums.RuoloGiocatore;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
+import com.spaccafx.Files.ResourceLoader;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
@@ -431,7 +432,7 @@ public class TavoloController {
     }
 
     private void updateCarteMortiUI() {
-        Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/morte.png")).toString()); // carta back
+        Image back = ResourceLoader.loadImage("/Assets/Cards/morte.png"); // carta back
         String playerName;
 
         for (IGiocatore giocatore : partita.giocatori) {
@@ -493,7 +494,7 @@ public class TavoloController {
     private void updateCarteViviUI() {
         String currentPlayerName = partita.giocatori.get(partita.getCurrentGiocatorePos()).getNome(); // giocatore a cui tocca
         System.out.println("[UpdateUI] - tocca la giocatore: " + currentPlayerName);
-        Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/back.png")).toString()); // carta back
+        Image back = ResourceLoader.loadImage("/Assets/Cards/back.png"); // carta back
         String playerName;
 
         for (IGiocatore giocatore : partita.giocatori) {
@@ -567,22 +568,22 @@ public class TavoloController {
         for (IGiocatore giocatore : partita.giocatori) {
             if (giocatore.getNome().equalsIgnoreCase(nomePlayer1.getText())) {
                 valoreDado = giocatore.getValoreDado();
-                Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
                 dicePl1.setVisible(true);
                 dicePl1.setImage(myImage);
             } else if (giocatore.getNome().equalsIgnoreCase(nomePlayer2.getText())) {
                 valoreDado = giocatore.getValoreDado();
-                Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
                 dicePl2.setVisible(true);
                 dicePl2.setImage(myImage);
             } else if (giocatore.getNome().equalsIgnoreCase(nomePlayer3.getText())) {
                 valoreDado = giocatore.getValoreDado();
-                Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
                 dicePl3.setVisible(true);
                 dicePl3.setImage(myImage);
             } else if (giocatore.getNome().equalsIgnoreCase(nomePlayer4.getText())) {
                 valoreDado = giocatore.getValoreDado();
-                Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".png").toString());
+                Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
                 dicePl4.setVisible(true);
                 dicePl4.setImage(myImage);
             }
@@ -609,7 +610,7 @@ public class TavoloController {
 
 
     public void updateCartaCentraleMazzoUI() {
-        Image back = new Image(Objects.requireNonNull(getClass().getResource("/Assets/Cards/back.PNG")).toString());
+        Image back = ResourceLoader.loadImage("/Assets/Cards/back.PNG");
         cartaCentrale.setImage(back);
     }
 
@@ -736,7 +737,7 @@ public class TavoloController {
             // humanPlayerSpace.setVisible(false);
             String nomeMorto = nomePlayer1.getText();
             nomePlayer1.setText(nomeMorto + " è morto");
-            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            Image back = ResourceLoader.loadImage("/Assets/Cards/morte.png");
             cartaPlayer1.setImage(back);
         }
 
@@ -747,7 +748,7 @@ public class TavoloController {
             life3Pl3.setVisible(false);
             lifeGoldPl2.setVisible(false);
             dicePl2.setVisible(false);
-            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            Image back = ResourceLoader.loadImage("/Assets/Cards/morte.png");
             cartaPlayer2.setImage(back);
             String nomeMorto = nomePlayer2.getText();
             nomePlayer2.setText(nomeMorto + " è morto");
@@ -760,7 +761,7 @@ public class TavoloController {
             life3Pl3.setVisible(false);
             lifeGoldPl3.setVisible(false);
             dicePl3.setVisible(false);
-            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            Image back = ResourceLoader.loadImage("/Assets/Cards/morte.png");
             cartaPlayer3.setImage(back);
             String nomeMorto = nomePlayer3.getText();
             nomePlayer3.setText(nomeMorto + " è morto");
@@ -773,7 +774,7 @@ public class TavoloController {
             life3Pl4.setVisible(false);
             lifeGoldPl4.setVisible(false);
             dicePl4.setVisible(false);
-            Image back = new Image(getClass().getResource("/Assets/Cards/morte.png").toString());
+            Image back = ResourceLoader.loadImage("/Assets/Cards/morte.png");
             cartaPlayer4.setImage(back);
             String nomeMorto = nomePlayer4.getText();
             nomePlayer4.setText(nomeMorto + " è morto");
@@ -1011,7 +1012,7 @@ public class TavoloController {
         String currentPlayer = partita.giocatori.get(posPlayer).getNome();
 
         if (nomePlayer1.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
             dicePl1.setImage(myImage);
             dicePl1.setVisible(true);
             dicePl2.setVisible(false);
@@ -1020,7 +1021,7 @@ public class TavoloController {
         }
 
         if (nomePlayer2.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
             dicePl2.setImage(myImage);
             dicePl1.setVisible(false);
             dicePl2.setVisible(true);
@@ -1029,7 +1030,7 @@ public class TavoloController {
         }
 
         if (nomePlayer3.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
             dicePl3.setImage(myImage);
             dicePl1.setVisible(false);
             dicePl2.setVisible(false);
@@ -1038,7 +1039,7 @@ public class TavoloController {
         }
 
         if (nomePlayer4.getText().equalsIgnoreCase(currentPlayer)) {
-            Image myImage = new Image(getClass().getResource("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG").toString());
+            Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".PNG");
             dicePl4.setImage(myImage);
             dicePl1.setVisible(false);
             dicePl2.setVisible(false);
