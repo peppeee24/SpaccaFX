@@ -1121,9 +1121,6 @@ public class FileManager
                 SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
                 boolean isEffettoCartaAttivato = Boolean.parseBoolean(cartaObject.get("Attivata").toString());
 
-                Image cartaImage;
-                cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
-
                 switch (semeCarta)
                 {
                     case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
@@ -1141,8 +1138,10 @@ public class FileManager
                         System.exit(-1);
                 }
 
+                String imagePath = "/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".png";
+
                 cartaPlayer.setCartaEffettoAttivato(isEffettoCartaAttivato);
-                cartaPlayer.setImage(cartaImage); // imposto la visuale della carta
+                cartaPlayer.setImage(ResourceLoader.loadImage(imagePath)); // imposto la visuale della carta
                 giocatore.setCarta(cartaPlayer);
 
                 singolaPartitaTorneo.aggiungiGiocatore(giocatore);
@@ -1658,9 +1657,6 @@ public class FileManager
                 SemeCarta semeCarta = SemeCarta.valueOf((String) cartaObject.get("Seme"));
                 boolean isEffettoCartaAttivato = Boolean.parseBoolean(cartaObject.get("Attivata").toString());
 
-                Image cartaImage;
-                cartaImage = new Image(FileManager.class.getResource("/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".PNG").toString());
-
                 switch (semeCarta)
                 {
                     case PROBABILITA:   cartaPlayer = new CartaProbabilita(valore, semeCarta);
@@ -1678,8 +1674,10 @@ public class FileManager
                         System.exit(-1);
                 }
 
+                String imagePath = "/Assets/Cards/" + semeCarta.toString() + "/" + semeCarta.toString() + valore + ".png";
+
                 cartaPlayer.setCartaEffettoAttivato(isEffettoCartaAttivato);
-                cartaPlayer.setImage(cartaImage); // imposto la visuale della carta
+                cartaPlayer.setImage(ResourceLoader.loadImage(imagePath)); // imposto la visuale della carta
                 giocatore.setCarta(cartaPlayer);
 
                 partitaFinale.aggiungiGiocatore(giocatore);

@@ -133,6 +133,9 @@ public class TavoloController {
         this.setCurrentMatch(currentMatch);
         this.setCodiceTorneo(codiceTorneo);
 
+        //TODO SISTEMA LA LABEL IN CASO TORNEO
+        //this.partitaIdLabel.setText("ID_TORNEO: " + codiceTorneo);
+
         // se diverso da 4, carico una partita normale
         if (this.currentMatch != 4)
             this.partita = FileManager.getCurrentPartitaTorneo(this.codiceTorneo, this.currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
@@ -164,6 +167,9 @@ public class TavoloController {
 
 
     public void riprendiBot() {
+
+        AudioManager.bottoneSuono();
+
         if (partita.getCurrentGiocatore() instanceof Bot) {
             gestisciPulsanteRiprendiBot(false);
 
@@ -808,6 +814,7 @@ public class TavoloController {
             try {
                 Platform.runLater(() ->
                 {
+                    this.closeLeaderboard();
                     AudioManager.vittoriaSuono();
                     gestisciPulsanti(false, false, false);
 
@@ -829,7 +836,7 @@ public class TavoloController {
                 Platform.runLater(() ->
                 {
                     // chiudo la leaderboard
-                    closeLeaderboard();
+                    this.closeLeaderboard();
 
                     popUpPane.setVisible(true);
                     popUpPane.setDisable(false);
