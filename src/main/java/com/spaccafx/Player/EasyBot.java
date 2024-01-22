@@ -72,11 +72,49 @@ public class EasyBot extends Bot
     }
 
     @Override
-    public boolean attivoEffetto(Partita p, TavoloController TC)
-    {
-        return (int)((1 + Math.random() * 2)) == 1; // se e uguale a 1, true
-    }
+    public boolean attivoEffetto(Partita p, TavoloController TC) {
+        final boolean[] attivaEffetto = { false };
 
+        Thread thread = new Thread(() -> {
+            try {
+                Platform.runLater(() -> {
+                    System.out.println("[EZ-BOT] Sto facendo la scelta...");
+                    TC.mostraBannerAttesa("[EZ-BOT]", "Sto decidendo la scelta...");
+                });
+
+                Thread.sleep(3000);
+
+                Platform.runLater(() -> {
+                    TC.nascondiBannerAttesa();
+
+                    System.out.println("[EZ-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
+                    int scelta = (int)(1 + Math.random() * 2);
+                    attivaEffetto[0] = scelta != 1;
+                });
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        thread.start();
+
+        try {
+            thread.join(); // Attendi che il thread termini
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return attivaEffetto[0];
+    }
+    public boolean attivaEffetto(Partita p)
+    {
+        int scelta = (int)((1 + Math.random() * 2));
+        if(scelta==1){
+           return true;
+        }
+        else
+            return false;
+    }
 
     @Override
     public String generaNomeBot() { //generiamo nomi per i bot(es: user1234)
