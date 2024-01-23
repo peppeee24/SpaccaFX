@@ -1130,7 +1130,8 @@ public class TavoloController {
             dicePl4.setVisible(false);
         }
 
-        if (nomePlayer3.getText().equalsIgnoreCase(currentPlayer)) {
+        if (nomePlayer3.getText().equalsIgnoreCase(currentPlayer))
+        {
             Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
             dicePl3.setImage(myImage);
             dicePl1.setVisible(false);
@@ -1139,7 +1140,8 @@ public class TavoloController {
             dicePl4.setVisible(false);
         }
 
-        if (nomePlayer4.getText().equalsIgnoreCase(currentPlayer)) {
+        if (nomePlayer4.getText().equalsIgnoreCase(currentPlayer))
+        {
             Image myImage = ResourceLoader.loadImage("/Assets/Game/Environment/dice/dice" + valoreDado + ".png");
             dicePl4.setImage(myImage);
             dicePl1.setVisible(false);
@@ -1147,7 +1149,6 @@ public class TavoloController {
             dicePl3.setVisible(false);
             dicePl4.setVisible(true);
         }
-
     }
 
     public void setExitGame(boolean state) {

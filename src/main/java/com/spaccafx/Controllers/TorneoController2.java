@@ -209,7 +209,7 @@ public class TorneoController2 {
     }
 
     public void getEasyBot1() {
-        E1 = E.generaNomeBot();
+        //E1 = E.generaNomeBot();
     }
 
     public String getE1() {
@@ -217,7 +217,7 @@ public class TorneoController2 {
     }
 
     public void getEasyBot2() {
-        E2 = E.generaNomeBot();
+        //E2 = E.generaNomeBot();
     }
 
     public String getE2() {
@@ -225,7 +225,7 @@ public class TorneoController2 {
     }
 
     public void getEasyBot4() {
-        E4 = E.generaNomeBot();
+        //E4 = E.generaNomeBot();
 
     }
 
@@ -235,7 +235,7 @@ public class TorneoController2 {
     }
 
     public void getEasyBot3() {
-        E3 = E.generaNomeBot();
+        //E3 = E.generaNomeBot();
 
     }
 
@@ -246,7 +246,7 @@ public class TorneoController2 {
 
 
     public void getAdvBot1() {
-        A1 = A.generaNomeBot();
+        //A1 = A.generaNomeBot();
     }
 
     public String getA1() {
@@ -254,7 +254,7 @@ public class TorneoController2 {
     }
 
     public void getAdvBot2() {
-        A2 = A.generaNomeBot();
+        //A2 = A.generaNomeBot();
     }
 
     public String getA2() {
@@ -262,7 +262,7 @@ public class TorneoController2 {
     }
 
     public void getAdvBot3() {
-        A3 = A.generaNomeBot();
+        //A3 = A.generaNomeBot();
 
     }
 
@@ -271,7 +271,7 @@ public class TorneoController2 {
     }
 
     public void getAdvBot4() {
-        A4 = A.generaNomeBot();
+       // A4 = A.generaNomeBot();
 
     }
 

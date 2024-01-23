@@ -105,7 +105,7 @@
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
-                              <Button layoutX="634.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaNomi" prefHeight="54.0" prefWidth="128.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="salvaNomiPlayerButton" layoutX="634.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaNomi" prefHeight="54.0" prefWidth="128.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -195,7 +195,7 @@
                                           <Image url="@../../Assets/Game/Environment/easyBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot1" styleClass="Label" text="Nome bot" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot1" contentDisplay="CENTER" prefHeight="21.0" prefWidth="170.0" styleClass="Label15" text="Nome bot" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>
@@ -215,7 +215,7 @@
                                           <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot2" styleClass="Label" text="Nome bot" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot2" contentDisplay="CENTER" prefHeight="21.0" prefWidth="169.0" styleClass="Label15" text="Nome bot" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>
@@ -230,7 +230,7 @@
                                           <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot4" styleClass="Label" text="Nome bot" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot4" contentDisplay="CENTER" prefHeight="21.0" prefWidth="170.0" styleClass="Label15" text="Nome bot" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>
@@ -245,7 +245,7 @@
                                           <Image url="@../../Assets/Game/Environment/hardBot.PNG" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="labelBot3" styleClass="Label" text="Nome bot" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Label fx:id="labelBot3" contentDisplay="CENTER" prefHeight="21.0" prefWidth="169.0" styleClass="Label15" text="Nome bot" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="System Bold" size="19.0" />
                                        </font>

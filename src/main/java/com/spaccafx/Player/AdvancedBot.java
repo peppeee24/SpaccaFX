@@ -9,7 +9,7 @@ public class AdvancedBot extends Bot
 {
     public AdvancedBot(){
         super();
-        setNome(generaNomeBot());
+        //setNome(generaNomeBot());
     }
     public AdvancedBot(String nome){
         super(nome);
@@ -72,14 +72,5 @@ public class AdvancedBot extends Bot
             return false; //non cambia la carta
         else
             return true; // cambia la carta
-    }
-
-
-    @Override
-    public String generaNomeBot() //generiamo nomi per i bot(es: user1234)
-    {
-        int numeroBot=(int)(1 + (Math.random() * 1000));
-        String nomeBot="AdvBot_" + numeroBot;
-        return nomeBot;
     }
 }

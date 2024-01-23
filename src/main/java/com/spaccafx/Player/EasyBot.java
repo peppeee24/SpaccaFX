@@ -11,7 +11,7 @@ public class EasyBot extends Bot
 {
     public EasyBot(){
         super();
-        setNome(generaNomeBot());
+        //setNome(generaNomeBot());
     }
     public EasyBot(String nome){
         super(nome);
@@ -114,12 +114,5 @@ public class EasyBot extends Bot
         }
         else
             return false;
-    }
-
-    @Override
-    public String generaNomeBot() { //generiamo nomi per i bot(es: user1234)
-        int numeroBot=(int)(1 + (Math.random() * 1000));
-        String nomeBot="EzBot_" + numeroBot;
-        return nomeBot;
     }
 }
