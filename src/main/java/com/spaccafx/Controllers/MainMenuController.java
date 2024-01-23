@@ -35,7 +35,13 @@ public class MainMenuController {
         // Fai partire la musica
         if (shareData != null && shareData.getAudioController() != null) {
             System.out.println("Playing audio...");
-            shareData.getAudioController().playAudio();
+            shareData.getAudioController().playAudio1();
+        } else
+            System.out.println("AudioController not found in ShareData");
+
+        if (shareData != null && shareData.getAudioController() != null) {
+            System.out.println("Playing audio...");
+            shareData.getAudioController().playAudio2();
         } else
             System.out.println("AudioController not found in ShareData");
     }
