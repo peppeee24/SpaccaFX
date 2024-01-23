@@ -6,6 +6,7 @@ import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Enums.GameType;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
+import com.spaccafx.Files.NameGenerator;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
@@ -33,17 +34,19 @@ import javafx.scene.control.TextField;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class PartitaClassicaController2 {
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, E4, A1, A2, A3, A4; // sono i dati della partita
+    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4; // sono i dati della partita
 
     @FXML
-    Tab playerTab, botTab, creaTab,impostazioniTab;
+    Tab playerTab, botTab, creaTab, impostazioniTab;
 
     @FXML
-    Button generaCodiceButton, inviaButton,setBotButton;
+    Button generaCodiceButton, inviaButton, setBotButton, salvaNomiPlayerButton;
 
     @FXML
     ChoiceBox<Integer> numeroGiocatoriMenu, viteMenu, carteNormaliMenu, carteSpecialiMenu;
@@ -60,10 +63,8 @@ public class PartitaClassicaController2 {
     @FXML
     ImageView oneLabel, twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
-    // creo bot per settare nomi/ difficolta
-    EasyBot E = new EasyBot();
-    AdvancedBot A = new AdvancedBot();
 
+    ArrayList<IGiocatore> giocatoriPartita;
 
     int codiceP, passwordP;
 
@@ -83,6 +84,7 @@ public class PartitaClassicaController2 {
 
         this.codiceP = 0;
         this.passwordP = 0;
+        this.giocatoriPartita = new ArrayList<IGiocatore>();
 
         inviaButton.setVisible(false);
         generaCodiceButton.setVisible(true);
@@ -109,7 +111,6 @@ public class PartitaClassicaController2 {
 
     public void setDifficolta() {
         difficoltaBotMenu.setOnAction(this::dB);
-
     }
 
 
@@ -193,7 +194,7 @@ public class PartitaClassicaController2 {
 
     public void salvaImpostazioni(ActionEvent actionEvent) throws IOException { // PLAY
 
-        if(numeroVite!=0 && numeroCarteSpeciali!=0 && numeroCarteNormali!=0){
+        if (numeroVite != 0 && numeroCarteSpeciali != 0 && numeroCarteNormali != 0) {
             AudioManager.bottoneSuono();
             System.out.println("Salvo il numero di vite" + getNumeroVite());
             this.setNumeroVite();
@@ -209,77 +210,6 @@ public class PartitaClassicaController2 {
     }
 
 
-    public void getEasyBot1() {
-        E1 = E.generaNomeBot();
-    }
-
-    public String getE1() {
-        return E1;
-    }
-
-    public void getEasyBot2() {
-        E2 = E.generaNomeBot();
-    }
-
-    public String getE2() {
-        return E2;
-    }
-
-    public void getEasyBot4() {
-        E4 = E.generaNomeBot();
-
-    }
-
-    public String getE4() {
-
-        return E4;
-    }
-
-    public void getEasyBot3() {
-        E3 = E.generaNomeBot();
-
-    }
-
-    public String getE3() {
-
-        return E3;
-    }
-
-
-    public void getAdvBot1() {
-        A1 = A.generaNomeBot();
-    }
-
-    public String getA1() {
-        return A1;
-    }
-
-    public void getAdvBot2() {
-        A2 = A.generaNomeBot();
-    }
-
-    public String getA2() {
-        return A2;
-    }
-
-    public void getAdvBot3() {
-        A3 = A.generaNomeBot();
-
-    }
-
-    public String getA3() {
-        return A3;
-    }
-
-    public void getAdvBot4() {
-        A4 = A.generaNomeBot();
-
-    }
-
-    public String getA4() {
-        return A4;
-    }
-
     public void nascondiBot() { // viene attivato quando clicchi sul bottone salva
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
@@ -293,14 +223,6 @@ public class PartitaClassicaController2 {
         easyBot2.setVisible(false);
         easyBot3.setVisible(false);
         easyBot4.setVisible(false);
-        getAdvBot1();
-        getAdvBot2();
-        getAdvBot3();
-        getAdvBot4();
-        getEasyBot1();
-        getEasyBot2();
-        getEasyBot3();
-        getEasyBot4();
     }
 
 
@@ -311,129 +233,102 @@ public class PartitaClassicaController2 {
         System.out.println("Imposto difficolta" + getDifficolta());
         this.impostaDifficolta();
 
-        //botTbb.setDisable(false);
-        // creaTab.setDisable(false);
         impostazioniTab.setDisable(false);
     }
 
+    private void mostraIconaBot(Label labelNomeBot, String nome, ImageView hardBot, boolean flag1, ImageView easyBot, boolean flag2) {
+        labelNomeBot.setText(nome);
+        labelNomeBot.setVisible(true);
+        hardBot.setVisible(flag1);
+        easyBot.setVisible(flag2);
+    }
+
+    ArrayList<IGiocatore> giocatoriBot;
 
     public void impostaDifficolta() {
+        giocatoriBot = new ArrayList<IGiocatore>();
 
-        if (difficolta != null) {
-            switch (getNumeroBot())  // getnumero() bot viene generato quando salvo i dati dei player
+        // arraylist giocatori =---> 1 - 4 //// 0
+        if (difficolta != null && !difficolta.isEmpty()) {
+            if (getDifficolta().equalsIgnoreCase("Difficile")) {
+                for (int c = 0; c < getNumeroBot(); c++) {
+                    giocatoriBot.add(new AdvancedBot(NameGenerator.generaNomeBotAdvanced()));
+                }
+            } else {
+                for (int c = 0; c < getNumeroBot(); c++) {
+                    giocatoriBot.add(new EasyBot(NameGenerator.generaNomeBotEasy()));
+                }
+            }
+
+            if (NameGenerator.controllaNomiDiversi(giocatoriBot))
             {
-                case 0:
-                    difficoltaBotMenu.setVisible(false); // guardare sta merda (demolire tutto)
-                    difficoltaBotLabel.setVisible(false);
-                    numeroBotLabel.setText("Non ci sono bot");
-                    break;
-                case 1:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                        easyBot1.setVisible(false);
-
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                        hardBot1.setVisible(false);
-                    }
-                    break;
-                case 2:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                        labelBot2.setText(getA2());
-                        labelBot2.setVisible(true);
-                        hardBot2.setVisible(true);
-                        easyBot1.setVisible(false);
-                        easyBot2.setVisible(false);
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                        labelBot2.setText(getE2());
-                        labelBot2.setVisible(true);
-                        easyBot2.setVisible(true);
-                        hardBot1.setVisible(false);
-                        hardBot2.setVisible(false);
-                    }
-                    break;
-                case 3:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                        labelBot2.setText(getA2());
-                        labelBot2.setVisible(true);
-                        hardBot2.setVisible(true);
-                        labelBot3.setText(getA3());
-                        labelBot3.setVisible(true);
-                        hardBot3.setVisible(true);
-                        easyBot1.setVisible(false);
-                        easyBot2.setVisible(false);
-                        easyBot3.setVisible(false);
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                        labelBot2.setText(getE2());
-                        labelBot2.setVisible(true);
-                        easyBot2.setVisible(true);
-                        labelBot3.setText(getE3());
-                        labelBot3.setVisible(true);
-                        easyBot3.setVisible(true);
-                        hardBot1.setVisible(false);
-                        hardBot2.setVisible(false);
-                        hardBot3.setVisible(false);
-
-                    }
-                    break;
-                case 4:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                        labelBot2.setText(getA2());
-                        labelBot2.setVisible(true);
-                        hardBot2.setVisible(true);
-                        labelBot3.setText(getA3());
-                        labelBot3.setVisible(true);
-                        hardBot3.setVisible(true);
-                        labelBot4.setText(getA4());
-                        labelBot4.setVisible(true);
-                        hardBot4.setVisible(true);
-                        easyBot1.setVisible(false);
-                        easyBot2.setVisible(false);
-                        easyBot3.setVisible(false);
-                        easyBot4.setVisible(false);
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                        labelBot2.setText(getE2());
-                        labelBot2.setVisible(true);
-                        easyBot2.setVisible(true);
-                        labelBot3.setText(getE3());
-                        labelBot3.setVisible(true);
-                        easyBot3.setVisible(true);
-                        labelBot4.setText(getE4());
-                        labelBot4.setVisible(true);
-                        easyBot4.setVisible(true);
-                        hardBot1.setVisible(false);
-                        hardBot2.setVisible(false);
-                        hardBot3.setVisible(false);
-                        hardBot4.setVisible(false);
-                    }
-                    break;
-                default:
-
+                caricaGraficaTuttiBot(giocatoriBot);
+                System.out.println("Giocatori Bot: ");
+                NameGenerator.stampaNomi(giocatoriBot);
+                this.setBotButton.setVisible(false);
+                this.difficoltaBotMenu.setVisible(false);
+            } else {
+                System.out.println("Giocatori Bot DUPLICATI: ");
+                NameGenerator.stampaNomi(giocatoriBot);
+                AlertController.showErrore("Ti chiediamo scusa, il sistema ha generato nomi di bot uguali. Riprova..");
+                giocatoriBot.clear();
             }
         } else {
-            System.out.println("Difficoltà è null");
+            AlertController.showErrore("Devi inserire una difficolta per i bot");
+            giocatoriBot.clear();
+        }
+    }
+
+    private void caricaGraficaTuttiBot(ArrayList<IGiocatore> giocatoriBot) {
+        switch (this.getNumeroBot())  // getnumero() bot viene generato quando salvo i dati dei player
+        {
+            case 1:
+                if (getDifficolta().equalsIgnoreCase("Difficile")) {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                }
+                break;
+            case 2:
+                if (getDifficolta().equalsIgnoreCase("Difficile")) {
+
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, true, easyBot2, false);
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, false, easyBot2, true);
+                }
+                break;
+            case 3:
+                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, true, easyBot2, false);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, true, easyBot3, false);
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, false, easyBot2, true);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, false, easyBot3, true);
+
+                }
+                break;
+            case 4:
+                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, true, easyBot2, false);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, true, easyBot3, false);
+                    mostraIconaBot(labelBot4, giocatoriBot.get(3).getNome(), hardBot4, true, easyBot4, false);
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, false, easyBot2, true);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, false, easyBot3, true);
+                    mostraIconaBot(labelBot4, giocatoriBot.get(3).getNome(), hardBot4, false, easyBot4, true);
+                }
+                break;
+            default:
+                break;
+
         }
     }
 
@@ -507,126 +402,61 @@ public class PartitaClassicaController2 {
         return nomeGiocatore4;
     }
 
+
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
         AudioManager.bottoneSuono();
 
-        String pn1 ="";
-        String pn2= "";
-        String pn3 = "";
-        String pn4 = "";
-
-        switch(getNumeroGiocatori()){ //non è un granchè ma risolve il problema dei giocatori quando sono null, cossì posSIAKMO FARE LED CONDIZIONE PROSSIME
+        // prende nome player
+        switch (getNumeroGiocatori()) { //non è un granchè ma risolve il problema dei giocatori quando sono null, cossì posSIAKMO FARE LED CONDIZIONE PROSSIME
             case 1:
-                pn1 =playerName1.getText();
-                pn2= "verijhvnerthunbv";
-                pn3 = "gbwoktermbojqet";
-                pn4 = "rtbkmitrbmirt";
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
                 break;
             case 2:
-                pn1 =playerName1.getText();
-                pn2= playerName2.getText();
-                pn3 = "dfbijmq9obm";
-                pn4 = "eobtjmvortejmgb9uipw";
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
+                giocatoriPartita.add(new Giocatore(playerName2.getText()));
                 break;
             case 3:
-                pn1 =playerName1.getText();
-                pn2= playerName2.getText();
-                pn3 = playerName3.getText();
-                pn4 = "rgbkeito0qbkjio9wjg";
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
+                giocatoriPartita.add(new Giocatore(playerName2.getText()));
+                giocatoriPartita.add(new Giocatore(playerName3.getText()));
                 break;
             case 4:
-                pn1 =playerName1.getText();
-                pn2= playerName2.getText();
-                pn3 = playerName3.getText();
-                pn4 = playerName4.getText();
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
+                giocatoriPartita.add(new Giocatore(playerName2.getText()));
+                giocatoriPartita.add(new Giocatore(playerName3.getText()));
+                giocatoriPartita.add(new Giocatore(playerName4.getText()));
                 break;
             case 0:
-                pn1 ="fjhrkspvrjhhhfkwpvf";
-                pn2= "verijhvnerthunbv";
-                pn3 = "gbwoktermbojqet";
-                pn4 = "rtbkmitrbmirt";
                 break;
             default:
                 break;
         }
 
-        if (!(pn1.equalsIgnoreCase(pn2)   || pn1.equalsIgnoreCase(pn3)  || pn1.equalsIgnoreCase(pn4)  || pn2.equalsIgnoreCase(pn3)   || pn2.equalsIgnoreCase(pn4)  || pn3.equalsIgnoreCase(pn4) )) {
-            System.out.println(playerName1.getText() + playerName2.getText() + playerName3.getText() + playerName4.getText());
+        // guarda che siano diversi i nomi DEI PLAYER tra loro prima di salvare
+        if (NameGenerator.controllaNomiDiversi(giocatoriPartita) || giocatoriPartita.size() == 0) {
+            // appuriamo che tutti i nomi dei player sono diversi
+            AudioManager.leaderboardSuono();
+            AlertController.showWarning("Impostati giocatori normali!");
+            enableBotTab();
+            this.nascondiBot(); // nasconde icone bot fino a che non imposta difficolta
 
-            switch (getNumeroGiocatori()) {
-                case 1:
-                    if(!(playerName1.getText().equals(""))) {
-                        setNomeGiocatore1();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        enableBotTab();
-                    }else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 2:
-                    if(!(playerName1.getText().equals("") || playerName2.getText().equals(""))) {
-                        setNomeGiocatore1();
-                        setNomeGiocatore2();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        enableBotTab();
-                    }else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 3:
-                    if(!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals(""))) {
-                        setNomeGiocatore1();
-                        setNomeGiocatore2();
-                        setNomeGiocatore3();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        enableBotTab();
-                    }else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 4:
-                    if(!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals("") || playerName4.getText().equals(""))) {
-                        setNomeGiocatore1();
-                        setNomeGiocatore2();
-                        setNomeGiocatore3();
-                        setNomeGiocatore4();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        enableBotTab();
-                    }else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 0:
-                    AlertController.showWarning("Non hai impostato giocatori, la partita sarà governata da solo bot");
-                    enableBotTab();
-                    break;
-                default:
-                    break;
-
-
-            }
-            this.nascondiBot();
-
+            System.out.println("Giocatori iniziali normali: ");
+            NameGenerator.stampaNomi(giocatoriPartita);
+            this.salvaNomiPlayerButton.setVisible(false);
+            this.numeroGiocatoriMenu.setVisible(false);
 
         } else {
             AudioManager.erroreSuono();
             AlertController.showErrore("Non ci possono essere giocatori con lo stesso nome o senza, RIPROVA ");
+            this.giocatoriPartita.clear();
         }
 
 
     }
 
-    private void enableBotTab(){
-        if(getNumeroGiocatori()==4) {
+    private void enableBotTab() {
+        if (getNumeroGiocatori() == 4) {
 
             impostazioniTab.setDisable(false);
         } else {
@@ -634,6 +464,7 @@ public class PartitaClassicaController2 {
 
         }
     }
+
     public void indietro(MouseEvent mouseEvent) throws IOException {
         AudioManager.bottoneSuono();
         FXMLLoader Indietro = new FXMLLoader(Spacca.class.getResource("SelectionMenu.fxml"));
@@ -679,85 +510,14 @@ public class PartitaClassicaController2 {
     // Pulsante crea partita
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
+        // adesso aggiungiamo ai giocatori i bot
+        for (IGiocatore giocatoreBot : giocatoriBot)
+            giocatoriPartita.add(giocatoreBot);
 
-        ArrayList<IGiocatore> GiocatoriPartita = new ArrayList<>();
+        System.out.println("Giocatori Partita Totali : " );
+        NameGenerator.stampaNomi(giocatoriPartita);
 
-        if (getNumeroGiocatori() == 1) {
-            System.out.println("Nome giocatore 1: " + getNomeGiocatore1());
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-        } else if (getNumeroGiocatori() == 2) {
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-        } else if (getNumeroGiocatori() == 3) {
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
-        } else if (getNumeroGiocatori() == 4) {
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore1()));
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore2()));
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore3()));
-            GiocatoriPartita.add(new Giocatore(getNomeGiocatore4()));
-        } else {
-
-        }
-
-
-        switch (getNumeroBot()) {
-
-            case 3:
-
-                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    GiocatoriPartita.add(new AdvancedBot(getA1()));
-                    GiocatoriPartita.add(new AdvancedBot(getA2()));
-                    GiocatoriPartita.add(new AdvancedBot(getA3()));
-                } else {
-                    GiocatoriPartita.add(new EasyBot(getE1()));
-                    GiocatoriPartita.add(new EasyBot(getE2()));
-                    GiocatoriPartita.add(new EasyBot(getE3()));
-
-                }
-                break;
-            case 4:
-
-                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    GiocatoriPartita.add(new AdvancedBot(getA1()));
-                    GiocatoriPartita.add(new AdvancedBot(getA2()));
-                    GiocatoriPartita.add(new AdvancedBot(getA3()));
-                    GiocatoriPartita.add(new AdvancedBot(getA4()));
-                } else {
-                    GiocatoriPartita.add(new EasyBot(getE1()));
-                    GiocatoriPartita.add(new EasyBot(getE2()));
-                    GiocatoriPartita.add(new EasyBot(getE3()));
-                    GiocatoriPartita.add(new EasyBot(getE4()));
-
-                }
-                break;
-            case 2:
-
-                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    GiocatoriPartita.add(new AdvancedBot(getA1()));
-                    GiocatoriPartita.add(new AdvancedBot(getA2()));
-                } else {
-                    GiocatoriPartita.add(new EasyBot(getE1()));
-                    GiocatoriPartita.add(new EasyBot(getE2()));
-                }
-                break;
-            case 1:
-                if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-                    GiocatoriPartita.add(new AdvancedBot(getA1()));
-                } else {
-                    GiocatoriPartita.add(new EasyBot(getE1()));
-                }
-                break;
-            default:
-                break;
-        }
-
-        //P.aggiungiListaGiocatori(GiocatoriPartita);
-
-        // creiamo il salvataggio della nuova partita
-        //System.out.println("DEBUG: " + numeroCarteNormali + " -------  " + numeroCarteSpeciali + " -------  " + numeroVite);
-        FileManager.creaPartitaSuFile(this.codiceP, this.passwordP, GiocatoriPartita, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
+        FileManager.creaPartitaSuFile(this.codiceP, this.passwordP, this.giocatoriPartita, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati
 
 
         // ti riporta al menu principale
@@ -766,13 +526,6 @@ public class PartitaClassicaController2 {
         Scene scene = new Scene(impostaGioco.load());
         stage.setScene(scene);
         stage.show();
-
-        // Mi permette di creare un "oggetto del controller", in questo modo riesco a passare tutto al controller senza creare un nuovo oggetto della classe che provocherebbe due istanze aperte
-        //   MainMenuController mmc = impostaGioco.getController();
-        //  mmc.setPartitaClassicaController(this);
-        //ShareData.getInstance().setPartitaClassicaController(this); // gli passo classe partitacontroller
-        //ShareData.getInstance().setPartita(this.P);
-        //  ShareData.getInstance().setPassword(this.P); // non serve
 
     }
 
