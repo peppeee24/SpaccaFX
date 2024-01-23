@@ -538,6 +538,7 @@ public class Partita {
             return;
 
         TC.gestisciPulsanti(false, false, false);
+        TC.nascondiDadi();
 
         Thread thread = new Thread(() -> {
             try {

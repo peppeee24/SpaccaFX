@@ -60,7 +60,7 @@ public class CartaImprevisto extends Carta
                     TC.setExitGame(false);
                     AudioManager.imprevistoSuono();
                     System.out.println("[IMPREVISTO] Sei obbligato a passare il turno!");
-                    TC.mostraBannerAttesa("IMPREVISTO [PASSO-FORZATO]", "Sei obbligato a passare il turno!");
+                    TC.mostraBannerAttesa("IMPREVISTO", "Sei obbligato a PASSARE il turno!");
                 });
 
                 Thread.sleep(4000);
@@ -92,7 +92,7 @@ public class CartaImprevisto extends Carta
                     TC.setExitGame(false);
                     AudioManager.imprevistoSuono();
                     System.out.println("[IMPREVISTO] Sei obbligato a scambiare la carta con il mazzo");
-                    TC.mostraBannerAttesa("IMPREVISTO [SCAMBIO-FORZATO]", "Sei obbligato a scambiare la carta con il mazzo e a passare!");
+                    TC.mostraBannerAttesa("IMPREVISTO", "Sei obbligato a SCAMBIARE la carta con il MAZZO e a PASSARE!");
                 });
 
 
@@ -108,7 +108,7 @@ public class CartaImprevisto extends Carta
                     System.out.println("[IMPREVISTO] La carta che hai pescato è: " + currentGiocatore.getCarta().toString());
                     //this.attivatoSpecial = true;
 
-                    TC.mostraBannerAttesa("IMPREVISTO [SCAMBIO-FORZATO]", "Hai pescato " + newCarta.toString());
+                    TC.mostraBannerAttesa("IMPREVISTO", "Hai pescato la carta: " + newCarta.toString());
                     TC.updateCarteUI();
                 });
 

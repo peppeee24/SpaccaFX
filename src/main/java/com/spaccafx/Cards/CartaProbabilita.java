@@ -57,7 +57,7 @@ public class CartaProbabilita extends Carta
                     TC.setExitGame(false);
                     AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Aumenta vita con dado");
-                    TC.mostraBannerAttesa("PROBABILITA [DADI]", "Lancia un dado. Se il valore uscito equivale a quello della tua carta prendi una vita");
+                    TC.mostraBannerAttesa("PROBABILITA", "Lancia un dado. Se il valore uscito equivale a quello della tua carta prendi una vita");
                     TC.gestisciPulsanteRiprendiBot(false);
                 });
 
@@ -77,7 +77,7 @@ public class CartaProbabilita extends Carta
                     if(currentGiocatore.hasVitaExtra()) // ha gia una vita extra
                     {
                         System.out.println("[PROBABILITA] Hai gia ottenuto una vita extra");
-                        TC.mostraBannerAttesa("PROBABILITA [DADI]", "Hai gia ottenuto una vita extra");
+                        TC.mostraBannerAttesa("PROBABILITA", "Hai gia ottenuto una vita extra!");
                     }
                     else
                     {
@@ -95,13 +95,13 @@ public class CartaProbabilita extends Carta
                             currentGiocatore.addVitaExtra();
                             TC.updateVitaUI();
                             System.out.println("[PROBABILITA] Ora possiedi " + currentGiocatore.getVita() + " vite");
-                            TC.mostraBannerAttesa("PROBABILITA [DADI]", "Ti e uscito il valore del dado (" + valoreDadoNew + ") e hai guadagnato una vita-extra!");
+                            TC.mostraBannerAttesa("PROBABILITA", "Complimenti! Hai guadagnato una vita-extra!");
                             AudioManager.vitaUPSuono();
                         }
                         else
                         {
                             System.out.println("[PROBABILITA] Sei stato sfortunato, niente vita per te. Gioca il tuo turno");
-                            TC.mostraBannerAttesa("PROBABILITA [DADI]", "Sei stato sfortunato, e uscito il valore (" + valoreDadoNew + "). Niente vita-extra");
+                            TC.mostraBannerAttesa("PROBABILITA", "Sei stato sfortunato. Niente vita-extra  :(");
 
                         }
                     }
@@ -139,7 +139,7 @@ public class CartaProbabilita extends Carta
                     TC.setExitGame(false);
                     AudioManager.probabilitaSuono();
                     System.out.println("[PROBABILITA] Posso scambiare la carta con il mazzo");
-                    TC.mostraBannerAttesa("PROBABILITA [SCAMBIO-EXTRA]", "Puoi scambiare la carta con il mazzo");
+                    TC.mostraBannerAttesa("PROBABILITA", "Puoi scambiare la carta con il mazzo");
                     TC.gestisciPulsanteRiprendiBot(false);
                 });
 
@@ -185,7 +185,7 @@ public class CartaProbabilita extends Carta
         if (((Bot) currentGiocatore).attivoEffetto(partita, TC))
         {
             System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
-            Platform.runLater(() -> TC.mostraBannerAttesa("PROBABILITA [SCAMBIO-EXTRA]", "Il bot ha scambiato la carta con il mazzo"));
+            Platform.runLater(() -> TC.mostraBannerAttesa("PROBABILITA", "Il bot ha scambiato la carta con il mazzo"));
 
 
             // Gestione della pausa per il banner del bot in un thread separato
@@ -210,7 +210,7 @@ public class CartaProbabilita extends Carta
         else
         {
             System.out.println("[PROBABILITA] Il bot ha rifiutato lo scambio!");
-            Platform.runLater(() -> TC.mostraBannerAttesa("PROBABILITA [SCAMBIO-EXTRA]", "Il bot ha rifiutato lo scambio extra"));
+            Platform.runLater(() -> TC.mostraBannerAttesa("PROBABILITA", "Il bot ha rifiutato lo scambio extra"));
 
 
             // Gestione della pausa per il banner del bot in un thread separato

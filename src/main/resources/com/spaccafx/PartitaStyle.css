@@ -59,8 +59,8 @@
 }
 
 .EffettoCarta{
-    -fx-font-size: 60;
-    -fx-text-fill: red;
+    -fx-font-size: 55;
+    -fx-text-fill: #00ccff;
 
 }
 

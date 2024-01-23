@@ -107,6 +107,7 @@ public class TavoloController {
         {
             // gli devo passare il codice che mando quando clicco sul bottone
             System.out.println("Codice della partita attuale: " + codicePartita);
+            this.partitaIdLabel.setText("ID_PARTITA: " + codicePartita);
 
             this.partita = FileManager.leggiPartitaDaFile(codicePartita); // prendiamo la partita (codice, passw, giocatori, stato)
             this.partita.impostaTavoloController();
@@ -127,26 +128,37 @@ public class TavoloController {
 
     }
 
-    public void inizializzaClasseTorneo(int codiceTorneo, int currentMatch) {
-        // gli devo passare il codice che mando quando clicco sul bottone
-        System.out.println("Codice del torneo attuale: " + codiceTorneo);
-        this.setCurrentMatch(currentMatch);
-        this.setCodiceTorneo(codiceTorneo);
+    public void inizializzaClasseTorneo(int codiceTorneo, int currentMatch)
+    {
+        try
+        {
+            // gli devo passare il codice che mando quando clicco sul bottone
+            System.out.println("Codice del torneo attuale: " + codiceTorneo);
+            this.setCurrentMatch(currentMatch);
+            this.setCodiceTorneo(codiceTorneo);
 
-        //TODO SISTEMA LA LABEL IN CASO TORNEO
-        //this.partitaIdLabel.setText("ID_TORNEO: " + codiceTorneo);
+            //TODO SISTEMA LA LABEL IN CASO TORNEO
+            this.partitaIdLabel.setText("ID_TORNEO: " + codiceTorneo);
 
-        // se diverso da 4, carico una partita normale
-        if (this.currentMatch != 4)
-            this.partita = FileManager.getCurrentPartitaTorneo(this.codiceTorneo, this.currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
-        else
-            this.partita = FileManager.getFinalePartitaTorneo(this.codiceTorneo); // prendo i dati della partita finale
+            // se diverso da 4, carico una partita normale
+            if (this.currentMatch != 4)
+                this.partita = FileManager.getCurrentPartitaTorneo(this.codiceTorneo, this.currentMatch); // prendiamo la partita (codice, passw, giocatori, stato)
+            else
+                this.partita = FileManager.getFinalePartitaTorneo(this.codiceTorneo); // prendo i dati della partita finale
 
-        this.partita.impostaTavoloController();
-        inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
-        this.updateVitaUI();
+            this.partita.impostaTavoloController();
+            inizializzaNomiPlayer(); // aggiorno UI e inizializzo nomi player VIVI E MORTI
+            this.updateVitaUI();
 
-        preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
+            preInizializzazioneTavolo(this.partita.getPartitaStatus()); // inizializzo il tavolo in base alle mie esigenze
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore insolito: " + e.getMessage());
+            test.show();
+            System.exit(0);
+        }
     }
 
     private void setCodiceTorneo(int codiceTorneo) {
@@ -166,19 +178,28 @@ public class TavoloController {
     }
 
 
-    public void riprendiBot() {
+    public void riprendiBot()
+    {
+        try
+        {
+            if (partita.getCurrentGiocatore() instanceof Bot) {
+                gestisciPulsanteRiprendiBot(false);
 
-        AudioManager.bottoneSuono();
+                if (partita.getCartaGiaScambiata())
+                    partita.passaTurnoUI();
+                else
+                    ((Bot) partita.getCurrentGiocatore()).SceltaBotUI(this.partita, this);
 
-        if (partita.getCurrentGiocatore() instanceof Bot) {
-            gestisciPulsanteRiprendiBot(false);
-
-            if (partita.getCartaGiaScambiata())
-                partita.passaTurnoUI();
-            else
-                ((Bot) partita.getCurrentGiocatore()).SceltaBotUI(this.partita, this);
-
+            }
         }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore insolito: " + e.getMessage());
+            test.show();
+            System.exit(0);
+        }
+        AudioManager.bottoneSuono();
     }
 
 
@@ -236,7 +257,8 @@ public class TavoloController {
         }
     }
 
-    public void openLeaderboard() {
+    public void openLeaderboard()
+    {
         if (leaderboardStage == null) {
             AudioManager.leaderboardSuono();
             try {
@@ -388,45 +410,96 @@ public class TavoloController {
 
     }
 
-    public void scambiaCarta(ActionEvent actionEvent) {
-        AudioManager.bottoneSuono();
-        partita.ScambiaCartaUI();
-        this.setExitGame(false);
-    } // all interno della partita faccio la mossa del giocatore attuale
+    public void scambiaCarta(ActionEvent actionEvent)
+    {
+        try
+        {
+            AudioManager.bottoneSuono();
+            partita.ScambiaCartaUI();
+            this.setExitGame(false);
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore di caricamento: " + e.getMessage());
+            test.show();
+        }
 
-    public void passaTurno(ActionEvent actionEvent) {
-        AudioManager.bottoneSuono();
-        partita.passaTurnoUI();
-        this.setExitGame(false);
-        //disableDice();
+    }
+
+    public void passaTurno(ActionEvent actionEvent)
+    {
+        try
+        {
+            AudioManager.bottoneSuono();
+            partita.passaTurnoUI();
+            this.setExitGame(false);
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore di caricamento: " + e.getMessage());
+            test.show();
+        }
     } // passo nella partita il turno del player
 
 
-    public void scambiaConMazzo(ActionEvent actionEvent) {
-        AudioManager.bottoneSuono();
-        partita.getCurrentGiocatore().setCarta(partita.mazzo.PescaCartaSenzaEffetto());
-        updateCarteUI();
-        pulsanteScambiaMazzo(false);
-        this.setExitGame(true);
+    public void scambiaConMazzo(ActionEvent actionEvent)
+    {
+        try
+        {
+            AudioManager.bottoneSuono();
+            partita.getCurrentGiocatore().setCarta(partita.mazzo.PescaCartaSenzaEffetto());
+            updateCarteUI();
+            pulsanteScambiaMazzo(false);
+            this.setExitGame(true);
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore di caricamento: " + e.getMessage());
+            test.show();
+        }
+
     }
 
     // per uscire dalla partita
-    public void exitGame(MouseEvent mouseEvent) throws IOException {
-        partita.SavePartita(mouseEvent);
+    public void exitGame(MouseEvent mouseEvent) throws IOException
+    {
+        try
+        {
+            partita.SavePartita(mouseEvent);
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore di caricamento: " + e.getMessage());
+            test.show();
+        }
     }
     //endregion
 
     // region #METHODS
 
-    public void riprendiGioco(Partita partita) {
-        this.updateVitaUI(); // aggiorna tutte le vite dei player
-        this.updateCarteUI(); // aggiorna tutte le carte dei giocatori e scopre quella del giocatore a cui tocca
-        this.updateCarteMortiUI(); // aggiorno la grafica dei player morti
-        this.updateCartaCentraleMazzoUI(); // imposta la carta centrale
-        this.impostaCoroneMazziereUI(); // imposta chi e il mazziere
+    public void riprendiGioco(Partita partita)
+    {
+        try
+        {
+            this.updateVitaUI(); // aggiorna tutte le vite dei player
+            this.updateCarteUI(); // aggiorna tutte le carte dei giocatori e scopre quella del giocatore a cui tocca
+            this.updateCarteMortiUI(); // aggiorno la grafica dei player morti
+            this.updateCartaCentraleMazzoUI(); // imposta la carta centrale
+            this.impostaCoroneMazziereUI(); // imposta chi e il mazziere
 
-        partita.setPartitaStatus(GameStatus.PLAYING); // reimposto il gioco allo stato playing
-        partita.riprendiPartita(partita.getCurrentGiocatorePos());
+            partita.setPartitaStatus(GameStatus.PLAYING); // reimposto il gioco allo stato playing
+            partita.riprendiPartita(partita.getCurrentGiocatorePos());
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore di caricamento: " + e.getMessage());
+            test.show();
+        }
     }
 
     public void caricaMenuUI(MouseEvent mouseEvent) throws IOException
@@ -561,7 +634,6 @@ public class TavoloController {
     }
 
     public void aggiornaInfoUI() {
-        partitaIdLabel.setText("ID_PARTITA: " + partita.getCodicePartita());
         roundIdLabel.setText("ROUND " + partita.getCurrentRound());
     }
 
@@ -842,7 +914,7 @@ public class TavoloController {
                     popUpPane.setDisable(false);
 
                     popUpTitleLabel.setVisible(true);
-                    popUpTitleLabel.setText("LOBBY...");
+                    popUpTitleLabel.setText("RITORNO LOBBY");
                     popUpTitleLabel.setTextFill(Color.YELLOW);
 
                     popUpTextLabel.setVisible(true);
@@ -1082,8 +1154,6 @@ public class TavoloController {
         this.exitGame.setVisible(state);
     }
 
-    // TODO rimpicciolire testo banne probabilita
     // TODO verificare suono scambia con mazzo
-    // TODO ingrandine nomi label giocatori/bot nel tavolo
 }
 
