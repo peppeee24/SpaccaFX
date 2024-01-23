@@ -10,14 +10,14 @@ public class NameGenerator
 {
     public static String generaNomeBotEasy()
     { //generiamo nomi per i bot(es: user1234)
-        int numeroBot=(int)(1 + (Math.random() * 9999));
+        int numeroBot=(int)(1 + (Math.random() * 15));
         String nomeBot="EzBot_" + numeroBot;
         return nomeBot;
     }
 
     public static String generaNomeBotAdvanced() //generiamo nomi per i bot(es: user1234)
     {
-        int numeroBot=(int)(1 + (Math.random() * 9999));
+        int numeroBot=(int)(1 + (Math.random() * 15));
         String nomeBot="AdvBot_" + numeroBot;
         return nomeBot;
     }

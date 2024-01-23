@@ -201,7 +201,7 @@
                                     <Image url="@../../Assets/Game/Environment/userIcons.png" />
                                  </image>
                               </ImageView>
-                              <Button layoutX="634.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaNomi" prefHeight="54.0" prefWidth="128.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="salvaNomiPlayerButton" layoutX="634.0" layoutY="533.0" mnemonicParsing="false" onAction="#salvaNomi" prefHeight="54.0" prefWidth="128.0" text="SAVE" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font>

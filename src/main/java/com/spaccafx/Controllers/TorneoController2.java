@@ -5,6 +5,7 @@ import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Enums.GameType;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
+import com.spaccafx.Files.NameGenerator;
 import com.spaccafx.Interface.IGiocatore;
 import com.spaccafx.Manager.Partita;
 import com.spaccafx.Player.AdvancedBot;
@@ -21,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.telegram.telegrambots.meta.api.objects.Audio;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import java.util.Set;
 public class TorneoController2 {
 
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali, contatorePartita; // sono i dati della partita
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4, E1, E2, E3, E4, A1, A2, A3, A4; // sono i dati della partita
+    private String difficolta; // sono i dati della partita
 
     @FXML
     Tab playerTab, botTab, creaTab, impostazioniPreliminariTab;
@@ -51,13 +53,11 @@ public class TorneoController2 {
     ImageView oneLabel, twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
     @FXML
-    Button inviaButton, generaCodiceTorneoButton, setBotButton;
+    Button inviaButton, generaCodiceTorneoButton, setBotButton, salvaNomiPlayerButton;
 
-    // creo bot per settare nomi/ difficolta
-    EasyBot E = new EasyBot();
-    AdvancedBot A = new AdvancedBot();
     ArrayList<Partita> partiteXTorneo;
 
+    ArrayList<IGiocatore> giocatoriPartita, giocatoriBot;
 
     int codiceT, passwordT;
 
@@ -80,6 +80,8 @@ public class TorneoController2 {
 
         this.passwordT = 0;
         this.codiceT = 0;
+        this.giocatoriPartita = new ArrayList<IGiocatore>();
+        this.giocatoriBot = new ArrayList<IGiocatore>();
 
         inviaButton.setVisible(false);
         generaCodiceTorneoButton.setVisible(true);
@@ -96,7 +98,7 @@ public class TorneoController2 {
         numeroGiocatori = Integer.parseInt(String.valueOf(numeroGiocatoriMenu.getValue()));
         setNumeroGiocatori();
         this.controlloGiocatori();
-        setNumeroBot();
+        this.setNumeroBot();
         System.out.println("Numero giocatori : " + numeroGiocatori);
     }
 
@@ -208,77 +210,6 @@ public class TorneoController2 {
         }
     }
 
-    public void getEasyBot1() {
-        //E1 = E.generaNomeBot();
-    }
-
-    public String getE1() {
-        return E1;
-    }
-
-    public void getEasyBot2() {
-        //E2 = E.generaNomeBot();
-    }
-
-    public String getE2() {
-        return E2;
-    }
-
-    public void getEasyBot4() {
-        //E4 = E.generaNomeBot();
-
-    }
-
-    public String getE4() {
-
-        return E4;
-    }
-
-    public void getEasyBot3() {
-        //E3 = E.generaNomeBot();
-
-    }
-
-    public String getE3() {
-
-        return E3;
-    }
-
-
-    public void getAdvBot1() {
-        //A1 = A.generaNomeBot();
-    }
-
-    public String getA1() {
-        return A1;
-    }
-
-    public void getAdvBot2() {
-        //A2 = A.generaNomeBot();
-    }
-
-    public String getA2() {
-        return A2;
-    }
-
-    public void getAdvBot3() {
-        //A3 = A.generaNomeBot();
-
-    }
-
-    public String getA3() {
-        return A3;
-    }
-
-    public void getAdvBot4() {
-       // A4 = A.generaNomeBot();
-
-    }
-
-    public String getA4() {
-        return A4;
-    }
-
     public void nascondiBot() { // viene attivato quando clicchi sul bottone salva
         labelBot1.setVisible(false);
         labelBot2.setVisible(false);
@@ -292,14 +223,6 @@ public class TorneoController2 {
         easyBot2.setVisible(false);
         easyBot3.setVisible(false);
         easyBot4.setVisible(false);
-        getAdvBot1();
-        getAdvBot2();
-        getAdvBot3();
-        getAdvBot4();
-        getEasyBot1();
-        getEasyBot2();
-        getEasyBot3();
-        getEasyBot4();
     }
 
 
@@ -311,103 +234,98 @@ public class TorneoController2 {
         this.impostaDifficolta();
     }
 
+    private void mostraIconaBot(Label labelNomeBot, String nome, ImageView hardBot, boolean flag1, ImageView easyBot, boolean flag2) {
+        labelNomeBot.setText(nome);
+        labelNomeBot.setVisible(true);
+        hardBot.setVisible(flag1);
+        easyBot.setVisible(flag2);
+    }
+
 
     // per i bot
     public void impostaDifficolta() {
 
-        if (difficolta != null) {
-            switch (getNumeroBot())  // getnumero() bot viene generato quando salvo i dati dei player
-            {
-                case 0:
-                    difficoltaBotMenu.setVisible(false); // guardare sta merda (demolire tutto)
-                    difficoltaBotLabel.setVisible(false);
-                    numeroBotLabel.setText("Non ci sono bot");
-                    break;
-                case 1:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                    }
-                    break;
-                case 2:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                        labelBot2.setText(getA2());
-                        labelBot2.setVisible(true);
-                        hardBot2.setVisible(true);
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                        labelBot2.setText(getE2());
-                        labelBot2.setVisible(true);
-                        easyBot2.setVisible(true);
-                    }
-                    break;
-                case 3:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                        labelBot2.setText(getA2());
-                        labelBot2.setVisible(true);
-                        hardBot2.setVisible(true);
-                        labelBot3.setText(getA3());
-                        labelBot3.setVisible(true);
-                        hardBot3.setVisible(true);
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                        labelBot2.setText(getE2());
-                        labelBot2.setVisible(true);
-                        easyBot2.setVisible(true);
-                        labelBot3.setText(getE3());
-                        labelBot3.setVisible(true);
-                        easyBot3.setVisible(true);
-                    }
-                    break;
-                case 4:
-                    if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                        labelBot1.setText(getA1());
-                        labelBot1.setVisible(true);
-                        hardBot1.setVisible(true);
-                        labelBot2.setText(getA2());
-                        labelBot2.setVisible(true);
-                        hardBot2.setVisible(true);
-                        labelBot3.setText(getA3());
-                        labelBot3.setVisible(true);
-                        hardBot3.setVisible(true);
-                        labelBot4.setText(getA4());
-                        labelBot4.setVisible(true);
-                        hardBot4.setVisible(true);
-                    } else {
-                        labelBot1.setText(getE1());
-                        labelBot1.setVisible(true);
-                        easyBot1.setVisible(true);
-                        labelBot2.setText(getE2());
-                        labelBot2.setVisible(true);
-                        easyBot2.setVisible(true);
-                        labelBot3.setText(getE3());
-                        labelBot3.setVisible(true);
-                        easyBot3.setVisible(true);
-                        labelBot4.setText(getE4());
-                        labelBot4.setVisible(true);
-                        easyBot4.setVisible(true);
-                    }
-                    break;
-                default:
+        // arraylist giocatori =---> 1 - 4 //// 0
+        if (difficolta != null && !difficolta.isEmpty()) {
+            if (getDifficolta().equalsIgnoreCase("Difficile")) {
+                for (int c = 0; c < getNumeroBot(); c++) {
+                    giocatoriBot.add(new AdvancedBot(NameGenerator.generaNomeBotAdvanced()));
+                }
+            } else {
+                for (int c = 0; c < getNumeroBot(); c++) {
+                    giocatoriBot.add(new EasyBot(NameGenerator.generaNomeBotEasy()));
+                }
+            }
 
+            if (NameGenerator.controllaNomiDiversi(giocatoriBot))
+            {
+                caricaGraficaTuttiBot(giocatoriBot);
+                System.out.println("Giocatori Bot: ");
+                NameGenerator.stampaNomi(giocatoriBot);
+                this.setBotButton.setVisible(false);
+                this.difficoltaBotMenu.setVisible(false);
+            } else {
+                System.out.println("Giocatori Bot DUPLICATI: ");
+                NameGenerator.stampaNomi(giocatoriBot);
+                AlertController.showErrore("Ti chiediamo scusa, il sistema ha generato nomi di bot uguali. Riprova..");
+                giocatoriBot.clear();
             }
         } else {
-            System.out.println("Difficoltà è null");
+            AlertController.showErrore("Devi inserire una difficolta per i bot");
+            giocatoriBot.clear();
+        }
+    }
+
+    private void caricaGraficaTuttiBot(ArrayList<IGiocatore> giocatoriBot) {
+        switch (this.getNumeroBot())  // getnumero() bot viene generato quando salvo i dati dei player
+        {
+            case 1:
+                if (getDifficolta().equalsIgnoreCase("Difficile")) {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                }
+                break;
+            case 2:
+                if (getDifficolta().equalsIgnoreCase("Difficile")) {
+
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, true, easyBot2, false);
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, false, easyBot2, true);
+                }
+                break;
+            case 3:
+                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, true, easyBot2, false);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, true, easyBot3, false);
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, false, easyBot2, true);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, false, easyBot3, true);
+
+                }
+                break;
+            case 4:
+                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, true, easyBot1, false);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, true, easyBot2, false);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, true, easyBot3, false);
+                    mostraIconaBot(labelBot4, giocatoriBot.get(3).getNome(), hardBot4, true, easyBot4, false);
+                } else {
+                    mostraIconaBot(labelBot1, giocatoriBot.get(0).getNome(), hardBot1, false, easyBot1, true);
+                    mostraIconaBot(labelBot2, giocatoriBot.get(1).getNome(), hardBot2, false, easyBot2, true);
+                    mostraIconaBot(labelBot3, giocatoriBot.get(2).getNome(), hardBot3, false, easyBot3, true);
+                    mostraIconaBot(labelBot4, giocatoriBot.get(3).getNome(), hardBot4, false, easyBot4, true);
+                }
+                break;
+            default:
+                break;
+
         }
     }
 
@@ -445,130 +363,52 @@ public class TorneoController2 {
 
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
-
         AudioManager.bottoneSuono();
 
-        String pn1 = "";
-        String pn2 = "";
-        String pn3 = "";
-        String pn4 = "";
-
+        // prende nome player
         switch (getNumeroGiocatori()) { //non è un granchè ma risolve il problema dei giocatori quando sono null, cossì posSIAKMO FARE LED CONDIZIONE PROSSIME
             case 1:
-                pn1 = playerName1.getText();
-                pn2 = "verijhvnerthunbv";
-                pn3 = "gbwoktermbojqet";
-                pn4 = "rtbkmitrbmirt";
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
                 break;
             case 2:
-                pn1 = playerName1.getText();
-                pn2 = playerName2.getText();
-                pn3 = "dfbijmq9obm";
-                pn4 = "eobtjmvortejmgb9uipw";
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
+                giocatoriPartita.add(new Giocatore(playerName2.getText()));
                 break;
             case 3:
-                pn1 = playerName1.getText();
-                pn2 = playerName2.getText();
-                pn3 = playerName3.getText();
-                pn4 = "rgbkeito0qbkjio9wjg";
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
+                giocatoriPartita.add(new Giocatore(playerName2.getText()));
+                giocatoriPartita.add(new Giocatore(playerName3.getText()));
                 break;
             case 4:
-                pn1 = playerName1.getText();
-                pn2 = playerName2.getText();
-                pn3 = playerName3.getText();
-                pn4 = playerName4.getText();
+                giocatoriPartita.add(new Giocatore(playerName1.getText()));
+                giocatoriPartita.add(new Giocatore(playerName2.getText()));
+                giocatoriPartita.add(new Giocatore(playerName3.getText()));
+                giocatoriPartita.add(new Giocatore(playerName4.getText()));
                 break;
             case 0:
-                pn1 = "fjhrkspvrjhhhfkwpvf";
-                pn2 = "verijhvnerthunbv";
-                pn3 = "gbwoktermbojqet";
-                pn4 = "rtbkmitrbmirt";
                 break;
             default:
                 break;
         }
 
-        if (!(pn1.equalsIgnoreCase(pn2) || pn1.equalsIgnoreCase(pn3) || pn1.equalsIgnoreCase(pn4) || pn2.equalsIgnoreCase(pn3) || pn2.equalsIgnoreCase(pn4) || pn3.equalsIgnoreCase(pn4))) {
-            System.out.println(playerName1.getText() + playerName2.getText() + playerName3.getText() + playerName4.getText());
+        // guarda che siano diversi i nomi DEI PLAYER tra loro prima di salvare
+        if (NameGenerator.controllaNomiDiversi(giocatoriPartita) || giocatoriPartita.size() == 0) {
+            // appuriamo che tutti i nomi dei player sono diversi
+            AlertController.showWarning("Impostati giocatori normali!");
+            enableBotTab();
+            this.nascondiBot(); // nasconde icone bot fino a che non imposta difficolta
 
-            switch (getNumeroGiocatori()) {
-                case 1:
-                    if (!(playerName1.getText().equals(""))) {
-
-                        setNomeGiocatore1();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        enableBotTab();
-
-
-                    } else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 2:
-                    if (!(playerName1.getText().equals("") || playerName2.getText().equals(""))) {
-
-                        setNomeGiocatore1();
-                        setNomeGiocatore2();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        enableBotTab();
-
-
-                    } else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 3:
-                    if (!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals(""))) {
-
-                        setNomeGiocatore1();
-                        setNomeGiocatore2();
-                        setNomeGiocatore3();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-                        enableBotTab();
-
-
-                    } else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 4:
-                    if (!(playerName1.getText().equals("") || playerName2.getText().equals("") || playerName3.getText().equals("") || playerName4.getText().equals(""))) {
-
-                        setNomeGiocatore1();
-                        setNomeGiocatore2();
-                        setNomeGiocatore3();
-                        setNomeGiocatore4();
-                        AudioManager.leaderboardSuono();
-                        AlertController.showWarning("I nomi sono stati salvati con successo!");
-
-                        enableBotTab();
-                       // botTab.setDisable(true);
-                    } else {
-                        AudioManager.erroreSuono();
-                        AlertController.showErrore("Devi impostare il nome del giocatore");
-                    }
-                    break;
-                case 0:
-                    AlertController.showWarning("Non hai impostato giocatori, la partita sarà governata da solo bot");
-                    enableBotTab();
-                    break;
-                default:
-                    break;
-
-
-            }
-            this.nascondiBot();
+            System.out.println("Giocatori iniziali normali: ");
+            NameGenerator.stampaNomi(giocatoriPartita);
+            this.salvaNomiPlayerButton.setVisible(false);
+            this.numeroGiocatoriMenu.setVisible(false);
 
         } else {
             AudioManager.erroreSuono();
-            AlertController.showErrore("Non ci possono essere giocatori con lo stesso o senza, RIPROVA ");
+            AlertController.showErrore("Non ci possono essere giocatori con lo stesso nome o senza, RIPROVA ");
+            this.giocatoriPartita.clear();
         }
+
 
     }
 
@@ -586,74 +426,54 @@ public class TorneoController2 {
     }
 
 
-    public boolean controlloNomiTotale2() {
+    public boolean controlloNomiTotaleTorneo()
+    {
 
-        boolean esito = true; // Imposto esito a true di default
+        try
+        {
+            // Utilizza un set per verificare l'unicità dei nomi dei giocatori nella partita
+            Set<String> nomiUnici = new HashSet<>();
 
-        ArrayList<Partita> p = FileManager.leggiTorneoDaFile(codiceT);
+            for (Partita partita : partiteXTorneo)
+            {
+                ArrayList<IGiocatore> giocatoriPartita = partita.giocatori;
 
-        Set<String> nomiIncontrati = new HashSet<>(); // Utilizzo un set per tenere traccia dei nomi già incontrati
+                for (IGiocatore giocatore : giocatoriPartita)
+                {
+                    String nomeGiocatore = giocatore.getNome();
 
-        for (int i = 0; i < 4; i++) { // For per le partite
-            for (int j = 0; j < 4; j++) { // For per i giocatori in una partita singola
+                    // Verifica se il nome è già presente nel set
+                    if (nomiUnici.contains(nomeGiocatore))
+                    {
+                        // Stampa i nomi dei giocatori nel set
+                        System.out.println("Nomi dei giocatori NON UNICI nel Torneo:");
+                        for (String nomiGiocatore : nomiUnici) {
+                            System.out.println(nomiGiocatore);
+                        }
 
-                IGiocatore giocatore = p.get(i).giocatori.get(j); // TODO ERRORE QUI, DA RIVEDERE
-
-                String nomeGiocatore = giocatore.getNome();
-
-                // Controllo se il nome è già stato incontrato
-                if (nomiIncontrati.contains(nomeGiocatore)) {
-                    AudioManager.erroreSuono();
-                    AlertController.showErrore("Esiste già un giocatore in questo torneo chiamato: " + nomeGiocatore + ", reimposta la partita");
-                    esito = false; // Imposto esito a false se trovo un nome duplicato
-                    break; // Esco dal ciclo in quanto ho già trovato un nome duplicato
-                } else {
-                    // Aggiungo il nome al set perché l'ho incontrato ora
-                    nomiIncontrati.add(nomeGiocatore);
+                        // Se il nome è già presente, restituisci false
+                        return false;
+                    } else {
+                        // Aggiungi il nome al set
+                        nomiUnici.add(nomeGiocatore);
+                    }
                 }
             }
-            if (!esito) {
-                break; // Esco anche dal ciclo esterno se ho trovato un nome duplicato
+
+            // Stampa i nomi dei giocatori nel set
+            System.out.println("Nomi dei giocatori UNICI nel Torneo:");
+            for (String nomeGiocatore : nomiUnici) {
+                System.out.println(nomeGiocatore);
             }
+
+            // Se siamo arrivati a questo punto, tutti i nomi sono unici in ogni partita
+            return true;
         }
-
-        return esito;
-    }
-
-    public void setNomeGiocatore1() {
-        nomeGiocatore1 = playerName1.getText();
-
-    }
-
-    public void setNomeGiocatore2() {
-        nomeGiocatore2 = playerName2.getText();
-
-    }
-
-    public void setNomeGiocatore3() {
-        nomeGiocatore3 = playerName3.getText();
-
-    }
-
-    public void setNomeGiocatore4() {
-        nomeGiocatore4 = playerName4.getText();
-
-    }
-
-    public String getNomeGiocatore1() {
-        return nomeGiocatore1;
-    }
-
-    public String getNomeGiocatore2() {
-        return nomeGiocatore2;
-    }
-
-    public String getNomeGiocatore3() {
-        return nomeGiocatore3;
-    }
-
-    public String getNomeGiocatore4() {
-        return nomeGiocatore4;
+        catch (Exception e)
+        {
+            AlertController.showErrore("C'e stato un errore durante la creazione del torneo, ricrealo!");
+            return false;
+        }
     }
 
 
@@ -689,19 +509,26 @@ public class TorneoController2 {
         inviaButton.setVisible(true);
     }
 
-    public void impostaTorneo(ActionEvent actionEvent) throws IOException {
+    public void impostaTorneo(ActionEvent actionEvent) throws IOException
+    {
         AudioManager.bottoneSuono();
         FileManager.creaTorneoSuFile(this.codiceT, this.passwordT, this.partiteXTorneo, GameType.TORNEO, GameStatus.STARTED, this.numeroCarteNormali, this.numeroCarteSpeciali, this.numeroVite);
 
-        if (controlloNomiTotale2()) {
+        if (controlloNomiTotaleTorneo()) // se e true i nomi nel torneo sono unici e possiamo crearlo
+        {
             FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("MainMenu.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = playerScreen.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } else {
+        }
+        else
+        {// nomi non univoci
             FileManager.eliminaTorneo(this.codiceT);
+            AudioManager.erroreSuono();
+            AlertController.showErrore("Nel torneo sono presenti nomi uguali!");
+
             FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = playerScreen.load();
@@ -710,98 +537,38 @@ public class TorneoController2 {
             stage.show();
         }
 
-
     }
 
 
     // Pulsante crea partita
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
 
-
         AudioManager.bottoneSuono();
         partiteXTorneo.add(new Partita(4));
         Partita p = partiteXTorneo.get(contatorePartita);
 
-        if (getNumeroGiocatori() == 1) {
-            System.out.println("Nome giocatore 1: " + getNomeGiocatore1());
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
-
-        } else if (getNumeroGiocatori() == 2) {
-
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore2()));
-        } else if (getNumeroGiocatori() == 3) {
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore2()));
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore3()));
-        } else if (getNumeroGiocatori() == 4) {
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore1()));
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore2()));
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore3()));
-            p.aggiungiGiocatore(new Giocatore(getNomeGiocatore4()));
-        } else {
-
+        // adesso aggiungiamo ai giocatori i bot
+        if(giocatoriBot != null || !giocatoriBot.isEmpty() || giocatoriBot.size() != 0)
+        {
+            for (IGiocatore giocatoreBot : giocatoriBot)
+                giocatoriPartita.add(giocatoreBot);
         }
 
 
-        switch (getNumeroBot()) {
+        System.out.println("Giocatori Partita Totali : " );
+        NameGenerator.stampaNomi(giocatoriPartita);
 
-            case 3:
-
-                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    p.aggiungiGiocatore(new AdvancedBot(getA1()));
-                    p.aggiungiGiocatore(new AdvancedBot(getA2()));
-                    p.aggiungiGiocatore(new AdvancedBot(getA3()));
-                } else {
-                    p.aggiungiGiocatore(new EasyBot(getE1()));
-                    p.aggiungiGiocatore(new EasyBot(getE2()));
-                    p.aggiungiGiocatore(new EasyBot(getE3()));
-
-                }
-                break;
-            case 4:
-
-                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    p.aggiungiGiocatore(new AdvancedBot(getA1()));
-                    p.aggiungiGiocatore(new AdvancedBot(getA2()));
-                    p.aggiungiGiocatore(new AdvancedBot(getA3()));
-                    p.aggiungiGiocatore(new AdvancedBot(getA4()));
-                } else {
-                    p.aggiungiGiocatore(new EasyBot(getE1()));
-                    p.aggiungiGiocatore(new EasyBot(getE2()));
-                    p.aggiungiGiocatore(new EasyBot(getE3()));
-                    p.aggiungiGiocatore(new EasyBot(getE4()));
-
-                }
-                break;
-            case 2:
-
-                if (getDifficolta().equalsIgnoreCase("Difficile") && !getDifficolta().isEmpty()) {
-                    p.aggiungiGiocatore(new AdvancedBot(getA1()));
-                    p.aggiungiGiocatore(new AdvancedBot(getA2()));
-                } else {
-                    p.aggiungiGiocatore(new EasyBot(getE1()));
-                    p.aggiungiGiocatore(new EasyBot(getE2()));
-                }
-                break;
-            case 1:
-                if (getDifficolta().equals("Difficile") && !getDifficolta().isEmpty()) {
-                    p.aggiungiGiocatore(new AdvancedBot(getA1()));
-                } else {
-                    p.aggiungiGiocatore(new EasyBot(getE1()));
-                }
-                break;
-            default:
-                break;
-        }
+        p.aggiungiListaGiocatori(giocatoriPartita);
 
 
-        System.out.println("La mia partita contiene " + p.giocatori.size() + " giocatori");
+
+        //System.out.println("La mia partita contiene " + p.giocatori.size() + " giocatori");
         System.out.println("La mia partita contiene " + partiteXTorneo.get(contatorePartita).giocatori.size() + " giocatori");
 
         this.contatorePartita++;
 
-        if (contatorePartita < 4) {
+        if (contatorePartita < 4)
+        {
             FXMLLoader impostaTorneo = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
             Parent root = impostaTorneo.load();
 

@@ -40,7 +40,7 @@ import java.util.Set;
 
 public class PartitaClassicaController2 {
     private int numeroGiocatori, numeroBotMenu, numeroCarteNormali, numeroVite, numeroCarteSpeciali; // sono i dati della partita
-    private String difficolta, nomeGiocatore1, nomeGiocatore2, nomeGiocatore3, nomeGiocatore4; // sono i dati della partita
+    private String difficolta; // sono i dati della partita
 
     @FXML
     Tab playerTab, botTab, creaTab, impostazioniTab;
@@ -64,7 +64,7 @@ public class PartitaClassicaController2 {
     ImageView oneLabel, twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
 
-    ArrayList<IGiocatore> giocatoriPartita;
+    ArrayList<IGiocatore> giocatoriPartita, giocatoriBot;
 
     int codiceP, passwordP;
 
@@ -85,6 +85,7 @@ public class PartitaClassicaController2 {
         this.codiceP = 0;
         this.passwordP = 0;
         this.giocatoriPartita = new ArrayList<IGiocatore>();
+        this.giocatoriBot = new ArrayList<IGiocatore>();
 
         inviaButton.setVisible(false);
         generaCodiceButton.setVisible(true);
@@ -100,7 +101,7 @@ public class PartitaClassicaController2 {
         numeroGiocatori = Integer.parseInt(String.valueOf(numeroGiocatoriMenu.getValue()));
         setNumeroGiocatori();
         this.controlloGiocatori();
-        setNumeroBot();
+        this.setNumeroBot();
         System.out.println("Numero giocatori : " + numeroGiocatori);
     }
 
@@ -243,10 +244,8 @@ public class PartitaClassicaController2 {
         easyBot.setVisible(flag2);
     }
 
-    ArrayList<IGiocatore> giocatoriBot;
 
     public void impostaDifficolta() {
-        giocatoriBot = new ArrayList<IGiocatore>();
 
         // arraylist giocatori =---> 1 - 4 //// 0
         if (difficolta != null && !difficolta.isEmpty()) {
@@ -365,43 +364,6 @@ public class PartitaClassicaController2 {
     }
 
 
-    public void setNomeGiocatore1() {
-        nomeGiocatore1 = playerName1.getText();
-
-    }
-
-    public void setNomeGiocatore2() {
-        nomeGiocatore2 = playerName2.getText();
-
-    }
-
-    public void setNomeGiocatore3() {
-        nomeGiocatore3 = playerName3.getText();
-
-    }
-
-    public void setNomeGiocatore4() {
-        nomeGiocatore4 = playerName4.getText();
-
-    }
-
-
-    public String getNomeGiocatore1() {
-        return nomeGiocatore1;
-    }
-
-    public String getNomeGiocatore2() {
-        return nomeGiocatore2;
-    }
-
-    public String getNomeGiocatore3() {
-        return nomeGiocatore3;
-    }
-
-    public String getNomeGiocatore4() {
-        return nomeGiocatore4;
-    }
-
 
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
     {
@@ -436,7 +398,6 @@ public class PartitaClassicaController2 {
         // guarda che siano diversi i nomi DEI PLAYER tra loro prima di salvare
         if (NameGenerator.controllaNomiDiversi(giocatoriPartita) || giocatoriPartita.size() == 0) {
             // appuriamo che tutti i nomi dei player sono diversi
-            AudioManager.leaderboardSuono();
             AlertController.showWarning("Impostati giocatori normali!");
             enableBotTab();
             this.nascondiBot(); // nasconde icone bot fino a che non imposta difficolta
@@ -521,8 +482,11 @@ public class PartitaClassicaController2 {
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
         // adesso aggiungiamo ai giocatori i bot
-        for (IGiocatore giocatoreBot : giocatoriBot)
-            giocatoriPartita.add(giocatoreBot);
+        if(giocatoriBot != null || !giocatoriBot.isEmpty() || giocatoriBot.size() != 0)
+        {
+            for (IGiocatore giocatoreBot : giocatoriBot)
+                giocatoriPartita.add(giocatoreBot);
+        }
 
         System.out.println("Giocatori Partita Totali : " );
         NameGenerator.stampaNomi(giocatoriPartita);
