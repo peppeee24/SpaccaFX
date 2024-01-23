@@ -476,34 +476,44 @@ public class PartitaClassicaController2 {
 
 
     // Utilizziamo classe partita
-    public void generaCodice(ActionEvent actionEvent) throws IOException {
-        AudioManager.bottoneSuono();
-        AlertController.showWarning("Attenzione: Attendi Caricamento");
+    public void generaCodice(ActionEvent actionEvent)
+    {
+        try
+        {
+            AudioManager.bottoneSuono();
+            AlertController.showWarning("Attenzione: Attendi Caricamento");
 
 
-        int somma = getNumeroGiocatori() + getNumeroBot();
+            int somma = getNumeroGiocatori() + getNumeroBot();
 
-        if (somma > 1 && somma < 5) {
-            this.codiceP = FileManager.creaCodicePartitaUnico();
-            this.passwordP = FileManager.creaPasswordPartitaUnica();
-
-
-            System.out.println("Codice Generato: " + codiceP);
-            System.out.println("Password Generata: " + passwordP);
-            passwordPartita.setText("Password: " + passwordP);
-            codicePartita.setText("Codice: " + codiceP);
+            if (somma > 1 && somma < 5) {
+                this.codiceP = FileManager.creaCodicePartitaUnico();
+                this.passwordP = FileManager.creaPasswordPartitaUnica();
 
 
-            AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
-            generaCodiceButton.setVisible(false);
-            inviaButton.setVisible(true);
+                System.out.println("Codice Generato: " + codiceP);
+                System.out.println("Password Generata: " + passwordP);
+                passwordPartita.setText("Password: " + passwordP);
+                codicePartita.setText("Codice: " + codiceP);
 
 
-        } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
-            AudioManager.erroreSuono();
+                AlertController.showWarning("Codice partita generato!,Comunica il codice ai giocatori che dovranno inserirlo successivamente");
+                generaCodiceButton.setVisible(false);
+                inviaButton.setVisible(true);
 
-            AlertController.showErrore("Errore: Player/BOT non impostati correttamente");
 
+            } else { //teoricamente non entra mai siccome il numero dei bot va di pari passo a quello dei giocatori, lo teniamo solo per avere una sicurezza maggiore
+                AudioManager.erroreSuono();
+
+                AlertController.showErrore("Errore: Player/BOT non impostati correttamente");
+
+            }
+        }
+        catch (Exception e)
+        {
+            Alert test = new Alert(Alert.AlertType.ERROR);
+            test.setContentText("Errore di caricamento: " + e.getMessage());
+            test.show();
         }
     }
 

@@ -326,7 +326,6 @@ public class TavoloController {
                 int posizione = 1;
                 // PARTE NUOVA
                 for (IGiocatore giocatore : giocatoriLeaderboard) {
-                    AudioManager.leaderboardSuono();
                     FXMLLoader fxmlLoader = new FXMLLoader(Spacca.class.getResource("SinglePlayerScoreboard.fxml"));
 
                     AnchorPane anchorPane = fxmlLoader.load();
