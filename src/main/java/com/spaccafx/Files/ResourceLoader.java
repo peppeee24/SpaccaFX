@@ -72,37 +72,6 @@ public class ResourceLoader {
         }
     }
 
-    public static void loadMusic(String audioPath, boolean play) {
-        try {
-            // Carica il file audio come InputStream direttamente dal JAR
-            InputStream risorsa = AudioManager.class.getResourceAsStream(audioPath);
-
-            if (risorsa != null) {
-                // Converte l'InputStream in un array di byte
-                byte[] audioBytes = risorsa.readAllBytes();
-
-                // Crea un ByteArrayInputStream dal array di byte
-                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(audioBytes);
-
-                // Crea l'AudioInputStream
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(byteArrayInputStream);
-
-                // Crea il Clip
-                Clip c = AudioSystem.getClip();
-                c.open(audioInputStream);
-
-                // Avvia la riproduzione se richiesto
-                if (play) {
-                    c.start();
-                }
-            } else {
-                System.out.println("Risorsa non trovata");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Errore nella riproduzione del suono");
-        }
-    }
 
 
 }
