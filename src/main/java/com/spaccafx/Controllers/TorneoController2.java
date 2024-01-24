@@ -94,6 +94,7 @@ public class TorneoController2 {
         twoLabel.setVisible(false);
         treeLabel.setVisible(false);
         fourLabel.setVisible(false);
+        salvaNomiPlayerButton.setVisible(false);
     }
 
 
@@ -109,6 +110,7 @@ public class TorneoController2 {
         this.controlloGiocatori();
         this.setNumeroBot();
         System.out.println("Numero giocatori : " + numeroGiocatori);
+        salvaNomiPlayerButton.setVisible(true);
     }
 
     public int getNumeroGiocatori() {

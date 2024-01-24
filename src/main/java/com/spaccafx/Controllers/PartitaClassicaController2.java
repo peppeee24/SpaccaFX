@@ -97,6 +97,7 @@ public class PartitaClassicaController2 {
         twoLabel.setVisible(false);
         treeLabel.setVisible(false);
         fourLabel.setVisible(false);
+        salvaNomiPlayerButton.setVisible(false);
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -111,6 +112,7 @@ public class PartitaClassicaController2 {
         this.controlloGiocatori();
         this.setNumeroBot();
         System.out.println("Numero giocatori : " + numeroGiocatori);
+        salvaNomiPlayerButton.setVisible(true);
 
     }
 
