@@ -137,7 +137,6 @@ public class TavoloController {
             this.setCurrentMatch(currentMatch);
             this.setCodiceTorneo(codiceTorneo);
 
-            //TODO SISTEMA LA LABEL IN CASO TORNEO
             this.partitaIdLabel.setText("ID_TORNEO: " + codiceTorneo);
 
             // se diverso da 4, carico una partita normale
