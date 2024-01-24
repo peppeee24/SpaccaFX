@@ -98,6 +98,7 @@ public class PartitaClassicaController2 {
         treeLabel.setVisible(false);
         fourLabel.setVisible(false);
         salvaNomiPlayerButton.setVisible(false);
+        setBotButton.setVisible(false);
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -129,7 +130,8 @@ public class PartitaClassicaController2 {
     public void dB(ActionEvent event) {
 
         difficolta = difficoltaBotMenu.getValue();
-
+        setBotButton.setVisible(true);
+        difficoltaBotLabel.setVisible(false);
     }
 
 

@@ -220,6 +220,13 @@
   -fx-background-image: url("UI/mainMenuGif2.gif");
 }
 
+.tutorialSfondo3
+{
+    -fx-background-image: url("UI/sfondopescatore.gif");
+    -fx-background-size: cover; /* o contain, a seconda delle tue esigenze */
+    -fx-background-repeat: no-repeat;
+}
+
 .gameSfondo
 {
   -fx-background-size: 100% 100%;
