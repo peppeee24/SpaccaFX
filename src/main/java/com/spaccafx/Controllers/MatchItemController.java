@@ -124,7 +124,7 @@ public class MatchItemController
         try
         {
             AudioManager.bottoneSuono();
-            FXMLLoader loaderLeaderboard = new FXMLLoader(Spacca.class.getResource("LeaderboardScreen.fxml"));
+            FXMLLoader loaderLeaderboard = new FXMLLoader(Spacca.class.getResource("LeaderboardScreenMatch.fxml"));
             Parent root = loaderLeaderboard.load();
 
             LeaderboardScreenController leaderboardController = loaderLeaderboard.getController();
@@ -214,7 +214,6 @@ public class MatchItemController
                     Background background = new Background(backgroundFill);
                     anchorPane.setBackground(background);
                 }
-
 
                 leaderboardController.getGridPaneScoreboard().add(anchorPane, 0, riga);
 

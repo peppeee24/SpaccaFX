@@ -20,7 +20,7 @@
                <children>
                   <ScrollPane fx:id="IdScrollLeaderboard" prefHeight="454.0" prefWidth="774.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <GridPane fx:id="IdGridLeaderboard" alignment="CENTER" prefHeight="0.0" prefWidth="38.0">
+                        <GridPane fx:id="IdGridLeaderboard" alignment="CENTER" prefHeight="484.0" prefWidth="797.0">
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" />
                            </rowConstraints>

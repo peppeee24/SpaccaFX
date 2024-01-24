@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.LeaderboardScreenController">
+   <top>
+      <AnchorPane prefHeight="132.0" prefWidth="1024.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="7.0" prefHeight="81.0" prefWidth="726.0" styleClass="LabelHeaderWhite30" text="CLASSIFICA PARTITA" textAlignment="CENTER" />
+            <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <HBox alignment="CENTER" layoutX="3.0" layoutY="80.0" prefHeight="59.0" prefWidth="1018.0" spacing="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="76.0" spacing="1.0">
+                     <children>
+                        <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="POS" />
+                        <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/corona.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="376.0" layoutY="10.0" prefHeight="57.0" prefWidth="108.0" spacing="1.0">
+                     <children>
+                        <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="NAME" />
+                        <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/user.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="470.0" layoutY="10.0" prefHeight="57.0" prefWidth="146.0" spacing="1.0">
+                     <children>
+                        <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="ROUNDS" />
+                        <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/timer.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="565.0" layoutY="10.0" prefHeight="57.0" prefWidth="100.0" spacing="1.0">
+                     <children>
+                        <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="VITE" />
+                        <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="659.0" layoutY="10.0" prefHeight="57.0" prefWidth="121.0" spacing="1.0">
+                     <children>
+                        <Label styleClass="LabelBlack13" stylesheets="@PartitaStyle.css" text="EXTRA" />
+                        <ImageView fitHeight="22.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/lifeGold.PNG" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <ImageView fx:id="indietro1" fitHeight="73.0" fitWidth="67.0" layoutX="943.0" layoutY="14.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/vs.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="545.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fx:id="IdScrollLeaderboard" prefHeight="491.0" prefWidth="1024.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <GridPane fx:id="IdGridLeaderboard" alignment="CENTER" prefHeight="489.0" prefWidth="1022.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
