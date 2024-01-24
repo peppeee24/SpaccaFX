@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PreTorneoController">
+   <top>
+      <AnchorPane prefHeight="97.0" prefWidth="1024.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="15.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="308.0" layoutY="12.0" prefHeight="73.0" prefWidth="408.0" styleClass="LabelWhite15" text="PRE-TORNEO" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Button fx:id="giocaButton" layoutX="788.0" layoutY="22.0" mnemonicParsing="false" onAction="#apriTavolo" prefHeight="54.0" prefWidth="222.0" styleClass="Button" text="GIOCA" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Label fx:id="currentMatchLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="102.0" layoutY="12.0" prefHeight="73.0" prefWidth="167.0" styleClass="LabelWhite15" text="MATCH: 1/4" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <TabPane prefHeight="570.0" prefWidth="1024.0" side="LEFT" stylesheets="@PartitaStyle.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab closable="false" styleClass="riempiTab" text="MATCH 1">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="user1" fitHeight="112.0" fitWidth="129.0" layoutX="57.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore1" layoutX="159.0" layoutY="88.0" prefHeight="14.0" prefWidth="210.0" text="Player1" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore1" fitHeight="29.0" fitWidth="28.0" layoutX="215.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite1" layoutX="162.0" layoutY="122.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user2" fitHeight="112.0" fitWidth="129.0" layoutX="768.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore2" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="668.0" layoutY="88.0" prefHeight="17.0" prefWidth="156.0" text="Player2" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore2" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite2" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="122.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user3" fitHeight="112.0" fitWidth="129.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore3" layoutX="180.0" layoutY="345.0" prefHeight="14.0" prefWidth="210.0" text="Player3" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore3" fitHeight="29.0" fitWidth="28.0" layoutX="233.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite3" layoutX="180.0" layoutY="381.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user4" fitHeight="112.0" fitWidth="129.0" layoutX="833.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore4" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="662.0" layoutY="345.0" prefHeight="17.0" prefWidth="156.0" text="Player4" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore4" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite4" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="381.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fitHeight="209.0" fitWidth="279.0" layoutX="422.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cup.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="currentPlayer" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="455.0" prefHeight="33.0" prefWidth="544.0" text="Tocca al giocatore: Player" textAlignment="CENTER" />
+                        <Label fx:id="currentRound" alignment="CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="494.0" prefHeight="25.0" prefWidth="602.0" text="Round: 1" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" styleClass="riempiTab" text="MATCH 2">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="user11" fitHeight="112.0" fitWidth="129.0" layoutX="57.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore11" layoutX="159.0" layoutY="88.0" prefHeight="14.0" prefWidth="210.0" text="Player1" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore11" fitHeight="29.0" fitWidth="28.0" layoutX="215.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite11" layoutX="162.0" layoutY="122.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user21" fitHeight="112.0" fitWidth="129.0" layoutX="768.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore21" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="668.0" layoutY="88.0" prefHeight="17.0" prefWidth="156.0" text="Player2" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore21" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite21" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="122.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user31" fitHeight="112.0" fitWidth="129.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore31" layoutX="180.0" layoutY="345.0" prefHeight="14.0" prefWidth="210.0" text="Player3" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore31" fitHeight="29.0" fitWidth="28.0" layoutX="233.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite31" layoutX="180.0" layoutY="381.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user41" fitHeight="112.0" fitWidth="129.0" layoutX="833.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore41" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="662.0" layoutY="345.0" prefHeight="17.0" prefWidth="156.0" text="Player4" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore41" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite41" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="381.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fitHeight="209.0" fitWidth="279.0" layoutX="422.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cup.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="currentPlayer1" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="455.0" prefHeight="33.0" prefWidth="544.0" text="Tocca al giocatore: Player" textAlignment="CENTER" />
+                        <Label fx:id="currentRound1" alignment="CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="494.0" prefHeight="25.0" prefWidth="602.0" text="Round: 1" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" styleClass="riempiTab" text="MATCH 3">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="user12" fitHeight="112.0" fitWidth="129.0" layoutX="57.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore12" layoutX="159.0" layoutY="88.0" prefHeight="14.0" prefWidth="210.0" text="Player1" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore12" fitHeight="29.0" fitWidth="28.0" layoutX="215.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite12" layoutX="162.0" layoutY="122.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user22" fitHeight="112.0" fitWidth="129.0" layoutX="768.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore22" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="668.0" layoutY="88.0" prefHeight="17.0" prefWidth="156.0" text="Player2" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore22" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite22" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="122.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user32" fitHeight="112.0" fitWidth="129.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore32" layoutX="180.0" layoutY="345.0" prefHeight="14.0" prefWidth="210.0" text="Player3" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore32" fitHeight="29.0" fitWidth="28.0" layoutX="233.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite32" layoutX="180.0" layoutY="381.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user42" fitHeight="112.0" fitWidth="129.0" layoutX="833.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore42" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="662.0" layoutY="345.0" prefHeight="17.0" prefWidth="156.0" text="Player4" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore42" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite42" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="381.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fitHeight="209.0" fitWidth="279.0" layoutX="422.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cup.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="currentPlayer2" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="455.0" prefHeight="33.0" prefWidth="544.0" text="Tocca al giocatore: Player" textAlignment="CENTER" />
+                        <Label fx:id="currentRound2" alignment="CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="494.0" prefHeight="25.0" prefWidth="602.0" text="Round: 1" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" styleClass="riempiTab" text="MATCH 4">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="user13" fitHeight="112.0" fitWidth="129.0" layoutX="57.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore13" layoutX="159.0" layoutY="88.0" prefHeight="14.0" prefWidth="210.0" text="Player1" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore13" fitHeight="29.0" fitWidth="28.0" layoutX="215.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite13" layoutX="162.0" layoutY="122.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user23" fitHeight="112.0" fitWidth="129.0" layoutX="768.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore23" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="668.0" layoutY="88.0" prefHeight="17.0" prefWidth="156.0" text="Player2" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore23" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite23" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="122.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user33" fitHeight="112.0" fitWidth="129.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore33" layoutX="180.0" layoutY="345.0" prefHeight="14.0" prefWidth="210.0" text="Player3" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore33" fitHeight="29.0" fitWidth="28.0" layoutX="233.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite33" layoutX="180.0" layoutY="381.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user43" fitHeight="112.0" fitWidth="129.0" layoutX="833.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore43" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="662.0" layoutY="345.0" prefHeight="17.0" prefWidth="156.0" text="Player4" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore43" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite43" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="381.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fitHeight="209.0" fitWidth="279.0" layoutX="422.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cup.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="currentPlayer3" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="455.0" prefHeight="33.0" prefWidth="544.0" text="Tocca al giocatore: Player" textAlignment="CENTER" />
+                        <Label fx:id="currentRound3" alignment="CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="494.0" prefHeight="25.0" prefWidth="602.0" text="Round: 1" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="partitaFinaleTab" closable="false" styleClass="riempiTab" text="FINALS">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="user14" fitHeight="112.0" fitWidth="129.0" layoutX="57.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore14" layoutX="159.0" layoutY="88.0" prefHeight="14.0" prefWidth="210.0" text="Player1" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore14" fitHeight="29.0" fitWidth="28.0" layoutX="215.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite14" layoutX="162.0" layoutY="122.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user24" fitHeight="112.0" fitWidth="129.0" layoutX="768.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore24" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="668.0" layoutY="88.0" prefHeight="17.0" prefWidth="156.0" text="Player2" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore24" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite24" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="122.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user34" fitHeight="112.0" fitWidth="129.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore34" layoutX="180.0" layoutY="345.0" prefHeight="14.0" prefWidth="210.0" text="Player3" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore34" fitHeight="29.0" fitWidth="28.0" layoutX="233.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite34" layoutX="180.0" layoutY="381.0" prefHeight="17.0" prefWidth="53.0" text="1" textAlignment="CENTER" />
+                        <ImageView fx:id="user44" fitHeight="112.0" fitWidth="129.0" layoutX="833.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="giocatore44" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="662.0" layoutY="345.0" prefHeight="17.0" prefWidth="156.0" text="Player4" textAlignment="CENTER" />
+                        <ImageView fx:id="cuore44" fitHeight="29.0" fitWidth="28.0" layoutX="740.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numerovite44" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="761.0" layoutY="381.0" prefHeight="17.0" prefWidth="63.0" text="1" textAlignment="CENTER" />
+                        <ImageView fitHeight="209.0" fitWidth="279.0" layoutX="422.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cup.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="currentPlayer4" alignment="CENTER" contentDisplay="CENTER" layoutX="236.0" layoutY="455.0" prefHeight="33.0" prefWidth="544.0" text="Tocca al giocatore: Player" textAlignment="CENTER" />
+                        <Label fx:id="currentRound4" alignment="CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="494.0" prefHeight="25.0" prefWidth="602.0" text="Round: 1" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </bottom>
+</BorderPane>

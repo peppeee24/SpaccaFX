@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Integer?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="93.0" prefWidth="1024.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="13.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="13.0" prefHeight="67.0" prefWidth="550.0" styleClass="LabelWhite15" text="PARTITA  CREATOR" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <TabPane prefHeight="600.0" prefWidth="1024.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab closable="false" styleClass="riempiTab" text="PLAYER">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="numeroGiocatoriLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="27.0" styleClass="Label" text="PLAYERS" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="numeroGiocatoriMenu" layoutX="420.0" layoutY="68.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <Integer fx:value="0" />
+                                 <Integer fx:value="1" />
+                                 <Integer fx:value="2" />
+                                 <Integer fx:value="3" />
+                                 <Integer fx:value="4" />
+                              </FXCollections>
+                           </items>
+                        </ChoiceBox>
+                        <TextField fx:id="playerName1" layoutX="123.0" layoutY="213.0" promptText="Giocatore 1" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <ImageView fx:id="oneLabel" fitHeight="103.0" fitWidth="115.0" layoutX="157.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="157.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="playerName2" layoutX="699.0" layoutY="213.0" promptText="Giocatore 2" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <ImageView fx:id="twoLabel" fitHeight="103.0" fitWidth="115.0" layoutX="735.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="157.0">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="playerName3" layoutX="123.0" layoutY="452.0" promptText="Giocatore 3" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <ImageView fx:id="treeLabel" fitHeight="103.0" fitWidth="115.0" layoutX="158.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="playerName4" layoutX="699.0" layoutY="452.0" promptText="Giocatore 4" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0pc;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <ImageView fx:id="fourLabel" fitHeight="103.0" fitWidth="115.0" layoutX="734.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/userIcons.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" styleClass="riempiTab" text="BOT">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </bottom>
+</BorderPane>
