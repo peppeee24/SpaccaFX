@@ -29,7 +29,8 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PreTorneoController {
+public class PreTorneoController
+{
 
     @FXML
     Button giocaButton;
@@ -59,7 +60,7 @@ public class PreTorneoController {
         this.codiceTorneo = codiceTorneo;
         this.passwordTorneo = passwordTorneo;
         this.currentMatch = FileManager.getCurrentMatchTorneo(codiceTorneo);
-        this.currentMatchLabel.setText("Partita: " + (this.currentMatch+1) + " / 5");
+        this.currentMatchLabel.setText("MATCH: " + (this.currentMatch+1) + "/5");
 
 
         // Carichiamo i dati dal file
