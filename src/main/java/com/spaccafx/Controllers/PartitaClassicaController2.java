@@ -219,6 +219,7 @@ public class PartitaClassicaController2 {
             System.out.println("Dati salvati");
             creaTab.setDisable(false);
         } else {
+            AudioManager.erroreSuono();
             AlertController.showErrore("Inserisci tutti i valori correttamente");
         }
     }
