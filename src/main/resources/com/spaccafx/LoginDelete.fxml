@@ -79,7 +79,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Hyperlink layoutX="445.0" layoutY="593.0" onMouseClicked="#telegram" text="Forgot Your Password ?" textAlignment="CENTER" />
+      <Hyperlink layoutX="372.0" layoutY="593.0" onMouseClicked="#telegram" text="Forgot Your Password ?" textAlignment="CENTER" />
       <ImageView fx:id="userIcons1" fitHeight="41.0" fitWidth="30.0" layoutX="348.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/lock.png" />

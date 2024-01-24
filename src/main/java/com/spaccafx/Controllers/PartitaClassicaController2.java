@@ -89,6 +89,14 @@ public class PartitaClassicaController2 {
 
         inviaButton.setVisible(false);
         generaCodiceButton.setVisible(true);
+        playerName1.setVisible(false);
+        playerName2.setVisible(false);
+        playerName3.setVisible(false);
+        playerName4.setVisible(false);
+        oneLabel.setVisible(false);
+        twoLabel.setVisible(false);
+        treeLabel.setVisible(false);
+        fourLabel.setVisible(false);
     }
 
     // legge i dati dal menu tendina dei giocatori
@@ -103,6 +111,7 @@ public class PartitaClassicaController2 {
         this.controlloGiocatori();
         this.setNumeroBot();
         System.out.println("Numero giocatori : " + numeroGiocatori);
+
     }
 
     public int getNumeroGiocatori() {
@@ -344,22 +353,34 @@ public class PartitaClassicaController2 {
         treeLabel.setVisible(false);
         fourLabel.setVisible(false);
 
+
+
         // Rendi visibili i campi e le immagini in base al numero di giocatori
         if (numeroGiocatori >= 1) {
             playerName1.setVisible(true);
             oneLabel.setVisible(true);
+            playerName1.setVisible(true);
         }
         if (numeroGiocatori >= 2) {
             playerName2.setVisible(true);
             twoLabel.setVisible(true);
+            playerName1.setVisible(true);
+            playerName2.setVisible(true);
         }
         if (numeroGiocatori >= 3) {
             playerName3.setVisible(true);
             treeLabel.setVisible(true);
+            playerName1.setVisible(true);
+            playerName2.setVisible(true);
+            playerName3.setVisible(true);
         }
         if (numeroGiocatori >= 4) {
             playerName4.setVisible(true);
             fourLabel.setVisible(true);
+            playerName1.setVisible(true);
+            playerName2.setVisible(true);
+            playerName3.setVisible(true);
+            playerName4.setVisible(true);
         }
     }
 
