@@ -815,8 +815,6 @@ public class TavoloController {
                     lifeGoldPl4.setVisible(true);
                 }
             }
-
-
         }
     }
 
@@ -1154,5 +1152,6 @@ public class TavoloController {
     }
 
     // TODO verificare suono scambia con mazzo
+    // TODO IMPEDIRE IL PULSANTE SALVA FINO A CHE NON HAI IMPOSTATO I GIOCATORI NELLA TENDINA. FARLO ANCHE NEI TORNEI
 }
 
