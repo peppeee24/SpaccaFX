@@ -206,14 +206,15 @@ public class TorneoController2 {
 
         AudioManager.bottoneSuono();
         if (numeroVite != 0 && numeroCarteSpeciali != 0 && numeroCarteNormali != 0) {
-            System.out.println("Salvo il numero di vite " + getNumeroVite());
+           // System.out.println("Salvo il numero di vite " + getNumeroVite());
             this.setNumeroVite();
-            System.out.println("Salvo il numero di carte speciali " + getNumeroCarteSpeciali());
+           // System.out.println("Salvo il numero di carte speciali " + getNumeroCarteSpeciali());
             this.setNumeroCarteSpeciali();
-            System.out.println("Salvo il numero di carte normali " + getNumeroCarteNormali());
+          //  System.out.println("Salvo il numero di carte normali " + getNumeroCarteNormali());
             this.setNumeroCarteNormali();
             impostazioniPreliminariTab.setDisable(true);
             playerTab.setDisable(false);
+            System.out.println("Dati salvati");
             //botTab.setDisable(false);
         } else {
             AudioManager.erroreSuono();
@@ -271,8 +272,8 @@ public class TorneoController2 {
             if (NameGenerator.controllaNomiDiversi(giocatoriBot))
             {
                 caricaGraficaTuttiBot(giocatoriBot);
-                System.out.println("Giocatori Bot: ");
-                NameGenerator.stampaNomi(giocatoriBot);
+                //System.out.println("Giocatori Bot: ");
+               // NameGenerator.stampaNomi(giocatoriBot);
                 this.setBotButton.setVisible(false);
                 this.difficoltaBotMenu.setVisible(false);
             } else {
@@ -422,8 +423,8 @@ public class TorneoController2 {
             enableBotTab();
             this.nascondiBot(); // nasconde icone bot fino a che non imposta difficolta
 
-            System.out.println("Giocatori iniziali normali: ");
-            NameGenerator.stampaNomi(giocatoriPartita);
+         //   System.out.println("Giocatori iniziali normali: ");
+          //  NameGenerator.stampaNomi(giocatoriPartita);
             this.salvaNomiPlayerButton.setVisible(false);
             this.numeroGiocatoriMenu.setVisible(false);
 

@@ -208,13 +208,13 @@ public class PartitaClassicaController2 {
 
         if (numeroVite != 0 && numeroCarteSpeciali != 0 && numeroCarteNormali != 0) {
             AudioManager.bottoneSuono();
-            System.out.println("Salvo il numero di vite" + getNumeroVite());
+            // System.out.println("Salvo il numero di vite: " + getNumeroVite());
             this.setNumeroVite();
-            System.out.println("Salvo il numero di carte speciali" + getNumeroCarteSpeciali());
+            //  System.out.println("Salvo il numero di carte speciali: " + getNumeroCarteSpeciali());
             this.setNumeroCarteSpeciali();
-            System.out.println("Salvo il numero di carte normali" + getNumeroCarteNormali());
+            //System.out.println("Salvo il numero di carte normali. " + getNumeroCarteNormali());
             this.setNumeroCarteNormali();
-
+            System.out.println("Dati salvati");
             creaTab.setDisable(false);
         } else {
             AlertController.showErrore("Inserisci tutti i valori correttamente");
@@ -270,11 +270,10 @@ public class PartitaClassicaController2 {
                 }
             }
 
-            if (NameGenerator.controllaNomiDiversi(giocatoriBot))
-            {
+            if (NameGenerator.controllaNomiDiversi(giocatoriBot)) {
                 caricaGraficaTuttiBot(giocatoriBot);
-                System.out.println("Giocatori Bot: ");
-                NameGenerator.stampaNomi(giocatoriBot);
+                // System.out.println("Giocatori Bot: ");
+                // NameGenerator.stampaNomi(giocatoriBot);
                 this.setBotButton.setVisible(false);
                 this.difficoltaBotMenu.setVisible(false);
             } else {
@@ -356,7 +355,6 @@ public class PartitaClassicaController2 {
         fourLabel.setVisible(false);
 
 
-
         // Rendi visibili i campi e le immagini in base al numero di giocatori
         if (numeroGiocatori >= 1) {
             playerName1.setVisible(true);
@@ -385,7 +383,6 @@ public class PartitaClassicaController2 {
             playerName4.setVisible(true);
         }
     }
-
 
 
     public void salvaNomi(ActionEvent actionEvent) throws IOException  // pulsante salva giocatori
@@ -425,8 +422,8 @@ public class PartitaClassicaController2 {
             enableBotTab();
             this.nascondiBot(); // nasconde icone bot fino a che non imposta difficolta
 
-            System.out.println("Giocatori iniziali normali: ");
-            NameGenerator.stampaNomi(giocatoriPartita);
+            //System.out.println("Giocatori iniziali normali: ");
+            // NameGenerator.stampaNomi(giocatoriPartita);
             this.salvaNomiPlayerButton.setVisible(false);
             this.numeroGiocatoriMenu.setVisible(false);
 
@@ -460,10 +457,8 @@ public class PartitaClassicaController2 {
 
 
     // Utilizziamo classe partita
-    public void generaCodice(ActionEvent actionEvent)
-    {
-        try
-        {
+    public void generaCodice(ActionEvent actionEvent) {
+        try {
             AudioManager.bottoneSuono();
             AlertController.showWarning("Attenzione: Attendi Caricamento");
 
@@ -492,9 +487,7 @@ public class PartitaClassicaController2 {
                 AlertController.showErrore("Errore: Player/BOT non impostati correttamente");
 
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Alert test = new Alert(Alert.AlertType.ERROR);
             test.setContentText("Errore di caricamento: " + e.getMessage());
             test.show();
@@ -505,13 +498,12 @@ public class PartitaClassicaController2 {
     public void impostaGioco(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
         // adesso aggiungiamo ai giocatori i bot
-        if(giocatoriBot != null || !giocatoriBot.isEmpty() || giocatoriBot.size() != 0)
-        {
+        if (giocatoriBot != null || !giocatoriBot.isEmpty() || giocatoriBot.size() != 0) {
             for (IGiocatore giocatoreBot : giocatoriBot)
                 giocatoriPartita.add(giocatoreBot);
         }
 
-        System.out.println("Giocatori Partita Totali : " );
+        System.out.println("Giocatori Partita Totali : ");
         NameGenerator.stampaNomi(giocatoriPartita);
 
         FileManager.creaPartitaSuFile(this.codiceP, this.passwordP, this.giocatoriPartita, numeroCarteNormali, numeroCarteSpeciali, numeroVite); // salviamo le informazioni dati

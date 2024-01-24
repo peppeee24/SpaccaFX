@@ -31,19 +31,20 @@ public class MainMenuController {
 
     public void initialize() throws URISyntaxException {
 
-
         // Fai partire la musica
         if (shareData != null && shareData.getAudioController() != null) {
             System.out.println("Playing audio...");
             shareData.getAudioController().playAudio1();
-        } else
-            System.out.println("AudioController not found in ShareData");
+        } else {
+            // System.out.println("AudioController not found in ShareData");
+        }
 
         if (shareData != null && shareData.getAudioController() != null) {
             System.out.println("Playing audio...");
             shareData.getAudioController().playAudio2();
-        } else
-            System.out.println("AudioController not found in ShareData");
+        } else {
+            //  System.out.println("AudioController not found in ShareData");
+        }
     }
 
     //region #BUTTONS
@@ -55,6 +56,7 @@ public class MainMenuController {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Login.load());
         stage.setScene(scene);
+
         stage.show();
     }
 

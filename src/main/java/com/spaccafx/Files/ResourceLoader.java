@@ -14,7 +14,7 @@ import java.io.InputStream;
 
 public class ResourceLoader {
     public static Image loadImage(String imagePath) {
-        System.out.println("Percorso dell'immagine: " + imagePath);
+       // System.out.println("Percorso dell'immagine: " + imagePath);
         InputStream risorsa = ResourceLoader.class.getResourceAsStream(imagePath);
 
         try {
