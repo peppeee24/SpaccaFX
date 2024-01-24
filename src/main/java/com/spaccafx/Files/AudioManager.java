@@ -60,4 +60,12 @@ public class AudioManager {
     public static void probabilitaSuono () {
         ResourceLoader.loadAudio("/Assets/Game/Environment/Sounds/Game/probabilita.wav");
     }
+
+    public static void warningSuono () {
+        ResourceLoader.loadAudio("/Assets/Game/Environment/Sounds/Game/warningSound.wav");
+    }
+
+    public static void confirmSuono () {
+        ResourceLoader.loadAudio("/Assets/Game/Environment/Sounds/Game/confirmSound.wav");
+    }
 }

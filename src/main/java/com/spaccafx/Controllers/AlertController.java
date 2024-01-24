@@ -118,6 +118,7 @@ public class AlertController {
 
     public static void showWarning(String errorMessage) {
         try {
+            AudioManager.warningSuono();
             FXMLLoader loader = new FXMLLoader(Spacca.class.getResource("Warning.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(loader.load());
@@ -143,6 +144,7 @@ public class AlertController {
 
     public static boolean showConfirm(String errorMessage) {
         try {
+            AudioManager.confirmSuono();
             FXMLLoader loader = new FXMLLoader(Spacca.class.getResource("Confirmation.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(loader.load());

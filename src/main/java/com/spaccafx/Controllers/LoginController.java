@@ -57,7 +57,6 @@ public class LoginController {
             } else {
                 AudioManager.erroreSuono();
                 AlertController.showErrore("Errore: Credenziali errate!");
-
             }
         }
 
