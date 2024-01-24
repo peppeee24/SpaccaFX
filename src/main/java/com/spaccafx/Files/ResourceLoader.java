@@ -1,5 +1,6 @@
 package com.spaccafx.Files;
 
+import com.spaccafx.Spacca;
 import javafx.scene.control.Alert;
 
 
@@ -70,6 +71,12 @@ public class ResourceLoader {
             System.out.println(e.getMessage());
             System.out.println("Errore nella riproduzione del suono");
         }
+    }
+
+    public static Image  gameIcons(){
+        Image icon = new Image (Spacca.class.getResourceAsStream("/Assets/Game/Environment/GameIcon.ico"));
+        //Image icon = new Image (String.valueOf(ResourceLoader.loadImage("/Assets/Game/Environment/GameIcon.ico")));
+        return icon;
     }
 
 

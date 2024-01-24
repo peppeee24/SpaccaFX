@@ -3,15 +3,18 @@ package com.spaccafx;
 import com.spaccafx.ExternalApps.SpaccaTGBot;
 
 
+import com.spaccafx.Files.ResourceLoader;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import javax.swing.*;
 import java.io.*;
 
 public class Spacca extends Application {
@@ -45,7 +48,7 @@ public class Spacca extends Application {
 
 
                     stage.setTitle("SpaccaFX - Game");
-
+                    stage.getIcons().add(ResourceLoader.gameIcons()); // TODO sistemare icona
                     stage.setOnCloseRequest(event -> {
                         // Aggiungi qui la logica di chiusura dell'applicazione
                         System.out.println("L'utente sta chiudendo l'applicazione");
