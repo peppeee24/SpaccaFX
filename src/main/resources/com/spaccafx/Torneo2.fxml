@@ -342,7 +342,7 @@
                                     </Label>
                                  </children>
                               </GridPane>
-                              <Button layoutX="622.0" layoutY="530.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="41.0" prefWidth="117.0" text="NEXT" />
+                              <Button fx:id="impostaGiocoButton" layoutX="622.0" layoutY="530.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="41.0" prefWidth="117.0" text="NEXT" />
                            </children>
                         </AnchorPane>
                      </right>

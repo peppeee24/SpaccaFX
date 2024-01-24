@@ -27,6 +27,7 @@ import org.telegram.telegrambots.meta.api.objects.Audio;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class TorneoController2 {
@@ -53,13 +54,14 @@ public class TorneoController2 {
     ImageView oneLabel, twoLabel, treeLabel, fourLabel, hardBot1, hardBot2, hardBot3, hardBot4, easyBot1, easyBot2, easyBot3, easyBot4;
 
     @FXML
-    Button inviaButton, generaCodiceTorneoButton, setBotButton, salvaNomiPlayerButton;
+    Button inviaButton, generaCodiceTorneoButton, setBotButton, salvaNomiPlayerButton, impostaGiocoButton;
 
     ArrayList<Partita> partiteXTorneo;
 
     ArrayList<IGiocatore> giocatoriPartita, giocatoriBot;
 
     int codiceT, passwordT;
+
 
     public TorneoController2() {
         partiteXTorneo = new ArrayList<Partita>();
@@ -95,6 +97,8 @@ public class TorneoController2 {
         treeLabel.setVisible(false);
         fourLabel.setVisible(false);
         salvaNomiPlayerButton.setVisible(false);
+        impostaGiocoButton.setVisible(false);
+
     }
 
 
@@ -244,6 +248,7 @@ public class TorneoController2 {
         System.out.println(difficolta);
         System.out.println("Imposto difficolta" + getDifficolta());
         this.impostaDifficolta();
+        impostaGiocoButton.setVisible(true);
     }
 
     private void mostraIconaBot(Label labelNomeBot, String nome, ImageView hardBot, boolean flag1, ImageView easyBot, boolean flag2) {
@@ -409,6 +414,7 @@ public class TorneoController2 {
                 giocatoriPartita.add(new Giocatore(playerName2.getText()));
                 giocatoriPartita.add(new Giocatore(playerName3.getText()));
                 giocatoriPartita.add(new Giocatore(playerName4.getText()));
+                impostaGiocoButton.setVisible(true);
                 break;
             case 0:
                 break;
