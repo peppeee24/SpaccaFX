@@ -56,53 +56,10 @@ public class PreGameController
         ArrayList<IGiocatore> giocatori = p.giocatori;
 
         // Imposta i dettagli per ogni giocatore
-        for (int i = 0; i < giocatori.size(); i++) {
-            IGiocatore giocatore = giocatori.get(i);
-            ImageView imageView = null;
-            Label nomeLabel = null;
-            Label viteLabel = null;
-
-            // Assegna le ImageView e le Label in base all'indice del giocatore
-            switch (i) {
-                case 0:
-                    imageView = user1;
-                    nomeLabel = giocatore1;
-                    viteLabel = numerovite1;
-                    break;
-                case 1:
-                    imageView = user2;
-                    nomeLabel = giocatore2;
-                    viteLabel = numerovite2;
-                    break;
-                case 2:
-                    imageView = user3;
-                    nomeLabel = giocatore3;
-                    viteLabel = numerovite3;
-                    break;
-                case 3:
-                    imageView = user4;
-                    nomeLabel = giocatore4;
-                    viteLabel = numerovite4;
-                    break;
-            }
-
-            // Imposta nome e vite
-            if (nomeLabel != null && viteLabel != null) {
-                nomeLabel.setText(giocatore.getNome());
-                viteLabel.setText(Integer.toString(giocatore.getVita()));
-            }
-
-            // Assegna l'immagine corrispondente in base al tipo di giocatore
-            if (imageView != null) {
-                if (giocatore instanceof EasyBot) {
-                    imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/easyBot.PNG"));
-                } else if (giocatore instanceof AdvancedBot) {
-                    imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/hardBot.PNG"));
-                } else if (giocatore instanceof Giocatore) {
-                    imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/userIcons.png"));
-                }
-            }
-        }
+        mostraDatiSingolaPartita(giocatori.get(0), user1, giocatore1, numerovite1);
+        mostraDatiSingolaPartita(giocatori.get(1), user2, giocatore2, numerovite2);
+        mostraDatiSingolaPartita(giocatori.get(2), user3, giocatore3, numerovite3);
+        mostraDatiSingolaPartita(giocatori.get(3), user4, giocatore4, numerovite4);
 
         // Imposta altre informazioni sulla partita
         if(p.getPartitaStatus() != GameStatus.STARTED && p.getPartitaStatus() != GameStatus.ENDED)
@@ -121,7 +78,25 @@ public class PreGameController
 
     }
 
+    private void mostraDatiSingolaPartita(IGiocatore giocatore, ImageView imageView, Label nomeLabel, Label viteLabel)
+    {
+        // Imposta nome e vite
+        if (nomeLabel != null && viteLabel != null) {
+            nomeLabel.setText(giocatore.getNome());
+            viteLabel.setText(Integer.toString(giocatore.getVita()));
+        }
 
+        // Assegna l'immagine corrispondente in base al tipo di giocatore
+        if (imageView != null) {
+            if (giocatore instanceof EasyBot) {
+                imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/easyBot.PNG"));
+            } else if (giocatore instanceof AdvancedBot) {
+                imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/hardBot.PNG"));
+            } else if (giocatore instanceof Giocatore) {
+                imageView.setImage(ResourceLoader.loadImage("/Assets/Game/Environment/userIcons.png"));
+            }
+        }
+    }
 
 
 
