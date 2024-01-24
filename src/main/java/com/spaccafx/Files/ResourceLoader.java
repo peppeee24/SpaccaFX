@@ -42,7 +42,6 @@ public class ResourceLoader {
         }
 
         return null;
-
     }
 
     public static void loadAudio(String audioPath) {
@@ -74,9 +73,7 @@ public class ResourceLoader {
     }
 
     public static Image  gameIcons(){
-        Image icon = new Image (Spacca.class.getResourceAsStream("/Assets/Game/Environment/GameIcon.ico"));
-        //Image icon = new Image (String.valueOf(ResourceLoader.loadImage("/Assets/Game/Environment/GameIcon.ico")));
-        return icon;
+        return loadImage("/Assets/Game/Environment/GameIcon.png");
     }
 
 
