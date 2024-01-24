@@ -19,7 +19,7 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <Label fx:id="errorTypeLabel" layoutX="174.0" layoutY="86.0" prefHeight="49.0" prefWidth="226.0" styleClass="LabelWhiteError" text="Conferma:" wrapText="true" />
+      <Label fx:id="errorTypeLabel" layoutX="174.0" layoutY="86.0" lineSpacing="5.0" prefHeight="49.0" prefWidth="226.0" styleClass="LabelWhiteError" text="Conferma:" wrapText="true" />
       <Button fx:id="okButtonError" layoutX="367.0" layoutY="164.0" mnemonicParsing="false" onAction="#okButtonConfirm" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: red;" text="OK" />
       <Button fx:id="noButtonConfirm" layoutX="287.0" layoutY="164.0" mnemonicParsing="false" onAction="#noButton" prefHeight="35.0" prefWidth="67.0" text="NO" />
    </children>

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.PartitaClassicaController2">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TorneoController2">
    <top>
       <AnchorPane prefHeight="93.0" prefWidth="1024.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
          <children>
@@ -28,10 +28,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="13.0" prefHeight="67.0" prefWidth="550.0" styleClass="LabelHeaderWhite30" text="PARTITA  CREATOR" textAlignment="CENTER" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="237.0" layoutY="13.0" prefHeight="67.0" prefWidth="550.0" styleClass="LabelHeaderWhite30" text="TORNEO  CREATOR" textAlignment="CENTER" />
             <ImageView fitHeight="81.0" fitWidth="78.0" layoutX="772.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Assets/Game/Environment/octpink.gif" />
+                  <Image url="@../../Assets/Game/Environment/octyellow.gif" />
                </image>
             </ImageView>
          </children>
@@ -40,6 +40,95 @@
    <bottom>
       <TabPane prefHeight="600.0" prefWidth="1024.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
+            <Tab fx:id="impostazioniPreliminariTab" closable="false" styleClass="riempiTab" text="IMPOSTAZIONI">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="39.0" prefHeight="30.0" prefWidth="739.0" styleClass="Label" text="MODIFICA LE IMPOSTAZIONI DEL MATCH" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="142.0" prefHeight="30.0" prefWidth="494.0" styleClass="Label" text="NUMERI CARTE NORMALI">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="carteNormaliMenu" layoutX="600.0" layoutY="143.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="6" />
+                                 <String fx:value="7" />
+                                 <String fx:value="8" />
+                                 <String fx:value="9" />
+                              </FXCollections>
+                           </items>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ChoiceBox>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="238.0" prefHeight="30.0" prefWidth="523.0" styleClass="Label" text="NUMERI CARTE SPECIALI">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="carteSpecialiMenu" layoutX="600.0" layoutY="239.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="1" />
+                                 <String fx:value="2" />
+                                 <String fx:value="3" />
+                                 <String fx:value="4" />
+                              </FXCollections>
+                           </items>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ChoiceBox>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="66.0" layoutY="337.0" prefHeight="30.0" prefWidth="424.0" styleClass="Label" text="NUMERO VITE" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="viteMenu" layoutX="600.0" layoutY="338.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="1" />
+                                 <String fx:value="2" />
+                                 <String fx:value="3" />
+                              </FXCollections>
+                           </items>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ChoiceBox>
+                        <ImageView fitHeight="41.0" fitWidth="88.0" layoutX="823.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="382.0" layoutY="411.0" mnemonicParsing="false" onAction="#salvaImpostazioni" prefHeight="54.0" prefWidth="212.0" text="SALVA" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView fitHeight="60.0" fitWidth="111.0" layoutX="818.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/trioNEW.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="60.0" fitWidth="111.0" layoutX="830.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/Question.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
           <Tab fx:id="playerTab" closable="false" styleClass="riempiTab" text="PLAYER">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -210,78 +299,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="impostazioniTab" closable="false" styleClass="riempiTab" text="IMPOSTAZIONI">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="39.0" prefHeight="30.0" prefWidth="739.0" styleClass="Label" text="MODIFICA LE IMPOSTAZIONI DEL MATCH" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold Italic" size="27.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="142.0" prefHeight="30.0" prefWidth="494.0" styleClass="Label" text="NUMERI CARTE NORMALI">
-                           <font>
-                              <Font name="System Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="carteNormaliMenu" layoutX="600.0" layoutY="143.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList">
-                                 <String fx:value="6" />
-                                 <String fx:value="7" />
-                                 <String fx:value="8" />
-                                 <String fx:value="9" />
-                              </FXCollections>
-                           </items>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ChoiceBox>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="238.0" prefHeight="30.0" prefWidth="523.0" styleClass="Label" text="NUMERI CARTE SPECIALI">
-                           <font>
-                              <Font name="System Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="carteSpecialiMenu" layoutX="600.0" layoutY="239.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList">
-                                 <String fx:value="1" />
-                                 <String fx:value="2" />
-                                 <String fx:value="3" />
-                                 <String fx:value="4" />
-                              </FXCollections>
-                           </items>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ChoiceBox>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="66.0" layoutY="337.0" prefHeight="30.0" prefWidth="424.0" styleClass="Label" text="NUMERO VITE" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="22.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="viteMenu" layoutX="600.0" layoutY="338.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList">
-                                 <String fx:value="1" />
-                                 <String fx:value="2" />
-                                 <String fx:value="3" />
-                              </FXCollections>
-                           </items>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ChoiceBox>
-                        <ImageView fitHeight="41.0" fitWidth="88.0" layoutX="823.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/cuore.PNG" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="salvaImpostazioniButton" layoutX="382.0" layoutY="411.0" mnemonicParsing="false" onAction="#salvaImpostazioni" prefHeight="54.0" prefWidth="212.0" text="SALVA" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="impostaGiocoButton" layoutX="397.0" layoutY="393.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="44.0" prefWidth="201.0" style="-fx-background-color: ORANGE;" text="AVANTI" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -289,16 +307,6 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <ImageView fitHeight="60.0" fitWidth="111.0" layoutX="818.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/trioNEW.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="60.0" fitWidth="111.0" layoutX="830.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../Assets/Game/Environment/Question.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </AnchorPane>
               </content>
@@ -307,12 +315,12 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="409.0" fitWidth="395.0" layoutX="33.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="409.0" fitWidth="395.0" layoutX="51.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../Assets/Game/Environment/FISHERMAN%20GIF.gif" />
+                              <Image url="@../../Assets/Game/Environment/magikarp.gif" />
                            </image>
                         </ImageView>
-                        <Button fx:id="inviaButton" alignment="CENTER" layoutX="745.0" layoutY="469.0" mnemonicParsing="false" onAction="#impostaGioco" prefHeight="54.0" prefWidth="236.0" text="CREATE" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="inviaButton" alignment="CENTER" layoutX="745.0" layoutY="469.0" mnemonicParsing="false" onAction="#impostaTorneo" prefHeight="54.0" prefWidth="236.0" text="CREATE" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -320,7 +328,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Label fx:id="codicePartita" contentDisplay="CENTER" layoutX="536.0" layoutY="181.0" prefHeight="30.0" prefWidth="391.0" styleClass="Label" text="Codice: " textAlignment="CENTER">
+                        <Label fx:id="codiceTorneo" contentDisplay="CENTER" layoutX="536.0" layoutY="181.0" prefHeight="30.0" prefWidth="391.0" styleClass="Label" text="Codice: " textAlignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
@@ -328,7 +336,7 @@
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Label>
-                        <Button fx:id="generaCodiceButton" layoutX="519.0" layoutY="283.0" mnemonicParsing="false" onAction="#generaCodice" text="Genera Codice" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="generaCodiceTorneoButton" layoutX="519.0" layoutY="283.0" mnemonicParsing="false" onAction="#generaCodice" text="Genera Codice" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -336,7 +344,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Label fx:id="passwordPartita" contentDisplay="CENTER" layoutX="528.0" layoutY="229.0" prefHeight="30.0" prefWidth="403.0" styleClass="Label" text="Password: ">
+                        <Label fx:id="passwordTorneo" contentDisplay="CENTER" layoutX="528.0" layoutY="229.0" prefHeight="30.0" prefWidth="403.0" styleClass="Label" text="Password: ">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>

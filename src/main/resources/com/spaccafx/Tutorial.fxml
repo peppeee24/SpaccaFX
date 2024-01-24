@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="1113.0" styleClass="tutorialSfondo3" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TutorialController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" styleClass="tutorialSfondo3" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.TutorialController">
    <children>
       <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Assets/Game/Environment/indietro.PNG" />
          </image>
       </ImageView>
-      <Button fx:id="bottoneTutorialTorneo" layoutX="631.0" layoutY="583.0" mnemonicParsing="false" onAction="#tutorialTorneo" prefHeight="61.0" prefWidth="361.0" text="Tutorial Torneo" textFill="WHITE">
+      <Button fx:id="bottoneTutorialTorneo" layoutX="631.0" layoutY="528.0" mnemonicParsing="false" onAction="#tutorialTorneo" prefHeight="61.0" prefWidth="361.0" text="Tutorial Torneo" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="bottoneTutorialPartita" layoutX="89.0" layoutY="583.0" mnemonicParsing="false" onAction="#tutorialPartita" prefHeight="61.0" prefWidth="388.0" text="Tutorial Partita" textFill="WHITE">
+      <Button fx:id="bottoneTutorialPartita" layoutX="89.0" layoutY="528.0" mnemonicParsing="false" onAction="#tutorialPartita" prefHeight="61.0" prefWidth="388.0" text="Tutorial Partita" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

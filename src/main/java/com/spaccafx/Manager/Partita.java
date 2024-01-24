@@ -485,9 +485,10 @@ public class Partita {
                 try {
                     Platform.runLater(() ->
                     {
+                        AudioManager.distribuisciCarteSuono();
                         getCurrentGiocatore().setCarta(mazzo.PescaCartaSenzaEffetto());
                         TC.updateCarteUI();
-                        AudioManager.giraCarteSuono();
+                        //AudioManager.giraCarteSuono();
 
                         System.out.println("[GAME] Sono MAZZIERE e pesco dal mazzo la prossima carta perche sono un mazziere! Ho preso: " + getCurrentGiocatore().getCarta().toString());
                         TC.mostraBannerAttesa("SCAMBIO", "Sono mazziere e ho pescato dal mazzo!");

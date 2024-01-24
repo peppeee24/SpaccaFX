@@ -210,7 +210,7 @@ public class TavoloController {
                 break;
 
             case STOPPED:
-                AudioManager.erroreSuono();
+
                 bottoneStart.setVisible(false);
 
 
@@ -973,6 +973,7 @@ public class TavoloController {
             Scene scene = new Scene(root);
             stage.setResizable(false);
             stage.setTitle("SpaccaFX - Game");
+            stage.getIcons().add(ResourceLoader.gameIcons());
             stage.setOnCloseRequest(event -> {
                 // Aggiungi qui la logica di chiusura dell'applicazione
                 System.out.println("L'utente sta chiudendo l'applicazione");
@@ -999,6 +1000,7 @@ public class TavoloController {
             Parent root = playerScreen.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.getIcons().add(ResourceLoader.gameIcons());
             stage.setTitle("SpaccaFX - Game");
             stage.setOnCloseRequest(event -> {
                 // Aggiungi qui la logica di chiusura dell'applicazione
@@ -1151,7 +1153,7 @@ public class TavoloController {
         this.exitGame.setVisible(state);
     }
 
-    // TODO verificare suono scambia con mazzo
-    // TODO IMPEDIRE IL PULSANTE SALVA FINO A CHE NON HAI IMPOSTATO I GIOCATORI NELLA TENDINA. FARLO ANCHE NEI TORNEI
+
+
 }
 

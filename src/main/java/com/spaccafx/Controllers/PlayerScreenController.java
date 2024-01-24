@@ -100,8 +100,6 @@ public class PlayerScreenController
 
 
     public void portaATutorial(MouseEvent mouseEvent) throws IOException {
-        AudioManager.leaderboardSuono();
-
 
         boolean isOkPressed = AlertController.showConfirm("Stai per essere reinderizzato al Tutorial");
 

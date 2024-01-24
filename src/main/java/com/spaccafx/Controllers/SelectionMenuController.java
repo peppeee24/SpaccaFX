@@ -27,7 +27,7 @@ public class SelectionMenuController {
     // Seconda schheramta
     public void iniziaTorneo(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
-        FXMLLoader Torneo = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
+        FXMLLoader Torneo = new FXMLLoader(Spacca.class.getResource("Torneo4.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Torneo.load());
         stage.setScene(scene);

@@ -248,7 +248,7 @@ public class TorneoController2 {
         System.out.println(difficolta);
         System.out.println("Imposto difficolta" + getDifficolta());
         this.impostaDifficolta();
-        impostaGiocoButton.setVisible(true);
+
     }
 
     private void mostraIconaBot(Label labelNomeBot, String nome, ImageView hardBot, boolean flag1, ImageView easyBot, boolean flag2) {
@@ -281,15 +281,23 @@ public class TorneoController2 {
                // NameGenerator.stampaNomi(giocatoriBot);
                 this.setBotButton.setVisible(false);
                 this.difficoltaBotMenu.setVisible(false);
+                this.impostaGiocoButton.setVisible(true);
+                difficoltaBotLabel.setVisible(false);
             } else {
                 System.out.println("Giocatori Bot DUPLICATI: ");
+                AudioManager.erroreSuono();
                 NameGenerator.stampaNomi(giocatoriBot);
                 AlertController.showErrore("Ti chiediamo scusa, il sistema ha generato nomi di bot uguali. Riprova..");
                 giocatoriBot.clear();
+                impostaGiocoButton.setVisible(false);
+
             }
         } else {
+            AudioManager.erroreSuono();
             AlertController.showErrore("Devi inserire una difficolta per i bot");
             giocatoriBot.clear();
+            impostaGiocoButton.setVisible(false);
+
         }
     }
 
@@ -560,7 +568,7 @@ public class TorneoController2 {
             AudioManager.erroreSuono();
             AlertController.showErrore("Nel torneo sono presenti nomi uguali!");
 
-            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
+            FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("Torneo4.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent root = playerScreen.load();
             Scene scene = new Scene(root);
@@ -600,7 +608,7 @@ public class TorneoController2 {
 
         if (contatorePartita < 4)
         {
-            FXMLLoader impostaTorneo = new FXMLLoader(Spacca.class.getResource("Torneo2.fxml"));
+            FXMLLoader impostaTorneo = new FXMLLoader(Spacca.class.getResource("Torneo4.fxml"));
             Parent root = impostaTorneo.load();
 
             TorneoController2 torneoController = impostaTorneo.getController();
