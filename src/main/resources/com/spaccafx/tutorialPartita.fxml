@@ -70,7 +70,7 @@
                      <right>
                         <AnchorPane prefHeight="601.0" prefWidth="778.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label fx:id="numeroBotLabel" layoutX="239.0" layoutY="62.0" styleClass="Label" text="SEMI DEL GIOCO">
+                              <Label fx:id="numeroBotLabel" layoutX="239.0" layoutY="32.0" styleClass="Label" text="SEMI DEL GIOCO">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font></Label>
@@ -136,7 +136,7 @@
                      <right>
                         <AnchorPane prefHeight="598.0" prefWidth="796.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
                            <children>
-                              <Label layoutX="248.0" layoutY="52.0" styleClass="Label" text="CARTE SPECIALI" textAlignment="CENTER">
+                              <Label layoutX="248.0" layoutY="32.0" styleClass="Label" text="CARTE SPECIALI" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font>
@@ -149,7 +149,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <GridPane layoutX="152.0" layoutY="258.0" prefHeight="109.0" prefWidth="496.0">
+                              <GridPane layoutX="102.0" layoutY="258.0" prefHeight="109.0" prefWidth="530.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -163,19 +163,19 @@
                                           <Image url="@../../Assets/Cards/PROBABILITA/PROBABILITA1.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                        <image>
                                           <Image url="@../../Assets/Cards/IMPREVISTO/IMPREVISTO1.png" />
                                        </image>
                                     </ImageView>
                                  </children>
                               </GridPane>
-                              <Text layoutX="81.0" layoutY="108.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Per rendere più entusiasmante l’esperienza di gioco abbiamo aggiunto imprevisti e probabilità che potranno aiutare o penalizzare l’utente" wrappingWidth="652.0" />
-                              <Text fill="RED" layoutX="129.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROBABILITA'" />
-                              <Text fill="RED" layoutX="456.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMPREVISTO" />
-                              <Text layoutX="102.0" layoutY="447.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puoi sostituire la tua carta con una dal mazzo.Si lancia un dado, se il numero del dado è uguale al numero della carta, si ottiene una vita extra." textAlignment="CENTER" wrappingWidth="246.0" />
-                              <Text layoutX="76.0" layoutY="168.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queste due nuove tipologie di carte stabiliscono una nuova gerarchia della &quot;potenza&quot; delle carte: Probabilità &gt; Squalo &gt; Pesce &gt; Verme &gt; Imprevisto." wrappingWidth="663.0" />
-                              <Text layoutX="405.0" layoutY="446.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Non puoi scambiare.Sei obbligato a scambiare la carta con il mazzo.Dopo ogni imprevisto, si passa il turno automaticamente." textAlignment="CENTER" wrappingWidth="259.0" />
+                              <Text layoutX="77.0" layoutY="108.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Per rendere più entusiasmante l’esperienza di gioco abbiamo aggiunto imprevisti e probabilità che potranno aiutare o penalizzare l’utente" wrappingWidth="652.0" />
+                              <Text fill="RED" layoutX="103.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROBABILITA'" />
+                              <Text fill="RED" layoutX="499.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMPREVISTO" />
+                              <Text layoutX="102.0" layoutY="447.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puoi sostituire la tua carta con una dal mazzo.Si lancia un dado, se il numero del dado è uguale al numero della carta, si ottiene una vita extra." wrappingWidth="246.0" />
+                              <Text layoutX="76.0" layoutY="168.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queste due nuove tipologie di carte stabiliscono una nuova gerarchia della &quot;potenza&quot; delle carte: Probabilità &gt; Squalo &gt; Pesce &gt; Verme &gt; Imprevisto." wrappingWidth="652.0" />
+                              <Text layoutX="388.0" layoutY="446.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Non puoi scambiare.Sei obbligato a scambiare la carta con il mazzo.Dopo ogni imprevisto, si passa il turno automaticamente." textAlignment="RIGHT" wrappingWidth="259.0" />
                            </children>
                         </AnchorPane>
                      </right>
@@ -199,7 +199,7 @@
                      <right>
                         <AnchorPane prefHeight="601.0" prefWidth="775.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
                            <children>
-                              <Label layoutX="271.0" layoutY="52.0" styleClass="Label" text="TIPI DI BOT" textAlignment="CENTER">
+                              <Label layoutX="271.0" layoutY="32.0" styleClass="Label" text="TIPI DI BOT" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold Italic" size="27.0" />
                                  </font>
