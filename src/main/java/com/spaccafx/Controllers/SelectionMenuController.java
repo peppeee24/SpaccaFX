@@ -16,7 +16,7 @@ public class SelectionMenuController {
 
     public void iniziaPartita(ActionEvent actionEvent) throws IOException {
         AudioManager.bottoneSuono();
-        FXMLLoader PartitaClassica = new FXMLLoader(Spacca.class.getResource("PartitaClassica3.fxml"));
+        FXMLLoader PartitaClassica = new FXMLLoader(Spacca.class.getResource("PartitaClassica4.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(PartitaClassica.load());
         stage.setScene(scene);

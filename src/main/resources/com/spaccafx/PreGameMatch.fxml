@@ -21,7 +21,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="12.0" prefHeight="73.0" prefWidth="571.0" styleClass="LabelWhite15" text="PRE-PARTITA" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="227.0" layoutY="12.0" prefHeight="73.0" prefWidth="571.0" styleClass="LabelHeaderWhite30" text="PRE-PARTITA" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
