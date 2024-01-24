@@ -16,7 +16,7 @@
          <children>
             <ImageView fx:id="mainSetting" fitHeight="48.0" fitWidth="48.0" onMouseClicked="#setting" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Assets/Game/Environment/settingg.png" />
+                  <Image url="@../../Assets/Game/Environment/settings.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
