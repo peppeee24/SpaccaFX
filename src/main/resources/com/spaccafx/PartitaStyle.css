@@ -205,6 +205,12 @@
   -fx-background-image: url("../../../resources/Assets/Game/Environment/mainMenuGif.gif");
 }
 
+.deleteWallpaper
+{
+  -fx-background-size: 100% 100%;
+  -fx-background-image: url("UI/deleteWallpaper.jpg");
+}
+
 .mainMenuSfondo2
 {
   -fx-background-image: url("UI/mainMenuGif2.gif");

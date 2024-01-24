@@ -40,72 +40,56 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.LoginDeleteController">
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
-         <children>
-            <Text fill="WHITE" layoutX="25.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="LabelWhite" text="USER LOGIN">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-   </left>
-   <right>
-      <AnchorPane prefHeight="630.0" prefWidth="865.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="userIcons" fitHeight="157.0" fitWidth="232.0" layoutX="282.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/adminIcon.gif" />
-               </image>
-            </ImageView>
-            <TextField fx:id="userField" layoutX="250.0" layoutY="321.0" prefHeight="46.0" prefWidth="274.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="passwordField" layoutX="250.0" layoutY="440.0" prefHeight="46.0" prefWidth="274.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </PasswordField>
-            <Button fx:id="loginButton" layoutX="632.0" layoutY="562.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="54.0" prefWidth="128.0" styleClass="Button" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="549.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <Hyperlink layoutX="232.0" layoutY="593.0" onMouseClicked="#telegram" text="Forgot Your Password ?" />
-            <ImageView fx:id="userIcons1" fitHeight="41.0" fitWidth="30.0" layoutX="194.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/lock.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="userIcons11" fitHeight="34.0" fitWidth="32.0" layoutX="193.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/Game/Environment/key.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="88.0" layoutY="250.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L'amministratore deve autenticarsi per elimianre una partita o un torneo" wrappingWidth="620.0" />
-         </children>
-      </AnchorPane>
-   </right>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" styleClass="deleteWallpaper" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.LoginDeleteController">
+   <children>
+      <ImageView fx:id="userIcons" fitHeight="157.0" fitWidth="232.0" layoutX="455.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Assets/Game/Environment/Question.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="userField" layoutX="404.0" layoutY="288.0" prefHeight="46.0" prefWidth="274.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passwordField" layoutX="404.0" layoutY="407.0" prefHeight="46.0" prefWidth="274.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #0E3C32; -fx-border-width: 0px 0px 3px 0px;">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </PasswordField>
+      <Button fx:id="loginButton" layoutX="424.0" layoutY="495.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="54.0" prefWidth="177.0" styleClass="Button" text="DELETE" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="549.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Hyperlink layoutX="445.0" layoutY="593.0" onMouseClicked="#telegram" text="Forgot Your Password ?" textAlignment="CENTER" />
+      <ImageView fx:id="userIcons1" fitHeight="41.0" fitWidth="30.0" layoutX="348.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Assets/Game/Environment/lock.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="userIcons11" fitHeight="34.0" fitWidth="32.0" layoutX="347.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Assets/Game/Environment/key.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="220.0" layoutY="244.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="LabelWhite15" text="L'amministratore deve autenticarsi per eliminare una partita o un torneo" textAlignment="CENTER" wrappingWidth="629.0" />
+   </children>
+</AnchorPane>
