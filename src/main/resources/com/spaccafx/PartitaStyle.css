@@ -12,12 +12,10 @@
 {
 
     -fx-background-color:  #00AFF2;
-    -fx-text-fill: white;
+    -fx-text-fill: #fff;
     -fx-font-family: 'Press Start 2P', sans-serif;
-    -fx-font-size: 18;
+    -fx-font-size: 10.5;
 }
-
-
 
 .button
 {
