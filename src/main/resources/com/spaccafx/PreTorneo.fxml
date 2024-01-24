@@ -511,5 +511,6 @@
             <Font size="24.0" />
          </font>
       </Button>
+      <Label fx:id="currentMatchLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="108.0" layoutY="468.0" styleClass="LabelWhite15" text="Label" textAlignment="CENTER" />
    </children>
 </AnchorPane>

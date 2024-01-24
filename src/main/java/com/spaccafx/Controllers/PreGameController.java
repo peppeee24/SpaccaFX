@@ -1,5 +1,6 @@
 package com.spaccafx.Controllers;
 
+import com.spaccafx.Enums.GameStatus;
 import com.spaccafx.Files.AudioManager;
 import com.spaccafx.Files.FileManager;
 import com.spaccafx.Files.ResourceLoader;
@@ -104,8 +105,20 @@ public class PreGameController
         }
 
         // Imposta altre informazioni sulla partita
-        currentRound.setText("La partita riprenderà dal Round: " + p.getCurrentRound());
-        currentPlayer.setText("Toccherà al giocatore: " + p.getCurrentGiocatore().getNome());
+        if(p.getPartitaStatus() != GameStatus.STARTED && p.getPartitaStatus() != GameStatus.ENDED)
+        {
+            currentPlayer.setVisible(true);
+            currentRound.setVisible(true);
+
+            currentRound.setText("La partita riprenderà dal Round: " + p.getCurrentRound());
+            currentPlayer.setText("Toccherà al giocatore: " + p.getCurrentGiocatore().getNome());
+        }
+        else
+        {
+            currentPlayer.setVisible(false);
+            currentRound.setVisible(false);
+        }
+
     }
 
 
