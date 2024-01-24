@@ -101,7 +101,7 @@ public class MatchItemController
         try
         {
             AudioManager.bottoneSuono();
-            FXMLLoader preGameScreen = new FXMLLoader(Spacca.class.getResource("PreGame.fxml"));
+            FXMLLoader preGameScreen = new FXMLLoader(Spacca.class.getResource("PreGameMatch.fxml"));
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
