@@ -11,7 +11,6 @@ public class EasyBot extends Bot
 {
     public EasyBot(){
         super();
-        //setNome(generaNomeBot());
     }
     public EasyBot(String nome){
         super(nome);
@@ -25,6 +24,7 @@ public class EasyBot extends Bot
     public EasyBot(String nome, int playerRounds, int vite, int viteExtra) {super(nome, playerRounds, vite, viteExtra);}
 
 
+    // region #SCELTE
     @Override
     public void SceltaBotUI(Partita p, TavoloController TC)
     {
@@ -72,4 +72,5 @@ public class EasyBot extends Bot
         int scelta = (int)((1 + Math.random() * 2));
         return scelta == 1;
     }
+    //endregion
 }

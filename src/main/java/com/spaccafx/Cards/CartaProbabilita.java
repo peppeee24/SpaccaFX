@@ -114,7 +114,11 @@ public class CartaProbabilita extends Carta
                     TC.nascondiBannerAttesa();
 
                     if(currentGiocatore instanceof Bot)
+                    {
+                        TC.gestisciPulsanti(false, false, false);
                         TC.gestisciPulsanteRiprendiBot(true);
+                    }
+
 
                     TC.setExitGame(true);
                 });

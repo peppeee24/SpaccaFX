@@ -9,7 +9,6 @@ public class AdvancedBot extends Bot
 {
     public AdvancedBot(){
         super();
-        //setNome(generaNomeBot());
     }
     public AdvancedBot(String nome){
         super(nome);
@@ -23,6 +22,7 @@ public class AdvancedBot extends Bot
     public AdvancedBot(String nome, int playerRounds, int vite, int viteExtra) {super(nome, playerRounds, vite, viteExtra);}
 
 
+    // region # SCELTE
     @Override
     public void SceltaBotUI(Partita p, TavoloController TC)
     {
@@ -73,4 +73,5 @@ public class AdvancedBot extends Bot
         else
             return true; // cambia la carta
     }
+    //endregion
 }

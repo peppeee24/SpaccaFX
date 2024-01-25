@@ -270,6 +270,7 @@ public class Partita {
             return;
 
         if (currentGiocatoreRipresa instanceof Bot) {
+            TC.gestisciPulsanti(false, false, false);
             TC.gestisciPulsanteRiprendiBot(true);
         } else {
             TC.gestisciPulsanteRiprendiBot(false);
@@ -735,7 +736,8 @@ public class Partita {
 
     //region #GAME SETUP
 
-    public void lancioDadiIniziale() {
+    public void lancioDadiIniziale()
+    {
 
         for (int c = 0; c < giocatori.size(); c++) {
             IGiocatore editGiocatore = giocatori.get(c); // prendo il giocatore con le sue informazioni
@@ -753,7 +755,8 @@ public class Partita {
         this.stabilisciMazziere();
     }
 
-    public void stabilisciMazziere() {
+    public void stabilisciMazziere()
+    {
         ArrayList<IGiocatore> perdenti = new ArrayList<IGiocatore>(); // lista giocatori che hanno lo stesso valore
         int valorePiuAlto = trovaValoreDadoAlto(giocatori); // valore dei dadi piu alto tra tutti i player
 
