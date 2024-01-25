@@ -7,6 +7,5 @@ public class SpaccaMain
     public static  void main(String[] args)
     {
         Spacca.main(args);
-
     }
 }

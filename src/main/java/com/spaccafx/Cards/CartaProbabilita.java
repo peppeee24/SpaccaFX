@@ -182,7 +182,7 @@ public class CartaProbabilita extends Carta
         });
 
 
-        if (((Bot) currentGiocatore).attivoEffetto(partita, TC))
+        if (((Bot) currentGiocatore).attivoEffetto(partita))
         {
             System.out.println("[PROBABILITA] Il bot ha deciso di usare la probabilita scambio!");
             Platform.runLater(() -> TC.mostraBannerAttesa("PROBABILITA", "Il bot ha scambiato la carta con il mazzo"));

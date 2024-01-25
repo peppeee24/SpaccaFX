@@ -76,7 +76,7 @@ public abstract class Bot implements IGiocatore
 
     //public abstract int Scelta(Partita p);
     public abstract void SceltaBotUI(Partita p, TavoloController TC);
-    public abstract boolean attivoEffetto(Partita p, TavoloController TC);
+    public abstract boolean attivoEffetto(Partita p);
 
 
     public void addVitaExtra() {vitaExtra = 1;}

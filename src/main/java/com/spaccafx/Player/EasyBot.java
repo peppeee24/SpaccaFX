@@ -24,12 +24,6 @@ public class EasyBot extends Bot
     }
     public EasyBot(String nome, int playerRounds, int vite, int viteExtra) {super(nome, playerRounds, vite, viteExtra);}
 
-    /*@Override
-    public int Scelta(Partita p) { //ipotizziamo che l'easyBot scelga randomicamente se switchare o no la carta
-        return (int)((1 + Math.random() * 2)); //genero o 1 o 2 che sono i "codici" delle scelte;
-    }
-
-     */
 
     @Override
     public void SceltaBotUI(Partita p, TavoloController TC)
@@ -71,48 +65,11 @@ public class EasyBot extends Bot
         thread.start();
     }
 
+
     @Override
-    public boolean attivoEffetto(Partita p, TavoloController TC) {
-        final boolean[] attivaEffetto = { false };
-
-        Thread thread = new Thread(() -> {
-            try {
-                Platform.runLater(() -> {
-                    System.out.println("[EZ-BOT] Sto facendo la scelta...");
-                    TC.mostraBannerAttesa("[EZ-BOT]", "Sto decidendo la scelta...");
-                });
-
-                Thread.sleep(3000);
-
-                Platform.runLater(() -> {
-                    TC.nascondiBannerAttesa();
-
-                    System.out.println("[EZ-BOT - EFFETTO] ho la carta con valore: " + carta.getValore());
-                    int scelta = (int)(1 + Math.random() * 2);
-                    attivaEffetto[0] = scelta != 1;
-                });
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
-        thread.start();
-
-        try {
-            thread.join(); // Attendi che il thread termini
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return attivaEffetto[0];
-    }
-    public boolean attivaEffetto(Partita p)
+    public boolean attivoEffetto(Partita p)
     {
         int scelta = (int)((1 + Math.random() * 2));
-        if(scelta==1){
-           return true;
-        }
-        else
-            return false;
+        return scelta == 1;
     }
 }

@@ -64,7 +64,7 @@ public class AdvancedBot extends Bot
     }
 
     @Override
-    public boolean attivoEffetto(Partita p, TavoloController TC)
+    public boolean attivoEffetto(Partita p)
     {
         int min = (int)(p.mazzo.getMaxCarteNormali() / 2);
 

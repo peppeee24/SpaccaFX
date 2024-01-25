@@ -21,7 +21,7 @@ public class Spacca extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-
+        // region # SCHEDE
         Thread thread = new Thread(() -> {
             try {
 
@@ -35,7 +35,6 @@ public class Spacca extends Application {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-               //     scene.getStylesheets().add(getClass().getResource("grafica.css").toExternalForm());
 
                     InputStream styleStream = Spacca.class.getResourceAsStream("PartitaStyle.css");
 
@@ -105,6 +104,7 @@ public class Spacca extends Application {
         });
 
         thread.start();
+        // endregion
     }
 
     public static void main(String[] args) {
