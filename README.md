@@ -84,8 +84,12 @@ _Segui i passaggi sottostanti per avere il progetto installato correttamente ._ 
 > 5. Apri `IntelliJ` e importa il progetto utilizzando il link `HTTPS` che trovi cliccando il bottone verde `CODE`
 > 6. Implementa la versione di `JavaFX` precedentemente scaricata all'interno del progetto
 > 7. Effettua la `RUN CONFIGURATION` per avviare la classe `MAIN`
-> 8. Potrai ora apportare modifiche al progetto!
-> 9. In caso di problemi, puoi trovare una spiegazione più dettagliata qui: https://openjfx.io oppure guarda il video: https://shorturl.at/kq345
+> 8. Scarica la libreria `JSON` da qui: 
+> 9. Aggiungi in `Edit Configuration` la path per la musica: 
+>
+>   --add-modules javafx.controls,javafx.media,javafx.fxml
+> 10. Potrai ora apportare modifiche al progetto!
+> 11. In caso di problemi, puoi trovare una spiegazione più dettagliata qui: https://openjfx.io oppure guarda il video: https://shorturl.at/kq345
 
 ## ⚙️ GIT SETUP
 > 1. Scarica GIT dal seguente link: https://git-scm.com/downloads
