@@ -32,10 +32,6 @@ public class TorneoSelectorController
     private GridPane IdGridTorneo;
     private ScrollPane IdScrollTorneo;
 
-    PartitaClassicaController2 PC;
-
-    Partita partita;
-
     ArrayList<MatchData> matchList;
 
     public void initialize()

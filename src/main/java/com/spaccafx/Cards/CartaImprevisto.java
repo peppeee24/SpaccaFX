@@ -16,7 +16,6 @@ public class CartaImprevisto extends Carta
     {
         super(valore, seme);
     }
-
     @Override
     public String toString(){return this.getValore() + " di IMPREVISTO";}
 
@@ -47,6 +46,7 @@ public class CartaImprevisto extends Carta
         this.attivato=true;
     }
 
+    // region #EFFETTI
     private void ObbligoPasso(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
         if(partita.isGameStopped())
@@ -124,4 +124,6 @@ public class CartaImprevisto extends Carta
 
         thread.start();
     }
+
+    //endregion
 }

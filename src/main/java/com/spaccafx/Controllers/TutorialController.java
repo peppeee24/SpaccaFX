@@ -19,9 +19,6 @@ import java.net.URISyntaxException;
 
 public class TutorialController {
 
-
-
-
     public void tutorialTorneo(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
         AudioManager.bottoneSuono();

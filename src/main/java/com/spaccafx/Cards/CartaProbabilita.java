@@ -44,6 +44,7 @@ public class CartaProbabilita extends Carta
     }
 
 
+    // region # EFFETTI CARTE
     private void AumentaVitaConDadoUI(Partita partita, IGiocatore currentGiocatore, TavoloController TC)
     {
         Thread thread = new Thread(() -> {
@@ -235,5 +236,7 @@ public class CartaProbabilita extends Carta
             }).start();
         }
     }
+
+    //endregion
 }
 

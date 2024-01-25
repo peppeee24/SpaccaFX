@@ -61,12 +61,6 @@ public class PartitaSelectorController
         matchList = new ArrayList<MatchData>();
         caricaTuttePartiteDisponibili();
 
-        //ShareData sharedData = ShareData.getInstance();
-        //ShareData.getInstance().setPartitaSelectorController(this);
-        //this.PC = sharedData.getPartitaClassicaController();
-        //this.partita = sharedData.getPartita();
-        //partita1Label.setText("Partita: " + partita.getCodicePartita());
-
 
     }
 

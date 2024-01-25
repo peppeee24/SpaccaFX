@@ -17,6 +17,7 @@ public class Mazzo
     private int maxCarteNormali;
     private int maxCarteSpeciali;
 
+    // region # COSTRUTTORI
     public Mazzo()
     {
         mazzoCarte = new ArrayList<Carta>();
@@ -63,6 +64,9 @@ public class Mazzo
             RiempiMazzo(); // per ora facciamo che riempiamo il mazzo da 30 carte
     }
 
+    //endregion
+
+    // region # METHODS
     public void RiempiMazzo() // riempo il mazzo di 20 carte (per ora)
     {
         CreoCarte();
@@ -276,4 +280,6 @@ public class Mazzo
     }
 
     public ArrayList<Carta> getMazzoCarte(){return  this.mazzoCarte;}
+
+    //endregion
 }

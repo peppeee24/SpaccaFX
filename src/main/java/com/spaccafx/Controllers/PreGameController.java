@@ -37,8 +37,6 @@ public class PreGameController
     @FXML
     Label numerovite1, numerovite2,numerovite3,numerovite4,giocatore1,giocatore2,giocatore3,giocatore4, currentPlayer, currentRound;
 
-
-
     @FXML
     ImageView user1, user2, user3, user4, cuore1, cuore2, cuore3, cuore4;
 
