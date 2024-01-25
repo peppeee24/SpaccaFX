@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -42,118 +10,131 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.AudioController">
-   <children>
-      <TabPane fx:id="totalTab" stylesheets="@PartitaStyle.css" tabClosingPolicy="UNAVAILABLE">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1024.0" stylesheets="@PartitaStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spaccafx.Controllers.AudioController">
+   <top>
+      <AnchorPane prefHeight="93.0" prefWidth="1024.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="13.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/indietro.PNG" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="9.0" prefHeight="76.0" prefWidth="689.0" styleClass="LabelHeaderWhite30" text="IMPOSTAZIONI" textAlignment="CENTER" />
+            <ImageView fx:id="indietro1" fitHeight="73.0" fitWidth="67.0" layoutX="943.0" layoutY="13.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Game/Environment/settings.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <TabPane prefHeight="549.0" prefWidth="1024.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="playerTab" styleClass="riempiTab" text="Impostazioni Audio">
+          <Tab styleClass="riempiTab2" text="AUDIO">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <left>
-                        <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="76.0" layoutY="281.0" styleClass="LabelWhite" text="AUDIO" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </children></AnchorPane>
-                     </left>
-                     <right>
-                        <AnchorPane prefHeight="601.0" prefWidth="776.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <ImageView fx:id="indietro" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                              <Label fx:id="numeroGiocatoriLabel" layoutX="245.0" layoutY="82.0" styleClass="Label" text="Gestisci i suoni" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold Italic" size="27.0" />
-                                 </font></Label>
-                              <Slider fx:id="volumeSlider" layoutX="242.0" layoutY="356.0" prefHeight="16.0" prefWidth="261.0" showTickMarks="true" value="20.0" />
-                              <Label fx:id="Volume" layoutX="263.0" layoutY="310.0" styleClass="Label" text="Volume" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold Italic" size="27.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fx:id="soundImage" fitHeight="69.0" fitWidth="131.0" layoutX="405.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/dischi.gif" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="musicaONButton" layoutX="105.0" layoutY="173.0" mnemonicParsing="false" onAction="#musicaPlayButton" styleClass="LabelWhite15" text="Arcade Music ON" />
-                              <Button fx:id="musicaOFFButton" layoutX="97.0" layoutY="214.0" mnemonicParsing="false" onAction="#musicaStopButton" style="-fx-background-color: red;" styleClass="LabelWhite15" text="Arcade Music OFF" />
-                              <Button fx:id="musicaONButton2" layoutX="406.0" layoutY="173.0" mnemonicParsing="false" onAction="#musicaPlayButton2" styleClass="LabelWhite15" text="Lounge Music ON" />
-                              <Button fx:id="musicaOFFButton2" layoutX="397.0" layoutY="213.0" mnemonicParsing="false" onAction="#musicaStopButton2" style="-fx-background-color: red;" styleClass="LabelWhite15" text="Lounge Music OFF" />
-                           </children>
-                        </AnchorPane>
-                     </right>
-                  </BorderPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="numeroGiocatoriLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="268.0" layoutY="33.0" prefHeight="30.0" prefWidth="459.0" styleClass="Label" text="MUSICA" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="musicaONButton" layoutX="282.0" layoutY="137.0" mnemonicParsing="false" onAction="#musicaPlayButton" prefHeight="31.0" prefWidth="220.0" styleClass="button2" text="Arcade Music ON" />
+                        <Button fx:id="musicaOFFButton" layoutX="573.0" layoutY="137.0" mnemonicParsing="false" onAction="#musicaStopButton" prefHeight="31.0" prefWidth="228.0" style="-fx-background-color: red;" styleClass="button2" text="Arcade Music OFF" />
+                        <Label fx:id="numeroGiocatoriLabel1" contentDisplay="CENTER" layoutX="28.0" layoutY="137.0" prefHeight="30.0" prefWidth="321.0" styleClass="Label" text="Musica Arcade:">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="60.0" fitWidth="65.0" layoutX="881.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/CuffieMusica.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="numeroGiocatoriLabel11" contentDisplay="CENTER" layoutX="28.0" layoutY="239.0" prefHeight="30.0" prefWidth="321.0" styleClass="Label" text="Musica Lounge:">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="musicaONButton2" layoutX="277.0" layoutY="239.0" mnemonicParsing="false" onAction="#musicaPlayButton2" prefHeight="31.0" prefWidth="230.0" styleClass="button2" text="Lounge Music ON" />
+                        <Button fx:id="musicaOFFButton2" layoutX="573.0" layoutY="239.0" mnemonicParsing="false" onAction="#musicaStopButton2" prefHeight="31.0" prefWidth="244.0" style="-fx-background-color: red;" styleClass="button2" text="Lounge Music OFF" />
+                        <ImageView fitHeight="71.0" fitWidth="49.0" layoutX="729.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/dischi.gif" />
+                           </image>
+                        </ImageView>
+                        <Slider fx:id="volumeSlider" layoutX="404.0" layoutY="378.0" prefHeight="16.0" prefWidth="261.0" showTickMarks="true" value="20.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Slider>
+                        <Label fx:id="Volume" contentDisplay="CENTER" layoutX="191.0" layoutY="375.0" prefHeight="30.0" prefWidth="181.0" styleClass="Label" text="Volume:" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="72.0" fitWidth="73.0" layoutX="875.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/LoungeIcon.gif" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </content>
-          </Tab>
-          <Tab fx:id="botTab" styleClass="riempiTab" text="Riconoscimenti">
+            </Tab>
+          <Tab styleClass="riempiTab2" text="RICONOSCIMENTI">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <left>
-                        <AnchorPane prefHeight="200.0" prefWidth="250.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label layoutX="65.0" layoutY="288.0" styleClass="LabelWhite" text="AUTORI" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </children></AnchorPane>
-                     </left>
-                     <right>
-                        <AnchorPane prefHeight="601.0" prefWidth="778.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label fx:id="difficoltaBotLabel" layoutX="32.0" layoutY="46.0" prefHeight="47.0" prefWidth="370.0" styleClass="Label15" text="Progetto realizzato da:">
-                                 <font>
-                                    <Font name="System Bold" size="22.0" />
-                                 </font></Label>
-                              <ImageView fx:id="indietro2" fitHeight="73.0" fitWidth="67.0" layoutX="14.0" layoutY="520.0" onMouseClicked="#indietro" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/indietro.PNG" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="57.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/fede.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="506.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/peppe.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="283.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Assets/Game/Environment/sama2.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="69.0" layoutY="326.0" text="Federico " />
-                              <Label layoutX="63.0" layoutY="347.0" text="Sgambelluri" />
-                              <Label layoutX="318.0" layoutY="326.0" text="Simone" />
-                              <Label layoutX="324.0" layoutY="347.0" text="Magli" />
-                              <Label layoutX="525.0" layoutY="326.0" text="Giuseppe" />
-                              <Label layoutX="545.0" layoutY="347.0" text="Cozza" />
-                           </children>
-                        </AnchorPane>
-                     </right>
-                  </BorderPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="numeroGiocatoriLabel2" alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" layoutY="28.0" prefHeight="59.0" prefWidth="671.0" styleClass="Label" text="PROGETTO REALIZZATO DA:" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="424.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/fede.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="105.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/sama2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="718.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Assets/Game/Environment/giuse.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="Volume1" alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="320.0" prefHeight="30.0" prefWidth="198.0" styleClass="LabelBlack13" text="Simone Magli" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Volume11" alignment="CENTER" contentDisplay="CENTER" layoutX="358.0" layoutY="320.0" prefHeight="30.0" prefWidth="274.0" styleClass="LabelBlack13" text="Federico Sgambelluri" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Volume111" alignment="CENTER" contentDisplay="CENTER" layoutX="696.0" layoutY="320.0" prefHeight="30.0" prefWidth="198.0" styleClass="LabelBlack13" text="Giuseppe Cozza" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </content>
-          </Tab>
+            </Tab>
         </tabs>
       </TabPane>
-   </children>
-</StackPane>
+   </bottom>
+</BorderPane>

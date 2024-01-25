@@ -41,7 +41,7 @@
    <bottom>
       <TabPane prefHeight="545.0" prefWidth="1024.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
          <tabs>
-            <Tab closable="false" styleClass="riempiTab" text="START">
+            <Tab closable="false" styleClass="riempiTab2" text="START">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -55,7 +55,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab closable="false" styleClass="riempiTab" text="TORNEO">
+            <Tab closable="false" styleClass="riempiTab2" text="TORNEO">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -74,7 +74,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab closable="false" styleClass="riempiTab" text="CARTE">
+            <Tab closable="false" styleClass="riempiTab2" text="CARTE">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -118,7 +118,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab closable="false" styleClass="riempiTab" text="SPECIALI">
+            <Tab closable="false" styleClass="riempiTab2" text="SPECIALI">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -158,7 +158,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab closable="false" styleClass="riempiTab" text="BOT">
+            <Tab closable="false" styleClass="riempiTab2" text="BOT">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>

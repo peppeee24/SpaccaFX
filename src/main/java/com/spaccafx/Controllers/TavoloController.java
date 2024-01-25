@@ -336,6 +336,19 @@ public class TavoloController {
                     // Ottenere l'AnchorPane dal tuo controller
                     //AnchorPane singleAnchorPane = singlePlayerScoreboardController.getAnchorPane();
 
+                    // Imposta il colore di sfondo dell'AnchorPane in base al player se vivo o morto
+                    if(giocatore.getVita() == 0)
+                    {
+                        BackgroundFill backgroundFill = new BackgroundFill(Color.ORANGERED, null, null); // Cambia il colore a tuo piacimento
+                        Background background = new Background(backgroundFill);
+                        anchorPane.setBackground(background);
+                    }
+                    else
+                    {
+                        BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTGREEN, null, null); // Cambia il colore a tuo piacimento
+                        Background background = new Background(backgroundFill);
+                        anchorPane.setBackground(background);
+                    }
 
                     leaderboardController.getGridPane().add(anchorPane, 0, riga);
 

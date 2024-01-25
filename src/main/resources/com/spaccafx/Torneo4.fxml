@@ -40,7 +40,7 @@
    <bottom>
       <TabPane prefHeight="600.0" prefWidth="1024.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-            <Tab fx:id="impostazioniPreliminariTab" closable="false" styleClass="riempiTab" text="IMPOSTAZIONI">
+            <Tab fx:id="impostazioniPreliminariTab" closable="false" styleClass="riempiTab2" text="IMPOSTAZIONI">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -129,7 +129,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab fx:id="playerTab" closable="false" styleClass="riempiTab" text="PLAYER">
+          <Tab fx:id="playerTab" closable="false" styleClass="riempiTab2" text="PLAYER">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -201,7 +201,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="botTab" closable="false" styleClass="riempiTab" text="BOT">
+            <Tab fx:id="botTab" closable="false" styleClass="riempiTab2" text="BOT">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -311,7 +311,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="creaTab" styleClass="riempiTab" text="CREA">
+            <Tab fx:id="creaTab" styleClass="riempiTab2" text="CREA">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
