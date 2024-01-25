@@ -22,7 +22,7 @@ public class TutorialController {
     public void tutorialTorneo(ActionEvent actionEvent) throws IOException  // (LOGIN) ADMIN MENU
     {
         AudioManager.bottoneSuono();
-        FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("TutorialTorneo.fxml"));
+        FXMLLoader Login = new FXMLLoader(Spacca.class.getResource("TutorialTorneo1.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(Login.load());
         stage.setScene(scene);
@@ -31,15 +31,13 @@ public class TutorialController {
 
     public void tutorialPartita(ActionEvent actionEvent) throws IOException { // PLAY
         AudioManager.bottoneSuono();
-        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TutorialPartita.fxml"));
+        FXMLLoader playerScreen = new FXMLLoader(Spacca.class.getResource("TutorialPartita1.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = playerScreen.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
-
 
 
     public void indietro(MouseEvent mouseEvent) throws IOException {
