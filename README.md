@@ -5,10 +5,9 @@
 
 ##  💻 DOWNLOAD
 >Prima di scaricare il gioco, assicurati di avere l'ultima versione di Java sul tuo PC, in caso contrario puoi scaricarla da qui: https://www.oracle.com/java/technologies/downloads/
->
-> `SpaccaFX` per Windows: 
 > 
->  `SpaccaFX` per MacOS:
+> `Download SpaccaFX`: https://shorturl.at/dAEH7 
+> 
 ##  🤓 DOCUMENTAZIONE
 > `Carte`:
 >
