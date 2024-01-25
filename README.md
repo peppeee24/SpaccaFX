@@ -1,8 +1,14 @@
 # 🃏 SPACCAFX
-> `SpaccaFX` e' un gioco innovativo di carte che e stato creato interamente con JavaFX. Ti permette di divertire con i tuoi amici in modalita multiplayer oppure in modalita sinleplayer contro alcuni Bot. Il livello di difficolta' di essi e completamente regolabile e i meccanismi di gioco so flessibili e modificabili come preferisci. Dimostra chi e il vero campione e scala la Leaderboard!! Scarica ora! 
+> `SpaccaFX` e' un gioco innovativo di carte che e stato creato interamente con JavaFX. Ti permette di divertirti con i tuoi amici in modalita multiplayer oppure in modalita singleplayer contro alcuni Bot. Il livello di difficoltà di essi è completamente regolabile e i meccanismi di gioco sono flessibili e modificabili come preferisci. Dimostra chi e il vero campione e scala la Leaderboard!! `Scaricalo ora!` 
 
-<img src="src/main/resources/Assets/Game/Environment/readme.gif" align="center" style="width:700px; height: auto;" />
+<img src="src/main/resources/Assets/Game/Environment/readme.gif" align="center" style="width:750px; height: auto;" />
 
+##  💻 DOWNLOAD
+>Prima di scaricare il gioco, assicurati di avere l'ultima versione di Java sul tuo PC, in caso contrario puoi scaricarla da qui: https://www.oracle.com/java/technologies/downloads/
+>
+> `SpaccaFX` per Windows: 
+> 
+>  `SpaccaFX` per MacOS:
 ##  🤓 DOCUMENTAZIONE
 > `Carte`:
 >
@@ -36,7 +42,7 @@
 >
 > Tipi di `PROBABILITA`:
 >
-> - Puoi sostituire la tua carta con una dal mazzo
+> - Puoi scambiare la tua carta due volte: una con il mazzo e una con il player successivo 
 >
 > - Si lancia un dado, se il numero del dado è uguale al numero della carta si ottiene una vita extra.
 >
@@ -64,7 +70,8 @@
 > `Turno 2`: Abbiamo quindi un giocatore morto oppure con una vita in meno. Il mazziere sarà il giocatore che prima era alla sinistra del mazziere. Non è più necessario tirare dadi. Il computer ri-distribuisce le carte.
 >
 > Si continua per i turni successivi finché non rimane UN solo giocatore e dunque tutti gli altri hanno esaurito le vite. La partita può essere messa in pausa in qualsiasi momento e successivamente se si desidera, ricomincerà dal punto in cui è stata interrotta.
-
+> 
+> Per condividere l'esperienza di gioco con i tuoi amici, ti consiglio di provare la modalità `Torneo`. Questa modalità prevede la partecipazione di 16 giocatori, divisi in 4 partite. Il vincitore di ciascuna partita otterrà un posto garantito nella finale del torneo. Il giocatore che trionferà nella finale sarà dichiarato vincitore dell'intero torneo.
 ## 💬 TELEGRAM BOT
 > Entra nel bot di telegram per vedere in tempo reale l'avanzamento delle partite e dei tornei, in modo tale da iniziare a conoscere come saranno i tuoi avversari: https://t.me/+tdRVfYk5QM4xZWRk
 
@@ -73,10 +80,13 @@ _Segui i passaggi sottostanti per avere il progetto installato correttamente ._ 
 
 > 1. Scarica `IntelliJ` dal seguente link: [https://git-scm.com/downloads](https://www.jetbrains.com/idea/download/?source=google&medium=cpc&campaign=9736965262&term=intellij+idea&content=602143185970&gad=1&gclid=CjwKCAjwwb6lBhBJEiwAbuVUSgwq11iEkkCStnKvp7T2IMwenLvo4g7rxxaeNugtO371EiT_8QQgQBoCswUQAvD_BwE&section=windows)
 > 2. Scarica l'ultima versione di `JavaFX` dal seguente link: https://gluonhq.com/products/javafx/
-> 3. Apri `IntelliJ` e importa il progetto utilizzando il link `HTTPS` che trovi cliccando il bottone verde `CODE`
-> 4. Implementa la versione di `JavaFX` precedentemente scaricata all'interno del progetto
-> 5. Effettua la `RUN CONFIGURATION` per avviare la classe `MAIN`
-> 6. Potrai ora apportare modifiche al progetto!
+> 3. Scarica l'ultima versione di `JavaJDK` dal seguente link: https://www.oracle.com/java/technologies/downloads/
+> 4. Ti consigliamo ti tenere traccia del `percorso` dove salvi i file di Java
+> 5. Apri `IntelliJ` e importa il progetto utilizzando il link `HTTPS` che trovi cliccando il bottone verde `CODE`
+> 6. Implementa la versione di `JavaFX` precedentemente scaricata all'interno del progetto
+> 7. Effettua la `RUN CONFIGURATION` per avviare la classe `MAIN`
+> 8. Potrai ora apportare modifiche al progetto!
+> 9. In caso di problemi, puoi trovare una spiegazione più dettagliata qui: https://openjfx.io oppure guarda il video: https://shorturl.at/kq345
 
 ## ⚙️ GIT SETUP
 > 1. Scarica GIT dal seguente link: https://git-scm.com/downloads
@@ -99,24 +109,15 @@ _Verifica che l'email sia corretta:_
   $ `git config --global user.email`
 ```
 
-## 🤖 SIMPLE APIs
-```js
-  public static Int Test(); // return something
-  public static void ConnectPlayer(IGiocatore giocatore); // Inserisci il giocatore nella partita
-  public static void SaveMatch(); // Salva i dati su un file
-```
-## ✨ FEATURES
->Successivamente verrà rilasciata una versione mobile con la possibilità di cambiare lingua
-
 ## 📦 STRUCTURE
 
 ```
 ├── src/
-│   ├── SpaccaFX.js
-│   ├── Test.js
-│   └── Grafica.js  <–––
+│   ├── Spacca.java
+│   ├── Partita.json
+│   └── Controllers.java  <–––
 ├── assets/
-├── package.json
+├── ParitaClassica.fxml
 └── ...
 ```
 
@@ -128,3 +129,11 @@ _Verifica che l'email sia corretta:_
 >4. Adobe Photoshop: https://shorturl.at/bcnuN
 >5. Scene Builder: https://gluonhq.com/products/scene-builder/ 
 >6. Telegram: https://web.telegram.org/a/
+>7. Just Color Picker: https://just-color-picker.en.lo4d.com/windows
+
+## 🎧 Audio e Musica
+> Effetti sonori: https://freesound.org/
+> 
+> Arcade Music: https://shorturl.at/biwHM
+> 
+> Lounge Music: https://shorturl.at/mnNS2
