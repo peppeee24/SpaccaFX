@@ -48,25 +48,25 @@
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <Button fx:id="musicaONButton" layoutX="282.0" layoutY="137.0" mnemonicParsing="false" onAction="#musicaPlayButton" prefHeight="31.0" prefWidth="220.0" styleClass="button2" text="Arcade Music ON" />
-                        <Button fx:id="musicaOFFButton" layoutX="573.0" layoutY="137.0" mnemonicParsing="false" onAction="#musicaStopButton" prefHeight="31.0" prefWidth="228.0" style="-fx-background-color: red;" styleClass="button2" text="Arcade Music OFF" />
-                        <Label fx:id="numeroGiocatoriLabel1" contentDisplay="CENTER" layoutX="28.0" layoutY="137.0" prefHeight="30.0" prefWidth="321.0" styleClass="Label" text="Musica Arcade:">
+                        <Button fx:id="musicaONButton" layoutX="466.0" layoutY="137.0" mnemonicParsing="false" onAction="#musicaPlayButton" prefHeight="31.0" prefWidth="95.0" styleClass="button2" text="ON" />
+                        <Button fx:id="musicaOFFButton" layoutX="616.0" layoutY="138.0" mnemonicParsing="false" onAction="#musicaStopButton" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: red;" styleClass="button2" text="OFF" />
+                        <Label fx:id="numeroGiocatoriLabel1" contentDisplay="CENTER" layoutX="146.0" layoutY="137.0" prefHeight="30.0" prefWidth="321.0" styleClass="Label" text="Musica Arcade:">
                            <font>
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="60.0" fitWidth="65.0" layoutX="881.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="60.0" fitWidth="65.0" layoutX="775.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/CuffieMusica.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="numeroGiocatoriLabel11" contentDisplay="CENTER" layoutX="28.0" layoutY="239.0" prefHeight="30.0" prefWidth="321.0" styleClass="Label" text="Musica Lounge:">
+                        <Label fx:id="numeroGiocatoriLabel11" contentDisplay="CENTER" layoutX="146.0" layoutY="239.0" prefHeight="30.0" prefWidth="321.0" styleClass="Label" text="Musica Lounge:">
                            <font>
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <Button fx:id="musicaONButton2" layoutX="277.0" layoutY="239.0" mnemonicParsing="false" onAction="#musicaPlayButton2" prefHeight="31.0" prefWidth="230.0" styleClass="button2" text="Lounge Music ON" />
-                        <Button fx:id="musicaOFFButton2" layoutX="573.0" layoutY="239.0" mnemonicParsing="false" onAction="#musicaStopButton2" prefHeight="31.0" prefWidth="244.0" style="-fx-background-color: red;" styleClass="button2" text="Lounge Music OFF" />
+                        <Button fx:id="musicaONButton2" layoutX="466.0" layoutY="239.0" mnemonicParsing="false" onAction="#musicaPlayButton2" prefHeight="31.0" prefWidth="95.0" styleClass="button2" text="ON" />
+                        <Button fx:id="musicaOFFButton2" layoutX="616.0" layoutY="239.0" mnemonicParsing="false" onAction="#musicaStopButton2" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: red;" styleClass="button2" text="OFF" />
                         <ImageView fitHeight="71.0" fitWidth="49.0" layoutX="729.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/dischi.gif" />
@@ -82,7 +82,7 @@
                               <Font name="System Bold Italic" size="27.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="72.0" fitWidth="73.0" layoutX="875.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="72.0" fitWidth="73.0" layoutX="775.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../Assets/Game/Environment/LoungeIcon.gif" />
                            </image>
