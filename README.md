@@ -8,6 +8,7 @@
 > 
 > `Download SpaccaFX`: https://shorturl.at/dAEH7 
 > 
+> Durante l'esecuzione verranno creati dei file `Partita.json` e `Torneo.json`, nella cartella dove viene eseguito il gioco, non cancellarli per evitare problemi con i salvataggi. 
 ##  🤓 DOCUMENTAZIONE
 > `Carte`:
 >
