@@ -7,8 +7,9 @@
 >Prima di scaricare il gioco, assicurati di avere l'ultima versione di Java sul tuo PC, in caso contrario puoi scaricarla da qui: https://www.oracle.com/java/technologies/downloads/
 > 
 > `Download SpaccaFX`: https://shorturl.at/dAEH7 
-> 
-> Durante l'esecuzione verranno creati dei file `Partita.json` e `Torneo.json`, nella cartella dove viene eseguito il gioco, non cancellarli per evitare problemi con i salvataggi. 
+>
+>`NOTA BENE`: Durante l'esecuzione verranno creati dei file `Partita.json` e `Torneo.json`, nella cartella dove viene eseguito il gioco, non cancellarli per evitare problemi con i salvataggi. Nella versione per MAC OS potrebbero esserci alcuni problemi relativi all'audio.
+>
 ##  🤓 DOCUMENTAZIONE
 > `Carte`:
 >
