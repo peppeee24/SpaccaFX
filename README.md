@@ -1,14 +1,13 @@
 # 🃏 SPACCAFX
 > `SpaccaFX` e' un gioco innovativo di carte che e stato creato interamente con JavaFX. Ti permette di divertirti con i tuoi amici in modalita multiplayer oppure in modalita singleplayer contro alcuni Bot. Il livello di difficoltà di essi è completamente regolabile e i meccanismi di gioco sono flessibili e modificabili come preferisci. Dimostra chi e il vero campione e scala la Leaderboard!! `Scaricalo ora!` 
 
-<img src="src/main/resources/Assets/Game/Environment/readme.gif" align="center" style="width:750px; height: auto;" />
+<img src="src/main/resources/Assets/Game/Environment/readme.gif" align="center" style="width:900px; height: auto;" />
 
 ##  💻 DOWNLOAD
 >Prima di scaricare il gioco, assicurati di avere l'ultima versione di Java sul tuo PC, in caso contrario puoi scaricarla da qui: https://www.oracle.com/java/technologies/downloads/
->
-> `SpaccaFX` per Windows: 
 > 
->  `SpaccaFX` per MacOS:
+> `Download SpaccaFX`: https://shorturl.at/dAEH7 
+> 
 ##  🤓 DOCUMENTAZIONE
 > `Carte`:
 >
